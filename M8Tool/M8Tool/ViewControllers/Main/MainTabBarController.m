@@ -49,10 +49,7 @@
 - (void)initTabbar {
     
     [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:WCBgColor size:self.tabBar.frame.size]];
-<<<<<<< HEAD
-=======
-    self.delegate = self;
->>>>>>> origin/M8master
+
     
     self.delegate = self;
     
@@ -101,7 +98,7 @@
 
 - (void)setTabBarItem:(UITabBarItem *) tabBarItem withNormalImageName:(NSString *)normalImageName andSelectedImageName:(NSString *)selectedImageName andTitle:(NSString *)title
 {
-    CGSize imgSize = CGSizeMake(30, 30);
+//    CGSize imgSize = CGSizeMake(30, 30);
 
     // 添加根据 size 裁剪的图片
 //    [tabBarItem setImage:[[UIImage imageWithImage:[UIImage imageNamed:normalImageName] convertToSize:imgSize] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];

@@ -7,7 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -26,60 +25,31 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar" translatesAutoresizingMaskIntoConstraints="NO" id="y9f-Pz-jFk">
-<<<<<<< HEAD
-                        <rect key="frame" x="60" y="60" width="180" height="180"/>
-=======
                         <rect key="frame" x="7.5" y="8" width="284" height="284"/>
->>>>>>> origin/M8master
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="y9f-Pz-jFk" secondAttribute="height" multiplier="1:1" id="hr9-ED-E2t"/>
                         </constraints>
                     </imageView>
-<<<<<<< HEAD
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HX0-dM-iST">
-                        <rect key="frame" x="60" y="120" width="180" height="120"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgy-gh-18f">
-                        <rect key="frame" x="60" y="120" width="180" height="100"/>
-                        <fontDescription key="fontDescription" name="DroidSansFallback" family="Droid Sans Fallback" pointSize="15"/>
-                        <color key="textColor" red="1" green="0.48543221263597491" blue="0.53181764869646475" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-=======
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5月7号" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgy-gh-18f">
                         <rect key="frame" x="127" y="140.5" width="47" height="20"/>
                         <fontDescription key="fontDescription" name="DroidSansFallback" family="Droid Sans Fallback" pointSize="15"/>
                         <color key="textColor" red="1" green="0.47669748179999999" blue="0.52964088669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
->>>>>>> origin/M8master
                         <nil key="highlightedColor"/>
                         <size key="shadowOffset" width="0.0" height="0.0"/>
                     </label>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="fgy-gh-18f" firstAttribute="width" secondItem="HX0-dM-iST" secondAttribute="width" id="084-8E-EDE"/>
                 <constraint firstItem="y9f-Pz-jFk" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="0D4-Pe-nEv"/>
-<<<<<<< HEAD
-                <constraint firstItem="HX0-dM-iST" firstAttribute="width" secondItem="y9f-Pz-jFk" secondAttribute="width" id="1D3-BS-7BF"/>
-                <constraint firstItem="HX0-dM-iST" firstAttribute="bottom" secondItem="y9f-Pz-jFk" secondAttribute="bottom" id="5vh-JG-NQM"/>
-                <constraint firstItem="HX0-dM-iST" firstAttribute="height" secondItem="y9f-Pz-jFk" secondAttribute="height" multiplier="2:3" id="JYI-Sr-dFe"/>
-                <constraint firstItem="fgy-gh-18f" firstAttribute="height" secondItem="HX0-dM-iST" secondAttribute="height" multiplier="75:90" id="LPP-qe-J4V"/>
-                <constraint firstItem="y9f-Pz-jFk" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" multiplier="3:5" id="Sv8-Ob-co2"/>
-                <constraint firstItem="HX0-dM-iST" firstAttribute="centerX" secondItem="y9f-Pz-jFk" secondAttribute="centerX" id="auo-bw-ktj"/>
-                <constraint firstItem="y9f-Pz-jFk" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="sjc-tP-BGk"/>
-                <constraint firstItem="fgy-gh-18f" firstAttribute="centerX" secondItem="HX0-dM-iST" secondAttribute="centerX" id="wdR-16-9TW"/>
-                <constraint firstItem="fgy-gh-18f" firstAttribute="top" secondItem="HX0-dM-iST" secondAttribute="top" id="zO5-s9-dqu"/>
-=======
                 <constraint firstAttribute="bottom" secondItem="y9f-Pz-jFk" secondAttribute="bottom" constant="8" id="QHh-Gv-XPZ"/>
                 <constraint firstItem="y9f-Pz-jFk" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="ROh-M9-geg"/>
                 <constraint firstItem="fgy-gh-18f" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="rqT-PD-EHu"/>
                 <constraint firstItem="fgy-gh-18f" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="xnh-89-x1b"/>
->>>>>>> origin/M8master
             </constraints>
             <size key="customSize" width="297" height="284"/>
             <connections>
                 <outlet property="iconImage" destination="y9f-Pz-jFk" id="weg-nv-QS5"/>
-                <outlet property="iconWidthScale" destination="Sv8-Ob-co2" id="1h6-L2-RFs"/>
                 <outlet property="timeLabel" destination="fgy-gh-18f" id="93G-xv-CEi"/>
             </connections>
             <point key="canvasLocation" x="254" y="171"/>

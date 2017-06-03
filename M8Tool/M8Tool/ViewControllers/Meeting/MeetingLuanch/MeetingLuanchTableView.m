@@ -155,13 +155,9 @@
     else {
         [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
             
-<<<<<<< HEAD
             [self.latestCollection setHeight:self.height - contentHeight - kSectionHeight];
             [self.latestCollection setY:contentHeight];
-=======
-            [self.latestCollection setY:contentHeight];
-            [self.latestCollection setHeight:self.height - contentHeight - kSectionHeight];
->>>>>>> origin/M8master
+
             
         } completion:^(BOOL finished) {
             if (finished) {

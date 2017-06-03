@@ -21,19 +21,15 @@
 @implementation MeetingAgendaCell
 
 - (void)configWithTitle:(NSString *)title imageStr:(NSString *)imageStr {
-<<<<<<< HEAD
     
     NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:title attributes:[CommonUtil customAttsWithBodyFontSize:kAppLargeFontSize textColor:[UIColor colorWithRed:0.95 green:0.24 blue:0.21 alpha:1]]];
     
     
     [self.timeLabel setAttributedText: attString];
-=======
-    [self.timeLabel setAttributedText:[CommonUtil customAttString:title
-                                                          fontSize:kAppMiddleFontSize
-                                                         textColor:WCWhite
-                                                         charSpace:kAppKern_0]
-     ];
->>>>>>> origin/M8master
+
+    
+    
+
 //    self.iconImage.image = [UIImage imageNamed:imageStr];
 }
 
