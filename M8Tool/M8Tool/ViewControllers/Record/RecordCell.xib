@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="DroidSansFallback.ttf">
+            <string>DroidSansFallback</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="RecordCellID" selectionStyle="default" indentationWidth="10" rowHeight="270" id="KGk-i7-Jjw" customClass="RecordCell">
+            <rect key="frame" x="0.0" y="0.0" width="801" height="270"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="801" height="269"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XHi-mX-gAa">
+                        <rect key="frame" x="20" y="115" width="20" height="40"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="HKC-8d-n80"/>
+                            <constraint firstAttribute="height" constant="40" id="zJx-K2-BWJ"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="木木的会议（3人）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="crs-5a-uIx">
+                        <rect key="frame" x="60" y="115" width="671" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="1ul-SY-Z66"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="DroidSansFallback" family="Droid Sans Fallback" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XmJ-rf-6oa">
+                        <rect key="frame" x="751" y="115" width="20" height="20"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="JeF-uw-rMS"/>
+                            <constraint firstAttribute="width" constant="20" id="Qsw-o2-5FN"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="木木、林瑞、前女友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdQ-Pi-Ly2">
+                        <rect key="frame" x="60" y="140" width="571" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="Abh-2N-eBD"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="DroidSansFallback" family="Droid Sans Fallback" pointSize="13"/>
+                        <color key="textColor" red="0.73727768660000004" green="0.7333641648" blue="0.73319798709999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017.5.7 15:07" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6m-X8-hdw">
+                        <rect key="frame" x="651" y="140" width="120" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="120" id="3xF-F3-myX"/>
+                            <constraint firstAttribute="height" constant="20" id="uHX-6k-1Sq"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="DroidSansFallback" family="Droid Sans Fallback" pointSize="13"/>
+                        <color key="textColor" red="0.73727768659591675" green="0.73336416482925415" blue="0.73319798707962036" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="H6m-X8-hdw" firstAttribute="height" secondItem="qdQ-Pi-Ly2" secondAttribute="height" id="1jy-aI-lt3"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="H6m-X8-hdw" secondAttribute="trailing" constant="22" id="AYI-yq-Wfj"/>
+                    <constraint firstItem="qdQ-Pi-Ly2" firstAttribute="leading" secondItem="crs-5a-uIx" secondAttribute="leading" id="Fh4-Qx-hiq"/>
+                    <constraint firstItem="qdQ-Pi-Ly2" firstAttribute="top" secondItem="crs-5a-uIx" secondAttribute="bottom" constant="5" id="HYy-f3-HlA"/>
+                    <constraint firstItem="H6m-X8-hdw" firstAttribute="centerY" secondItem="qdQ-Pi-Ly2" secondAttribute="centerY" id="JkA-dH-L6k"/>
+                    <constraint firstItem="crs-5a-uIx" firstAttribute="top" secondItem="XHi-mX-gAa" secondAttribute="top" id="Lf2-Wc-wC1"/>
+                    <constraint firstItem="XHi-mX-gAa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="O1I-bC-9eA"/>
+                    <constraint firstItem="H6m-X8-hdw" firstAttribute="leading" secondItem="qdQ-Pi-Ly2" secondAttribute="trailing" constant="20" id="RqX-0e-8My"/>
+                    <constraint firstAttribute="trailing" secondItem="XmJ-rf-6oa" secondAttribute="trailing" constant="30" id="RrR-s0-eBV"/>
+                    <constraint firstItem="crs-5a-uIx" firstAttribute="leading" secondItem="XHi-mX-gAa" secondAttribute="trailing" constant="20" id="WN3-8a-gEx"/>
+                    <constraint firstItem="XmJ-rf-6oa" firstAttribute="leading" secondItem="crs-5a-uIx" secondAttribute="trailing" constant="20" id="YQV-hq-Bdv"/>
+                    <constraint firstItem="XHi-mX-gAa" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="m9m-UX-Tr9"/>
+                    <constraint firstItem="XmJ-rf-6oa" firstAttribute="centerY" secondItem="crs-5a-uIx" secondAttribute="centerY" id="xeQ-VC-BZO"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+            <connections>
+                <outlet property="luancherLaber" destination="crs-5a-uIx" id="RLa-6O-fU7"/>
+                <outlet property="membersLabel" destination="qdQ-Pi-Ly2" id="Ipz-C9-c9i"/>
+                <outlet property="timeLabel" destination="H6m-X8-hdw" id="uZa-4f-rRs"/>
+            </connections>
+            <point key="canvasLocation" x="123.5" y="136"/>
+        </tableViewCell>
+    </objects>
+</document>

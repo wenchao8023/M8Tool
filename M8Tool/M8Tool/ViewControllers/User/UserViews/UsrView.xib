@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="DroidSansFallback.ttf">
+            <string>DroidSansFallback</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="UsrView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" tag="301" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="林瑞" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vrB-Ms-c1y">
+                    <rect key="frame" x="0.0" y="10" width="375" height="40"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="0hB-97-3Bc"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="DroidSansFallback" family="Droid Sans Fallback" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" tag="302" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的名片" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1p-fC-Wtz">
+                    <rect key="frame" x="0.0" y="70" width="375" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="cym-58-yAu"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="DroidSansFallback" family="Droid Sans Fallback" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="umm-ih-igo" appends="YES" id="e04-5U-UQa"/>
+                    </connections>
+                </label>
+                <label opaque="NO" tag="304" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="切换企业" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zsh-5k-dhy">
+                    <rect key="frame" x="0.0" y="150" width="375" height="40"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="1Af-7e-7oM"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="DroidSansFallback" family="Droid Sans Fallback" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="JWH-ux-a55" appends="YES" id="Kd9-Om-FM9"/>
+                    </connections>
+                </label>
+                <label opaque="NO" tag="305" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设置" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M9R-C8-zL6">
+                    <rect key="frame" x="0.0" y="190" width="375" height="40"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="1W8-R2-Qzd"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="DroidSansFallback" family="Droid Sans Fallback" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="shf-QU-ec7" appends="YES" id="n3U-1G-hLQ"/>
+                    </connections>
+                </label>
+                <label opaque="NO" tag="303" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的钱包" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9zl-IH-Foz">
+                    <rect key="frame" x="0.0" y="110" width="375" height="40"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="Db4-aR-eG1"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="DroidSansFallback" family="Droid Sans Fallback" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="zla-hf-zi1" appends="YES" id="JIn-Rn-FAR"/>
+                    </connections>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="m1p-fC-Wtz" firstAttribute="top" secondItem="vrB-Ms-c1y" secondAttribute="bottom" constant="20" id="1Pt-Ta-rAF"/>
+                <constraint firstItem="M9R-C8-zL6" firstAttribute="width" secondItem="zsh-5k-dhy" secondAttribute="width" id="2cY-HT-NpR"/>
+                <constraint firstItem="vrB-Ms-c1y" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="ART-s1-6Zt"/>
+                <constraint firstItem="zsh-5k-dhy" firstAttribute="width" secondItem="9zl-IH-Foz" secondAttribute="width" id="DtR-Q5-rw4"/>
+                <constraint firstItem="9zl-IH-Foz" firstAttribute="width" secondItem="m1p-fC-Wtz" secondAttribute="width" id="NAU-Yu-LRU"/>
+                <constraint firstItem="9zl-IH-Foz" firstAttribute="top" secondItem="m1p-fC-Wtz" secondAttribute="bottom" id="OGj-SU-dM5"/>
+                <constraint firstItem="9zl-IH-Foz" firstAttribute="centerX" secondItem="m1p-fC-Wtz" secondAttribute="centerX" id="Sv9-q1-Hnr"/>
+                <constraint firstItem="vrB-Ms-c1y" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="VKb-iE-oda"/>
+                <constraint firstItem="m1p-fC-Wtz" firstAttribute="centerX" secondItem="vrB-Ms-c1y" secondAttribute="centerX" id="bAg-5j-Hgg"/>
+                <constraint firstItem="vrB-Ms-c1y" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="e80-on-mGZ"/>
+                <constraint firstItem="M9R-C8-zL6" firstAttribute="top" secondItem="zsh-5k-dhy" secondAttribute="bottom" id="efJ-Yw-9pc"/>
+                <constraint firstItem="zsh-5k-dhy" firstAttribute="centerX" secondItem="9zl-IH-Foz" secondAttribute="centerX" id="jqu-ik-aFk"/>
+                <constraint firstItem="M9R-C8-zL6" firstAttribute="centerX" secondItem="zsh-5k-dhy" secondAttribute="centerX" id="tMe-hP-fwb"/>
+                <constraint firstItem="zsh-5k-dhy" firstAttribute="top" secondItem="9zl-IH-Foz" secondAttribute="bottom" id="vB4-wb-zxb"/>
+                <constraint firstItem="m1p-fC-Wtz" firstAttribute="width" secondItem="vrB-Ms-c1y" secondAttribute="width" id="z0X-vt-RsK"/>
+            </constraints>
+            <connections>
+                <outlet property="cardLabel" destination="m1p-fC-Wtz" id="szq-sB-fAu"/>
+                <outlet property="companyLabel" destination="zsh-5k-dhy" id="MDk-uP-mri"/>
+                <outlet property="settingLabel" destination="M9R-C8-zL6" id="5j6-zH-ai2"/>
+                <outlet property="userNameLabel" destination="vrB-Ms-c1y" id="FTT-q6-ix3"/>
+                <outlet property="walletLabel" destination="9zl-IH-Foz" id="J8f-DK-pQ0"/>
+            </connections>
+        </view>
+        <tapGestureRecognizer id="umm-ih-igo">
+            <connections>
+                <action selector="cardAction:" destination="iN0-l3-epB" id="IR3-0A-BYZ"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="zla-hf-zi1">
+            <connections>
+                <action selector="walletAction:" destination="iN0-l3-epB" id="kh5-fn-gHd"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="JWH-ux-a55">
+            <connections>
+                <action selector="companyAction:" destination="iN0-l3-epB" id="dCX-Rf-ypT"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="shf-QU-ec7">
+            <connections>
+                <action selector="settingAction:" destination="iN0-l3-epB" id="fkL-mM-FqY"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+</document>

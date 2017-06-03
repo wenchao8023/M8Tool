@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="STHeiti-Regular.ttf">
+            <string>STHeiti</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="UsrCardViewCellID" selectionStyle="default" indentationWidth="10" rowHeight="147" id="KGk-i7-Jjw" customClass="UsrCardViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="409" height="147"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="409" height="146.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Iyc-E5-42z">
+                        <rect key="frame" x="20" y="53.5" width="40" height="40"/>
+                        <color key="backgroundColor" red="0.59357739203247228" green="1" blue="0.51903250428910397" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="ZiN-dH-FHI"/>
+                            <constraint firstAttribute="height" constant="40" id="z9D-ac-cHG"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="个人实名认证" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gzU-qD-zHw">
+                        <rect key="frame" x="80" y="66.5" width="100" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="VBc-DW-3GB"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="STHeiti" family="STHeiti" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15612345678" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y0I-f1-rx7">
+                        <rect key="frame" x="200" y="66.5" width="181" height="15"/>
+                        <fontDescription key="fontDescription" name="STHeiti" family="STHeiti" pointSize="15"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="gzU-qD-zHw" firstAttribute="leading" secondItem="Iyc-E5-42z" secondAttribute="trailing" constant="20" id="DtP-tk-asW"/>
+                    <constraint firstItem="y0I-f1-rx7" firstAttribute="leading" secondItem="gzU-qD-zHw" secondAttribute="trailing" constant="20" id="PN4-hW-iHK"/>
+                    <constraint firstItem="gzU-qD-zHw" firstAttribute="centerY" secondItem="Iyc-E5-42z" secondAttribute="centerY" id="Zxk-rc-nBf"/>
+                    <constraint firstItem="y0I-f1-rx7" firstAttribute="centerY" secondItem="gzU-qD-zHw" secondAttribute="centerY" id="aAH-ch-RBk"/>
+                    <constraint firstItem="Iyc-E5-42z" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="pCC-4g-icy"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="y0I-f1-rx7" secondAttribute="trailing" constant="20" id="pYi-b3-0LR"/>
+                    <constraint firstItem="Iyc-E5-42z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="wmU-yf-9Kk"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="contentLabel" destination="y0I-f1-rx7" id="ttL-nj-ekm"/>
+                <outlet property="iconImage" destination="Iyc-E5-42z" id="Yml-bi-5nb"/>
+                <outlet property="itemLabel" destination="gzU-qD-zHw" id="mOL-GJ-3As"/>
+            </connections>
+            <point key="canvasLocation" x="-115" y="19"/>
+        </tableViewCell>
+    </objects>
+</document>
