@@ -47,6 +47,7 @@
     return alert;
 }
 
+#pragma mark - push
 - (void)pushViewController:(UIViewController *)viewController
 {
     @autoreleasepool
@@ -65,6 +66,13 @@
     }
 }
 
+#pragma mark - model
+- (void)presentViewController:(UIViewController *)viewController {
+    @autoreleasepool {
+        [[self navigationViewController] presentViewController:viewController animated:YES completion:nil];
+    }
+}
+    
 - (UIViewController *)popViewController
 {
     return [[self navigationViewController] popViewControllerAnimated:YES];

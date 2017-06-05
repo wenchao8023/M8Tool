@@ -15,6 +15,7 @@
 
 
 
+
 #define kItemWidth (self.width - 60) / 5
 #define kSectionHeight 40
 
@@ -275,6 +276,16 @@
     }
     return _dataContentArray;
 }
+    
+- (void)reloadData {
+    [super reloadData];
+    
+    NSString *topic = [self.dataContentArray firstObject];
+    
+    if ([self.WCDelegate respondsToSelector:@selector(luanchTableViewMeetingTopic:)]) {
+        [self.WCDelegate luanchTableViewMeetingTopic:topic];
+    }
+}
 
 /**
  *  加载预约会议的数据
@@ -363,9 +374,14 @@
 
 #pragma mark - ModifyViewDelegate
 - (void)modifyViewMofifyInfo:(NSDictionary *)modifyInfo {
+    
     if ([[[modifyInfo allKeys] firstObject] isEqualToString:@"text"]) {
-        [self.dataContentArray replaceObjectAtIndex:0 withObject:[modifyInfo objectForKey:@"text"]];
+        
+        NSString *topic = [modifyInfo objectForKey:@"text"];
+        
+        [self.dataContentArray replaceObjectAtIndex:0 withObject:topic];
     }
+    
     
     [self reloadData];
 }

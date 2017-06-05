@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol LuanchTableViewDelegate <NSObject>
+
+- (void)luanchTableViewMeetingTopic:(NSString *_Nonnull)topic;
+
+@end
+
 
 
 
@@ -20,6 +26,6 @@
 
 @property (nonatomic, assign) NSInteger MaxMembers;
 
-
+@property (nonatomic, weak) id _Nullable WCDelegate;
 
 @end

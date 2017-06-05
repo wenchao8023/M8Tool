@@ -271,7 +271,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ih6-8L-6TP" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eba-PN-ADM" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UxV-VB-ODO">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UxV-VB-ODO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

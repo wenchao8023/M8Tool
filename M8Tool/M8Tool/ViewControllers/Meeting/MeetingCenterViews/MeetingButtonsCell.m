@@ -19,6 +19,7 @@
 
 - (void)drawTextInRect:(CGRect)rect {
     
+#warning CGContextSetLineWidth: invalid context 0x0. If you want to see the backtrace, please set CG_CONTEXT_SHOW_BACKTRACE environmental variable.
     CGSize shadowOffset = self.shadowOffset;
     UIColor *textColor = self.textColor;
     
@@ -62,15 +63,90 @@
                                                          charSpace:kAppKern_0]
      ];
     // 描边
-    [self.titleLabel drawTextInRect:self.titleLabel.bounds];
+//    [self.titleLabel drawTextInRect:self.titleLabel.bounds];
     
     self.iconImage.image = [[UIImage imageNamed:imageStr] imageDrawClearRect];
 }
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    
+    [self.titleLabel drawTextInRect:self.titleLabel.bounds];
 }
 
+    
+    
+
+    /*
+     -(void)createCircle
+     {
+     CGPoint layerCenter = CGPointMake(CGRectGetWidth(self.view.frame)/2, CGRectGetWidth(self.view.frame)/2);
+     CAShapeLayer *layer = [CAShapeLayer layer];
+     layer.frame = self.view.bounds;
+     layer.lineWidth = 6.0;
+     layer.strokeColor = [UIColor redColor].CGColor;
+     layer.fillColor = [UIColor whiteColor].CGColor;
+     
+     self.path = [UIBezierPath bezierPath];
+     [self.path addArcWithCenter:layerCenter radius:50 startAngle:0.0 endAngle:M_PI*2 clockwise:YES];
+     
+     [self.path stroke];
+     [self.path fill];
+     layer.path = self.path.CGPath;
+     [self.view.layer addSublayer:layer];
+     }
+     */
+    /*
+     -(void)createCircle
+     {
+     CGPoint layerCenter = CGPointMake(CGRectGetWidth(self.view.frame)/2, CGRectGetWidth(self.view.frame)/2);
+     CAShapeLayer *layer = [CAShapeLayer layer];
+     layer.frame = self.view.bounds;
+     layer.lineWidth = 6.0;
+     layer.strokeColor = [UIColor redColor].CGColor;
+     layer.fillColor = [UIColor whiteColor].CGColor;
+     
+     self.path = [UIBezierPath bezierPath];
+     [self.path addArcWithCenter:layerCenter radius:50 startAngle:0.0 endAngle:M_PI*2 clockwise:YES];
+     
+     layer.path = self.path.CGPath;
+     
+     UIGraphicsBeginImageContext(self.view.bounds.size);
+     [self.path stroke];
+     [self.path fill];
+     UIGraphicsEndImageContext();
+     
+     [self.view.layer addSublayer:layer];
+     }
+     */
+    
+    
+    
+    
+    /*
+     -(void)createCircle
+     {
+     CGPoint layerCenter = CGPointMake(CGRectGetWidth(self.view.frame)/2, CGRectGetWidth(self.view.frame)/2);
+     CAShapeLayer *layer = [CAShapeLayer layer];
+     layer.frame = self.view.bounds;
+     layer.lineWidth = 6.0;
+     layer.strokeColor = [UIColor redColor].CGColor;
+     layer.fillColor = [UIColor whiteColor].CGColor;
+     self.path = [UIBezierPath bezierPath];
+     [self.path addArcWithCenter:layerCenter radius:50 startAngle:0.0 endAngle:M_PI*2 clockwise:YES];
+     //    [self.path stroke];
+     //    [self.path fill];
+     layer.path = self.path.CGPath;
+     [self.view.layer addSublayer:layer];
+     [self.view setNeedsDisplay];
+     }
+     - (void) drawRect:(CGRect)rect {
+     [self.path stroke];
+     [self.path fill];
+     }
+     */
+    
+    
 @end
 
 
