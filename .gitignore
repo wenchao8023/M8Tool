@@ -19,7 +19,6 @@ DerivedData
 *.xcworkspace
 !default.xcworkspace
 
-M8Tool/M8Tool.xcodeproj/project.xcworkspace/xcuserdata/guowenchao.xcuserdatad/UserInterfaceState.xcuserstate
 
 # 忽略指定文件夹
 /M8Tool/frameworks
