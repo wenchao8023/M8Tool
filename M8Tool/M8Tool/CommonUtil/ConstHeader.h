@@ -5,8 +5,12 @@
 #define ConstHeader_h
 
 
-#define ShowAppId       @"1400025495"
-#define ShowAccountType @"11456"
+//#define ShowAppId       @"1400025495"
+//#define ShowAccountType @"11456"
+
+//Tdemo
+#define ShowAppId @"1400026919"
+#define ShowAccountType @"11372"
 
 
 /******************** font ********************************/

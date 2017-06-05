@@ -12,6 +12,9 @@
 		940DE9AF1ED8513F006F061A /* UsrCardHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 940DE9AE1ED8513F006F061A /* UsrCardHeaderView.m */; };
 		940DE9B51ED854D3006F061A /* UsrCardViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 940DE9B31ED854D3006F061A /* UsrCardViewCell.m */; };
 		94112EC41ECADE1D00263F7F /* WCCollectionViewHorizontalLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 94112EC31ECADE1D00263F7F /* WCCollectionViewHorizontalLayout.m */; };
+		9422BED51EE52CD800F9B56D /* M8LoginStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9422BED41EE52CD800F9B56D /* M8LoginStoryboard.storyboard */; };
+		9422BED81EE52FC400F9B56D /* M8LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9422BED71EE52FC400F9B56D /* M8LoginViewController.m */; };
+		9422BEDB1EE5359800F9B56D /* M8RegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9422BEDA1EE5359800F9B56D /* M8RegistViewController.m */; };
 		942BCB201EC1C4A0000F9911 /* DroidSansFallback.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 942BCB1F1EC1C4A0000F9911 /* DroidSansFallback.ttf */; };
 		943A085C1EDEBADE003CEA27 /* BaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 943A082D1EDEBADE003CEA27 /* BaseRequest.m */; };
 		943A085D1EDEBADE003CEA27 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 943A08301EDEBADE003CEA27 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -155,7 +158,6 @@
 		94A851C31EE2C18600204B48 /* UsrCardViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 940DE9B41ED854D3006F061A /* UsrCardViewCell.xib */; };
 		94A851C41EE2C18600204B48 /* RecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2381EC585C5003ADF5F /* RecordCell.xib */; };
 		94A851C51EE2C18600204B48 /* UsrCardHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 940DE9B01ED85148006F061A /* UsrCardHeaderView.xib */; };
-		94A851C61EE2C18600204B48 /* M8LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94CCEBBE1ED94D1A00C1DB5A /* M8LoginViewController.xib */; };
 		94A851C71EE2C18600204B48 /* UsrContactHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94E5DE311ED6A738008632D7 /* UsrContactHeaderView.xib */; };
 		94A851C81EE2C18700204B48 /* UsrCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 940DE9AB1ED84D67006F061A /* UsrCardView.m */; };
 		94ABD2D41E976B31007C1172 /* CommonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ABD2D31E976B31007C1172 /* CommonUtil.m */; };
@@ -184,7 +186,6 @@
 		94C9B83B1ECDA52100F42654 /* LatestMembersCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C9B83A1ECDA52100F42654 /* LatestMembersCollection.m */; };
 		94C9B83F1ECDA59000F42654 /* MeetingMembersCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C9B83D1ECDA59000F42654 /* MeetingMembersCell.m */; };
 		94C9B8401ECDA59000F42654 /* MeetingMembersCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94C9B83E1ECDA59000F42654 /* MeetingMembersCell.xib */; };
-		94CCEBBF1ED94D1A00C1DB5A /* M8LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CCEBBD1ED94D1A00C1DB5A /* M8LoginViewController.m */; };
 		94D8C9CF1ED025840075C35D /* MeetingOrderTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D8C9CE1ED025840075C35D /* MeetingOrderTableView.m */; };
 		94DE95891EAE145400A44DB1 /* UIColor+MLPFlatColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DE95801EAE145400A44DB1 /* UIColor+MLPFlatColors.m */; };
 		94DE958A1EAE145400A44DB1 /* UIImage+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DE95821EAE145400A44DB1 /* UIImage+Common.m */; };
@@ -213,6 +214,11 @@
 		94112EC21ECADE1D00263F7F /* WCCollectionViewHorizontalLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCCollectionViewHorizontalLayout.h; sourceTree = "<group>"; };
 		94112EC31ECADE1D00263F7F /* WCCollectionViewHorizontalLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCCollectionViewHorizontalLayout.m; sourceTree = "<group>"; };
 		9419FE991E891C6700B48D89 /* M8Tool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = M8Tool.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9422BED41EE52CD800F9B56D /* M8LoginStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = M8LoginStoryboard.storyboard; sourceTree = "<group>"; };
+		9422BED61EE52FC400F9B56D /* M8LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LoginViewController.h; sourceTree = "<group>"; };
+		9422BED71EE52FC400F9B56D /* M8LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LoginViewController.m; sourceTree = "<group>"; };
+		9422BED91EE5359800F9B56D /* M8RegistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8RegistViewController.h; sourceTree = "<group>"; };
+		9422BEDA1EE5359800F9B56D /* M8RegistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8RegistViewController.m; sourceTree = "<group>"; };
 		942BCB1F1EC1C4A0000F9911 /* DroidSansFallback.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DroidSansFallback.ttf; sourceTree = "<group>"; };
 		943A082B1EDEBADE003CEA27 /* ARCCompile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCCompile.h; sourceTree = "<group>"; };
 		943A082C1EDEBADE003CEA27 /* BaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRequest.h; sourceTree = "<group>"; };
@@ -490,9 +496,6 @@
 		94C9B83C1ECDA59000F42654 /* MeetingMembersCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingMembersCell.h; sourceTree = "<group>"; };
 		94C9B83D1ECDA59000F42654 /* MeetingMembersCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetingMembersCell.m; sourceTree = "<group>"; };
 		94C9B83E1ECDA59000F42654 /* MeetingMembersCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeetingMembersCell.xib; sourceTree = "<group>"; };
-		94CCEBBC1ED94D1A00C1DB5A /* M8LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LoginViewController.h; sourceTree = "<group>"; };
-		94CCEBBD1ED94D1A00C1DB5A /* M8LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LoginViewController.m; sourceTree = "<group>"; };
-		94CCEBBE1ED94D1A00C1DB5A /* M8LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M8LoginViewController.xib; sourceTree = "<group>"; };
 		94D8C9CD1ED025840075C35D /* MeetingOrderTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingOrderTableView.h; sourceTree = "<group>"; };
 		94D8C9CE1ED025840075C35D /* MeetingOrderTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetingOrderTableView.m; sourceTree = "<group>"; };
 		94DE957E1EAE145400A44DB1 /* CategoryHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryHeader.h; sourceTree = "<group>"; };
@@ -1096,15 +1099,17 @@
 		946753D41EBC1F3E00653A2C /* Login(登录) */ = {
 			isa = PBXGroup;
 			children = (
+				9422BED41EE52CD800F9B56D /* M8LoginStoryboard.storyboard */,
+				9422BED91EE5359800F9B56D /* M8RegistViewController.h */,
+				9422BEDA1EE5359800F9B56D /* M8RegistViewController.m */,
+				9422BED61EE52FC400F9B56D /* M8LoginViewController.h */,
+				9422BED71EE52FC400F9B56D /* M8LoginViewController.m */,
 				946753D51EBC1F3E00653A2C /* LoginViewController.h */,
 				946753D61EBC1F3E00653A2C /* LoginViewController.m */,
 				946753D71EBC1F3E00653A2C /* RegistViewController.h */,
 				946753D81EBC1F3E00653A2C /* RegistViewController.m */,
 				94C06F4C1EBC76BA00336E5F /* LoginManager.h */,
 				94C06F4D1EBC76BA00336E5F /* LoginManager.m */,
-				94CCEBBC1ED94D1A00C1DB5A /* M8LoginViewController.h */,
-				94CCEBBD1ED94D1A00C1DB5A /* M8LoginViewController.m */,
-				94CCEBBE1ED94D1A00C1DB5A /* M8LoginViewController.xib */,
 			);
 			name = "Login(登录)";
 			path = Login;
@@ -1456,6 +1461,7 @@
 				943A09051EDEDF92003CEA27 /* btnImg_meetingCollect.png in Resources */,
 				943A09061EDEDF92003CEA27 /* btnImg_meetingNote.png in Resources */,
 				943A09071EDEDF92003CEA27 /* btnImg_meetingOrder.png in Resources */,
+				9422BED51EE52CD800F9B56D /* M8LoginStoryboard.storyboard in Resources */,
 				94A851C51EE2C18600204B48 /* UsrCardHeaderView.xib in Resources */,
 				943A08F31EDED9F2003CEA27 /* FilterRes.bundle in Resources */,
 				943A08F61EDED9F2003CEA27 /* QAVEffectRes.bundle in Resources */,
@@ -1464,7 +1470,6 @@
 				943A09041EDEDF92003CEA27 /* btnImg_liveMeeting.png in Resources */,
 				943A090A1EDEDF92003CEA27 /* btnImg_voiceMeeting.png in Resources */,
 				94A851C41EE2C18600204B48 /* RecordCell.xib in Resources */,
-				94A851C61EE2C18600204B48 /* M8LoginViewController.xib in Resources */,
 				94A851C31EE2C18600204B48 /* UsrCardViewCell.xib in Resources */,
 				946753C81EBC16D500653A2C /* LaunchScreen.storyboard in Resources */,
 				944AF20A1E948DC10044B44C /* ShareSDKConfigFile.bundle in Resources */,
@@ -1579,8 +1584,8 @@
 				943A08641EDEBADE003CEA27 /* LinkRoomSigRequest.m in Sources */,
 				943A08631EDEBADE003CEA27 /* HostHeartBeatRequest.m in Sources */,
 				944AF31B1E9494C00044B44C /* UIImage+KVNImageEffects.m in Sources */,
+				9422BED81EE52FC400F9B56D /* M8LoginViewController.m in Sources */,
 				94B3C23F1EC58E81003ADF5F /* RecordTableViewModel.m in Sources */,
-				94CCEBBF1ED94D1A00C1DB5A /* M8LoginViewController.m in Sources */,
 				944AF3191E9494C00044B44C /* UIColor+KVNContrast.m in Sources */,
 				946753D91EBC1F3E00653A2C /* LoginViewController.m in Sources */,
 				94DE95891EAE145400A44DB1 /* UIColor+MLPFlatColors.m in Sources */,
@@ -1588,6 +1593,7 @@
 				9497DF421ECA968F009C35CB /* UsrView.m in Sources */,
 				94D8C9CF1ED025840075C35D /* MeetingOrderTableView.m in Sources */,
 				943A08671EDEBADE003CEA27 /* LoginRequest.m in Sources */,
+				9422BEDB1EE5359800F9B56D /* M8RegistViewController.m in Sources */,
 				94BDE5241ECC489200ECC089 /* MeetingOrderViewController.m in Sources */,
 				94ABD2D41E976B31007C1172 /* CommonUtil.m in Sources */,
 				94DE958C1EAE145400A44DB1 /* UIView+CustomAutoLayout.m in Sources */,

@@ -1,5 +1,5 @@
 //
-//  M8LoginViewController.h
+//  M8RegistViewController.h
 //  M8Tool
 //
 //  Created by chao on 2017/6/5.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface M8LoginViewController : UIViewController
+@interface M8RegistViewController : UIViewController
 
 @end
