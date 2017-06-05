@@ -9,7 +9,7 @@
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
-xcuserdata
+*.xcuserdata
 profile
 *.moved-aside
 DerivedData
@@ -19,7 +19,14 @@ DerivedData
 *.xcworkspace
 !default.xcworkspace
 
-#CocoaPods
-Pods
-!Podfile
-!Podfile.lock
+M8Tool/M8Tool.xcodeproj/project.xcworkspace/xcuserdata/guowenchao.xcuserdatad/UserInterfaceState.xcuserstate
+
+# 忽略指定文件夹
+/M8Tool/frameworks
+/M8Tool/M8Tool/Base
+/M8Tool/M8Tool/3RD
+
+# CocoaPods
+# Pods
+# !Podfile
+# !Podfile.lock
