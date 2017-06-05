@@ -66,6 +66,7 @@
 
 - (IBAction)companyAction:(id)sender {
     WCLog(@"我的企业");
+    [self pushToViewController:@"M8ThemeViewController"];
 }
 
 - (IBAction)settingAction:(id)sender {

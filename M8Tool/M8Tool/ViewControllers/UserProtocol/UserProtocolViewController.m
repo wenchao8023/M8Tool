@@ -7,6 +7,7 @@
 //
 
 #import "UserProtocolViewController.h"
+#import "MainTabBarController.h"
 
 
 @interface UserProtocolViewController ()
@@ -35,8 +36,8 @@
     [[NSUserDefaults standardUserDefaults] setObject:@(YES) forKey:kUserProtocol];
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
-    UIViewController *tabController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MainTabBarController"];
-    appDelegate.window.rootViewController = tabController;
+    MainTabBarController *tabBarVC = [[MainTabBarController alloc] init];
+    appDelegate.window.rootViewController = tabBarVC;
 }
 
 @end

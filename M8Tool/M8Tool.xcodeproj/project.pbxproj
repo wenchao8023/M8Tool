@@ -19,6 +19,10 @@
 		9422BEE21EE5593200F9B56D /* M8LiveMeetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9422BEE01EE5593200F9B56D /* M8LiveMeetViewController.xib */; };
 		9422BEE61EE57A3F00F9B56D /* M8LiveJoinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9422BEE41EE57A3F00F9B56D /* M8LiveJoinViewController.m */; };
 		9422BEE71EE57A3F00F9B56D /* M8LiveJoinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9422BEE51EE57A3F00F9B56D /* M8LiveJoinViewController.xib */; };
+		9422BEEB1EE5838F00F9B56D /* M8ThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9422BEEA1EE5838F00F9B56D /* M8ThemeViewController.m */; };
+		9422BEF31EE5842600F9B56D /* M8ThemeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9422BEF21EE5842600F9B56D /* M8ThemeModel.m */; };
+		9422BEF71EE5844B00F9B56D /* M8ThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9422BEF51EE5844B00F9B56D /* M8ThemeCell.m */; };
+		9422BEF81EE5844B00F9B56D /* M8ThemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9422BEF61EE5844B00F9B56D /* M8ThemeCell.xib */; };
 		942BCB201EC1C4A0000F9911 /* DroidSansFallback.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 942BCB1F1EC1C4A0000F9911 /* DroidSansFallback.ttf */; };
 		943A085C1EDEBADE003CEA27 /* BaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 943A082D1EDEBADE003CEA27 /* BaseRequest.m */; };
 		943A085D1EDEBADE003CEA27 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 943A08301EDEBADE003CEA27 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -229,6 +233,13 @@
 		9422BEE31EE57A3F00F9B56D /* M8LiveJoinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LiveJoinViewController.h; sourceTree = "<group>"; };
 		9422BEE41EE57A3F00F9B56D /* M8LiveJoinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LiveJoinViewController.m; sourceTree = "<group>"; };
 		9422BEE51EE57A3F00F9B56D /* M8LiveJoinViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M8LiveJoinViewController.xib; sourceTree = "<group>"; };
+		9422BEE91EE5838F00F9B56D /* M8ThemeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8ThemeViewController.h; sourceTree = "<group>"; };
+		9422BEEA1EE5838F00F9B56D /* M8ThemeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8ThemeViewController.m; sourceTree = "<group>"; };
+		9422BEF11EE5842600F9B56D /* M8ThemeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8ThemeModel.h; sourceTree = "<group>"; };
+		9422BEF21EE5842600F9B56D /* M8ThemeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8ThemeModel.m; sourceTree = "<group>"; };
+		9422BEF41EE5844B00F9B56D /* M8ThemeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8ThemeCell.h; sourceTree = "<group>"; };
+		9422BEF51EE5844B00F9B56D /* M8ThemeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8ThemeCell.m; sourceTree = "<group>"; };
+		9422BEF61EE5844B00F9B56D /* M8ThemeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M8ThemeCell.xib; sourceTree = "<group>"; };
 		942BCB1F1EC1C4A0000F9911 /* DroidSansFallback.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DroidSansFallback.ttf; sourceTree = "<group>"; };
 		943A082B1EDEBADE003CEA27 /* ARCCompile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCCompile.h; sourceTree = "<group>"; };
 		943A082C1EDEBADE003CEA27 /* BaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRequest.h; sourceTree = "<group>"; };
@@ -659,6 +670,20 @@
 				9422BEE51EE57A3F00F9B56D /* M8LiveJoinViewController.xib */,
 			);
 			name = LiveMeeting;
+			sourceTree = "<group>";
+		};
+		9422BEE81EE5835600F9B56D /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				9422BEE91EE5838F00F9B56D /* M8ThemeViewController.h */,
+				9422BEEA1EE5838F00F9B56D /* M8ThemeViewController.m */,
+				9422BEF41EE5844B00F9B56D /* M8ThemeCell.h */,
+				9422BEF51EE5844B00F9B56D /* M8ThemeCell.m */,
+				9422BEF61EE5844B00F9B56D /* M8ThemeCell.xib */,
+				9422BEF11EE5842600F9B56D /* M8ThemeModel.h */,
+				9422BEF21EE5842600F9B56D /* M8ThemeModel.m */,
+			);
+			path = Theme;
 			sourceTree = "<group>";
 		};
 		942BCB1E1EC1C4A0000F9911 /* font */ = {
@@ -1356,6 +1381,7 @@
 				9497DF1F1ECA95FD009C35CB /* UserCard */,
 				9497DF1E1ECA95E5009C35CB /* UserSetting */,
 				94975C1E1ED294F800EAB395 /* UserContact */,
+				9422BEE81EE5835600F9B56D /* Theme */,
 			);
 			name = "User(用户界面)";
 			path = User;
@@ -1503,6 +1529,7 @@
 				942BCB201EC1C4A0000F9911 /* DroidSansFallback.ttf in Resources */,
 				943A09041EDEDF92003CEA27 /* btnImg_liveMeeting.png in Resources */,
 				943A090A1EDEDF92003CEA27 /* btnImg_voiceMeeting.png in Resources */,
+				9422BEF81EE5844B00F9B56D /* M8ThemeCell.xib in Resources */,
 				94A851C41EE2C18600204B48 /* RecordCell.xib in Resources */,
 				94A851C31EE2C18600204B48 /* UsrCardViewCell.xib in Resources */,
 				946753C81EBC16D500653A2C /* LaunchScreen.storyboard in Resources */,
@@ -1597,7 +1624,9 @@
 				9497DF511ECA98EA009C35CB /* UserSettingTabelView.m in Sources */,
 				944AF3181E9494C00044B44C /* UIWebView+AFNetworking.m in Sources */,
 				94BDE5351ECC599800ECC089 /* MeetingMembersCollection.m in Sources */,
+				9422BEEB1EE5838F00F9B56D /* M8ThemeViewController.m in Sources */,
 				94DE958B1EAE145400A44DB1 /* UIImage+TintColor.m in Sources */,
+				9422BEF31EE5842600F9B56D /* M8ThemeModel.m in Sources */,
 				9497DF381ECA966A009C35CB /* MeetingAgendaCollection.m in Sources */,
 				943A086C1EDEBADE003CEA27 /* ReportMemIdRequest.m in Sources */,
 				9422BEE11EE5593200F9B56D /* M8LiveMeetViewController.m in Sources */,
@@ -1620,6 +1649,7 @@
 				94C06F4E1EBC76BA00336E5F /* LoginManager.m in Sources */,
 				943A08641EDEBADE003CEA27 /* LinkRoomSigRequest.m in Sources */,
 				943A08631EDEBADE003CEA27 /* HostHeartBeatRequest.m in Sources */,
+				9422BEF71EE5844B00F9B56D /* M8ThemeCell.m in Sources */,
 				944AF31B1E9494C00044B44C /* UIImage+KVNImageEffects.m in Sources */,
 				9422BED81EE52FC400F9B56D /* M8LoginViewController.m in Sources */,
 				94B3C23F1EC58E81003ADF5F /* RecordTableViewModel.m in Sources */,
