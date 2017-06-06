@@ -183,7 +183,6 @@
 		94C06F3D1EBC50C900336E5F /* UserProtocolViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94C06F3A1EBC50C900336E5F /* UserProtocolViewController.xib */; };
 		94C06F401EBC512900336E5F /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C06F3F1EBC512900336E5F /* MainTabBarController.m */; };
 		94C06F451EBC5D1500336E5F /* LoadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C06F441EBC5D1500336E5F /* LoadView.m */; };
-		94C06F471EBC69F800336E5F /* ssssssss.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 94C06F461EBC69F800336E5F /* ssssssss.jpg */; };
 		94C06F4E1EBC76BA00336E5F /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C06F4D1EBC76BA00336E5F /* LoginManager.m */; };
 		94C089D81EC976E600EE3403 /* RecorDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C089D71EC976E600EE3403 /* RecorDetailView.m */; };
 		94C089DA1EC976F200EE3403 /* RecorDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94C089D91EC976F200EE3403 /* RecorDetailView.xib */; };
@@ -194,6 +193,14 @@
 		94C9B8401ECDA59000F42654 /* MeetingMembersCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94C9B83E1ECDA59000F42654 /* MeetingMembersCell.xib */; };
 		94D0A0FC1EE67463009399C6 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D0A0FB1EE67463009399C6 /* UserModel.m */; };
 		94D0A1051EE68C00009399C6 /* ModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D0A1041EE68C00009399C6 /* ModifyViewController.m */; };
+		94D0A10E1EE6AC67009399C6 /* userCard.png in Resources */ = {isa = PBXBuildFile; fileRef = 94D0A1071EE6AC67009399C6 /* userCard.png */; };
+		94D0A10F1EE6AC67009399C6 /* userCentification.png in Resources */ = {isa = PBXBuildFile; fileRef = 94D0A1081EE6AC67009399C6 /* userCentification.png */; };
+		94D0A1101EE6AC67009399C6 /* userOwnCony.png in Resources */ = {isa = PBXBuildFile; fileRef = 94D0A1091EE6AC67009399C6 /* userOwnCony.png */; };
+		94D0A1111EE6AC67009399C6 /* userSetting.png in Resources */ = {isa = PBXBuildFile; fileRef = 94D0A10A1EE6AC67009399C6 /* userSetting.png */; };
+		94D0A1121EE6AC67009399C6 /* userSwitchCony.png in Resources */ = {isa = PBXBuildFile; fileRef = 94D0A10B1EE6AC67009399C6 /* userSwitchCony.png */; };
+		94D0A1131EE6AC67009399C6 /* userTheme.png in Resources */ = {isa = PBXBuildFile; fileRef = 94D0A10C1EE6AC67009399C6 /* userTheme.png */; };
+		94D0A1141EE6AC67009399C6 /* userwallet.png in Resources */ = {isa = PBXBuildFile; fileRef = 94D0A10D1EE6AC67009399C6 /* userwallet.png */; };
+		94D0A1161EE6B68E009399C6 /* launchImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 94D0A1151EE6B68E009399C6 /* launchImg.png */; };
 		94D8C9CF1ED025840075C35D /* MeetingOrderTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D8C9CE1ED025840075C35D /* MeetingOrderTableView.m */; };
 		94DE95891EAE145400A44DB1 /* UIColor+MLPFlatColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DE95801EAE145400A44DB1 /* UIColor+MLPFlatColors.m */; };
 		94DE958A1EAE145400A44DB1 /* UIImage+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DE95821EAE145400A44DB1 /* UIImage+Common.m */; };
@@ -500,7 +507,6 @@
 		94C06F421EBC5D1500336E5F /* CustomUIHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomUIHeader.h; sourceTree = "<group>"; };
 		94C06F431EBC5D1500336E5F /* LoadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadView.h; sourceTree = "<group>"; };
 		94C06F441EBC5D1500336E5F /* LoadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadView.m; sourceTree = "<group>"; };
-		94C06F461EBC69F800336E5F /* ssssssss.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ssssssss.jpg; sourceTree = "<group>"; };
 		94C06F4C1EBC76BA00336E5F /* LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginManager.h; sourceTree = "<group>"; };
 		94C06F4D1EBC76BA00336E5F /* LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
 		94C089D61EC976E600EE3403 /* RecorDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecorDetailView.h; sourceTree = "<group>"; };
@@ -518,6 +524,14 @@
 		94D0A0FB1EE67463009399C6 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		94D0A1031EE68C00009399C6 /* ModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyViewController.h; sourceTree = "<group>"; };
 		94D0A1041EE68C00009399C6 /* ModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyViewController.m; sourceTree = "<group>"; };
+		94D0A1071EE6AC67009399C6 /* userCard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userCard.png; sourceTree = "<group>"; };
+		94D0A1081EE6AC67009399C6 /* userCentification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userCentification.png; sourceTree = "<group>"; };
+		94D0A1091EE6AC67009399C6 /* userOwnCony.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userOwnCony.png; sourceTree = "<group>"; };
+		94D0A10A1EE6AC67009399C6 /* userSetting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userSetting.png; sourceTree = "<group>"; };
+		94D0A10B1EE6AC67009399C6 /* userSwitchCony.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userSwitchCony.png; sourceTree = "<group>"; };
+		94D0A10C1EE6AC67009399C6 /* userTheme.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userTheme.png; sourceTree = "<group>"; };
+		94D0A10D1EE6AC67009399C6 /* userwallet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userwallet.png; sourceTree = "<group>"; };
+		94D0A1151EE6B68E009399C6 /* launchImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchImg.png; sourceTree = "<group>"; };
 		94D8C9CD1ED025840075C35D /* MeetingOrderTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingOrderTableView.h; sourceTree = "<group>"; };
 		94D8C9CE1ED025840075C35D /* MeetingOrderTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetingOrderTableView.m; sourceTree = "<group>"; };
 		94DE957E1EAE145400A44DB1 /* CategoryHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryHeader.h; sourceTree = "<group>"; };
@@ -1131,10 +1145,10 @@
 		946753CD1EBC170200653A2C /* Resources(图片、字体) */ = {
 			isa = PBXGroup;
 			children = (
+				94D0A1151EE6B68E009399C6 /* launchImg.png */,
 				94D8C9C01ECFEB020075C35D /* Pictures */,
 				942BCB1E1EC1C4A0000F9911 /* font */,
 				946753CE1EBC170200653A2C /* Assets.xcassets */,
-				94C06F461EBC69F800336E5F /* ssssssss.jpg */,
 			);
 			name = "Resources(图片、字体)";
 			path = Resources;
@@ -1418,9 +1432,24 @@
 			path = Modify;
 			sourceTree = "<group>";
 		};
+		94D0A1061EE6AC67009399C6 /* userImg */ = {
+			isa = PBXGroup;
+			children = (
+				94D0A1071EE6AC67009399C6 /* userCard.png */,
+				94D0A1081EE6AC67009399C6 /* userCentification.png */,
+				94D0A1091EE6AC67009399C6 /* userOwnCony.png */,
+				94D0A10A1EE6AC67009399C6 /* userSetting.png */,
+				94D0A10B1EE6AC67009399C6 /* userSwitchCony.png */,
+				94D0A10C1EE6AC67009399C6 /* userTheme.png */,
+				94D0A10D1EE6AC67009399C6 /* userwallet.png */,
+			);
+			path = userImg;
+			sourceTree = "<group>";
+		};
 		94D8C9C01ECFEB020075C35D /* Pictures */ = {
 			isa = PBXGroup;
 			children = (
+				94D0A1061EE6AC67009399C6 /* userImg */,
 				943A08FA1EDEDF92003CEA27 /* buttonsImg */,
 			);
 			path = Pictures;
@@ -1534,6 +1563,7 @@
 				94081B461EC463FF0079583C /* STHeiti-Regular.ttf in Resources */,
 				94A851C71EE2C18600204B48 /* UsrContactHeaderView.xib in Resources */,
 				943A08E91EDEC76B003CEA27 /* TILFilterResource.bundle in Resources */,
+				94D0A1131EE6AC67009399C6 /* userTheme.png in Resources */,
 				943A09051EDEDF92003CEA27 /* btnImg_meetingCollect.png in Resources */,
 				943A09061EDEDF92003CEA27 /* btnImg_meetingNote.png in Resources */,
 				9422BEE71EE57A3F00F9B56D /* M8LiveJoinViewController.xib in Resources */,
@@ -1543,18 +1573,21 @@
 				943A08F61EDED9F2003CEA27 /* QAVEffectRes.bundle in Resources */,
 				944AF2181E948DC10044B44C /* README.txt in Resources */,
 				942BCB201EC1C4A0000F9911 /* DroidSansFallback.ttf in Resources */,
+				94D0A10E1EE6AC67009399C6 /* userCard.png in Resources */,
 				943A09041EDEDF92003CEA27 /* btnImg_liveMeeting.png in Resources */,
+				94D0A1101EE6AC67009399C6 /* userOwnCony.png in Resources */,
 				943A090A1EDEDF92003CEA27 /* btnImg_voiceMeeting.png in Resources */,
+				94D0A1111EE6AC67009399C6 /* userSetting.png in Resources */,
 				9422BEF81EE5844B00F9B56D /* M8ThemeCell.xib in Resources */,
 				94A851C41EE2C18600204B48 /* RecordCell.xib in Resources */,
 				94A851C31EE2C18600204B48 /* UsrCardViewCell.xib in Resources */,
 				946753C81EBC16D500653A2C /* LaunchScreen.storyboard in Resources */,
 				944AF20A1E948DC10044B44C /* ShareSDKConfigFile.bundle in Resources */,
+				94D0A10F1EE6AC67009399C6 /* userCentification.png in Resources */,
 				944AF20D1E948DC10044B44C /* ShareSDKUI.bundle in Resources */,
 				946753CF1EBC170200653A2C /* Assets.xcassets in Resources */,
 				944AF2151E948DC10044B44C /* WeiboSDK.bundle in Resources */,
 				94C06F3D1EBC50C900336E5F /* UserProtocolViewController.xib in Resources */,
-				94C06F471EBC69F800336E5F /* ssssssss.jpg in Resources */,
 				946753C91EBC16D500653A2C /* Main.storyboard in Resources */,
 				9497DF3D1ECA966A009C35CB /* MeetingView.xib in Resources */,
 				94C9B8381ECD688400F42654 /* MeetingLuanchTableViewCell.xib in Resources */,
@@ -1566,9 +1599,12 @@
 				94C9B8401ECDA59000F42654 /* MeetingMembersCell.xib in Resources */,
 				943A09091EDEDF92003CEA27 /* btnImg_videoMeeting.png in Resources */,
 				943A08F51EDED9F2003CEA27 /* PE.dat in Resources */,
+				94D0A1121EE6AC67009399C6 /* userSwitchCony.png in Resources */,
 				948E04621EE6421B0075903B /* UserTableViewCell.xib in Resources */,
 				94A851C11EE2BD8B00204B48 /* MeetingAgendaCell.xib in Resources */,
 				943A08F21EDED9F2003CEA27 /* DecoRes.bundle in Resources */,
+				94D0A1161EE6B68E009399C6 /* launchImg.png in Resources */,
+				94D0A1141EE6AC67009399C6 /* userwallet.png in Resources */,
 				944AF2131E948DC10044B44C /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				94C06F3B1EBC50C900336E5F /* UserProtocol.html in Resources */,
 				944AF2171E948DC10044B44C /* read_me.txt in Resources */,

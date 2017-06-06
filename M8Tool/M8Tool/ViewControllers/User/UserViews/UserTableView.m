@@ -40,10 +40,11 @@ static NSString *const kUserSettingVC   = @"UserSettingViewController";
 }
 
 - (void)createUI {
-    UILabel *titleLabel = [WCUIKitControl createLabelWithFrame:CGRectMake(kDefaultCellHeight + 2 * kDefaultMargin, 20, 80, 20) Text:@"林瑞" BgColor:WCClear];
+    UILabel *titleLabel = [WCUIKitControl createLabelWithFrame:CGRectMake(48, 20, 80, 20) Text:@"林瑞" BgColor:WCClear];
+    [titleLabel setAttributedText:[CommonUtil customAttString:@"林瑞" fontSize:kAppLargeFontSize textColor:WCBlack charSpace:kAppKern_4]];
     [self addSubview:titleLabel];
     
-    UILabel *LineLabel = [WCUIKitControl createLabelWithFrame:CGRectMake(0, self.height - 1, self.width, 1) Text:nil BgColor:WCGray];
+    UILabel *LineLabel = [WCUIKitControl createLabelWithFrame:CGRectMake(0, self.height - 0.5, self.width, 0.5) Text:nil BgColor:[UIColor colorWithRed:0.86 green:0.84 blue:0.82 alpha:1]];
     [self addSubview:LineLabel];
 }
 
@@ -95,11 +96,12 @@ static NSString *const kUserSettingVC   = @"UserSettingViewController";
 
 - (void)loadData {
     NSArray *titleArr = @[@"我的名片", @"我的钱包", @"切换企业", @"桌面主题", @"设置", @"个人实名认证", @"所在企业"];
+    NSArray *imgsArr  = @[@"userCard", @"userwallet", @"userSwitchCony", @"userTheme", @"userSetting", @"userCentification", @"userOwnCony"];
     
-    for (NSString *tStr in titleArr) {
+    for (int i = 0; i < titleArr.count; i++) {
         UserTableViewModel *model = [UserTableViewModel new];
-        model.titleStr = tStr;
-        model.imgStr = @"";
+        model.titleStr = titleArr[i];
+        model.imgStr = imgsArr[i];
         [self.dataArray addObject:model];
     }
     
