@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserModel.h"
 
 @interface UsrCardViewCell : UITableViewCell
 
-- (void)config:(NSString *)imageStr item:(NSString *)itemStr;
+- (void)config:(UserCardModel *)model;
+//- (void)config:(NSString *)contentStr item:(NSString *)itemStr;
 
 @end

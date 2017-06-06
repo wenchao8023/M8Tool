@@ -25,7 +25,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = @"切换主题";
+    [self setHeaderTitle:@"主题"];
     
     [self createUI];
     

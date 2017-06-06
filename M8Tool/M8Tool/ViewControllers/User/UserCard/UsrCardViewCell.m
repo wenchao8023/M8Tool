@@ -10,7 +10,6 @@
 
 @interface UsrCardViewCell ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *iconImage;
 
 @property (weak, nonatomic) IBOutlet UILabel *itemLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
@@ -19,20 +18,25 @@
 
 @implementation UsrCardViewCell
 
-
-- (void)config:(NSString *)imageStr item:(NSString *)itemStr {
-    self.iconImage.image = [UIImage imageNamed:imageStr];
-    
-    [self.itemLabel setAttributedText:[CommonUtil customAttString:itemStr
-                                                         fontSize:kAppMiddleFontSize
+- (void)config:(UserCardModel *)model {
+    [self.itemLabel setAttributedText:[CommonUtil customAttString:model.itemStr
+                                                         fontSize:kAppMiddleFontSize + 1
                                                         textColor:WCBlack
                                                         charSpace:kAppKern_2]];
+    
+    [self.contentLabel setAttributedText:[CommonUtil customAttString:model.contentStr
+                                                            fontSize:kAppMiddleFontSize
+                                                           textColor:WCDarkGray
+                                                           charSpace:kAppKern_2]];
 }
+
 
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

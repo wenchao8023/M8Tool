@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UserTableViewModel.h"
+#import "UserModel.h"
 
 @interface UserTableViewCell : UITableViewCell
 

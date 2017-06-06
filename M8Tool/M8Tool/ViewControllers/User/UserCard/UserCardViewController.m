@@ -34,8 +34,8 @@
 
 - (UsrCardView *)cardView {
     if (!_cardView) {
-        _cardView = [[UsrCardView alloc] initWithFrame:self.contentView.bounds];
-        [self.contentView addSubview:_cardView];
+        UsrCardView *cardView = [[UsrCardView alloc] initWithFrame:self.contentView.bounds];
+        [self.contentView addSubview:(_cardView = cardView)];
     }
     return _cardView;
 }

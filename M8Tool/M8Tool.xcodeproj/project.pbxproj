@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		94081B461EC463FF0079583C /* STHeiti-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 94081B451EC463FF0079583C /* STHeiti-Regular.ttf */; };
 		94081B511EC471290079583C /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94081B501EC471290079583C /* BaseViewController.m */; };
-		940DE9AF1ED8513F006F061A /* UsrCardHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 940DE9AE1ED8513F006F061A /* UsrCardHeaderView.m */; };
 		940DE9B51ED854D3006F061A /* UsrCardViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 940DE9B31ED854D3006F061A /* UsrCardViewCell.m */; };
 		94112EC41ECADE1D00263F7F /* WCCollectionViewHorizontalLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 94112EC31ECADE1D00263F7F /* WCCollectionViewHorizontalLayout.m */; };
 		9422BED51EE52CD800F9B56D /* M8LoginStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9422BED41EE52CD800F9B56D /* M8LoginStoryboard.storyboard */; };
@@ -147,11 +146,9 @@
 		946753DA1EBC1F3E00653A2C /* RegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946753D81EBC1F3E00653A2C /* RegistViewController.m */; };
 		946753E01EBC237F00653A2C /* WCUIKitControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 946753DF1EBC237F00653A2C /* WCUIKitControl.m */; };
 		946753E31EBC24A900653A2C /* AppDelegate+ControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946753E21EBC24A900653A2C /* AppDelegate+ControlViewController.m */; };
-		94856D041ECEFF15000DC5F8 /* ModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94856D031ECEFF15000DC5F8 /* ModifyViewController.m */; };
 		948E045D1EE641C30075903B /* UserTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 948E045C1EE641C30075903B /* UserTableView.m */; };
 		948E04611EE6421B0075903B /* UserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 948E045F1EE6421B0075903B /* UserTableViewCell.m */; };
 		948E04621EE6421B0075903B /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 948E04601EE6421B0075903B /* UserTableViewCell.xib */; };
-		948E04651EE645E40075903B /* UserTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 948E04641EE645E40075903B /* UserTableViewModel.m */; };
 		94975C211ED2951F00EAB395 /* UserContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94975C201ED2951F00EAB395 /* UserContactViewController.m */; };
 		9497DF251ECA95FD009C35CB /* UserCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9497DF211ECA95FD009C35CB /* UserCardViewController.m */; };
 		9497DF361ECA966A009C35CB /* MeetingAgendaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9497DF2A1ECA966A009C35CB /* MeetingAgendaCell.m */; };
@@ -167,7 +164,6 @@
 		94A851C11EE2BD8B00204B48 /* MeetingAgendaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94A851C01EE2BD8B00204B48 /* MeetingAgendaCell.xib */; };
 		94A851C31EE2C18600204B48 /* UsrCardViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 940DE9B41ED854D3006F061A /* UsrCardViewCell.xib */; };
 		94A851C41EE2C18600204B48 /* RecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2381EC585C5003ADF5F /* RecordCell.xib */; };
-		94A851C51EE2C18600204B48 /* UsrCardHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 940DE9B01ED85148006F061A /* UsrCardHeaderView.xib */; };
 		94A851C71EE2C18600204B48 /* UsrContactHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94E5DE311ED6A738008632D7 /* UsrContactHeaderView.xib */; };
 		94A851C81EE2C18700204B48 /* UsrCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 940DE9AB1ED84D67006F061A /* UsrCardView.m */; };
 		94ABD2D41E976B31007C1172 /* CommonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ABD2D31E976B31007C1172 /* CommonUtil.m */; };
@@ -196,6 +192,8 @@
 		94C9B83B1ECDA52100F42654 /* LatestMembersCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C9B83A1ECDA52100F42654 /* LatestMembersCollection.m */; };
 		94C9B83F1ECDA59000F42654 /* MeetingMembersCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C9B83D1ECDA59000F42654 /* MeetingMembersCell.m */; };
 		94C9B8401ECDA59000F42654 /* MeetingMembersCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94C9B83E1ECDA59000F42654 /* MeetingMembersCell.xib */; };
+		94D0A0FC1EE67463009399C6 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D0A0FB1EE67463009399C6 /* UserModel.m */; };
+		94D0A1051EE68C00009399C6 /* ModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D0A1041EE68C00009399C6 /* ModifyViewController.m */; };
 		94D8C9CF1ED025840075C35D /* MeetingOrderTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D8C9CE1ED025840075C35D /* MeetingOrderTableView.m */; };
 		94DE95891EAE145400A44DB1 /* UIColor+MLPFlatColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DE95801EAE145400A44DB1 /* UIColor+MLPFlatColors.m */; };
 		94DE958A1EAE145400A44DB1 /* UIImage+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DE95821EAE145400A44DB1 /* UIImage+Common.m */; };
@@ -215,9 +213,6 @@
 		94081B501EC471290079583C /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		940DE9AA1ED84D67006F061A /* UsrCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsrCardView.h; sourceTree = "<group>"; };
 		940DE9AB1ED84D67006F061A /* UsrCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsrCardView.m; sourceTree = "<group>"; };
-		940DE9AD1ED8513F006F061A /* UsrCardHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsrCardHeaderView.h; sourceTree = "<group>"; };
-		940DE9AE1ED8513F006F061A /* UsrCardHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsrCardHeaderView.m; sourceTree = "<group>"; };
-		940DE9B01ED85148006F061A /* UsrCardHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UsrCardHeaderView.xib; sourceTree = "<group>"; };
 		940DE9B21ED854D3006F061A /* UsrCardViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsrCardViewCell.h; sourceTree = "<group>"; };
 		940DE9B31ED854D3006F061A /* UsrCardViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsrCardViewCell.m; sourceTree = "<group>"; };
 		940DE9B41ED854D3006F061A /* UsrCardViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UsrCardViewCell.xib; sourceTree = "<group>"; };
@@ -441,15 +436,11 @@
 		946753DF1EBC237F00653A2C /* WCUIKitControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WCUIKitControl.m; path = ../WCUIKitControl.m; sourceTree = "<group>"; };
 		946753E11EBC24A900653A2C /* AppDelegate+ControlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+ControlViewController.h"; sourceTree = "<group>"; };
 		946753E21EBC24A900653A2C /* AppDelegate+ControlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+ControlViewController.m"; sourceTree = "<group>"; };
-		94856D021ECEFF15000DC5F8 /* ModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyViewController.h; sourceTree = "<group>"; };
-		94856D031ECEFF15000DC5F8 /* ModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyViewController.m; sourceTree = "<group>"; };
 		948E045B1EE641C30075903B /* UserTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTableView.h; sourceTree = "<group>"; };
 		948E045C1EE641C30075903B /* UserTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTableView.m; sourceTree = "<group>"; };
 		948E045E1EE6421B0075903B /* UserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTableViewCell.h; sourceTree = "<group>"; };
 		948E045F1EE6421B0075903B /* UserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTableViewCell.m; sourceTree = "<group>"; };
 		948E04601EE6421B0075903B /* UserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
-		948E04631EE645E40075903B /* UserTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTableViewModel.h; sourceTree = "<group>"; };
-		948E04641EE645E40075903B /* UserTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTableViewModel.m; sourceTree = "<group>"; };
 		94975C1F1ED2951F00EAB395 /* UserContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserContactViewController.h; sourceTree = "<group>"; };
 		94975C201ED2951F00EAB395 /* UserContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserContactViewController.m; sourceTree = "<group>"; };
 		9497DF201ECA95FD009C35CB /* UserCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCardViewController.h; sourceTree = "<group>"; };
@@ -523,6 +514,10 @@
 		94C9B83C1ECDA59000F42654 /* MeetingMembersCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingMembersCell.h; sourceTree = "<group>"; };
 		94C9B83D1ECDA59000F42654 /* MeetingMembersCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetingMembersCell.m; sourceTree = "<group>"; };
 		94C9B83E1ECDA59000F42654 /* MeetingMembersCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeetingMembersCell.xib; sourceTree = "<group>"; };
+		94D0A0FA1EE67463009399C6 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
+		94D0A0FB1EE67463009399C6 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		94D0A1031EE68C00009399C6 /* ModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyViewController.h; sourceTree = "<group>"; };
+		94D0A1041EE68C00009399C6 /* ModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyViewController.m; sourceTree = "<group>"; };
 		94D8C9CD1ED025840075C35D /* MeetingOrderTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingOrderTableView.h; sourceTree = "<group>"; };
 		94D8C9CE1ED025840075C35D /* MeetingOrderTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetingOrderTableView.m; sourceTree = "<group>"; };
 		94DE957E1EAE145400A44DB1 /* CategoryHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryHeader.h; sourceTree = "<group>"; };
@@ -1148,6 +1143,7 @@
 		946753D31EBC1DE000653A2C /* ViewControllers(视图控制器) */ = {
 			isa = PBXGroup;
 			children = (
+				94D0A0FD1EE68B91009399C6 /* Modify */,
 				94C06F361EBC50BC00336E5F /* UserProtocol(用户协议) */,
 				946753DC1EBC1FFB00653A2C /* Main(主界面) */,
 				946753D41EBC1F3E00653A2C /* Login(登录) */,
@@ -1186,8 +1182,6 @@
 				94C06F3F1EBC512900336E5F /* MainTabBarController.m */,
 				94081B4F1EC471290079583C /* BaseViewController.h */,
 				94081B501EC471290079583C /* BaseViewController.m */,
-				94856D021ECEFF15000DC5F8 /* ModifyViewController.h */,
-				94856D031ECEFF15000DC5F8 /* ModifyViewController.m */,
 			);
 			name = "Main(主界面)";
 			path = Main;
@@ -1224,9 +1218,6 @@
 				940DE9B21ED854D3006F061A /* UsrCardViewCell.h */,
 				940DE9B31ED854D3006F061A /* UsrCardViewCell.m */,
 				940DE9B41ED854D3006F061A /* UsrCardViewCell.xib */,
-				940DE9AD1ED8513F006F061A /* UsrCardHeaderView.h */,
-				940DE9AE1ED8513F006F061A /* UsrCardHeaderView.m */,
-				940DE9B01ED85148006F061A /* UsrCardHeaderView.xib */,
 			);
 			path = UserCard;
 			sourceTree = "<group>";
@@ -1259,8 +1250,6 @@
 				948E045E1EE6421B0075903B /* UserTableViewCell.h */,
 				948E045F1EE6421B0075903B /* UserTableViewCell.m */,
 				948E04601EE6421B0075903B /* UserTableViewCell.xib */,
-				948E04631EE645E40075903B /* UserTableViewModel.h */,
-				948E04641EE645E40075903B /* UserTableViewModel.m */,
 			);
 			path = UserViews;
 			sourceTree = "<group>";
@@ -1387,6 +1376,7 @@
 			children = (
 				94E18D151EC47C5200132FB2 /* UserViewController.h */,
 				94E18D161EC47C5200132FB2 /* UserViewController.m */,
+				94D0A0F91EE67450009399C6 /* UserModel */,
 				9497DF3E1ECA968F009C35CB /* UserViews */,
 				9497DF1F1ECA95FD009C35CB /* UserCard */,
 				9497DF1E1ECA95E5009C35CB /* UserSetting */,
@@ -1408,6 +1398,24 @@
 			);
 			name = "Meeting(会议中心)";
 			path = Meeting;
+			sourceTree = "<group>";
+		};
+		94D0A0F91EE67450009399C6 /* UserModel */ = {
+			isa = PBXGroup;
+			children = (
+				94D0A0FA1EE67463009399C6 /* UserModel.h */,
+				94D0A0FB1EE67463009399C6 /* UserModel.m */,
+			);
+			path = UserModel;
+			sourceTree = "<group>";
+		};
+		94D0A0FD1EE68B91009399C6 /* Modify */ = {
+			isa = PBXGroup;
+			children = (
+				94D0A1031EE68C00009399C6 /* ModifyViewController.h */,
+				94D0A1041EE68C00009399C6 /* ModifyViewController.m */,
+			);
+			path = Modify;
 			sourceTree = "<group>";
 		};
 		94D8C9C01ECFEB020075C35D /* Pictures */ = {
@@ -1531,7 +1539,6 @@
 				9422BEE71EE57A3F00F9B56D /* M8LiveJoinViewController.xib in Resources */,
 				943A09071EDEDF92003CEA27 /* btnImg_meetingOrder.png in Resources */,
 				9422BED51EE52CD800F9B56D /* M8LoginStoryboard.storyboard in Resources */,
-				94A851C51EE2C18600204B48 /* UsrCardHeaderView.xib in Resources */,
 				943A08F31EDED9F2003CEA27 /* FilterRes.bundle in Resources */,
 				943A08F61EDED9F2003CEA27 /* QAVEffectRes.bundle in Resources */,
 				944AF2181E948DC10044B44C /* README.txt in Resources */,
@@ -1596,13 +1603,11 @@
 				943A086F1EDEBADE003CEA27 /* RoomMemListRequest.m in Sources */,
 				94B3C2421EC58E94003ADF5F /* RecordModel.m in Sources */,
 				946753C71EBC16D500653A2C /* AppDelegate.m in Sources */,
-				940DE9AF1ED8513F006F061A /* UsrCardHeaderView.m in Sources */,
 				94B3C2311EC565AC003ADF5F /* UIView+Extension.m in Sources */,
 				94E18D171EC47C5200132FB2 /* UserViewController.m in Sources */,
 				94B3C2391EC585C5003ADF5F /* RecordCell.m in Sources */,
 				943A08711EDEBADE003CEA27 /* WebServiceEngine.m in Sources */,
 				94BDE5201ECC451E00ECC089 /* MeetingLuanchViewController.m in Sources */,
-				948E04651EE645E40075903B /* UserTableViewModel.m in Sources */,
 				94C9B8371ECD688400F42654 /* MeetingLuanchTableViewCell.m in Sources */,
 				946753D21EBC174100653A2C /* M8Tool.xcdatamodeld in Sources */,
 				944AF3081E9494C00044B44C /* AFHTTPSessionManager.m in Sources */,
@@ -1615,13 +1620,13 @@
 				946753E01EBC237F00653A2C /* WCUIKitControl.m in Sources */,
 				940DE9B51ED854D3006F061A /* UsrCardViewCell.m in Sources */,
 				94DE958D1EAE145400A44DB1 /* UIView+ShakeAnimation.m in Sources */,
-				94856D041ECEFF15000DC5F8 /* ModifyViewController.m in Sources */,
 				944AF3161E9494C00044B44C /* UIProgressView+AFNetworking.m in Sources */,
 				943A085C1EDEBADE003CEA27 /* BaseRequest.m in Sources */,
 				943A08691EDEBADE003CEA27 /* RecordListRequest.m in Sources */,
 				94C06F401EBC512900336E5F /* MainTabBarController.m in Sources */,
 				94C089D81EC976E600EE3403 /* RecorDetailView.m in Sources */,
 				94975C211ED2951F00EAB395 /* UserContactViewController.m in Sources */,
+				94D0A1051EE68C00009399C6 /* ModifyViewController.m in Sources */,
 				94B3C2661EC5C6C7003ADF5F /* RecordDetailViewManager.m in Sources */,
 				94E18D111EC47C0300132FB2 /* RecordViewController.m in Sources */,
 				943A086D1EDEBADE003CEA27 /* ReportRoomRequest.m in Sources */,
@@ -1663,6 +1668,7 @@
 				943A08631EDEBADE003CEA27 /* HostHeartBeatRequest.m in Sources */,
 				9422BEF71EE5844B00F9B56D /* M8ThemeCell.m in Sources */,
 				944AF31B1E9494C00044B44C /* UIImage+KVNImageEffects.m in Sources */,
+				94D0A0FC1EE67463009399C6 /* UserModel.m in Sources */,
 				9422BED81EE52FC400F9B56D /* M8LoginViewController.m in Sources */,
 				94B3C23F1EC58E81003ADF5F /* RecordTableViewModel.m in Sources */,
 				944AF3191E9494C00044B44C /* UIColor+KVNContrast.m in Sources */,

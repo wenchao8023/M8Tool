@@ -362,11 +362,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
         ModifyViewController *modifyVC = [[ModifyViewController alloc] init];
-        modifyVC.isExitLeftItem = YES;
-        modifyVC.headerTitle = self.dataItemArray[indexPath.row];
-        modifyVC.originContent = self.dataContentArray[indexPath.row];
-        modifyVC.modifyType = Modify_text;
-        modifyVC.WCDelegate = self;
+        modifyVC.naviTitle      = self.dataItemArray[indexPath.row];
+        modifyVC.originContent  = self.dataContentArray[indexPath.row];
+        modifyVC.modifyType     = Modify_text;
+        modifyVC.WCDelegate     = self;
         [[AppDelegate sharedAppDelegate] pushViewController:modifyVC];
     }
 }

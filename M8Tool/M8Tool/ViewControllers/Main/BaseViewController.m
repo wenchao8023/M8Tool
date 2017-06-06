@@ -29,7 +29,7 @@
 
 - (UIImageView *)bgImageView {
     if (!_bgImageView) {
-        UIImageView *bgImageV = [WCUIKitControl createImageViewWithFrame:self.view.bounds ImageName:@"bgImage"];
+        UIImageView *bgImageV = [WCUIKitControl createImageViewWithFrame:self.view.bounds ImageName:kAppBgImageStr];
         [self.view addSubview:(_bgImageView = bgImageV)];
     }
     return _bgImageView;
@@ -95,7 +95,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#define kContentViewDefaultRect dd
+
 - (UIView *)contentView {
     if (!_contentView) {
 
