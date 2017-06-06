@@ -136,10 +136,11 @@
                                     textColor:(UIColor *)textColor
                                     charSpace:(int)charSpace
 {
-    return [[NSMutableAttributedString alloc] initWithString:string
-                                                  attributes:[self customAttsWithFontSize:fontSize
-                                                                                textColor:textColor
-                                                                                charSpace:charSpace]];
+    return [self customAttString:string
+                        fontSize:fontSize
+                       textColor:textColor
+                       charSpace:charSpace
+                        fontName:nil];
 }
 +(NSMutableAttributedString *)customAttString:(NSString *)string
                                      fontSize:(CGFloat)fontSize

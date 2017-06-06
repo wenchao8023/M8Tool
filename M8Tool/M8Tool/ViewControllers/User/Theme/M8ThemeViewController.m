@@ -9,6 +9,8 @@
 #import "M8ThemeViewController.h"
 
 #import "M8ThemeCell.h"
+#import "M8ThemeDetailViewController.h"
+
 
 
 @interface M8ThemeViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -35,8 +37,9 @@
 - (UITableView *)tableView {
     if (!_tableView) {
         UITableView *tableView = [[UITableView alloc] initWithFrame:self.contentView.bounds style:UITableViewStylePlain];
-        tableView.delegate = self;
-        tableView.dataSource = self;
+        tableView.delegate        = self;
+        tableView.dataSource      = self;
+        tableView.backgroundColor = WCClear;
         tableView.tableHeaderView = [WCUIKitControl createViewWithFrame:CGRectZero];
         tableView.tableFooterView = [WCUIKitControl createViewWithFrame:CGRectZero];
         [tableView registerNib:[UINib nibWithNibName:@"M8ThemeCell" bundle:nil] forCellReuseIdentifier:@"M8ThemeCellID"];
@@ -61,30 +64,13 @@
 
 - (void)loadData {
     
-    M8ThemeModel *model1 = [M8ThemeModel new];
-    model1.imgStr = @"";
-    model1.nameStr = @"灰";
-    [self.dataArray addObject:model1];
-    
-    M8ThemeModel *model2 = [M8ThemeModel new];
-    model2.imgStr = @"";
-    model2.nameStr = @"青";
-    [self.dataArray addObject:model2];
-    
-    M8ThemeModel *model3 = [M8ThemeModel new];
-    model3.imgStr = @"";
-    model3.nameStr = @"米黄";
-    [self.dataArray addObject:model3];
-    
-    M8ThemeModel *model4 = [M8ThemeModel new];
-    model4.imgStr = @"";
-    model4.nameStr = @"黑";
-    [self.dataArray addObject:model4];
-    
-    M8ThemeModel *model5 = [M8ThemeModel new];
-    model5.imgStr = @"";
-    model5.nameStr = @"蓝";
-    [self.dataArray addObject:model5];
+    NSArray *imgsArr = @[@"灰白", @"灰蓝", @"淡青", @"木纹", @"栅格红"];
+    for (NSString *imgStr in imgsArr) {
+        M8ThemeModel *model = [M8ThemeModel new];
+        model.imgStr = imgStr;
+        model.nameStr = imgStr;
+        [self.dataArray addObject:model];
+    }
     
     [self.tableView reloadData];
 }
@@ -97,13 +83,24 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     M8ThemeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"M8ThemeCellID" forIndexPath:indexPath];
     
-    [cell config:self.dataArray[indexPath.row]];
+    M8ThemeModel *model = self.dataArray[indexPath.row];
+    [cell config:model isCurrentTheme:[model.imgStr isEqualToString:@"灰白"]];
     
     return cell;
 }
     
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return self.contentView.height * 2 / 5;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    M8ThemeModel *model = self.dataArray[indexPath.row];
+    M8ThemeDetailViewController *detailVC = [[M8ThemeDetailViewController alloc] init];
+    detailVC.isExitLeftItem = YES;
+    detailVC.headerTitle    = model.nameStr;
+    detailVC.imageStr       = model.imgStr;
+    [[AppDelegate sharedAppDelegate] pushViewController:detailVC];
 }
     
     

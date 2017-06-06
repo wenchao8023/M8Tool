@@ -15,6 +15,7 @@
 @implementation BaseViewController
 
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -50,7 +51,8 @@
                                                       fontSize:kAppMiddleFontSize
                                                      textColor:WCWhite
                                                      charSpace:kAppKern_4
-                                                      fontName:kFontNameDroidSansFallback];
+//                                                      fontName:kFontNameDroidSansFallback
+                                    ];
             [backView addSubview:imageV];
             [backView addSubview:label];
             
@@ -72,7 +74,7 @@
                                                        fontSize:kAppNaviFontSize
                                                       textColor:WCWhite
                                                       charSpace:kAppKern_2
-                                                       fontName:kFontNameDroidSansFallback
+//                                                       fontName:kFontNameDroidSansFallback
                                      ];
         [headerView addSubview:titleLabel];
         
@@ -88,7 +90,8 @@
                                               fontSize:kAppNaviFontSize
                                              textColor:WCWhite
                                              charSpace:kAppKern_2
-                                              fontName:kFontNameDroidSansFallback];
+//                                              fontName:kFontNameDroidSansFallback
+                            ];
 }
 
 - (void)backClick {

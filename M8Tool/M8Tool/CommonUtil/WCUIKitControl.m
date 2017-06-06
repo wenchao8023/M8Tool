@@ -321,6 +321,7 @@
 {
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
     imageView.image = [UIImage imageNamed:imageName];
+    imageView.userInteractionEnabled = YES;
     if (bgColor)
         imageView.backgroundColor = bgColor;
     return imageView;

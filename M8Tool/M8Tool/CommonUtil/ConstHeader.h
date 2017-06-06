@@ -49,8 +49,7 @@ static const int kAppKern_4 = 4;
 static const int kAppKern_8 = 8;
 
 /******************** icon ********************************/
-#define kAppBgImageStr  @"bgImage"
-#define kAppBgImage     [UIImage imageNamed:kAppBgImageStr]
+static NSString * _Nonnull kAppBgImageStr = @"bgImage";
 
 /******************** default *****************************/
 static const int kDefaultCellHeight     = 44;

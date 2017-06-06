@@ -12,6 +12,6 @@
 
 @interface M8ThemeCell : UITableViewCell
 
-- (void)config:(M8ThemeModel *)model;
+- (void)config:(M8ThemeModel *)model isCurrentTheme:(BOOL)isCurrentTheme;
 
 @end

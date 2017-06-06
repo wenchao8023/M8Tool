@@ -14,20 +14,25 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *themeName;
 
+@property (weak, nonatomic) IBOutlet UILabel *currentLabel;
     
 @end
 
 @implementation M8ThemeCell
 
-- (void)config:(M8ThemeModel *)model {
+- (void)config:(M8ThemeModel *)model isCurrentTheme:(BOOL)isCurrentTheme{
     self.themeImg.image = [UIImage imageNamed:model.imgStr];
-    
     self.themeName.text = model.nameStr;
+    self.currentLabel.hidden = !isCurrentTheme;
 }
     
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    
+    WCViewBorder_Radius_Width_Color(self.currentLabel, 2, 0.5, WCGray);
+    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
