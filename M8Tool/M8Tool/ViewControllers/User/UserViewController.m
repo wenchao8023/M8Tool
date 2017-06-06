@@ -7,11 +7,13 @@
 //
 
 #import "UserViewController.h"
-#import "UsrView.h"
+
+#import "UserTableView.h"
 
 @interface UserViewController ()
 
-@property (nonatomic, strong) UsrView *userView;
+
+@property (nonatomic, strong) UserTableView *tableView;
 
 @end
 
@@ -29,17 +31,18 @@
     
     WCLog(@"用户界面");
     
-//    [self.contentView setHeight:kContentHeight_bottom30];
-    [self userView];
+
+    [self tableView];
 }
 
-- (UsrView *)userView {
-    if (!_userView) {
-        UsrView *userView = [[UsrView alloc] initWithFrame:self.contentView.bounds];
-        [self.contentView addSubview:(_userView = userView)];
+- (UserTableView *)tableView {
+    if (!_tableView) {
+        UserTableView *tableView = [[UserTableView alloc] initWithFrame:self.contentView.bounds style:UITableViewStylePlain];
+        [self.contentView addSubview:(_tableView = tableView)];
     }
-    return _userView;
+    return _tableView;
 }
+
 
 
 - (void)didReceiveMemoryWarning {

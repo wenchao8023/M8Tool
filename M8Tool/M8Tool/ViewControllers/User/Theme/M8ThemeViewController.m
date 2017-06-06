@@ -81,6 +81,11 @@
     model4.nameStr = @"黑";
     [self.dataArray addObject:model4];
     
+    M8ThemeModel *model5 = [M8ThemeModel new];
+    model5.imgStr = @"";
+    model5.nameStr = @"蓝";
+    [self.dataArray addObject:model5];
+    
     [self.tableView reloadData];
 }
     

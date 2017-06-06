@@ -148,6 +148,10 @@
 		946753E01EBC237F00653A2C /* WCUIKitControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 946753DF1EBC237F00653A2C /* WCUIKitControl.m */; };
 		946753E31EBC24A900653A2C /* AppDelegate+ControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946753E21EBC24A900653A2C /* AppDelegate+ControlViewController.m */; };
 		94856D041ECEFF15000DC5F8 /* ModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94856D031ECEFF15000DC5F8 /* ModifyViewController.m */; };
+		948E045D1EE641C30075903B /* UserTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 948E045C1EE641C30075903B /* UserTableView.m */; };
+		948E04611EE6421B0075903B /* UserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 948E045F1EE6421B0075903B /* UserTableViewCell.m */; };
+		948E04621EE6421B0075903B /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 948E04601EE6421B0075903B /* UserTableViewCell.xib */; };
+		948E04651EE645E40075903B /* UserTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 948E04641EE645E40075903B /* UserTableViewModel.m */; };
 		94975C211ED2951F00EAB395 /* UserContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94975C201ED2951F00EAB395 /* UserContactViewController.m */; };
 		9497DF251ECA95FD009C35CB /* UserCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9497DF211ECA95FD009C35CB /* UserCardViewController.m */; };
 		9497DF361ECA966A009C35CB /* MeetingAgendaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9497DF2A1ECA966A009C35CB /* MeetingAgendaCell.m */; };
@@ -157,12 +161,10 @@
 		9497DF3B1ECA966A009C35CB /* MeetingButtonsCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 9497DF321ECA966A009C35CB /* MeetingButtonsCollection.m */; };
 		9497DF3C1ECA966A009C35CB /* MeetingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9497DF341ECA966A009C35CB /* MeetingView.m */; };
 		9497DF3D1ECA966A009C35CB /* MeetingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9497DF351ECA966A009C35CB /* MeetingView.xib */; };
-		9497DF421ECA968F009C35CB /* UsrView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9497DF401ECA968F009C35CB /* UsrView.m */; };
 		9497DF491ECA9702009C35CB /* UserSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9497DF481ECA9702009C35CB /* UserSettingViewController.m */; };
 		9497DF511ECA98EA009C35CB /* UserSettingTabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9497DF501ECA98EA009C35CB /* UserSettingTabelView.m */; };
 		94A502871E95F12400F675B2 /* libCOSClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A502861E95F12400F675B2 /* libCOSClient.a */; };
 		94A851C11EE2BD8B00204B48 /* MeetingAgendaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94A851C01EE2BD8B00204B48 /* MeetingAgendaCell.xib */; };
-		94A851C21EE2C18600204B48 /* UsrView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9497DF411ECA968F009C35CB /* UsrView.xib */; };
 		94A851C31EE2C18600204B48 /* UsrCardViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 940DE9B41ED854D3006F061A /* UsrCardViewCell.xib */; };
 		94A851C41EE2C18600204B48 /* RecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2381EC585C5003ADF5F /* RecordCell.xib */; };
 		94A851C51EE2C18600204B48 /* UsrCardHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 940DE9B01ED85148006F061A /* UsrCardHeaderView.xib */; };
@@ -441,6 +443,13 @@
 		946753E21EBC24A900653A2C /* AppDelegate+ControlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+ControlViewController.m"; sourceTree = "<group>"; };
 		94856D021ECEFF15000DC5F8 /* ModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyViewController.h; sourceTree = "<group>"; };
 		94856D031ECEFF15000DC5F8 /* ModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyViewController.m; sourceTree = "<group>"; };
+		948E045B1EE641C30075903B /* UserTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTableView.h; sourceTree = "<group>"; };
+		948E045C1EE641C30075903B /* UserTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTableView.m; sourceTree = "<group>"; };
+		948E045E1EE6421B0075903B /* UserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTableViewCell.h; sourceTree = "<group>"; };
+		948E045F1EE6421B0075903B /* UserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTableViewCell.m; sourceTree = "<group>"; };
+		948E04601EE6421B0075903B /* UserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
+		948E04631EE645E40075903B /* UserTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTableViewModel.h; sourceTree = "<group>"; };
+		948E04641EE645E40075903B /* UserTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTableViewModel.m; sourceTree = "<group>"; };
 		94975C1F1ED2951F00EAB395 /* UserContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserContactViewController.h; sourceTree = "<group>"; };
 		94975C201ED2951F00EAB395 /* UserContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserContactViewController.m; sourceTree = "<group>"; };
 		9497DF201ECA95FD009C35CB /* UserCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCardViewController.h; sourceTree = "<group>"; };
@@ -457,9 +466,6 @@
 		9497DF331ECA966A009C35CB /* MeetingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingView.h; sourceTree = "<group>"; };
 		9497DF341ECA966A009C35CB /* MeetingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetingView.m; sourceTree = "<group>"; };
 		9497DF351ECA966A009C35CB /* MeetingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeetingView.xib; sourceTree = "<group>"; };
-		9497DF3F1ECA968F009C35CB /* UsrView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsrView.h; sourceTree = "<group>"; };
-		9497DF401ECA968F009C35CB /* UsrView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsrView.m; sourceTree = "<group>"; };
-		9497DF411ECA968F009C35CB /* UsrView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UsrView.xib; sourceTree = "<group>"; };
 		9497DF471ECA9702009C35CB /* UserSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettingViewController.h; sourceTree = "<group>"; };
 		9497DF481ECA9702009C35CB /* UserSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettingViewController.m; sourceTree = "<group>"; };
 		9497DF4F1ECA98EA009C35CB /* UserSettingTabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettingTabelView.h; sourceTree = "<group>"; };
@@ -1248,9 +1254,13 @@
 		9497DF3E1ECA968F009C35CB /* UserViews */ = {
 			isa = PBXGroup;
 			children = (
-				9497DF3F1ECA968F009C35CB /* UsrView.h */,
-				9497DF401ECA968F009C35CB /* UsrView.m */,
-				9497DF411ECA968F009C35CB /* UsrView.xib */,
+				948E045B1EE641C30075903B /* UserTableView.h */,
+				948E045C1EE641C30075903B /* UserTableView.m */,
+				948E045E1EE6421B0075903B /* UserTableViewCell.h */,
+				948E045F1EE6421B0075903B /* UserTableViewCell.m */,
+				948E04601EE6421B0075903B /* UserTableViewCell.xib */,
+				948E04631EE645E40075903B /* UserTableViewModel.h */,
+				948E04641EE645E40075903B /* UserTableViewModel.m */,
 			);
 			path = UserViews;
 			sourceTree = "<group>";
@@ -1515,7 +1525,6 @@
 				943A08E11EDEC461003CEA27 /* Shaderf.glsl in Resources */,
 				94081B461EC463FF0079583C /* STHeiti-Regular.ttf in Resources */,
 				94A851C71EE2C18600204B48 /* UsrContactHeaderView.xib in Resources */,
-				94A851C21EE2C18600204B48 /* UsrView.xib in Resources */,
 				943A08E91EDEC76B003CEA27 /* TILFilterResource.bundle in Resources */,
 				943A09051EDEDF92003CEA27 /* btnImg_meetingCollect.png in Resources */,
 				943A09061EDEDF92003CEA27 /* btnImg_meetingNote.png in Resources */,
@@ -1550,6 +1559,7 @@
 				94C9B8401ECDA59000F42654 /* MeetingMembersCell.xib in Resources */,
 				943A09091EDEDF92003CEA27 /* btnImg_videoMeeting.png in Resources */,
 				943A08F51EDED9F2003CEA27 /* PE.dat in Resources */,
+				948E04621EE6421B0075903B /* UserTableViewCell.xib in Resources */,
 				94A851C11EE2BD8B00204B48 /* MeetingAgendaCell.xib in Resources */,
 				943A08F21EDED9F2003CEA27 /* DecoRes.bundle in Resources */,
 				944AF2131E948DC10044B44C /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
@@ -1592,6 +1602,7 @@
 				94B3C2391EC585C5003ADF5F /* RecordCell.m in Sources */,
 				943A08711EDEBADE003CEA27 /* WebServiceEngine.m in Sources */,
 				94BDE5201ECC451E00ECC089 /* MeetingLuanchViewController.m in Sources */,
+				948E04651EE645E40075903B /* UserTableViewModel.m in Sources */,
 				94C9B8371ECD688400F42654 /* MeetingLuanchTableViewCell.m in Sources */,
 				946753D21EBC174100653A2C /* M8Tool.xcdatamodeld in Sources */,
 				944AF3081E9494C00044B44C /* AFHTTPSessionManager.m in Sources */,
@@ -1623,6 +1634,7 @@
 				9497DF491ECA9702009C35CB /* UserSettingViewController.m in Sources */,
 				9497DF511ECA98EA009C35CB /* UserSettingTabelView.m in Sources */,
 				944AF3181E9494C00044B44C /* UIWebView+AFNetworking.m in Sources */,
+				948E045D1EE641C30075903B /* UserTableView.m in Sources */,
 				94BDE5351ECC599800ECC089 /* MeetingMembersCollection.m in Sources */,
 				9422BEEB1EE5838F00F9B56D /* M8ThemeViewController.m in Sources */,
 				94DE958B1EAE145400A44DB1 /* UIImage+TintColor.m in Sources */,
@@ -1654,10 +1666,10 @@
 				9422BED81EE52FC400F9B56D /* M8LoginViewController.m in Sources */,
 				94B3C23F1EC58E81003ADF5F /* RecordTableViewModel.m in Sources */,
 				944AF3191E9494C00044B44C /* UIColor+KVNContrast.m in Sources */,
+				948E04611EE6421B0075903B /* UserTableViewCell.m in Sources */,
 				946753D91EBC1F3E00653A2C /* LoginViewController.m in Sources */,
 				94DE95891EAE145400A44DB1 /* UIColor+MLPFlatColors.m in Sources */,
 				944AF31D1E9494C00044B44C /* KVNProgressConfiguration.m in Sources */,
-				9497DF421ECA968F009C35CB /* UsrView.m in Sources */,
 				94D8C9CF1ED025840075C35D /* MeetingOrderTableView.m in Sources */,
 				943A08671EDEBADE003CEA27 /* LoginRequest.m in Sources */,
 				9422BEDB1EE5359800F9B56D /* M8RegistViewController.m in Sources */,
