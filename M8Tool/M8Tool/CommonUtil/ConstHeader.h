@@ -31,7 +31,9 @@
 //static const int kAppMiddleFontSize = 15;
 //static const int kAppSmallFontSize  = 13;
 //#endif
-#define kAppNaviFontSize    (iPhone5SE ? 18 : (iPhone6_6s ? 19 : 20))
+
+#define kAppNaviFontSize    20
+//#define kAppNaviFontSize    (iPhone5SE ? 18 : (iPhone6_6s ? 19 : 20))
 #define kAppLargeFontSize   (iPhone5SE ? 15 : (iPhone6_6s ? 16 : 17))
 #define kAppMiddleFontSize  (iPhone5SE ? 13 : (iPhone6_6s ? 14 : 15))
 #define kAppSmallFontSize   (iPhone5SE ? 11 : (iPhone6_6s ? 12 : 13))

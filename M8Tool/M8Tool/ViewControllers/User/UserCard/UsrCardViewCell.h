@@ -11,7 +11,7 @@
 
 @interface UsrCardViewCell : UITableViewCell
 
-- (void)config:(UserCardModel *)model;
+- (void)config:(UserCardModel *)model isFirstItem:(BOOL)isFirstItem isLastItem:(BOOL)isLastItem;
 //- (void)config:(NSString *)contentStr item:(NSString *)itemStr;
 
 @end

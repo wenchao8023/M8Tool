@@ -14,11 +14,16 @@
 @property (weak, nonatomic) IBOutlet UILabel *itemLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *itemWidth;
+
+@property (weak, nonatomic) IBOutlet UIImageView *iconImage;
+
+
 @end
 
 @implementation UsrCardViewCell
 
-- (void)config:(UserCardModel *)model {
+- (void)config:(UserCardModel *)model isFirstItem:(BOOL)isFirstItem isLastItem:(BOOL)isLastItem {
     [self.itemLabel setAttributedText:[CommonUtil customAttString:model.itemStr
                                                          fontSize:kAppMiddleFontSize + 1
                                                         textColor:WCBlack
@@ -28,6 +33,10 @@
                                                             fontSize:kAppMiddleFontSize
                                                            textColor:WCDarkGray
                                                            charSpace:kAppKern_2]];
+    
+    _itemWidth.constant = isLastItem ? 100 : 50;
+    
+    _iconImage.hidden = !isFirstItem;
 }
 
 

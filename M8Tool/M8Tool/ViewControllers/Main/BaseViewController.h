@@ -16,6 +16,7 @@ static const float kRadiusView              = 10;
 
 
 
+#define kContentOriginX         (30.5 / 375 * SCREEN_WIDTH)
 #define kContentHeight_bottom30 (SCREENH_HEIGHT - 153)
 #define kContentHeight_bottom60 (SCREENH_HEIGHT - 183)
 #define kContentHeight_bottom90 (SCREENH_HEIGHT - 213)

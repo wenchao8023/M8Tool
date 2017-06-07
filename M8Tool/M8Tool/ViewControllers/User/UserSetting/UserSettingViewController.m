@@ -39,7 +39,8 @@
 
 - (void)createUI {
     // 重新设置 contentView 的高度
-    [self.contentView setHeight:kContentHeight_setting];
+//    [self.contentView setHeight:kContentHeight_setting];
+    [self.contentView setHeight:250];
     // 添加 tableView
     [self tableView];
     // 添加 contentView 下面的 三角
@@ -68,7 +69,7 @@
 
 - (UserSettingTabelView *)tableView {
     if (!_tableView) {
-        UserSettingTabelView *tableView = [[UserSettingTabelView alloc] initWithFrame:self.contentView.bounds];
+        UserSettingTabelView *tableView = [[UserSettingTabelView alloc] initWithFrame:self.contentView.bounds style:UITableViewStyleGrouped];
         [self.contentView addSubview:(_tableView = tableView)];
     }
     return _tableView;

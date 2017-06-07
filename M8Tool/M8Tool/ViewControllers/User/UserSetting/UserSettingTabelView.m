@@ -12,6 +12,8 @@
 
 @property (nonatomic, strong) NSArray *dataArray;
 
+@property (nonatomic, strong) NSArray *actionsArray;
+
 @end
 
 @implementation UserSettingTabelView
@@ -31,14 +33,19 @@
 
 - (NSArray *)dataArray {
     if (!_dataArray) {
-        NSArray *dataArrray = @[@"密码设置", @"新消息设置", @"关于iBuild"];
+        NSArray *dataArrray = @[@[@"密码设置", @"新消息设置", @"关于iBuild"],
+                                @[@"退出"]];
         _dataArray = dataArrray;
     }
     return _dataArray;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.dataArray.count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.dataArray[section] count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellID = @"UserSettingCellID";
@@ -47,7 +54,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = WCClear;
-        [cell.textLabel setAttributedText:[CommonUtil customAttString:self.dataArray[indexPath.row]
+        [cell.textLabel setAttributedText:[CommonUtil customAttString:self.dataArray[indexPath.section][indexPath.row]
                                                              fontSize:kAppLargeFontSize
                                                             textColor:WCBlack
                                                             charSpace:kAppKern_4]
@@ -56,9 +63,22 @@
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return self.height / 3;
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 0.1;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.1;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return [WCUIKitControl createViewWithFrame:CGRectZero];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return [WCUIKitControl createViewWithFrame:CGRectZero];
+}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     

@@ -46,9 +46,9 @@
         // 返回视图
         UIView *backView = [[UIView alloc] init];
         if (self.isExitLeftItem) {
-            backView.frame = CGRectMake(kMarginView_horizontal, kDefaultStatuHeight, 60, kDefaultCellHeight);
-            UIImageView *imageV = [WCUIKitControl createImageViewWithFrame:CGRectMake(0, 0, 20, kDefaultCellHeight) ImageName:@""];
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 40, kDefaultCellHeight)];
+            backView.frame = CGRectMake(kContentOriginX, kDefaultStatuHeight, 60, kDefaultCellHeight);
+            UIImageView *imageV = [WCUIKitControl createImageViewWithFrame:CGRectMake(0, 14, 8, 16) ImageName:@"naviBackIcon"];
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(18, 0, 40, kDefaultCellHeight)];
             label.userInteractionEnabled = YES;
             label.attributedText = [CommonUtil customAttString:@"返回"
                                                       fontSize:kAppMiddleFontSize
@@ -62,7 +62,7 @@
             [backView addGestureRecognizer:backClick];
         }
         else
-            backView.frame = CGRectMake(kMarginView_top, 0, 0, 0);
+            backView.frame = CGRectMake(kContentOriginX, 0, 0, 0);
         [headerView addSubview:backView];
         
         // 标题
@@ -81,7 +81,7 @@
         
         //右侧按钮
         UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        rightBtn.frame = CGRectMake(SCREEN_WIDTH - 60 - kMarginView_horizontal,
+        rightBtn.frame = CGRectMake(SCREEN_WIDTH - 60 - kContentOriginX,
                                   kDefaultStatuHeight,
                                   60,
                                   kDefaultCellHeight);
@@ -101,7 +101,7 @@
 - (void)setHeaderTitle:(NSString *)headerTitle {
     _headerTitle = headerTitle;
     UILabel *label = [self.headerView viewWithTag:110];
-    label.attributedText = [CommonUtil customAttString:_headerTitle
+    label.attributedText = [CommonUtil customAttString:headerTitle
                                               fontSize:kAppNaviFontSize
                                              textColor:WCWhite
                                              charSpace:kAppKern_2
@@ -146,7 +146,7 @@
         CGFloat baseHeight = 667 - kDefaultStatuHeight - kDefaultTabbarHeight;
         CGFloat deviceHeight = SCREENH_HEIGHT - kDefaultTabbarHeight - kDefaultStatuHeight;
         
-        CGFloat contentX = 30.5 / 375 * SCREEN_WIDTH;
+        CGFloat contentX = kContentOriginX;
         CGFloat contentY =  4 / baseHeight * deviceHeight + kDefaultNaviHeight;
         CGRect cFrame = CGRectMake(contentX,
                                    contentY,

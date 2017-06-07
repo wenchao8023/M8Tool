@@ -24,7 +24,6 @@ static const CGFloat kSearchView_height = 40.f;
 @interface SearchView : UITextField<UITextFieldDelegate>
 
 
-
 @end
 
 @implementation SearchView
@@ -35,8 +34,8 @@ static const CGFloat kSearchView_height = 40.f;
         self.placeholder = @"搜索";
         self.clearButtonMode = UITextFieldViewModeWhileEditing;
         self.leftView = [WCUIKitControl createImageViewWithFrame:CGRectMake(0, 0, 40, 40)
-                                                        ImageName:nil
-                                                          BgColor:WCGreen];
+                                                        ImageName:@"search"
+                                                          BgColor:WCClear];
         self.leftViewMode = UITextFieldViewModeAlways;
     }
     return self;
@@ -86,7 +85,7 @@ static const CGFloat kSearchView_height = 40.f;
 
 - (void)resetNavi {
     static const CGFloat btnWidth = 40;
-    UIButton *addBtn = [WCUIKitControl createButtonWithFrame:CGRectMake(SCREEN_WIDTH - kMarginView_horizontal- btnWidth,
+    UIButton *addBtn = [WCUIKitControl createButtonWithFrame:CGRectMake(SCREEN_WIDTH - kContentOriginX - btnWidth,
                                                                         kDefaultStatuHeight,
                                                                         btnWidth,
                                                                         kDefaultCellHeight)

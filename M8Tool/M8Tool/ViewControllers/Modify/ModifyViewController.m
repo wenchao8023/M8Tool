@@ -30,7 +30,7 @@ typedef void(^SaveBlock)();
         
         // 返回视图
         UIView *backView = [[UIView alloc] init];
-        backView.frame = CGRectMake(kMarginView_horizontal, kDefaultStatuHeight, 60, kDefaultCellHeight);
+        backView.frame = CGRectMake(kContentOriginX, kDefaultStatuHeight, 60, kDefaultCellHeight);
         
         UIImageView *imageV = [WCUIKitControl createImageViewWithFrame:CGRectMake(0, 0, 20, kDefaultCellHeight) ImageName:@""];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 40, kDefaultCellHeight)];
@@ -55,7 +55,7 @@ typedef void(^SaveBlock)();
         [self addSubview:(_titleLabel = titleLabel)];
         
         // 右侧保存按钮
-        UIButton *saveButton = [WCUIKitControl createButtonWithFrame:CGRectMake(self.width - 60 - kMarginView_horizontal,
+        UIButton *saveButton = [WCUIKitControl createButtonWithFrame:CGRectMake(self.width - 60 - kContentOriginX,
                                                                                 27,
                                                                                 60,
                                                                                 30)
@@ -65,7 +65,7 @@ typedef void(^SaveBlock)();
         saveButton.enabled = NO;
         WCViewBorder_Radius(saveButton, 2);
         
-        saveButton.backgroundColor = [UIColor colorWithRed:0.04 green:0.43 blue:0.4 alpha:0.6];
+        saveButton.backgroundColor = WCClear;
         [saveButton setAttributedTitle:[CommonUtil customAttString:@"保存"
                                                            fontSize:kAppMiddleFontSize
                                                           textColor:WCLightGray
@@ -81,7 +81,7 @@ typedef void(^SaveBlock)();
 - (void)setSaveButtonIsEnable:(BOOL)enable {
     _saveButton.enabled = enable;
     if (enable) {
-        _saveButton.backgroundColor = WCButtonColor;
+       
         [_saveButton setAttributedTitle:[CommonUtil customAttString:@"保存"
                                                           fontSize:kAppMiddleFontSize
                                                          textColor:WCWhite
@@ -90,7 +90,7 @@ typedef void(^SaveBlock)();
         
     }
     else {
-        _saveButton.backgroundColor = [UIColor colorWithRed:0.04 green:0.43 blue:0.4 alpha:0.6];
+     
         [_saveButton setAttributedTitle:[CommonUtil customAttString:@"保存"
                                                            fontSize:kAppMiddleFontSize
                                                           textColor:WCLightGray
@@ -128,6 +128,8 @@ typedef void(^SaveBlock)();
 @property (nonatomic, strong) NaviBarView *naviBarView;
 
 @property (nonatomic, strong) UITextField *textField;
+
+@property (nonatomic, strong) UIImageView *bgImageView;
 
 @end
 
@@ -177,8 +179,8 @@ typedef void(^SaveBlock)();
     self.navigationController.navigationBar.hidden = YES;
     
     // 背景图片
-    UIImageView *bgImageV = [WCUIKitControl createImageViewWithFrame:self.view.bounds ImageName:kDefaultThemeImage];
-    [self.view addSubview:bgImageV];
+    UIImageView *bgImageView = [WCUIKitControl createImageViewWithFrame:self.view.bounds ImageName:kDefaultThemeImage];
+    [self.view addSubview:(_bgImageView = bgImageView)];
     
     // 导航视图
     WCWeakSelf(self);
@@ -188,7 +190,8 @@ typedef void(^SaveBlock)();
     [self.naviBarView setCustomTitle:self.naviTitle];
     
     [self createUI];
-
+    
+    [WCNotificationCenter addObserver:self selector:@selector(themeSwichAction) name:kThemeSwich_Notification object:nil];
 }
 
 - (void)createUI {
@@ -284,6 +287,10 @@ typedef void(^SaveBlock)();
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)themeSwichAction {
+    NSString *imgStr = [[NSUserDefaults standardUserDefaults] objectForKey:kThemeImage];
+    [self.bgImageView setImage:[UIImage imageNamed:imgStr]];
+}
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];

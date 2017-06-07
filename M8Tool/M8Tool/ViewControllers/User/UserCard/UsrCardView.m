@@ -9,7 +9,7 @@
 #import "UsrCardView.h"
 #import "UsrCardViewCell.h"
 
-
+#import "UserHeadIconViewController.h"
 
 
 static const CGFloat kHeadHeight = 88;
@@ -84,7 +84,8 @@ static const CGFloat kHeadHeight = 88;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UsrCardViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UsrCardViewCellID" forIndexPath:indexPath];
-    [cell config:self.itemsArray[indexPath.row]];
+
+    [cell config:self.itemsArray[indexPath.row] isFirstItem:(indexPath.row == 0) isLastItem:(indexPath.row == self.itemsArray.count - 1)];
     return cell;
 }
 
@@ -105,6 +106,11 @@ static const CGFloat kHeadHeight = 88;
 #pragma mark - actions
 - (void)onIconAction {
     WCLog(@"头像");
+    UserHeadIconViewController *headVC = [[UserHeadIconViewController alloc] init];
+    headVC.isExitLeftItem = YES;
+    headVC.headerTitle    = @"头像";
+    headVC.imgStr         = @"jinshenku";
+    [[AppDelegate sharedAppDelegate] pushViewController:headVC];
 }
 
 - (void)onNickNameAction:(NSIndexPath *)indexPath {
