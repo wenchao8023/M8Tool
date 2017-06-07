@@ -168,10 +168,30 @@
 		94A851C81EE2C18700204B48 /* UsrCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 940DE9AB1ED84D67006F061A /* UsrCardView.m */; };
 		94ABD2D41E976B31007C1172 /* CommonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ABD2D31E976B31007C1172 /* CommonUtil.m */; };
 		94B3C2311EC565AC003ADF5F /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B3C2301EC565AC003ADF5F /* UIView+Extension.m */; };
+		94B3C2341EE793AE00244BC4 /* 木纹preview.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2201EE793AE00244BC4 /* 木纹preview.png */; };
 		94B3C2351EC5851F003ADF5F /* RecordTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B3C2341EC5851F003ADF5F /* RecordTableView.m */; };
+		94B3C2351EE793AE00244BC4 /* 栅格红preview.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2211EE793AE00244BC4 /* 栅格红preview.png */; };
+		94B3C2361EE793AE00244BC4 /* 淡青preview.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2221EE793AE00244BC4 /* 淡青preview.png */; };
+		94B3C2371EE793AE00244BC4 /* 灰白preview.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2231EE793AE00244BC4 /* 灰白preview.png */; };
+		94B3C2381EE793AE00244BC4 /* 灰蓝preview.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2241EE793AE00244BC4 /* 灰蓝preview.png */; };
 		94B3C2391EC585C5003ADF5F /* RecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B3C2371EC585C5003ADF5F /* RecordCell.m */; };
+		94B3C2391EE793AE00244BC4 /* 木纹.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2251EE793AE00244BC4 /* 木纹.png */; };
+		94B3C23A1EE793AE00244BC4 /* 木纹@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2261EE793AE00244BC4 /* 木纹@2x.png */; };
+		94B3C23B1EE793AE00244BC4 /* 木纹@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2271EE793AE00244BC4 /* 木纹@3x.png */; };
+		94B3C23C1EE793AE00244BC4 /* 栅格红.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2281EE793AE00244BC4 /* 栅格红.png */; };
+		94B3C23D1EE793AE00244BC4 /* 栅格红@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2291EE793AE00244BC4 /* 栅格红@2x.png */; };
+		94B3C23E1EE793AE00244BC4 /* 栅格红@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C22A1EE793AE00244BC4 /* 栅格红@3x.png */; };
 		94B3C23F1EC58E81003ADF5F /* RecordTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B3C23E1EC58E81003ADF5F /* RecordTableViewModel.m */; };
+		94B3C23F1EE793AE00244BC4 /* 淡青.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C22B1EE793AE00244BC4 /* 淡青.png */; };
+		94B3C2401EE793AE00244BC4 /* 淡青@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C22C1EE793AE00244BC4 /* 淡青@2x.png */; };
+		94B3C2411EE793AE00244BC4 /* 淡青@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C22D1EE793AE00244BC4 /* 淡青@3x.png */; };
 		94B3C2421EC58E94003ADF5F /* RecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B3C2411EC58E94003ADF5F /* RecordModel.m */; };
+		94B3C2421EE793AE00244BC4 /* 灰白.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C22E1EE793AE00244BC4 /* 灰白.png */; };
+		94B3C2431EE793AE00244BC4 /* 灰白@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C22F1EE793AE00244BC4 /* 灰白@2x.png */; };
+		94B3C2441EE793AE00244BC4 /* 灰白@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2301EE793AE00244BC4 /* 灰白@3x.png */; };
+		94B3C2451EE793AE00244BC4 /* 灰蓝.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2311EE793AE00244BC4 /* 灰蓝.png */; };
+		94B3C2461EE793AE00244BC4 /* 灰蓝@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2321EE793AE00244BC4 /* 灰蓝@2x.png */; };
+		94B3C2471EE793AE00244BC4 /* 灰蓝@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2331EE793AE00244BC4 /* 灰蓝@3x.png */; };
 		94B3C2491EC59643003ADF5F /* RecordDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B3C2481EC59643003ADF5F /* RecordDetailViewController.m */; };
 		94B3C2661EC5C6C7003ADF5F /* RecordDetailViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B3C2651EC5C6C7003ADF5F /* RecordDetailViewManager.m */; };
 		94BDE5201ECC451E00ECC089 /* MeetingLuanchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BDE51F1ECC451E00ECC089 /* MeetingLuanchViewController.m */; };
@@ -200,12 +220,6 @@
 		94D0A1121EE6AC67009399C6 /* userSwitchCony.png in Resources */ = {isa = PBXBuildFile; fileRef = 94D0A10B1EE6AC67009399C6 /* userSwitchCony.png */; };
 		94D0A1131EE6AC67009399C6 /* userTheme.png in Resources */ = {isa = PBXBuildFile; fileRef = 94D0A10C1EE6AC67009399C6 /* userTheme.png */; };
 		94D0A1141EE6AC67009399C6 /* userwallet.png in Resources */ = {isa = PBXBuildFile; fileRef = 94D0A10D1EE6AC67009399C6 /* userwallet.png */; };
-		94D0A1161EE6B68E009399C6 /* launchImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 94D0A1151EE6B68E009399C6 /* launchImg.png */; };
-		94D0A11D1EE6BD1B009399C6 /* 木纹.png in Resources */ = {isa = PBXBuildFile; fileRef = 94D0A1181EE6BD1B009399C6 /* 木纹.png */; };
-		94D0A11E1EE6BD1B009399C6 /* 栅格红.png in Resources */ = {isa = PBXBuildFile; fileRef = 94D0A1191EE6BD1B009399C6 /* 栅格红.png */; };
-		94D0A11F1EE6BD1B009399C6 /* 淡青.png in Resources */ = {isa = PBXBuildFile; fileRef = 94D0A11A1EE6BD1B009399C6 /* 淡青.png */; };
-		94D0A1201EE6BD1B009399C6 /* 灰白.png in Resources */ = {isa = PBXBuildFile; fileRef = 94D0A11B1EE6BD1B009399C6 /* 灰白.png */; };
-		94D0A1211EE6BD1B009399C6 /* 灰蓝.png in Resources */ = {isa = PBXBuildFile; fileRef = 94D0A11C1EE6BD1B009399C6 /* 灰蓝.png */; };
 		94D0A1271EE6C15F009399C6 /* M8ThemeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D0A1261EE6C15F009399C6 /* M8ThemeDetailViewController.m */; };
 		94D8C9CF1ED025840075C35D /* MeetingOrderTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D8C9CE1ED025840075C35D /* MeetingOrderTableView.m */; };
 		94DE95891EAE145400A44DB1 /* UIColor+MLPFlatColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DE95801EAE145400A44DB1 /* UIColor+MLPFlatColors.m */; };
@@ -481,9 +495,29 @@
 		94A851C01EE2BD8B00204B48 /* MeetingAgendaCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeetingAgendaCell.xib; sourceTree = "<group>"; };
 		94ABD2D21E976B31007C1172 /* CommonUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtil.h; sourceTree = "<group>"; };
 		94ABD2D31E976B31007C1172 /* CommonUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonUtil.m; sourceTree = "<group>"; };
+		94B3C2201EE793AE00244BC4 /* 木纹preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "木纹preview.png"; sourceTree = "<group>"; };
+		94B3C2211EE793AE00244BC4 /* 栅格红preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "栅格红preview.png"; sourceTree = "<group>"; };
+		94B3C2221EE793AE00244BC4 /* 淡青preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "淡青preview.png"; sourceTree = "<group>"; };
+		94B3C2231EE793AE00244BC4 /* 灰白preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "灰白preview.png"; sourceTree = "<group>"; };
+		94B3C2241EE793AE00244BC4 /* 灰蓝preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "灰蓝preview.png"; sourceTree = "<group>"; };
+		94B3C2251EE793AE00244BC4 /* 木纹.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "木纹.png"; sourceTree = "<group>"; };
+		94B3C2261EE793AE00244BC4 /* 木纹@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "木纹@2x.png"; sourceTree = "<group>"; };
+		94B3C2271EE793AE00244BC4 /* 木纹@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "木纹@3x.png"; sourceTree = "<group>"; };
+		94B3C2281EE793AE00244BC4 /* 栅格红.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "栅格红.png"; sourceTree = "<group>"; };
+		94B3C2291EE793AE00244BC4 /* 栅格红@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "栅格红@2x.png"; sourceTree = "<group>"; };
+		94B3C22A1EE793AE00244BC4 /* 栅格红@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "栅格红@3x.png"; sourceTree = "<group>"; };
+		94B3C22B1EE793AE00244BC4 /* 淡青.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "淡青.png"; sourceTree = "<group>"; };
+		94B3C22C1EE793AE00244BC4 /* 淡青@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "淡青@2x.png"; sourceTree = "<group>"; };
+		94B3C22D1EE793AE00244BC4 /* 淡青@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "淡青@3x.png"; sourceTree = "<group>"; };
+		94B3C22E1EE793AE00244BC4 /* 灰白.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "灰白.png"; sourceTree = "<group>"; };
 		94B3C22F1EC565AC003ADF5F /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		94B3C22F1EE793AE00244BC4 /* 灰白@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "灰白@2x.png"; sourceTree = "<group>"; };
 		94B3C2301EC565AC003ADF5F /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		94B3C2301EE793AE00244BC4 /* 灰白@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "灰白@3x.png"; sourceTree = "<group>"; };
+		94B3C2311EE793AE00244BC4 /* 灰蓝.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "灰蓝.png"; sourceTree = "<group>"; };
+		94B3C2321EE793AE00244BC4 /* 灰蓝@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "灰蓝@2x.png"; sourceTree = "<group>"; };
 		94B3C2331EC5851F003ADF5F /* RecordTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordTableView.h; sourceTree = "<group>"; };
+		94B3C2331EE793AE00244BC4 /* 灰蓝@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "灰蓝@3x.png"; sourceTree = "<group>"; };
 		94B3C2341EC5851F003ADF5F /* RecordTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordTableView.m; sourceTree = "<group>"; };
 		94B3C2361EC585C5003ADF5F /* RecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordCell.h; sourceTree = "<group>"; };
 		94B3C2371EC585C5003ADF5F /* RecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordCell.m; sourceTree = "<group>"; };
@@ -537,12 +571,6 @@
 		94D0A10B1EE6AC67009399C6 /* userSwitchCony.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userSwitchCony.png; sourceTree = "<group>"; };
 		94D0A10C1EE6AC67009399C6 /* userTheme.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userTheme.png; sourceTree = "<group>"; };
 		94D0A10D1EE6AC67009399C6 /* userwallet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userwallet.png; sourceTree = "<group>"; };
-		94D0A1151EE6B68E009399C6 /* launchImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchImg.png; sourceTree = "<group>"; };
-		94D0A1181EE6BD1B009399C6 /* 木纹.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "木纹.png"; sourceTree = "<group>"; };
-		94D0A1191EE6BD1B009399C6 /* 栅格红.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "栅格红.png"; sourceTree = "<group>"; };
-		94D0A11A1EE6BD1B009399C6 /* 淡青.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "淡青.png"; sourceTree = "<group>"; };
-		94D0A11B1EE6BD1B009399C6 /* 灰白.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "灰白.png"; sourceTree = "<group>"; };
-		94D0A11C1EE6BD1B009399C6 /* 灰蓝.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "灰蓝.png"; sourceTree = "<group>"; };
 		94D0A1251EE6C15F009399C6 /* M8ThemeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8ThemeDetailViewController.h; sourceTree = "<group>"; };
 		94D0A1261EE6C15F009399C6 /* M8ThemeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8ThemeDetailViewController.m; sourceTree = "<group>"; };
 		94D8C9CD1ED025840075C35D /* MeetingOrderTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingOrderTableView.h; sourceTree = "<group>"; };
@@ -1160,7 +1188,6 @@
 		946753CD1EBC170200653A2C /* Resources(图片、字体) */ = {
 			isa = PBXGroup;
 			children = (
-				94D0A1151EE6B68E009399C6 /* launchImg.png */,
 				94D8C9C01ECFEB020075C35D /* Pictures */,
 				942BCB1E1EC1C4A0000F9911 /* font */,
 				946753CE1EBC170200653A2C /* Assets.xcassets */,
@@ -1291,6 +1318,41 @@
 				94A502861E95F12400F675B2 /* libCOSClient.a */,
 			);
 			path = COS_SDK;
+			sourceTree = "<group>";
+		};
+		94B3C21E1EE793AE00244BC4 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				94B3C21F1EE793AE00244BC4 /* ThemePreview */,
+				94B3C2251EE793AE00244BC4 /* 木纹.png */,
+				94B3C2261EE793AE00244BC4 /* 木纹@2x.png */,
+				94B3C2271EE793AE00244BC4 /* 木纹@3x.png */,
+				94B3C2281EE793AE00244BC4 /* 栅格红.png */,
+				94B3C2291EE793AE00244BC4 /* 栅格红@2x.png */,
+				94B3C22A1EE793AE00244BC4 /* 栅格红@3x.png */,
+				94B3C22B1EE793AE00244BC4 /* 淡青.png */,
+				94B3C22C1EE793AE00244BC4 /* 淡青@2x.png */,
+				94B3C22D1EE793AE00244BC4 /* 淡青@3x.png */,
+				94B3C22E1EE793AE00244BC4 /* 灰白.png */,
+				94B3C22F1EE793AE00244BC4 /* 灰白@2x.png */,
+				94B3C2301EE793AE00244BC4 /* 灰白@3x.png */,
+				94B3C2311EE793AE00244BC4 /* 灰蓝.png */,
+				94B3C2321EE793AE00244BC4 /* 灰蓝@2x.png */,
+				94B3C2331EE793AE00244BC4 /* 灰蓝@3x.png */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		94B3C21F1EE793AE00244BC4 /* ThemePreview */ = {
+			isa = PBXGroup;
+			children = (
+				94B3C2201EE793AE00244BC4 /* 木纹preview.png */,
+				94B3C2211EE793AE00244BC4 /* 栅格红preview.png */,
+				94B3C2221EE793AE00244BC4 /* 淡青preview.png */,
+				94B3C2231EE793AE00244BC4 /* 灰白preview.png */,
+				94B3C2241EE793AE00244BC4 /* 灰蓝preview.png */,
+			);
+			path = ThemePreview;
 			sourceTree = "<group>";
 		};
 		94B3C2321EC5835A003ADF5F /* RecordViews */ = {
@@ -1461,22 +1523,10 @@
 			path = userImg;
 			sourceTree = "<group>";
 		};
-		94D0A1171EE6BD1B009399C6 /* ThemePreview */ = {
-			isa = PBXGroup;
-			children = (
-				94D0A1181EE6BD1B009399C6 /* 木纹.png */,
-				94D0A1191EE6BD1B009399C6 /* 栅格红.png */,
-				94D0A11A1EE6BD1B009399C6 /* 淡青.png */,
-				94D0A11B1EE6BD1B009399C6 /* 灰白.png */,
-				94D0A11C1EE6BD1B009399C6 /* 灰蓝.png */,
-			);
-			path = ThemePreview;
-			sourceTree = "<group>";
-		};
 		94D8C9C01ECFEB020075C35D /* Pictures */ = {
 			isa = PBXGroup;
 			children = (
-				94D0A1171EE6BD1B009399C6 /* ThemePreview */,
+				94B3C21E1EE793AE00244BC4 /* Theme */,
 				94D0A1061EE6AC67009399C6 /* userImg */,
 				943A08FA1EDEDF92003CEA27 /* buttonsImg */,
 			);
@@ -1589,6 +1639,7 @@
 				944AF31E1E9494C00044B44C /* KVNProgressView.xib in Resources */,
 				943A08E11EDEC461003CEA27 /* Shaderf.glsl in Resources */,
 				94081B461EC463FF0079583C /* STHeiti-Regular.ttf in Resources */,
+				94B3C23B1EE793AE00244BC4 /* 木纹@3x.png in Resources */,
 				94A851C71EE2C18600204B48 /* UsrContactHeaderView.xib in Resources */,
 				943A08E91EDEC76B003CEA27 /* TILFilterResource.bundle in Resources */,
 				94D0A1131EE6AC67009399C6 /* userTheme.png in Resources */,
@@ -1597,16 +1648,13 @@
 				9422BEE71EE57A3F00F9B56D /* M8LiveJoinViewController.xib in Resources */,
 				943A09071EDEDF92003CEA27 /* btnImg_meetingOrder.png in Resources */,
 				9422BED51EE52CD800F9B56D /* M8LoginStoryboard.storyboard in Resources */,
-				94D0A1211EE6BD1B009399C6 /* 灰蓝.png in Resources */,
 				943A08F31EDED9F2003CEA27 /* FilterRes.bundle in Resources */,
 				943A08F61EDED9F2003CEA27 /* QAVEffectRes.bundle in Resources */,
-				94D0A11E1EE6BD1B009399C6 /* 栅格红.png in Resources */,
 				944AF2181E948DC10044B44C /* README.txt in Resources */,
 				942BCB201EC1C4A0000F9911 /* DroidSansFallback.ttf in Resources */,
 				94D0A10E1EE6AC67009399C6 /* userCard.png in Resources */,
 				943A09041EDEDF92003CEA27 /* btnImg_liveMeeting.png in Resources */,
 				94D0A1101EE6AC67009399C6 /* userOwnCony.png in Resources */,
-				94D0A11F1EE6BD1B009399C6 /* 淡青.png in Resources */,
 				943A090A1EDEDF92003CEA27 /* btnImg_voiceMeeting.png in Resources */,
 				94D0A1111EE6AC67009399C6 /* userSetting.png in Resources */,
 				9422BEF81EE5844B00F9B56D /* M8ThemeCell.xib in Resources */,
@@ -1617,30 +1665,46 @@
 				94D0A10F1EE6AC67009399C6 /* userCentification.png in Resources */,
 				944AF20D1E948DC10044B44C /* ShareSDKUI.bundle in Resources */,
 				946753CF1EBC170200653A2C /* Assets.xcassets in Resources */,
+				94B3C23D1EE793AE00244BC4 /* 栅格红@2x.png in Resources */,
+				94B3C2431EE793AE00244BC4 /* 灰白@2x.png in Resources */,
 				944AF2151E948DC10044B44C /* WeiboSDK.bundle in Resources */,
 				94C06F3D1EBC50C900336E5F /* UserProtocolViewController.xib in Resources */,
 				946753C91EBC16D500653A2C /* Main.storyboard in Resources */,
+				94B3C2351EE793AE00244BC4 /* 栅格红preview.png in Resources */,
+				94B3C2471EE793AE00244BC4 /* 灰蓝@3x.png in Resources */,
+				94B3C23A1EE793AE00244BC4 /* 木纹@2x.png in Resources */,
 				9497DF3D1ECA966A009C35CB /* MeetingView.xib in Resources */,
-				94D0A1201EE6BD1B009399C6 /* 灰白.png in Resources */,
 				94C9B8381ECD688400F42654 /* MeetingLuanchTableViewCell.xib in Resources */,
 				9497DF3A1ECA966A009C35CB /* MeetingButtonsCell.xib in Resources */,
 				943A09081EDEDF92003CEA27 /* btnImg_phoneMeeting.png in Resources */,
 				943A08E21EDEC461003CEA27 /* Shaderv.glsl in Resources */,
+				94B3C2341EE793AE00244BC4 /* 木纹preview.png in Resources */,
+				94B3C2381EE793AE00244BC4 /* 灰蓝preview.png in Resources */,
+				94B3C2371EE793AE00244BC4 /* 灰白preview.png in Resources */,
+				94B3C2461EE793AE00244BC4 /* 灰蓝@2x.png in Resources */,
+				94B3C23F1EE793AE00244BC4 /* 淡青.png in Resources */,
 				944AF21A1E948DC10044B44C /* ShareSDK.bundle in Resources */,
+				94B3C2391EE793AE00244BC4 /* 木纹.png in Resources */,
 				9422BEE21EE5593200F9B56D /* M8LiveMeetViewController.xib in Resources */,
 				94C9B8401ECDA59000F42654 /* MeetingMembersCell.xib in Resources */,
+				94B3C2451EE793AE00244BC4 /* 灰蓝.png in Resources */,
+				94B3C2421EE793AE00244BC4 /* 灰白.png in Resources */,
 				943A09091EDEDF92003CEA27 /* btnImg_videoMeeting.png in Resources */,
 				943A08F51EDED9F2003CEA27 /* PE.dat in Resources */,
+				94B3C23C1EE793AE00244BC4 /* 栅格红.png in Resources */,
+				94B3C2441EE793AE00244BC4 /* 灰白@3x.png in Resources */,
+				94B3C2361EE793AE00244BC4 /* 淡青preview.png in Resources */,
 				94D0A1121EE6AC67009399C6 /* userSwitchCony.png in Resources */,
 				948E04621EE6421B0075903B /* UserTableViewCell.xib in Resources */,
 				94A851C11EE2BD8B00204B48 /* MeetingAgendaCell.xib in Resources */,
 				943A08F21EDED9F2003CEA27 /* DecoRes.bundle in Resources */,
-				94D0A1161EE6B68E009399C6 /* launchImg.png in Resources */,
 				94D0A1141EE6AC67009399C6 /* userwallet.png in Resources */,
-				94D0A11D1EE6BD1B009399C6 /* 木纹.png in Resources */,
+				94B3C2411EE793AE00244BC4 /* 淡青@3x.png in Resources */,
 				944AF2131E948DC10044B44C /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
+				94B3C2401EE793AE00244BC4 /* 淡青@2x.png in Resources */,
 				94C06F3B1EBC50C900336E5F /* UserProtocol.html in Resources */,
 				944AF2171E948DC10044B44C /* read_me.txt in Resources */,
+				94B3C23E1EE793AE00244BC4 /* 栅格红@3x.png in Resources */,
 				94C089DA1EC976F200EE3403 /* RecorDetailView.xib in Resources */,
 				943A09031EDEDF92003CEA27 /* btnImg_contact.png in Resources */,
 			);

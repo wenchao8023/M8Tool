@@ -67,7 +67,7 @@
     NSArray *imgsArr = @[@"灰白", @"灰蓝", @"淡青", @"木纹", @"栅格红"];
     for (NSString *imgStr in imgsArr) {
         M8ThemeModel *model = [M8ThemeModel new];
-        model.imgStr = imgStr;
+        model.imgStr = [NSString stringWithFormat:@"%@preview", imgStr];
         model.nameStr = imgStr;
         [self.dataArray addObject:model];
     }
@@ -84,7 +84,7 @@
     M8ThemeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"M8ThemeCellID" forIndexPath:indexPath];
     
     M8ThemeModel *model = self.dataArray[indexPath.row];
-    [cell config:model isCurrentTheme:[model.imgStr isEqualToString:@"灰白"]];
+    [cell config:model isCurrentTheme:[model.nameStr isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:kThemeImage]]];
     
     return cell;
 }

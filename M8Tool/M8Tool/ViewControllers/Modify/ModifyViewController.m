@@ -177,7 +177,7 @@ typedef void(^SaveBlock)();
     self.navigationController.navigationBar.hidden = YES;
     
     // 背景图片
-    UIImageView *bgImageV = [WCUIKitControl createImageViewWithFrame:self.view.bounds ImageName:kAppBgImageStr];
+    UIImageView *bgImageV = [WCUIKitControl createImageViewWithFrame:self.view.bounds ImageName:kDefaultThemeImage];
     [self.view addSubview:bgImageV];
     
     // 导航视图

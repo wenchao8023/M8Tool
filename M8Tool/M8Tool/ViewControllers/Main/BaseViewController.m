@@ -26,11 +26,14 @@
     [self bgImageView];
     [self headerView];
     [self contentView];
+    
+    [WCNotificationCenter addObserver:self selector:@selector(themeSwichAction) name:kThemeSwich_Notification object:nil];
 }
 
 - (UIImageView *)bgImageView {
     if (!_bgImageView) {
-        UIImageView *bgImageV = [WCUIKitControl createImageViewWithFrame:self.view.bounds ImageName:kAppBgImageStr];
+        NSString *imgStr = [[NSUserDefaults standardUserDefaults] objectForKey:kThemeImage];
+        UIImageView *bgImageV = [WCUIKitControl createImageViewWithFrame:self.view.bounds ImageName:imgStr ? imgStr : kDefaultThemeImage];
         [self.view addSubview:(_bgImageView = bgImageV)];
     }
     return _bgImageView;
@@ -50,8 +53,7 @@
             label.attributedText = [CommonUtil customAttString:@"返回"
                                                       fontSize:kAppMiddleFontSize
                                                      textColor:WCWhite
-                                                     charSpace:kAppKern_4
-//                                                      fontName:kFontNameDroidSansFallback
+                                                     charSpace:kAppKern_2
                                     ];
             [backView addSubview:imageV];
             [backView addSubview:label];
@@ -74,14 +76,27 @@
                                                        fontSize:kAppNaviFontSize
                                                       textColor:WCWhite
                                                       charSpace:kAppKern_2
-//                                                       fontName:kFontNameDroidSansFallback
                                      ];
         [headerView addSubview:titleLabel];
+        
+        //右侧按钮
+        UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        rightBtn.frame = CGRectMake(SCREEN_WIDTH - 60 - kMarginView_horizontal,
+                                  kDefaultStatuHeight,
+                                  60,
+                                  kDefaultCellHeight);
+        rightBtn.tag = 111;
+        rightBtn.hidden = YES;
+        [headerView addSubview:rightBtn];
+        
+    
         
         [self.view addSubview:(_headerView = headerView)];
     }
     return _headerView;
 }
+
+
 
 - (void)setHeaderTitle:(NSString *)headerTitle {
     _headerTitle = headerTitle;
@@ -90,8 +105,35 @@
                                               fontSize:kAppNaviFontSize
                                              textColor:WCWhite
                                              charSpace:kAppKern_2
-//                                              fontName:kFontNameDroidSansFallback
                             ];
+}
+
+// 文字按钮
+- (void)setRightButtonTitle:(NSString *)title target:(id)target action:(SEL)action {
+    [self setRightButtonTitle:title image:nil target:target action:action];
+}
+// 图片按钮
+- (void)setRightButtonImage:(NSString *)imgStr target:(id)target action:(SEL)action {
+    [self setRightButtonTitle:nil image:imgStr target:target action:action];
+}
+
+- (void)setRightButtonTitle:(NSString *)title image:(NSString *)imgStr target:(id)target action:(SEL)action {
+    UIButton *rightBtn = [self.headerView viewWithTag:111];
+    rightBtn.hidden = NO;
+    
+    if (title) {
+        [rightBtn setAttributedTitle:[CommonUtil customAttString:title
+                                                        fontSize:kAppMiddleFontSize
+                                                       textColor:WCWhite
+                                                       charSpace:kAppKern_2]
+                            forState:UIControlStateNormal];
+    }
+    
+    if (imgStr) {
+        [rightBtn setBackgroundImage:[UIImage imageNamed:imgStr] forState:UIControlStateNormal];
+    }
+    
+    [rightBtn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)backClick {
@@ -101,7 +143,6 @@
 
 - (UIView *)contentView {
     if (!_contentView) {
-
         CGFloat baseHeight = 667 - kDefaultStatuHeight - kDefaultTabbarHeight;
         CGFloat deviceHeight = SCREENH_HEIGHT - kDefaultTabbarHeight - kDefaultStatuHeight;
         
@@ -121,6 +162,16 @@
         [self.view addSubview:(_contentView = contentView)];
     }
     return _contentView;
+}
+
+- (void)themeSwichAction {
+    NSString *imgStr = [[NSUserDefaults standardUserDefaults] objectForKey:kThemeImage];
+    [self.bgImageView setImage:[UIImage imageNamed:imgStr]];
+}
+
+- (void)dealloc {
+    
+    [WCNotificationCenter removeObserver:self name:kThemeSwich_Notification object:nil];
 }
 
 

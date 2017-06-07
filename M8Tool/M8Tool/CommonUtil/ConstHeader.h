@@ -49,7 +49,7 @@ static const int kAppKern_4 = 4;
 static const int kAppKern_8 = 8;
 
 /******************** icon ********************************/
-static NSString * _Nonnull kAppBgImageStr = @"bgImage";
+static NSString * _Nonnull kDefaultThemeImage = @"灰白";
 
 /******************** default *****************************/
 static const int kDefaultCellHeight     = 44;
@@ -124,6 +124,7 @@ typedef NS_ENUM(NSInteger, BeautyViewType)
 #define kClickConnect_Notification      @"kClickConnect_Notification"
 #define kCancelConnect_Notification     @"kCancelConnect_Notification"
 #define kEnterBackGround_Notification   @"kEnterBackGround_Notification"
+#define kThemeSwich_Notification        @"kThemeSwich_Notification" //切换主题
 
 /******************** role string **********************/
 #define kSxbRole_Host       @"LiveMaster"
@@ -138,6 +139,7 @@ typedef NS_ENUM(NSInteger, BeautyViewType)
 #define kLogLevel           @"kLogLevel"
 #define kUserProtocol       @"kUserProtocol"
 #define kHasLogin           @"kHasLogin"
+#define kThemeImage         @"kThemeImage"
 
 /******************** appstore **********************/
 #define kIsAppstoreVersion 0

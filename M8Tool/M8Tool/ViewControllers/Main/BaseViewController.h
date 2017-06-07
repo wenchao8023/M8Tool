@@ -52,6 +52,10 @@ static const float kRadiusView              = 10;
  */
 @property (nonatomic, strong, nullable)     UIView *contentView;
 
-
+#pragma mark - 右侧按钮样式
+// 文字按钮
+- (void)setRightButtonTitle:(NSString *_Nonnull)title target:(id _Nonnull)target action:(SEL _Nonnull)action ;
+// 图片按钮
+- (void)setRightButtonImage:(NSString * _Nonnull)imgStr target:(id _Nonnull)target action:(SEL _Nonnull)action ;
 
 @end
