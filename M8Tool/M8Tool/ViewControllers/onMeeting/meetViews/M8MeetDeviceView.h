@@ -8,6 +8,31 @@
 
 #import <UIKit/UIKit.h>
 
+
+static NSString  * _Nullable  kDeviceAction  = @"deviceAction";
+static NSString  * _Nullable  kDeviceText    = @"deviceText";
+
+
+@protocol MeetDeviceDelegate <NSObject>
+
+- (void)MeetDeviceActionInfo:(NSDictionary *_Nullable)actionInfo;
+
+@end
+
+
+/**
+ 设备控制
+ 
+    * 分享这场会议
+    * 关闭摄像头
+    * 切换摄像头
+    * 挂断
+    * 静音
+    * 免提
+    * 文本输入 (textInputView)
+ */
 @interface M8MeetDeviceView : UIView
+
+@property (nonatomic, weak) id _Nullable WCDelegate;
 
 @end

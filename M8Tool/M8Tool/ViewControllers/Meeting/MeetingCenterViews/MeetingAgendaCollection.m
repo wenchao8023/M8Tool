@@ -39,12 +39,11 @@
     [super awakeFromNib];
     
     WCCollectionViewHorizontalLayout *layout = [[WCCollectionViewHorizontalLayout alloc] initWithRowCount:1 itemCountPerRow:5];
-//    layout.itemSize = CGSizeMake((SCREEN_WIDTH - 60) / 5, (SCREEN_WIDTH - 60) / 5);
     layout.itemSize = CGSizeMake(SCREEN_WIDTH / 5, SCREEN_WIDTH / 5);
     layout.scrollDirection          = UICollectionViewScrollDirectionHorizontal;
     layout.minimumLineSpacing       = 0;
     layout.minimumInteritemSpacing  = 0;
-//    layout.headerReferenceSize      = CGSizeMake(10, 0);
+
     
     
     self.collectionViewLayout   = layout;

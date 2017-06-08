@@ -109,9 +109,11 @@
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [reqIdWaitView removeFromSuperview];
+        
+        [self luanchMeeting];
     });
     
-    [self luanchMeeting];
+    
 }
 
     
@@ -132,7 +134,7 @@
         case LuanchMeetingType_live:    //直播
         {
             M8LiveMeetViewController *liveVC = [[M8LiveMeetViewController alloc] init];
-            liveVC.roomId = [roomId integerValue];
+            liveVC.roomId = [@"876543" integerValue];
             liveVC.topic  = self.topic;
             [[AppDelegate sharedAppDelegate] presentViewController:liveVC];
         }

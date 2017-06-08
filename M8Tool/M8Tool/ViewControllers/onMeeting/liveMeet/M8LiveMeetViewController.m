@@ -8,42 +8,39 @@
 
 #import "M8LiveMeetViewController.h"
 
-@interface M8LiveMeetViewController ()<ILVLiveIMListener, ILVLiveAVListener>
-    
-@property (nonatomic, strong) NSMutableArray *identifierArray;
-    
-@property (nonatomic, strong) NSMutableArray *srcTypeArray;
-    
-@property (weak, nonatomic) IBOutlet UITextView *textView;
+#import "M8MeetHeaderView.h"
+#import "M8MeetRenderView.h"
+#import "M8MeetDeviceView.h"
+#import "M8MeetNoteView.h"
+
+
+
+
+static const CGFloat kBottomHeight = 50.f;
+
+
+
+@interface M8LiveMeetViewController ()<MeetDeviceDelegate>  ///<ILVLiveIMListener, ILVLiveAVListener>
+
+@property (nonatomic, strong) M8MeetHeaderView *headerView;
+@property (nonatomic, strong) M8MeetRenderView *renderView;
+@property (nonatomic, strong) M8MeetDeviceView *deviceView;
+@property (nonatomic, strong) M8MeetNoteView   *noteView;
+
+
+
 
 @end
 
 @implementation M8LiveMeetViewController
 
-    
-- (NSMutableArray *)identifierArray {
-    if (!_identifierArray) {
-        NSMutableArray *identifierArray = [NSMutableArray arrayWithCapacity:0];
-        _identifierArray = identifierArray;
-    }
-    return _identifierArray;
-}
-    
-- (NSMutableArray *)srcTypeArray {
-    if (!_srcTypeArray) {
-        NSMutableArray *srcTypeArray = [NSMutableArray arrayWithCapacity:0];
-        _srcTypeArray = srcTypeArray;
-    }
-    return _srcTypeArray;
-}
-
-
-    
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
     _host = [[NSUserDefaults standardUserDefaults] objectForKey:kLoginIdentifier];
+    
+    [self createUI];
     
     [self createLive];
 }
@@ -52,189 +49,110 @@
 - (void)createLive{
     TILLiveRoomOption *option = [TILLiveRoomOption defaultHostLiveOption];
     option.controlRole = @"LiveMaster";
-    
+
     TILLiveManager *manager = [TILLiveManager getInstance];
-    [manager setAVListener:self];
-    [manager setIMListener:self];
-    [manager setAVRootView:self.view];
+    [manager setAVListener:self.renderView];
+    [manager setIMListener:self.noteView];
+    [manager setAVRootView:self.renderView];
     
     WCWeakSelf(self);   
     [manager createRoom:(int)_roomId option:option succ:^{
-//        [AppDelegate showAlert:self title:nil message:@"创建房间成功" okTitle:nil cancelTitle:nil ok:nil cancel:nil];
         [weakself addTextToView:@"创建房间成功"];
     } failed:^(NSString *moudle, int errId, NSString *errMsg) {
-//        [AppDelegate showAlert:self title:nil message:@"创建房间失败" okTitle:nil cancelTitle:nil ok:nil cancel:nil];
         [weakself addTextToView:[NSString stringWithFormat:@"创建房间失败,moldle=%@;errid=%d;errmsg=%@",moudle,errId,errMsg]];
-
     }];
 }
 
-#pragma mark - 事件回调
-#pragma mark -- ILVLiveAVListener
-- (void)onUserUpdateInfo:(ILVLiveAVEvent)event users:(NSArray *)users {
-    TILLiveManager *manager = [TILLiveManager getInstance];
-    
-    switch(event) {
-        case ILVLIVE_AVEVENT_CAMERA_ON:
-        {
-            //视频事件
-            for (NSString *user in users) {
-                if(![user isEqualToString:_host]){
-                    [manager addAVRenderView:[self getRenderFrame:_identifierArray.count] forIdentifier:user srcType:QAVVIDEO_SRC_TYPE_CAMERA];
-                    [_identifierArray addObject:user];
-                    [_srcTypeArray addObject:@(QAVVIDEO_SRC_TYPE_CAMERA)];
-                }
-                else{
-                    [manager addAVRenderView:self.view.bounds forIdentifier:_host srcType:QAVVIDEO_SRC_TYPE_CAMERA];
-                }
-            }
-        }
-        break;
-        case ILVLIVE_AVEVENT_CAMERA_OFF:
-        {
-            for (NSString *user in users) {
-                if(![user isEqualToString:_host]){
-                    NSInteger index = [_identifierArray indexOfObject:user];
-                    [manager removeAVRenderView:user srcType:QAVVIDEO_SRC_TYPE_CAMERA];
-                    [_identifierArray removeObjectAtIndex:index];
-                    [_srcTypeArray removeObjectAtIndex:index];
-                }
-                else{
-                }
-                [self updateRenderFrame];
-            }
-        }
-        break;
-        case ILVLIVE_AVEVENT_SCREEN_ON:
-        {
-            for (NSString *user in users) {
-                if(![user isEqualToString:_host]){
-                    [manager addAVRenderView:[self getRenderFrame:_identifierArray.count] forIdentifier:user srcType:QAVVIDEO_SRC_TYPE_SCREEN];
-                    [_identifierArray addObject:user];
-                    [_srcTypeArray addObject:@(QAVVIDEO_SRC_TYPE_SCREEN)];
-                }
-                else{
-                }
-            }
-        }
-        break;
-        case ILVLIVE_AVEVENT_SCREEN_OFF:
-        {
-            for (NSString *user in users) {
-                if(![user isEqualToString:_host]){
-                    NSInteger index = [_identifierArray indexOfObject:user];
-                    [manager removeAVRenderView:user srcType:QAVVIDEO_SRC_TYPE_SCREEN];
-                    [_identifierArray removeObjectAtIndex:index];
-                    [_srcTypeArray removeObjectAtIndex:index];
-                }
-                else{
-                }
-                [self updateRenderFrame];
-            }
-        }
-        case ILVLIVE_AVEVENT_MEDIA_ON:
-        {
-            for (NSString *user in users) {
-                if(![user isEqualToString:_host]){
-                    [manager addAVRenderView:[self getRenderFrame:_identifierArray.count] forIdentifier:user srcType:QAVVIDEO_SRC_TYPE_MEDIA];
-                    [_identifierArray addObject:user];
-                    [_srcTypeArray addObject:@(QAVVIDEO_SRC_TYPE_MEDIA)];
-                }
-                else{
-                }
-            }
-        }
-        break;
-        case ILVLIVE_AVEVENT_MEDIA_OFF:
-        {
-            for (NSString *user in users) {
-                if(![user isEqualToString:_host]){
-                    NSInteger index = [_identifierArray indexOfObject:user];
-                    [manager removeAVRenderView:user srcType:QAVVIDEO_SRC_TYPE_MEDIA];
-                    [_identifierArray removeObjectAtIndex:index];
-                    [_srcTypeArray removeObjectAtIndex:index];
-                }
-                else{
-                }
-                [self updateRenderFrame];
-            }
-        }
-        default:
-        break;
-    }
-}
-    
-#pragma mark - 消息回调
-- (void)onTextMessage:(ILVLiveTextMessage *)msg {
-    [self addTextToView:[NSString stringWithFormat:@"收到文本消息:%@",msg.text]];
-}
-    
-- (void)onCustomMessage:(ILVLiveCustomMessage *)msg {
-    switch (msg.cmd) {
-        case ILVLIVE_IMCMD_INTERACT_REJECT:
-        [self addTextToView:[NSString stringWithFormat:@"%@拒绝了你的上麦邀请",msg.sendId]];
-        break;
-        case ILVLIVE_IMCMD_INVITE_CLOSE:
-        [self addTextToView:[NSString stringWithFormat:@"%@已经下麦",msg.sendId]];
-        break;
-        case ILVLIVE_IMCMD_INTERACT_AGREE:
-        [self addTextToView:[NSString stringWithFormat:@"%@同意了你的上麦邀请",msg.sendId]];
-        break;
-        case ILVLIVE_IMCMD_LEAVE:
-        [self addTextToView:[NSString stringWithFormat:@"%@退出房间",msg.sendId]];
-        break;
-        case ILVLIVE_IMCMD_ENTER:
-        [self addTextToView:[NSString stringWithFormat:@"%@进入房间",msg.sendId]];
-        break;
-        case ILVLIVE_IMCMD_CUSTOM_LOW_LIMIT:
-        {
-            //用户自定义消息
-            NSString *text = [NSString stringWithFormat:@"收到自定义消息:cmd=%ld,data=%@",(long)msg.cmd,[[NSString alloc] initWithData:msg.data encoding:NSUTF8StringEncoding]];
-            [self addTextToView:text];
-            break;
-        }
-        default:
-        break;
-    }
-}
-    
-    
-- (void)addTextToView:(NSString *)newText {
-    WCLog(@"%@", newText );
-    NSString *text = _textView.text;
-    text = [text stringByAppendingString:@"\n"];
-    text = [text stringByAppendingString:newText];
-    _textView.text = text;
-    
-}
-    
+
 #pragma mark - 界面相关
-- (CGRect)getRenderFrame:(NSInteger)count{
-    if(count == 3){
-        return CGRectZero;
+
+- (M8MeetRenderView *)renderView {
+    if (!_renderView) {
+        M8MeetRenderView *renderView = [[M8MeetRenderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREENH_HEIGHT)];
+        [self.view addSubview:(_renderView = renderView)];
     }
-    CGFloat height = (self.view.frame.size.height - 2*20 - 3 * 10)/3;
-    CGFloat width = height*3/4;//宽高比3:4
-    CGFloat y = 20 + (count * (height + 10));
-    CGFloat x = 20;
-    return CGRectMake(x, y, width, height);
+    return _renderView;
+}
+
+- (M8MeetHeaderView *)headerView {
+    if (!_headerView) {
+        M8MeetHeaderView *headerView = [[M8MeetHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, kDefaultNaviHeight)];
+        
+        [self.view addSubview:(_headerView = headerView)];
+    }
+    return _headerView;
+}
+
+
+- (M8MeetDeviceView *)deviceView {
+    if (!_deviceView) {
+        M8MeetDeviceView *deviceView = [[M8MeetDeviceView alloc] initWithFrame:CGRectMake(0, SCREENH_HEIGHT - kBottomHeight - kDefaultMargin, SCREEN_WIDTH, kBottomHeight)];
+        deviceView.WCDelegate = self;
+        [self.view addSubview:(_deviceView = deviceView)];
+    }
+    return _deviceView;
+}
+
+- (M8MeetNoteView *)noteView {
+    if (!_noteView) {
+        M8MeetNoteView *noteView = [[M8MeetNoteView alloc] initWithFrame:CGRectMake(0, 250, SCREEN_WIDTH, 200)];
+        [self.view addSubview:(_noteView = noteView)];
+    }
+    return _noteView;
+}
+
+
+
+- (void)createUI {
+ 
+    [self renderView];
+    self.renderView.roomId = self.roomId;
+    self.renderView.host   = self.host;
+    [self headerView];
+    [self deviceView];
+    [self noteView];
 }
     
-- (void)updateRenderFrame{
-    TILLiveManager *manager = [TILLiveManager getInstance];
-    for(NSInteger index = 0; index < _identifierArray.count; index++){
-        CGRect frame = [self getRenderFrame:index];
-        NSString *identifier = _identifierArray[index];
-        avVideoSrcType srcType = [_srcTypeArray[index] intValue];
-        [manager modifyAVRenderView:frame forIdentifier:identifier srcType:srcType];
+#pragma mark - views delegate
+#pragma mark -- MeetDeviceDelegate
+- (void)MeetDeviceActionInfo:(NSDictionary *)actionInfo {
+//    WCLog(@"%@", actionInfo);
+    
+    NSString *infoKey = [[actionInfo allKeys] firstObject];
+    if ([infoKey isEqualToString:kDeviceAction]) {
+        if ([[actionInfo objectForKey:infoKey] isEqualToString:@"quitRoomSucc"]) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+        else {
+            [self addTextToView:actionInfo[infoKey]];
+        }
+        
+        /*
+        if ([[actionInfo objectForKey:infoKey] isEqualToString:@"onShareAction"]) {
+            
+        }
+        
+        if ([[actionInfo objectForKey:infoKey] isEqualToString:@"onNoteAction"]) {
+            
+        }
+        */
+    }
+    else {
+        [self addTextToView:actionInfo[infoKey]];
     }
 }
 
-    
-    
-    
-    
-    
+
+
+- (void)addTextToView:(NSString *)newText {
+    WCLog(@"%@", newText );
+    NSString *text = self.noteView.textView.text;
+    text = [text stringByAppendingString:@"\n"];
+    text = [text stringByAppendingString:newText];
+    self.noteView.textView.text = text;
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
