@@ -15,108 +15,66 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QpY-f0-S9k">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QpY-f0-S9k">
                     <rect key="frame" x="11.5" y="10" width="40" height="40"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="YWv-wE-268"/>
                         <constraint firstAttribute="height" constant="40" id="oHW-uc-veY"/>
                     </constraints>
-                    <state key="normal" title="B1"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="20"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                    </userDefinedRuntimeAttributes>
+                    <state key="normal" backgroundImage="liveShare.png"/>
                     <connections>
                         <action selector="onShareAction:" destination="iN0-l3-epB" eventType="touchUpOutside" id="eYg-fg-g8V"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KeI-0O-RRV">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KeI-0O-RRV">
                     <rect key="frame" x="62.5" y="10" width="40" height="40"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="B2"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="20"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                    </userDefinedRuntimeAttributes>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal" backgroundImage="liveSwitchCamera.png"/>
                     <connections>
-                        <action selector="onCloseCameraAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="2qL-Zc-Jxf"/>
+                        <action selector="onSwitchCameraAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="SdI-T0-G1R"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X3a-rr-ssT">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X3a-rr-ssT">
                     <rect key="frame" x="113" y="10" width="40" height="40"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="B3"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="20"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                    </userDefinedRuntimeAttributes>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal" backgroundImage="liveSwitchCamera.png"/>
                     <connections>
-                        <action selector="onSwitchCameraAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="12c-OT-UKc"/>
+                        <action selector="onCloseCameraAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="3WQ-AE-lUg"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aq3-6v-htL">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aq3-6v-htL">
                     <rect key="frame" x="162.5" y="0.0" width="50" height="50"/>
-                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="DoS-YM-n4V"/>
                         <constraint firstAttribute="height" constant="50" id="lKi-Sc-ovG"/>
                     </constraints>
-                    <state key="normal" title="B4"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="25"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                    </userDefinedRuntimeAttributes>
+                    <state key="normal" backgroundImage="liveHangup.png"/>
                     <connections>
                         <action selector="onHangupAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="YEO-TS-H3u"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IS4-wk-fO1">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IS4-wk-fO1">
                     <rect key="frame" x="223" y="10" width="40" height="40"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="B5"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="20"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                    </userDefinedRuntimeAttributes>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal" backgroundImage="liveMic_on.png"/>
                     <connections>
                         <action selector="onCloseMicAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="BzL-ib-j5T"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7U3-HH-ZEi">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7U3-HH-ZEi">
                     <rect key="frame" x="273" y="10" width="40" height="40"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="B6"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="20"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                    </userDefinedRuntimeAttributes>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal" backgroundImage="liveReceiver_on.png"/>
                     <connections>
                         <action selector="onSwitchReceiverAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="ZI4-7e-yl5"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yxO-JS-FGr">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yxO-JS-FGr">
                     <rect key="frame" x="323.5" y="10" width="40" height="40"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="B7"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="20"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                    </userDefinedRuntimeAttributes>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal" backgroundImage="liveNote.png"/>
                     <connections>
                         <action selector="onNoteAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="8y3-dB-Sw9"/>
                     </connections>
@@ -170,7 +128,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="IS4-wk-fO1" firstAttribute="bottom" secondItem="aq3-6v-htL" secondAttribute="bottom" id="0gI-61-hjp"/>
                 <constraint firstItem="7U3-HH-ZEi" firstAttribute="height" secondItem="IS4-wk-fO1" secondAttribute="height" id="1FI-8z-xng"/>
@@ -231,15 +189,23 @@
                 <constraint firstItem="SFi-dB-9g4" firstAttribute="height" secondItem="xhn-5Q-JdW" secondAttribute="height" id="zNW-xU-jYn"/>
             </constraints>
             <connections>
-                <outlet property="closeCameraButton" destination="KeI-0O-RRV" id="k2V-j1-KSD"/>
+                <outlet property="closeCameraButton" destination="X3a-rr-ssT" id="gVc-cP-ELx"/>
                 <outlet property="closeMicButton" destination="IS4-wk-fO1" id="ohe-hA-O2g"/>
                 <outlet property="hangupButton" destination="aq3-6v-htL" id="iX8-Gu-n9R"/>
                 <outlet property="noteButton" destination="yxO-JS-FGr" id="WuA-oB-Ymr"/>
                 <outlet property="shareButton" destination="QpY-f0-S9k" id="MUw-jl-ybV"/>
-                <outlet property="swichCameraButton" destination="X3a-rr-ssT" id="Itq-mT-41j"/>
+                <outlet property="swichCameraButton" destination="KeI-0O-RRV" id="6KX-wv-2RV"/>
                 <outlet property="switchReceiverButton" destination="7U3-HH-ZEi" id="DtK-NF-SiY"/>
             </connections>
             <point key="canvasLocation" x="379" y="-239"/>
         </view>
     </objects>
+    <resources>
+        <image name="liveHangup.png" width="50" height="50"/>
+        <image name="liveMic_on.png" width="40" height="40"/>
+        <image name="liveNote.png" width="40" height="40"/>
+        <image name="liveReceiver_on.png" width="40" height="40"/>
+        <image name="liveShare.png" width="40" height="40"/>
+        <image name="liveSwitchCamera.png" width="40" height="40"/>
+    </resources>
 </document>

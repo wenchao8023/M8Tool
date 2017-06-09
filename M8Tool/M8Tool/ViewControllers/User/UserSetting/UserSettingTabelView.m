@@ -8,6 +8,7 @@
 
 #import "UserSettingTabelView.h"
 
+
 @interface UserSettingTabelView ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSArray *dataArray;
@@ -38,6 +39,14 @@
         _dataArray = dataArrray;
     }
     return _dataArray;
+}
+
+- (NSArray *)actionsArray {
+    if (!_actionsArray) {
+        _actionsArray = @[@[@"onPwdSetAction", @"onNewMsgSetAction", @"onAboutAction"],
+                          @[@"onLogoutAction"]];
+    }
+    return _actionsArray;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -81,7 +90,33 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSelector:NSSelectorFromString(self.actionsArray[indexPath.section][indexPath.row])];
+}
+
+
+#pragma mark - actions
+- (void)onPwdSetAction {
     
+}
+
+- (void)onNewMsgSetAction {
+    
+}
+
+- (void)onAboutAction {
+    
+}
+
+- (void)onLogoutAction {
+    [[ILiveLoginManager getInstance] tlsLogout:^{
+        [self enterLoginUI];
+    } failed:nil];
+}
+
+- (void)enterLoginUI {
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    UIViewController *loginVC = [[UIStoryboard storyboardWithName:@"M8LoginStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"M8LoginViewController"];
+    appDelegate.window.rootViewController = loginVC;
 }
 
 

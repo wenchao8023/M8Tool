@@ -14,6 +14,7 @@
 #import "MeetingViewController.h"
 #import "UserViewController.h"
 
+#import "M8CallComingListener.h"
 
 
 
@@ -33,6 +34,9 @@
     
     
 //    [self autoLogin];
+    
+    // 设置来电监听
+    [[TILCallManager sharedInstance] setIncomingCallListener:[[M8CallComingListener alloc] init]];
     
     [self initTabbar];
 }

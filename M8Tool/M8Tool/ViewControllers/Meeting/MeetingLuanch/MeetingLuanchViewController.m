@@ -10,6 +10,7 @@
 #import "MeetingLuanchTableView.h"
 
 #import "M8LiveMeetViewController.h"
+#import "M8CallVideoViewController.h"
 
 
 
@@ -18,6 +19,8 @@
 @property (nonatomic, strong) MeetingLuanchTableView *tableView;
     
 @property (nonatomic, strong) NSString *topic;
+
+@property (nonatomic, strong) NSMutableArray *selectedArray;
 
 @end
 
@@ -64,6 +67,13 @@
     return _tableView;
 }
 
+- (NSMutableArray *)selectedArray {
+    if (!_selectedArray) {
+        _selectedArray = [NSMutableArray arrayWithCapacity:0];
+    }
+    return _selectedArray;
+}
+
 - (void)luanchButton {
     UIButton *luanchButton = [WCUIKitControl createButtonWithFrame:CGRectMake(kDefaultMargin,
                                                                               self.contentView.height - kDefaultMargin - kDefaultCellHeight,
@@ -107,7 +117,7 @@
     LoadView *reqIdWaitView = [LoadView loadViewWith:@"正在请求房间ID"];
     [self.view addSubview:reqIdWaitView];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [reqIdWaitView removeFromSuperview];
         
         [self luanchMeeting];
@@ -122,20 +132,28 @@
  */
 - (void)luanchMeeting {
     
-    NSString *roomId = [self getRoomID];    //应该要从服务端获取
+    int roomId = [self getRoomID];    //应该要从服务端获取
     
     switch (self.luanchMeetingType) {
         case LuanchMeetingType_phone:   //电话(语音)
         
         break;
         case LuanchMeetingType_video:   //视频
-        
+        {
+            M8CallVideoViewController *callVC = [[M8CallVideoViewController alloc] init];
+            callVC.membersArray = self.selectedArray;
+            callVC.callId       = roomId;
+            [[AppDelegate sharedAppDelegate] presentViewController:callVC];
+        }
         break;
         case LuanchMeetingType_live:    //直播
         {
             M8LiveMeetViewController *liveVC = [[M8LiveMeetViewController alloc] init];
-            liveVC.roomId = [@"876543" integerValue];
+            liveVC.roomId = roomId;
             liveVC.topic  = self.topic;
+            
+            //发送自定义文本消息
+//            [self sendCustomMsg];
             [[AppDelegate sharedAppDelegate] presentViewController:liveVC];
         }
         break;
@@ -147,10 +165,27 @@
     }
 }
 
-
-- (NSString *)getRoomID {
+- (void)sendCustomMsg {
+    TILLiveManager *manager = [TILLiveManager getInstance];
     
-    return [NSString stringWithFormat:@"9876%0d", arc4random_uniform(100)];
+    ILVLiveCustomMessage *customMsg = [ILVLiveCustomMessage new];
+    customMsg.sendId = @"user1";
+    customMsg.recvId = @"user2";
+    NSDictionary *dataDic = @{@"roomId" : @"876543", @"topic" : self.topic, @"host" : @"user1"};
+    NSString *dataStr = [[NSString alloc] initWithFormat:@"%@", dataDic];
+    NSData *data = [dataStr dataUsingEncoding:NSUTF8StringEncoding];
+    customMsg.data = data;
+    WCWeakSelf(self);
+    
+    [manager sendCustomMessage:customMsg succ:nil failed:^(NSString *module, int errId, NSString *errMsg) {
+        [weakself sendCustomMsg];
+    }];
+}
+
+
+- (int)getRoomID {
+    
+    return (int)([[NSDate date] timeIntervalSince1970]) % 1000 * 1000 + arc4random() % 1000;
 }
     
 
@@ -204,6 +239,25 @@
 - (void)luanchTableViewMeetingTopic:(NSString *)topic {
     self.topic = topic;
 }
+
+- (void)luanchTableViewMeetingCurrentMembers:(NSArray *)currentMembers {
+    
+    [self.selectedArray removeAllObjects];
+    // 添加自己
+    [self.selectedArray addObject:[[ILiveLoginManager getInstance] getLoginId]];
+    // 添加选中用户
+    [self.selectedArray addObjectsFromArray:currentMembers];
+    
+}
+
+
+
+
+
+
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

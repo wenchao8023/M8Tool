@@ -16,7 +16,7 @@
 
 
 
-static const CGFloat kBottomHeight = 50.f;
+
 
 
 
@@ -47,6 +47,7 @@ static const CGFloat kBottomHeight = 50.f;
     
 #pragma mark - TILLiveSDK相关接口
 - (void)createLive{
+    
     TILLiveRoomOption *option = [TILLiveRoomOption defaultHostLiveOption];
     option.controlRole = @"LiveMaster";
 

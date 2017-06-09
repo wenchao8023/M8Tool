@@ -29,6 +29,9 @@
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="invite:" destination="iN0-l3-epB" eventType="touchUpInside" id="47M-m7-yoE"/>
+                    </connections>
                 </button>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Lst-Pc-TMg">
                     <rect key="frame" x="0.0" y="70" width="375" height="100"/>

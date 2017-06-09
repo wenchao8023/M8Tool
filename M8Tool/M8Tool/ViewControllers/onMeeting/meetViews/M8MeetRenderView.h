@@ -9,6 +9,15 @@
 #import <UIKit/UIKit.h>
 
 
+
+
+
+@protocol MeetRenderDelegate <NSObject>
+
+- (void)MeetRenderActionInfo:(NSDictionary *_Nullable)actionInfo;
+
+@end
+
 /**
  会议成员状态
  
@@ -32,5 +41,7 @@
  */
 @property (nonatomic, copy, nullable) NSString *host;
 
+
+@property (nonatomic, weak) id _Nullable WCDelegate;
 
 @end

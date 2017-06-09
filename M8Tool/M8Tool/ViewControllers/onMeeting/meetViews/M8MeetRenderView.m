@@ -21,12 +21,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *inviteButton;
 @property (weak, nonatomic) IBOutlet UIButton *removeButton;
 
-//@property (nonatomic, strong) NSMutableArray *identifierArray;
-//
-//@property (nonatomic, strong) NSMutableArray *srcTypeArray;
-//
-//@property (nonatomic, strong) NSMutableArray *testDataArray;
-
 @property (nonatomic, strong) NSMutableArray *membersArray;
 
 
@@ -43,31 +37,6 @@
     }
     return _membersArray;
 }
-
-//- (NSMutableArray *)testDataArray {
-//    if (!_testDataArray) {
-//        NSMutableArray *testDatArray = [NSMutableArray arrayWithCapacity:0];
-//        [testDatArray addObjectsFromArray:@[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8"]];
-//        _testDataArray = testDatArray;
-//    }
-//    return _testDataArray;
-//}
-//
-//- (NSMutableArray *)identifierArray {
-//    if (!_identifierArray) {
-//        NSMutableArray *identifierArray = [NSMutableArray arrayWithCapacity:0];
-//        _identifierArray = identifierArray;
-//    }
-//    return _identifierArray;
-//}
-//
-//- (NSMutableArray *)srcTypeArray {
-//    if (!_srcTypeArray) {
-//        NSMutableArray *srcTypeArray = [NSMutableArray arrayWithCapacity:0];
-//        _srcTypeArray = srcTypeArray;
-//    }
-//    return _srcTypeArray;
-//}
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -109,27 +78,6 @@
 
 
 #pragma mark - 界面相关
-//- (CGRect)getRenderFrame:(NSInteger)count{
-//    if(count == 3){
-//        return CGRectZero;
-//    }
-//    CGFloat height = (self.frame.size.height - 2 * 20 - 3 * 10)/3;
-//    CGFloat width = height*3/4; //宽高比3:4
-//    CGFloat y = 20 + (count * (height + 10));
-//    CGFloat x = 20;
-//    return CGRectMake(x, y, width, height);
-//}
-//
-//- (void)updateRenderFrame{
-//    TILLiveManager *manager = [TILLiveManager getInstance];
-//    for(NSInteger index = 0; index < _identifierArray.count; index++){
-//        CGRect frame = [self getRenderFrame:index];
-//        NSString *identifier = _identifierArray[index];
-//        avVideoSrcType srcType = [_srcTypeArray[index] intValue];
-//        [manager modifyAVRenderView:frame forIdentifier:identifier srcType:srcType];
-//    }
-//}
-
 - (void)shouldReloadData {
     [self.renderCollection reloadData];
 }
@@ -147,17 +95,39 @@
     return cell;
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    
-    
-}
-
-
-
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     WCLog(@"点击第 %ld 个按钮", (long)indexPath.row);
 }
+
+#pragma mark - actions
+- (IBAction)invite:(id)sender {
+    TILLiveManager *manager = [TILLiveManager getInstance];
+    
+    ILVLiveCustomMessage *msg = [[ILVLiveCustomMessage alloc] init];
+    msg.cmd = ILVLIVE_IMCMD_INVITE;     //邀请信令
+    msg.recvId = @"user2";              //被邀请者id
+    msg.type = ILVLIVE_IMTYPE_C2C;      //C2C消息类型
+    
+    [manager sendCustomMessage:msg succ:^{
+        WCLog(@"invite succ");
+    } failed:^(NSString *module, int errId, NSString *errMsg) {
+        WCLog(@"invite fail");
+    }];
+}
+
+- (IBAction)removeGuest:(id)sender {
+    
+}
+
+#pragma mark - MeetDeviceActionInfo:
+- (void)renderActionInfoValue:(id)value key:(NSString *)key {
+    NSDictionary *actionInfo = @{key : value};
+    if ([self.WCDelegate respondsToSelector:@selector(MeetRenderActionInfo:)]) {
+        [self.WCDelegate MeetRenderActionInfo:actionInfo];
+    }
+}
+
 
 
 #pragma mark - 事件回调
@@ -415,19 +385,6 @@
     }
     
 }
-
-
-/**         
- *
- *  就算有人退房也不做移除操作，将状态标识为 “离开”
- *
- 根据<!--成员ID--!>移除<!--成员--!>
-
- @param identify 成员ID
- */
-//- (void)removeModelWithID:(NSString *)identify {
-//    [self.membersArray removeObject:[self getModelWithID:identify]];
-//}
 
 
 /**

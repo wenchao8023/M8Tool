@@ -20,14 +20,14 @@
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;
 
 /**
- 关闭摄像头
- */
-@property (weak, nonatomic) IBOutlet UIButton *closeCameraButton;
-
-/**
  切换摄像头
  */
 @property (weak, nonatomic) IBOutlet UIButton *swichCameraButton;
+
+/**
+ 关闭摄像头
+ */
+@property (weak, nonatomic) IBOutlet UIButton *closeCameraButton;
 
 /**
  挂断
@@ -49,11 +49,7 @@
  */
 @property (weak, nonatomic) IBOutlet UIButton *noteButton;
 
-
 @end
-
-
-
 
 
 
@@ -63,7 +59,6 @@
     if (self = [super initWithFrame:frame]) {
         self = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil] firstObject];
         _myFrame = frame;
-//        self.backgroundColor = WCBgColor;
     }
     return self;
 }
@@ -74,19 +69,10 @@
     [self deviceActionInfoValue:@"onShareAction" key:kDeviceAction];
 }
 
-- (IBAction)onCloseCameraAction:(id)sender {
-    ILiveRoomManager *manager = [ILiveRoomManager getInstance];
-    BOOL isOn = [manager getCurCameraState];
-    cameraPos pos = [manager getCurCameraPos];
-    __weak typeof(self) ws = self;
-    [manager enableCamera:pos enable:!isOn succ:^{
-//                [ws.closeCameraButton setBackgroundImage:[UIImage imageNamed:(!isOn ? @"shelu_b" : @"shelu")]
-//                                                forState:UIControlStateNormal];
-    }failed:^(NSString *moudle, int errId, NSString *errMsg) {
-    }];
-}
+
 
 - (IBAction)onSwitchCameraAction:(id)sender {
+    [self deviceActionInfoValue:@"onSwitchCameraAction" key:kDeviceAction];
     ILiveRoomManager *manager = [ILiveRoomManager getInstance];
     int pos = [manager getCurCameraPos];
     
@@ -95,13 +81,9 @@
         [self deviceActionInfoValue:@"摄像头没有打开" key:kDeviceText];
     }
     else {
-        __weak typeof(self) ws = self;
         [manager switchCamera:^{
-
             [self deviceActionInfoValue:@"切换摄像头成功" key:kDeviceText];
-            
-//            [ws.swichCameraButton setBackgroundImage:[UIImage imageNamed:(!pos? @"zhuanhua_b" : @"zhuanhua")]
-//                                            forState:UIControlStateNormal];
+
         } failed:^(NSString *module, int errId, NSString *errMsg) {
             
             [self deviceActionInfoValue:[NSString stringWithFormat:@"切换摄像头失败:%@-%d-%@",module,errId,errMsg] key:kDeviceText];
@@ -109,20 +91,25 @@
     }
 }
 
-- (IBAction)onHangupAction:(id)sender {
-    TILLiveManager *manager = [TILLiveManager getInstance];
-    [manager quitRoom:^{
-        
-        [self deviceActionInfoValue:@"quitRoomSucc" key:kDeviceAction];
-        
-    } failed:^(NSString *module, int errId, NSString *errMsg) {
-        
-        NSString *info = [NSString stringWithFormat:@"module : %@ \nerrId : %d\nerrMsg : %@", module, errId, errMsg];
-        [self deviceActionInfoValue:info key:kDeviceText];
+- (IBAction)onCloseCameraAction:(id)sender {
+    [self deviceActionInfoValue:@"onCloseCameraAction" key:kDeviceAction];
+    ILiveRoomManager *manager = [ILiveRoomManager getInstance];
+    BOOL isOn = [manager getCurCameraState];
+    cameraPos pos = [manager getCurCameraPos];
+    __weak typeof(self) ws = self;
+    [manager enableCamera:pos enable:!isOn succ:^{
+        [ws.closeCameraButton setBackgroundImage:[UIImage imageNamed:(!isOn ? @"liveCamera_off" : @"liveCamera_on")]
+                                        forState:UIControlStateNormal];
+    }failed:^(NSString *moudle, int errId, NSString *errMsg) {
     }];
 }
 
+- (IBAction)onHangupAction:(id)sender {
+    [self deviceActionInfoValue:@"onHangupAction" key:kDeviceAction];
+}
+
 - (IBAction)onCloseMicAction:(id)sender {
+    [self deviceActionInfoValue:@"onCloseMicAction" key:kDeviceAction];
     ILiveRoomManager *manager = [ILiveRoomManager getInstance];
     BOOL isOn = [manager getCurMicState];
     __weak typeof(self) ws = self;
@@ -130,9 +117,8 @@
         
         NSString *text = !isOn ? @"打开麦克风成功" : @"关闭麦克风成功";
         [self deviceActionInfoValue:text key:kDeviceText];
-        
-//        [ws.closeMicButton setBackgroundImage:[UIImage imageNamed:(isOn? @"jingyin_b" : @"jingyin")]
-//                                     forState:UIControlStateNormal];
+        [ws.closeMicButton setBackgroundImage:[UIImage imageNamed:(isOn? @"liveMic_off" : @"liveMic_on")]
+                                     forState:UIControlStateNormal];
     } failed:^(NSString *moudle, int errId, NSString *errMsg) {
         NSString *text = !isOn?@"打开麦克风失败":@"关闭麦克风失败";
 
@@ -141,14 +127,13 @@
 }
 
 - (IBAction)onSwitchReceiverAction:(id)sender {
+    [self deviceActionInfoValue:@"onSwitchReceiverAction" key:kDeviceAction];
     ILiveRoomManager *manager = [ILiveRoomManager getInstance];
     __weak typeof(self) ws = self;
     QAVOutputMode mode = [manager getCurAudioMode];
-
     [self deviceActionInfoValue:(mode == QAVOUTPUTMODE_EARPHONE?@"切换扬声器成功":@"切换到听筒成功") key:kDeviceText];
-    
-//    [ws.switchReceiverButton setBackgroundImage:[UIImage imageNamed:(mode == QAVOUTPUTMODE_EARPHONE?@"mianti_b" : @"mianti")]
-//                                       forState:UIControlStateNormal];
+    [ws.switchReceiverButton setBackgroundImage:[UIImage imageNamed:(mode == QAVOUTPUTMODE_EARPHONE?@"liveReceiver_off" : @"liveReceiver_on")]
+                                       forState:UIControlStateNormal];
     if(mode == QAVOUTPUTMODE_EARPHONE){
         [manager setAudioMode:QAVOUTPUTMODE_SPEAKER];
     }

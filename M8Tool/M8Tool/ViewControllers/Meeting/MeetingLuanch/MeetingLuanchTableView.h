@@ -12,6 +12,8 @@
 
 - (void)luanchTableViewMeetingTopic:(NSString *_Nonnull)topic;
 
+- (void)luanchTableViewMeetingCurrentMembers:(NSArray *_Nonnull)currentMembers;
+
 @end
 
 

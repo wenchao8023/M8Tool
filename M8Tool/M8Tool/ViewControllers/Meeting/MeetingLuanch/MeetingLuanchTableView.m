@@ -12,18 +12,13 @@
 #import "MeetingLuanchTableViewCell.h"
 
 
-
-
-
-
 #define kItemWidth (self.width - 60) / 5
 #define kSectionHeight 40
 
 
 
 
-
-///////////////////////////////////////////////////
+///////////////////直播类型的时候--标题图片//////////////////////
 #pragma mark - header image in live_type
 @interface TBheaderView : UIImageView
 
@@ -47,8 +42,7 @@
 
 
 
-
-/*************************************************/
+/*****************设置 UICollectionViewFlowLayout *************************/
 #pragma mark - CollectionView >  flowLayout
 @interface MyFlowLayout : UICollectionViewFlowLayout
 
@@ -70,16 +64,26 @@
     return self;
 }
 @end
-/*************************************************/
+/**************************************************************************/
 
 
 
-///////////////////////////////////////////////////
+///////////////////tableView 的 tableFooterView///////////////////////////
 #pragma mark - tableView > footerView: LatestMembersCollection + MeetingMembersCollection
+
+@protocol TBFooterViewDelegate <NSObject>
+
+- (void)TBFooterViewCurrentMembers:(NSArray *)currentMembers;
+
+@end
+
+
 @interface TBFooterView : UIView<MeetingMembersCollectionDelegate, LatestMembersCollectionDelegate>
 
 @property (nonatomic, strong) LatestMembersCollection   *latestCollection;
 @property (nonatomic, strong) MeetingMembersCollection  *membersCollection;
+
+@property (nonatomic, weak) id WCDelegate;
 
 @end
 
@@ -133,7 +137,7 @@
     self.latestCollection.hidden = YES;
 }
 
-- (void)MeetingMembersCollectionSelectedMembers:(NSString *)delNameStr {
+- (void)MeetingMembersCollectionDeletedMember:(NSString *)delNameStr {
     [self.latestCollection syncDataMembersArrayWithIdentifier:delNameStr];
 }
 
@@ -159,7 +163,6 @@
             [self.latestCollection setHeight:self.height - contentHeight - kSectionHeight];
             [self.latestCollection setY:contentHeight];
 
-            
         } completion:^(BOOL finished) {
             if (finished) {
                 [self.membersCollection setHeight:contentHeight];
@@ -169,27 +172,25 @@
     
     
     [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        
-//        if (contentHeight < _membersCollection.height) {
-//            [self.latestCollection setY:contentHeight];
-//            [self.latestCollection setHeight:self.height - contentHeight - kSectionHeight];
-//            [self.membersCollection setHeight:contentHeight];
-//        }
-//        else {
-//            [self.membersCollection setHeight:contentHeight];
-//            [self.latestCollection setY:contentHeight];
-//            [self.latestCollection setHeight:self.height - contentHeight - kSectionHeight];
-//        }
 
         [self.latestCollection setY:contentHeight];
         [self.latestCollection setHeight:self.height - contentHeight - kSectionHeight];
-        
-        
+
     } completion:nil];
 }
 
-- (void)MeetingMembersCollectionCurrentMembers:(NSInteger)currenMembers {
-    [self.latestCollection syncCurrentNumbers:currenMembers];
+
+/**
+ 返回当前选中的成员给 tableView
+
+ @param currenMembers 当前的成员
+ */
+- (void)MeetingMembersCollectionCurrentMembers:(NSArray *)currenMembers {
+    [self.latestCollection syncCurrentNumbers:currenMembers.count];
+    
+    if ([self.WCDelegate respondsToSelector:@selector(TBFooterViewCurrentMembers:)]) {
+        [self.WCDelegate TBFooterViewCurrentMembers:currenMembers];
+    }
 }
 
 
@@ -210,7 +211,7 @@
 
 
 #pragma mark - main class
-@interface MeetingLuanchTableView()<UITableViewDelegate, UITableViewDataSource, ModifyViewDelegate>
+@interface MeetingLuanchTableView()<UITableViewDelegate, UITableViewDataSource, ModifyViewDelegate, TBFooterViewDelegate>
 
 
 
@@ -219,6 +220,7 @@
 
 @property (nonatomic, strong) TBFooterView *tbFooterView;
 @property (nonatomic, strong) TBheaderView *tbheaderView;
+
 @end
 
 
@@ -244,7 +246,9 @@
     if (!_tbFooterView) {
         CGRect footerFrame = self.bounds;
         footerFrame.size.height -= 89;
+        
         _tbFooterView = [[TBFooterView alloc] initWithFrame:footerFrame];
+        _tbFooterView.WCDelegate = self;
     }
     return _tbFooterView;
 }
@@ -367,6 +371,13 @@
         modifyVC.modifyType     = Modify_text;
         modifyVC.WCDelegate     = self;
         [[AppDelegate sharedAppDelegate] pushViewController:modifyVC];
+    }
+}
+
+#pragma mark - TBFooterViewDelegate 
+- (void)TBFooterViewCurrentMembers:(NSArray *)currentMembers {
+    if ([self.WCDelegate respondsToSelector:@selector(luanchTableViewMeetingCurrentMembers:)]) {
+        [self.WCDelegate luanchTableViewMeetingCurrentMembers:currentMembers];
     }
 }
 

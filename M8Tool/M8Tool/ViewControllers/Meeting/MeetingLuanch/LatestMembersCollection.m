@@ -81,32 +81,16 @@ static NSString *CollectionHeaderID = @"LatestMembersCollectionHeaderID";
 - (NSMutableArray *)dataMembersArray {
     if (!_dataMembersArray) {
         _dataMembersArray = [NSMutableArray arrayWithCapacity:0];
-        [_dataMembersArray addObject:@"木木"];
-        [_dataMembersArray addObject:@"林瑞"];
-        [_dataMembersArray addObject:@"女友1"];
-        [_dataMembersArray addObject:@"女友2"];
-        [_dataMembersArray addObject:@"女友3"];
-        [_dataMembersArray addObject:@"女友4"];
-        [_dataMembersArray addObject:@"女友5"];
-        [_dataMembersArray addObject:@"女友6"];
-        [_dataMembersArray addObject:@"女友7"];
-        [_dataMembersArray addObject:@"女友8"];
-        [_dataMembersArray addObject:@"女友9"];
-        [_dataMembersArray addObject:@"女友10"];
-        [_dataMembersArray addObject:@"女友11"];
-        [_dataMembersArray addObject:@"女友12"];
-        [_dataMembersArray addObject:@"女友1"];
-        [_dataMembersArray addObject:@"女友2"];
-        [_dataMembersArray addObject:@"女友3"];
-        [_dataMembersArray addObject:@"女友4"];
-        [_dataMembersArray addObject:@"女友5"];
-        [_dataMembersArray addObject:@"女友6"];
-        [_dataMembersArray addObject:@"女友7"];
-        [_dataMembersArray addObject:@"女友8"];
-        [_dataMembersArray addObject:@"女友9"];
-        [_dataMembersArray addObject:@"女友10"];
-        [_dataMembersArray addObject:@"女友11"];
-        [_dataMembersArray addObject:@"女友12"];
+        [_dataMembersArray addObject:@"user1"];
+        [_dataMembersArray addObject:@"user2"];
+        [_dataMembersArray addObject:@"user3"];
+        [_dataMembersArray addObject:@"user4"];
+        [_dataMembersArray addObject:@"user5"];
+        [_dataMembersArray addObject:@"user6"];
+        [_dataMembersArray addObject:@"user7"];
+        [_dataMembersArray addObject:@"user8"];
+        [_dataMembersArray addObject:@"user9"];
+        [_dataMembersArray addObject:@"user10"];
     }
     return _dataMembersArray;
 }
@@ -188,6 +172,9 @@ static NSString *CollectionHeaderID = @"LatestMembersCollectionHeaderID";
 - (void)syncCurrentNumbers:(NSInteger)currentNumbers {
     self.currentMembers = currentNumbers;
 }
+
+
+
 
 
 @end

@@ -35,7 +35,7 @@
     
     [self getUserDefault];
     
-    [self autoLogin];
+//    [self autoLogin];
 }
     
 - (void)autoLogin {

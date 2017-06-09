@@ -180,8 +180,8 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
         {
             if (self.isDeling)  // 正在删除中
             {
-                if ([self.WCDelegate respondsToSelector:@selector(MeetingMembersCollectionSelectedMembers:)]) {
-                    [self.WCDelegate MeetingMembersCollectionSelectedMembers:self.dataMembersArray[indexPath.row]];
+                if ([self.WCDelegate respondsToSelector:@selector(MeetingMembersCollectionDeletedMember:)]) {
+                    [self.WCDelegate MeetingMembersCollectionDeletedMember:self.dataMembersArray[indexPath.row]];
                 }
                 [[self mutableArrayValueForKey:@"dataMembersArray"] removeObjectAtIndex:indexPath.row];
             }
@@ -229,15 +229,15 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     // 监听数组元素的变化
     if ([keyPath isEqualToString:@"dataMembersArray"]) {
-        WCLog(@"dataMembersArray is changing");
+//        WCLog(@"dataMembersArray is changing");
         
         if (!self.dataMembersArray.count) {
             self.isDeling = NO;
         }
         
         if ([self.WCDelegate respondsToSelector:@selector(MeetingMembersCollectionCurrentMembers:)]) {
-            [self.WCDelegate MeetingMembersCollectionCurrentMembers:self.dataMembersArray.count];
-        }
+            [self.WCDelegate MeetingMembersCollectionCurrentMembers:self.dataMembersArray];
+        }   
     }
     
     // 监听 contentSize
@@ -270,6 +270,7 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
     
     [self reloadData];
 }
+
 
 
 

@@ -12,9 +12,11 @@
 static NSString  * _Nullable  kDeviceAction  = @"deviceAction";
 static NSString  * _Nullable  kDeviceText    = @"deviceText";
 
+static const CGFloat kBottomHeight = 50.f;
 
 @protocol MeetDeviceDelegate <NSObject>
 
+@optional
 - (void)MeetDeviceActionInfo:(NSDictionary *_Nullable)actionInfo;
 
 @end
