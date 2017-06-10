@@ -37,4 +37,6 @@ static const CGFloat kBottomHeight = 50.f;
 
 @property (nonatomic, weak) id _Nullable WCDelegate;
 
+- (void)configButtonBackImgs;
+
 @end

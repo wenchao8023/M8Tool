@@ -76,11 +76,14 @@
     
     _call = [[TILMultiCall alloc] initWithConfig:config];
     
+    // 赋值给 renderView
+    self.renderView.call = _call;
+    
     [_call createRenderViewIn:self.renderView];
     __weak typeof(self) ws = self;
     [_call makeCall:nil custom:nil result:^(TILCallError *err) {
         if(err){
-            [ws addTextToView:[NSString stringWithFormat:@"呼叫失败:%@-%d-%@",err.domain,err.code,err.errMsg]];
+             [ws addTextToView:[NSString stringWithFormat:@"呼叫失败:%@-%d-%@",err.domain,err.code,err.errMsg]];
             [ws selfDismiss];
         }
         else{
@@ -88,6 +91,8 @@
             
             [[ILiveRoomManager getInstance] setBeauty:5];
             [[ILiveRoomManager getInstance] setWhite:5];
+            
+            [self.deviceView configButtonBackImgs];
         }
     }];
 }

@@ -63,6 +63,23 @@
     return self;
 }
 
+- (void)configButtonBackImgs {
+    
+    ILiveRoomManager *manager = [ILiveRoomManager getInstance];
+    
+    int pos = [manager getCurCameraPos];
+    [self.closeCameraButton setBackgroundImage:[UIImage imageNamed:(pos == -1 ? @"liveMic_off" : @"liveMic_on")]
+                                      forState:UIControlStateNormal];
+    
+    BOOL micState = [manager getCurMicState];
+    [self.closeMicButton setBackgroundImage:[UIImage imageNamed:(!micState? @"liveMic_off" : @"liveMic_on")]
+                                   forState:UIControlStateNormal];
+    
+    QAVOutputMode audioMode = [manager getCurAudioMode];
+    [self.switchReceiverButton setBackgroundImage:[UIImage imageNamed:(audioMode == QAVOUTPUTMODE_EARPHONE ? @"liveReceiver_off" : @"liveReceiver_on")]
+                                         forState:UIControlStateNormal];
+    
+}
 
 #pragma mark device actions
 - (IBAction)onShareAction:(id)sender {
@@ -83,9 +100,7 @@
     else {
         [manager switchCamera:^{
             [self deviceActionInfoValue:@"切换摄像头成功" key:kDeviceText];
-
         } failed:^(NSString *module, int errId, NSString *errMsg) {
-            
             [self deviceActionInfoValue:[NSString stringWithFormat:@"切换摄像头失败:%@-%d-%@",module,errId,errMsg] key:kDeviceText];
         }];
     }

@@ -10,6 +10,10 @@
 
 #import "M8RecvVideoViewController.h"
 
+#import "M8RecvAudioViewController.h"
+
+
+
 @implementation M8CallComingListener
 
 //-(void)onMultiCallInvitation:(TILCallInvitation *)invitation {
@@ -26,6 +30,11 @@
     
     if (invitation.callType == TILCALL_TYPE_VIDEO) {    // 视频来电
         M8RecvVideoViewController *recvVideoVC = [[M8RecvVideoViewController alloc] init];
+        recvVideoVC.invitation = invitation;
+        [[AppDelegate sharedAppDelegate] presentViewController:recvVideoVC];
+    }
+    else if (invitation.callType == TILCALL_TYPE_AUDIO) {
+        M8RecvAudioViewController *recvVideoVC = [[M8RecvAudioViewController alloc] init];
         recvVideoVC.invitation = invitation;
         [[AppDelegate sharedAppDelegate] presentViewController:recvVideoVC];
     }

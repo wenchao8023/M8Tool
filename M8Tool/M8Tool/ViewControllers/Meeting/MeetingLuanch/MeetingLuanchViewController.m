@@ -11,6 +11,7 @@
 
 #import "M8LiveMeetViewController.h"
 #import "M8CallVideoViewController.h"
+#import "M8CallAudioViewController.h"
 
 
 
@@ -136,7 +137,12 @@
     
     switch (self.luanchMeetingType) {
         case LuanchMeetingType_phone:   //电话(语音)
-        
+        {
+            M8CallAudioViewController *callVC = [[M8CallAudioViewController alloc] init];
+            callVC.membersArray = self.selectedArray;
+            callVC.callId       = roomId;
+            [[AppDelegate sharedAppDelegate] presentViewController:callVC];
+        }
         break;
         case LuanchMeetingType_video:   //视频
         {
@@ -152,8 +158,6 @@
             liveVC.roomId = roomId;
             liveVC.topic  = self.topic;
             
-            //发送自定义文本消息
-//            [self sendCustomMsg];
             [[AppDelegate sharedAppDelegate] presentViewController:liveVC];
         }
         break;
@@ -249,14 +253,6 @@
     [self.selectedArray addObjectsFromArray:currentMembers];
     
 }
-
-
-
-
-
-
-
-
 
 
 - (void)didReceiveMemoryWarning {

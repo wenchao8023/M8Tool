@@ -28,6 +28,13 @@ static NSString * _Nonnull kCallText   = @"kCallText";
  */
 @property (nonatomic, copy, nullable) NSString *host;
 
+
+/**
+ 获取 renderView
+ */
+@property (nonatomic, strong, nullable) TILMultiCall *call;
+
+
 - (void)addTextToView:(NSString *_Nullable)newText;
 
 @property (nonatomic, weak) id _Nullable WCDelegate;

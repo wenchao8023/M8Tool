@@ -35,7 +35,7 @@
                 </button>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.59999999999999998" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="S31-q7-bvd">
                     <rect key="frame" x="0.0" y="70" width="375" height="100"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="tax-Jm-bda"/>
                     </constraints>

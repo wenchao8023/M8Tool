@@ -38,7 +38,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X3a-rr-ssT">
                     <rect key="frame" x="113" y="10" width="40" height="40"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" backgroundImage="liveSwitchCamera.png"/>
+                    <state key="normal" backgroundImage="liveCamera_on.png"/>
                     <connections>
                         <action selector="onCloseCameraAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="3WQ-AE-lUg"/>
                     </connections>
@@ -197,10 +197,11 @@
                 <outlet property="swichCameraButton" destination="KeI-0O-RRV" id="6KX-wv-2RV"/>
                 <outlet property="switchReceiverButton" destination="7U3-HH-ZEi" id="DtK-NF-SiY"/>
             </connections>
-            <point key="canvasLocation" x="379" y="-239"/>
+            <point key="canvasLocation" x="184" y="-291"/>
         </view>
     </objects>
     <resources>
+        <image name="liveCamera_on.png" width="40" height="40"/>
         <image name="liveHangup.png" width="50" height="50"/>
         <image name="liveMic_on.png" width="40" height="40"/>
         <image name="liveNote.png" width="40" height="40"/>

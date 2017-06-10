@@ -11,6 +11,8 @@
 #import "M8MeetRenderCell.h"
 #import "M8CallVideoNoteView.h"
 
+#import "UserContactViewController.h"
+
 @interface M8CallVideoRenderView ()<UICollectionViewDelegate, UICollectionViewDataSource>
 {
     CGRect _myFrame;
@@ -43,8 +45,6 @@
     if (self = [super initWithFrame:frame]) {
         self = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil] firstObject];
         _myFrame = frame;
-        
-        [self.renderCollection reloadData];
     }
     return self;
 }
@@ -76,11 +76,11 @@
     [self.renderCollection registerNib:[UINib nibWithNibName:@"M8MeetRenderCell" bundle:nil] forCellWithReuseIdentifier:@"M8MeetRenderCellID"];
     
     /// add noteView
-    _noteView = [[M8CallVideoNoteView alloc] initWithFrame:CGRectMake(0, _layoutTop_render.constant + _layoutHeight_render.constant + 60, self.width, 200)];
+    _noteView = [[M8CallVideoNoteView alloc] initWithFrame:CGRectMake(0, self.height - 270, self.width, 200)];
     [self addSubview:_noteView];
 }
 
-
+#pragma mark - Delegate
 #pragma mark -- UICollectionViewDelegate
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.membersArray.count;
@@ -89,7 +89,10 @@
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     M8MeetRenderCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"M8MeetRenderCellID" forIndexPath:indexPath];
     
-    [cell config:self.membersArray[indexPath.row]];
+    M8MeetRenderModel *model = self.membersArray[indexPath.row];
+
+    [cell configCall:self.call model:model];
+    
     
     return cell;
 }
@@ -99,8 +102,8 @@
     WCLog(@"点击第 %ld 个按钮", (long)indexPath.row);
 }
 
-#pragma mark -- 处理 Model
 
+#pragma mark - 处理 Model
 /**
  根据<!--成员ID--!>获取<!--数组下标--!>
  
@@ -150,16 +153,12 @@
  @param identify 添加成员
  */
 - (void)addModelWithID:(NSString *)identify {
-    if (![self isExistInMemberArray:identify]) {
+    if (![self isExistInMemberArray:identify]) {    //保证每个成员只添加一次
         M8MeetRenderModel *model = [[M8MeetRenderModel alloc] init];
         model.identify = identify;
         model.isEnterRoom = YES;
-        if ([identify isEqualToString:_host]) {
-            model.isInBack = YES;
-        }
         [self.membersArray addObject:model];
     }
-    
 }
 
 
@@ -172,66 +171,42 @@
     [self.membersArray replaceObjectAtIndex:[self getIndexWithID:model.identify] withObject:model];
 }
 
-#pragma mark - actions
-- (IBAction)inviteAction:(id)sender {
-}
 
-- (IBAction)removeAction:(id)sender {
-}
 
 #pragma mark - 音视频事件回调
 - (void)onMemberAudioOn:(BOOL)isOn members:(NSArray *)members
 {
+    for (TILCallMember *member in members) {
+        // 添加成员，如果存在就不添加
+        [self addModelWithID:member.identifier];
+        
+        M8MeetRenderModel *model = [self getModelWithID:member.identifier];
+        model.isMicOn = isOn;
+        [self updateMemberArrayWithModel:model];
+    }
     
+    [self updateRenderCollection];
 }
 
 - (void)onMemberCameraVideoOn:(BOOL)isOn members:(NSArray *)members
 {
-    NSString *myId = [[ILiveLoginManager getInstance] getLoginId];
-    
-    if(isOn){
-        for (TILCallMember *member in members) {
-            
-//            NSString *identifier = member.identifier;
-//            
-//            if (![self.indexArray containsObject:identifier]) {
-//                [_call addRenderFor:identifier atFrame:CGRectZero];
-//                
-//                if ([identifier isEqualToString:myId]) {
-//                    [self.indexArray insertObject:identifier atIndex:0];
-//                    [self.statuArray insertObject:@"1" atIndex:0];
-//                } else {
-//                    [self.indexArray addObject:identifier];
-//                    [self.statuArray addObject:@"0"];
-//                }
-//            }
+    for (TILCallMember *member in members) {
+        // 添加成员，如果存在就不添加
+        [self addModelWithID:member.identifier];
+        
+        M8MeetRenderModel *model = [self getModelWithID:member.identifier];
+        model.isCameraOn = isOn;
+        [self updateMemberArrayWithModel:model];
+        
+        if (isOn) {
+            [self.call addRenderFor:model.identify atFrame:CGRectZero];
         }
-    }
-    else{
-        for (TILCallMember *member in members) {
-            
-//            NSString *identifier = member.identifier;
-//            
-//            NSInteger curIndex = [self.indexArray indexOfObject:identifier];
-//            
-//            [_call removeRenderFor:identifier];
-//            [self.indexArray removeObject:identifier];
-//            
-//            if ([self.statuArray[curIndex] isEqualToString:@"1"]) {
-//                if (curIndex == 0) {
-//                    [self.statuArray exchangeObjectAtIndex:curIndex withObjectAtIndex:1];
-//                }
-//                else {
-//                    [self.statuArray exchangeObjectAtIndex:curIndex withObjectAtIndex:0];
-//                }
-//            }
-//            
-//            [self.statuArray removeObjectAtIndex:curIndex];
+        else {
+            [self.call removeRenderFor:model.identify];
         }
     }
     
-//    [self layoutRenderView];
-//    [self reloadMemberScroll];
+    [self updateRenderCollection];
 }
 
 
@@ -295,8 +270,15 @@
         default:
             break;
     }
-    
-//    [self.numberButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"number%lu", (unsigned long)self.membersArray.count]] forState:UIControlStateNormal];
+}
+
+#pragma mark - 界面相关
+/**
+ 更新 renderCollection
+ */
+- (void)updateRenderCollection {
+
+    [self.renderCollection reloadData];
 }
 
 - (void)addTextToView:(NSString *)newText {
@@ -309,7 +291,17 @@
 - (void)selfDismiss {
     [self deviceActionInfoValue:@"selfDismiss" key:kCallAction];
 }
-#pragma mark - MeetDeviceActionInfo:
+
+- (IBAction)inviteAction:(id)sender {
+    UserContactViewController *contactVC = [[UserContactViewController alloc] init];
+    [[AppDelegate sharedAppDelegate] pushViewController:contactVC];
+}
+
+- (IBAction)removeAction:(id)sender {
+    
+}
+
+#pragma mark -- MeetDeviceActionInfo:
 - (void)deviceActionInfoValue:(id)value key:(NSString *)key {
     NSDictionary *actionInfo = @{key : value};
     if ([self.WCDelegate respondsToSelector:@selector(CallVideoRenderActionInfo:)]) {
@@ -317,6 +309,9 @@
     }
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self endEditing:YES];
+}
 
 
 @end

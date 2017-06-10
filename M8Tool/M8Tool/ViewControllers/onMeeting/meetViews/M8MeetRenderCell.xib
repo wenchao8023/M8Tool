@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,24 +20,48 @@
                 <rect key="frame" x="0.0" y="0.0" width="155" height="153"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LSU-Td-s7X">
-                        <rect key="frame" x="56" y="66" width="42" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UhK-p3-vvX">
+                        <rect key="frame" x="0.0" y="153" width="155" height="0.0"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MN9-nZ-SO2">
+                        <rect key="frame" x="39" y="37.5" width="77.5" height="77.5"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="MN9-nZ-SO2" secondAttribute="height" id="iSp-xK-efc"/>
+                        </constraints>
+                    </imageView>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KkC-lS-ha5">
+                        <rect key="frame" x="135" y="0.0" width="20" height="20"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="ger-5M-Qbj"/>
+                            <constraint firstAttribute="width" constant="20" id="vvv-B6-OBY"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
             </view>
-            <color key="backgroundColor" red="0.27785402539999998" green="0.62752610450000001" blue="0.98874288799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="LSU-Td-s7X" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="dVf-Lw-ZUH"/>
-                <constraint firstItem="LSU-Td-s7X" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="pkk-aI-0Xh"/>
+                <constraint firstItem="MN9-nZ-SO2" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" multiplier="0.5" id="51k-Va-dGC"/>
+                <constraint firstItem="UhK-p3-vvX" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="6W4-xl-Cbn"/>
+                <constraint firstItem="UhK-p3-vvX" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ay9-S2-giJ"/>
+                <constraint firstAttribute="bottom" secondItem="UhK-p3-vvX" secondAttribute="bottom" id="dMg-8p-nH7"/>
+                <constraint firstItem="KkC-lS-ha5" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="eSC-jm-Roq"/>
+                <constraint firstItem="MN9-nZ-SO2" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="l6M-z1-2ld"/>
+                <constraint firstItem="MN9-nZ-SO2" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="lhO-Rg-Qc4"/>
+                <constraint firstAttribute="trailing" secondItem="UhK-p3-vvX" secondAttribute="trailing" id="qPk-W9-Cy1"/>
+                <constraint firstAttribute="trailing" secondItem="KkC-lS-ha5" secondAttribute="trailing" id="wim-Kq-ewU"/>
             </constraints>
             <size key="customSize" width="155" height="153"/>
             <connections>
-                <outlet property="testLabel" destination="LSU-Td-s7X" id="Op1-g4-k2C"/>
+                <outlet property="identifyLabel" destination="UhK-p3-vvX" id="6K3-0i-VRY"/>
+                <outlet property="onCloseMicImg" destination="KkC-lS-ha5" id="Ryh-Es-fH4"/>
+                <outlet property="onVioceImg" destination="MN9-nZ-SO2" id="F1a-ch-agh"/>
             </connections>
-            <point key="canvasLocation" x="-20" y="18"/>
+            <point key="canvasLocation" x="-20.5" y="17.5"/>
         </collectionViewCell>
     </objects>
 </document>
