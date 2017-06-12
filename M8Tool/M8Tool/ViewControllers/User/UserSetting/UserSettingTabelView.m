@@ -108,8 +108,9 @@
 }
 
 - (void)onLogoutAction {
+    WCWeakSelf(self);
     [[ILiveLoginManager getInstance] tlsLogout:^{
-        [self enterLoginUI];
+        [weakself enterLoginUI];
     } failed:nil];
 }
 
@@ -117,6 +118,7 @@
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     UIViewController *loginVC = [[UIStoryboard storyboardWithName:@"M8LoginStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"M8LoginViewController"];
     appDelegate.window.rootViewController = loginVC;
+    [appDelegate.window makeKeyWindow];
 }
 
 

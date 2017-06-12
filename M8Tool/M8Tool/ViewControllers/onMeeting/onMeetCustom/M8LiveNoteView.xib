@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="M8LiveNoteView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="我是textView" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sji-IR-qCG">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="sji-IR-qCG" secondAttribute="bottom" id="7Vm-n6-gQg"/>
+                <constraint firstItem="sji-IR-qCG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Thx-Iv-gn8"/>
+                <constraint firstItem="sji-IR-qCG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="pic-SP-vnc"/>
+                <constraint firstAttribute="trailing" secondItem="sji-IR-qCG" secondAttribute="trailing" id="xWn-rb-naC"/>
+            </constraints>
+            <connections>
+                <outlet property="textView" destination="sji-IR-qCG" id="fja-vE-zG7"/>
+            </connections>
+        </view>
+    </objects>
+</document>
