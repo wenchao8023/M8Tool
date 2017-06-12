@@ -97,9 +97,9 @@ static const CGFloat kHeadHeight = 88;
     
     NSString *selStr = self.actionsArray[indexPath.row];
     if ([selStr containsString:@":"])
-        [self performSelector:NSSelectorFromString(selStr) withObject:indexPath];
+        [self performSelector:NSSelectorFromString(selStr) withObject:indexPath afterDelay:0];
     else
-        [self performSelector:NSSelectorFromString(selStr)];
+        [self performSelector:NSSelectorFromString(selStr) withObject:indexPath afterDelay:0];
 }
 
 

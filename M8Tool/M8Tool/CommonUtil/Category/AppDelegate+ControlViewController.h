@@ -24,5 +24,18 @@
 - (NSArray *)popToViewController:(UIViewController *)viewController;
 - (void)pushViewController:(UIViewController *)viewController;
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated;
+
+/**
+ 模态推出视图控制器
+
+ @param viewController 视图控制器
+ */
 - (void)presentViewController:(UIViewController *)viewController ;
+
+/**
+ 模态推出导航控制器，主要用于发起会议时
+
+ @param naviController 导航控制器
+ */
+- (void)presentNavigationController:(UIViewController *)naviController ;
 @end

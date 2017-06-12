@@ -31,4 +31,6 @@ static NSString * _Nonnull kHeaderText   = @"kHeaderText";
 
 @property (nonatomic, assign) BOOL isLarge;
 
+@property (nonatomic, weak) id _Nullable WCDelegate;
+
 @end

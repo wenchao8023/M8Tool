@@ -379,7 +379,7 @@
         model.identify = identify;
         model.isEnterRoom = YES;
         if ([identify isEqualToString:_host]) {
-            model.isInBack = YES;
+            
         }
         [self.membersArray addObject:model];
     }

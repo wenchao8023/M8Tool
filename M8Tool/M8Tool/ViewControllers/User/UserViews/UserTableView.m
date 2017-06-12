@@ -131,7 +131,7 @@ static NSString *const kUserSettingVC   = @"UserSettingViewController";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    [self performSelector:NSSelectorFromString(self.actionsAarry[indexPath.row])];
+    [self performSelector:NSSelectorFromString(self.actionsAarry[indexPath.row]) withObject:indexPath afterDelay:0];
 }
 
 

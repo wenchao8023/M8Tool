@@ -72,7 +72,12 @@
         [[self navigationViewController] presentViewController:viewController animated:YES completion:nil];
     }
 }
-    
+
+- (void)presentNavigationController:(UIViewController *)naviController {
+    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:naviController];
+    [self presentViewController:navi];
+}
+
 - (UIViewController *)popViewController
 {
     return [[self navigationViewController] popViewControllerAnimated:YES];

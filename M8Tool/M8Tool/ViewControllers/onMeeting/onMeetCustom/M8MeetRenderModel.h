@@ -16,11 +16,6 @@
 @property (nonatomic, copy, nullable) NSString *identify;
 
 /**
- 成员是否显示在背景视图
- */
-@property (nonatomic, assign) BOOL isInBack;
-
-/**
  视频源类型
  */
 @property (nonatomic, assign) avVideoSrcType videoScrType;

@@ -17,7 +17,6 @@
         _isMicOn      = NO;
         _isEnterRoom  = NO;
         _isLeaveRoom  = NO;
-        _isInBack     = NO;
     }
     return self;
 }

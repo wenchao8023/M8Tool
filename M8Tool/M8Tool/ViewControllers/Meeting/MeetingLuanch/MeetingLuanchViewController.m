@@ -141,7 +141,8 @@
             M8CallAudioViewController *callVC = [[M8CallAudioViewController alloc] init];
             callVC.membersArray = self.selectedArray;
             callVC.callId       = roomId;
-            [[AppDelegate sharedAppDelegate] presentViewController:callVC];
+//            [[AppDelegate sharedAppDelegate] presentViewController:callVC];
+            [[AppDelegate sharedAppDelegate] presentNavigationController:callVC];
         }
         break;
         case LuanchMeetingType_video:   //视频
@@ -149,7 +150,8 @@
             M8CallVideoViewController *callVC = [[M8CallVideoViewController alloc] init];
             callVC.membersArray = self.selectedArray;
             callVC.callId       = roomId;
-            [[AppDelegate sharedAppDelegate] presentViewController:callVC];
+//            [[AppDelegate sharedAppDelegate] presentViewController:callVC];
+            [[AppDelegate sharedAppDelegate] presentNavigationController:callVC];
         }
         break;
         case LuanchMeetingType_live:    //直播
@@ -157,8 +159,8 @@
             M8LiveMeetViewController *liveVC = [[M8LiveMeetViewController alloc] init];
             liveVC.roomId = roomId;
             liveVC.topic  = self.topic;
-            
-            [[AppDelegate sharedAppDelegate] presentViewController:liveVC];
+//            [[AppDelegate sharedAppDelegate] presentViewController:liveVC];
+            [[AppDelegate sharedAppDelegate] presentNavigationController:liveVC];
         }
         break;
         case LuanchMeetingType_order:   //预订

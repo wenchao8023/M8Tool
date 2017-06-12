@@ -29,6 +29,13 @@
 
 @property (nonatomic, strong) NSMutableArray *membersArray;
 
+/**
+ 记录当前处在背景视图的成员
+ */
+@property (nonatomic, strong) M8MeetRenderModel *currentInBackModel;
+
+@property (nonatomic, copy) NSString *loginIdentify;
+
 @end
 
 
@@ -45,6 +52,8 @@
     if (self = [super initWithFrame:frame]) {
         self = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil] firstObject];
         _myFrame = frame;
+        
+        _loginIdentify = [[ILiveLoginManager getInstance] getLoginId];
     }
     return self;
 }
@@ -99,14 +108,21 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    WCLog(@"点击第 %ld 个按钮", (long)indexPath.row);
+    // 只需要交换，然后保存对应的数据在本地，不需要刷新数据，因为没有新的事件进来
+    M8MeetRenderModel *model = self.membersArray[indexPath.row];
+    [self.call switchRenderView:model.identify with:_currentInBackModel.identify];
+    
+    // 保存状态
+    M8MeetRenderModel *tempModel = model;
+    [self.membersArray replaceObjectAtIndex:[self getIndexWithID:model.identify] withObject:_currentInBackModel];
+    _currentInBackModel = tempModel;
+    
 }
 
 
 #pragma mark - 处理 Model
 /**
  根据<!--成员ID--!>获取<!--数组下标--!>
- 
  @param identify 成员ID
  @return 数组下标
  */
@@ -117,7 +133,6 @@
 
 /**
  根据<!--成员ID--!>获取<!--数据模型--!>
- 
  @param identify 成员ID
  @return 数据模型
  */
@@ -131,9 +146,9 @@
     return nil;
 }
 
+
 /**
  根据<!--成员ID--!>判断该成员是否添加进了数组
- 
  @param identify 成员ID
  @return 是否存在
  */
@@ -149,7 +164,6 @@
 
 /**
  成员刚进入房间的时候添加
- 
  @param identify 添加成员
  */
 - (void)addModelWithID:(NSString *)identify {
@@ -157,14 +171,32 @@
         M8MeetRenderModel *model = [[M8MeetRenderModel alloc] init];
         model.identify = identify;
         model.isEnterRoom = YES;
+        if ([identify isEqualToString:_loginIdentify]) {    // 第一次检测到是自己，用currentModel保存，不保存进数组
+            _currentInBackModel = model;
+        }
+        
         [self.membersArray addObject:model];
+        
+    }
+    else {  //如果成员存在，但是是离开后有进入房间的，就将是否离开的状态记为 NO
+        [self recordModelIsLeaveRoom:NO WithID:identify];
     }
 }
 
 
 /**
+ 有成员离开房间
+ @param identify 记录离开成员状态
+ */
+- (void)recordModelIsLeaveRoom:(BOOL)isLeaveRoom WithID:(NSString *)identify {
+    M8MeetRenderModel *model = [self getModelWithID:identify];
+    model.isLeaveRoom = isLeaveRoom;
+    [self updateMemberArrayWithModel:model];
+}
+
+
+/**
  更新已添加成员状态
- 
  @param model 更新后的Model
  */
 - (void)updateMemberArrayWithModel:(M8MeetRenderModel *)model {
@@ -191,7 +223,7 @@
 - (void)onMemberCameraVideoOn:(BOOL)isOn members:(NSArray *)members
 {
     for (TILCallMember *member in members) {
-        // 添加成员，如果存在就不添加
+        
         [self addModelWithID:member.identifier];
         
         M8MeetRenderModel *model = [self getModelWithID:member.identifier];
@@ -251,7 +283,10 @@
             [self addTextToView:[NSString stringWithFormat:@"%@拒绝了%@的邀请",sender,target]];
             break;
         case TILCALL_NOTIF_HANGUP:
+        {
             [self addTextToView:[NSString stringWithFormat:@"%@挂断了%@邀请的通话",sender,target]];
+            [self recordModelIsLeaveRoom:YES WithID:sender];
+        }
             break;
         case TILCALL_NOTIF_LINEBUSY:
             [self addTextToView:[NSString stringWithFormat:@"%@占线，无法接受%@的邀请",sender,target]];
@@ -277,7 +312,18 @@
  更新 renderCollection
  */
 - (void)updateRenderCollection {
-
+    
+    for (M8MeetRenderModel *model in self.membersArray) {   //只在第一次添加的时候才会触发
+        if ([model isEqual:_currentInBackModel]) {
+            [self.membersArray removeObject:model];
+            
+            [self.call modifyRenderView:self.bounds forIdentifier:model.identify];
+            ILiveRenderView *rv = [self.call getRenderFor:model.identify];
+            [self addSubview:rv];
+            [self sendSubviewToBack:rv];
+        }
+    }
+    
     [self.renderCollection reloadData];
 }
 
@@ -294,7 +340,8 @@
 
 - (IBAction)inviteAction:(id)sender {
     UserContactViewController *contactVC = [[UserContactViewController alloc] init];
-    [[AppDelegate sharedAppDelegate] pushViewController:contactVC];
+    contactVC.isExitLeftItem = YES;
+    [[[AppDelegate sharedAppDelegate] topViewController].navigationController pushViewController:contactVC animated:YES];
 }
 
 - (IBAction)removeAction:(id)sender {

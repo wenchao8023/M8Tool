@@ -33,6 +33,8 @@
 #pragma mark - createUI
 - (void)createUI {
     
+    self.navigationController.navigationBarHidden = YES;
+    
     [self bgImageView];
     [self renderView];
     [self headerView];
@@ -61,6 +63,7 @@
 - (M8MeetHeaderView *)headerView {
     if (!_headerView) {
         M8MeetHeaderView *headerView = [[M8MeetHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, kDefaultNaviHeight)];
+        headerView.WCDelegate = self;
         [self.view addSubview:(_headerView = headerView)];
     }
     return _headerView;
@@ -90,6 +93,13 @@
     [self addTextToView:[actionInfo allValues][0]];
 }
 
+#pragma mark -- MeetHeaderDelegate
+- (void)MeetHeaderActionInfo:(NSDictionary *)actionInfo {
+    
+    NSNumber *boolNum = [actionInfo allValues][0];
+    
+    [self addTextToView:([boolNum boolValue] ? @"放大" : @"缩小")];
+}
 
 #pragma mark - actions
 - (void)addTextToView:(NSString *)newText {
@@ -116,14 +126,5 @@
 
 
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

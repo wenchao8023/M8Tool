@@ -36,6 +36,8 @@
         self = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil] firstObject];
         _myFrame = frame;
         _isLarge = NO;
+        
+        [self addObserver:self forKeyPath:@"isLarge" options:NSKeyValueObservingOptionNew context:nil];
     }
     return self;
 }
@@ -48,7 +50,30 @@
 
 - (IBAction)enlargeAction:(id)sender {
     _isLarge = !_isLarge;
+    
+    
+    /**
+     将头部视图的点击事件传递出去
+
+     @param _isLarge 是否为放大
+     @return
+     */
+    [self headerActionInfoValue:@(_isLarge) key:kHeaderAction];
 }
 
+
+- (void)addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context {
+    if ([keyPath isEqualToString:@"isLarge"]) {
+        [self.enlargeButton setBackgroundImage:kGetImage(_isLarge ? @"放大的" : @"缩小的") forState:UIControlStateNormal];
+    }
+}
+
+#pragma mark - MeetHeaderDelegate:
+- (void)headerActionInfoValue:(id)value key:(NSString *)key {
+    NSDictionary *actionInfo = @{key : value};
+    if ([self.WCDelegate respondsToSelector:@selector(MeetHeaderActionInfo:)]) {
+        [self.WCDelegate MeetHeaderActionInfo:actionInfo];
+    }
+}
 
 @end

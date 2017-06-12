@@ -19,7 +19,7 @@
  添加头部 和 设备界面
  他们的代理需要在子类中对应自己的逻辑自行实现
  */
-@interface M8CallBaseViewController : UIViewController<MeetDeviceDelegate, CallRenderDelegate>
+@interface M8CallBaseViewController : UIViewController<MeetHeaderDelegate, MeetDeviceDelegate, CallRenderDelegate>
 
 /**
  背景图片
