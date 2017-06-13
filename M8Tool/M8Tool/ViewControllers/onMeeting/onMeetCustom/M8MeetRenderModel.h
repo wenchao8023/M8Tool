@@ -11,9 +11,15 @@
 @interface M8MeetRenderModel : NSObject
 
 /**
- 成员id
+ 成员id  只记录一次
+ 成员唯一标识符
  */
 @property (nonatomic, copy, nullable) NSString *identify;
+
+/**
+ 成员是否进入房间  只记录一次
+ */
+@property (nonatomic, assign) BOOL isEnterRoom;
 
 /**
  视频源类型
@@ -31,14 +37,15 @@
 @property (nonatomic, assign) BOOL isMicOn;
 
 /**
- 是否接收并进入房间
- */
-@property (nonatomic, assign) BOOL isEnterRoom;
-
-/**
- 是否离开房间
+ 是否离开房间 可以有多次
+    * 一次也没调用，表示成员重来没有离开过房间
+    * 调用基数次，成员离开房间， 设为 YES
+    * 调用偶数次，成员离开房间后又进入， 设为 NO
  */
 @property (nonatomic, assign) BOOL isLeaveRoom;
+
+
+
 
 
 

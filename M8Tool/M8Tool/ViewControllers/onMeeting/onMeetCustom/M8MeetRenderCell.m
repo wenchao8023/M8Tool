@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *identifyLabel;
 
 
+@property (weak, nonatomic) IBOutlet UIVisualEffectView *effectView;
 
 
 @end
@@ -32,27 +33,19 @@
     
 }
 
-- (void)configCall:(TILMultiCall *)call model:(M8MeetRenderModel *)model {
+- (void)configWithModel:(M8MeetRenderModel *)model {
+    
+    WCViewBorder_Radius(self.onVioceImg, _onVioceImg.width / 2);
     
     self.identifyLabel.text = model.identify;
     self.onVioceImg.hidden = model.isCameraOn;
+    self.effectView.hidden = model.isCameraOn;
     
     if (model.isCameraOn) {
-        [call modifyRenderView:self.contentView.bounds forIdentifier:model.identify];
-        ILiveRenderView *renderView = [call getRenderFor:model.identify];
-        self.backgroundView = renderView;
-        
         self.onCloseMicImg.hidden = model.isMicOn;
     }
     else {
-        UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-        UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
-        effectView.frame = self.contentView.bounds;
-        effectView.alpha = 0.8;
-        self.backgroundView = effectView;
-        
         self.onCloseMicImg.hidden = YES;
-        
         
         [self.onVioceImg setImage:[UIImage imageNamed:(model.isMicOn ? @"语音开" : @"语音光")]];
     }
@@ -61,9 +54,6 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    
-    
-    WCViewBorder_Radius(self.onVioceImg, self.width / 4);
 }
 
 @end

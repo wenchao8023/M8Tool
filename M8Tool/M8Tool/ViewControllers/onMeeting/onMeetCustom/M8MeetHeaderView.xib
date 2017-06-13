@@ -29,11 +29,12 @@
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hxx-b4-mOk">
                     <rect key="frame" x="10" y="20" width="44" height="44"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="ec4-P0-0q3"/>
                         <constraint firstAttribute="width" constant="44" id="mlc-Iz-aHH"/>
                     </constraints>
-                    <state key="normal" title="B"/>
+                    <state key="normal" backgroundImage="liveEnlarge.png"/>
                     <connections>
                         <action selector="enlargeAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="5jA-XI-Nm6"/>
                     </connections>
@@ -59,4 +60,7 @@
             <point key="canvasLocation" x="24" y="65"/>
         </view>
     </objects>
+    <resources>
+        <image name="liveEnlarge.png" width="44" height="44"/>
+    </resources>
 </document>

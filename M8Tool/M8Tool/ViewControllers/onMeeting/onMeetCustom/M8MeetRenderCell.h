@@ -14,6 +14,6 @@
 
 - (void)config:(M8MeetRenderModel *)model;
 
-- (void)configCall:(TILMultiCall *)call model:(M8MeetRenderModel *)model;
+- (void)configWithModel:(M8MeetRenderModel *)model;
 
 @end

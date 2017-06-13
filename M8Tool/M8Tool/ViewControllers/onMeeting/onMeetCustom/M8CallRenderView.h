@@ -20,7 +20,7 @@ static NSString * _Nonnull kCallText   = @"kCallText";
 @end
 
 
-@interface M8CallRenderView : UIView<TILCallMemberEventListener, TILCallNotificationListener>
+@interface M8CallRenderView : UIView<TILCallMemberEventListener, TILCallNotificationListener, TILCallStatusListener>
 
 
 /**

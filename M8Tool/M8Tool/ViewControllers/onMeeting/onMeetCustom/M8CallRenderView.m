@@ -32,7 +32,7 @@
 /**
  记录当前处在背景视图的成员
  */
-@property (nonatomic, strong) M8MeetRenderModel *currentInBackModel;
+@property (nonatomic, strong, nullable) M8MeetRenderModel *currentInBackModel;
 
 @property (nonatomic, copy) NSString *loginIdentify;
 
@@ -65,7 +65,7 @@
     self.frame = _myFrame;
     
     // reset collection
-    CGFloat itemWidth  = (SCREEN_WIDTH - 50) / 4;
+    CGFloat itemWidth  = (SCREEN_WIDTH - 50 - 40) / 4;
     CGFloat itemHeight = itemWidth * 4 / 3;
     
     _layoutHeight_render.constant = itemHeight;
@@ -89,6 +89,8 @@
     [self addSubview:_noteView];
 }
 
+
+
 #pragma mark - Delegate
 #pragma mark -- UICollectionViewDelegate
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -99,117 +101,42 @@
     M8MeetRenderCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"M8MeetRenderCellID" forIndexPath:indexPath];
     
     M8MeetRenderModel *model = self.membersArray[indexPath.row];
-
-    [cell configCall:self.call model:model];
     
+    [cell configWithModel:model];
+    
+    [self setRenderViewFrame:cell.frame identify:model.identify];
     
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    // 只需要交换，然后保存对应的数据在本地，不需要刷新数据，因为没有新的事件进来
-    M8MeetRenderModel *model = self.membersArray[indexPath.row];
-    [self.call switchRenderView:model.identify with:_currentInBackModel.identify];
-    
-    // 保存状态
-    M8MeetRenderModel *tempModel = model;
-    [self.membersArray replaceObjectAtIndex:[self getIndexWithID:model.identify] withObject:_currentInBackModel];
-    _currentInBackModel = tempModel;
-    
-}
-
-
-#pragma mark - 处理 Model
-/**
- 根据<!--成员ID--!>获取<!--数组下标--!>
- @param identify 成员ID
- @return 数组下标
- */
-- (NSInteger)getIndexWithID:(NSString *)identify {
-    return [self.membersArray indexOfObject:[self getModelWithID:identify]];
-}
-
-
-/**
- 根据<!--成员ID--!>获取<!--数据模型--!>
- @param identify 成员ID
- @return 数据模型
- */
-- (M8MeetRenderModel *)getModelWithID:(NSString *)identify {
-    for (M8MeetRenderModel *model in self.membersArray) {
-        if ([model.identify isEqualToString:identify]) {
-            return model;
+    if ([self isExitVideoCaption]) {
+        M8MeetRenderModel *tempModel;
+        if (_currentInBackModel) {
+            tempModel = _currentInBackModel;
+            _currentInBackModel = self.membersArray[indexPath.row];
+            [self.membersArray replaceObjectAtIndex:[self getIndexWithID:_currentInBackModel.identify] withObject:tempModel];
         }
-    }
-    NSAssert(1, @"此时房间没成员");
-    return nil;
-}
-
-
-/**
- 根据<!--成员ID--!>判断该成员是否添加进了数组
- @param identify 成员ID
- @return 是否存在
- */
-- (BOOL)isExistInMemberArray:(NSString *)identify {
-    for (M8MeetRenderModel *model in self.membersArray) {
-        if ([model.identify isEqualToString:identify]) {
-            return YES;
-        }
-    }
-    return NO;
-}
-
-
-/**
- 成员刚进入房间的时候添加
- @param identify 添加成员
- */
-- (void)addModelWithID:(NSString *)identify {
-    if (![self isExistInMemberArray:identify]) {    //保证每个成员只添加一次
-        M8MeetRenderModel *model = [[M8MeetRenderModel alloc] init];
-        model.identify = identify;
-        model.isEnterRoom = YES;
-        if ([identify isEqualToString:_loginIdentify]) {    // 第一次检测到是自己，用currentModel保存，不保存进数组
-            _currentInBackModel = model;
+        else {
+            _currentInBackModel = self.membersArray[indexPath.row];
+            [self.membersArray removeObjectAtIndex:indexPath.row];
         }
         
-        [self.membersArray addObject:model];
-        
+        [self updateRenderCollection];
     }
-    else {  //如果成员存在，但是是离开后有进入房间的，就将是否离开的状态记为 NO
-        [self recordModelIsLeaveRoom:NO WithID:identify];
+    else {
+        [self addTextToView:@"没有成员开启摄像头"];
     }
 }
 
 
-/**
- 有成员离开房间
- @param identify 记录离开成员状态
- */
-- (void)recordModelIsLeaveRoom:(BOOL)isLeaveRoom WithID:(NSString *)identify {
-    M8MeetRenderModel *model = [self getModelWithID:identify];
-    model.isLeaveRoom = isLeaveRoom;
-    [self updateMemberArrayWithModel:model];
-}
 
-
-/**
- 更新已添加成员状态
- @param model 更新后的Model
- */
-- (void)updateMemberArrayWithModel:(M8MeetRenderModel *)model {
-    [self.membersArray replaceObjectAtIndex:[self getIndexWithID:model.identify] withObject:model];
-}
-
-
-
-#pragma mark - 音视频事件回调
+#pragma mark -- 音视频事件回调
 - (void)onMemberAudioOn:(BOOL)isOn members:(NSArray *)members
 {
     for (TILCallMember *member in members) {
-        // 添加成员，如果存在就不添加
+        
         [self addModelWithID:member.identifier];
         
         M8MeetRenderModel *model = [self getModelWithID:member.identifier];
@@ -217,7 +144,7 @@
         [self updateMemberArrayWithModel:model];
     }
     
-    [self updateRenderCollection];
+    [self reloadModels];
 }
 
 - (void)onMemberCameraVideoOn:(BOOL)isOn members:(NSArray *)members
@@ -238,14 +165,11 @@
         }
     }
     
-    [self updateRenderCollection];
+    [self reloadModels];
 }
 
 
-#pragma mark - 通知回调
-//注意：
-//［通知回调］可以获取通话的事件通知
-// [通话状态回调] 也可以获取通话的事件通知
+#pragma mark -- 通知回调
 - (void)onRecvNotification:(TILCallNotification *)notify
 {
     NSInteger notifId = notify.notifId;
@@ -259,6 +183,7 @@
             break;
         case TILCALL_NOTIF_ACCEPTED:
             [self addTextToView:[NSString stringWithFormat:@"%@接受了%@的邀请",sender,target]];
+            [self addModelWithID:sender];
             break;
         case TILCALL_NOTIF_CANCEL:
         {
@@ -285,7 +210,7 @@
         case TILCALL_NOTIF_HANGUP:
         {
             [self addTextToView:[NSString stringWithFormat:@"%@挂断了%@邀请的通话",sender,target]];
-            [self recordModelIsLeaveRoom:YES WithID:sender];
+//            [self recordModelIsLeaveRoom:YES WithID:sender];
         }
             break;
         case TILCALL_NOTIF_LINEBUSY:
@@ -307,31 +232,183 @@
     }
 }
 
-#pragma mark - 界面相关
+
+#pragma mark -- MeetDeviceActionInfo:
+- (void)deviceActionInfoValue:(id)value key:(NSString *)key {
+    NSDictionary *actionInfo = @{key : value};
+    if ([self.WCDelegate respondsToSelector:@selector(CallRenderActionInfo:)]) {
+        [self.WCDelegate CallRenderActionInfo:actionInfo];
+    }
+}
+
+
+#pragma mark - 处理 Model
 /**
- 更新 renderCollection
+ 成员刚进入房间的时候添加
+ * 整个会议过程，进入房间的成员只添加一次
+ * 所有进入房间的成员保存在 成员数组和currentModel 里面
+ @param identify 添加成员
  */
-- (void)updateRenderCollection {
-    
-    for (M8MeetRenderModel *model in self.membersArray) {   //只在第一次添加的时候才会触发
-        if ([model isEqual:_currentInBackModel]) {
-            [self.membersArray removeObject:model];
-            
-            [self.call modifyRenderView:self.bounds forIdentifier:model.identify];
-            ILiveRenderView *rv = [self.call getRenderFor:model.identify];
-            [self addSubview:rv];
-            [self sendSubviewToBack:rv];
+- (void)addModelWithID:(NSString *)identify {
+    if (![self isExistInMemberArray:identify]) {
+        [self addTextToView:[NSString stringWithFormat:@"添加成员: %@", identify]];
+        M8MeetRenderModel *model = [[M8MeetRenderModel alloc] init];
+        model.identify = identify;
+        model.isEnterRoom = YES;
+        if ([identify isEqualToString:_loginIdentify])    // 第一次检测到是自己，用currentModel保存，不保存进数组
+        {
+            _currentInBackModel = model;
+        }
+        else
+        {
+            [self.membersArray addObject:model];
         }
     }
+    else {  //如果成员存在，但是是离开后又进入房间的，就将是否离开的状态记为 NO
+        
+    }
+}
+
+/**
+ 更新已添加成员状态
+ @param model 更新后的Model
+ */
+- (void)updateMemberArrayWithModel:(M8MeetRenderModel *)model {
+    NSAssert(model, @"model 不能为空");
+    if ([model.identify isEqualToString:_currentInBackModel.identify])
+        _currentInBackModel = model;
+    else
+        [self.membersArray replaceObjectAtIndex:[self getIndexWithID:model.identify] withObject:model];
+}
+
+/**
+ 根据<!--成员ID--!>获取<!--数组下标--!>
+ @param identify 成员ID
+ @return 数组下标
+ */
+- (NSInteger)getIndexWithID:(NSString *)identify {
+    return [self.membersArray indexOfObject:[self getModelWithID:identify]];
+}
+
+
+/**
+ 根据<!--成员ID--!>获取<!--数据模型--!>
+ @param identify 成员ID
+ @return 数据模型
+ */
+- (M8MeetRenderModel *)getModelWithID:(NSString *)identify {
+    if ([identify isEqualToString:_currentInBackModel.identify]) {
+        return _currentInBackModel;
+    }
+    else {
+        for (M8MeetRenderModel *model in self.membersArray) {
+            if ([model.identify isEqualToString:identify]) {
+                return model;
+            }
+        }
+    }
+    
+    NSAssert(0, @"此时房间没成员");
+    return nil;
+}
+
+/**
+ 根据<!--成员ID--!>判断该成员是否添加进了数组
+ @param identify 成员ID
+ @return 改成员是否添加过
+ */
+- (BOOL)isExistInMemberArray:(NSString *)identify {
+    if ([identify isEqualToString:_currentInBackModel.identify]) {
+        return YES;
+    }
+    else {
+        for (M8MeetRenderModel *model in self.membersArray) {
+            if ([model.identify isEqualToString:identify])
+            {
+                return YES;
+            }
+        }
+    }
+    
+    return NO;
+}
+
+
+
+#pragma mark - 界面相关
+// 如果成员超出 5 个，也就是超出手机界面，需要滑动的时候，调用 scrollViewDelegate 同步 renderView 与 cell 的 位置
+- (void)setRenderViewFrame:(CGRect)cellFrame identify:(NSString *)identify {
+    CGRect frame = cellFrame;
+    frame.origin.y = 70;
+    
+    [self.call modifyRenderView:frame forIdentifier:identify];
+}
+
+/**
+ 更新 renderCollection
+
+ 所有进入过房间的成员最新的状态都保存在了 数组和currentModel 里面了
+ */
+- (void)updateRenderCollection {
+
+    [self addTextToView:[NSString stringWithFormat:@"<!--用户 : %@, 位置 : %@--!>", _currentInBackModel.identify, NSStringFromCGRect(self.bounds)]];
+    [self.call modifyRenderView:self.bounds forIdentifier:_currentInBackModel.identify];
+    [self.call sendRenderViewToBack:_currentInBackModel.identify];
     
     [self.renderCollection reloadData];
 }
 
+- (void)reloadModels {
+    if (!_currentInBackModel.isCameraOn) {
+        for (M8MeetRenderModel *model in self.membersArray) {
+            if (model.isCameraOn) { // 交换成员信息
+                if (_currentInBackModel == nil) {
+                    _currentInBackModel = model;
+                    [self.membersArray removeObject:model];
+                }
+                else {
+                    M8MeetRenderModel *tempModel = _currentInBackModel;
+                    _currentInBackModel = model;
+                    [self.membersArray replaceObjectAtIndex:[self getIndexWithID:model.identify]
+                                                 withObject:tempModel];
+                }
+                // 刷新视图 并终止循环
+                [self updateRenderCollection];
+                return ;
+            }
+        }
+        
+        // 没有成员开启摄像头
+        if (_currentInBackModel) {
+            [self.membersArray addObject:_currentInBackModel];
+            _currentInBackModel = nil;  // 只有房间中没有成员开启摄像头时 currentModel 才会置空
+        }
+    }
+    
+    // 只要处在背景视图的成员开启摄像头，就直接给这个成员设置视图显示区域
+    [self updateRenderCollection];
+}
+
+- (BOOL)isExitVideoCaption {
+    if (_currentInBackModel.isCameraOn) {
+        return YES;
+    }
+    else {
+        for (M8MeetRenderModel *model in self.membersArray) {
+            if (model.isCameraOn) {
+                return YES;
+            }
+        }
+    }
+    
+    return NO;
+}
+
 - (void)addTextToView:(NSString *)newText {
     NSString *text = self.noteView.textView.text;
-    text = [text stringByAppendingString:@"\n"];
-    text = [text stringByAppendingString:newText];
-    self.noteView.textView.text = text;
+    newText = [newText stringByAppendingString:@"\n"];
+    newText = [newText stringByAppendingString:text];
+    self.noteView.textView.text = newText;
 }
 
 - (void)selfDismiss {
@@ -348,17 +425,8 @@
     
 }
 
-#pragma mark -- MeetDeviceActionInfo:
-- (void)deviceActionInfoValue:(id)value key:(NSString *)key {
-    NSDictionary *actionInfo = @{key : value};
-    if ([self.WCDelegate respondsToSelector:@selector(CallRenderActionInfo:)]) {
-        [self.WCDelegate CallRenderActionInfo:actionInfo];
-    }
-}
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self endEditing:YES];
 }
-
-
 @end

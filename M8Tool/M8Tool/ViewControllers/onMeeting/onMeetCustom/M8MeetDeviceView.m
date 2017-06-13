@@ -73,6 +73,7 @@
     
 }
 
+
 - (void)configButtonBackImgs {
     
     ILiveRoomManager *manager = [ILiveRoomManager getInstance];
@@ -88,7 +89,6 @@
     QAVOutputMode audioMode = [manager getCurAudioMode];
     [self.switchReceiverButton setBackgroundImage:[UIImage imageNamed:(audioMode == QAVOUTPUTMODE_EARPHONE ? @"liveReceiver_off" : @"liveReceiver_on")]
                                          forState:UIControlStateNormal];
-    
 }
 
 #pragma mark device actions

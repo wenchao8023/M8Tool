@@ -39,13 +39,14 @@
     baseConfig.callType = TILCALL_TYPE_VIDEO;
     baseConfig.isSponsor = YES;
     baseConfig.memberArray = self.membersArray;
-    baseConfig.heartBeatInterval = 15;
+    baseConfig.heartBeatInterval = 0;
     config.baseConfig = baseConfig;
     
     
     TILCallListener * listener = [[TILCallListener alloc] init];
     [listener setMemberEventListener:self.renderView];
     [listener setNotifListener:self.renderView];
+    [listener setCallStatusListener:self.renderView];
     
     config.callListener = listener;
     
