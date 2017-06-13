@@ -53,10 +53,10 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="电话会议" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffn-hO-lAV" customClass="DrawTextLabel">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="电话会议" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffn-hO-lAV" customClass="THLabel">
                         <rect key="frame" x="0.0" y="125.5" width="186" height="46.5"/>
                         <fontDescription key="fontDescription" name="DroidSansFallback" family="Droid Sans Fallback" pointSize="15"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -86,7 +86,7 @@
             <size key="customSize" width="290" height="310"/>
             <connections>
                 <outlet property="iconImage" destination="w5i-dV-g6Z" id="ZUY-kg-e55"/>
-                <outlet property="titleLabel" destination="ffn-hO-lAV" id="a0m-1k-2lO"/>
+                <outlet property="titleLabel" destination="ffn-hO-lAV" id="geL-gm-UT6"/>
             </connections>
             <point key="canvasLocation" x="77" y="-17"/>
         </collectionViewCell>

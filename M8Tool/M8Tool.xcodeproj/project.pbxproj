@@ -171,6 +171,8 @@
 		94A987FA1EF008500080BEF2 /* liveRemove.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A987F11EF008500080BEF2 /* liveRemove.png */; };
 		94A987FB1EF008500080BEF2 /* liveRemove@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A987F21EF008500080BEF2 /* liveRemove@2x.png */; };
 		94A987FC1EF008500080BEF2 /* liveRemove@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A987F31EF008500080BEF2 /* liveRemove@3x.png */; };
+		94A988041EF015030080BEF2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94A988011EF015030080BEF2 /* Info.plist */; };
+		94A988051EF015030080BEF2 /* THLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A988031EF015030080BEF2 /* THLabel.m */; };
 		94ABD2D41E976B31007C1172 /* CommonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ABD2D31E976B31007C1172 /* CommonUtil.m */; };
 		94B3C2311EC565AC003ADF5F /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B3C2301EC565AC003ADF5F /* UIView+Extension.m */; };
 		94B3C2341EE793AE00244BC4 /* 木纹preview.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2201EE793AE00244BC4 /* 木纹preview.png */; };
@@ -559,6 +561,9 @@
 		94A987F11EF008500080BEF2 /* liveRemove.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = liveRemove.png; sourceTree = "<group>"; };
 		94A987F21EF008500080BEF2 /* liveRemove@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liveRemove@2x.png"; sourceTree = "<group>"; };
 		94A987F31EF008500080BEF2 /* liveRemove@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liveRemove@3x.png"; sourceTree = "<group>"; };
+		94A988011EF015030080BEF2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		94A988021EF015030080BEF2 /* THLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THLabel.h; sourceTree = "<group>"; };
+		94A988031EF015030080BEF2 /* THLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THLabel.m; sourceTree = "<group>"; };
 		94ABD2D21E976B31007C1172 /* CommonUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtil.h; sourceTree = "<group>"; };
 		94ABD2D31E976B31007C1172 /* CommonUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonUtil.m; sourceTree = "<group>"; };
 		94B3C2201EE793AE00244BC4 /* 木纹preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "木纹preview.png"; sourceTree = "<group>"; };
@@ -1047,6 +1052,7 @@
 		944AF1DE1E948DC10044B44C /* 3RD(3方库) */ = {
 			isa = PBXGroup;
 			children = (
+				94A988001EF015030080BEF2 /* THLabel */,
 				944AF2D01E9494C00044B44C /* AFNetworking */,
 				944AF2F61E9494C00044B44C /* KVNProgress */,
 				944AF1DF1E948DC10044B44C /* ShareSDK */,
@@ -1482,6 +1488,16 @@
 				94A987F31EF008500080BEF2 /* liveRemove@3x.png */,
 			);
 			path = liveRemove;
+			sourceTree = "<group>";
+		};
+		94A988001EF015030080BEF2 /* THLabel */ = {
+			isa = PBXGroup;
+			children = (
+				94A988011EF015030080BEF2 /* Info.plist */,
+				94A988021EF015030080BEF2 /* THLabel.h */,
+				94A988031EF015030080BEF2 /* THLabel.m */,
+			);
+			path = THLabel;
 			sourceTree = "<group>";
 		};
 		94B3C21E1EE793AE00244BC4 /* Theme */ = {
@@ -2048,6 +2064,7 @@
 				94B3C23B1EE793AE00244BC4 /* 木纹@3x.png in Resources */,
 				94BACD811EEE2CB30017FFDE /* liveCamera_on.png in Resources */,
 				94BACD8C1EEE2CB30017FFDE /* liveMic_on@3x.png in Resources */,
+				94A988041EF015030080BEF2 /* Info.plist in Resources */,
 				94A851C71EE2C18600204B48 /* UsrContactHeaderView.xib in Resources */,
 				94BACD921EEE2CB30017FFDE /* liveReceiver_off@3x.png in Resources */,
 				943A08E91EDEC76B003CEA27 /* TILFilterResource.bundle in Resources */,
@@ -2282,6 +2299,7 @@
 				94BDE5241ECC489200ECC089 /* MeetingOrderViewController.m in Sources */,
 				94ABD2D41E976B31007C1172 /* CommonUtil.m in Sources */,
 				94DE958C1EAE145400A44DB1 /* UIView+CustomAutoLayout.m in Sources */,
+				94A988051EF015030080BEF2 /* THLabel.m in Sources */,
 				94E5DE301ED6A732008632D7 /* UsrContactHeaderView.m in Sources */,
 				944AF3131E9494C00044B44C /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				943A08661EDEBADE003CEA27 /* LiveStreamListRequest.m in Sources */,
