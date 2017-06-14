@@ -50,7 +50,7 @@
 #define WCTabbarNormalColor     WCBlack                                                     // 底部 tabBar 未选中文字颜色
 
 #define WCStrokeColor           WCBlack
-#define WCStrokeSize            1
+#define WCStrokeSize            0.5
 
 
 
