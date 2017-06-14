@@ -12,11 +12,10 @@
 
 - (instancetype)init {
     if (self = [super init]) {
+        _meetMemberStatus = MeetMemberStatus_none;
+        _isCameraOn     = NO;
+        _isMicOn        = NO;
         _videoScrType = QAVVIDEO_SRC_TYPE_CAMERA;
-        _isCameraOn   = NO;
-        _isMicOn      = NO;
-        _isEnterRoom  = NO;
-        _isLeaveRoom  = NO;
     }
     return self;
 }

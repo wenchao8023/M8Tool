@@ -9,7 +9,6 @@
 #import "M8CallVideoViewController.h"
 
 
-
 @interface M8CallVideoViewController ()
 
 @end
@@ -39,14 +38,13 @@
     baseConfig.callType = TILCALL_TYPE_VIDEO;
     baseConfig.isSponsor = YES;
     baseConfig.memberArray = self.membersArray;
-    baseConfig.heartBeatInterval = 0;
+    baseConfig.heartBeatInterval = 15;
     config.baseConfig = baseConfig;
     
     
     TILCallListener * listener = [[TILCallListener alloc] init];
     [listener setMemberEventListener:self.renderView];
     [listener setNotifListener:self.renderView];
-    [listener setCallStatusListener:self.renderView];
     
     config.callListener = listener;
     
@@ -58,10 +56,12 @@
     
     _call = [[TILMultiCall alloc] initWithConfig:config];
     
-    // 赋值给 renderView
-    self.renderView.call = _call;
-    
     [_call createRenderViewIn:self.renderView];
+    self.renderView.call = _call;
+    self.renderView.hostIdentify = [[ILiveLoginManager getInstance] getLoginId];
+    
+    
+    
     __weak typeof(self) ws = self;
     [_call makeCall:nil custom:nil result:^(TILCallError *err) {
         if(err){
@@ -71,8 +71,8 @@
         else{
             [ws addTextToView:@"呼叫成功"];
             
-//            [[ILiveRoomManager getInstance] setBeauty:5];
-//            [[ILiveRoomManager getInstance] setWhite:5];
+            [[ILiveRoomManager getInstance] setBeauty:3];
+            [[ILiveRoomManager getInstance] setWhite:3];
             
             [self.deviceView configButtonBackImgs];
         }

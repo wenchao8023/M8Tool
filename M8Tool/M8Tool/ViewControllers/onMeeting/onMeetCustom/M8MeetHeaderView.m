@@ -16,15 +16,10 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *enlargeButton;
 
-@property (weak, nonatomic) IBOutlet UILabel *topicLabel;
-@property (weak, nonatomic) IBOutlet UILabel *durationLabel;
+@property (weak, nonatomic) IBOutlet M8LiveLabel *topicLabel;
+@property (weak, nonatomic) IBOutlet M8LiveLabel *durationLabel;
 
 
-/**
- 这里的两个参数没有必要计算，就算是23：59：59，如果达到小时数的时候，就去掉秒数
- */
-//@property (weak, nonatomic) IBOutlet NSLayoutConstraint *layoutWidth_durationLabel;
-//@property (weak, nonatomic) IBOutlet NSLayoutConstraint *layoutSpace_topicRight;
 
 
 @end
@@ -35,9 +30,7 @@
     if (self = [super initWithFrame:frame]) {
         self = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil] firstObject];
         _myFrame = frame;
-        _isLarge = NO;
         
-        [self addObserver:self forKeyPath:@"isLarge" options:NSKeyValueObservingOptionNew context:nil];
     }
     return self;
 }
@@ -45,28 +38,31 @@
 - (void)drawRect:(CGRect)rect {
     // Drawing code
     self.frame = _myFrame;
+    
+    [self.topicLabel    configLiveText];
+    [self.durationLabel configLiveText];
+    
+//    self.topicLabel.shadowColor     = kLiveStrokeColor;
+//    self.topicLabel.shadowOffset    = kLiveShadowOffset;
+//    self.topicLabel.shadowBlur      = kLiveShadowBlur;
+//    self.topicLabel.strokeColor     = kLiveStrokeColor;
+//    self.topicLabel.strokeSize      = kLiveStrokeSize;
+//    
+//    self.durationLabel.shadowColor  = kLiveStrokeColor;
+//    self.durationLabel.shadowOffset = kLiveShadowOffset;
+//    self.durationLabel.shadowBlur   = kLiveShadowBlur;
+//    self.durationLabel.strokeColor  = kLiveStrokeColor;
+//    self.durationLabel.strokeSize   = kLiveStrokeSize;
+    
 }
-
 
 - (IBAction)enlargeAction:(id)sender {
-    _isLarge = !_isLarge;
     
+    [self headerActionInfoValue:@"缩小视图" key:kHeaderAction];
     
-    /**
-     将头部视图的点击事件传递出去
-
-     @param _isLarge 是否为放大
-     @return
-     */
-    [self headerActionInfoValue:@(_isLarge) key:kHeaderAction];
 }
 
 
-- (void)addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context {
-    if ([keyPath isEqualToString:@"isLarge"]) {
-        [self.enlargeButton setBackgroundImage:kGetImage(_isLarge ? @"放大的" : @"缩小的") forState:UIControlStateNormal];
-    }
-}
 
 #pragma mark - MeetHeaderDelegate:
 - (void)headerActionInfoValue:(id)value key:(NSString *)key {

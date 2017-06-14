@@ -81,6 +81,13 @@
 
 
 #pragma mark - views delegate
+#pragma mark -- MeetHeaderDelegate
+- (void)MeetHeaderActionInfo:(NSDictionary *)actionInfo {
+    
+    [self addTextToView:[actionInfo allValues][0]];
+}
+
+
 #pragma mark -- MeetDeviceDelegate
 - (void)MeetDeviceActionInfo:(NSDictionary *)actionInfo {
     
@@ -93,13 +100,6 @@
     [self addTextToView:[actionInfo allValues][0]];
 }
 
-#pragma mark -- MeetHeaderDelegate
-- (void)MeetHeaderActionInfo:(NSDictionary *)actionInfo {
-    
-    NSNumber *boolNum = [actionInfo allValues][0];
-    
-    [self addTextToView:([boolNum boolValue] ? @"放大" : @"缩小")];
-}
 
 #pragma mark - actions
 - (void)addTextToView:(NSString *)newText {

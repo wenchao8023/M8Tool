@@ -156,6 +156,17 @@
 		9497DF3D1ECA966A009C35CB /* MeetingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9497DF351ECA966A009C35CB /* MeetingView.xib */; };
 		9497DF491ECA9702009C35CB /* UserSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9497DF481ECA9702009C35CB /* UserSettingViewController.m */; };
 		9497DF511ECA98EA009C35CB /* UserSettingTabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9497DF501ECA98EA009C35CB /* UserSettingTabelView.m */; };
+		94A127EA1EF0D97800ED2703 /* M8LiveLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A127E91EF0D97800ED2703 /* M8LiveLabel.m */; };
+		94A127ED1EF10A5300ED2703 /* M8MeetRenderModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A127EC1EF10A5300ED2703 /* M8MeetRenderModelManager.m */; };
+		94A127F91EF13ECA00ED2703 /* liveAudio_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A127EF1EF13ECA00ED2703 /* liveAudio_off.png */; };
+		94A127FA1EF13ECA00ED2703 /* liveAudio_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A127F01EF13ECA00ED2703 /* liveAudio_off@2x.png */; };
+		94A127FB1EF13ECA00ED2703 /* liveAudio_off@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A127F11EF13ECA00ED2703 /* liveAudio_off@3x.png */; };
+		94A127FC1EF13ECA00ED2703 /* liveAudio_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A127F21EF13ECA00ED2703 /* liveAudio_on.png */; };
+		94A127FD1EF13ECA00ED2703 /* liveAudio_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A127F31EF13ECA00ED2703 /* liveAudio_on@2x.png */; };
+		94A127FE1EF13ECA00ED2703 /* liveAudio_on@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A127F41EF13ECA00ED2703 /* liveAudio_on@3x.png */; };
+		94A127FF1EF13ECA00ED2703 /* liveCloseMic.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A127F61EF13ECA00ED2703 /* liveCloseMic.png */; };
+		94A128001EF13ECA00ED2703 /* liveCloseMic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A127F71EF13ECA00ED2703 /* liveCloseMic@2x.png */; };
+		94A128011EF13ECA00ED2703 /* liveCloseMic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A127F81EF13ECA00ED2703 /* liveCloseMic@3x.png */; };
 		94A502871E95F12400F675B2 /* libCOSClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A502861E95F12400F675B2 /* libCOSClient.a */; };
 		94A851C11EE2BD8B00204B48 /* MeetingAgendaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94A851C01EE2BD8B00204B48 /* MeetingAgendaCell.xib */; };
 		94A851C31EE2C18600204B48 /* UsrCardViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 940DE9B41ED854D3006F061A /* UsrCardViewCell.xib */; };
@@ -547,6 +558,19 @@
 		9497DF481ECA9702009C35CB /* UserSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettingViewController.m; sourceTree = "<group>"; };
 		9497DF4F1ECA98EA009C35CB /* UserSettingTabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettingTabelView.h; sourceTree = "<group>"; };
 		9497DF501ECA98EA009C35CB /* UserSettingTabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettingTabelView.m; sourceTree = "<group>"; };
+		94A127E81EF0D97800ED2703 /* M8LiveLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LiveLabel.h; sourceTree = "<group>"; };
+		94A127E91EF0D97800ED2703 /* M8LiveLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LiveLabel.m; sourceTree = "<group>"; };
+		94A127EB1EF10A5300ED2703 /* M8MeetRenderModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8MeetRenderModelManager.h; sourceTree = "<group>"; };
+		94A127EC1EF10A5300ED2703 /* M8MeetRenderModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8MeetRenderModelManager.m; sourceTree = "<group>"; };
+		94A127EF1EF13ECA00ED2703 /* liveAudio_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = liveAudio_off.png; sourceTree = "<group>"; };
+		94A127F01EF13ECA00ED2703 /* liveAudio_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liveAudio_off@2x.png"; sourceTree = "<group>"; };
+		94A127F11EF13ECA00ED2703 /* liveAudio_off@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liveAudio_off@3x.png"; sourceTree = "<group>"; };
+		94A127F21EF13ECA00ED2703 /* liveAudio_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = liveAudio_on.png; sourceTree = "<group>"; };
+		94A127F31EF13ECA00ED2703 /* liveAudio_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liveAudio_on@2x.png"; sourceTree = "<group>"; };
+		94A127F41EF13ECA00ED2703 /* liveAudio_on@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liveAudio_on@3x.png"; sourceTree = "<group>"; };
+		94A127F61EF13ECA00ED2703 /* liveCloseMic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = liveCloseMic.png; sourceTree = "<group>"; };
+		94A127F71EF13ECA00ED2703 /* liveCloseMic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liveCloseMic@2x.png"; sourceTree = "<group>"; };
+		94A127F81EF13ECA00ED2703 /* liveCloseMic@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liveCloseMic@3x.png"; sourceTree = "<group>"; };
 		94A5027A1E95EB9C00F675B2 /* ConstHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstHeader.h; sourceTree = "<group>"; };
 		94A502841E95F12400F675B2 /* COSClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COSClient.h; sourceTree = "<group>"; };
 		94A502851E95F12400F675B2 /* COSTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COSTask.h; sourceTree = "<group>"; };
@@ -1450,6 +1474,29 @@
 			path = UserViews;
 			sourceTree = "<group>";
 		};
+		94A127EE1EF13ECA00ED2703 /* liveAudio */ = {
+			isa = PBXGroup;
+			children = (
+				94A127EF1EF13ECA00ED2703 /* liveAudio_off.png */,
+				94A127F01EF13ECA00ED2703 /* liveAudio_off@2x.png */,
+				94A127F11EF13ECA00ED2703 /* liveAudio_off@3x.png */,
+				94A127F21EF13ECA00ED2703 /* liveAudio_on.png */,
+				94A127F31EF13ECA00ED2703 /* liveAudio_on@2x.png */,
+				94A127F41EF13ECA00ED2703 /* liveAudio_on@3x.png */,
+			);
+			path = liveAudio;
+			sourceTree = "<group>";
+		};
+		94A127F51EF13ECA00ED2703 /* liveCloseMic */ = {
+			isa = PBXGroup;
+			children = (
+				94A127F61EF13ECA00ED2703 /* liveCloseMic.png */,
+				94A127F71EF13ECA00ED2703 /* liveCloseMic@2x.png */,
+				94A127F81EF13ECA00ED2703 /* liveCloseMic@3x.png */,
+			);
+			path = liveCloseMic;
+			sourceTree = "<group>";
+		};
 		94A502831E95F12400F675B2 /* COS_SDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -1580,6 +1627,8 @@
 		94BACD581EEE2CB30017FFDE /* liveViewsImg */ = {
 			isa = PBXGroup;
 			children = (
+				94A127EE1EF13ECA00ED2703 /* liveAudio */,
+				94A127F51EF13ECA00ED2703 /* liveCloseMic */,
 				94A987E81EF008500080BEF2 /* liveEnlarge */,
 				94A987EC1EF008500080BEF2 /* liveInvite */,
 				94A987F01EF008500080BEF2 /* liveRemove */,
@@ -1723,6 +1772,8 @@
 			children = (
 				94BACDC91EEE62C30017FFDE /* M8CallBaseViewController.h */,
 				94BACDCA1EEE62C30017FFDE /* M8CallBaseViewController.m */,
+				94A127E81EF0D97800ED2703 /* M8LiveLabel.h */,
+				94A127E91EF0D97800ED2703 /* M8LiveLabel.m */,
 				94BACE0F1EEE63CF0017FFDE /* headerView */,
 				94BACE0E1EEE63B70017FFDE /* renderView */,
 				94BACE101EEE63E90017FFDE /* deviceView */,
@@ -1765,6 +1816,8 @@
 				94BACDD61EEE62C30017FFDE /* M8MeetRenderCell.xib */,
 				94BACDD71EEE62C30017FFDE /* M8MeetRenderModel.h */,
 				94BACDD81EEE62C30017FFDE /* M8MeetRenderModel.m */,
+				94A127EB1EF10A5300ED2703 /* M8MeetRenderModelManager.h */,
+				94A127EC1EF10A5300ED2703 /* M8MeetRenderModelManager.m */,
 				94BACE221EEE673A0017FFDE /* onCall */,
 				94BACE211EEE672B0017FFDE /* onLive */,
 			);
@@ -2074,6 +2127,7 @@
 				94A987F41EF008500080BEF2 /* liveEnlarge.png in Resources */,
 				94BACD871EEE2CB30017FFDE /* liveMic_off.png in Resources */,
 				943A09051EDEDF92003CEA27 /* btnImg_meetingCollect.png in Resources */,
+				94A128011EF13ECA00ED2703 /* liveCloseMic@3x.png in Resources */,
 				943A09061EDEDF92003CEA27 /* btnImg_meetingNote.png in Resources */,
 				94A987F81EF008500080BEF2 /* liveInvite@2x.png in Resources */,
 				943A09071EDEDF92003CEA27 /* btnImg_meetingOrder.png in Resources */,
@@ -2085,6 +2139,7 @@
 				943A08F61EDED9F2003CEA27 /* QAVEffectRes.bundle in Resources */,
 				944AF2181E948DC10044B44C /* README.txt in Resources */,
 				942BCB201EC1C4A0000F9911 /* DroidSansFallback.ttf in Resources */,
+				94A127FC1EF13ECA00ED2703 /* liveAudio_on.png in Resources */,
 				94D0A10E1EE6AC67009399C6 /* userCard.png in Resources */,
 				943A09041EDEDF92003CEA27 /* btnImg_liveMeeting.png in Resources */,
 				94D0A1101EE6AC67009399C6 /* userOwnCony.png in Resources */,
@@ -2102,6 +2157,7 @@
 				94A851C31EE2C18600204B48 /* UsrCardViewCell.xib in Resources */,
 				94BACD8D1EEE2CB30017FFDE /* liveNote.png in Resources */,
 				94BACD861EEE2CB30017FFDE /* liveHangup@3x.png in Resources */,
+				94A128001EF13ECA00ED2703 /* liveCloseMic@2x.png in Resources */,
 				94BACE201EEE66D20017FFDE /* M8CallRenderView.xib in Resources */,
 				946753C81EBC16D500653A2C /* LaunchScreen.storyboard in Resources */,
 				944AF20A1E948DC10044B44C /* ShareSDKConfigFile.bundle in Resources */,
@@ -2124,6 +2180,7 @@
 				94B3C23A1EE793AE00244BC4 /* 木纹@2x.png in Resources */,
 				9497DF3D1ECA966A009C35CB /* MeetingView.xib in Resources */,
 				94C9B8381ECD688400F42654 /* MeetingLuanchTableViewCell.xib in Resources */,
+				94A127F91EF13ECA00ED2703 /* liveAudio_off.png in Resources */,
 				94BACD941EEE2CB30017FFDE /* liveReceiver_on@2x.png in Resources */,
 				9497DF3A1ECA966A009C35CB /* MeetingButtonsCell.xib in Resources */,
 				94BACE1E1EEE66D20017FFDE /* M8CallNoteView.xib in Resources */,
@@ -2135,10 +2192,12 @@
 				94B3C2341EE793AE00244BC4 /* 木纹preview.png in Resources */,
 				94B3C2381EE793AE00244BC4 /* 灰蓝preview.png in Resources */,
 				94B3C2371EE793AE00244BC4 /* 灰白preview.png in Resources */,
+				94A127FE1EF13ECA00ED2703 /* liveAudio_on@3x.png in Resources */,
 				94B3C2461EE793AE00244BC4 /* 灰蓝@2x.png in Resources */,
 				94B3C23F1EE793AE00244BC4 /* 淡青.png in Resources */,
 				944AF21A1E948DC10044B44C /* ShareSDK.bundle in Resources */,
 				94B3C2391EE793AE00244BC4 /* 木纹.png in Resources */,
+				94A127FD1EF13ECA00ED2703 /* liveAudio_on@2x.png in Resources */,
 				94C9B8401ECDA59000F42654 /* MeetingMembersCell.xib in Resources */,
 				94A987F51EF008500080BEF2 /* liveEnlarge@2x.png in Resources */,
 				94B3C2451EE793AE00244BC4 /* 灰蓝.png in Resources */,
@@ -2150,12 +2209,15 @@
 				943A08F51EDED9F2003CEA27 /* PE.dat in Resources */,
 				94B3C23C1EE793AE00244BC4 /* 栅格红.png in Resources */,
 				94B3C2441EE793AE00244BC4 /* 灰白@3x.png in Resources */,
+				94A127FB1EF13ECA00ED2703 /* liveAudio_off@3x.png in Resources */,
+				94A127FA1EF13ECA00ED2703 /* liveAudio_off@2x.png in Resources */,
 				94B3C2361EE793AE00244BC4 /* 淡青preview.png in Resources */,
 				94BACD801EEE2CB30017FFDE /* liveCamera_off@3x.png in Resources */,
 				94BACD931EEE2CB30017FFDE /* liveReceiver_on.png in Resources */,
 				94BACDEE1EEE62C30017FFDE /* M8MeetDeviceView.xib in Resources */,
 				94A987F91EF008500080BEF2 /* liveInvite@3x.png in Resources */,
 				94D0A1121EE6AC67009399C6 /* userSwitchCony.png in Resources */,
+				94A127FF1EF13ECA00ED2703 /* liveCloseMic.png in Resources */,
 				948E04621EE6421B0075903B /* UserTableViewCell.xib in Resources */,
 				94A851C11EE2BD8B00204B48 /* MeetingAgendaCell.xib in Resources */,
 				943A08F21EDED9F2003CEA27 /* DecoRes.bundle in Resources */,
@@ -2237,6 +2299,7 @@
 				94975C211ED2951F00EAB395 /* UserContactViewController.m in Sources */,
 				94D0A1051EE68C00009399C6 /* ModifyViewController.m in Sources */,
 				94B3C2661EC5C6C7003ADF5F /* RecordDetailViewManager.m in Sources */,
+				94A127EA1EF0D97800ED2703 /* M8LiveLabel.m in Sources */,
 				94BACDE81EEE62C30017FFDE /* M8LiveJoinViewController.m in Sources */,
 				94BACDED1EEE62C30017FFDE /* M8MeetDeviceView.m in Sources */,
 				94E18D111EC47C0300132FB2 /* RecordViewController.m in Sources */,
@@ -2276,6 +2339,7 @@
 				94BACDF51EEE62C30017FFDE /* M8MeetRenderModel.m in Sources */,
 				943A08701EDEBADE003CEA27 /* WebModels.m in Sources */,
 				94B3C24A1EE7C99C00244BC4 /* UserHeadIconViewController.m in Sources */,
+				94A127ED1EF10A5300ED2703 /* M8MeetRenderModelManager.m in Sources */,
 				94BACDF11EEE62C30017FFDE /* M8LiveNoteView.m in Sources */,
 				9497DF3B1ECA966A009C35CB /* MeetingButtonsCollection.m in Sources */,
 				944AF3091E9494C00044B44C /* AFNetworkReachabilityManager.m in Sources */,

@@ -20,13 +20,16 @@ static NSString * _Nonnull kCallText   = @"kCallText";
 @end
 
 
-@interface M8CallRenderView : UIView<TILCallMemberEventListener, TILCallNotificationListener, TILCallStatusListener>
+@interface M8CallRenderView : UIView<TILCallMemberEventListener, TILCallNotificationListener>
+
+
 
 
 /**
  会议发起人
  */
-@property (nonatomic, copy, nullable) NSString *host;
+@property (nonatomic, copy, nonnull) NSString *hostIdentify;
+
 
 
 /**
@@ -38,5 +41,7 @@ static NSString * _Nonnull kCallText   = @"kCallText";
 - (void)addTextToView:(NSString *_Nullable)newText;
 
 @property (nonatomic, weak) id _Nullable WCDelegate;
+
+
 
 @end

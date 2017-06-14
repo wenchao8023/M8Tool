@@ -39,6 +39,12 @@
 #define kAppSmallFontSize   (iPhone5SE ? 11 : (iPhone6_6s ? 12 : 13))
 
 
+// font styles argu
+#define kLiveStrokeColor            WCBlack
+#define kLiveStrokeSize             0.5
+#define kLiveShadowOffset           CGSizeMake(0.0, 1)
+#define kLiveShadowBlur             3
+
 //font name defalut is Heiti SC
 #define kFontNameDroidSansFallback      @"DroidSansFallback"
 #define kFontNameSTHeiti                @"STHeiti"

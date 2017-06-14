@@ -23,13 +23,11 @@ static NSString * _Nonnull kHeaderText   = @"kHeaderText";
 /**
  头部标题视图
  
-    * 整体界面缩放
+    * 整体界面缩放 -- 点击之后会缩放到一个小窗口事件，回到上一个界面
     * 会议主题
     * 会议时长
  */
 @interface M8MeetHeaderView : UIView
-
-@property (nonatomic, assign) BOOL isLarge;
 
 @property (nonatomic, weak) id _Nullable WCDelegate;
 

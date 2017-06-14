@@ -49,8 +49,7 @@
 #define WCTabbarSelectedColor   [UIColor colorWithRed:0.07 green:0.45 blue:0.43 alpha:1]    // 底部 tabBar 选中文字颜色
 #define WCTabbarNormalColor     WCBlack                                                     // 底部 tabBar 未选中文字颜色
 
-#define WCStrokeColor           WCBlack
-#define WCStrokeSize            0.5
+
 
 
 

@@ -8,9 +8,10 @@
 
 #import "M8LiveRenderView.h"
 #import "M8MeetRenderCell.h"
+#import "M8MeetRenderModelManager.h"
 
 
-@interface M8LiveRenderView ()<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface M8LiveRenderView ()<UICollectionViewDelegate, UICollectionViewDataSource, RenderModelManagerDelegate>
 {
     CGRect _myFrame;
 }
@@ -21,8 +22,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *inviteButton;
 @property (weak, nonatomic) IBOutlet UIButton *removeButton;
 
-@property (nonatomic, strong) NSMutableArray *membersArray;
+@property (nonatomic, strong) NSArray *membersArray;
 
+@property (nonatomic, strong) M8MeetRenderModelManager *modelManager;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *layoutHeight_render;
 
@@ -31,12 +33,12 @@
 
 @implementation M8LiveRenderView
 
-- (NSMutableArray *)membersArray {
-    if (!_membersArray) {
-        _membersArray = [NSMutableArray arrayWithCapacity:0];
-    }
-    return _membersArray;
-}
+//- (NSMutableArray *)membersArray {
+//    if (!_membersArray) {
+//        _membersArray = [NSMutableArray arrayWithCapacity:0];
+//    }
+//    return _membersArray;
+//}
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -128,6 +130,10 @@
     }
 }
 
+#pragma mark -- RenderModelManagerDelegate
+- (void)renderModelManager:(M8MeetRenderModelManager *)modelManager currentModel:(M8MeetRenderModel *)currentModel membersArray:(NSArray *)membersArray {
+    self.membersArray = membersArray;
+}
 
 
 #pragma mark - 事件回调
@@ -152,7 +158,7 @@
         {
             for (NSString *user in users) {
                 if(![user isEqualToString:_host]){  // 刚进房间，只保存 成员ID
-                    [self addModelWithID:user];
+//                    [self addModelWithID:user];
                 }
                 else{   // 主播
                     
@@ -169,9 +175,9 @@
             for (NSString *user in users) {
                 if(![user isEqualToString:_host]) {
 //                    [self removeModelWithID:user];
-                    M8MeetRenderModel *model = [self getModelWithID:user];
-                    model.isLeaveRoom = YES;
-                    [self updateMemberArrayWithModel:model];
+//                    M8MeetRenderModel *model = [self getModelWithID:user];
+//                    model.isLeaveRoom = YES;
+//                    [self updateMemberArrayWithModel:model];
                 }
                 else {  // 主播退房
                     
@@ -186,13 +192,13 @@
         case ILVLIVE_AVEVENT_CAMERA_ON:
         {
             for (NSString *user in users) {
-                [self addModelWithID:user];
+//                [self addModelWithID:user];
                 
                 if(![user isEqualToString:_host]) {
-                    M8MeetRenderModel *model = [self getModelWithID:user];
-                    model.isCameraOn = YES;
-                    model.videoScrType = QAVVIDEO_SRC_TYPE_CAMERA;
-                    [self updateMemberArrayWithModel:model];
+//                    M8MeetRenderModel *model = [self getModelWithID:user];
+//                    model.isCameraOn = YES;
+//                    model.videoScrType = QAVVIDEO_SRC_TYPE_CAMERA;
+//                    [self updateMemberArrayWithModel:model];
                 }
                 else {
 
@@ -209,10 +215,10 @@
         {
             for (NSString *user in users) {
                 if(![user isEqualToString:_host]){
-                    M8MeetRenderModel *model = [self getModelWithID:user];
-                    model.isCameraOn = NO;
-                    model.videoScrType = QAVVIDEO_SRC_TYPE_NONE;
-                    [self updateMemberArrayWithModel:model];
+//                    M8MeetRenderModel *model = [self getModelWithID:user];
+//                    model.isCameraOn = NO;
+//                    model.videoScrType = QAVVIDEO_SRC_TYPE_NONE;
+//                    [self updateMemberArrayWithModel:model];
                 }
                 else{
                     
@@ -265,10 +271,10 @@
         {
             for (NSString *user in users) {
                 if(![user isEqualToString:_host]){
-                    M8MeetRenderModel *model = [self getModelWithID:user];
-                    model.isMicOn = YES;
-                    model.videoScrType = QAVVIDEO_SRC_TYPE_MEDIA;
-                    [self updateMemberArrayWithModel:model];
+//                    M8MeetRenderModel *model = [self getModelWithID:user];
+//                    model.isMicOn = YES;
+//                    model.videoScrType = QAVVIDEO_SRC_TYPE_MEDIA;
+//                    [self updateMemberArrayWithModel:model];
                 }
                 else {
                     
@@ -284,10 +290,10 @@
         {
             for (NSString *user in users) {
                 if(![user isEqualToString:_host]){
-                    M8MeetRenderModel *model = [self getModelWithID:user];
-                    model.isMicOn = NO;
-                    model.videoScrType = QAVVIDEO_SRC_TYPE_NONE;
-                    [self updateMemberArrayWithModel:model];
+//                    M8MeetRenderModel *model = [self getModelWithID:user];
+//                    model.isMicOn = NO;
+//                    model.videoScrType = QAVVIDEO_SRC_TYPE_NONE;
+//                    [self updateMemberArrayWithModel:model];
                 }
                 else {
                     
@@ -323,77 +329,77 @@
 }
 
 
-#pragma mark -- 处理 Model
-
-/**
- 根据<!--成员ID--!>获取<!--数组下标--!>
-
- @param identify 成员ID
- @return 数组下标
- */
-- (NSInteger)getIndexWithID:(NSString *)identify {
-    return [self.membersArray indexOfObject:[self getModelWithID:identify]];
-}
-
-
-/**
- 根据<!--成员ID--!>获取<!--数据模型--!>
-
- @param identify 成员ID
- @return 数据模型
- */
-- (M8MeetRenderModel *)getModelWithID:(NSString *)identify {
-    for (M8MeetRenderModel *model in self.membersArray) {
-        if ([model.identify isEqualToString:identify]) {
-            return model;
-        }
-    }
-    NSAssert(1, @"此时房间没成员");
-    return nil;
-}
-
-/**
- 根据<!--成员ID--!>判断该成员是否添加进了数组
-
- @param identify 成员ID
- @return 是否存在
- */
-- (BOOL)isExistInMemberArray:(NSString *)identify {
-    for (M8MeetRenderModel *model in self.membersArray) {
-        if ([model.identify isEqualToString:identify]) {
-            return YES;
-        }
-    }
-    return NO;
-}
-
-
-/**
- 成员刚进入房间的时候添加
-
- @param identify 添加成员
- */
-- (void)addModelWithID:(NSString *)identify {
-    if (![self isExistInMemberArray:identify]) {
-        M8MeetRenderModel *model = [[M8MeetRenderModel alloc] init];
-        model.identify = identify;
-        model.isEnterRoom = YES;
-        if ([identify isEqualToString:_host]) {
-            
-        }
-        [self.membersArray addObject:model];
-    }
-    
-}
-
-
-/**
- 更新已添加成员状态
-
- @param model 更新后的Model
- */
-- (void)updateMemberArrayWithModel:(M8MeetRenderModel *)model {
-    [self.membersArray replaceObjectAtIndex:[self getIndexWithID:model.identify] withObject:model];
-}
+//#pragma mark -- 处理 Model
+//
+///**
+// 根据<!--成员ID--!>获取<!--数组下标--!>
+//
+// @param identify 成员ID
+// @return 数组下标
+// */
+//- (NSInteger)getIndexWithID:(NSString *)identify {
+//    return [self.membersArray indexOfObject:[self getModelWithID:identify]];
+//}
+//
+//
+///**
+// 根据<!--成员ID--!>获取<!--数据模型--!>
+//
+// @param identify 成员ID
+// @return 数据模型
+// */
+//- (M8MeetRenderModel *)getModelWithID:(NSString *)identify {
+//    for (M8MeetRenderModel *model in self.membersArray) {
+//        if ([model.identify isEqualToString:identify]) {
+//            return model;
+//        }
+//    }
+//    NSAssert(1, @"此时房间没成员");
+//    return nil;
+//}
+//
+///**
+// 根据<!--成员ID--!>判断该成员是否添加进了数组
+//
+// @param identify 成员ID
+// @return 是否存在
+// */
+//- (BOOL)isExistInMemberArray:(NSString *)identify {
+//    for (M8MeetRenderModel *model in self.membersArray) {
+//        if ([model.identify isEqualToString:identify]) {
+//            return YES;
+//        }
+//    }
+//    return NO;
+//}
+//
+//
+///**
+// 成员刚进入房间的时候添加
+//
+// @param identify 添加成员
+// */
+//- (void)addModelWithID:(NSString *)identify {
+//    if (![self isExistInMemberArray:identify]) {
+//        M8MeetRenderModel *model = [[M8MeetRenderModel alloc] init];
+//        model.identify = identify;
+//        model.isEnterRoom = YES;
+//        if ([identify isEqualToString:_host]) {
+//            
+//        }
+//        [self.membersArray addObject:model];
+//    }
+//    
+//}
+//
+//
+///**
+// 更新已添加成员状态
+//
+// @param model 更新后的Model
+// */
+//- (void)updateMemberArrayWithModel:(M8MeetRenderModel *)model {
+//    [self.membersArray replaceObjectAtIndex:[self getIndexWithID:model.identify] withObject:model];
+//}
 
 @end

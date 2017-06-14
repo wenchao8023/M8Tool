@@ -29,34 +29,47 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <blurEffect style="dark"/>
                     </visualEffectView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UhK-p3-vvX">
-                        <rect key="frame" x="0.0" y="153" width="155" height="0.0"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UhK-p3-vvX" customClass="M8LiveLabel">
+                        <rect key="frame" x="0.0" y="138" width="155" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="5q9-HG-1Lk"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MN9-nZ-SO2">
                         <rect key="frame" x="39" y="37.5" width="77.5" height="77.5"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="MN9-nZ-SO2" secondAttribute="height" id="iSp-xK-efc"/>
                         </constraints>
                     </imageView>
-                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KkC-lS-ha5">
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="liveCloseMic.png" translatesAutoresizingMaskIntoConstraints="NO" id="KkC-lS-ha5">
                         <rect key="frame" x="135" y="0.0" width="20" height="20"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="ger-5M-Qbj"/>
                             <constraint firstAttribute="width" constant="20" id="vvv-B6-OBY"/>
                         </constraints>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Py4-h6-Teo" customClass="M8LiveLabel">
+                        <rect key="frame" x="38.5" y="38" width="77.5" height="77.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Py4-h6-Teo" secondAttribute="height" id="6tu-am-dWt"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="MN9-nZ-SO2" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" multiplier="0.5" id="51k-Va-dGC"/>
-                <constraint firstItem="UhK-p3-vvX" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="6W4-xl-Cbn"/>
+                <constraint firstItem="Py4-h6-Teo" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" multiplier="0.5" id="CxH-ZR-FkG"/>
                 <constraint firstItem="wxq-fT-09L" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Fv3-fg-GYN"/>
+                <constraint firstItem="Py4-h6-Teo" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="NDe-GE-ea6"/>
                 <constraint firstAttribute="trailing" secondItem="wxq-fT-09L" secondAttribute="trailing" id="QMn-ss-9TN"/>
                 <constraint firstItem="UhK-p3-vvX" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ay9-S2-giJ"/>
                 <constraint firstAttribute="bottom" secondItem="UhK-p3-vvX" secondAttribute="bottom" id="dMg-8p-nH7"/>
@@ -67,15 +80,20 @@
                 <constraint firstItem="MN9-nZ-SO2" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="lhO-Rg-Qc4"/>
                 <constraint firstAttribute="trailing" secondItem="UhK-p3-vvX" secondAttribute="trailing" id="qPk-W9-Cy1"/>
                 <constraint firstAttribute="trailing" secondItem="KkC-lS-ha5" secondAttribute="trailing" id="wim-Kq-ewU"/>
+                <constraint firstItem="Py4-h6-Teo" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="yIy-2l-j1T"/>
             </constraints>
             <size key="customSize" width="155" height="153"/>
             <connections>
                 <outlet property="effectView" destination="wxq-fT-09L" id="xX4-Yq-big"/>
                 <outlet property="identifyLabel" destination="UhK-p3-vvX" id="6K3-0i-VRY"/>
+                <outlet property="infoLabel" destination="Py4-h6-Teo" id="WS3-oT-qqx"/>
                 <outlet property="onCloseMicImg" destination="KkC-lS-ha5" id="Ryh-Es-fH4"/>
                 <outlet property="onVioceImg" destination="MN9-nZ-SO2" id="F1a-ch-agh"/>
             </connections>
             <point key="canvasLocation" x="-20.5" y="17.5"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="liveCloseMic.png" width="20" height="20"/>
+    </resources>
 </document>

@@ -54,6 +54,7 @@
     
     [_call createRenderViewIn:self.renderView];
     self.renderView.call = _call;
+    self.renderView.hostIdentify = _invitation.sponsorId;
     
     // 接受邀请
     WCWeakSelf(self);
@@ -65,7 +66,24 @@
         else{
             
             [weakself addTextToView:@"接受成功"];
-            [self.deviceView configButtonBackImgs];
+            
+//            TILCallNotification *acceptSuccNotify = [TILCallNotification new];
+//            acceptSuccNotify.notifId = TILCALL_NOTIF_ACCEPTED;
+//            acceptSuccNotify.sender  = [[ILiveLoginManager getInstance] getLoginId];
+//            acceptSuccNotify.targets = weakself.invitation.memberArray;
+//            [weakself._call postNotification:acceptSuccNotify result:^(TILCallError *err) {
+//                if (err) {
+//                    [weakself addTextToView:[NSString stringWithFormat:@"domain: %@, code: %d, msg: %@", err.domain, err.code, err.errMsg]];
+//                }
+//                else {
+//                    [weakself addTextToView:@"发送通知成功"];
+//                }
+//            }];
+            
+            [weakself.deviceView configButtonBackImgs];
+            
+            [[ILiveRoomManager getInstance] setBeauty:3];
+            [[ILiveRoomManager getInstance] setWhite:3];
         }
     }];
 }
@@ -74,16 +92,13 @@
 #pragma mark -- MeetDeviceDelegate
 - (void)MeetDeviceActionInfo:(NSDictionary *)actionInfo {
     
-    [super CallRenderActionInfo:actionInfo];
+    [super MeetDeviceActionInfo:actionInfo];
     
     NSString *infoKey = [[actionInfo allKeys] firstObject];
     if ([infoKey isEqualToString:kDeviceAction]) {
         if ([[actionInfo objectForKey:infoKey] isEqualToString:@"onHangupAction"]) {
             [_call hangup:nil];
             [self dismissViewControllerAnimated:YES completion:nil];
-        }
-        else {
-            [self addTextToView:actionInfo[infoKey]];
         }
     }
     else {
