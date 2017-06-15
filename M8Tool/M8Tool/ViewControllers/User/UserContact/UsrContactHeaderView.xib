@@ -53,6 +53,7 @@
                 <outlet property="membersLabel" destination="s4S-am-Ryd" id="Yo2-14-dPy"/>
                 <outlet property="titleLabel" destination="umw-9x-lDm" id="LPv-WE-37r"/>
             </connections>
+            <point key="canvasLocation" x="-51" y="104"/>
         </view>
     </objects>
 </document>

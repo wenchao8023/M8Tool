@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "M8MeetHeaderView.h"
 #import "M8MeetDeviceView.h"
-
+#import "M8CallAudioDevice.h"
 #import "M8CallRenderView.h"
 
 
@@ -19,7 +19,7 @@
  添加头部 和 设备界面
  他们的代理需要在子类中对应自己的逻辑自行实现
  */
-@interface M8CallBaseViewController : UIViewController<MeetHeaderDelegate, MeetDeviceDelegate, CallRenderDelegate>
+@interface M8CallBaseViewController : UIViewController<MeetHeaderDelegate, MeetDeviceDelegate, CallRenderDelegate, CallAudioDeviceDelegate>
 
 /**
  背景图片
@@ -28,7 +28,7 @@
 
 @property (nonatomic, strong, nonnull) M8MeetHeaderView *headerView;
 @property (nonatomic, strong, nonnull) M8MeetDeviceView *deviceView;
-
+@property (nonatomic, strong, nonnull) M8CallAudioDevice *audioDeviceView;
 @property (nonatomic, strong, nonnull) M8CallRenderView *renderView;
 
 @property (nonatomic, strong, nonnull) TILMultiCall *_call;

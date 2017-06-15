@@ -17,6 +17,7 @@
 
 @implementation M8CallVideoViewController
 @synthesize _call;
+@synthesize audioDeviceView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -60,8 +61,6 @@
     self.renderView.call = _call;
     self.renderView.hostIdentify = [[ILiveLoginManager getInstance] getLoginId];
     
-    
-    
     __weak typeof(self) ws = self;
     [_call makeCall:nil custom:nil result:^(TILCallError *err) {
         if(err){
@@ -71,51 +70,13 @@
         else{
             [ws addTextToView:@"呼叫成功"];
             
-            [[ILiveRoomManager getInstance] setBeauty:3];
-            [[ILiveRoomManager getInstance] setWhite:3];
+            [[ILiveRoomManager getInstance] setBeauty:2];
+            [[ILiveRoomManager getInstance] setWhite:2];
             
             [self.deviceView configButtonBackImgs];
         }
     }];
 }
-
-#pragma mark - views delegate
-#pragma mark -- MeetDeviceDelegate
-- (void)MeetDeviceActionInfo:(NSDictionary *)actionInfo {
-    
-    [super MeetDeviceActionInfo:actionInfo];
-    
-    NSString *infoKey = [[actionInfo allKeys] firstObject];
-    if ([infoKey isEqualToString:kDeviceAction]) {
-        if ([[actionInfo objectForKey:infoKey] isEqualToString:@"onHangupAction"]) {
-            [_call hangup:nil];
-            [self dismissViewControllerAnimated:YES completion:nil];
-        }
-    }
-    else {
-        
-    }
-}
-
-#pragma mark -- CallRenderDelegate
-- (void)CallRenderActionInfo:(NSDictionary *)actionInfo {
-    
-    [super CallRenderActionInfo:actionInfo];
-    
-    NSString *infoKey = [[actionInfo allKeys] firstObject];
-    NSString *infoValue = [actionInfo objectForKey:infoKey];
-    
-    if ([infoKey isEqualToString:kCallAction]) {
-        if ([infoValue isEqualToString:@"selfDismiss"]) {
-            [_call hangup:nil];
-            [self performSelector:NSSelectorFromString(infoValue) withObject:nil afterDelay:0];
-        }
-        else {
-            [self addTextToView:actionInfo[infoKey]];
-        }
-    }
-}
-
 
 
 @end

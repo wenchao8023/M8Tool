@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+
+@protocol UsrContactDelegate <NSObject>
+
+- (void)usrContactDidSelectContacts:(NSArray *_Nonnull)contacts;
+
+@end
+
+
 @interface UsrContactView : UITableView
+
+@property (nonatomic, weak) id _Nullable WCDelegate;
 
 @end

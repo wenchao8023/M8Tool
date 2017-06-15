@@ -26,6 +26,8 @@
 
 @property (nonatomic, copy, nullable) NSString *loginIdentify;
 
+@property (nonatomic, assign) TILCallType callType;
+
 @property (nonatomic, weak) id _Nullable WCDelegate;
 
 

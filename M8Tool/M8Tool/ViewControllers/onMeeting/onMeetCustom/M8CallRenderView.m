@@ -36,7 +36,7 @@
 
 @property (nonatomic, strong) NSArray *membersArray;
 
-
+@property (nonatomic, copy) NSString *loginIdentify;
 
 @end
 
@@ -54,12 +54,23 @@
 - (M8MeetRenderModelManager *)modelManager {
     if (!_modelManager) {
         M8MeetRenderModelManager *modelManager = [[M8MeetRenderModelManager  alloc] init];
-        modelManager.WCDelegate = self;
-        modelManager.hostIdentify = self.hostIdentify;
+        modelManager.WCDelegate     = self;
+        modelManager.hostIdentify   = self.hostIdentify;
+        modelManager.loginIdentify  = self.loginIdentify;
+        modelManager.callType       = [self.call getCallType];
         _modelManager = modelManager;
     }
     return _modelManager;
 }
+
+- (NSString *)loginIdentify {
+    if (!_loginIdentify) {
+        NSString *loginIdentify = [[ILiveLoginManager getInstance] getLoginId];
+        _loginIdentify = loginIdentify;
+    }
+    return _loginIdentify;
+}
+
 
 - (void)drawRect:(CGRect)rect {
     // Drawing code
@@ -97,7 +108,7 @@
 
 #pragma mark - Delegate
 #pragma mark -- MeetDeviceActionInfo:
-- (void)deviceActionInfoValue:(id)value key:(NSString *)key {
+- (void)callRenderActionInfoValue:(id)value key:(NSString *)key {
     NSDictionary *actionInfo = @{key : value};
     if ([self.WCDelegate respondsToSelector:@selector(CallRenderActionInfo:)]) {
         [self.WCDelegate CallRenderActionInfo:actionInfo];
@@ -133,24 +144,39 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (![self.modelManager onSelectItemAtIndexPath:indexPath]) {
-        [self addTextToView:@"没有成员开启摄像头"];
+    if ([self.call getCallType] == TILCALL_TYPE_VIDEO) {
+        if (![self.modelManager onSelectItemAtIndexPath:indexPath]) {
+            [self addTextToView:@"没有成员开启摄像头"];
+        }
+    }
+    else if ([self.call getCallType] == TILCALL_TYPE_AUDIO) {
+        [self addTextToView:@"此时在音频模式下，不支持背景视图观看"];
     }
 }
 
+/**
+ 建立通话成功
+ */
+- (void)onCallEstablish {
+    [self addTextToView:@"通话建立成功"];
+}
 
+/**
+ 通话结束
+ 
+ @param code 结束原因
+ */
+- (void)onCallEnd:(TILCallEndCode)code {
+    [self addTextToView:@"通话结束"];
+}
 
 #pragma mark -- 音视频事件回调
 - (void)onMemberAudioOn:(BOOL)isOn members:(NSArray *)members
 {
     for (TILCallMember *member in members) {
-
+        
         NSString *identify = member.identifier;
-
         [self.modelManager memberNotifyWithID:identify];
-        
-//        [self.modelManager memberReceiveWithID:identify];
-        
         [self.modelManager onMemberAudioOn:isOn WithID:identify];
     }
 }
@@ -160,11 +186,7 @@
     for (TILCallMember *member in members) {
 
         NSString *identify = member.identifier;
-        
         [self.modelManager memberNotifyWithID:identify];
-        
-//        [self.modelManager memberReceiveWithID:identify];
-        
         [self.modelManager onMemberCameraVideoOn:isOn WithID:identify];
         
         if (isOn) {
@@ -183,7 +205,6 @@
     NSInteger notifId = notify.notifId;
     NSString *sender = notify.sender;
     NSString *target = [notify.targets componentsJoinedByString:@";"];
-    NSString *myId = [[ILiveLoginManager getInstance] getLoginId];
     
     [self.modelManager memberNotifyWithID:sender];
     
@@ -192,9 +213,12 @@
             [self addTextToView:[NSString stringWithFormat:@"%@邀请%@通话",sender,target]];
             break;
         case TILCALL_NOTIF_ACCEPTED:
-        {
+        {   /*
+             * sender 不会是发起方
+             * sender 不会是 App登录用户 的接收方
+             */
             [self addTextToView:[NSString stringWithFormat:@"%@接受了%@的邀请",sender,target]];
-            
+            [self callRenderActionInfoValue:[NSString stringWithFormat:@"%d", (self.shouldHangup = YES)] key:kCallValue];
             [self.modelManager memberReceiveWithID:sender];
         }
             
@@ -202,14 +226,16 @@
         case TILCALL_NOTIF_CANCEL:
         {
             [self addTextToView:[NSString stringWithFormat:@"%@取消了对%@的邀请",sender,target]];
-            if([notify.targets containsObject:myId]){
+            if([notify.targets containsObject:self.loginIdentify]){
+                [self addTextToView:@"通话被取消"];
                 [self selfDismiss];
             }
+            
         }
             break;
         case TILCALL_NOTIF_TIMEOUT:
         {
-            if([sender isEqualToString:myId]){
+            if([sender isEqualToString:self.loginIdentify]) {
                 [self addTextToView:[NSString stringWithFormat:@"%@呼叫超时",sender]];
                 [self selfDismiss];
             }
@@ -240,12 +266,15 @@
             
             break;
         case TILCALL_NOTIF_HEARTBEAT:
+        {
             [self addTextToView:[NSString stringWithFormat:@"%@发来心跳",sender]];
+        }
+            
             break;
         case TILCALL_NOTIF_DISCONNECT:
         {
             [self addTextToView:[NSString stringWithFormat:@"%@失去连接",sender]];
-            if([sender isEqualToString:myId]){
+            if([sender isEqualToString:self.loginIdentify]){
                 [self selfDismiss];
             }
             else {
@@ -297,7 +326,7 @@
 }
 
 - (void)selfDismiss {
-    [self deviceActionInfoValue:@"selfDismiss" key:kCallAction];
+    [self callRenderActionInfoValue:@"selfDismiss" key:kCallAction];
 }
 
 - (IBAction)inviteAction:(id)sender {

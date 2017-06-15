@@ -142,6 +142,12 @@
 		946753DA1EBC1F3E00653A2C /* RegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946753D81EBC1F3E00653A2C /* RegistViewController.m */; };
 		946753E01EBC237F00653A2C /* WCUIKitControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 946753DF1EBC237F00653A2C /* WCUIKitControl.m */; };
 		946753E31EBC24A900653A2C /* AppDelegate+ControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946753E21EBC24A900653A2C /* AppDelegate+ControlViewController.m */; };
+		946F7E831EF2331A005E757A /* M8RecvChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946F7E811EF2331A005E757A /* M8RecvChildViewController.m */; };
+		946F7E841EF2331A005E757A /* M8RecvChildViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 946F7E821EF2331A005E757A /* M8RecvChildViewController.xib */; };
+		946F7E881EF271F8005E757A /* M8CallAudioDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 946F7E861EF271F8005E757A /* M8CallAudioDevice.m */; };
+		946F7E891EF271F8005E757A /* M8CallAudioDevice.xib in Resources */ = {isa = PBXBuildFile; fileRef = 946F7E871EF271F8005E757A /* M8CallAudioDevice.xib */; };
+		946F7E8C1EF279D3005E757A /* M8MakeCallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946F7E8B1EF279D3005E757A /* M8MakeCallViewController.m */; };
+		946F7E8F1EF27A89005E757A /* M8RecvCallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946F7E8E1EF27A89005E757A /* M8RecvCallViewController.m */; };
 		948E045D1EE641C30075903B /* UserTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 948E045C1EE641C30075903B /* UserTableView.m */; };
 		948E04611EE6421B0075903B /* UserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 948E045F1EE6421B0075903B /* UserTableViewCell.m */; };
 		948E04621EE6421B0075903B /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 948E04601EE6421B0075903B /* UserTableViewCell.xib */; };
@@ -243,10 +249,6 @@
 		94BACD991EEE2CB30017FFDE /* liveSwitchCamera.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BACD7B1EEE2CB30017FFDE /* liveSwitchCamera.png */; };
 		94BACD9A1EEE2CB30017FFDE /* liveSwitchCamera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BACD7C1EEE2CB30017FFDE /* liveSwitchCamera@2x.png */; };
 		94BACD9B1EEE2CB30017FFDE /* liveSwitchCamera@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BACD7D1EEE2CB30017FFDE /* liveSwitchCamera@3x.png */; };
-		94BACDDD1EEE62C30017FFDE /* M8CallAudioDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BACDAB1EEE62C30017FFDE /* M8CallAudioDevice.m */; };
-		94BACDDE1EEE62C30017FFDE /* M8CallAudioDevice.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94BACDAC1EEE62C30017FFDE /* M8CallAudioDevice.xib */; };
-		94BACDDF1EEE62C30017FFDE /* M8CallAudioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BACDAE1EEE62C30017FFDE /* M8CallAudioViewController.m */; };
-		94BACDE61EEE62C30017FFDE /* M8RecvAudioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BACDBD1EEE62C30017FFDE /* M8RecvAudioViewController.m */; };
 		94BACDE81EEE62C30017FFDE /* M8LiveJoinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BACDC31EEE62C30017FFDE /* M8LiveJoinViewController.m */; };
 		94BACDE91EEE62C30017FFDE /* M8LiveJoinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94BACDC41EEE62C30017FFDE /* M8LiveJoinViewController.xib */; };
 		94BACDEA1EEE62C30017FFDE /* M8LiveMeetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BACDC61EEE62C30017FFDE /* M8LiveMeetViewController.m */; };
@@ -262,8 +264,6 @@
 		94BACDF41EEE62C30017FFDE /* M8MeetRenderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94BACDD61EEE62C30017FFDE /* M8MeetRenderCell.xib */; };
 		94BACDF51EEE62C30017FFDE /* M8MeetRenderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BACDD81EEE62C30017FFDE /* M8MeetRenderModel.m */; };
 		94BACDFB1EEE63380017FFDE /* M8CallComingListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BACDFA1EEE63380017FFDE /* M8CallComingListener.m */; };
-		94BACDFF1EEE639B0017FFDE /* M8RecvVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BACDFE1EEE639B0017FFDE /* M8RecvVideoViewController.m */; };
-		94BACE0D1EEE63A10017FFDE /* M8CallVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BACE081EEE63A10017FFDE /* M8CallVideoViewController.m */; };
 		94BACE151EEE65520017FFDE /* M8LiveRenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BACE131EEE65520017FFDE /* M8LiveRenderView.m */; };
 		94BACE161EEE65520017FFDE /* M8LiveRenderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94BACE141EEE65520017FFDE /* M8LiveRenderView.xib */; };
 		94BACE1D1EEE66D20017FFDE /* M8CallNoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BACE181EEE66D20017FFDE /* M8CallNoteView.m */; };
@@ -533,6 +533,16 @@
 		946753DF1EBC237F00653A2C /* WCUIKitControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WCUIKitControl.m; path = ../WCUIKitControl.m; sourceTree = "<group>"; };
 		946753E11EBC24A900653A2C /* AppDelegate+ControlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+ControlViewController.h"; sourceTree = "<group>"; };
 		946753E21EBC24A900653A2C /* AppDelegate+ControlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+ControlViewController.m"; sourceTree = "<group>"; };
+		946F7E801EF2331A005E757A /* M8RecvChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8RecvChildViewController.h; sourceTree = "<group>"; };
+		946F7E811EF2331A005E757A /* M8RecvChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8RecvChildViewController.m; sourceTree = "<group>"; };
+		946F7E821EF2331A005E757A /* M8RecvChildViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M8RecvChildViewController.xib; sourceTree = "<group>"; };
+		946F7E851EF271F8005E757A /* M8CallAudioDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8CallAudioDevice.h; sourceTree = "<group>"; };
+		946F7E861EF271F8005E757A /* M8CallAudioDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8CallAudioDevice.m; sourceTree = "<group>"; };
+		946F7E871EF271F8005E757A /* M8CallAudioDevice.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M8CallAudioDevice.xib; sourceTree = "<group>"; };
+		946F7E8A1EF279D3005E757A /* M8MakeCallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8MakeCallViewController.h; sourceTree = "<group>"; };
+		946F7E8B1EF279D3005E757A /* M8MakeCallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8MakeCallViewController.m; sourceTree = "<group>"; };
+		946F7E8D1EF27A89005E757A /* M8RecvCallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8RecvCallViewController.h; sourceTree = "<group>"; };
+		946F7E8E1EF27A89005E757A /* M8RecvCallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8RecvCallViewController.m; sourceTree = "<group>"; };
 		948E045B1EE641C30075903B /* UserTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTableView.h; sourceTree = "<group>"; };
 		948E045C1EE641C30075903B /* UserTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTableView.m; sourceTree = "<group>"; };
 		948E045E1EE6421B0075903B /* UserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTableViewCell.h; sourceTree = "<group>"; };
@@ -657,13 +667,6 @@
 		94BACD7B1EEE2CB30017FFDE /* liveSwitchCamera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = liveSwitchCamera.png; sourceTree = "<group>"; };
 		94BACD7C1EEE2CB30017FFDE /* liveSwitchCamera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liveSwitchCamera@2x.png"; sourceTree = "<group>"; };
 		94BACD7D1EEE2CB30017FFDE /* liveSwitchCamera@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liveSwitchCamera@3x.png"; sourceTree = "<group>"; };
-		94BACDAA1EEE62C30017FFDE /* M8CallAudioDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8CallAudioDevice.h; sourceTree = "<group>"; };
-		94BACDAB1EEE62C30017FFDE /* M8CallAudioDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8CallAudioDevice.m; sourceTree = "<group>"; };
-		94BACDAC1EEE62C30017FFDE /* M8CallAudioDevice.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M8CallAudioDevice.xib; sourceTree = "<group>"; };
-		94BACDAD1EEE62C30017FFDE /* M8CallAudioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8CallAudioViewController.h; sourceTree = "<group>"; };
-		94BACDAE1EEE62C30017FFDE /* M8CallAudioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8CallAudioViewController.m; sourceTree = "<group>"; };
-		94BACDBC1EEE62C30017FFDE /* M8RecvAudioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8RecvAudioViewController.h; sourceTree = "<group>"; };
-		94BACDBD1EEE62C30017FFDE /* M8RecvAudioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8RecvAudioViewController.m; sourceTree = "<group>"; };
 		94BACDC21EEE62C30017FFDE /* M8LiveJoinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LiveJoinViewController.h; sourceTree = "<group>"; };
 		94BACDC31EEE62C30017FFDE /* M8LiveJoinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LiveJoinViewController.m; sourceTree = "<group>"; };
 		94BACDC41EEE62C30017FFDE /* M8LiveJoinViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M8LiveJoinViewController.xib; sourceTree = "<group>"; };
@@ -688,10 +691,6 @@
 		94BACDD81EEE62C30017FFDE /* M8MeetRenderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8MeetRenderModel.m; sourceTree = "<group>"; };
 		94BACDF91EEE63380017FFDE /* M8CallComingListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8CallComingListener.h; sourceTree = "<group>"; };
 		94BACDFA1EEE63380017FFDE /* M8CallComingListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8CallComingListener.m; sourceTree = "<group>"; };
-		94BACDFD1EEE639B0017FFDE /* M8RecvVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8RecvVideoViewController.h; sourceTree = "<group>"; };
-		94BACDFE1EEE639B0017FFDE /* M8RecvVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8RecvVideoViewController.m; sourceTree = "<group>"; };
-		94BACE071EEE63A10017FFDE /* M8CallVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8CallVideoViewController.h; sourceTree = "<group>"; };
-		94BACE081EEE63A10017FFDE /* M8CallVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8CallVideoViewController.m; sourceTree = "<group>"; };
 		94BACE121EEE65520017FFDE /* M8LiveRenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LiveRenderView.h; sourceTree = "<group>"; };
 		94BACE131EEE65520017FFDE /* M8LiveRenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LiveRenderView.m; sourceTree = "<group>"; };
 		94BACE141EEE65520017FFDE /* M8LiveRenderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M8LiveRenderView.xib; sourceTree = "<group>"; };
@@ -1725,33 +1724,12 @@
 		94BACDA81EEE62C30017FFDE /* onCallMeet */ = {
 			isa = PBXGroup;
 			children = (
-				94BACE001EEE63A10017FFDE /* onCallVideo */,
-				94BACDFC1EEE639B0017FFDE /* onRecvVideo */,
-				94BACDA91EEE62C30017FFDE /* onCallAudio */,
-				94BACDBB1EEE62C30017FFDE /* onRecvAudio */,
+				946F7E8A1EF279D3005E757A /* M8MakeCallViewController.h */,
+				946F7E8B1EF279D3005E757A /* M8MakeCallViewController.m */,
+				946F7E8D1EF27A89005E757A /* M8RecvCallViewController.h */,
+				946F7E8E1EF27A89005E757A /* M8RecvCallViewController.m */,
 			);
 			path = onCallMeet;
-			sourceTree = "<group>";
-		};
-		94BACDA91EEE62C30017FFDE /* onCallAudio */ = {
-			isa = PBXGroup;
-			children = (
-				94BACDAD1EEE62C30017FFDE /* M8CallAudioViewController.h */,
-				94BACDAE1EEE62C30017FFDE /* M8CallAudioViewController.m */,
-				94BACDAA1EEE62C30017FFDE /* M8CallAudioDevice.h */,
-				94BACDAB1EEE62C30017FFDE /* M8CallAudioDevice.m */,
-				94BACDAC1EEE62C30017FFDE /* M8CallAudioDevice.xib */,
-			);
-			path = onCallAudio;
-			sourceTree = "<group>";
-		};
-		94BACDBB1EEE62C30017FFDE /* onRecvAudio */ = {
-			isa = PBXGroup;
-			children = (
-				94BACDBC1EEE62C30017FFDE /* M8RecvAudioViewController.h */,
-				94BACDBD1EEE62C30017FFDE /* M8RecvAudioViewController.m */,
-			);
-			path = onRecvAudio;
 			sourceTree = "<group>";
 		};
 		94BACDC11EEE62C30017FFDE /* onLiveMeet */ = {
@@ -1786,26 +1764,11 @@
 			children = (
 				94BACDF91EEE63380017FFDE /* M8CallComingListener.h */,
 				94BACDFA1EEE63380017FFDE /* M8CallComingListener.m */,
+				946F7E801EF2331A005E757A /* M8RecvChildViewController.h */,
+				946F7E811EF2331A005E757A /* M8RecvChildViewController.m */,
+				946F7E821EF2331A005E757A /* M8RecvChildViewController.xib */,
 			);
 			path = onCallListener;
-			sourceTree = "<group>";
-		};
-		94BACDFC1EEE639B0017FFDE /* onRecvVideo */ = {
-			isa = PBXGroup;
-			children = (
-				94BACDFD1EEE639B0017FFDE /* M8RecvVideoViewController.h */,
-				94BACDFE1EEE639B0017FFDE /* M8RecvVideoViewController.m */,
-			);
-			path = onRecvVideo;
-			sourceTree = "<group>";
-		};
-		94BACE001EEE63A10017FFDE /* onCallVideo */ = {
-			isa = PBXGroup;
-			children = (
-				94BACE071EEE63A10017FFDE /* M8CallVideoViewController.h */,
-				94BACE081EEE63A10017FFDE /* M8CallVideoViewController.m */,
-			);
-			path = onCallVideo;
 			sourceTree = "<group>";
 		};
 		94BACE0E1EEE63B70017FFDE /* renderView */ = {
@@ -1840,6 +1803,9 @@
 				94BACDCB1EEE62C30017FFDE /* M8MeetDeviceView.h */,
 				94BACDCC1EEE62C30017FFDE /* M8MeetDeviceView.m */,
 				94BACDCD1EEE62C30017FFDE /* M8MeetDeviceView.xib */,
+				946F7E851EF271F8005E757A /* M8CallAudioDevice.h */,
+				946F7E861EF271F8005E757A /* M8CallAudioDevice.m */,
+				946F7E871EF271F8005E757A /* M8CallAudioDevice.xib */,
 			);
 			name = deviceView;
 			sourceTree = "<group>";
@@ -2174,6 +2140,7 @@
 				944AF2151E948DC10044B44C /* WeiboSDK.bundle in Resources */,
 				94BACD851EEE2CB30017FFDE /* liveHangup@2x.png in Resources */,
 				94C06F3D1EBC50C900336E5F /* UserProtocolViewController.xib in Resources */,
+				946F7E891EF271F8005E757A /* M8CallAudioDevice.xib in Resources */,
 				946753C91EBC16D500653A2C /* Main.storyboard in Resources */,
 				94B3C2351EE793AE00244BC4 /* 栅格红preview.png in Resources */,
 				94B3C2471EE793AE00244BC4 /* 灰蓝@3x.png in Resources */,
@@ -2204,13 +2171,13 @@
 				94BACD901EEE2CB30017FFDE /* liveReceiver_off.png in Resources */,
 				94BACDF41EEE62C30017FFDE /* M8MeetRenderCell.xib in Resources */,
 				94B3C2421EE793AE00244BC4 /* 灰白.png in Resources */,
-				94BACDDE1EEE62C30017FFDE /* M8CallAudioDevice.xib in Resources */,
 				943A09091EDEDF92003CEA27 /* btnImg_videoMeeting.png in Resources */,
 				943A08F51EDED9F2003CEA27 /* PE.dat in Resources */,
 				94B3C23C1EE793AE00244BC4 /* 栅格红.png in Resources */,
 				94B3C2441EE793AE00244BC4 /* 灰白@3x.png in Resources */,
 				94A127FB1EF13ECA00ED2703 /* liveAudio_off@3x.png in Resources */,
 				94A127FA1EF13ECA00ED2703 /* liveAudio_off@2x.png in Resources */,
+				946F7E841EF2331A005E757A /* M8RecvChildViewController.xib in Resources */,
 				94B3C2361EE793AE00244BC4 /* 淡青preview.png in Resources */,
 				94BACD801EEE2CB30017FFDE /* liveCamera_off@3x.png in Resources */,
 				94BACD931EEE2CB30017FFDE /* liveReceiver_on.png in Resources */,
@@ -2261,13 +2228,14 @@
 				944AF3151E9494C00044B44C /* UIImageView+AFNetworking.m in Sources */,
 				94BACE1D1EEE66D20017FFDE /* M8CallNoteView.m in Sources */,
 				944AF31C1E9494C00044B44C /* KVNProgress.m in Sources */,
-				94BACDE61EEE62C30017FFDE /* M8RecvAudioViewController.m in Sources */,
 				943A086B1EDEBADE003CEA27 /* RegistRequest.m in Sources */,
 				944AF30A1E9494C00044B44C /* AFSecurityPolicy.m in Sources */,
 				94E5DE2D1ED6775B008632D7 /* UsrContactView.m in Sources */,
 				94C06F3C1EBC50C900336E5F /* UserProtocolViewController.m in Sources */,
+				946F7E831EF2331A005E757A /* M8RecvChildViewController.m in Sources */,
 				94112EC41ECADE1D00263F7F /* WCCollectionViewHorizontalLayout.m in Sources */,
 				943A086F1EDEBADE003CEA27 /* RoomMemListRequest.m in Sources */,
+				946F7E881EF271F8005E757A /* M8CallAudioDevice.m in Sources */,
 				94B3C2421EC58E94003ADF5F /* RecordModel.m in Sources */,
 				946753C71EBC16D500653A2C /* AppDelegate.m in Sources */,
 				94B3C2311EC565AC003ADF5F /* UIView+Extension.m in Sources */,
@@ -2311,6 +2279,7 @@
 				946753DA1EBC1F3E00653A2C /* RegistViewController.m in Sources */,
 				944AF3111E9494C00044B44C /* AFImageDownloader.m in Sources */,
 				9497DF491ECA9702009C35CB /* UserSettingViewController.m in Sources */,
+				946F7E8C1EF279D3005E757A /* M8MakeCallViewController.m in Sources */,
 				9497DF511ECA98EA009C35CB /* UserSettingTabelView.m in Sources */,
 				944AF3181E9494C00044B44C /* UIWebView+AFNetworking.m in Sources */,
 				948E045D1EE641C30075903B /* UserTableView.m in Sources */,
@@ -2326,7 +2295,6 @@
 				944AF31A1E9494C00044B44C /* UIImage+KVNEmpty.m in Sources */,
 				94C9B83B1ECDA52100F42654 /* LatestMembersCollection.m in Sources */,
 				9497DF361ECA966A009C35CB /* MeetingAgendaCell.m in Sources */,
-				94BACDDD1EEE62C30017FFDE /* M8CallAudioDevice.m in Sources */,
 				944AF3101E9494C00044B44C /* AFAutoPurgingImageCache.m in Sources */,
 				943A08601EDEBADE003CEA27 /* CreateRoomRequest.m in Sources */,
 				943A086A1EDEBADE003CEA27 /* RecordReportRequest.m in Sources */,
@@ -2334,7 +2302,6 @@
 				94BACDEC1EEE62C30017FFDE /* M8CallBaseViewController.m in Sources */,
 				944AF30C1E9494C00044B44C /* AFURLResponseSerialization.m in Sources */,
 				9497DF251ECA95FD009C35CB /* UserCardViewController.m in Sources */,
-				94BACE0D1EEE63A10017FFDE /* M8CallVideoViewController.m in Sources */,
 				94B3C2491EC59643003ADF5F /* RecordDetailViewController.m in Sources */,
 				94BACDF51EEE62C30017FFDE /* M8MeetRenderModel.m in Sources */,
 				943A08701EDEBADE003CEA27 /* WebModels.m in Sources */,
@@ -2346,7 +2313,6 @@
 				94C06F4E1EBC76BA00336E5F /* LoginManager.m in Sources */,
 				943A08641EDEBADE003CEA27 /* LinkRoomSigRequest.m in Sources */,
 				943A08631EDEBADE003CEA27 /* HostHeartBeatRequest.m in Sources */,
-				94BACDDF1EEE62C30017FFDE /* M8CallAudioViewController.m in Sources */,
 				9422BEF71EE5844B00F9B56D /* M8ThemeCell.m in Sources */,
 				944AF31B1E9494C00044B44C /* UIImage+KVNImageEffects.m in Sources */,
 				94D0A0FC1EE67463009399C6 /* UserModel.m in Sources */,
@@ -2367,10 +2333,10 @@
 				94E5DE301ED6A732008632D7 /* UsrContactHeaderView.m in Sources */,
 				944AF3131E9494C00044B44C /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				943A08661EDEBADE003CEA27 /* LiveStreamListRequest.m in Sources */,
-				94BACDFF1EEE639B0017FFDE /* M8RecvVideoViewController.m in Sources */,
 				946753CC1EBC16D500653A2C /* main.m in Sources */,
 				94BACDEA1EEE62C30017FFDE /* M8LiveMeetViewController.m in Sources */,
 				94C9B83F1ECDA59000F42654 /* MeetingMembersCell.m in Sources */,
+				946F7E8F1EF27A89005E757A /* M8RecvCallViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2494,6 +2460,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = RS5VVQU2Q4;
@@ -2539,6 +2506,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = RS5VVQU2Q4;

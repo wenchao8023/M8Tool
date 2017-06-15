@@ -1,31 +1,29 @@
 //
-//  M8RecvAudioViewController.m
+//  M8RecvCallViewController.m
 //  M8Tool
 //
-//  Created by chao on 2017/6/10.
+//  Created by chao on 2017/6/15.
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import "M8RecvAudioViewController.h"
-
+#import "M8RecvCallViewController.h"
 #import "M8RecvChildViewController.h"
 
-
-@interface M8RecvAudioViewController ()<RecvChildVCDelegate>
-
-@property (nonatomic, strong) M8RecvChildViewController *childVC;
+@interface M8RecvCallViewController ()<RecvChildVCDelegate>
+{
+    M8RecvChildViewController *_childVC;
+}
 
 @end
 
-@implementation M8RecvAudioViewController
+@implementation M8RecvCallViewController
 @synthesize _call;
-@synthesize deviceView;
-
 
 #pragma mark - 视图生命周期
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     
     [self initCall];
     
@@ -37,10 +35,16 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-#pragma mark - 界面相关
 - (void)initUI {
-
+    
+    TILCallType callType = [_call getCallType];
+    if (callType == TILCALL_TYPE_VIDEO) {
+        self.audioDeviceView.hidden = YES;
+    }
+    else if (callType == TILCALL_TYPE_AUDIO) {
+        self.deviceView.hidden = YES;
+    }
+    
     _childVC = [[M8RecvChildViewController alloc] init];
     _childVC.invitation = self.invitation;
     _childVC.WCDelegate = self;
@@ -49,6 +53,7 @@
     [self.view addSubview:_childVC.view];
     [_childVC didMoveToParentViewController:self];
 }
+
 
 - (void)RecvChildVCAction:(NSString *)actionStr {
     if ([actionStr isEqualToString:@"reject"]) {
@@ -60,13 +65,13 @@
 }
 
 - (void)removeChildViewController {
-    [self.childVC willMoveToParentViewController:nil];
-    [self.childVC.view removeFromSuperview];
-    [self.childVC removeFromParentViewController];
-    self.childVC = nil;
+    [_childVC willMoveToParentViewController:nil];
+    [_childVC.view removeFromSuperview];
+    [_childVC removeFromParentViewController];
 }
 
 - (void)onRejectCall {
+    
     WCWeakSelf(self);
     [_call refuse:^(TILCallError *err) {
         if(err){
@@ -77,26 +82,31 @@
 }
 // 接受邀请
 - (void)onReceiveCall {
-    
     WCWeakSelf(self);
     [_call accept:^(TILCallError *err) {
         if(err){
             [weakself addTextToView:[NSString stringWithFormat:@"接受失败:%@-%d-%@", err.domain,err.code,err.errMsg]];
-            [weakself selfDismiss];
+//            [weakself selfDismiss];
         }
         else{
             
             [weakself addTextToView:@"接受成功"];
+            [weakself.deviceView configButtonBackImgs];
+            [self.audioDeviceView configButtonBackImgs];
+            
+            [[ILiveRoomManager getInstance] setBeauty:3];
+            [[ILiveRoomManager getInstance] setWhite:3];
+            
             [self removeChildViewController];
         }
     }];
-    
 }
+
 #pragma mark - 通话接口相关
 - (void)initCall{
     TILCallConfig * config = [[TILCallConfig alloc] init];
     TILCallBaseConfig * baseConfig = [[TILCallBaseConfig alloc] init];
-    baseConfig.callType = TILCALL_TYPE_AUDIO;
+    baseConfig.callType = _invitation.callType;
     baseConfig.isSponsor = NO;
     baseConfig.memberArray = _invitation.memberArray;
     baseConfig.heartBeatInterval = 15;
@@ -105,6 +115,7 @@
     TILCallListener * listener = [[TILCallListener alloc] init];
     [listener setMemberEventListener:self.renderView];
     [listener setNotifListener:self.renderView];
+    [listener setCallStatusListener:self.renderView];
     
     config.callListener = listener;
     
@@ -113,29 +124,32 @@
     config.responderConfig = responderConfig;
     
     _call = [[TILMultiCall alloc] initWithConfig:config];
+    
     [_call createRenderViewIn:self.renderView];
-    
     self.renderView.call = _call;
-    
-    // 接受邀请
-    WCWeakSelf(self);
-    [_call accept:^(TILCallError *err) {
-        if(err){
-            [weakself addTextToView:[NSString stringWithFormat:@"接受失败:%@-%d-%@",err.domain,err.code,err.errMsg]];
-            [weakself selfDismiss];
-        }
-        else{
-            
-            [weakself addTextToView:@"接受成功"];
-            [self.audioDeviceView configButtonBackImgs];
-        }
-    }];
+    self.renderView.hostIdentify = _invitation.sponsorId;
 }
 
 #pragma mark - views delegate
 #pragma mark -- MeetDeviceDelegate
-- (void)CallAudioDeviceActionInfo:(NSDictionary *)actionInfo {
+- (void)MeetDeviceActionInfo:(NSDictionary *)actionInfo {
     
+    [super MeetDeviceActionInfo:actionInfo];
+    
+    NSString *infoKey = [[actionInfo allKeys] firstObject];
+    if ([infoKey isEqualToString:kDeviceAction]) {
+        if ([[actionInfo objectForKey:infoKey] isEqualToString:@"onHangupAction"]) {
+            [_call hangup:nil];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    }
+    else {
+        
+    }
+}
+
+#pragma mark -- CallAudioDeviceDelegate
+- (void)CallAudioDeviceActionInfo:(NSDictionary *)actionInfo {
     [super CallAudioDeviceActionInfo:actionInfo];
     
     NSString *infoKey = [[actionInfo allKeys] firstObject];
@@ -152,6 +166,7 @@
         
     }
 }
+
 #pragma mark -- CallRenderDelegate
 - (void)CallRenderActionInfo:(NSDictionary *)actionInfo {
     
@@ -161,17 +176,13 @@
     NSString *infoValue = [actionInfo objectForKey:infoKey];
     
     if ([infoKey isEqualToString:kCallAction]) {
-        if ([[actionInfo objectForKey:infoKey] isEqualToString:@"onHangupAction"]) {
+        if ([infoValue isEqualToString:@"selfDismiss"]) {
             [_call hangup:nil];
-            [self performSelector:NSSelectorFromString(infoValue) withObject:nil afterDelay:1];
+            [self performSelector:NSSelectorFromString(infoValue) withObject:nil afterDelay:0];
         }
         else {
             [self addTextToView:actionInfo[infoKey]];
         }
     }
 }
-
-
-
-
 @end

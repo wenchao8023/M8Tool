@@ -8,14 +8,22 @@
 
 #import "M8RecvVideoViewController.h"
 
+#import "M8RecvChildViewController.h"
 
-@interface M8RecvVideoViewController ()
+
+@interface M8RecvVideoViewController ()<RecvChildVCDelegate>
+{
+    M8RecvChildViewController *_childVC;
+}
 
 @end
 
 
 @implementation M8RecvVideoViewController
 @synthesize _call;
+@synthesize audioDeviceView;
+
+
 #pragma mark - 视图生命周期
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,12 +31,76 @@
     
     
     [self initCall];
+    
+    [self initUI];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)initUI {
+    _childVC = [[M8RecvChildViewController alloc] init];
+    _childVC.invitation = self.invitation;
+    _childVC.WCDelegate = self;
+    _childVC.view.frame = self.view.bounds;
+    [self addChildViewController:_childVC];
+    [self.view addSubview:_childVC.view];
+    [_childVC didMoveToParentViewController:self];
+}
+
+
+- (void)RecvChildVCAction:(NSString *)actionStr {
+    if ([actionStr isEqualToString:@"reject"]) {
+        [self onRejectCall];
+    }
+    else if ([actionStr isEqualToString:@"receive"]) {
+        [self onReceiveCall];
+    }
+}
+
+- (void)removeChildViewController {
+    [_childVC willMoveToParentViewController:nil];
+    [_childVC.view removeFromSuperview];
+    [_childVC removeFromParentViewController];
+}
+
+- (void)onRejectCall {
+    
+    WCWeakSelf(self);
+    [_call refuse:^(TILCallError *err) {
+        if(err){
+            [weakself addTextToView:[NSString stringWithFormat:@"拒绝失败:%@-%d-%@", err.domain,err.code,err.errMsg]];
+        }
+        [weakself selfDismiss];
+    }];
+}
+
+// 接受邀请
+- (void)onReceiveCall {
+    
+    WCWeakSelf(self);
+    [_call accept:^(TILCallError *err) {
+        if(err){
+            [weakself addTextToView:[NSString stringWithFormat:@"接受失败:%@-%d-%@", err.domain,err.code,err.errMsg]];
+            [weakself selfDismiss];
+        }
+        else{
+            
+            [weakself addTextToView:@"接受成功"];
+            [weakself.deviceView configButtonBackImgs];
+            
+            [[ILiveRoomManager getInstance] setBeauty:3];
+            [[ILiveRoomManager getInstance] setWhite:3];
+            
+            [self removeChildViewController];
+        }
+    }];                                                                                    
+
+}
+
+
 
 #pragma mark - 通话接口相关
 - (void)initCall{
@@ -56,36 +128,6 @@
     self.renderView.call = _call;
     self.renderView.hostIdentify = _invitation.sponsorId;
     
-    // 接受邀请
-    WCWeakSelf(self);
-    [_call accept:^(TILCallError *err) {
-        if(err){
-            [weakself addTextToView:[NSString stringWithFormat:@"接受失败:%@-%d-%@", err.domain,err.code,err.errMsg]];
-            [weakself selfDismiss];
-        }
-        else{
-            
-            [weakself addTextToView:@"接受成功"];
-            
-//            TILCallNotification *acceptSuccNotify = [TILCallNotification new];
-//            acceptSuccNotify.notifId = TILCALL_NOTIF_ACCEPTED;
-//            acceptSuccNotify.sender  = [[ILiveLoginManager getInstance] getLoginId];
-//            acceptSuccNotify.targets = weakself.invitation.memberArray;
-//            [weakself._call postNotification:acceptSuccNotify result:^(TILCallError *err) {
-//                if (err) {
-//                    [weakself addTextToView:[NSString stringWithFormat:@"domain: %@, code: %d, msg: %@", err.domain, err.code, err.errMsg]];
-//                }
-//                else {
-//                    [weakself addTextToView:@"发送通知成功"];
-//                }
-//            }];
-            
-            [weakself.deviceView configButtonBackImgs];
-            
-            [[ILiveRoomManager getInstance] setBeauty:3];
-            [[ILiveRoomManager getInstance] setWhite:3];
-        }
-    }];
 }
 
 #pragma mark - views delegate

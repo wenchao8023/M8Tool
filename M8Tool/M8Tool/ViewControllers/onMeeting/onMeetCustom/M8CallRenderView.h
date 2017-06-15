@@ -11,6 +11,7 @@
 
 static NSString * _Nonnull kCallAction = @"kCallAction";
 static NSString * _Nonnull kCallText   = @"kCallText";
+static NSString * _Nonnull kCallValue  = @"kCallValue";
 
 
 @protocol CallRenderDelegate <NSObject>
@@ -20,7 +21,7 @@ static NSString * _Nonnull kCallText   = @"kCallText";
 @end
 
 
-@interface M8CallRenderView : UIView<TILCallMemberEventListener, TILCallNotificationListener>
+@interface M8CallRenderView : UIView<TILCallMemberEventListener, TILCallNotificationListener, TILCallStatusListener>
 
 
 
@@ -38,10 +39,14 @@ static NSString * _Nonnull kCallText   = @"kCallText";
 @property (nonatomic, strong, nullable) TILMultiCall *call;
 
 
-- (void)addTextToView:(NSString *_Nullable)newText;
+/**
+ 用于主叫方判断是取消通话还是结束通话
+ */
+@property (nonatomic, assign) BOOL shouldHangup;
+
 
 @property (nonatomic, weak) id _Nullable WCDelegate;
 
-
+- (void)addTextToView:(NSString *_Nullable)newText;
 
 @end

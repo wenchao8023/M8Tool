@@ -10,8 +10,8 @@
 #import "MeetingLuanchTableView.h"
 
 #import "M8LiveMeetViewController.h"
-#import "M8CallVideoViewController.h"
-#import "M8CallAudioViewController.h"
+
+#import "M8MakeCallViewController.h"
 
 
 
@@ -138,19 +138,19 @@
     switch (self.luanchMeetingType) {
         case LuanchMeetingType_phone:   //电话(语音)
         {
-            M8CallAudioViewController *callVC = [[M8CallAudioViewController alloc] init];
+            M8MakeCallViewController *callVC = [[M8MakeCallViewController alloc] init];
             callVC.membersArray = self.selectedArray;
             callVC.callId       = roomId;
-//            [[AppDelegate sharedAppDelegate] presentViewController:callVC];
+            callVC.callType     = TILCALL_TYPE_AUDIO;
             [[AppDelegate sharedAppDelegate] presentNavigationController:callVC];
         }
         break;
         case LuanchMeetingType_video:   //视频
         {
-            M8CallVideoViewController *callVC = [[M8CallVideoViewController alloc] init];
+            M8MakeCallViewController *callVC = [[M8MakeCallViewController alloc] init];
             callVC.membersArray = self.selectedArray;
             callVC.callId       = roomId;
-//            [[AppDelegate sharedAppDelegate] presentViewController:callVC];
+            callVC.callType     = TILCALL_TYPE_VIDEO;
             [[AppDelegate sharedAppDelegate] presentNavigationController:callVC];
         }
         break;
@@ -159,7 +159,6 @@
             M8LiveMeetViewController *liveVC = [[M8LiveMeetViewController alloc] init];
             liveVC.roomId = roomId;
             liveVC.topic  = self.topic;
-//            [[AppDelegate sharedAppDelegate] presentViewController:liveVC];
             [[AppDelegate sharedAppDelegate] presentNavigationController:liveVC];
         }
         break;

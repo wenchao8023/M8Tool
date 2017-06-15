@@ -15,9 +15,12 @@
 
 @implementation M8CallBaseViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.navigationController.navigationBarHidden = YES;
     
     [self createUI];
     
@@ -33,12 +36,11 @@
 #pragma mark - createUI
 - (void)createUI {
     
-    self.navigationController.navigationBarHidden = YES;
-    
     [self bgImageView];
     [self renderView];
     [self headerView];
     [self deviceView];
+    [self audioDeviceView];
 }
 
 - (UIImageView *)bgImageView {
@@ -54,7 +56,7 @@
     if (!_renderView) {
         M8CallRenderView *renderView = [[M8CallRenderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREENH_HEIGHT)];
         renderView.WCDelegate = self;
-        [self.view insertSubview:(_renderView = renderView) aboveSubview:self.bgImageView];
+        [self.view addSubview:(_renderView = renderView)];
     }
     return _renderView;
 }
@@ -79,6 +81,19 @@
     return _deviceView;
 }
 
+- (M8CallAudioDevice *)audioDeviceView {
+    if (!_audioDeviceView) {
+        M8CallAudioDevice *audioDeviceView = [[M8CallAudioDevice alloc] initWithFrame:CGRectMake(0,
+                                                                                                 SCREENH_HEIGHT - kBottomHeight - kDefaultMargin,
+                                                                                                 SCREEN_WIDTH,
+                                                                                                 kBottomHeight)
+                                              ];
+        audioDeviceView.WCDelegate = self;
+        [self.view addSubview:(_audioDeviceView = audioDeviceView)];
+    }
+    return _audioDeviceView;
+}
+
 
 #pragma mark - views delegate
 #pragma mark -- MeetHeaderDelegate
@@ -96,6 +111,12 @@
 
 #pragma mark -- CallRenderDelegate
 - (void)CallRenderActionInfo:(NSDictionary *)actionInfo {
+    
+    [self addTextToView:[actionInfo allValues][0]];
+}
+
+#pragma mark -- CallAudioDeviceDelegate
+- (void)CallAudioDeviceActionInfo:(NSDictionary *)actionInfo {
     
     [self addTextToView:[actionInfo allValues][0]];
 }

@@ -20,8 +20,6 @@
 @property (weak, nonatomic) IBOutlet M8LiveLabel *durationLabel;
 
 
-
-
 @end
 
 @implementation M8MeetHeaderView
@@ -41,19 +39,6 @@
     
     [self.topicLabel    configLiveText];
     [self.durationLabel configLiveText];
-    
-//    self.topicLabel.shadowColor     = kLiveStrokeColor;
-//    self.topicLabel.shadowOffset    = kLiveShadowOffset;
-//    self.topicLabel.shadowBlur      = kLiveShadowBlur;
-//    self.topicLabel.strokeColor     = kLiveStrokeColor;
-//    self.topicLabel.strokeSize      = kLiveStrokeSize;
-//    
-//    self.durationLabel.shadowColor  = kLiveStrokeColor;
-//    self.durationLabel.shadowOffset = kLiveShadowOffset;
-//    self.durationLabel.shadowBlur   = kLiveShadowBlur;
-//    self.durationLabel.strokeColor  = kLiveStrokeColor;
-//    self.durationLabel.strokeSize   = kLiveStrokeSize;
-    
 }
 
 - (IBAction)enlargeAction:(id)sender {

@@ -36,7 +36,7 @@ static const CGFloat kHeaderHeight = 60;
 - (NSMutableArray *)sectionArray {
     if (!_sectionArray) {
         _sectionArray = [NSMutableArray arrayWithCapacity:0];
-        [_sectionArray addObjectsFromArray:@[@"研发部", @"销售部", @"市场部", @"行政部", @"人事部"]];
+        [_sectionArray addObjectsFromArray:@[@"研发部", @"销售部", @"市场部"]];
     }
     return _sectionArray;
 }
@@ -44,11 +44,9 @@ static const CGFloat kHeaderHeight = 60;
 - (NSMutableArray *)dataArray {
     if (!_dataArray) {
         _dataArray = [NSMutableArray arrayWithCapacity:0];
-        [_dataArray addObjectsFromArray:@[@[@"研发1", @"研发2", @"研发3", @"研发4", @"研发5", @"研发6"],
-                                          @[@"销售1", @"销售2", @"销售3", @"销售4", @"销售5", @"销售6" ],
-                                          @[@"市场1", @"市场2", @"市场3", @"市场4", @"市场5", @"市场6", @"市场7", @"市场8"],
-                                          @[@"行政1", @"行政2", @"行政3", @"行政4"],
-                                          @[@"人事1", @"人事2", @"人事3"]
+        [_dataArray addObjectsFromArray:@[@[@"user1", @"user2", @"user3"],
+                                          @[@"user4", @"user5", @"user6"],
+                                          @[@"user7", @"user8", @"user9", @"user10"]
                                           ]
          ];
     }
@@ -94,6 +92,8 @@ static const CGFloat kHeaderHeight = 60;
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 40;
 }
+
+
 
 
 @end

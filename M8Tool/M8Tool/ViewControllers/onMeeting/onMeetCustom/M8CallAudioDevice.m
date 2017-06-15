@@ -59,7 +59,6 @@
     self.frame = _myFrame;
 }
 
-
 - (void)configButtonBackImgs {
     
     ILiveRoomManager *manager = [ILiveRoomManager getInstance];
@@ -70,9 +69,9 @@
     
     QAVOutputMode audioMode = [manager getCurAudioMode];
     [self.switchReceiverButton setBackgroundImage:[UIImage imageNamed:(audioMode == QAVOUTPUTMODE_EARPHONE ? @"liveReceiver_off" : @"liveReceiver_on")]
-                                       forState:UIControlStateNormal];
-    
+                                         forState:UIControlStateNormal];
 }
+
 
 #pragma mark device actions
 - (IBAction)onShareAction:(id)sender {
@@ -83,17 +82,16 @@
     [self deviceActionInfoValue:@"onCloseMicAction" key:kCallAudioDeviceAction];
     ILiveRoomManager *manager = [ILiveRoomManager getInstance];
     BOOL isOn = [manager getCurMicState];
-    __weak typeof(self) ws = self;
+    NSString *text = isOn ? @"关闭麦克风成功" : @"打开麦克风成功";
+    WCWeakSelf(self);
+    
     [manager enableMic:!isOn succ:^{
-
-        NSString *text = !isOn ? @"打开麦克风成功" : @"关闭麦克风成功";
-        [self deviceActionInfoValue:text key:kCallAudioDeviceText];
-        [ws.closeMicButton setBackgroundImage:[UIImage imageNamed:(isOn? @"liveMic_off" : @"liveMic_on")]
-                                     forState:UIControlStateNormal];
+        [weakself deviceActionInfoValue:text key:kCallAudioDeviceText];
+        [weakself.closeMicButton setBackgroundImage:[UIImage imageNamed:(!isOn? @"liveMic_on" : @"liveMic_off")]
+                                           forState:UIControlStateNormal];
+        
     } failed:^(NSString *moudle, int errId, NSString *errMsg) {
-        NSString *text = !isOn?@"打开麦克风失败":@"关闭麦克风失败";
-
-        [self deviceActionInfoValue:[NSString stringWithFormat:@"%@:%@-%d-%@",text,moudle,errId,errMsg] key:kCallAudioDeviceText];
+        [weakself deviceActionInfoValue:[NSString stringWithFormat:@"%@:%@-%d-%@",text,moudle,errId,errMsg] key:kCallAudioDeviceText];
     }];
 }
 
@@ -104,16 +102,18 @@
 - (IBAction)onSwitchReceiverAction:(id)sender {
     [self deviceActionInfoValue:@"onSwitchReceiverAction" key:kCallAudioDeviceAction];
     ILiveRoomManager *manager = [ILiveRoomManager getInstance];
-    __weak typeof(self) ws = self;
     QAVOutputMode mode = [manager getCurAudioMode];
-    [self deviceActionInfoValue:(mode == QAVOUTPUTMODE_EARPHONE?@"切换扬声器成功":@"切换到听筒成功") key:kCallAudioDeviceText];
-    [ws.switchReceiverButton setBackgroundImage:[UIImage imageNamed:(mode == QAVOUTPUTMODE_EARPHONE?@"liveReceiver_off" : @"liveReceiver_on")]
-                                       forState:UIControlStateNormal];
+    
+    
     if(mode == QAVOUTPUTMODE_EARPHONE){
         [manager setAudioMode:QAVOUTPUTMODE_SPEAKER];
+        [self deviceActionInfoValue:@"切换扬声器成功" key:kCallAudioDeviceText];
+        [self.switchReceiverButton setBackgroundImage:kGetImage(@"liveReceiver_on") forState:UIControlStateNormal];
     }
     else{
         [manager setAudioMode:QAVOUTPUTMODE_EARPHONE];
+        [self deviceActionInfoValue:@"切换听筒成功" key:kCallAudioDeviceText];
+        [self.switchReceiverButton setBackgroundImage:kGetImage(@"liveReceiver_off") forState:UIControlStateNormal];
     }
 }
 

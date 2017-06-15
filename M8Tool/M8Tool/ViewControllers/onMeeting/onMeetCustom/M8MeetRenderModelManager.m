@@ -25,14 +25,6 @@
 
 @implementation M8MeetRenderModelManager
 
-- (NSString *)loginIdentify {
-    if (!_loginIdentify) {
-        NSString *loginIdentify = [[ILiveLoginManager getInstance] getLoginId];
-        _loginIdentify = loginIdentify;
-    }
-    return _loginIdentify;
-}
-
 - (NSMutableArray *)membersArray {
     if (!_membersArray) {
         _membersArray = [NSMutableArray arrayWithCapacity:0];
@@ -47,25 +39,43 @@
     
         M8MeetRenderModel *model = [[M8MeetRenderModel alloc] init];
         model.identify = identify;
-    
-        if ([identify isEqualToString:self.hostIdentify])
-        {
-            model.meetMemberStatus = MeetMemberStatus_receive;
-            model.isMicOn = YES;
-            model.isCameraOn = YES;
-            _currentInBackModel = model;
-        }
-        else if ([identify isEqualToString:self.loginIdentify])
-        {
-            model.meetMemberStatus = MeetMemberStatus_receive;
-            model.isMicOn = YES;
-            model.isCameraOn = YES;
+        
+        if (self.callType == TILCALL_TYPE_AUDIO) {
+            if ([identify isEqualToString:self.hostIdentify] ||
+                [identify isEqualToString:self.loginIdentify])
+            {
+                model.meetMemberStatus = MeetMemberStatus_receive;
+                model.isMicOn = YES;
+            }
             [self.membersArray addObject:model];
         }
-        else
-        {
-            [self.membersArray addObject:model];
+        /**
+         * 如果是呼叫方，则只会进第一个 if
+         * 如果是被叫方，则会进前两个 if
+         * 其他人会进 else
+         * 每次都默认显示呼叫方为背景视图
+         */
+        else if (self.callType == TILCALL_TYPE_VIDEO) {
+            if ([identify isEqualToString:self.hostIdentify])
+            {
+                model.meetMemberStatus = MeetMemberStatus_receive;
+                model.isMicOn = YES;
+                model.isCameraOn = YES;
+                _currentInBackModel = model;
+            }
+            else if ([identify isEqualToString:self.loginIdentify])
+            {
+                model.meetMemberStatus = MeetMemberStatus_receive;
+                model.isMicOn = YES;
+                model.isCameraOn = YES;
+                [self.membersArray addObject:model];
+            }
+            else
+            {
+                [self.membersArray addObject:model];
+            }
         }
+        
     }
     
     [self reloadMemberModels];
@@ -222,7 +232,7 @@
     return NO;
 }
 
-#pragma mark --
+#pragma mark -- 房间内是否存在视频流
 - (BOOL)isExitVideoCaption {
     if (_currentInBackModel.isCameraOn) {
         return YES;
@@ -240,29 +250,38 @@
 
 #pragma mark -- reload member models in array and currentModel
 - (void)reloadMemberModels {
-    if (!_currentInBackModel.isCameraOn) {
-        for (M8MeetRenderModel *model in self.membersArray) {
-            if (model.isCameraOn) { // 交换成员信息
-                if (_currentInBackModel == nil) {
-                    _currentInBackModel = model;
-                    [self.membersArray removeObject:model];
+    
+    if (self.callType == TILCALL_TYPE_VIDEO) {
+        if (!_currentInBackModel.isCameraOn) {
+            for (M8MeetRenderModel *model in self.membersArray) {
+                if (model.isCameraOn) { // 交换成员信息
+                    if (_currentInBackModel == nil) {
+                        _currentInBackModel = model;
+                        [self.membersArray removeObject:model];
+                    }
+                    else {
+                        M8MeetRenderModel *tempModel = _currentInBackModel;
+                        _currentInBackModel = model;
+                        [self.membersArray replaceObjectAtIndex:[self getMemberIndexInArray:model.identify]
+                                                     withObject:tempModel];
+                    }
+                    // 刷新视图 并终止循环
+                    [self respondsToDelegate];
+                    return ;
                 }
-                else {
-                    M8MeetRenderModel *tempModel = _currentInBackModel;
-                    _currentInBackModel = model;
-                    [self.membersArray replaceObjectAtIndex:[self getMemberIndexInArray:model.identify]
-                                                 withObject:tempModel];
-                }
-                // 刷新视图 并终止循环
-                [self respondsToDelegate];
-                return ;
+            }
+            
+            // 没有成员开启摄像头
+            if (_currentInBackModel) {
+                [self.membersArray addObject:_currentInBackModel];
+                _currentInBackModel = nil;  // 只有房间中没有成员开启摄像头时 currentModel 才会置空
             }
         }
-        
-        // 没有成员开启摄像头
+    }
+    else if (self.callType == TILCALL_TYPE_AUDIO) { // 在音频模式下，不要显示背景视图
         if (_currentInBackModel) {
             [self.membersArray addObject:_currentInBackModel];
-            _currentInBackModel = nil;  // 只有房间中没有成员开启摄像头时 currentModel 才会置空
+            _currentInBackModel = nil;
         }
     }
     

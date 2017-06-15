@@ -8,21 +8,10 @@
 
 #import "M8CallAudioViewController.h"
 
-//#import "M8CallRenderView.h"
-#import "M8CallAudioDevice.h"
 
 
 
-@interface M8CallAudioViewController ()</*CallRenderDelegate, */CallAudioDeviceDelegate>
-{
-    
-}
-
-//@property (nonatomic, strong) TILMultiCall *call;
-
-//@property (nonatomic, strong) M8CallRenderView *renderView;
-
-@property (nonatomic, strong) M8CallAudioDevice *audioDeviceView;
+@interface M8CallAudioViewController ()
 
 @end
 
@@ -30,11 +19,11 @@
 @synthesize deviceView;
 @synthesize _call;
 
+#pragma mark - 视图生命周期
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
-    [self createUI];
     
     [self makeCall];
 }
@@ -111,7 +100,7 @@
 #pragma mark -- CallAudioDeviceDelegate
 - (void)CallAudioDeviceActionInfo:(NSDictionary *)actionInfo {
     
-    [self addTextToView:[actionInfo allValues][0]];
+    [super CallAudioDeviceActionInfo:actionInfo];
 
     NSString *infoKey = [[actionInfo allKeys] firstObject];
     if ([infoKey isEqualToString:kCallAudioDeviceAction]) {
@@ -128,10 +117,10 @@
 #pragma mark -- CallRenderDelegate
 - (void)CallRenderActionInfo:(NSDictionary *)actionInfo {
     
+    [super CallRenderActionInfo:actionInfo];
+    
     NSString *infoKey = [[actionInfo allKeys] firstObject];
     NSString *infoValue = [actionInfo objectForKey:infoKey];
-    
-    [self addTextToView:infoValue];
     
     if ([infoKey isEqualToString:kCallAction]) {
         if ([infoValue isEqualToString:@"selfDismiss"]) {
