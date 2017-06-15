@@ -1,29 +1,29 @@
 //
-//  M8MeetRenderModelManager.m
+//  M8CallRenderModelManager.m
 //  M8Tool
 //
 //  Created by chao on 2017/6/14.
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import "M8MeetRenderModelManager.h"
+#import "M8CallRenderModelManager.h"
 
-#import "M8MeetRenderModel.h"
+#import "M8CallRenderModel.h"
 
 
-@interface M8MeetRenderModelManager ()
+@interface M8CallRenderModelManager ()
 
 @property (nonatomic, strong) NSMutableArray *membersArray;
 
 /**
  记录当前处在背景视图的成员
  */
-@property (nonatomic, strong, nullable) M8MeetRenderModel *currentInBackModel;
+@property (nonatomic, strong, nullable) M8CallRenderModel *currentInBackModel;
 
 @end
 
 
-@implementation M8MeetRenderModelManager
+@implementation M8CallRenderModelManager
 
 - (NSMutableArray *)membersArray {
     if (!_membersArray) {
@@ -37,7 +37,7 @@
     // 记录所有发送过通知的成员
     if (![self isMemberNotified:identify]) {
     
-        M8MeetRenderModel *model = [[M8MeetRenderModel alloc] init];
+        M8CallRenderModel *model = [[M8CallRenderModel alloc] init];
         model.identify = identify;
         
         if (self.callType == TILCALL_TYPE_AUDIO) {
@@ -84,7 +84,7 @@
 #pragma mark - onRecvNotification
 #pragma mark -- onLineBusy
 - (void)memberLineBusyWithID:(NSString *)identify {
-    M8MeetRenderModel *model = [self getMemberWithID:identify];
+    M8CallRenderModel *model = [self getMemberWithID:identify];
     model.meetMemberStatus = MeetMemberStatus_linebusy;
     [self updateMember:model];
 }
@@ -92,7 +92,7 @@
 
 #pragma mark -- onReject
 - (void)memberRejectInviteWithID:(NSString *)identify {
-    M8MeetRenderModel *model = [self getMemberWithID:identify];
+    M8CallRenderModel *model = [self getMemberWithID:identify];
     model.meetMemberStatus = MeetMemberStatus_reject;
     [self updateMember:model];
 }
@@ -100,7 +100,7 @@
 
 #pragma mark -- onTimeout
 - (void)memberTimeoutWithID:(NSString *)identify {
-    M8MeetRenderModel *model = [self getMemberWithID:identify];
+    M8CallRenderModel *model = [self getMemberWithID:identify];
     model.meetMemberStatus = MeetMemberStatus_timeout;
     [self updateMember:model];
 }
@@ -112,7 +112,7 @@
 
 #pragma mark -- onReceive
 - (void)memberReceiveWithID:(NSString *)identify {
-    M8MeetRenderModel *model = [self getMemberWithID:identify];
+    M8CallRenderModel *model = [self getMemberWithID:identify];
     model.meetMemberStatus = MeetMemberStatus_receive;
     [self updateMember:model];
 }
@@ -120,7 +120,7 @@
 
 #pragma mark -- onDisconnet
 - (void)memberDisconnetWithID:(NSString *)identify {
-    M8MeetRenderModel *model = [self getMemberWithID:identify];
+    M8CallRenderModel *model = [self getMemberWithID:identify];
     model.meetMemberStatus = MeetMemberStatus_disconnect;
     [self updateMember:model];
 }
@@ -128,7 +128,7 @@
 
 #pragma mark -- onHangup
 - (void)memberHangupWithID:(NSString *)identify {
-    M8MeetRenderModel *model = [self getMemberWithID:identify];
+    M8CallRenderModel *model = [self getMemberWithID:identify];
     model.meetMemberStatus = MeetMemberStatus_hangup;
     [self updateMember:model];
 }
@@ -138,13 +138,13 @@
 
 #pragma mark - onCallMemberEventListener
 - (void)onMemberAudioOn:(BOOL)isOn WithID:(NSString *)identify {
-    M8MeetRenderModel *model = [self getMemberWithID:identify];
+    M8CallRenderModel *model = [self getMemberWithID:identify];
     model.isMicOn = isOn;
     [self updateMember:model];
 }
 
 - (void)onMemberCameraVideoOn:(BOOL)isOn WithID:(NSString *)identify {
-    M8MeetRenderModel *model = [self getMemberWithID:identify];
+    M8CallRenderModel *model = [self getMemberWithID:identify];
     model.isCameraOn = isOn;
     [self updateMember:model];
 }
@@ -153,7 +153,7 @@
 #pragma mark - on action
 - (BOOL)onSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if ([self isExitVideoCaption]) {
-        M8MeetRenderModel *tempModel;
+        M8CallRenderModel *tempModel;
         if (_currentInBackModel) {
             tempModel = _currentInBackModel;
             _currentInBackModel = self.membersArray[indexPath.row];
@@ -176,12 +176,12 @@
 #pragma mark - private actions
 
 #pragma mark -- get member model
-- (M8MeetRenderModel *)getMemberWithID:(NSString *)identify {
+- (M8CallRenderModel *)getMemberWithID:(NSString *)identify {
     if ([identify isEqualToString:_currentInBackModel.identify]) {
         return _currentInBackModel;
     }
     else {
-        for (M8MeetRenderModel *model in self.membersArray) {
+        for (M8CallRenderModel *model in self.membersArray) {
             if ([model.identify isEqualToString:identify]) {
                 return model;
             }
@@ -193,7 +193,7 @@
 
 
 #pragma mark -- update member model in container
-- (void)updateMember:(M8MeetRenderModel *)newModel {
+- (void)updateMember:(M8CallRenderModel *)newModel {
     if ([newModel.identify isEqualToString:_currentInBackModel.identify])
     {
         _currentInBackModel = newModel;
@@ -221,7 +221,7 @@
         return YES;
     }
     else {
-        for (M8MeetRenderModel *model in self.membersArray) {
+        for (M8CallRenderModel *model in self.membersArray) {
             if ([model.identify isEqualToString:identify])
             {
                 return YES;
@@ -238,7 +238,7 @@
         return YES;
     }
     else {
-        for (M8MeetRenderModel *model in self.membersArray) {
+        for (M8CallRenderModel *model in self.membersArray) {
             if (model.isCameraOn) {
                 return YES;
             }
@@ -253,14 +253,14 @@
     
     if (self.callType == TILCALL_TYPE_VIDEO) {
         if (!_currentInBackModel.isCameraOn) {
-            for (M8MeetRenderModel *model in self.membersArray) {
+            for (M8CallRenderModel *model in self.membersArray) {
                 if (model.isCameraOn) { // 交换成员信息
                     if (_currentInBackModel == nil) {
                         _currentInBackModel = model;
                         [self.membersArray removeObject:model];
                     }
                     else {
-                        M8MeetRenderModel *tempModel = _currentInBackModel;
+                        M8CallRenderModel *tempModel = _currentInBackModel;
                         _currentInBackModel = model;
                         [self.membersArray replaceObjectAtIndex:[self getMemberIndexInArray:model.identify]
                                                      withObject:tempModel];

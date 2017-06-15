@@ -1,5 +1,5 @@
 //
-//  M8MeetRenderModel.h
+//  M8CallRenderModel.h
 //  M8Tool
 //
 //  Created by chao on 2017/6/8.
@@ -19,7 +19,7 @@ typedef NS_ENUM(NSInteger, onMeetMemberStatus) {
     MeetMemberStatus_disconnect = 6    ///< 用户断开连接
 };
 
-@interface M8MeetRenderModel : NSObject
+@interface M8CallRenderModel : NSObject
 
 /**
  成员id  只记录一次

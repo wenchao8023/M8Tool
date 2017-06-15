@@ -7,8 +7,8 @@
 //
 
 #import "M8LiveRenderView.h"
-#import "M8MeetRenderCell.h"
-#import "M8MeetRenderModelManager.h"
+#import "M8CallRenderCell.h"
+#import "M8CallRenderModelManager.h"
 
 
 @interface M8LiveRenderView ()<UICollectionViewDelegate, UICollectionViewDataSource, RenderModelManagerDelegate>
@@ -24,7 +24,7 @@
 
 @property (nonatomic, strong) NSArray *membersArray;
 
-@property (nonatomic, strong) M8MeetRenderModelManager *modelManager;
+@property (nonatomic, strong) M8CallRenderModelManager *modelManager;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *layoutHeight_render;
 
@@ -75,7 +75,7 @@
     [self.renderCollection setDelegate:self];
     [self.renderCollection setDataSource:self];
     [self.renderCollection setPagingEnabled:YES];
-    [self.renderCollection registerNib:[UINib nibWithNibName:@"M8MeetRenderCell" bundle:nil] forCellWithReuseIdentifier:@"M8MeetRenderCellID"];
+    [self.renderCollection registerNib:[UINib nibWithNibName:@"M8CallRenderCell" bundle:nil] forCellWithReuseIdentifier:@"M8CallRenderCellID"];
 }
 
 
@@ -90,7 +90,7 @@
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    M8MeetRenderCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"M8MeetRenderCellID" forIndexPath:indexPath];
+    M8CallRenderCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"M8CallRenderCellID" forIndexPath:indexPath];
     
     [cell config:self.membersArray[indexPath.row]];
     
@@ -131,7 +131,7 @@
 }
 
 #pragma mark -- RenderModelManagerDelegate
-- (void)renderModelManager:(M8MeetRenderModelManager *)modelManager currentModel:(M8MeetRenderModel *)currentModel membersArray:(NSArray *)membersArray {
+- (void)renderModelManager:(M8CallRenderModelManager *)modelManager currentModel:(M8CallRenderModel *)currentModel membersArray:(NSArray *)membersArray {
     self.membersArray = membersArray;
 }
 
@@ -175,7 +175,7 @@
             for (NSString *user in users) {
                 if(![user isEqualToString:_host]) {
 //                    [self removeModelWithID:user];
-//                    M8MeetRenderModel *model = [self getModelWithID:user];
+//                    M8CallRenderModel *model = [self getModelWithID:user];
 //                    model.isLeaveRoom = YES;
 //                    [self updateMemberArrayWithModel:model];
                 }
@@ -195,7 +195,7 @@
 //                [self addModelWithID:user];
                 
                 if(![user isEqualToString:_host]) {
-//                    M8MeetRenderModel *model = [self getModelWithID:user];
+//                    M8CallRenderModel *model = [self getModelWithID:user];
 //                    model.isCameraOn = YES;
 //                    model.videoScrType = QAVVIDEO_SRC_TYPE_CAMERA;
 //                    [self updateMemberArrayWithModel:model];
@@ -215,7 +215,7 @@
         {
             for (NSString *user in users) {
                 if(![user isEqualToString:_host]){
-//                    M8MeetRenderModel *model = [self getModelWithID:user];
+//                    M8CallRenderModel *model = [self getModelWithID:user];
 //                    model.isCameraOn = NO;
 //                    model.videoScrType = QAVVIDEO_SRC_TYPE_NONE;
 //                    [self updateMemberArrayWithModel:model];
@@ -271,7 +271,7 @@
         {
             for (NSString *user in users) {
                 if(![user isEqualToString:_host]){
-//                    M8MeetRenderModel *model = [self getModelWithID:user];
+//                    M8CallRenderModel *model = [self getModelWithID:user];
 //                    model.isMicOn = YES;
 //                    model.videoScrType = QAVVIDEO_SRC_TYPE_MEDIA;
 //                    [self updateMemberArrayWithModel:model];
@@ -290,7 +290,7 @@
         {
             for (NSString *user in users) {
                 if(![user isEqualToString:_host]){
-//                    M8MeetRenderModel *model = [self getModelWithID:user];
+//                    M8CallRenderModel *model = [self getModelWithID:user];
 //                    model.isMicOn = NO;
 //                    model.videoScrType = QAVVIDEO_SRC_TYPE_NONE;
 //                    [self updateMemberArrayWithModel:model];
@@ -348,8 +348,8 @@
 // @param identify 成员ID
 // @return 数据模型
 // */
-//- (M8MeetRenderModel *)getModelWithID:(NSString *)identify {
-//    for (M8MeetRenderModel *model in self.membersArray) {
+//- (M8CallRenderModel *)getModelWithID:(NSString *)identify {
+//    for (M8CallRenderModel *model in self.membersArray) {
 //        if ([model.identify isEqualToString:identify]) {
 //            return model;
 //        }
@@ -365,7 +365,7 @@
 // @return 是否存在
 // */
 //- (BOOL)isExistInMemberArray:(NSString *)identify {
-//    for (M8MeetRenderModel *model in self.membersArray) {
+//    for (M8CallRenderModel *model in self.membersArray) {
 //        if ([model.identify isEqualToString:identify]) {
 //            return YES;
 //        }
@@ -381,7 +381,7 @@
 // */
 //- (void)addModelWithID:(NSString *)identify {
 //    if (![self isExistInMemberArray:identify]) {
-//        M8MeetRenderModel *model = [[M8MeetRenderModel alloc] init];
+//        M8CallRenderModel *model = [[M8CallRenderModel alloc] init];
 //        model.identify = identify;
 //        model.isEnterRoom = YES;
 //        if ([identify isEqualToString:_host]) {
@@ -398,7 +398,7 @@
 //
 // @param model 更新后的Model
 // */
-//- (void)updateMemberArrayWithModel:(M8MeetRenderModel *)model {
+//- (void)updateMemberArrayWithModel:(M8CallRenderModel *)model {
 //    [self.membersArray replaceObjectAtIndex:[self getIndexWithID:model.identify] withObject:model];
 //}
 

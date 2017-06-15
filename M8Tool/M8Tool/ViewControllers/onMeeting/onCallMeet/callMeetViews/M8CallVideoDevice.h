@@ -1,5 +1,5 @@
 //
-//  M8MeetDeviceView.h
+//  M8CallVideoDevice.h
 //  M8Tool
 //
 //  Created by chao on 2017/6/7.
@@ -33,7 +33,7 @@ static const CGFloat kBottomHeight = 50.f;
     * 免提
     * 文本输入 (textInputView)
  */
-@interface M8MeetDeviceView : UIView
+@interface M8CallVideoDevice : UIView
 
 @property (nonatomic, weak) id _Nullable WCDelegate;
 

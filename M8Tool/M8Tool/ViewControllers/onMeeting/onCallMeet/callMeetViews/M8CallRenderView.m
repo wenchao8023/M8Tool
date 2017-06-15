@@ -8,10 +8,10 @@
 
 #import "M8CallRenderView.h"
 
-#import "M8MeetRenderModelManager.h"
+#import "M8CallRenderModelManager.h"
 
-#import "M8MeetRenderCell.h"
-#import "M8CallNoteView.h"
+#import "M8CallRenderCell.h"
+#import "M8CallRenderNote.h"
 
 #import "UserContactViewController.h"
 
@@ -27,9 +27,9 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *layoutHeight_render;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *layoutTop_render;
 
-@property (strong, nonatomic) M8CallNoteView *noteView;
+@property (strong, nonatomic) M8CallRenderNote *noteView;
 
-@property (nonatomic, strong) M8MeetRenderModelManager *modelManager;
+@property (nonatomic, strong) M8CallRenderModelManager *modelManager;
 
 
 @property (nonatomic, copy) NSString *currentIdentify;
@@ -51,9 +51,9 @@
     return self;
 }
 
-- (M8MeetRenderModelManager *)modelManager {
+- (M8CallRenderModelManager *)modelManager {
     if (!_modelManager) {
-        M8MeetRenderModelManager *modelManager = [[M8MeetRenderModelManager  alloc] init];
+        M8CallRenderModelManager *modelManager = [[M8CallRenderModelManager  alloc] init];
         modelManager.WCDelegate     = self;
         modelManager.hostIdentify   = self.hostIdentify;
         modelManager.loginIdentify  = self.loginIdentify;
@@ -96,10 +96,10 @@
     [self.renderCollection setDelegate:self];
     [self.renderCollection setDataSource:self];
     [self.renderCollection setPagingEnabled:YES];
-    [self.renderCollection registerNib:[UINib nibWithNibName:@"M8MeetRenderCell" bundle:nil] forCellWithReuseIdentifier:@"M8MeetRenderCellID"];
+    [self.renderCollection registerNib:[UINib nibWithNibName:@"M8CallRenderCell" bundle:nil] forCellWithReuseIdentifier:@"M8CallRenderCellID"];
     
     /// add noteView
-    _noteView = [[M8CallNoteView alloc] initWithFrame:CGRectMake(0, self.height - 270, self.width, 200)];
+    _noteView = [[M8CallRenderNote alloc] initWithFrame:CGRectMake(0, self.height - 270, self.width, 200)];
     [self addSubview:_noteView];
 }
 
@@ -117,7 +117,7 @@
 
 
 #pragma mark -- RenderModelManagerDelegate
-- (void)renderModelManager:(M8MeetRenderModelManager *)modelManager currentModel:(M8MeetRenderModel *)currentModel membersArray:(NSArray *)membersArray {
+- (void)renderModelManager:(M8CallRenderModelManager *)modelManager currentModel:(M8CallRenderModel *)currentModel membersArray:(NSArray *)membersArray {
     self.membersArray = membersArray;
     self.currentIdentify = currentModel.identify;
     
@@ -131,9 +131,9 @@
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    M8MeetRenderCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"M8MeetRenderCellID" forIndexPath:indexPath];
+    M8CallRenderCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"M8CallRenderCellID" forIndexPath:indexPath];
     
-    M8MeetRenderModel *model = self.membersArray[indexPath.row];
+    M8CallRenderModel *model = self.membersArray[indexPath.row];
     
     [cell configWithModel:model];
     

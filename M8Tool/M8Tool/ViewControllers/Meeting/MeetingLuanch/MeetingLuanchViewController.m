@@ -142,6 +142,7 @@
             callVC.membersArray = self.selectedArray;
             callVC.callId       = roomId;
             callVC.callType     = TILCALL_TYPE_AUDIO;
+            callVC.topic        = self.topic;
             [[AppDelegate sharedAppDelegate] presentNavigationController:callVC];
         }
         break;
@@ -151,6 +152,7 @@
             callVC.membersArray = self.selectedArray;
             callVC.callId       = roomId;
             callVC.callType     = TILCALL_TYPE_VIDEO;
+            callVC.topic        = self.topic;
             [[AppDelegate sharedAppDelegate] presentNavigationController:callVC];
         }
         break;

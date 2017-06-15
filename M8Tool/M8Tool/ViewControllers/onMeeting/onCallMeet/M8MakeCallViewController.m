@@ -29,6 +29,8 @@
         self.deviceView.hidden = YES;
     }
     
+    [self.headerView configTopic:self.topic];
+    
     [self makeCall];
 }
 
@@ -69,7 +71,7 @@
     self.renderView.hostIdentify = [[ILiveLoginManager getInstance] getLoginId];
     
     __weak typeof(self) ws = self;
-    [_call makeCall:nil custom:nil result:^(TILCallError *err) {
+    [_call makeCall:nil custom:self.topic result:^(TILCallError *err) {
         if(err){
             [ws addTextToView:[NSString stringWithFormat:@"呼叫失败:%@-%d-%@",err.domain,err.code,err.errMsg]];
 //            [ws selfDismiss];
@@ -82,6 +84,9 @@
             
             [self.deviceView configButtonBackImgs];
             [self.audioDeviceView configButtonBackImgs];
+            
+            [self.headerView beginCountTime];
+            
         }
     }];
 }

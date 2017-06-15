@@ -45,6 +45,8 @@
         self.deviceView.hidden = YES;
     }
     
+    [self.headerView configTopic:_invitation.custom];
+    
     _childVC = [[M8RecvChildViewController alloc] init];
     _childVC.invitation = self.invitation;
     _childVC.WCDelegate = self;
@@ -98,6 +100,8 @@
             [[ILiveRoomManager getInstance] setWhite:3];
             
             [self removeChildViewController];
+            
+            [self.headerView beginCountTime];
         }
     }];
 }

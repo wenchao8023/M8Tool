@@ -33,6 +33,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+
+
 #pragma mark - createUI
 - (void)createUI {
     
@@ -42,6 +45,7 @@
     [self deviceView];
     [self audioDeviceView];
 }
+
 
 - (UIImageView *)bgImageView {
     if (!_bgImageView) {
@@ -62,9 +66,9 @@
 }
 
 
-- (M8MeetHeaderView *)headerView {
+- (M8CallHeaderView *)headerView {
     if (!_headerView) {
-        M8MeetHeaderView *headerView = [[M8MeetHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, kDefaultNaviHeight)];
+        M8CallHeaderView *headerView = [[M8CallHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, kDefaultNaviHeight)];
         headerView.WCDelegate = self;
         [self.view addSubview:(_headerView = headerView)];
     }
@@ -72,9 +76,9 @@
 }
 
 
-- (M8MeetDeviceView *)deviceView {
+- (M8CallVideoDevice *)deviceView {
     if (!_deviceView) {
-        M8MeetDeviceView *deviceView = [[M8MeetDeviceView alloc] initWithFrame:CGRectMake(0, SCREENH_HEIGHT - kBottomHeight - kDefaultMargin, SCREEN_WIDTH, kBottomHeight)];
+        M8CallVideoDevice *deviceView = [[M8CallVideoDevice alloc] initWithFrame:CGRectMake(0, SCREENH_HEIGHT - kBottomHeight - kDefaultMargin, SCREEN_WIDTH, kBottomHeight)];
         deviceView.WCDelegate = self;
         [self.view addSubview:(_deviceView = deviceView)];
     }
@@ -93,6 +97,8 @@
     }
     return _audioDeviceView;
 }
+
+
 
 
 #pragma mark - views delegate

@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "M8MeetHeaderView.h"
-#import "M8MeetDeviceView.h"
+#import "M8CallHeaderView.h"
+#import "M8CallVideoDevice.h"
 #import "M8CallAudioDevice.h"
 #import "M8CallRenderView.h"
 
@@ -26,14 +26,14 @@
  */
 @property (nonatomic, strong, nullable) UIImageView *bgImageView;
 
-@property (nonatomic, strong, nonnull) M8MeetHeaderView *headerView;
-@property (nonatomic, strong, nonnull) M8MeetDeviceView *deviceView;
+@property (nonatomic, strong, nonnull) M8CallHeaderView *headerView;
+@property (nonatomic, strong, nonnull) M8CallVideoDevice *deviceView;
 @property (nonatomic, strong, nonnull) M8CallAudioDevice *audioDeviceView;
 @property (nonatomic, strong, nonnull) M8CallRenderView *renderView;
 
 @property (nonatomic, strong, nonnull) TILMultiCall *_call;
 
-
+@property (nonatomic, copy, nonnull) NSString *topic;
 /**
  添加调试信息
 
@@ -45,4 +45,7 @@
  退出视图，为了看到调试信息，延时 1s 退出
  */
 - (void)selfDismiss;
+
+
+
 @end

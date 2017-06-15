@@ -1,12 +1,12 @@
 //
-//  M8MeetRenderCell.m
+//  M8CallRenderCell.m
 //  M8Tool
 //
 //  Created by chao on 2017/6/8.
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import "M8MeetRenderCell.h"
+#import "M8CallRenderCell.h"
 
 static NSString * const kMemberStatu_lineBusy   = @"占线";
 static NSString * const kMemberStatu_reject     = @"拒绝";
@@ -17,7 +17,7 @@ static NSString * const kMemberStatu_waiting    = @"连接中";   // 需考虑�
 
 
 
-@interface M8MeetRenderCell ()
+@interface M8CallRenderCell ()
 
 @property (weak, nonatomic) IBOutlet M8LiveLabel *identifyLabel;
 
@@ -32,14 +32,14 @@ static NSString * const kMemberStatu_waiting    = @"连接中";   // 需考虑�
 @end
 
 
-@implementation M8MeetRenderCell
+@implementation M8CallRenderCell
 
-- (void)config:(M8MeetRenderModel *)model {
+- (void)config:(M8CallRenderModel *)model {
 
     
 }
 
-- (void)configWithModel:(M8MeetRenderModel *)model {
+- (void)configWithModel:(M8CallRenderModel *)model {
     
     WCViewBorder_Radius(self.onVioceImg, _onVioceImg.width / 2);
     

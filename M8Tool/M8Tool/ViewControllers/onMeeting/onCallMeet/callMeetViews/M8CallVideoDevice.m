@@ -1,15 +1,15 @@
 //
-//  M8MeetDeviceView.m
+//  M8CallVideoDevice.m
 //  M8Tool
 //
 //  Created by chao on 2017/6/7.
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import "M8MeetDeviceView.h"
+#import "M8CallVideoDevice.h"
 
 
-@interface M8MeetDeviceView ()
+@interface M8CallVideoDevice ()
 {
     CGRect _myFrame;
 }
@@ -53,7 +53,7 @@
 
 
 
-@implementation M8MeetDeviceView
+@implementation M8CallVideoDevice
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {

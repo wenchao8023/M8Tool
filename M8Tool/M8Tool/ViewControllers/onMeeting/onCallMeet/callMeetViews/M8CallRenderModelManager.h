@@ -1,5 +1,5 @@
 //
-//  M8MeetRenderModelManager.h
+//  M8CallRenderModelManager.h
 //  M8Tool
 //
 //  Created by chao on 2017/6/14.
@@ -9,18 +9,18 @@
 #import <Foundation/Foundation.h>
 
 
-@class M8MeetRenderModelManager;
-@class M8MeetRenderModel;
+@class M8CallRenderModelManager;
+@class M8CallRenderModel;
 @protocol RenderModelManagerDelegate <NSObject>
 
-- (void)renderModelManager:(M8MeetRenderModelManager *_Nonnull)modelManager
-              currentModel:(M8MeetRenderModel *_Nullable)currentModel
+- (void)renderModelManager:(M8CallRenderModelManager *_Nonnull)modelManager
+              currentModel:(M8CallRenderModel *_Nullable)currentModel
               membersArray:(NSArray *_Nullable)membersArray;
 
 @end
 
 
-@interface M8MeetRenderModelManager : NSObject
+@interface M8CallRenderModelManager : NSObject
 
 @property (nonatomic, copy, nullable) NSString *hostIdentify;
 

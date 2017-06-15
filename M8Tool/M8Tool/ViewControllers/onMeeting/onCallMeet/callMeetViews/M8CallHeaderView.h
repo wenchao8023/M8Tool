@@ -1,5 +1,5 @@
 //
-//  M8MeetHeaderView.h
+//  M8CallHeaderView.h
 //  M8Tool
 //
 //  Created by chao on 2017/6/8.
@@ -27,8 +27,22 @@ static NSString * _Nonnull kHeaderText   = @"kHeaderText";
     * 会议主题
     * 会议时长
  */
-@interface M8MeetHeaderView : UIView
+@interface M8CallHeaderView : UIView
 
 @property (nonatomic, weak) id _Nullable WCDelegate;
+
+
+/**
+ 设置会议主题
+
+ @param topic 会议主题
+ */
+- (void)configTopic:(NSString *_Nonnull)topic;
+
+
+/**
+ 开始计时
+ */
+- (void)beginCountTime;
 
 @end

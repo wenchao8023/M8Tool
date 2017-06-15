@@ -1,14 +1,14 @@
 //
-//  M8MeetRenderModel.m
+//  M8CallRenderModel.m
 //  M8Tool
 //
 //  Created by chao on 2017/6/8.
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import "M8MeetRenderModel.h"
+#import "M8CallRenderModel.h"
 
-@implementation M8MeetRenderModel
+@implementation M8CallRenderModel
 
 - (instancetype)init {
     if (self = [super init]) {
