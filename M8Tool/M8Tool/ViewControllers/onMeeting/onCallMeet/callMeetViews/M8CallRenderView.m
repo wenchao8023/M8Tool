@@ -109,9 +109,11 @@
 #pragma mark - Delegate
 #pragma mark -- MeetDeviceActionInfo:
 - (void)callRenderActionInfoValue:(id)value key:(NSString *)key {
-    NSDictionary *actionInfo = @{key : value};
-    if ([self.WCDelegate respondsToSelector:@selector(CallRenderActionInfo:)]) {
-        [self.WCDelegate CallRenderActionInfo:actionInfo];
+    if (value) {
+        NSDictionary *actionInfo = @{key : value};
+        if ([self.WCDelegate respondsToSelector:@selector(CallRenderActionInfo:)]) {
+            [self.WCDelegate CallRenderActionInfo:actionInfo];
+        }
     }
 }
 
@@ -122,6 +124,8 @@
     self.currentIdentify = currentModel.identify;
     
     [self updateRenderCollection];
+    
+    [self callRenderActionInfoValue:self.currentIdentify key:kCallValue_id];
 }
 
 
@@ -218,7 +222,7 @@
              * sender 不会是 App登录用户 的接收方
              */
             [self addTextToView:[NSString stringWithFormat:@"%@接受了%@的邀请",sender,target]];
-            [self callRenderActionInfoValue:[NSString stringWithFormat:@"%d", (self.shouldHangup = YES)] key:kCallValue];
+            [self callRenderActionInfoValue:[NSString stringWithFormat:@"%d", (self.shouldHangup = YES)] key:kCallValue_bool];
             [self.modelManager memberReceiveWithID:sender];
         }
             

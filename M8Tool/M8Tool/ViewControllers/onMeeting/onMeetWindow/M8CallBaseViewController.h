@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #import "M8CallHeaderView.h"
 #import "M8CallVideoDevice.h"
 #import "M8CallAudioDevice.h"
 #import "M8CallRenderView.h"
-
+#import "M8FloatRenderView.h"
 
 /**
  会议界面
@@ -24,12 +25,12 @@
 /**
  背景图片
  */
-@property (nonatomic, strong, nullable) UIImageView *bgImageView;
-
-@property (nonatomic, strong, nonnull) M8CallHeaderView *headerView;
-@property (nonatomic, strong, nonnull) M8CallVideoDevice *deviceView;
-@property (nonatomic, strong, nonnull) M8CallAudioDevice *audioDeviceView;
-@property (nonatomic, strong, nonnull) M8CallRenderView *renderView;
+@property (nonatomic, strong, nonnull) UIImageView          *bgImageView;
+@property (nonatomic, strong, nonnull) M8CallHeaderView     *headerView;
+@property (nonatomic, strong, nonnull) M8CallVideoDevice    *deviceView;
+@property (nonatomic, strong, nonnull) M8CallAudioDevice    *audioDeviceView;
+@property (nonatomic, strong, nonnull) M8CallRenderView     *renderView;
+@property (nonatomic, strong, nonnull) M8FloatRenderView    *floatView;
 
 @property (nonatomic, strong, nonnull) TILMultiCall *_call;
 
@@ -46,6 +47,13 @@
  */
 - (void)selfDismiss;
 
+
+#pragma mark - 设置window窗口
+- (void)showFloatView;
+
+- (void)hiddeFloatView;
+
+- (void)setRootView;
 
 
 @end

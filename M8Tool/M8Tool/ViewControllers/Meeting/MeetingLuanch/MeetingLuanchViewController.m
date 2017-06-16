@@ -12,7 +12,7 @@
 #import "M8LiveMeetViewController.h"
 
 #import "M8MakeCallViewController.h"
-
+#import "M8MeetWindow.h"
 
 
 @interface MeetingLuanchViewController ()<LuanchTableViewDelegate>
@@ -143,7 +143,9 @@
             callVC.callId       = roomId;
             callVC.callType     = TILCALL_TYPE_AUDIO;
             callVC.topic        = self.topic;
-            [[AppDelegate sharedAppDelegate] presentNavigationController:callVC];
+//            [[AppDelegate sharedAppDelegate] presentNavigationController:callVC];
+            
+            [M8MeetWindow M8_addSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
         }
         break;
         case LuanchMeetingType_video:   //视频
@@ -153,7 +155,8 @@
             callVC.callId       = roomId;
             callVC.callType     = TILCALL_TYPE_VIDEO;
             callVC.topic        = self.topic;
-            [[AppDelegate sharedAppDelegate] presentNavigationController:callVC];
+//            [[AppDelegate sharedAppDelegate] presentNavigationController:callVC];
+            [M8MeetWindow M8_addSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
         }
         break;
         case LuanchMeetingType_live:    //直播

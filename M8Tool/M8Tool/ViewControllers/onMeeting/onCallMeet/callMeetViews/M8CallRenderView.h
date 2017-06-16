@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 
 
-static NSString * _Nonnull kCallAction = @"kCallAction";
-static NSString * _Nonnull kCallText   = @"kCallText";
-static NSString * _Nonnull kCallValue  = @"kCallValue";
+static NSString * _Nonnull kCallAction      = @"kCallAction";
+static NSString * _Nonnull kCallText        = @"kCallText";
+static NSString * _Nonnull kCallValue_bool  = @"kCallValue_bool";
+static NSString * _Nonnull kCallValue_id    = @"kCallValue_id";
 
 
 @protocol CallRenderDelegate <NSObject>
@@ -45,7 +46,7 @@ static NSString * _Nonnull kCallValue  = @"kCallValue";
 @property (nonatomic, assign) BOOL shouldHangup;
 
 
-@property (nonatomic, weak) id _Nullable WCDelegate;
+@property (nonatomic, weak) id<CallRenderDelegate> _Nullable WCDelegate;
 
 - (void)addTextToView:(NSString *_Nullable)newText;
 

@@ -165,7 +165,7 @@
         }
     }
     
-    if ([infoKey isEqualToString:kCallValue]) {
+    if ([infoKey isEqualToString:kCallValue_bool]) {
         self.shouldHangup = [infoValue boolValue];
     }
 }

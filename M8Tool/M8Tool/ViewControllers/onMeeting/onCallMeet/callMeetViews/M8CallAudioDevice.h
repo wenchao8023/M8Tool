@@ -22,7 +22,7 @@ static NSString  * _Nullable  kCallAudioDeviceText    = @"CallAudioDeviceText";
 
 @interface M8CallAudioDevice : UIView
 
-@property (nonatomic, weak) id _Nullable WCDelegate;
+@property (nonatomic, weak) id<CallAudioDeviceDelegate> _Nullable WCDelegate;
 
 - (void)configButtonBackImgs ;
 

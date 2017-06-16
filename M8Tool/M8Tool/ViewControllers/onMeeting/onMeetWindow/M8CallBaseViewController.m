@@ -8,8 +8,18 @@
 
 #import "M8CallBaseViewController.h"
 
-@interface M8CallBaseViewController ()
 
+
+
+#define kFloatViewWidth     (SCREEN_WIDTH - 50) / 4
+#define kFloatViewHeight    kFloatViewWidth * 4 / 3
+
+
+@interface M8CallBaseViewController ()<FloatRenderViewDelegate>
+
+@property (nonatomic, copy) NSString *currentIdentify;
+
+@property (nonatomic, strong) UIWindow *meetWindow;
 
 @end
 
@@ -22,9 +32,14 @@
     
     self.navigationController.navigationBarHidden = YES;
     
+    self.view.frame = CGRectMake(0, SCREENH_HEIGHT, SCREEN_WIDTH, SCREENH_HEIGHT);
+    
     [self createUI];
     
+    [self.meetWindow addSubview:self.floatView];
+    
     [WCNotificationCenter addObserver:self selector:@selector(themeSwichAction) name:kThemeSwich_Notification object:nil];
+    [WCNotificationCenter addObserver:self selector:@selector(orientationChange:) name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 
 
@@ -34,7 +49,65 @@
 }
 
 
+#pragma mark - link window in super viewController
+- (M8FloatRenderView *)floatView {
+    if (!_floatView) {
+        M8FloatRenderView *floatView = [[M8FloatRenderView alloc] init];
+        floatView.contentMode = UIViewContentModeScaleAspectFill;
+        floatView.frame = CGRectMake(0, 0, kFloatViewWidth, kFloatViewHeight);
+        floatView.WCDelegate = self;
+        floatView.initOrientation = [UIApplication sharedApplication].statusBarOrientation;
+        floatView.originTransform = floatView.transform;
+        _floatView = floatView;
+    }
+    return _floatView;
+}
 
+- (UIWindow *)meetWindow {
+    if (!_meetWindow) {
+        UIWindow *meetWindow = [[UIWindow alloc] init];
+        meetWindow.frame = CGRectMake(SCREEN_WIDTH - kFloatViewWidth, 70, kFloatViewWidth, kFloatViewHeight);
+        meetWindow.windowLevel = UIWindowLevelAlert + 1;
+        meetWindow.backgroundColor = [UIColor clearColor];
+        [meetWindow makeKeyAndVisible];
+        _meetWindow = meetWindow;
+    }
+    return _meetWindow;
+}
+
+- (void)setRootView {
+    self.floatView.rootView = self.view.superview;
+}
+
+- (void)orientationChange:(NSNotification *)notification {
+    [self.floatView floatViewRotate];
+}
+
+- (void)floatRenderViewDidClicked {
+    
+    [self hiddeFloatView];
+}
+
+- (void)showFloatView {
+    [UIView animateWithDuration:0.3 animations:^{
+        CGRect frame = self.view.frame;
+        frame.origin.y = [UIScreen mainScreen].bounds.size.height;
+        self.view.frame = frame;
+    } completion:^(BOOL finished) {
+        self.floatView.hidden = NO;
+    }];
+}
+
+- (void)hiddeFloatView {
+    self.floatView.hidden = YES;
+    [UIView animateWithDuration:0.3 animations:^{
+        CGRect frame = self.view.frame;
+        frame.origin.y = 0;
+        self.view.frame = frame;
+    } completion:^(BOOL finished) {
+        
+    }];
+}
 
 #pragma mark - createUI
 - (void)createUI {
@@ -106,6 +179,19 @@
 - (void)MeetHeaderActionInfo:(NSDictionary *)actionInfo {
     
     [self addTextToView:[actionInfo allValues][0]];
+    
+    
+    NSString *infoKey = [[actionInfo allKeys] firstObject];
+    NSString *infoValue = [actionInfo objectForKey:infoKey];
+    if ([infoKey isEqualToString:kHeaderAction]) {
+        [self showFloatView];
+    }
+    
+    if ([infoKey isEqualToString:kCallValue_id]) {
+        self.currentIdentify = infoValue;
+    }
+    
+    
 }
 
 
@@ -139,6 +225,37 @@
     });
 }
 
+/**
+ zoom render view to presentingVC
+ */
+- (void)zoomRenderView {
+
+    UIViewController *presentTabbar = [self presentingViewController];  //MainTabBarController
+    
+//    [self dismissViewControllerAnimated:YES completion:^{
+//        [M8FloatWindow M8_addWindowOnTarget:presentTabbar onClick:nil];
+//        
+//        [M8FloatWindow M8_setRenderViewCall:self._call identify:self.currentIdentify];
+//    }];
+    
+//    if ([presentTabbar isKindOfClass:[UITabBarController class]])
+//    {
+//        UIViewController *selectVc = [((UITabBarController *)presentTabbar) selectedViewController]; // UINavigationController
+//        if ([selectVc  isKindOfClass:[UINavigationController class]])
+//        {
+//            UIViewController *presentingTopVC = [((UINavigationController *)selectVc) topViewController]; //really presenting view controller
+//            
+//            
+//            [self dismissViewControllerAnimated:YES completion:^{
+//                [M8FloatWindow M8_addWindowOnTarget:presentingTopVC onClick:^{
+//                    
+//                }];
+//                
+//                [M8FloatWindow M8_setRenderViewCall:self._call identify:self.currentIdentify];
+//            }];
+//        }
+//    }
+}
 
 #pragma mark - private actions
 - (void)themeSwichAction {
@@ -149,6 +266,8 @@
 - (void)dealloc {
     
     [WCNotificationCenter removeObserver:self name:kThemeSwich_Notification object:nil];
+    
+    WCLog(@"call base view controller has been dealloc");
 }
 
 

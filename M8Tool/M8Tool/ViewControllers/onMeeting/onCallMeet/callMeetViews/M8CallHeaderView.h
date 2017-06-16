@@ -29,8 +29,7 @@ static NSString * _Nonnull kHeaderText   = @"kHeaderText";
  */
 @interface M8CallHeaderView : UIView
 
-@property (nonatomic, weak) id _Nullable WCDelegate;
-
+@property (nonatomic, weak) id<MeetHeaderDelegate> _Nullable WCDelegate;
 
 /**
  设置会议主题

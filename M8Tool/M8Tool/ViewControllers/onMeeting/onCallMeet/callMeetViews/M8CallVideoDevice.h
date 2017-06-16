@@ -35,7 +35,7 @@ static const CGFloat kBottomHeight = 50.f;
  */
 @interface M8CallVideoDevice : UIView
 
-@property (nonatomic, weak) id _Nullable WCDelegate;
+@property (nonatomic, weak) id<MeetDeviceDelegate> _Nullable WCDelegate;
 
 - (void)configButtonBackImgs;
 

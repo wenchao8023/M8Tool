@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" text="59:59" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfX-vU-ssG" customClass="M8LiveLabel">
-                    <rect key="frame" x="321" y="33.5" width="44" height="17"/>
+                    <rect key="frame" x="311" y="33.5" width="54" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -43,11 +43,10 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="pdc-DG-BV6" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="3gz-jt-JMH"/>
-                <constraint firstItem="mfX-vU-ssG" firstAttribute="leading" secondItem="pdc-DG-BV6" secondAttribute="trailing" constant="10" id="A5M-Qn-QIS"/>
+                <constraint firstItem="mfX-vU-ssG" firstAttribute="leading" secondItem="pdc-DG-BV6" secondAttribute="trailing" id="A5M-Qn-QIS"/>
                 <constraint firstAttribute="trailing" secondItem="mfX-vU-ssG" secondAttribute="trailing" constant="10" id="ayM-wj-f2b"/>
                 <constraint firstItem="pdc-DG-BV6" firstAttribute="centerY" secondItem="Hxx-b4-mOk" secondAttribute="centerY" id="blJ-7S-jn3"/>
                 <constraint firstItem="pdc-DG-BV6" firstAttribute="leading" secondItem="Hxx-b4-mOk" secondAttribute="trailing" constant="10" id="k1C-yY-5QI"/>
-                <constraint firstItem="mfX-vU-ssG" firstAttribute="width" secondItem="Hxx-b4-mOk" secondAttribute="width" id="q4q-N5-cos"/>
                 <constraint firstItem="Hxx-b4-mOk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="rKV-re-DCY"/>
                 <constraint firstItem="Hxx-b4-mOk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="rf3-xW-hrN"/>
                 <constraint firstItem="mfX-vU-ssG" firstAttribute="centerY" secondItem="pdc-DG-BV6" secondAttribute="centerY" id="ycT-Il-uJo"/>

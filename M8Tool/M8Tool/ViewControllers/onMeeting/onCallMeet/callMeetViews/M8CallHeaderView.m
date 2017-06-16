@@ -49,6 +49,9 @@
 }
 
 
+
+
+
 - (void)configTopic:(NSString *)topic {
     self.topicLabel.text = topic;
 }
