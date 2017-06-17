@@ -13,7 +13,7 @@
 #import "M8CallRenderCell.h"
 #import "M8CallRenderNote.h"
 
-#import "UserContactViewController.h"
+
 
 @interface M8CallRenderView ()<UICollectionViewDelegate, UICollectionViewDataSource, RenderModelManagerDelegate>
 {
@@ -43,6 +43,7 @@
 
 @implementation M8CallRenderView
 
+#pragma mark - init
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil] firstObject];
@@ -71,6 +72,13 @@
     return _loginIdentify;
 }
 
+- (M8CallRenderNote *)noteView {
+    if (!_noteView) {
+        M8CallRenderNote *noteView = [[M8CallRenderNote alloc] initWithFrame:CGRectMake(0, self.height - 270, self.width, 200)];
+        [self addSubview:(_noteView = noteView)];
+    }
+    return _noteView;
+}
 
 - (void)drawRect:(CGRect)rect {
     // Drawing code
@@ -99,15 +107,16 @@
     [self.renderCollection registerNib:[UINib nibWithNibName:@"M8CallRenderCell" bundle:nil] forCellWithReuseIdentifier:@"M8CallRenderCellID"];
     
     /// add noteView
-    _noteView = [[M8CallRenderNote alloc] initWithFrame:CGRectMake(0, self.height - 270, self.width, 200)];
-    [self addSubview:_noteView];
+    [self noteView];
 }
 
 
 
 
+
+
 #pragma mark - Delegate
-#pragma mark -- MeetDeviceActionInfo:
+#pragma mark -- respondsToDelegate
 - (void)callRenderActionInfoValue:(id)value key:(NSString *)key {
     if (value) {
         NSDictionary *actionInfo = @{key : value};
@@ -120,12 +129,22 @@
 
 #pragma mark -- RenderModelManagerDelegate
 - (void)renderModelManager:(M8CallRenderModelManager *)modelManager currentModel:(M8CallRenderModel *)currentModel membersArray:(NSArray *)membersArray {
+    
     self.membersArray = membersArray;
-    self.currentIdentify = currentModel.identify;
+    _currentIdentify = currentModel.identify;
     
     [self updateRenderCollection];
     
-    [self callRenderActionInfoValue:self.currentIdentify key:kCallValue_id];
+    
+    if (currentModel.identify) {
+        [self callRenderActionInfoValue:@{currentModel.identify : currentModel} key:kCallValue_model];
+    }
+    else {
+        if (membersArray.count) {
+            M8CallRenderModel *model = membersArray[0];
+            [self callRenderActionInfoValue:@{model.identify : model} key:kCallValue_model];
+        }
+    }
 }
 
 
@@ -203,6 +222,8 @@
 }
 
 
+
+
 #pragma mark -- 通知回调
 - (void)onRecvNotification:(TILCallNotification *)notify
 {
@@ -234,7 +255,6 @@
                 [self addTextToView:@"通话被取消"];
                 [self selfDismiss];
             }
-            
         }
             break;
         case TILCALL_NOTIF_TIMEOUT:
@@ -310,23 +330,27 @@
  */
 - (void)updateRenderCollection {
 
-    [self.call modifyRenderView:self.bounds forIdentifier:_currentIdentify];
-    [self.call sendRenderViewToBack:_currentIdentify];
-    
-    [self.renderCollection reloadData];
+    if (!_isFloatView) {
+        [self.call modifyRenderView:self.bounds forIdentifier:_currentIdentify];
+        [self.call sendRenderViewToBack:_currentIdentify];
+        
+        [self.renderCollection reloadData];
+    }
 }
 
-- (void)addTextToView:(NSString *)newText {
+- (void)setIsFloatView:(BOOL)isFloatView {
+    _isFloatView = isFloatView;
+}
+
+- (void)addTextToView:(id)newText {
     NSString *text = self.noteView.textView.text;
-    if (text) {
-        newText = [newText stringByAppendingString:@"\n"];
-        newText = [newText stringByAppendingString:text];
-    }
-    else {
-        newText = text;
-    }
     
-    self.noteView.textView.text = newText;
+    NSString *dicStr = [NSString stringWithFormat:@"%@", newText];
+
+    dicStr = [dicStr stringByAppendingString:@"\n"];
+    dicStr = [dicStr stringByAppendingString:text];
+    
+    self.noteView.textView.text = dicStr;
 }
 
 - (void)selfDismiss {
@@ -334,15 +358,12 @@
 }
 
 - (IBAction)inviteAction:(id)sender {
-    UserContactViewController *contactVC = [[UserContactViewController alloc] init];
-    contactVC.isExitLeftItem = YES;
-    [[[AppDelegate sharedAppDelegate] topViewController].navigationController pushViewController:contactVC animated:YES];
+    [self callRenderActionInfoValue:@"inviteAction" key:kCallAction];
 }
 
 - (IBAction)removeAction:(id)sender {
-    
+    [self callRenderActionInfoValue:@"removeAction" key:kCallAction];
 }
-
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self endEditing:YES];

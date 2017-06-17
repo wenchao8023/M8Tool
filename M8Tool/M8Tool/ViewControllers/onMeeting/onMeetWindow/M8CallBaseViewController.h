@@ -30,11 +30,16 @@
 @property (nonatomic, strong, nonnull) M8CallVideoDevice    *deviceView;
 @property (nonatomic, strong, nonnull) M8CallAudioDevice    *audioDeviceView;
 @property (nonatomic, strong, nonnull) M8CallRenderView     *renderView;
-@property (nonatomic, strong, nonnull) M8FloatRenderView    *floatView;
+@property (nonatomic, strong, nullable) M8FloatRenderView    *floatView;
 
 @property (nonatomic, strong, nonnull) TILMultiCall *_call;
 
 @property (nonatomic, copy, nonnull) NSString *topic;
+
+/**
+ 判断是否是浮动视图显示，如果是，则不会在 renderView 中修改位置
+ */
+@property (nonatomic, assign) BOOL isFloatView;
 /**
  添加调试信息
 
@@ -54,6 +59,7 @@
 - (void)hiddeFloatView;
 
 - (void)setRootView;
+
 
 
 @end

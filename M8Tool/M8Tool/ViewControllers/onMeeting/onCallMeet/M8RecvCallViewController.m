@@ -144,7 +144,7 @@
     if ([infoKey isEqualToString:kDeviceAction]) {
         if ([[actionInfo objectForKey:infoKey] isEqualToString:@"onHangupAction"]) {
             [_call hangup:nil];
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [self performSelector:@selector(selfDismiss) withObject:nil afterDelay:0];
         }
     }
     else {
@@ -160,10 +160,10 @@
     if ([infoKey isEqualToString:kCallAudioDeviceAction]) {
         if ([[actionInfo objectForKey:infoKey] isEqualToString:@"onHangupAction"]) {
             [_call hangup:nil];
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [self performSelector:@selector(selfDismiss) withObject:nil afterDelay:0];
         }
         else {
-            [self addTextToView:actionInfo[infoKey]];
+
         }
     }
     else {
@@ -171,15 +171,16 @@
     }
 }
 
+
 #pragma mark -- CallRenderDelegate
 - (void)CallRenderActionInfo:(NSDictionary *)actionInfo {
     
     [super CallRenderActionInfo:actionInfo];
     
     NSString *infoKey = [[actionInfo allKeys] firstObject];
-    NSString *infoValue = [actionInfo objectForKey:infoKey];
     
     if ([infoKey isEqualToString:kCallAction]) {
+        NSString *infoValue = [actionInfo objectForKey:infoKey];
         if ([infoValue isEqualToString:@"selfDismiss"]) {
             [_call hangup:nil];
             [self performSelector:NSSelectorFromString(infoValue) withObject:nil afterDelay:0];

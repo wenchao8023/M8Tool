@@ -18,6 +18,7 @@
 @synthesize _call;
 
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -156,9 +157,9 @@
     [super CallRenderActionInfo:actionInfo];
     
     NSString *infoKey = [[actionInfo allKeys] firstObject];
-    NSString *infoValue = [actionInfo objectForKey:infoKey];
-    
+
     if ([infoKey isEqualToString:kCallAction]) {
+        NSString *infoValue = [actionInfo objectForKey:infoKey];
         if ([infoValue isEqualToString:@"selfDismiss"]) {
             [_call hangup:nil];
             [self performSelector:NSSelectorFromString(infoValue) withObject:nil afterDelay:0];
@@ -166,6 +167,7 @@
     }
     
     if ([infoKey isEqualToString:kCallValue_bool]) {
+        NSString *infoValue = [actionInfo objectForKey:infoKey];
         self.shouldHangup = [infoValue boolValue];
     }
 }

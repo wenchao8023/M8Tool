@@ -74,7 +74,7 @@
     self.rejectLabel.font = [UIFont systemFontOfSize:kAppSmallFontSize];
     self.receiveLabel.font = [UIFont systemFontOfSize:kAppSmallFontSize];
     
-    [self bgImageView];
+
     
     [WCNotificationCenter addObserver:self selector:@selector(themeSwichAction) name:kThemeSwich_Notification object:nil];
     
@@ -89,6 +89,8 @@
     
     self.sponsorLabel.text = _invitation.sponsorId;
     self.inviteLabel.text  = [[ILiveLoginManager getInstance] getLoginId];
+    
+    [self.view sendSubviewToBack:self.bgImageView];
 }
 - (UIImageView *)bgImageView {
     if (!_bgImageView) {

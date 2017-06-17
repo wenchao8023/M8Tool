@@ -15,6 +15,8 @@
 
 #import "WCMacroDefinitionHeader.h"
 
+#import "ConstStringFile.h"
+
 #import "LoadView.h"
 
 #endif /* CustomUIHeader_h */

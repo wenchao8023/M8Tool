@@ -35,7 +35,7 @@
     self.contentView.hidden = YES;
     
     self.view.frame = [UIScreen mainScreen].bounds;
-    [self.view setHeight:SCREENH_HEIGHT - kDefaultTabbarHeight];
+    [self.view setHeight:SCREEN_HEIGHT - kDefaultTabbarHeight];
    
     self.bgImageView.frame = self.view.bounds;
     [self.view sendSubviewToBack:self.bgImageView];

@@ -17,8 +17,11 @@
 
 /**
  记录当前处在背景视图的成员
+ 
+ * 音频模式下 currentModel 一直为空
+ * 视频模式下 根据用户操作进行设置
  */
-@property (nonatomic, strong, nullable) M8CallRenderModel *currentInBackModel;
+@property (nonatomic, strong, nullable) M8CallRenderModel *currentModel;
 
 @end
 
@@ -40,12 +43,12 @@
         M8CallRenderModel *model = [[M8CallRenderModel alloc] init];
         model.identify = identify;
         
+        // 如果是当前用户、发起者，需要手动设置状态我 receive
         if (self.callType == TILCALL_TYPE_AUDIO) {
             if ([identify isEqualToString:self.hostIdentify] ||
                 [identify isEqualToString:self.loginIdentify])
             {
                 model.meetMemberStatus = MeetMemberStatus_receive;
-                model.isMicOn = YES;
             }
             [self.membersArray addObject:model];
         }
@@ -59,15 +62,11 @@
             if ([identify isEqualToString:self.hostIdentify])
             {
                 model.meetMemberStatus = MeetMemberStatus_receive;
-                model.isMicOn = YES;
-                model.isCameraOn = YES;
-                _currentInBackModel = model;
+                _currentModel = model;
             }
             else if ([identify isEqualToString:self.loginIdentify])
             {
                 model.meetMemberStatus = MeetMemberStatus_receive;
-                model.isMicOn = YES;
-                model.isCameraOn = YES;
                 [self.membersArray addObject:model];
             }
             else
@@ -75,7 +74,6 @@
                 [self.membersArray addObject:model];
             }
         }
-        
     }
     
     [self reloadMemberModels];
@@ -154,13 +152,13 @@
 - (BOOL)onSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if ([self isExitVideoCaption]) {
         M8CallRenderModel *tempModel;
-        if (_currentInBackModel) {
-            tempModel = _currentInBackModel;
-            _currentInBackModel = self.membersArray[indexPath.row];
-            [self.membersArray replaceObjectAtIndex:[self getMemberIndexInArray:_currentInBackModel.identify] withObject:tempModel];
+        if (_currentModel) {
+            tempModel = _currentModel;
+            _currentModel = self.membersArray[indexPath.row];
+            [self.membersArray replaceObjectAtIndex:[self getMemberIndexInArray:_currentModel.identify] withObject:tempModel];
         }
         else {
-            _currentInBackModel = self.membersArray[indexPath.row];
+            _currentModel = self.membersArray[indexPath.row];
             [self.membersArray removeObjectAtIndex:indexPath.row];
         }
         
@@ -177,8 +175,8 @@
 
 #pragma mark -- get member model
 - (M8CallRenderModel *)getMemberWithID:(NSString *)identify {
-    if ([identify isEqualToString:_currentInBackModel.identify]) {
-        return _currentInBackModel;
+    if ([identify isEqualToString:_currentModel.identify]) {
+        return _currentModel;
     }
     else {
         for (M8CallRenderModel *model in self.membersArray) {
@@ -194,9 +192,9 @@
 
 #pragma mark -- update member model in container
 - (void)updateMember:(M8CallRenderModel *)newModel {
-    if ([newModel.identify isEqualToString:_currentInBackModel.identify])
+    if ([newModel.identify isEqualToString:_currentModel.identify])
     {
-        _currentInBackModel = newModel;
+        _currentModel = newModel;
     }
     else
     {
@@ -217,7 +215,7 @@
 
 #pragma mark -- member notified
 - (BOOL)isMemberNotified:(NSString *)identify {
-    if ([identify isEqualToString:_currentInBackModel.identify]) {
+    if ([identify isEqualToString:_currentModel.identify]) {
         return YES;
     }
     else {
@@ -234,7 +232,7 @@
 
 #pragma mark -- 房间内是否存在视频流
 - (BOOL)isExitVideoCaption {
-    if (_currentInBackModel.isCameraOn) {
+    if (_currentModel.isCameraOn) {
         return YES;
     }
     else {
@@ -252,16 +250,16 @@
 - (void)reloadMemberModels {
     
     if (self.callType == TILCALL_TYPE_VIDEO) {
-        if (!_currentInBackModel.isCameraOn) {
+        if (!_currentModel.isCameraOn) {
             for (M8CallRenderModel *model in self.membersArray) {
                 if (model.isCameraOn) { // 交换成员信息
-                    if (_currentInBackModel == nil) {
-                        _currentInBackModel = model;
+                    if (_currentModel == nil) {
+                        _currentModel = model;
                         [self.membersArray removeObject:model];
                     }
                     else {
-                        M8CallRenderModel *tempModel = _currentInBackModel;
-                        _currentInBackModel = model;
+                        M8CallRenderModel *tempModel = _currentModel;
+                        _currentModel = model;
                         [self.membersArray replaceObjectAtIndex:[self getMemberIndexInArray:model.identify]
                                                      withObject:tempModel];
                     }
@@ -272,16 +270,16 @@
             }
             
             // 没有成员开启摄像头
-            if (_currentInBackModel) {
-                [self.membersArray addObject:_currentInBackModel];
-                _currentInBackModel = nil;  // 只有房间中没有成员开启摄像头时 currentModel 才会置空
+            if (_currentModel) {
+                [self.membersArray addObject:_currentModel];
+                _currentModel = nil;  // 只有房间中没有成员开启摄像头时 currentModel 才会置空
             }
         }
     }
     else if (self.callType == TILCALL_TYPE_AUDIO) { // 在音频模式下，不要显示背景视图
-        if (_currentInBackModel) {
-            [self.membersArray addObject:_currentInBackModel];
-            _currentInBackModel = nil;
+        if (_currentModel) {
+            [self.membersArray addObject:_currentModel];
+            _currentModel = nil;
         }
     }
     
@@ -293,7 +291,7 @@
 - (void)respondsToDelegate {
     if ([self.WCDelegate respondsToSelector:@selector(renderModelManager:currentModel:membersArray:)]) {
         [self.WCDelegate renderModelManager:self
-                               currentModel:self.currentInBackModel
+                               currentModel:self.currentModel
                                membersArray:self.membersArray
          ];
     }

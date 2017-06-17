@@ -56,7 +56,7 @@
     [triangleLabel setTransform:CGAffineTransformMakeRotation(M_PI_4)];
     [self.view insertSubview:triangleLabel belowSubview:self.contentView];
     
-    CGFloat contentHeight = (SCREENH_HEIGHT - CGRectGetMaxY(triangleLabel.frame) - 60);
+    CGFloat contentHeight = (SCREEN_HEIGHT - CGRectGetMaxY(triangleLabel.frame) - 60);
     
     
     UIImageView *imageV = [WCUIKitControl createImageViewWithFrame:CGRectMake(0, 0, kImageWidth, kImageHeight) ImageName:@"M8"];

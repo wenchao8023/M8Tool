@@ -70,7 +70,7 @@
 
 - (M8LiveRenderView *)renderView {
     if (!_renderView) {
-        M8LiveRenderView *renderView = [[M8LiveRenderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREENH_HEIGHT)];
+        M8LiveRenderView *renderView = [[M8LiveRenderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
         [self.view addSubview:(_renderView = renderView)];
     }
     return _renderView;
@@ -88,7 +88,7 @@
 
 - (M8CallVideoDevice *)deviceView {
     if (!_deviceView) {
-        M8CallVideoDevice *deviceView = [[M8CallVideoDevice alloc] initWithFrame:CGRectMake(0, SCREENH_HEIGHT - kBottomHeight - kDefaultMargin, SCREEN_WIDTH, kBottomHeight)];
+        M8CallVideoDevice *deviceView = [[M8CallVideoDevice alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - kBottomHeight - kDefaultMargin, SCREEN_WIDTH, kBottomHeight)];
         deviceView.WCDelegate = self;
         [self.view addSubview:(_deviceView = deviceView)];
     }

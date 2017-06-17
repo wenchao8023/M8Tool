@@ -8,11 +8,7 @@
 
 #import "M8CallBaseViewController.h"
 
-
-
-
-#define kFloatViewWidth     (SCREEN_WIDTH - 50) / 4
-#define kFloatViewHeight    kFloatViewWidth * 4 / 3
+#import "UserContactViewController.h"
 
 
 @interface M8CallBaseViewController ()<FloatRenderViewDelegate>
@@ -32,7 +28,7 @@
     
     self.navigationController.navigationBarHidden = YES;
     
-    self.view.frame = CGRectMake(0, SCREENH_HEIGHT, SCREEN_WIDTH, SCREENH_HEIGHT);
+    self.view.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT);
     
     [self createUI];
     
@@ -52,9 +48,8 @@
 #pragma mark - link window in super viewController
 - (M8FloatRenderView *)floatView {
     if (!_floatView) {
-        M8FloatRenderView *floatView = [[M8FloatRenderView alloc] init];
+        M8FloatRenderView *floatView = [[M8FloatRenderView alloc] initWithFrame:CGRectMake(0, 0, kFloatWindowWidth, kFloatWindowHeight)];
         floatView.contentMode = UIViewContentModeScaleAspectFill;
-        floatView.frame = CGRectMake(0, 0, kFloatViewWidth, kFloatViewHeight);
         floatView.WCDelegate = self;
         floatView.initOrientation = [UIApplication sharedApplication].statusBarOrientation;
         floatView.originTransform = floatView.transform;
@@ -66,7 +61,7 @@
 - (UIWindow *)meetWindow {
     if (!_meetWindow) {
         UIWindow *meetWindow = [[UIWindow alloc] init];
-        meetWindow.frame = CGRectMake(SCREEN_WIDTH - kFloatViewWidth, 70, kFloatViewWidth, kFloatViewHeight);
+        meetWindow.frame = CGRectMake(SCREEN_WIDTH - kFloatWindowWidth, 70, kFloatWindowWidth, kFloatWindowHeight);
         meetWindow.windowLevel = UIWindowLevelAlert + 1;
         meetWindow.backgroundColor = [UIColor clearColor];
         [meetWindow makeKeyAndVisible];
@@ -88,24 +83,57 @@
     [self hiddeFloatView];
 }
 
+- (void)floatRenderViewCenter:(CGPoint)center {
+    [self modifyRenderViewWithFloatViewCenter:center];
+}
+// 重新计算  视频窗口的位置  保证是和浮动窗口一致
+- (void)modifyRenderViewWithFloatViewCenter:(CGPoint)center {
+    
+    if (_isFloatView) {
+        CGRect curFrame = CGRectMake(0, 0, kFloatWindowWidth, kFloatWindowHeight);
+        curFrame.origin.x = center.x - kFloatWindowWidth / 2;
+        curFrame.origin.y = center.y - kFloatWindowHeight / 2 - SCREEN_HEIGHT;
+        
+        [self._call modifyRenderView:curFrame forIdentifier:self.currentIdentify];
+    }
+}
+
+/**
+ 显示浮动窗口
+ */
 - (void)showFloatView {
+    
+    _isFloatView = YES;
+    [self.renderView setIsFloatView:YES];
+    // 1. 将通话界面移动到视图底部，移出手机界面
     [UIView animateWithDuration:0.3 animations:^{
         CGRect frame = self.view.frame;
         frame.origin.y = [UIScreen mainScreen].bounds.size.height;
         self.view.frame = frame;
     } completion:^(BOOL finished) {
+        // 2. 显示浮动窗口
         self.floatView.hidden = NO;
+        // 3. 重新设置视频流位置
+        [self modifyRenderViewWithFloatViewCenter:self.meetWindow.center];
     }];
 }
 
+/**
+ 隐藏浮动窗口
+ */
 - (void)hiddeFloatView {
+    
+    [self.renderView setIsFloatView:NO];
+    // 1. 隐藏浮动窗口
     self.floatView.hidden = YES;
+    // 2. 将通话界面从底部移动到手机视图
     [UIView animateWithDuration:0.3 animations:^{
         CGRect frame = self.view.frame;
         frame.origin.y = 0;
         self.view.frame = frame;
     } completion:^(BOOL finished) {
-        
+        // 3. 应该要通知 通话界面 重新刷新位置
+        [self.renderView updateRenderCollection];
     }];
 }
 
@@ -131,7 +159,7 @@
 
 - (M8CallRenderView *)renderView {
     if (!_renderView) {
-        M8CallRenderView *renderView = [[M8CallRenderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREENH_HEIGHT)];
+        M8CallRenderView *renderView = [[M8CallRenderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
         renderView.WCDelegate = self;
         [self.view addSubview:(_renderView = renderView)];
     }
@@ -151,7 +179,7 @@
 
 - (M8CallVideoDevice *)deviceView {
     if (!_deviceView) {
-        M8CallVideoDevice *deviceView = [[M8CallVideoDevice alloc] initWithFrame:CGRectMake(0, SCREENH_HEIGHT - kBottomHeight - kDefaultMargin, SCREEN_WIDTH, kBottomHeight)];
+        M8CallVideoDevice *deviceView = [[M8CallVideoDevice alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - kBottomHeight - kDefaultMargin, SCREEN_WIDTH, kBottomHeight)];
         deviceView.WCDelegate = self;
         [self.view addSubview:(_deviceView = deviceView)];
     }
@@ -161,7 +189,7 @@
 - (M8CallAudioDevice *)audioDeviceView {
     if (!_audioDeviceView) {
         M8CallAudioDevice *audioDeviceView = [[M8CallAudioDevice alloc] initWithFrame:CGRectMake(0,
-                                                                                                 SCREENH_HEIGHT - kBottomHeight - kDefaultMargin,
+                                                                                                 SCREEN_HEIGHT - kBottomHeight - kDefaultMargin,
                                                                                                  SCREEN_WIDTH,
                                                                                                  kBottomHeight)
                                               ];
@@ -172,26 +200,17 @@
 }
 
 
-
-
 #pragma mark - views delegate
 #pragma mark -- MeetHeaderDelegate
 - (void)MeetHeaderActionInfo:(NSDictionary *)actionInfo {
     
     [self addTextToView:[actionInfo allValues][0]];
     
-    
     NSString *infoKey = [[actionInfo allKeys] firstObject];
-    NSString *infoValue = [actionInfo objectForKey:infoKey];
+//    NSString *infoValue = [actionInfo objectForKey:infoKey];
     if ([infoKey isEqualToString:kHeaderAction]) {
         [self showFloatView];
     }
-    
-    if ([infoKey isEqualToString:kCallValue_id]) {
-        self.currentIdentify = infoValue;
-    }
-    
-    
 }
 
 
@@ -205,6 +224,27 @@
 - (void)CallRenderActionInfo:(NSDictionary *)actionInfo {
     
     [self addTextToView:[actionInfo allValues][0]];
+    
+    NSString *infoKey = [[actionInfo allKeys] firstObject];
+    
+    if ([infoKey isEqualToString:kCallValue_model]) {   // value : @{identify : model}
+        NSDictionary *valueDic = [actionInfo objectForKey:infoKey];
+        NSString *valueKey = [valueDic allKeys][0];
+        self.currentIdentify = valueKey;
+        
+        // config float view with model
+        [self.floatView configWithRenderModel:[valueDic objectForKey:valueKey]];
+    }
+    
+    if ([infoKey isEqualToString:kCallAction]) {
+        NSString *infoValue = [actionInfo objectForKey:infoKey];
+        if ([infoValue isEqualToString:@"inviteAction"]) {
+            UserContactViewController *contactVC = [[UserContactViewController alloc] init];
+            contactVC.isExitLeftItem = YES;
+            contactVC.contactType = ContactType_sel;
+            [self.navigationController pushViewController:contactVC animated:YES];
+        }
+    }
 }
 
 #pragma mark -- CallAudioDeviceDelegate
@@ -221,40 +261,21 @@
 
 - (void)selfDismiss {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self dismissViewControllerAnimated:YES completion:nil];
+
+        // 1. 将 通话界面 移到视图底部，（造成退出界面的动画）
+        [UIView animateWithDuration:0.3 animations:^{
+            CGRect frame = self.view.frame;
+            frame.origin.y = [UIScreen mainScreen].bounds.size.height;
+            self.view.frame = frame;
+        } completion:^(BOOL finished) {
+            // 2. 将 self 移除父视图
+            [self.view removeFromSuperview];
+            [self removeFromParentViewController];
+            // 3. 将 属性 置为空
+            self.floatView = nil;
+            self.meetWindow = nil;
+        }];
     });
-}
-
-/**
- zoom render view to presentingVC
- */
-- (void)zoomRenderView {
-
-    UIViewController *presentTabbar = [self presentingViewController];  //MainTabBarController
-    
-//    [self dismissViewControllerAnimated:YES completion:^{
-//        [M8FloatWindow M8_addWindowOnTarget:presentTabbar onClick:nil];
-//        
-//        [M8FloatWindow M8_setRenderViewCall:self._call identify:self.currentIdentify];
-//    }];
-    
-//    if ([presentTabbar isKindOfClass:[UITabBarController class]])
-//    {
-//        UIViewController *selectVc = [((UITabBarController *)presentTabbar) selectedViewController]; // UINavigationController
-//        if ([selectVc  isKindOfClass:[UINavigationController class]])
-//        {
-//            UIViewController *presentingTopVC = [((UINavigationController *)selectVc) topViewController]; //really presenting view controller
-//            
-//            
-//            [self dismissViewControllerAnimated:YES completion:^{
-//                [M8FloatWindow M8_addWindowOnTarget:presentingTopVC onClick:^{
-//                    
-//                }];
-//                
-//                [M8FloatWindow M8_setRenderViewCall:self._call identify:self.currentIdentify];
-//            }];
-//        }
-//    }
 }
 
 #pragma mark - private actions
@@ -266,6 +287,7 @@
 - (void)dealloc {
     
     [WCNotificationCenter removeObserver:self name:kThemeSwich_Notification object:nil];
+    [WCNotificationCenter removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
     
     WCLog(@"call base view controller has been dealloc");
 }

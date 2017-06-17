@@ -144,14 +144,14 @@
 - (UIView *)contentView {
     if (!_contentView) {
         CGFloat baseHeight = 667 - kDefaultStatuHeight - kDefaultTabbarHeight;
-        CGFloat deviceHeight = SCREENH_HEIGHT - kDefaultTabbarHeight - kDefaultStatuHeight;
+        CGFloat deviceHeight = SCREEN_HEIGHT - kDefaultTabbarHeight - kDefaultStatuHeight;
         
         CGFloat contentX = kContentOriginX;
         CGFloat contentY =  4 / baseHeight * deviceHeight + kDefaultNaviHeight;
         CGRect cFrame = CGRectMake(contentX,
                                    contentY,
                                    SCREEN_WIDTH - 2 * contentX,
-                                   SCREENH_HEIGHT - contentY - kDefaultTabbarHeight - 49 / baseHeight * deviceHeight);
+                                   SCREEN_HEIGHT - contentY - kDefaultTabbarHeight - 49 / baseHeight * deviceHeight);
         
         UIView *contentView = [[UIView alloc] initWithFrame:cFrame];
         

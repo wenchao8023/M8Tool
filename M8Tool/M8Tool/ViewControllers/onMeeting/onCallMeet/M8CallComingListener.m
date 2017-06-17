@@ -9,6 +9,7 @@
 #import "M8CallComingListener.h"
 
 #import "M8RecvCallViewController.h"
+#import "M8MeetWindow.h"
 
 @implementation M8CallComingListener
 
@@ -16,7 +17,7 @@
 
     M8RecvCallViewController *recvCallVC = [[M8RecvCallViewController alloc] init];
     recvCallVC.invitation = invitation;
-    [[AppDelegate sharedAppDelegate] presentNavigationController:recvCallVC];
+    [M8MeetWindow M8_addSource:recvCallVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
 }
 
 @end

@@ -13,6 +13,7 @@ static NSString * _Nonnull kCallAction      = @"kCallAction";
 static NSString * _Nonnull kCallText        = @"kCallText";
 static NSString * _Nonnull kCallValue_bool  = @"kCallValue_bool";
 static NSString * _Nonnull kCallValue_id    = @"kCallValue_id";
+static NSString * _Nonnull kCallValue_model = @"kCallValue_model";  // dic: @{model : identify}
 
 
 @protocol CallRenderDelegate <NSObject>
@@ -25,13 +26,10 @@ static NSString * _Nonnull kCallValue_id    = @"kCallValue_id";
 @interface M8CallRenderView : UIView<TILCallMemberEventListener, TILCallNotificationListener, TILCallStatusListener>
 
 
-
-
 /**
  会议发起人
  */
 @property (nonatomic, copy, nonnull) NSString *hostIdentify;
-
 
 
 /**
@@ -46,8 +44,20 @@ static NSString * _Nonnull kCallValue_id    = @"kCallValue_id";
 @property (nonatomic, assign) BOOL shouldHangup;
 
 
+@property (nonatomic, assign) BOOL isFloatView;
+
+
+
+
 @property (nonatomic, weak) id<CallRenderDelegate> _Nullable WCDelegate;
 
-- (void)addTextToView:(NSString *_Nullable)newText;
+- (void)addTextToView:(id _Nullable)newText;
+
+/**
+ 重新设置 视频流 位置
+ */
+- (void)updateRenderCollection;
+
+
 
 @end

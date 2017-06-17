@@ -1,6 +1,3 @@
-
-//#import "WCMacroDefinitionHeader.h"
-
 #ifndef ConstHeader_h
 #define ConstHeader_h
 
@@ -66,7 +63,8 @@ static const int kDefaultNaviHeight     = 64;
 static const int kDefaultTabbarHeight   = 49;
 static const int kDefaultStatuHeight    = 20;
 
-
+#define kFloatWindowWidth    (SCREEN_WIDTH - 50) / 4    ///浮动窗口宽、高
+#define kFloatWindowHeight   kFloatWindowWidth * 4 / 3
 
 
 /******************** block *******************************/

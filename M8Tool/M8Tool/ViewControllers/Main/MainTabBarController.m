@@ -33,6 +33,7 @@
     
 //    [self autoLogin];
     
+
     // 设置来电监听
     [[TILCallManager sharedInstance] setIncomingCallListener:[[M8CallComingListener alloc] init]];
     
@@ -141,7 +142,10 @@
 }
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
-    if (tabBarController.selectedIndex != 1) {
+    if (tabBarController.selectedIndex == 1) {
+        [_meetingButton setImage:[UIImage imageNamed:@"tabbarCenter_hover"] forState:UIControlStateNormal];
+    }
+    else {
         [_meetingButton setImage:[UIImage imageNamed:@"tabbarCenter"] forState:UIControlStateNormal];
     }
 }

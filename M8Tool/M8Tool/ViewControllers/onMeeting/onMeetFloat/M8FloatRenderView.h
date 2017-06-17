@@ -8,12 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-
+@class M8CallRenderModel;
 /**
  * 用于显示用户的视频流信息
  */
 @protocol FloatRenderViewDelegate <NSObject>
 
+/**
+ 父视图的中心位置
+
+ @param center 中心坐标
+ */
+- (void)floatRenderViewCenter:(CGPoint)center;
 - (void)floatRenderViewDidClicked;
 
 @end
@@ -27,5 +33,7 @@
 @property (nonatomic, assign) CGAffineTransform originTransform;
 
 - (void)floatViewRotate;
+
+- (void)configWithRenderModel:(id _Nonnull)model;
 
 @end
