@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+
+
 @interface RecordTableView : UITableView
+
+@property (nonatomic, assign) RecordViewType recordViewType;
 
 @end

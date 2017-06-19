@@ -64,12 +64,12 @@
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XYT-9x-VPd">
                     <rect key="frame" x="64" y="577" width="60" height="60"/>
-                    <color key="backgroundColor" red="1" green="0.48543221260000002" blue="0.53181764870000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="Gs8-3N-KVq"/>
                         <constraint firstAttribute="width" constant="60" id="he2-34-aTT"/>
                     </constraints>
-                    <state key="normal" title="Button"/>
+                    <state key="normal" backgroundImage="onCallRecv_refuse.png"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                             <integer key="value" value="30"/>
@@ -121,12 +121,12 @@
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4W5-FM-i8t">
                     <rect key="frame" x="251.5" y="577" width="60" height="60"/>
-                    <color key="backgroundColor" red="0.59357739200000004" green="1" blue="0.51903250430000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="WSr-5v-Gdz"/>
                         <constraint firstAttribute="width" constant="60" id="df3-kw-Gd4"/>
                     </constraints>
-                    <state key="normal" title="Button"/>
+                    <state key="normal" backgroundImage="onCallRecv_receive.png"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                             <integer key="value" value="30"/>
@@ -177,4 +177,8 @@
             </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="onCallRecv_receive.png" width="60" height="60"/>
+        <image name="onCallRecv_refuse.png" width="60" height="60"/>
+    </resources>
 </document>

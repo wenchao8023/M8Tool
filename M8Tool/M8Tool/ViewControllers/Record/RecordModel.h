@@ -10,4 +10,12 @@
 
 @interface RecordModel : NSObject
 
+@property (nonatomic, copy, nullable) NSString *recordTopic;
+@property (nonatomic, copy, nullable) NSString *recordLuancher;
+@property (nonatomic, copy, nullable) NSString *recordType;
+@property (nonatomic, copy, nullable) NSString *recordTime;
+@property (nonatomic, strong, nullable) NSArray *recordMembers;
+@property (nonatomic, strong, nullable) NSArray *recordTags;
+@property (nonatomic, assign) BOOL isRecordCollected;
+
 @end

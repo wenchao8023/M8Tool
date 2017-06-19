@@ -10,53 +10,14 @@
 #import "UsrContactView.h"
 
 
+@interface UserContactViewController ()<UITextFieldDelegate>
 
-
-static const CGFloat kSearchView_height = 40.f;
-
-
-
-#pragma mark 
-#pragma mark -- 顶部搜索栏
-/**
- 顶部搜索栏
- */
-@interface SearchView : UITextField<UITextFieldDelegate>
-
-
-@end
-
-@implementation SearchView
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        self.delegate = self;
-        self.placeholder = @"搜索";
-        self.clearButtonMode = UITextFieldViewModeWhileEditing;
-        self.leftView = [WCUIKitControl createImageViewWithFrame:CGRectMake(0, 0, 40, 40)
-                                                        ImageName:@"search"
-                                                          BgColor:WCClear];
-        self.leftViewMode = UITextFieldViewModeAlways;
-    }
-    return self;
-}
-
-
-@end
-
-
-
-
-#pragma mark
-#pragma mark -- 主视图
-@interface UserContactViewController ()
-
-@property (nonatomic, strong) SearchView *searchView;
 @property (nonatomic, strong) UsrContactView *contactView;
 
 @end
 
 @implementation UserContactViewController
+@synthesize _searchView;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -84,7 +45,7 @@ static const CGFloat kSearchView_height = 40.f;
 }
 
 - (void)resetNavi {
-    static const CGFloat btnWidth = 40;
+    CGFloat btnWidth = 40;
     UIButton *addBtn = [WCUIKitControl createButtonWithFrame:CGRectMake(SCREEN_WIDTH - kContentOriginX - btnWidth,
                                                                         kDefaultStatuHeight,
                                                                         btnWidth,
@@ -95,11 +56,12 @@ static const CGFloat kSearchView_height = 40.f;
     [self.headerView addSubview:addBtn];
 }
 
+
 - (void)addSearchView {
     CGRect frame = self.contentView.frame;
     frame.size.height = kSearchView_height;
-    SearchView *searchView = [[SearchView alloc] initWithFrame:frame];
-    WCViewBorder_Radius(searchView, 2);
+    BaseSearchView *searchView = [[BaseSearchView alloc] initWithFrame:frame target:self];
+    WCViewBorder_Radius(searchView, kSearchView_height / 2);
     searchView.backgroundColor = self.contentView.backgroundColor;
     [self.view addSubview:(_searchView = searchView)];
 }
@@ -107,7 +69,7 @@ static const CGFloat kSearchView_height = 40.f;
 - (void)resetContentView {
     CGFloat originY = CGRectGetMaxY(_searchView.frame) + kMarginView_top;
     self.contentView.y = originY;
-    self.contentView.height = kContentHeight_bottom30 - originY + kDefaultNaviHeight;
+    self.contentView.height = self.contentView.height - originY + kDefaultNaviHeight;
     
     UsrContactView *contactView = [[UsrContactView alloc] initWithFrame:self.contentView.bounds style:UITableViewStyleGrouped];
     [self.contentView addSubview:(_contactView = contactView)];

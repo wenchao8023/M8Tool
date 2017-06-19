@@ -130,16 +130,16 @@
 
 - (void)onLiveButtonClicked
 {
-    [self popToNaviTootViewController];
+//    [self popToNaviTootViewController];
     self.selectedIndex = 1;
     [_meetingButton setImage:[UIImage imageNamed:@"tabbarCenter_hover"] forState:UIControlStateNormal];
 }
 
-- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
-    
-    [self popToNaviTootViewController];
-    return YES;
-}
+//- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+//    
+//    [self popToNaviTootViewController];
+//    return YES;
+//}
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
     if (tabBarController.selectedIndex == 1) {
@@ -150,6 +150,10 @@
     }
 }
 
+
+/**
+ 回到导航控制器的根视图
+ */
 - (void)popToNaviTootViewController {
     UINavigationController *navi = self.viewControllers[self.selectedIndex];
     if (navi.viewControllers.count &&
@@ -157,10 +161,6 @@
         [navi popToRootViewControllerAnimated:NO];
     }
 }
-
-
-
-
 
 - (void)autoLogin {
     LoginManager *manager = [LoginManager new];

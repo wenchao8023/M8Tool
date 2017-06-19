@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class RecordModel;
+
 /**
  可以做 会议记录、会议笔记、会议收藏的 cell
  */
 @interface RecordCell : UITableViewCell
+
+- (void)config:(RecordModel *)model;
 
 @end

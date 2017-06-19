@@ -36,20 +36,21 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15612345678" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y0I-f1-rx7">
-                        <rect key="frame" x="70" y="56" width="398" height="21"/>
+                        <rect key="frame" x="70" y="56" width="404" height="21"/>
                         <fontDescription key="fontDescription" name="STHeiti" family="STHeiti" pointSize="15"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goNextIcon" translatesAutoresizingMaskIntoConstraints="NO" id="TF4-0v-Vce">
-                        <rect key="frame" x="484" y="56" width="8" height="21"/>
+                        <rect key="frame" x="482" y="56.5" width="10" height="20"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="8" id="8xR-ka-dAd"/>
+                            <constraint firstAttribute="width" constant="10" id="8xR-ka-dAd"/>
+                            <constraint firstAttribute="height" constant="20" id="S50-Di-5cd"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jinshenku" translatesAutoresizingMaskIntoConstraints="NO" id="4cf-7B-vyw">
-                        <rect key="frame" x="409" y="39" width="55" height="55"/>
+                        <rect key="frame" x="419" y="39" width="55" height="55"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="55" id="5vs-2h-a5f"/>
                             <constraint firstAttribute="width" constant="55" id="nwB-a1-kjr"/>
@@ -65,12 +66,11 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="y0I-f1-rx7" firstAttribute="leading" secondItem="gzU-qD-zHw" secondAttribute="trailing" constant="2" id="0SI-PV-fC0"/>
-                    <constraint firstItem="TF4-0v-Vce" firstAttribute="leading" secondItem="4cf-7B-vyw" secondAttribute="trailing" constant="20" id="1BX-1X-kKg"/>
-                    <constraint firstItem="TF4-0v-Vce" firstAttribute="height" secondItem="y0I-f1-rx7" secondAttribute="height" id="6Et-J1-CrV"/>
+                    <constraint firstItem="TF4-0v-Vce" firstAttribute="leading" secondItem="4cf-7B-vyw" secondAttribute="trailing" constant="8" id="1BX-1X-kKg"/>
                     <constraint firstItem="TF4-0v-Vce" firstAttribute="centerY" secondItem="y0I-f1-rx7" secondAttribute="centerY" id="CIb-4o-ktU"/>
                     <constraint firstAttribute="trailingMargin" secondItem="TF4-0v-Vce" secondAttribute="trailing" id="FMi-iG-OmM"/>
                     <constraint firstItem="4cf-7B-vyw" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Jin-cf-qYM"/>
-                    <constraint firstItem="TF4-0v-Vce" firstAttribute="leading" secondItem="y0I-f1-rx7" secondAttribute="trailing" constant="16" id="aJN-nb-Ibn"/>
+                    <constraint firstItem="TF4-0v-Vce" firstAttribute="leading" secondItem="y0I-f1-rx7" secondAttribute="trailing" constant="8" id="aJN-nb-Ibn"/>
                     <constraint firstItem="gzU-qD-zHw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="hjV-zU-17U"/>
                     <constraint firstItem="y0I-f1-rx7" firstAttribute="centerY" secondItem="gzU-qD-zHw" secondAttribute="centerY" id="nx7-AC-vOD"/>
                     <constraint firstItem="gzU-qD-zHw" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ome-rE-Ob2"/>

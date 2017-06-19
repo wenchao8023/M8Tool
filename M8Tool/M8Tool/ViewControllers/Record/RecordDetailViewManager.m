@@ -8,6 +8,9 @@
 
 #import "RecordDetailViewManager.h"
 
+#import "RecordModel.h"
+
+
 @implementation RecordDetailViewManager
 
 

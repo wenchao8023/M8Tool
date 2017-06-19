@@ -7,11 +7,11 @@
 //
 
 #import "RecordDetailViewController.h"
-#import "RecorDetailView.h"
+#import "RecordDetailTableView.h"
 
 @interface RecordDetailViewController ()
 
-@property (nonatomic, strong) RecorDetailView *detailView;
+@property (nonatomic, strong) RecordDetailTableView *detailTableView;
 
 @property (nonatomic, strong) UIButton *reluanchBtn;
 
@@ -23,46 +23,35 @@
     [super viewWillAppear:animated];
     
     [self setHeaderTitle:@"会议详情"];
-    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-//    [self.contentView setHeight:kContentHeight_bottom90];
     
-    [self.contentView addSubview:self.detailView];
-    [self.view insertSubview:self.reluanchBtn belowSubview:self.contentView];
+    [self.contentView addSubview:self.detailTableView];
+    [self.view bringSubviewToFront:self.reluanchBtn];
 }
 
-- (RecorDetailView *)detailView {
-    if (!_detailView) {
-        _detailView = [[RecorDetailView alloc] initWithFrame:self.contentView.bounds];
-        _detailView.backgroundColor = WCClear;
+- (RecordDetailTableView *)detailTableView {
+    if (!_detailTableView) {
+        RecordDetailTableView *detailTableView = [[RecordDetailTableView alloc] initWithFrame:self.contentView.bounds style:UITableViewStylePlain dataModel:_dataModel];
+        _detailTableView = detailTableView;
     }
-    return _detailView;
+    return _detailTableView;
 }
 
 - (UIButton *)reluanchBtn {
     if (!_reluanchBtn) {
-        UIButton *reluanchBtn = [WCUIKitControl createButtonWithFrame:CGRectMake(0, 0, 80, 80)
+        UIButton *reluanchBtn = [WCUIKitControl createButtonWithFrame:CGRectMake(0, 0, 80, 40)
                                                                Target:self
                                                                Action:@selector(reluanchAction)
                                                             ImageName:@""
                                  ];
         [reluanchBtn setCenterX:self.view.centerX];
-        [reluanchBtn setAttributedTitle:[CommonUtil customAttString:@"重新发起"
-                                                           fontSize:kAppMiddleFontSize
-                                                          textColor:WCBlack
-                                                          charSpace:kAppKern_0]
-                               forState:UIControlStateNormal
-         ];
-        [reluanchBtn setCenterX:self.view.centerX];
         [reluanchBtn setY:CGRectGetMaxY(self.contentView.frame) - 40];
-        [reluanchBtn setTitleEdgeInsets:UIEdgeInsetsMake(20, 0, 0, 0)];
-        [reluanchBtn setBackgroundColor:WCBgColor];
-        WCViewBorder_Radius(reluanchBtn, 40);
+        [reluanchBtn setBackgroundImage:kGetImage(@"recordreluanch") forState:UIControlStateNormal];
         [self.view addSubview:(_reluanchBtn = reluanchBtn)];
     }
     return _reluanchBtn;
@@ -78,14 +67,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

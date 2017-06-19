@@ -69,6 +69,12 @@
 }
 
 
+#pragma mark - 配置 会议详情
+- (void)configRecordDetailWithNameStr:(NSString *)nameStr {
+    [self configLatestMembersWithNameStr:nameStr isSelected:NO];
+    self.selImg.hidden = YES;
+}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

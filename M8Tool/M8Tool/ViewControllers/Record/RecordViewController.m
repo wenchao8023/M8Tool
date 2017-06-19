@@ -10,13 +10,15 @@
 #import "RecordTableView.h"
 
 
-@interface RecordViewController ()
+@interface RecordViewController ()<UITextFieldDelegate>
 
 @property (nonatomic, strong) RecordTableView *tableView;
 
 @end
 
 @implementation RecordViewController
+@synthesize _searchView;
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -27,17 +29,42 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-//    [self.contentView setHeight:kContentHeight_bottom30];
+    if (_recordViewType == RecordViewType_note ||
+        _recordViewType == RecordViewType_collect) {
+        
+        // 添加 搜索视图
+        [self addSearchView];
+        
+        // 重新设置内容视图 >> 添加 tableView
+        [self resetContentView];
+    }
+    
     [self.contentView addSubview:self.tableView];
 }
 
 - (RecordTableView *)tableView {
     if (!_tableView) {
-        _tableView = [[RecordTableView alloc] initWithFrame:self.contentView.bounds style:UITableViewStylePlain];
+        RecordTableView *tabelView = [[RecordTableView alloc] initWithFrame:self.contentView.bounds style:UITableViewStylePlain];
+        tabelView.recordViewType = self.recordViewType;
+        _tableView = tabelView;
     }
     return _tableView;
 }
 
+- (void)addSearchView {
+    CGRect frame = self.contentView.frame;
+    frame.size.height = kSearchView_height;
+    BaseSearchView *searchView = [[BaseSearchView alloc] initWithFrame:frame target:self];
+    WCViewBorder_Radius(searchView, kSearchView_height / 2);
+    searchView.backgroundColor = self.contentView.backgroundColor;
+    [self.view addSubview:(_searchView = searchView)];
+}
+
+- (void)resetContentView {
+    CGFloat originY = CGRectGetMaxY(_searchView.frame) + kMarginView_top;
+    self.contentView.y = originY;
+    self.contentView.height = self.contentView.height - originY + kDefaultNaviHeight;
+}
 
 #pragma mark - 判断视图类型
 - (NSString *)getTitle {

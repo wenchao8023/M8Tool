@@ -85,7 +85,7 @@
             }
             else {
                 self.onVioceImg.hidden = NO;
-                [self.onVioceImg setImage:[UIImage imageNamed:(model.isMicOn ? @"liveAudio_on" : @"liveAudio_off")]];
+                [self.onVioceImg setImage:[UIImage imageNamed:(model.isMicOn ? @"liveAudio_on" : @"liveAudio_off")]];                                                     
             }
         }
             break;

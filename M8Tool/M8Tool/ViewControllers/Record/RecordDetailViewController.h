@@ -8,6 +8,12 @@
 
 #import "BaseViewController.h"
 
+@class RecordModel;
+
 @interface RecordDetailViewController : BaseViewController
+
+@property (nonatomic, strong, nullable) RecordModel *dataModel;
+
+
 
 @end

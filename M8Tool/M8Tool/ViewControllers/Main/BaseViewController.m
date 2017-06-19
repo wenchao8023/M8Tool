@@ -143,15 +143,26 @@
 
 - (UIView *)contentView {
     if (!_contentView) {
+//        CGFloat baseHeight = 667 - kDefaultStatuHeight - kDefaultTabbarHeight;
+//        CGFloat deviceHeight = SCREEN_HEIGHT - kDefaultTabbarHeight - kDefaultStatuHeight;
+//        
+//        CGFloat contentX = kContentOriginX;
+//        CGFloat contentY =  4 / baseHeight * deviceHeight + kDefaultNaviHeight;
+//        CGRect cFrame = CGRectMake(contentX,
+//                                   contentY,
+//                                   SCREEN_WIDTH - 2 * contentX,
+//                                   SCREEN_HEIGHT - contentY - kDefaultTabbarHeight - 49 / baseHeight * deviceHeight);
+        
+        // 将宽度缩窄一点，对应的高度会增加一点
         CGFloat baseHeight = 667 - kDefaultStatuHeight - kDefaultTabbarHeight;
         CGFloat deviceHeight = SCREEN_HEIGHT - kDefaultTabbarHeight - kDefaultStatuHeight;
         
-        CGFloat contentX = kContentOriginX;
+        CGFloat contentX = kContentOriginX - kDefaultMargin;
         CGFloat contentY =  4 / baseHeight * deviceHeight + kDefaultNaviHeight;
-        CGRect cFrame = CGRectMake(contentX,
-                                   contentY,
-                                   SCREEN_WIDTH - 2 * contentX,
-                                   SCREEN_HEIGHT - contentY - kDefaultTabbarHeight - 49 / baseHeight * deviceHeight);
+        CGFloat contentWidth    = SCREEN_WIDTH - 2 * contentX;
+        CGFloat contentHeight   = SCREEN_HEIGHT - contentY - kDefaultTabbarHeight - 30 / baseHeight * deviceHeight;
+        
+        CGRect cFrame = CGRectMake(contentX, contentY, contentWidth, contentHeight);
         
         UIView *contentView = [[UIView alloc] initWithFrame:cFrame];
         

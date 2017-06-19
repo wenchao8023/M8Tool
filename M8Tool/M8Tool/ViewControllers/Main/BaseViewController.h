@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+#import "BaseSearchView.h"
+
+/**
+ 会议记录、会议笔记、会议收藏 viewController
+ */
+typedef enum : NSInteger {
+    RecordViewType_record   = 0,
+    RecordViewType_note     = 1,
+    RecordViewType_collect  = 2,
+}RecordViewType;
 
 
 static const float kMarginView_top          = 10;
@@ -17,6 +27,7 @@ static const float kRadiusView              = 10;
 
 
 #define kContentOriginX         (30.5 / 375 * SCREEN_WIDTH)
+//#define kContentOriginX         (30.5 / 375 * SCREEN_WIDTH)
 #define kContentHeight_bottom30 (SCREEN_HEIGHT - 153)
 #define kContentHeight_bottom60 (SCREEN_HEIGHT - 183)
 #define kContentHeight_bottom90 (SCREEN_HEIGHT - 213)
@@ -26,6 +37,12 @@ static const float kRadiusView              = 10;
 
 
 @interface BaseViewController : UIViewController
+
+
+/**
+ 会议记录中会使用到 searchView
+ */
+@property (nonatomic, strong, nullable) BaseSearchView *_searchView;
 
 /**
  背景图片

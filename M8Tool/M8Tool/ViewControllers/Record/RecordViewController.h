@@ -11,16 +11,6 @@
 
 
 
-
-
-/**
- 会议记录、会议笔记、会议收藏 viewController
- */
-typedef enum : NSInteger {
-    RecordViewType_record   = 0,
-    RecordViewType_note     = 1,
-    RecordViewType_collect  = 2,
-}RecordViewType;
 @interface RecordViewController : BaseViewController
 
 @property (nonatomic, assign) RecordViewType recordViewType;

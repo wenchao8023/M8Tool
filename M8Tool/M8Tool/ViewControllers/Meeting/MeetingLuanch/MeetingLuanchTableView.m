@@ -9,7 +9,7 @@
 #import "MeetingLuanchTableView.h"
 #import "MeetingMembersCollection.h"
 #import "LatestMembersCollection.h"
-#import "MeetingLuanchTableViewCell.h"
+#import "MeetingLuanchCell.h"
 
 
 #define kItemWidth (self.width - 60) / 5
@@ -43,7 +43,7 @@
 
 
 /*****************设置 UICollectionViewFlowLayout *************************/
-#pragma mark - CollectionView >  flowLayout
+#pragma mark - CollectionView >>>>>>>>>>>>>>  flowLayout
 @interface MyFlowLayout : UICollectionViewFlowLayout
 
 
@@ -69,7 +69,7 @@
 
 
 ///////////////////tableView 的 tableFooterView///////////////////////////
-#pragma mark - tableView > footerView: LatestMembersCollection + MeetingMembersCollection
+#pragma mark - tableView >>>>>>>>>>> footerView: LatestMembersCollection + MeetingMembersCollection
 
 @protocol TBFooterViewDelegate <NSObject>
 
@@ -338,9 +338,9 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MeetingLuanchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MeetingLuanchTableViewCellID"];
+    MeetingLuanchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MeetingLuanchCellID"];
     if (!cell) {
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"MeetingLuanchTableViewCell" owner:self options:nil] firstObject];
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"MeetingLuanchCell" owner:self options:nil] firstObject];
     }
     [cell configWithItem:self.dataItemArray[indexPath.row]
                  content:self.dataContentArray[indexPath.row]
