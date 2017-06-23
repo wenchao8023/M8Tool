@@ -35,10 +35,8 @@
     UILabel *bottomLineLabel = [WCUIKitControl createLabelWithFrame:CGRectMake(0, kDefaultCellHeight - 0.6, self.width, 0.6) BgColor:WCDarkGray];
     [self.contentView addSubview:bottomLineLabel];
     
-    
-    UIImageView *tagImg = [WCUIKitControl createImageViewWithFrame:CGRectMake(10, 7, 20, 30) ImageName:@""];
+    UIImageView *tagImg = [WCUIKitControl createImageViewWithFrame:CGRectMake(10, 7, 30, 30) ImageName:@"collectTag_blue"];
     [self.contentView addSubview:tagImg];
-    
     
     UILabel *tagsLabel = [WCUIKitControl createLabelWithFrame:CGRectMake(50, 10, self.width - 50, 24) Text:[tagsArray componentsJoinedByString:@","]];
     [self.contentView addSubview:tagsLabel];

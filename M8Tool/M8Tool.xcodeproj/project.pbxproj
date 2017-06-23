@@ -216,6 +216,12 @@
 		94A127FF1EF13ECA00ED2703 /* liveCloseMic.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A127F61EF13ECA00ED2703 /* liveCloseMic.png */; };
 		94A128001EF13ECA00ED2703 /* liveCloseMic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A127F71EF13ECA00ED2703 /* liveCloseMic@2x.png */; };
 		94A128011EF13ECA00ED2703 /* liveCloseMic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A127F81EF13ECA00ED2703 /* liveCloseMic@3x.png */; };
+		94A203221EF8CA87007904D2 /* collectTag_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A2031C1EF8CA87007904D2 /* collectTag_black.png */; };
+		94A203231EF8CA87007904D2 /* collectTag_black@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A2031D1EF8CA87007904D2 /* collectTag_black@2X.png */; };
+		94A203241EF8CA87007904D2 /* collectTag_black@3X.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A2031E1EF8CA87007904D2 /* collectTag_black@3X.png */; };
+		94A203251EF8CA87007904D2 /* collectTag_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A2031F1EF8CA87007904D2 /* collectTag_blue.png */; };
+		94A203261EF8CA87007904D2 /* collectTag_blue@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A203201EF8CA87007904D2 /* collectTag_blue@2X.png */; };
+		94A203271EF8CA87007904D2 /* collectTag_blue@3X.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A203211EF8CA87007904D2 /* collectTag_blue@3X.png */; };
 		94A502871E95F12400F675B2 /* libCOSClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A502861E95F12400F675B2 /* libCOSClient.a */; };
 		94A851C11EE2BD8B00204B48 /* MeetingAgendaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94A851C01EE2BD8B00204B48 /* MeetingAgendaCell.xib */; };
 		94A851C31EE2C18600204B48 /* UsrCardViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 940DE9B41ED854D3006F061A /* UsrCardViewCell.xib */; };
@@ -669,6 +675,12 @@
 		94A127F61EF13ECA00ED2703 /* liveCloseMic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = liveCloseMic.png; sourceTree = "<group>"; };
 		94A127F71EF13ECA00ED2703 /* liveCloseMic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liveCloseMic@2x.png"; sourceTree = "<group>"; };
 		94A127F81EF13ECA00ED2703 /* liveCloseMic@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liveCloseMic@3x.png"; sourceTree = "<group>"; };
+		94A2031C1EF8CA87007904D2 /* collectTag_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = collectTag_black.png; sourceTree = "<group>"; };
+		94A2031D1EF8CA87007904D2 /* collectTag_black@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "collectTag_black@2X.png"; sourceTree = "<group>"; };
+		94A2031E1EF8CA87007904D2 /* collectTag_black@3X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "collectTag_black@3X.png"; sourceTree = "<group>"; };
+		94A2031F1EF8CA87007904D2 /* collectTag_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = collectTag_blue.png; sourceTree = "<group>"; };
+		94A203201EF8CA87007904D2 /* collectTag_blue@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "collectTag_blue@2X.png"; sourceTree = "<group>"; };
+		94A203211EF8CA87007904D2 /* collectTag_blue@3X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "collectTag_blue@3X.png"; sourceTree = "<group>"; };
 		94A5027A1E95EB9C00F675B2 /* ConstHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstHeader.h; sourceTree = "<group>"; };
 		94A502841E95F12400F675B2 /* COSClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COSClient.h; sourceTree = "<group>"; };
 		94A502851E95F12400F675B2 /* COSTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COSTask.h; sourceTree = "<group>"; };
@@ -1738,6 +1750,19 @@
 			path = liveCloseMic;
 			sourceTree = "<group>";
 		};
+		94A2031B1EF8CA87007904D2 /* collectTags */ = {
+			isa = PBXGroup;
+			children = (
+				94A2031C1EF8CA87007904D2 /* collectTag_black.png */,
+				94A2031D1EF8CA87007904D2 /* collectTag_black@2X.png */,
+				94A2031E1EF8CA87007904D2 /* collectTag_black@3X.png */,
+				94A2031F1EF8CA87007904D2 /* collectTag_blue.png */,
+				94A203201EF8CA87007904D2 /* collectTag_blue@2X.png */,
+				94A203211EF8CA87007904D2 /* collectTag_blue@3X.png */,
+			);
+			path = collectTags;
+			sourceTree = "<group>";
+		};
 		94A502831E95F12400F675B2 /* COS_SDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -2168,6 +2193,7 @@
 		94D8C9C01ECFEB020075C35D /* Pictures */ = {
 			isa = PBXGroup;
 			children = (
+				94A2031B1EF8CA87007904D2 /* collectTags */,
 				947DB44A1EF79DDC0019AE2B /* recordTypeImg */,
 				94BACD581EEE2CB30017FFDE /* liveViewsImg */,
 				94B3C21E1EE793AE00244BC4 /* Theme */,
@@ -2344,10 +2370,12 @@
 				94D0A10F1EE6AC67009399C6 /* userCentification.png in Resources */,
 				947DB4571EF79DDC0019AE2B /* record_callType_audio.png in Resources */,
 				944AF20D1E948DC10044B44C /* ShareSDKUI.bundle in Resources */,
+				94A203271EF8CA87007904D2 /* collectTag_blue@3X.png in Resources */,
 				94BACD8F1EEE2CB30017FFDE /* liveNote@3x.png in Resources */,
 				947DB45C1EF79DDC0019AE2B /* record_callType_live@3x.png in Resources */,
 				946753CF1EBC170200653A2C /* Assets.xcassets in Resources */,
 				94BACD961EEE2CB30017FFDE /* liveShare.png in Resources */,
+				94A203251EF8CA87007904D2 /* collectTag_blue.png in Resources */,
 				94B3C23D1EE793AE00244BC4 /* 栅格红@2x.png in Resources */,
 				946F7EE21EF29DF4005E757A /* M8LiveRenderView.xib in Resources */,
 				94B3C2431EE793AE00244BC4 /* 灰白@2x.png in Resources */,
@@ -2358,6 +2386,7 @@
 				94C06F3D1EBC50C900336E5F /* UserProtocolViewController.xib in Resources */,
 				946753C91EBC16D500653A2C /* Main.storyboard in Resources */,
 				947DB4801EF7CE9D0019AE2B /* recordreluanch@2x.png in Resources */,
+				94A203261EF8CA87007904D2 /* collectTag_blue@2X.png in Resources */,
 				94B3C2351EE793AE00244BC4 /* 栅格红preview.png in Resources */,
 				94B3C2471EE793AE00244BC4 /* 灰蓝@3x.png in Resources */,
 				94B3C23A1EE793AE00244BC4 /* 木纹@2x.png in Resources */,
@@ -2377,6 +2406,7 @@
 				94B3C2341EE793AE00244BC4 /* 木纹preview.png in Resources */,
 				94B3C2381EE793AE00244BC4 /* 灰蓝preview.png in Resources */,
 				94B3C2371EE793AE00244BC4 /* 灰白preview.png in Resources */,
+				94A203241EF8CA87007904D2 /* collectTag_black@3X.png in Resources */,
 				94A127FE1EF13ECA00ED2703 /* liveAudio_on@3x.png in Resources */,
 				94B3C2461EE793AE00244BC4 /* 灰蓝@2x.png in Resources */,
 				94B3C23F1EE793AE00244BC4 /* 淡青.png in Resources */,
@@ -2385,6 +2415,7 @@
 				94A127FD1EF13ECA00ED2703 /* liveAudio_on@2x.png in Resources */,
 				94C9B8401ECDA59000F42654 /* MeetingMembersCell.xib in Resources */,
 				94A987F51EF008500080BEF2 /* liveEnlarge@2x.png in Resources */,
+				94A203221EF8CA87007904D2 /* collectTag_black.png in Resources */,
 				94B3C2451EE793AE00244BC4 /* 灰蓝.png in Resources */,
 				947DB4971EF7E3250019AE2B /* onCallRecv_refuse.png in Resources */,
 				94BACD901EEE2CB30017FFDE /* liveReceiver_off.png in Resources */,
@@ -2408,6 +2439,7 @@
 				94A127FF1EF13ECA00ED2703 /* liveCloseMic.png in Resources */,
 				948E04621EE6421B0075903B /* UserTableViewCell.xib in Resources */,
 				94A851C11EE2BD8B00204B48 /* MeetingAgendaCell.xib in Resources */,
+				94A203231EF8CA87007904D2 /* collectTag_black@2X.png in Resources */,
 				946F7F0C1EF29E84005E757A /* M8CallHeaderView.xib in Resources */,
 				943A08F21EDED9F2003CEA27 /* DecoRes.bundle in Resources */,
 				94BACD981EEE2CB30017FFDE /* liveShare@3x.png in Resources */,
@@ -2694,7 +2726,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lu WANG (RS5VVQU2Q4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = RS5VVQU2Q4;
 				ENABLE_BITCODE = NO;
@@ -2713,7 +2745,7 @@
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/M8Tool/Base/CSHeaderFile.pch";
 				INFOPLIST_FILE = M8Tool/Base/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2731,6 +2763,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibuildtek.M8Tool;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
@@ -2740,7 +2774,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lu WANG (RS5VVQU2Q4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = RS5VVQU2Q4;
 				ENABLE_BITCODE = NO;
@@ -2759,7 +2793,7 @@
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/M8Tool/Base/CSHeaderFile.pch";
 				INFOPLIST_FILE = M8Tool/Base/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2777,6 +2811,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibuildtek.M8Tool;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;

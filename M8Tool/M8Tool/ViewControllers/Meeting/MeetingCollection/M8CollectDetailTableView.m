@@ -7,17 +7,19 @@
 //
 
 #import "M8CollectDetailTableView.h"
-
 #import "MeetingLuanchCell.h"   /// 使用会议发起界面中的 cell
 #import "RecordModel.h"
-
 #import "M8CollectDetailCollection.h"
+#import "ModifyViewController.h"
+
+#import "M8MeetWindow.h"
+#import "M8MakeCallViewController.h"
 
 #define kItemWidth (self.width - 60) / 5
 #define kSectionHeight 40.f
 
 
-@interface M8CollectDetailTableView ()<UITableViewDelegate, UITableViewDataSource>
+@interface M8CollectDetailTableView ()<UITableViewDelegate, UITableViewDataSource, ModifyViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *dataItemArray;
 
@@ -127,5 +129,57 @@
     
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.row == 4) {
+        ModifyViewController *modifyVC = [[ModifyViewController alloc] init];
+        modifyVC.naviTitle      = @"添加标签";
+        modifyVC.originContent  = @"标签";
+        modifyVC.modifyType     = Modify_text;
+        modifyVC.WCDelegate     = self;
+        [[AppDelegate sharedAppDelegate] pushViewController:modifyVC];
+    }
+}
+
+- (void)modifyViewMofifyInfo:(NSDictionary *)modifyInfo {
+    NSString *tagStr = [modifyInfo objectForKey:kModifyText];
+    if ([self.dataTagsArray containsObject:@"添加标签"]) {
+        [self.dataTagsArray removeObject:@"添加标签"];
+    }
+    [self.dataTagsArray addObject:tagStr];
+    
+    [self reloadData];
+}
+
+- (void)reluanch {
+    
+    NSString *typeStr = _dataModel.recordType;
+    if ([typeStr containsString:@"live"]) {
+        [AppDelegate showAlertWithTitle:@"提示" message:@"暂时没有提供直播重新发起" okTitle:@"确定" cancelTitle:nil ok:nil cancel:nil];
+    }
+    else {
+        M8MakeCallViewController *callVC = [[M8MakeCallViewController alloc] init];
+        NSMutableArray *membersArray = [NSMutableArray arrayWithArray:_dataModel.recordMembers];
+        NSString *loginIdentify = [[ILiveLoginManager getInstance] getLoginId];
+        if ([membersArray containsObject:loginIdentify]) {
+            [membersArray removeObject:loginIdentify];
+        }
+        
+        callVC.membersArray = membersArray;
+        callVC.callId       = [[AppDelegate sharedAppDelegate] getRoomID];
+        callVC.topic        = _dataModel.recordTopic;
+        if ([typeStr containsString:@"video"]) {
+            callVC.callType = TILCALL_TYPE_VIDEO;
+        }
+        if ([typeStr containsString:@"audio"]) {
+            callVC.callType = TILCALL_TYPE_AUDIO;
+        }
+        [M8MeetWindow M8_addSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
+    }
+}
+
 
 @end

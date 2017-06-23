@@ -60,6 +60,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     
     [self.sponsorLabel configLiveRenderText];
     [self.infoLabel configLiveText];
@@ -73,8 +74,6 @@
     
     self.rejectLabel.font = [UIFont systemFontOfSize:kAppSmallFontSize];
     self.receiveLabel.font = [UIFont systemFontOfSize:kAppSmallFontSize];
-    
-
     
     [WCNotificationCenter addObserver:self selector:@selector(themeSwichAction) name:kThemeSwich_Notification object:nil];
     
@@ -91,6 +90,8 @@
     self.inviteLabel.text  = [[ILiveLoginManager getInstance] getLoginId];
     
     [self.view sendSubviewToBack:self.bgImageView];
+    
+    WCLog(@"Recv call child frame is : %@", NSStringFromCGRect(self.view.frame));
 }
 - (UIImageView *)bgImageView {
     if (!_bgImageView) {

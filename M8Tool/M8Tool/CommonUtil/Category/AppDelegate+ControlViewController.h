@@ -38,4 +38,11 @@
  @param naviController 导航控制器
  */
 - (void)presentNavigationController:(UIViewController *)naviController ;
+
+/**
+ 用于获取测试用的房间号
+
+ @return 房间号
+ */
+- (int)getRoomID;
 @end

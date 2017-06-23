@@ -63,7 +63,6 @@ static CGFloat kSectionHeight = 40.f;
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     MeetingMembersCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MeetingMembersCellID" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor colorWithRed:0.88 green:0.56 blue:0.32 alpha:1];
     WCViewBorder_Radius(cell, kItemWidth / 2);
     [cell configRecordDetailWithNameStr:self.dataArray[indexPath.row]];
     return cell;

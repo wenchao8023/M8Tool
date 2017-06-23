@@ -133,4 +133,10 @@
     }
     return nil;
 }
+
+
+- (int)getRoomID {
+    
+    return (int)([[NSDate date] timeIntervalSince1970]) % 1000 * 1000 + arc4random() % 1000;
+}
 @end

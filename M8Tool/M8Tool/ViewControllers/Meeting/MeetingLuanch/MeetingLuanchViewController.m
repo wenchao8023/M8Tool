@@ -131,7 +131,8 @@
  */
 - (void)luanchMeeting {
     
-    int roomId = [self getRoomID];    //应该要从服务端获取
+//    int roomId = [self getRoomID];    //应该要从服务端获取
+    int roomId = [[AppDelegate sharedAppDelegate] getRoomID];
     
     switch (self.luanchMeetingType) {
         case LuanchMeetingType_phone:   //电话(语音)
@@ -159,10 +160,11 @@
         break;
         case LuanchMeetingType_live:    //直播
         {
-            M8LiveMeetViewController *liveVC = [[M8LiveMeetViewController alloc] init];
-            liveVC.roomId = roomId;
-            liveVC.topic  = self.topic;
-            [[AppDelegate sharedAppDelegate] presentNavigationController:liveVC];
+            [AppDelegate showAlertWithTitle:@"提示" message:@"正在开发中" okTitle:@"确定" cancelTitle:nil ok:nil cancel:nil];
+//            M8LiveMeetViewController *liveVC = [[M8LiveMeetViewController alloc] init];
+//            liveVC.roomId = roomId;
+//            liveVC.topic  = self.topic;
+//            [[AppDelegate sharedAppDelegate] presentNavigationController:liveVC];
         }
         break;
         case LuanchMeetingType_order:   //预订
@@ -191,11 +193,11 @@
 }
 
 
-- (int)getRoomID {
-    
-    return (int)([[NSDate date] timeIntervalSince1970]) % 1000 * 1000 + arc4random() % 1000;
-}
-    
+//- (int)getRoomID {
+//    
+//    return (int)([[NSDate date] timeIntervalSince1970]) % 1000 * 1000 + arc4random() % 1000;
+//}
+
 
 
 

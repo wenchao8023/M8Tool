@@ -58,7 +58,7 @@
 }
 
 - (void)reluanchAction {
-    WCLog(@"重新发起会议");
+    [self.detailTableView reluanch];
 }
 
 

@@ -101,6 +101,8 @@
     detailVC.headerTitle    = model.nameStr;
     detailVC.imageStr       = model.imgStr;
     [[AppDelegate sharedAppDelegate] pushViewController:detailVC];
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
     
     

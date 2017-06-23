@@ -72,11 +72,11 @@
     model4.recordTopic = @"研发部的直播会议";
     model4.recordLuancher = @"木木";
     model4.recordTime = @"2017/6/18 20:07";
-    model4.recordMembers = @[@"user1", @"user3"];
+    model4.recordMembers = @[@"user1", @"user2"];
     [self.dataArray addObject:model4];
     
     RecordModel *model5 = [RecordModel new];
-    model5.recordType = @"record_callType_video";
+    model5.recordType = @"record_callType_audio";
     model5.recordTopic = @"销售部的视频会议";
     model5.recordLuancher = @"user1";
     model5.recordTime = @"2017/6/18 18:37";
@@ -152,7 +152,7 @@
     model14.recordTopic = @"研发部的视频会议";
     model14.recordLuancher = @"木木";
     model14.recordTime = @"2017/6/12 13:30";
-    model14.recordMembers = @[@"user1", @"user3", @"user4", @"user5"];
+    model14.recordMembers = @[@"user1", @"user2", @"user4"];
     [self.dataArray addObject:model14];
     
     RecordModel *model15 = [RecordModel new];
@@ -160,7 +160,7 @@
     model15.recordTopic = @"研发部的视频会议";
     model15.recordLuancher = @"木木";
     model15.recordTime = @"2017/6/12 14:30";
-    model15.recordMembers = @[@"user1", @"user3", @"user2", @"user4", @"user5",];
+    model15.recordMembers = @[@"user1", @"user2"];
     [self.dataArray addObject:model15];
     
     [self reloadData];
@@ -200,6 +200,7 @@
         [[[AppDelegate sharedAppDelegate] navigationViewController] pushViewController:destinationVC animated:YES];
     }
     
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

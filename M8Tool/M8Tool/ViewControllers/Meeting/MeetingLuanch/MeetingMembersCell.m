@@ -30,13 +30,13 @@
 
 #pragma mark - 配置 参会人员
 - (void)configMeetingMembersWithNameStr:(NSString *)nameStr isDeling:(BOOL)isDeling {
-    self.backgroundColor = [UIColor colorWithRed:0.05 green:0.43 blue:0.4 alpha:1];
+    self.backgroundColor = [UIColor colorWithRed:0.95 green:0.92 blue:0.85 alpha:1];
     [self setNameHidden:NO];
     self.delImg.hidden = !isDeling;
     [self.nameLabel setAttributedText:[CommonUtil customAttString:nameStr
                                                          fontSize:kAppMiddleFontSize
-                                                        textColor:WCWhite
-                                                        charSpace:kAppKern_2]
+                                                        textColor:WCButtonColor
+                                                        charSpace:kAppKern_0]
      ];
 }
 
@@ -61,11 +61,11 @@
     
     [self.nameLabel setAttributedText:[CommonUtil customAttString:nameStr
                                                          fontSize:kAppMiddleFontSize
-                                                        textColor:WCWhite
-                                                        charSpace:kAppKern_2]
+                                                        textColor:WCButtonColor
+                                                        charSpace:kAppKern_0]
      ];
     
-    self.selImg.backgroundColor = isSelected ? WCRed : WCWhite;
+    self.selImg.backgroundColor = isSelected ? WCButtonColor : WCWhite;
 }
 
 
@@ -78,6 +78,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    
+    self.backgroundColor = [UIColor colorWithRed:0.95 green:0.92 blue:0.85 alpha:1];
 }
 
 @end

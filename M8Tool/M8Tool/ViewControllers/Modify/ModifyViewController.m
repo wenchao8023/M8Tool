@@ -167,7 +167,7 @@ typedef void(^SaveBlock)();
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.textField.text = self.originContent;
+    self.textField.placeholder = self.originContent;
     
     
 }
@@ -258,7 +258,7 @@ typedef void(^SaveBlock)();
     switch (self.modifyType) {
         case Modify_text:
         {
-            modifyInfo = @{@"text" : self.textField.text};
+            modifyInfo = @{kModifyText : self.textField.text};
         }
             break;
         case Modify_time:

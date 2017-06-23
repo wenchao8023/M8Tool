@@ -28,6 +28,8 @@
     [self initCall];
     
     [self initUI];
+    
+    WCLog(@"Recv call frame is : %@", NSStringFromCGRect(self.view.frame));
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,7 +52,7 @@
     _childVC = [[M8RecvChildViewController alloc] init];
     _childVC.invitation = self.invitation;
     _childVC.WCDelegate = self;
-    _childVC.view.frame = [UIScreen mainScreen].bounds;
+//    _childVC.view.frame = self.view.bounds;
     [self addChildViewController:_childVC];
     [self.view addSubview:_childVC.view];
     [_childVC didMoveToParentViewController:self];

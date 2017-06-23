@@ -140,7 +140,6 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
     
     MeetingMembersCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MeetingMembersCellID" forIndexPath:indexPath];
     WCViewBorder_Radius(cell, kItemWidth / 2);
-    cell.backgroundColor = [UIColor colorWithRed:0.05 green:0.43 blue:0.4 alpha:1];
     if (self.dataMembersArray &&
         self.dataMembersArray.count)
     {   //数组中至少有一个元素

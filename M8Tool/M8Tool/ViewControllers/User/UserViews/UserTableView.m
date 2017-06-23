@@ -41,7 +41,7 @@ static NSString *const kUserSettingVC   = @"UserSettingViewController";
 
 - (void)createUI {
     UILabel *titleLabel = [WCUIKitControl createLabelWithFrame:CGRectMake(48, 20, 80, 20) Text:@"林瑞" BgColor:WCClear];
-    [titleLabel setAttributedText:[CommonUtil customAttString:@"林瑞" fontSize:kAppLargeFontSize textColor:WCBlack charSpace:kAppKern_4]];
+    [titleLabel setAttributedText:[CommonUtil customAttString:@"林瑞" fontSize:36 textColor:WCBlack charSpace:kAppKern_8]];
     [self addSubview:titleLabel];
     
     UILabel *LineLabel = [WCUIKitControl createLabelWithFrame:CGRectMake(0, self.height - 0.5, self.width, 0.5) Text:nil BgColor:[UIColor colorWithRed:0.86 green:0.84 blue:0.82 alpha:1]];
@@ -88,15 +88,15 @@ static NSString *const kUserSettingVC   = @"UserSettingViewController";
 - (NSArray *)actionsAarry {
     if (!_actionsAarry) {
         NSArray *actionsArray = @[@"onCardAction", @"onWalletAction", @"onSwichConyAction",
-                                  @"onSwichThemeAction", @"onSettingAction", @"onCertificationAction", @"onOwnConyAction"];
+                                  @"onSwichThemeAction", @"onCertificationAction", @"onOwnConyAction", @"onSettingAction"];
         _actionsAarry = actionsArray;
     }
     return _actionsAarry;
 }
 
 - (void)loadData {
-    NSArray *titleArr = @[@"我的名片", @"我的钱包", @"切换企业", @"桌面主题", @"设置", @"个人实名认证", @"所在企业"];
-    NSArray *imgsArr  = @[@"userCard", @"userwallet", @"userSwitchCony", @"userTheme", @"userSetting", @"userCentification", @"userOwnCony"];
+    NSArray *titleArr = @[@"我的名片", @"我的钱包", @"切换企业", @"桌面主题", @"个人实名认证", @"所在企业", @"设置"];
+    NSArray *imgsArr  = @[@"userCard", @"userwallet", @"userSwitchCony", @"userTheme", @"userCentification", @"userOwnCony", @"userSetting"];
     
     for (int i = 0; i < titleArr.count; i++) {
         UserTableViewModel *model = [UserTableViewModel new];
@@ -132,6 +132,8 @@ static NSString *const kUserSettingVC   = @"UserSettingViewController";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [self performSelector:NSSelectorFromString(self.actionsAarry[indexPath.row]) withObject:indexPath afterDelay:0];
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 

@@ -99,7 +99,9 @@ static const CGFloat kHeadHeight = 88;
     if ([selStr containsString:@":"])
         [self performSelector:NSSelectorFromString(selStr) withObject:indexPath afterDelay:0];
     else
-        [self performSelector:NSSelectorFromString(selStr) withObject:indexPath afterDelay:0];
+        [self performSelector:NSSelectorFromString(selStr) withObject:nil afterDelay:0];
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 
@@ -152,9 +154,9 @@ static const CGFloat kHeadHeight = 88;
 
 #pragma mark - ModifyViewDelegate
 - (void)modifyViewMofifyInfo:(NSDictionary *)modifyInfo indexPath:(NSIndexPath *)indexPath {
-    if ([[[modifyInfo allKeys] firstObject] isEqualToString:@"text"]) {
+    if ([[[modifyInfo allKeys] firstObject] isEqualToString:kModifyText]) {
         
-        NSString *text = [modifyInfo objectForKey:@"text"];
+        NSString *text = [modifyInfo objectForKey:kModifyText];
         
         UserCardModel *model = self.itemsArray[indexPath.row];
         model.contentStr = text;

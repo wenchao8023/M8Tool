@@ -372,6 +372,8 @@
         modifyVC.WCDelegate     = self;
         [[AppDelegate sharedAppDelegate] pushViewController:modifyVC];
     }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - TBFooterViewDelegate 
@@ -385,9 +387,9 @@
 #pragma mark - ModifyViewDelegate
 - (void)modifyViewMofifyInfo:(NSDictionary *)modifyInfo {
     
-    if ([[[modifyInfo allKeys] firstObject] isEqualToString:@"text"]) {
+    if ([[[modifyInfo allKeys] firstObject] isEqualToString:kModifyText]) {
         
-        NSString *topic = [modifyInfo objectForKey:@"text"];
+        NSString *topic = [modifyInfo objectForKey:kModifyText];
         
         [self.dataContentArray replaceObjectAtIndex:0 withObject:topic];
     }

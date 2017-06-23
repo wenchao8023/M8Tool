@@ -12,6 +12,8 @@
 #import "RecordModel.h"
 
 #import "RecordDetailCollection.h"
+#import "M8MeetWindow.h"
+#import "M8MakeCallViewController.h"
 
 #define kItemWidth (self.width - 60) / 5
 #define kSectionHeight 118.f
@@ -30,7 +32,6 @@
 
 
 @implementation RecordDetailTableView
-
 
 
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style dataModel:(RecordModel *)model {
@@ -112,6 +113,32 @@
 }
 
 
+- (void)reluanch {
+    
+    NSString *typeStr = _dataModel.recordType;
+    if ([typeStr containsString:@"live"]) {
+        [AppDelegate showAlertWithTitle:@"提示" message:@"暂时没有提供直播重新发起" okTitle:@"确定" cancelTitle:nil ok:nil cancel:nil];
+    }
+    else {
+        M8MakeCallViewController *callVC = [[M8MakeCallViewController alloc] init];
+        NSMutableArray *membersArray = [NSMutableArray arrayWithArray:_dataModel.recordMembers];
+        NSString *loginIdentify = [[ILiveLoginManager getInstance] getLoginId];
+        if ([membersArray containsObject:loginIdentify]) {
+            [membersArray removeObject:loginIdentify];
+        }
+        
+        callVC.membersArray = membersArray;
+        callVC.callId       = [[AppDelegate sharedAppDelegate] getRoomID];
+        callVC.topic        = _dataModel.recordTopic;
+        if ([typeStr containsString:@"video"]) {
+            callVC.callType = TILCALL_TYPE_VIDEO;
+        }
+        if ([typeStr containsString:@"audio"]) {
+            callVC.callType = TILCALL_TYPE_AUDIO;
+        }
+        [M8MeetWindow M8_addSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
+    }
+}
 
 
 

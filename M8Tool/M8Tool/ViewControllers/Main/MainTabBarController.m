@@ -96,6 +96,8 @@
     
     _meetingButton.adjustsImageWhenHighlighted = NO;//去除按钮的按下效果（阴影）
     [_meetingButton addTarget:self action:@selector(onLiveButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self onLiveButtonClicked];
 }
 
 
@@ -130,18 +132,19 @@
 
 - (void)onLiveButtonClicked
 {
-//    [self popToNaviTootViewController];
-    self.selectedIndex = 1;
-    [_meetingButton setImage:[UIImage imageNamed:@"tabbarCenter_hover"] forState:UIControlStateNormal];
+
+    if (self.selectedIndex == 1) {
+        [self popToNaviTootViewController];
+    }
+    else {
+        self.selectedIndex = 1;
+        [_meetingButton setImage:[UIImage imageNamed:@"tabbarCenter_hover"] forState:UIControlStateNormal];
+    }
+    
 }
 
-//- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
-//    
-//    [self popToNaviTootViewController];
-//    return YES;
-//}
-
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+
     if (tabBarController.selectedIndex == 1) {
         [_meetingButton setImage:[UIImage imageNamed:@"tabbarCenter_hover"] forState:UIControlStateNormal];
     }
@@ -158,7 +161,7 @@
     UINavigationController *navi = self.viewControllers[self.selectedIndex];
     if (navi.viewControllers.count &&
         navi.viewControllers.count > 1) {   //存在多个 viewController
-        [navi popToRootViewControllerAnimated:NO];
+        [navi popToRootViewControllerAnimated:YES];
     }
 }
 
