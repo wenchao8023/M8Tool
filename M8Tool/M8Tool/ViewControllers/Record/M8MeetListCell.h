@@ -1,5 +1,5 @@
 //
-//  RecordCell.h
+//  M8MeetListCell.h
 //  M8Tool
 //
 //  Created by chao on 2017/5/12.
@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@class RecordModel;
+@class M8MeetListModel;
 
 /**
  可以做 会议记录、会议笔记、会议收藏的 cell
  */
-@interface RecordCell : UITableViewCell
+@interface M8MeetListCell : UITableViewCell
 
-- (void)config:(RecordModel *)model;
+- (void)config:(M8MeetListModel *)model;
 
 @end

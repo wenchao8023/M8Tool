@@ -1,5 +1,5 @@
 //
-//  RecordDetailCollectionHeader.h
+//  M8RecordDetailCollectionHeader.h
 //  M8Tool
 //
 //  Created by chao on 2017/6/19.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RecordDetailCollectionHeader : UIView
+@interface M8RecordDetailCollectionHeader : UIView
 
 
 /**

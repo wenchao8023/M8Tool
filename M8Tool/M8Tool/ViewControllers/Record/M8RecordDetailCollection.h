@@ -1,5 +1,5 @@
 //
-//  RecordDetailCollection.h
+//  M8RecordDetailCollection.h
 //  M8Tool
 //
 //  Created by chao on 2017/6/19.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RecordDetailCollection : UICollectionView
+@interface M8RecordDetailCollection : UICollectionView
 
 - (void)configDataArray:(NSArray *_Nonnull)array;
 

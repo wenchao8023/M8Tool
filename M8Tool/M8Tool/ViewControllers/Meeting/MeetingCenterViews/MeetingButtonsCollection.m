@@ -10,7 +10,7 @@
 #import "MeetingButtonsCell.h"
 #import "MeetingLuanchViewController.h"
 #import "MeetingOrderViewController.h"
-#import "RecordViewController.h"
+#import "M8MeetListViewController.h"
 #import "UserContactViewController.h"
 
 
@@ -155,8 +155,8 @@ static NSString * const kMeetingButtonsCellID = @"MeetingButtonsCellID";
 //    }
     else if (index == 5 ||
              index == 6) {  //进入 会议笔记、会议收藏
-        RecordViewController *recordvc = [[RecordViewController alloc] init];
-        recordvc.recordViewType = index - 4;
+        M8MeetListViewController *recordvc = [[M8MeetListViewController alloc] init];
+        recordvc.listViewType = index - 4;
         recordvc.isExitLeftItem = YES;
         [[AppDelegate sharedAppDelegate] pushViewController:recordvc];
     }

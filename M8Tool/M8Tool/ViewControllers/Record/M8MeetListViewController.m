@@ -1,22 +1,22 @@
 //
-//  RecordViewController.m
+//  M8MeetListViewController.m
 //  M8Tool
 //
 //  Created by chao on 2017/5/11.
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import "RecordViewController.h"
-#import "RecordTableView.h"
+#import "M8MeetListViewController.h"
+#import "M8MeetListTableView.h"
 
 
-@interface RecordViewController ()<UITextFieldDelegate>
+@interface M8MeetListViewController ()<UITextFieldDelegate>
 
-@property (nonatomic, strong) RecordTableView *tableView;
+@property (nonatomic, strong) M8MeetListTableView *tableView;
 
 @end
 
-@implementation RecordViewController
+@implementation M8MeetListViewController
 @synthesize _searchView;
 
 
@@ -29,8 +29,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    if (_recordViewType == RecordViewType_note ||
-        _recordViewType == RecordViewType_collect) {
+    if (_listViewType == M8MeetListViewTypeNote ||
+        _listViewType == M8MeetListViewTypeCollect) {
         
         // 添加 搜索视图
         [self addSearchView];
@@ -42,11 +42,11 @@
     [self.contentView addSubview:self.tableView];
 }
 
-- (RecordTableView *)tableView {
+- (M8MeetListTableView *)tableView {
     if (!_tableView) {
-        RecordTableView *tabelView = [[RecordTableView alloc] initWithFrame:self.contentView.bounds style:UITableViewStylePlain];
-        tabelView.recordViewType = self.recordViewType;
-        _tableView = tabelView;
+        M8MeetListTableView *tableView = [[M8MeetListTableView alloc] initWithFrame:self.contentView.bounds style:UITableViewStylePlain];
+        tableView.listViewType  = _listViewType;
+        _tableView = tableView;
     }
     return _tableView;
 }
@@ -68,14 +68,14 @@
 
 #pragma mark - 判断视图类型
 - (NSString *)getTitle {
-    switch (self.recordViewType) {
-        case RecordViewType_record:
+    switch (self.listViewType) {
+        case M8MeetListViewTypeRecord:
             return @"会议记录";
             break;
-        case RecordViewType_note:
+        case M8MeetListViewTypeNote:
             return @"会议笔记";
             break;
-        case RecordViewType_collect:
+        case M8MeetListViewTypeCollect:
             return @"会议收藏";
             break;
         default:

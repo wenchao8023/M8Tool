@@ -10,7 +10,7 @@
 
 #import "LoginManager.h"
 
-#import "RecordViewController.h"
+#import "M8MeetListViewController.h"
 #import "MeetingViewController.h"
 #import "UserViewController.h"
 
@@ -58,8 +58,8 @@
     
     self.delegate = self;
     
-    RecordViewController *recordVC      = [[RecordViewController alloc] init];
-    recordVC.recordViewType             = RecordViewType_record;
+    M8MeetListViewController *recordVC  = [[M8MeetListViewController alloc] init];
+    recordVC.listViewType               = M8MeetListViewTypeRecord;
     UINavigationController *recordNav   = [[UINavigationController alloc] initWithRootViewController:recordVC];
     
     MeetingViewController *meetingVC    = [[MeetingViewController alloc] init];

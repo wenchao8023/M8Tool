@@ -1,23 +1,23 @@
 //
-//  RecordDetailViewController.m
+//  M8RecordDetailViewController.m
 //  M8Tool
 //
 //  Created by chao on 2017/5/12.
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import "RecordDetailViewController.h"
-#import "RecordDetailTableView.h"
+#import "M8RecordDetailViewController.h"
+#import "M8RecordDetailTableView.h"
 
-@interface RecordDetailViewController ()
+@interface M8RecordDetailViewController ()
 
-@property (nonatomic, strong) RecordDetailTableView *detailTableView;
+@property (nonatomic, strong) M8RecordDetailTableView *detailTableView;
 
 @property (nonatomic, strong) UIButton *reluanchBtn;
 
 @end
 
-@implementation RecordDetailViewController
+@implementation M8RecordDetailViewController
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -29,14 +29,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
     [self.contentView addSubview:self.detailTableView];
     [self.view bringSubviewToFront:self.reluanchBtn];
 }
 
-- (RecordDetailTableView *)detailTableView {
+- (M8RecordDetailTableView *)detailTableView {
     if (!_detailTableView) {
-        RecordDetailTableView *detailTableView = [[RecordDetailTableView alloc] initWithFrame:self.contentView.bounds style:UITableViewStylePlain dataModel:_dataModel];
+        M8RecordDetailTableView *detailTableView = [[M8RecordDetailTableView alloc] initWithFrame:self.contentView.bounds style:UITableViewStylePlain dataModel:_dataModel];
         _detailTableView = detailTableView;
     }
     return _detailTableView;

@@ -36,8 +36,6 @@
     
     [WCNotificationCenter addObserver:self selector:@selector(themeSwichAction) name:kThemeSwich_Notification object:nil];
     [WCNotificationCenter addObserver:self selector:@selector(orientationChange:) name:UIDeviceOrientationDidChangeNotification object:nil];
-    
-    WCLog(@"Call base frame is : %@", NSStringFromCGRect(self.view.frame));
 }
 
 

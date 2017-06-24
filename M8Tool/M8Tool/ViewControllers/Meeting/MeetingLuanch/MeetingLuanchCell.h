@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class RecordModel;
+@class M8MeetListModel;
 
 @interface MeetingLuanchCell : UITableViewCell
 

@@ -1,30 +1,30 @@
 //
-//  RecordDetailCollection.m
+//  M8RecordDetailCollection.m
 //  M8Tool
 //
 //  Created by chao on 2017/6/19.
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import "RecordDetailCollection.h"
+#import "M8RecordDetailCollection.h"
 
 #import "MeetingMembersCell.h"
 
-#import "RecordDetailCollectionHeader.h"
+#import "M8RecordDetailCollectionHeader.h"
 
-static NSString *CollectionHeaderID = @"RecordDetailCollectionID";
+static NSString *CollectionHeaderID = @"M8RecordDetailCollectionID";
 
 static CGFloat kRecordDetailHeaderHeight = 118.0;
 #define kItemWidth (self.width - 60) / 5
 
 
-@interface RecordDetailCollection ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface M8RecordDetailCollection ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
 @end
 
-@implementation RecordDetailCollection
+@implementation M8RecordDetailCollection
 
 - (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout {
     if (self = [super initWithFrame:frame collectionViewLayout:layout]) {
@@ -71,7 +71,7 @@ static CGFloat kRecordDetailHeaderHeight = 118.0;
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
         UICollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:CollectionHeaderID forIndexPath:indexPath];
 
-        RecordDetailCollectionHeader *headerView = [[RecordDetailCollectionHeader alloc] initWithFrame:CGRectMake(0, 0, self.width, kRecordDetailHeaderHeight)];
+        M8RecordDetailCollectionHeader *headerView = [[M8RecordDetailCollectionHeader alloc] initWithFrame:CGRectMake(0, 0, self.width, kRecordDetailHeaderHeight)];
         [header addSubview:headerView];
         [headerView config:self.dataArray];
         return header;

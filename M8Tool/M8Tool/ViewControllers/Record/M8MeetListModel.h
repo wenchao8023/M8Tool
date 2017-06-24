@@ -1,5 +1,5 @@
 //
-//  RecordModel.h
+//  M8MeetListModel.h
 //  M8Tool
 //
 //  Created by chao on 2017/5/12.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface RecordModel : NSObject
+@interface M8MeetListModel : NSObject
 
 @property (nonatomic, copy, nullable) NSString *recordTopic;
 @property (nonatomic, copy, nullable) NSString *recordLuancher;

@@ -13,8 +13,11 @@
 
 @implementation M8MeetWindow
 
-+ (void)M8_addSource:(nonnull id)source WindowOnTarget:(nonnull id)target {
-    [[M8MeetWindowSingleton getInstance] addSource:source WindowOnTarget:target];
++ (void)M8_addCallSource:(nonnull id)source WindowOnTarget:(nonnull id)target {
+    [[M8MeetWindowSingleton getInstance] addCallSource:source WindowOnTarget:target];
+}
++ (void)M8_addLiveSource:(nonnull id)source WindowOnTarget:(nonnull id)target {
+    [[M8MeetWindowSingleton getInstance] addLiveSource:source WindowOnTarget:target];
 }
 + (void)M8_showFloatView {
     [[M8MeetWindowSingleton getInstance] showFloatView];

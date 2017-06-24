@@ -17,7 +17,7 @@
 
     M8RecvCallViewController *recvCallVC = [[M8RecvCallViewController alloc] init];
     recvCallVC.invitation = invitation;
-    [M8MeetWindow M8_addSource:recvCallVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
+    [M8MeetWindow M8_addCallSource:recvCallVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
 }
 
 @end

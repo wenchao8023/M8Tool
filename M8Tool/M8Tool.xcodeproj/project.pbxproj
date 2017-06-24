@@ -147,10 +147,6 @@
 		946F7ED31EF29D4F005E757A /* M8CallComingListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 946F7ECF1EF29D4F005E757A /* M8CallComingListener.m */; };
 		946F7ED41EF29D4F005E757A /* M8RecvChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946F7ED11EF29D4F005E757A /* M8RecvChildViewController.m */; };
 		946F7ED51EF29D4F005E757A /* M8RecvChildViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 946F7ED21EF29D4F005E757A /* M8RecvChildViewController.xib */; };
-		946F7EDF1EF29DF4005E757A /* M8LiveNoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 946F7EDA1EF29DF4005E757A /* M8LiveNoteView.m */; };
-		946F7EE01EF29DF4005E757A /* M8LiveNoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 946F7EDB1EF29DF4005E757A /* M8LiveNoteView.xib */; };
-		946F7EE11EF29DF4005E757A /* M8LiveRenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 946F7EDD1EF29DF4005E757A /* M8LiveRenderView.m */; };
-		946F7EE21EF29DF4005E757A /* M8LiveRenderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 946F7EDE1EF29DF4005E757A /* M8LiveRenderView.xib */; };
 		946F7F011EF29E84005E757A /* M8CallAudioDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 946F7EE81EF29E84005E757A /* M8CallAudioDevice.m */; };
 		946F7F021EF29E84005E757A /* M8CallAudioDevice.xib in Resources */ = {isa = PBXBuildFile; fileRef = 946F7EE91EF29E84005E757A /* M8CallAudioDevice.xib */; };
 		946F7F041EF29E84005E757A /* M8CallRenderNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 946F7EED1EF29E84005E757A /* M8CallRenderNote.m */; };
@@ -175,10 +171,10 @@
 		947DB45E1EF79DDC0019AE2B /* record_callType_video@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 947DB4551EF79DDC0019AE2B /* record_callType_video@2x.png */; };
 		947DB45F1EF79DDC0019AE2B /* record_callType_video@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 947DB4561EF79DDC0019AE2B /* record_callType_video@3x.png */; };
 		947DB4651EF7AAC90019AE2B /* BaseSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 947DB4641EF7AAC90019AE2B /* BaseSearchView.m */; };
-		947DB4681EF7B1470019AE2B /* RecordDetailTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 947DB4671EF7B1470019AE2B /* RecordDetailTableView.m */; };
-		947DB4721EF7C0BC0019AE2B /* RecordDetailCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 947DB4711EF7C0BC0019AE2B /* RecordDetailCollection.m */; };
-		947DB4751EF7C0DB0019AE2B /* RecordDetailCollectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 947DB4741EF7C0DB0019AE2B /* RecordDetailCollectionHeader.m */; };
-		947DB4771EF7C0E50019AE2B /* RecordDetailCollectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 947DB4761EF7C0E50019AE2B /* RecordDetailCollectionHeader.xib */; };
+		947DB4681EF7B1470019AE2B /* M8RecordDetailTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 947DB4671EF7B1470019AE2B /* M8RecordDetailTableView.m */; };
+		947DB4721EF7C0BC0019AE2B /* M8RecordDetailCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 947DB4711EF7C0BC0019AE2B /* M8RecordDetailCollection.m */; };
+		947DB4751EF7C0DB0019AE2B /* M8RecordDetailCollectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 947DB4741EF7C0DB0019AE2B /* M8RecordDetailCollectionHeader.m */; };
+		947DB4771EF7C0E50019AE2B /* M8RecordDetailCollectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 947DB4761EF7C0E50019AE2B /* M8RecordDetailCollectionHeader.xib */; };
 		947DB47E1EF7CE9D0019AE2B /* recordEnded.png in Resources */ = {isa = PBXBuildFile; fileRef = 947DB4791EF7CE9D0019AE2B /* recordEnded.png */; };
 		947DB47F1EF7CE9D0019AE2B /* recordreluanch.png in Resources */ = {isa = PBXBuildFile; fileRef = 947DB47B1EF7CE9D0019AE2B /* recordreluanch.png */; };
 		947DB4801EF7CE9D0019AE2B /* recordreluanch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 947DB47C1EF7CE9D0019AE2B /* recordreluanch@2x.png */; };
@@ -223,9 +219,12 @@
 		94A203261EF8CA87007904D2 /* collectTag_blue@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A203201EF8CA87007904D2 /* collectTag_blue@2X.png */; };
 		94A203271EF8CA87007904D2 /* collectTag_blue@3X.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A203211EF8CA87007904D2 /* collectTag_blue@3X.png */; };
 		94A502871E95F12400F675B2 /* libCOSClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A502861E95F12400F675B2 /* libCOSClient.a */; };
+		94A6BB3F1EFD125A00EE1417 /* M8LiveContentScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A6BB3E1EFD125A00EE1417 /* M8LiveContentScroll.m */; };
+		94A6BB421EFD164400EE1417 /* M8LiveDeviceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A6BB411EFD164400EE1417 /* M8LiveDeviceView.m */; };
+		94A6BB441EFD172800EE1417 /* M8LiveDeviceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94A6BB431EFD172800EE1417 /* M8LiveDeviceView.xib */; };
 		94A851C11EE2BD8B00204B48 /* MeetingAgendaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94A851C01EE2BD8B00204B48 /* MeetingAgendaCell.xib */; };
 		94A851C31EE2C18600204B48 /* UsrCardViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 940DE9B41ED854D3006F061A /* UsrCardViewCell.xib */; };
-		94A851C41EE2C18600204B48 /* RecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2381EC585C5003ADF5F /* RecordCell.xib */; };
+		94A851C41EE2C18600204B48 /* M8MeetListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2381EC585C5003ADF5F /* M8MeetListCell.xib */; };
 		94A851C71EE2C18600204B48 /* UsrContactHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94E5DE311ED6A738008632D7 /* UsrContactHeaderView.xib */; };
 		94A851C81EE2C18700204B48 /* UsrCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 940DE9AB1ED84D67006F061A /* UsrCardView.m */; };
 		94A987F41EF008500080BEF2 /* liveEnlarge.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A987E91EF008500080BEF2 /* liveEnlarge.png */; };
@@ -242,32 +241,30 @@
 		94ABD2D41E976B31007C1172 /* CommonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ABD2D31E976B31007C1172 /* CommonUtil.m */; };
 		94B3C2311EC565AC003ADF5F /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B3C2301EC565AC003ADF5F /* UIView+Extension.m */; };
 		94B3C2341EE793AE00244BC4 /* 木纹preview.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2201EE793AE00244BC4 /* 木纹preview.png */; };
-		94B3C2351EC5851F003ADF5F /* RecordTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B3C2341EC5851F003ADF5F /* RecordTableView.m */; };
+		94B3C2351EC5851F003ADF5F /* M8MeetListTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B3C2341EC5851F003ADF5F /* M8MeetListTableView.m */; };
 		94B3C2351EE793AE00244BC4 /* 栅格红preview.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2211EE793AE00244BC4 /* 栅格红preview.png */; };
 		94B3C2361EE793AE00244BC4 /* 淡青preview.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2221EE793AE00244BC4 /* 淡青preview.png */; };
 		94B3C2371EE793AE00244BC4 /* 灰白preview.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2231EE793AE00244BC4 /* 灰白preview.png */; };
 		94B3C2381EE793AE00244BC4 /* 灰蓝preview.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2241EE793AE00244BC4 /* 灰蓝preview.png */; };
-		94B3C2391EC585C5003ADF5F /* RecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B3C2371EC585C5003ADF5F /* RecordCell.m */; };
+		94B3C2391EC585C5003ADF5F /* M8MeetListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B3C2371EC585C5003ADF5F /* M8MeetListCell.m */; };
 		94B3C2391EE793AE00244BC4 /* 木纹.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2251EE793AE00244BC4 /* 木纹.png */; };
 		94B3C23A1EE793AE00244BC4 /* 木纹@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2261EE793AE00244BC4 /* 木纹@2x.png */; };
 		94B3C23B1EE793AE00244BC4 /* 木纹@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2271EE793AE00244BC4 /* 木纹@3x.png */; };
 		94B3C23C1EE793AE00244BC4 /* 栅格红.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2281EE793AE00244BC4 /* 栅格红.png */; };
 		94B3C23D1EE793AE00244BC4 /* 栅格红@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2291EE793AE00244BC4 /* 栅格红@2x.png */; };
 		94B3C23E1EE793AE00244BC4 /* 栅格红@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C22A1EE793AE00244BC4 /* 栅格红@3x.png */; };
-		94B3C23F1EC58E81003ADF5F /* RecordTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B3C23E1EC58E81003ADF5F /* RecordTableViewModel.m */; };
 		94B3C23F1EE793AE00244BC4 /* 淡青.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C22B1EE793AE00244BC4 /* 淡青.png */; };
 		94B3C2401EE793AE00244BC4 /* 淡青@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C22C1EE793AE00244BC4 /* 淡青@2x.png */; };
 		94B3C2411EE793AE00244BC4 /* 淡青@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C22D1EE793AE00244BC4 /* 淡青@3x.png */; };
-		94B3C2421EC58E94003ADF5F /* RecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B3C2411EC58E94003ADF5F /* RecordModel.m */; };
+		94B3C2421EC58E94003ADF5F /* M8MeetListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B3C2411EC58E94003ADF5F /* M8MeetListModel.m */; };
 		94B3C2421EE793AE00244BC4 /* 灰白.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C22E1EE793AE00244BC4 /* 灰白.png */; };
 		94B3C2431EE793AE00244BC4 /* 灰白@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C22F1EE793AE00244BC4 /* 灰白@2x.png */; };
 		94B3C2441EE793AE00244BC4 /* 灰白@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2301EE793AE00244BC4 /* 灰白@3x.png */; };
 		94B3C2451EE793AE00244BC4 /* 灰蓝.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2311EE793AE00244BC4 /* 灰蓝.png */; };
 		94B3C2461EE793AE00244BC4 /* 灰蓝@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2321EE793AE00244BC4 /* 灰蓝@2x.png */; };
 		94B3C2471EE793AE00244BC4 /* 灰蓝@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2331EE793AE00244BC4 /* 灰蓝@3x.png */; };
-		94B3C2491EC59643003ADF5F /* RecordDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B3C2481EC59643003ADF5F /* RecordDetailViewController.m */; };
+		94B3C2491EC59643003ADF5F /* M8RecordDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B3C2481EC59643003ADF5F /* M8RecordDetailViewController.m */; };
 		94B3C24A1EE7C99C00244BC4 /* UserHeadIconViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B3C2491EE7C99C00244BC4 /* UserHeadIconViewController.m */; };
-		94B3C2661EC5C6C7003ADF5F /* RecordDetailViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B3C2651EC5C6C7003ADF5F /* RecordDetailViewManager.m */; };
 		94B43EBA1EF389FD00C57F0F /* M8FloatRenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B43EB31EF389FD00C57F0F /* M8FloatRenderView.m */; };
 		94B43ECA1EF3DAB700C57F0F /* M8MeetWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B43EC91EF3DAB700C57F0F /* M8MeetWindow.m */; };
 		94B43ECE1EF3DADA00C57F0F /* M8LiveLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B43ECD1EF3DADA00C57F0F /* M8LiveLabel.m */; };
@@ -303,10 +300,6 @@
 		94BACD991EEE2CB30017FFDE /* liveSwitchCamera.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BACD7B1EEE2CB30017FFDE /* liveSwitchCamera.png */; };
 		94BACD9A1EEE2CB30017FFDE /* liveSwitchCamera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BACD7C1EEE2CB30017FFDE /* liveSwitchCamera@2x.png */; };
 		94BACD9B1EEE2CB30017FFDE /* liveSwitchCamera@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BACD7D1EEE2CB30017FFDE /* liveSwitchCamera@3x.png */; };
-		94BACDE81EEE62C30017FFDE /* M8LiveJoinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BACDC31EEE62C30017FFDE /* M8LiveJoinViewController.m */; };
-		94BACDE91EEE62C30017FFDE /* M8LiveJoinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94BACDC41EEE62C30017FFDE /* M8LiveJoinViewController.xib */; };
-		94BACDEA1EEE62C30017FFDE /* M8LiveMeetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BACDC61EEE62C30017FFDE /* M8LiveMeetViewController.m */; };
-		94BACDEB1EEE62C30017FFDE /* M8LiveMeetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94BACDC71EEE62C30017FFDE /* M8LiveMeetViewController.xib */; };
 		94BDE5201ECC451E00ECC089 /* MeetingLuanchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BDE51F1ECC451E00ECC089 /* MeetingLuanchViewController.m */; };
 		94BDE5241ECC489200ECC089 /* MeetingOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BDE5231ECC489200ECC089 /* MeetingOrderViewController.m */; };
 		94BDE52C1ECC4D2200ECC089 /* MeetingLuanchTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BDE52B1ECC4D2200ECC089 /* MeetingLuanchTableView.m */; };
@@ -332,13 +325,22 @@
 		94D0A1131EE6AC67009399C6 /* userTheme.png in Resources */ = {isa = PBXBuildFile; fileRef = 94D0A10C1EE6AC67009399C6 /* userTheme.png */; };
 		94D0A1141EE6AC67009399C6 /* userwallet.png in Resources */ = {isa = PBXBuildFile; fileRef = 94D0A10D1EE6AC67009399C6 /* userwallet.png */; };
 		94D0A1271EE6C15F009399C6 /* M8ThemeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D0A1261EE6C15F009399C6 /* M8ThemeDetailViewController.m */; };
+		94D348AA1EFCEBA5008A1AEC /* M8NoteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D348A91EFCEBA5008A1AEC /* M8NoteDetailViewController.m */; };
+		94D348AD1EFCEDA5008A1AEC /* M8NoteDetailTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D348AC1EFCEDA5008A1AEC /* M8NoteDetailTableView.m */; };
+		94D348B11EFCEE65008A1AEC /* M8NoteDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D348AF1EFCEE65008A1AEC /* M8NoteDetailCell.m */; };
+		94D348B21EFCEE65008A1AEC /* M8NoteDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94D348B01EFCEE65008A1AEC /* M8NoteDetailCell.xib */; };
+		94D348B51EFCF5A6008A1AEC /* M8NoteDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D348B41EFCF5A6008A1AEC /* M8NoteDetailModel.m */; };
+		94D348B81EFD0002008A1AEC /* M8LiveBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D348B71EFD0002008A1AEC /* M8LiveBaseViewController.m */; };
+		94D348BB1EFD03F6008A1AEC /* M8LiveMakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D348BA1EFD03F6008A1AEC /* M8LiveMakeViewController.m */; };
+		94D348BF1EFD042F008A1AEC /* M8LiveHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D348BE1EFD042F008A1AEC /* M8LiveHeaderView.m */; };
+		94D348C11EFD043A008A1AEC /* M8LiveHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94D348C01EFD043A008A1AEC /* M8LiveHeaderView.xib */; };
 		94D8C9CF1ED025840075C35D /* MeetingOrderTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D8C9CE1ED025840075C35D /* MeetingOrderTableView.m */; };
 		94DE95891EAE145400A44DB1 /* UIColor+MLPFlatColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DE95801EAE145400A44DB1 /* UIColor+MLPFlatColors.m */; };
 		94DE958A1EAE145400A44DB1 /* UIImage+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DE95821EAE145400A44DB1 /* UIImage+Common.m */; };
 		94DE958B1EAE145400A44DB1 /* UIImage+TintColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DE95841EAE145400A44DB1 /* UIImage+TintColor.m */; };
 		94DE958C1EAE145400A44DB1 /* UIView+CustomAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DE95861EAE145400A44DB1 /* UIView+CustomAutoLayout.m */; };
 		94DE958D1EAE145400A44DB1 /* UIView+ShakeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DE95881EAE145400A44DB1 /* UIView+ShakeAnimation.m */; };
-		94E18D111EC47C0300132FB2 /* RecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E18D101EC47C0300132FB2 /* RecordViewController.m */; };
+		94E18D111EC47C0300132FB2 /* M8MeetListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E18D101EC47C0300132FB2 /* M8MeetListViewController.m */; };
 		94E18D141EC47C3400132FB2 /* MeetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E18D131EC47C3400132FB2 /* MeetingViewController.m */; };
 		94E18D171EC47C5200132FB2 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E18D161EC47C5200132FB2 /* UserViewController.m */; };
 		94E5DE2D1ED6775B008632D7 /* UsrContactView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E5DE2C1ED6775B008632D7 /* UsrContactView.m */; };
@@ -577,12 +579,6 @@
 		946F7ED01EF29D4F005E757A /* M8RecvChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8RecvChildViewController.h; sourceTree = "<group>"; };
 		946F7ED11EF29D4F005E757A /* M8RecvChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8RecvChildViewController.m; sourceTree = "<group>"; };
 		946F7ED21EF29D4F005E757A /* M8RecvChildViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M8RecvChildViewController.xib; sourceTree = "<group>"; };
-		946F7ED91EF29DF4005E757A /* M8LiveNoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LiveNoteView.h; sourceTree = "<group>"; };
-		946F7EDA1EF29DF4005E757A /* M8LiveNoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LiveNoteView.m; sourceTree = "<group>"; };
-		946F7EDB1EF29DF4005E757A /* M8LiveNoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M8LiveNoteView.xib; sourceTree = "<group>"; };
-		946F7EDC1EF29DF4005E757A /* M8LiveRenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LiveRenderView.h; sourceTree = "<group>"; };
-		946F7EDD1EF29DF4005E757A /* M8LiveRenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LiveRenderView.m; sourceTree = "<group>"; };
-		946F7EDE1EF29DF4005E757A /* M8LiveRenderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M8LiveRenderView.xib; sourceTree = "<group>"; };
 		946F7EE71EF29E84005E757A /* M8CallAudioDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8CallAudioDevice.h; sourceTree = "<group>"; };
 		946F7EE81EF29E84005E757A /* M8CallAudioDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8CallAudioDevice.m; sourceTree = "<group>"; };
 		946F7EE91EF29E84005E757A /* M8CallAudioDevice.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M8CallAudioDevice.xib; sourceTree = "<group>"; };
@@ -616,13 +612,13 @@
 		947DB4561EF79DDC0019AE2B /* record_callType_video@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_callType_video@3x.png"; sourceTree = "<group>"; };
 		947DB4631EF7AAC90019AE2B /* BaseSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseSearchView.h; sourceTree = "<group>"; };
 		947DB4641EF7AAC90019AE2B /* BaseSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseSearchView.m; sourceTree = "<group>"; };
-		947DB4661EF7B1470019AE2B /* RecordDetailTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordDetailTableView.h; sourceTree = "<group>"; };
-		947DB4671EF7B1470019AE2B /* RecordDetailTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordDetailTableView.m; sourceTree = "<group>"; };
-		947DB4701EF7C0BC0019AE2B /* RecordDetailCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordDetailCollection.h; sourceTree = "<group>"; };
-		947DB4711EF7C0BC0019AE2B /* RecordDetailCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordDetailCollection.m; sourceTree = "<group>"; };
-		947DB4731EF7C0DB0019AE2B /* RecordDetailCollectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordDetailCollectionHeader.h; sourceTree = "<group>"; };
-		947DB4741EF7C0DB0019AE2B /* RecordDetailCollectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordDetailCollectionHeader.m; sourceTree = "<group>"; };
-		947DB4761EF7C0E50019AE2B /* RecordDetailCollectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordDetailCollectionHeader.xib; sourceTree = "<group>"; };
+		947DB4661EF7B1470019AE2B /* M8RecordDetailTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8RecordDetailTableView.h; sourceTree = "<group>"; };
+		947DB4671EF7B1470019AE2B /* M8RecordDetailTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8RecordDetailTableView.m; sourceTree = "<group>"; };
+		947DB4701EF7C0BC0019AE2B /* M8RecordDetailCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8RecordDetailCollection.h; sourceTree = "<group>"; };
+		947DB4711EF7C0BC0019AE2B /* M8RecordDetailCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8RecordDetailCollection.m; sourceTree = "<group>"; };
+		947DB4731EF7C0DB0019AE2B /* M8RecordDetailCollectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8RecordDetailCollectionHeader.h; sourceTree = "<group>"; };
+		947DB4741EF7C0DB0019AE2B /* M8RecordDetailCollectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8RecordDetailCollectionHeader.m; sourceTree = "<group>"; };
+		947DB4761EF7C0E50019AE2B /* M8RecordDetailCollectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M8RecordDetailCollectionHeader.xib; sourceTree = "<group>"; };
 		947DB4791EF7CE9D0019AE2B /* recordEnded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recordEnded.png; sourceTree = "<group>"; };
 		947DB47B1EF7CE9D0019AE2B /* recordreluanch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recordreluanch.png; sourceTree = "<group>"; };
 		947DB47C1EF7CE9D0019AE2B /* recordreluanch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recordreluanch@2x.png"; sourceTree = "<group>"; };
@@ -685,6 +681,11 @@
 		94A502841E95F12400F675B2 /* COSClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COSClient.h; sourceTree = "<group>"; };
 		94A502851E95F12400F675B2 /* COSTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COSTask.h; sourceTree = "<group>"; };
 		94A502861E95F12400F675B2 /* libCOSClient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCOSClient.a; sourceTree = "<group>"; };
+		94A6BB3D1EFD125A00EE1417 /* M8LiveContentScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LiveContentScroll.h; sourceTree = "<group>"; };
+		94A6BB3E1EFD125A00EE1417 /* M8LiveContentScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LiveContentScroll.m; sourceTree = "<group>"; };
+		94A6BB401EFD164400EE1417 /* M8LiveDeviceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LiveDeviceView.h; sourceTree = "<group>"; };
+		94A6BB411EFD164400EE1417 /* M8LiveDeviceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LiveDeviceView.m; sourceTree = "<group>"; };
+		94A6BB431EFD172800EE1417 /* M8LiveDeviceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M8LiveDeviceView.xib; sourceTree = "<group>"; };
 		94A851C01EE2BD8B00204B48 /* MeetingAgendaCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeetingAgendaCell.xib; sourceTree = "<group>"; };
 		94A987E91EF008500080BEF2 /* liveEnlarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = liveEnlarge.png; sourceTree = "<group>"; };
 		94A987EA1EF008500080BEF2 /* liveEnlarge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liveEnlarge@2x.png"; sourceTree = "<group>"; };
@@ -721,22 +722,18 @@
 		94B3C2301EE793AE00244BC4 /* 灰白@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "灰白@3x.png"; sourceTree = "<group>"; };
 		94B3C2311EE793AE00244BC4 /* 灰蓝.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "灰蓝.png"; sourceTree = "<group>"; };
 		94B3C2321EE793AE00244BC4 /* 灰蓝@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "灰蓝@2x.png"; sourceTree = "<group>"; };
-		94B3C2331EC5851F003ADF5F /* RecordTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordTableView.h; sourceTree = "<group>"; };
+		94B3C2331EC5851F003ADF5F /* M8MeetListTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8MeetListTableView.h; sourceTree = "<group>"; };
 		94B3C2331EE793AE00244BC4 /* 灰蓝@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "灰蓝@3x.png"; sourceTree = "<group>"; };
-		94B3C2341EC5851F003ADF5F /* RecordTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordTableView.m; sourceTree = "<group>"; };
-		94B3C2361EC585C5003ADF5F /* RecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordCell.h; sourceTree = "<group>"; };
-		94B3C2371EC585C5003ADF5F /* RecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordCell.m; sourceTree = "<group>"; };
-		94B3C2381EC585C5003ADF5F /* RecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordCell.xib; sourceTree = "<group>"; };
-		94B3C23D1EC58E81003ADF5F /* RecordTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordTableViewModel.h; sourceTree = "<group>"; };
-		94B3C23E1EC58E81003ADF5F /* RecordTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordTableViewModel.m; sourceTree = "<group>"; };
-		94B3C2401EC58E94003ADF5F /* RecordModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordModel.h; sourceTree = "<group>"; };
-		94B3C2411EC58E94003ADF5F /* RecordModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordModel.m; sourceTree = "<group>"; };
-		94B3C2471EC59643003ADF5F /* RecordDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordDetailViewController.h; sourceTree = "<group>"; };
-		94B3C2481EC59643003ADF5F /* RecordDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordDetailViewController.m; sourceTree = "<group>"; };
+		94B3C2341EC5851F003ADF5F /* M8MeetListTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8MeetListTableView.m; sourceTree = "<group>"; };
+		94B3C2361EC585C5003ADF5F /* M8MeetListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8MeetListCell.h; sourceTree = "<group>"; };
+		94B3C2371EC585C5003ADF5F /* M8MeetListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8MeetListCell.m; sourceTree = "<group>"; };
+		94B3C2381EC585C5003ADF5F /* M8MeetListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M8MeetListCell.xib; sourceTree = "<group>"; };
+		94B3C2401EC58E94003ADF5F /* M8MeetListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8MeetListModel.h; sourceTree = "<group>"; };
+		94B3C2411EC58E94003ADF5F /* M8MeetListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8MeetListModel.m; sourceTree = "<group>"; };
+		94B3C2471EC59643003ADF5F /* M8RecordDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8RecordDetailViewController.h; sourceTree = "<group>"; };
+		94B3C2481EC59643003ADF5F /* M8RecordDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8RecordDetailViewController.m; sourceTree = "<group>"; };
 		94B3C2481EE7C99C00244BC4 /* UserHeadIconViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserHeadIconViewController.h; sourceTree = "<group>"; };
 		94B3C2491EE7C99C00244BC4 /* UserHeadIconViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserHeadIconViewController.m; sourceTree = "<group>"; };
-		94B3C2641EC5C6C7003ADF5F /* RecordDetailViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordDetailViewManager.h; sourceTree = "<group>"; };
-		94B3C2651EC5C6C7003ADF5F /* RecordDetailViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordDetailViewManager.m; sourceTree = "<group>"; };
 		94B43EB21EF389FD00C57F0F /* M8FloatRenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8FloatRenderView.h; sourceTree = "<group>"; };
 		94B43EB31EF389FD00C57F0F /* M8FloatRenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8FloatRenderView.m; sourceTree = "<group>"; };
 		94B43EC81EF3DAB700C57F0F /* M8MeetWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8MeetWindow.h; sourceTree = "<group>"; };
@@ -777,12 +774,6 @@
 		94BACD7B1EEE2CB30017FFDE /* liveSwitchCamera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = liveSwitchCamera.png; sourceTree = "<group>"; };
 		94BACD7C1EEE2CB30017FFDE /* liveSwitchCamera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liveSwitchCamera@2x.png"; sourceTree = "<group>"; };
 		94BACD7D1EEE2CB30017FFDE /* liveSwitchCamera@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liveSwitchCamera@3x.png"; sourceTree = "<group>"; };
-		94BACDC21EEE62C30017FFDE /* M8LiveJoinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LiveJoinViewController.h; sourceTree = "<group>"; };
-		94BACDC31EEE62C30017FFDE /* M8LiveJoinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LiveJoinViewController.m; sourceTree = "<group>"; };
-		94BACDC41EEE62C30017FFDE /* M8LiveJoinViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M8LiveJoinViewController.xib; sourceTree = "<group>"; };
-		94BACDC51EEE62C30017FFDE /* M8LiveMeetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LiveMeetViewController.h; sourceTree = "<group>"; };
-		94BACDC61EEE62C30017FFDE /* M8LiveMeetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LiveMeetViewController.m; sourceTree = "<group>"; };
-		94BACDC71EEE62C30017FFDE /* M8LiveMeetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M8LiveMeetViewController.xib; sourceTree = "<group>"; };
 		94BDE51E1ECC451E00ECC089 /* MeetingLuanchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingLuanchViewController.h; sourceTree = "<group>"; };
 		94BDE51F1ECC451E00ECC089 /* MeetingLuanchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetingLuanchViewController.m; sourceTree = "<group>"; };
 		94BDE5221ECC489200ECC089 /* MeetingOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingOrderViewController.h; sourceTree = "<group>"; };
@@ -823,6 +814,22 @@
 		94D0A10D1EE6AC67009399C6 /* userwallet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userwallet.png; sourceTree = "<group>"; };
 		94D0A1251EE6C15F009399C6 /* M8ThemeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8ThemeDetailViewController.h; sourceTree = "<group>"; };
 		94D0A1261EE6C15F009399C6 /* M8ThemeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8ThemeDetailViewController.m; sourceTree = "<group>"; };
+		94D348A81EFCEBA5008A1AEC /* M8NoteDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8NoteDetailViewController.h; sourceTree = "<group>"; };
+		94D348A91EFCEBA5008A1AEC /* M8NoteDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8NoteDetailViewController.m; sourceTree = "<group>"; };
+		94D348AB1EFCEDA5008A1AEC /* M8NoteDetailTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8NoteDetailTableView.h; sourceTree = "<group>"; };
+		94D348AC1EFCEDA5008A1AEC /* M8NoteDetailTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8NoteDetailTableView.m; sourceTree = "<group>"; };
+		94D348AE1EFCEE65008A1AEC /* M8NoteDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8NoteDetailCell.h; sourceTree = "<group>"; };
+		94D348AF1EFCEE65008A1AEC /* M8NoteDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8NoteDetailCell.m; sourceTree = "<group>"; };
+		94D348B01EFCEE65008A1AEC /* M8NoteDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M8NoteDetailCell.xib; sourceTree = "<group>"; };
+		94D348B31EFCF5A6008A1AEC /* M8NoteDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8NoteDetailModel.h; sourceTree = "<group>"; };
+		94D348B41EFCF5A6008A1AEC /* M8NoteDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8NoteDetailModel.m; sourceTree = "<group>"; };
+		94D348B61EFD0002008A1AEC /* M8LiveBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LiveBaseViewController.h; sourceTree = "<group>"; };
+		94D348B71EFD0002008A1AEC /* M8LiveBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LiveBaseViewController.m; sourceTree = "<group>"; };
+		94D348B91EFD03F6008A1AEC /* M8LiveMakeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LiveMakeViewController.h; sourceTree = "<group>"; };
+		94D348BA1EFD03F6008A1AEC /* M8LiveMakeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LiveMakeViewController.m; sourceTree = "<group>"; };
+		94D348BD1EFD042F008A1AEC /* M8LiveHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LiveHeaderView.h; sourceTree = "<group>"; };
+		94D348BE1EFD042F008A1AEC /* M8LiveHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LiveHeaderView.m; sourceTree = "<group>"; };
+		94D348C01EFD043A008A1AEC /* M8LiveHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M8LiveHeaderView.xib; sourceTree = "<group>"; };
 		94D8C9CD1ED025840075C35D /* MeetingOrderTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingOrderTableView.h; sourceTree = "<group>"; };
 		94D8C9CE1ED025840075C35D /* MeetingOrderTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetingOrderTableView.m; sourceTree = "<group>"; };
 		94DE957E1EAE145400A44DB1 /* CategoryHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryHeader.h; sourceTree = "<group>"; };
@@ -836,8 +843,8 @@
 		94DE95861EAE145400A44DB1 /* UIView+CustomAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CustomAutoLayout.m"; sourceTree = "<group>"; };
 		94DE95871EAE145400A44DB1 /* UIView+ShakeAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ShakeAnimation.h"; sourceTree = "<group>"; };
 		94DE95881EAE145400A44DB1 /* UIView+ShakeAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ShakeAnimation.m"; sourceTree = "<group>"; };
-		94E18D0F1EC47C0300132FB2 /* RecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordViewController.h; sourceTree = "<group>"; };
-		94E18D101EC47C0300132FB2 /* RecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordViewController.m; sourceTree = "<group>"; };
+		94E18D0F1EC47C0300132FB2 /* M8MeetListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8MeetListViewController.h; sourceTree = "<group>"; };
+		94E18D101EC47C0300132FB2 /* M8MeetListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8MeetListViewController.m; sourceTree = "<group>"; };
 		94E18D121EC47C3400132FB2 /* MeetingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingViewController.h; sourceTree = "<group>"; };
 		94E18D131EC47C3400132FB2 /* MeetingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetingViewController.m; sourceTree = "<group>"; };
 		94E18D151EC47C5200132FB2 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
@@ -912,14 +919,16 @@
 		94081B471EC46E1F0079583C /* Record(会议记录) */ = {
 			isa = PBXGroup;
 			children = (
-				94E18D0F1EC47C0300132FB2 /* RecordViewController.h */,
-				94E18D101EC47C0300132FB2 /* RecordViewController.m */,
-				94B3C2471EC59643003ADF5F /* RecordDetailViewController.h */,
-				94B3C2481EC59643003ADF5F /* RecordDetailViewController.m */,
-				94B3C2631EC5C6A7003ADF5F /* RecordViewManagers */,
-				94B3C23C1EC58E63003ADF5F /* RecordViewModels */,
-				94B3C23B1EC58E59003ADF5F /* RecordModels */,
-				94B3C2321EC5835A003ADF5F /* RecordViews */,
+				94E18D0F1EC47C0300132FB2 /* M8MeetListViewController.h */,
+				94E18D101EC47C0300132FB2 /* M8MeetListViewController.m */,
+				94B3C2331EC5851F003ADF5F /* M8MeetListTableView.h */,
+				94B3C2341EC5851F003ADF5F /* M8MeetListTableView.m */,
+				94B3C2361EC585C5003ADF5F /* M8MeetListCell.h */,
+				94B3C2371EC585C5003ADF5F /* M8MeetListCell.m */,
+				94B3C2381EC585C5003ADF5F /* M8MeetListCell.xib */,
+				94B3C2401EC58E94003ADF5F /* M8MeetListModel.h */,
+				94B3C2411EC58E94003ADF5F /* M8MeetListModel.m */,
+				94B3C2321EC5835A003ADF5F /* MeetingRecord */,
 			);
 			name = "Record(会议记录)";
 			path = Record;
@@ -1442,7 +1451,7 @@
 		946753D31EBC1DE000653A2C /* ViewControllers(视图控制器) */ = {
 			isa = PBXGroup;
 			children = (
-				94D0A0FD1EE68B91009399C6 /* Modify */,
+				94D0A0FD1EE68B91009399C6 /* Modify(编辑界面) */,
 				94C06F361EBC50BC00336E5F /* UserProtocol(用户协议) */,
 				946753DC1EBC1FFB00653A2C /* Main(主界面) */,
 				946753D41EBC1F3E00653A2C /* Login(登录) */,
@@ -1773,6 +1782,26 @@
 			path = COS_SDK;
 			sourceTree = "<group>";
 		};
+		94A6BB371EFD11AA00EE1417 /* headerView */ = {
+			isa = PBXGroup;
+			children = (
+				94D348BD1EFD042F008A1AEC /* M8LiveHeaderView.h */,
+				94D348BE1EFD042F008A1AEC /* M8LiveHeaderView.m */,
+				94D348C01EFD043A008A1AEC /* M8LiveHeaderView.xib */,
+			);
+			name = headerView;
+			sourceTree = "<group>";
+		};
+		94A6BB451EFD17A400EE1417 /* deviceView */ = {
+			isa = PBXGroup;
+			children = (
+				94A6BB401EFD164400EE1417 /* M8LiveDeviceView.h */,
+				94A6BB411EFD164400EE1417 /* M8LiveDeviceView.m */,
+				94A6BB431EFD172800EE1417 /* M8LiveDeviceView.xib */,
+			);
+			name = deviceView;
+			sourceTree = "<group>";
+		};
 		94A987E81EF008500080BEF2 /* liveEnlarge */ = {
 			isa = PBXGroup;
 			children = (
@@ -1848,50 +1877,20 @@
 			path = ThemePreview;
 			sourceTree = "<group>";
 		};
-		94B3C2321EC5835A003ADF5F /* RecordViews */ = {
+		94B3C2321EC5835A003ADF5F /* MeetingRecord */ = {
 			isa = PBXGroup;
 			children = (
-				94B3C2331EC5851F003ADF5F /* RecordTableView.h */,
-				94B3C2341EC5851F003ADF5F /* RecordTableView.m */,
-				94B3C2361EC585C5003ADF5F /* RecordCell.h */,
-				94B3C2371EC585C5003ADF5F /* RecordCell.m */,
-				94B3C2381EC585C5003ADF5F /* RecordCell.xib */,
-				947DB4661EF7B1470019AE2B /* RecordDetailTableView.h */,
-				947DB4671EF7B1470019AE2B /* RecordDetailTableView.m */,
-				947DB4701EF7C0BC0019AE2B /* RecordDetailCollection.h */,
-				947DB4711EF7C0BC0019AE2B /* RecordDetailCollection.m */,
-				947DB4731EF7C0DB0019AE2B /* RecordDetailCollectionHeader.h */,
-				947DB4741EF7C0DB0019AE2B /* RecordDetailCollectionHeader.m */,
-				947DB4761EF7C0E50019AE2B /* RecordDetailCollectionHeader.xib */,
+				94B3C2471EC59643003ADF5F /* M8RecordDetailViewController.h */,
+				94B3C2481EC59643003ADF5F /* M8RecordDetailViewController.m */,
+				947DB4661EF7B1470019AE2B /* M8RecordDetailTableView.h */,
+				947DB4671EF7B1470019AE2B /* M8RecordDetailTableView.m */,
+				947DB4701EF7C0BC0019AE2B /* M8RecordDetailCollection.h */,
+				947DB4711EF7C0BC0019AE2B /* M8RecordDetailCollection.m */,
+				947DB4731EF7C0DB0019AE2B /* M8RecordDetailCollectionHeader.h */,
+				947DB4741EF7C0DB0019AE2B /* M8RecordDetailCollectionHeader.m */,
+				947DB4761EF7C0E50019AE2B /* M8RecordDetailCollectionHeader.xib */,
 			);
-			name = RecordViews;
-			sourceTree = "<group>";
-		};
-		94B3C23B1EC58E59003ADF5F /* RecordModels */ = {
-			isa = PBXGroup;
-			children = (
-				94B3C2401EC58E94003ADF5F /* RecordModel.h */,
-				94B3C2411EC58E94003ADF5F /* RecordModel.m */,
-			);
-			name = RecordModels;
-			sourceTree = "<group>";
-		};
-		94B3C23C1EC58E63003ADF5F /* RecordViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				94B3C23D1EC58E81003ADF5F /* RecordTableViewModel.h */,
-				94B3C23E1EC58E81003ADF5F /* RecordTableViewModel.m */,
-			);
-			name = RecordViewModels;
-			sourceTree = "<group>";
-		};
-		94B3C2631EC5C6A7003ADF5F /* RecordViewManagers */ = {
-			isa = PBXGroup;
-			children = (
-				94B3C2641EC5C6C7003ADF5F /* RecordDetailViewManager.h */,
-				94B3C2651EC5C6C7003ADF5F /* RecordDetailViewManager.m */,
-			);
-			name = RecordViewManagers;
+			name = MeetingRecord;
 			sourceTree = "<group>";
 		};
 		94B43EB11EF389ED00C57F0F /* onMeetFloat(浮动窗口) */ = {
@@ -1914,6 +1913,8 @@
 				94B43ED01EF3DB0400C57F0F /* M8MeetWindowSingleton.m */,
 				94B43ED21EF3E3F600C57F0F /* M8CallBaseViewController.h */,
 				94B43ED31EF3E3F600C57F0F /* M8CallBaseViewController.m */,
+				94D348B61EFD0002008A1AEC /* M8LiveBaseViewController.h */,
+				94D348B71EFD0002008A1AEC /* M8LiveBaseViewController.m */,
 			);
 			path = onMeetWindow;
 			sourceTree = "<group>";
@@ -2047,18 +2048,9 @@
 		94BACDC11EEE62C30017FFDE /* onLiveMeet */ = {
 			isa = PBXGroup;
 			children = (
-				94BACDC21EEE62C30017FFDE /* M8LiveJoinViewController.h */,
-				94BACDC31EEE62C30017FFDE /* M8LiveJoinViewController.m */,
-				94BACDC41EEE62C30017FFDE /* M8LiveJoinViewController.xib */,
-				94BACDC51EEE62C30017FFDE /* M8LiveMeetViewController.h */,
-				94BACDC61EEE62C30017FFDE /* M8LiveMeetViewController.m */,
-				94BACDC71EEE62C30017FFDE /* M8LiveMeetViewController.xib */,
-				946F7ED91EF29DF4005E757A /* M8LiveNoteView.h */,
-				946F7EDA1EF29DF4005E757A /* M8LiveNoteView.m */,
-				946F7EDB1EF29DF4005E757A /* M8LiveNoteView.xib */,
-				946F7EDC1EF29DF4005E757A /* M8LiveRenderView.h */,
-				946F7EDD1EF29DF4005E757A /* M8LiveRenderView.m */,
-				946F7EDE1EF29DF4005E757A /* M8LiveRenderView.xib */,
+				94D348B91EFD03F6008A1AEC /* M8LiveMakeViewController.h */,
+				94D348BA1EFD03F6008A1AEC /* M8LiveMakeViewController.m */,
+				94D348BC1EFD0415008A1AEC /* liveMeetViews */,
 			);
 			path = onLiveMeet;
 			sourceTree = "<group>";
@@ -2153,6 +2145,7 @@
 				94BDE51D1ECC451E00ECC089 /* MeetingLuanch */,
 				94BDE5211ECC488A00ECC089 /* MeetingOrder */,
 				947DB4821EF7D4880019AE2B /* MeetingCollection */,
+				94D348A71EFCEB70008A1AEC /* MeetingNote */,
 			);
 			name = "Meeting(会议中心)";
 			path = Meeting;
@@ -2167,12 +2160,13 @@
 			path = UserModel;
 			sourceTree = "<group>";
 		};
-		94D0A0FD1EE68B91009399C6 /* Modify */ = {
+		94D0A0FD1EE68B91009399C6 /* Modify(编辑界面) */ = {
 			isa = PBXGroup;
 			children = (
 				94D0A1031EE68C00009399C6 /* ModifyViewController.h */,
 				94D0A1041EE68C00009399C6 /* ModifyViewController.m */,
 			);
+			name = "Modify(编辑界面)";
 			path = Modify;
 			sourceTree = "<group>";
 		};
@@ -2188,6 +2182,33 @@
 				94D0A10D1EE6AC67009399C6 /* userwallet.png */,
 			);
 			path = userImg;
+			sourceTree = "<group>";
+		};
+		94D348A71EFCEB70008A1AEC /* MeetingNote */ = {
+			isa = PBXGroup;
+			children = (
+				94D348A81EFCEBA5008A1AEC /* M8NoteDetailViewController.h */,
+				94D348A91EFCEBA5008A1AEC /* M8NoteDetailViewController.m */,
+				94D348AB1EFCEDA5008A1AEC /* M8NoteDetailTableView.h */,
+				94D348AC1EFCEDA5008A1AEC /* M8NoteDetailTableView.m */,
+				94D348AE1EFCEE65008A1AEC /* M8NoteDetailCell.h */,
+				94D348AF1EFCEE65008A1AEC /* M8NoteDetailCell.m */,
+				94D348B01EFCEE65008A1AEC /* M8NoteDetailCell.xib */,
+				94D348B31EFCF5A6008A1AEC /* M8NoteDetailModel.h */,
+				94D348B41EFCF5A6008A1AEC /* M8NoteDetailModel.m */,
+			);
+			path = MeetingNote;
+			sourceTree = "<group>";
+		};
+		94D348BC1EFD0415008A1AEC /* liveMeetViews */ = {
+			isa = PBXGroup;
+			children = (
+				94A6BB3D1EFD125A00EE1417 /* M8LiveContentScroll.h */,
+				94A6BB3E1EFD125A00EE1417 /* M8LiveContentScroll.m */,
+				94A6BB371EFD11AA00EE1417 /* headerView */,
+				94A6BB451EFD17A400EE1417 /* deviceView */,
+			);
+			path = liveMeetViews;
 			sourceTree = "<group>";
 		};
 		94D8C9C01ECFEB020075C35D /* Pictures */ = {
@@ -2327,6 +2348,7 @@
 				94BACD871EEE2CB30017FFDE /* liveMic_off.png in Resources */,
 				943A09051EDEDF92003CEA27 /* btnImg_meetingCollect.png in Resources */,
 				94A128011EF13ECA00ED2703 /* liveCloseMic@3x.png in Resources */,
+				94D348C11EFD043A008A1AEC /* M8LiveHeaderView.xib in Resources */,
 				943A09061EDEDF92003CEA27 /* btnImg_meetingNote.png in Resources */,
 				947DB4981EF7E3250019AE2B /* onCallRecv_refuse@2x.png in Resources */,
 				94A987F81EF008500080BEF2 /* liveInvite@2x.png in Resources */,
@@ -2354,7 +2376,7 @@
 				94A987F71EF008500080BEF2 /* liveInvite.png in Resources */,
 				94BACD8B1EEE2CB30017FFDE /* liveMic_on@2x.png in Resources */,
 				94BACD9B1EEE2CB30017FFDE /* liveSwitchCamera@3x.png in Resources */,
-				94A851C41EE2C18600204B48 /* RecordCell.xib in Resources */,
+				94A851C41EE2C18600204B48 /* M8MeetListCell.xib in Resources */,
 				946F7F071EF29E84005E757A /* M8CallRenderView.xib in Resources */,
 				94BACD831EEE2CB30017FFDE /* liveCamera_on@3x.png in Resources */,
 				946F7F051EF29E84005E757A /* M8CallRenderNote.xib in Resources */,
@@ -2377,10 +2399,8 @@
 				94BACD961EEE2CB30017FFDE /* liveShare.png in Resources */,
 				94A203251EF8CA87007904D2 /* collectTag_blue.png in Resources */,
 				94B3C23D1EE793AE00244BC4 /* 栅格红@2x.png in Resources */,
-				946F7EE21EF29DF4005E757A /* M8LiveRenderView.xib in Resources */,
 				94B3C2431EE793AE00244BC4 /* 灰白@2x.png in Resources */,
 				94A987FC1EF008500080BEF2 /* liveRemove@3x.png in Resources */,
-				94BACDE91EEE62C30017FFDE /* M8LiveJoinViewController.xib in Resources */,
 				944AF2151E948DC10044B44C /* WeiboSDK.bundle in Resources */,
 				94BACD851EEE2CB30017FFDE /* liveHangup@2x.png in Resources */,
 				94C06F3D1EBC50C900336E5F /* UserProtocolViewController.xib in Resources */,
@@ -2388,6 +2408,7 @@
 				947DB4801EF7CE9D0019AE2B /* recordreluanch@2x.png in Resources */,
 				94A203261EF8CA87007904D2 /* collectTag_blue@2X.png in Resources */,
 				94B3C2351EE793AE00244BC4 /* 栅格红preview.png in Resources */,
+				94A6BB441EFD172800EE1417 /* M8LiveDeviceView.xib in Resources */,
 				94B3C2471EE793AE00244BC4 /* 灰蓝@3x.png in Resources */,
 				94B3C23A1EE793AE00244BC4 /* 木纹@2x.png in Resources */,
 				9497DF3D1ECA966A009C35CB /* MeetingView.xib in Resources */,
@@ -2423,12 +2444,12 @@
 				94B3C2421EE793AE00244BC4 /* 灰白.png in Resources */,
 				943A09091EDEDF92003CEA27 /* btnImg_videoMeeting.png in Resources */,
 				943A08F51EDED9F2003CEA27 /* PE.dat in Resources */,
-				946F7EE01EF29DF4005E757A /* M8LiveNoteView.xib in Resources */,
 				94B3C23C1EE793AE00244BC4 /* 栅格红.png in Resources */,
-				947DB4771EF7C0E50019AE2B /* RecordDetailCollectionHeader.xib in Resources */,
+				947DB4771EF7C0E50019AE2B /* M8RecordDetailCollectionHeader.xib in Resources */,
 				94B3C2441EE793AE00244BC4 /* 灰白@3x.png in Resources */,
 				94A127FB1EF13ECA00ED2703 /* liveAudio_off@3x.png in Resources */,
 				94A127FA1EF13ECA00ED2703 /* liveAudio_off@2x.png in Resources */,
+				94D348B21EFCEE65008A1AEC /* M8NoteDetailCell.xib in Resources */,
 				94B3C2361EE793AE00244BC4 /* 淡青preview.png in Resources */,
 				946F7ED51EF29D4F005E757A /* M8RecvChildViewController.xib in Resources */,
 				9494FD531EF528BF004C4637 /* M8FloatRenderView.xib in Resources */,
@@ -2446,7 +2467,6 @@
 				94BACD7E1EEE2CB30017FFDE /* liveCamera_off.png in Resources */,
 				94D0A1141EE6AC67009399C6 /* userwallet.png in Resources */,
 				94B3C2411EE793AE00244BC4 /* 淡青@3x.png in Resources */,
-				94BACDEB1EEE62C30017FFDE /* M8LiveMeetViewController.xib in Resources */,
 				947DB4811EF7CE9D0019AE2B /* recordreluanch@3x.png in Resources */,
 				944AF2131E948DC10044B44C /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				947DB4991EF7E3250019AE2B /* onCallRecv_refuse@3x.png in Resources */,
@@ -2476,7 +2496,7 @@
 				943A085E1EDEBADE003CEA27 /* NSMutableDictionary+Json.m in Sources */,
 				94A851C81EE2C18700204B48 /* UsrCardView.m in Sources */,
 				943A08611EDEBADE003CEA27 /* ExitRoomRequest.m in Sources */,
-				94B3C2351EC5851F003ADF5F /* RecordTableView.m in Sources */,
+				94B3C2351EC5851F003ADF5F /* M8MeetListTableView.m in Sources */,
 				943A08681EDEBADE003CEA27 /* LogoutRequest.m in Sources */,
 				94C06F451EBC5D1500336E5F /* LoadView.m in Sources */,
 				94BDE52C1ECC4D2200ECC089 /* MeetingLuanchTableView.m in Sources */,
@@ -2491,20 +2511,22 @@
 				94112EC41ECADE1D00263F7F /* WCCollectionViewHorizontalLayout.m in Sources */,
 				947DB4881EF7D61E0019AE2B /* M8CollectDetailTableView.m in Sources */,
 				943A086F1EDEBADE003CEA27 /* RoomMemListRequest.m in Sources */,
-				94B3C2421EC58E94003ADF5F /* RecordModel.m in Sources */,
+				94B3C2421EC58E94003ADF5F /* M8MeetListModel.m in Sources */,
+				94A6BB421EFD164400EE1417 /* M8LiveDeviceView.m in Sources */,
 				946753C71EBC16D500653A2C /* AppDelegate.m in Sources */,
 				94B3C2311EC565AC003ADF5F /* UIView+Extension.m in Sources */,
 				946F7ED41EF29D4F005E757A /* M8RecvChildViewController.m in Sources */,
 				94E18D171EC47C5200132FB2 /* UserViewController.m in Sources */,
-				947DB4681EF7B1470019AE2B /* RecordDetailTableView.m in Sources */,
+				947DB4681EF7B1470019AE2B /* M8RecordDetailTableView.m in Sources */,
+				94A6BB3F1EFD125A00EE1417 /* M8LiveContentScroll.m in Sources */,
 				946F7F091EF29E84005E757A /* M8CallVideoDevice.m in Sources */,
+				94D348BB1EFD03F6008A1AEC /* M8LiveMakeViewController.m in Sources */,
 				946F7F0F1EF29E84005E757A /* M8CallRenderModel.m in Sources */,
 				946F7ED31EF29D4F005E757A /* M8CallComingListener.m in Sources */,
 				947DB4651EF7AAC90019AE2B /* BaseSearchView.m in Sources */,
-				94B3C2391EC585C5003ADF5F /* RecordCell.m in Sources */,
+				94B3C2391EC585C5003ADF5F /* M8MeetListCell.m in Sources */,
 				94B43ECE1EF3DADA00C57F0F /* M8LiveLabel.m in Sources */,
 				943A08711EDEBADE003CEA27 /* WebServiceEngine.m in Sources */,
-				946F7EDF1EF29DF4005E757A /* M8LiveNoteView.m in Sources */,
 				94BDE5201ECC451E00ECC089 /* MeetingLuanchViewController.m in Sources */,
 				94C9B8371ECD688400F42654 /* MeetingLuanchCell.m in Sources */,
 				946753D21EBC174100653A2C /* M8Tool.xcdatamodeld in Sources */,
@@ -2514,7 +2536,8 @@
 				943A086E1EDEBADE003CEA27 /* RoomListRequest.m in Sources */,
 				944AF3121E9494C00044B44C /* AFNetworkActivityIndicatorManager.m in Sources */,
 				943A085F1EDEBADE003CEA27 /* NSObject+Json.m in Sources */,
-				947DB4721EF7C0BC0019AE2B /* RecordDetailCollection.m in Sources */,
+				947DB4721EF7C0BC0019AE2B /* M8RecordDetailCollection.m in Sources */,
+				94D348B51EFCF5A6008A1AEC /* M8NoteDetailModel.m in Sources */,
 				94DE958A1EAE145400A44DB1 /* UIImage+Common.m in Sources */,
 				944AF3171E9494C00044B44C /* UIRefreshControl+AFNetworking.m in Sources */,
 				946753E01EBC237F00653A2C /* WCUIKitControl.m in Sources */,
@@ -2527,16 +2550,16 @@
 				94B43ECA1EF3DAB700C57F0F /* M8MeetWindow.m in Sources */,
 				94C06F401EBC512900336E5F /* MainTabBarController.m in Sources */,
 				94975C211ED2951F00EAB395 /* UserContactViewController.m in Sources */,
+				94D348AA1EFCEBA5008A1AEC /* M8NoteDetailViewController.m in Sources */,
 				94D0A1051EE68C00009399C6 /* ModifyViewController.m in Sources */,
-				94B3C2661EC5C6C7003ADF5F /* RecordDetailViewManager.m in Sources */,
-				94BACDE81EEE62C30017FFDE /* M8LiveJoinViewController.m in Sources */,
-				94E18D111EC47C0300132FB2 /* RecordViewController.m in Sources */,
+				94E18D111EC47C0300132FB2 /* M8MeetListViewController.m in Sources */,
 				943A086D1EDEBADE003CEA27 /* ReportRoomRequest.m in Sources */,
 				9497DF3C1ECA966A009C35CB /* MeetingView.m in Sources */,
 				946753E31EBC24A900653A2C /* AppDelegate+ControlViewController.m in Sources */,
 				943A08651EDEBADE003CEA27 /* LiveImageSignRequest.m in Sources */,
 				943A08621EDEBADE003CEA27 /* GetRoomPlayUrlRequest.m in Sources */,
-				947DB4751EF7C0DB0019AE2B /* RecordDetailCollectionHeader.m in Sources */,
+				947DB4751EF7C0DB0019AE2B /* M8RecordDetailCollectionHeader.m in Sources */,
+				94D348B11EFCEE65008A1AEC /* M8NoteDetailCell.m in Sources */,
 				946753DA1EBC1F3E00653A2C /* RegistViewController.m in Sources */,
 				944AF3111E9494C00044B44C /* AFImageDownloader.m in Sources */,
 				9497DF491ECA9702009C35CB /* UserSettingViewController.m in Sources */,
@@ -2547,7 +2570,6 @@
 				94BDE5351ECC599800ECC089 /* MeetingMembersCollection.m in Sources */,
 				947DB48B1EF7D6F00019AE2B /* M8CollectDetailCollection.m in Sources */,
 				9422BEEB1EE5838F00F9B56D /* M8ThemeViewController.m in Sources */,
-				946F7EE11EF29DF4005E757A /* M8LiveRenderView.m in Sources */,
 				94DE958B1EAE145400A44DB1 /* UIImage+TintColor.m in Sources */,
 				9422BEF31EE5842600F9B56D /* M8ThemeModel.m in Sources */,
 				9497DF381ECA966A009C35CB /* MeetingAgendaCollection.m in Sources */,
@@ -2563,7 +2585,7 @@
 				943A085D1EDEBADE003CEA27 /* JSONKit.m in Sources */,
 				944AF30C1E9494C00044B44C /* AFURLResponseSerialization.m in Sources */,
 				9497DF251ECA95FD009C35CB /* UserCardViewController.m in Sources */,
-				94B3C2491EC59643003ADF5F /* RecordDetailViewController.m in Sources */,
+				94B3C2491EC59643003ADF5F /* M8RecordDetailViewController.m in Sources */,
 				943A08701EDEBADE003CEA27 /* WebModels.m in Sources */,
 				94B3C24A1EE7C99C00244BC4 /* UserHeadIconViewController.m in Sources */,
 				946F7F061EF29E84005E757A /* M8CallRenderView.m in Sources */,
@@ -2574,10 +2596,10 @@
 				943A08631EDEBADE003CEA27 /* HostHeartBeatRequest.m in Sources */,
 				9422BEF71EE5844B00F9B56D /* M8ThemeCell.m in Sources */,
 				944AF31B1E9494C00044B44C /* UIImage+KVNImageEffects.m in Sources */,
+				94D348AD1EFCEDA5008A1AEC /* M8NoteDetailTableView.m in Sources */,
 				946F7F101EF29E84005E757A /* M8CallRenderModelManager.m in Sources */,
 				94D0A0FC1EE67463009399C6 /* UserModel.m in Sources */,
 				9422BED81EE52FC400F9B56D /* M8LoginViewController.m in Sources */,
-				94B3C23F1EC58E81003ADF5F /* RecordTableViewModel.m in Sources */,
 				944AF3191E9494C00044B44C /* UIColor+KVNContrast.m in Sources */,
 				948E04611EE6421B0075903B /* UserTableViewCell.m in Sources */,
 				946753D91EBC1F3E00653A2C /* LoginViewController.m in Sources */,
@@ -2587,10 +2609,12 @@
 				94D8C9CF1ED025840075C35D /* MeetingOrderTableView.m in Sources */,
 				94B43ED41EF3E3F600C57F0F /* M8CallBaseViewController.m in Sources */,
 				947DB4851EF7D4C10019AE2B /* M8CollectDetaiilViewController.m in Sources */,
+				94D348BF1EFD042F008A1AEC /* M8LiveHeaderView.m in Sources */,
 				94B43EBA1EF389FD00C57F0F /* M8FloatRenderView.m in Sources */,
 				943A08671EDEBADE003CEA27 /* LoginRequest.m in Sources */,
 				9422BEDB1EE5359800F9B56D /* M8RegistViewController.m in Sources */,
 				94BDE5241ECC489200ECC089 /* MeetingOrderViewController.m in Sources */,
+				94D348B81EFD0002008A1AEC /* M8LiveBaseViewController.m in Sources */,
 				94ABD2D41E976B31007C1172 /* CommonUtil.m in Sources */,
 				946F7F041EF29E84005E757A /* M8CallRenderNote.m in Sources */,
 				94DE958C1EAE145400A44DB1 /* UIView+CustomAutoLayout.m in Sources */,
@@ -2599,7 +2623,6 @@
 				944AF3131E9494C00044B44C /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				943A08661EDEBADE003CEA27 /* LiveStreamListRequest.m in Sources */,
 				946753CC1EBC16D500653A2C /* main.m in Sources */,
-				94BACDEA1EEE62C30017FFDE /* M8LiveMeetViewController.m in Sources */,
 				94C9B83F1ECDA59000F42654 /* MeetingMembersCell.m in Sources */,
 				946F7E8F1EF27A89005E757A /* M8RecvCallViewController.m in Sources */,
 			);

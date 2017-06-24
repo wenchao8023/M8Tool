@@ -1,5 +1,5 @@
 //
-//  RecordViewController.h
+//  M8MeetListViewController.h
 //  M8Tool
 //
 //  Created by chao on 2017/5/11.
@@ -11,8 +11,9 @@
 
 
 
-@interface RecordViewController : BaseViewController
+@interface M8MeetListViewController : BaseViewController
 
-@property (nonatomic, assign) RecordViewType recordViewType;
+@property (nonatomic, assign) M8MeetListViewType listViewType;
+
 
 @end

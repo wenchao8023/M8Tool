@@ -1,5 +1,5 @@
 //
-//  RecordDetailTableView.h
+//  M8RecordDetailTableView.h
 //  M8Tool
 //
 //  Created by chao on 2017/6/19.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RecordDetailTableView : UITableView
+@interface M8RecordDetailTableView : UITableView
 
 - (instancetype _Nonnull)initWithFrame:(CGRect)frame style:(UITableViewStyle)style dataModel:(id _Nonnull)model;
 

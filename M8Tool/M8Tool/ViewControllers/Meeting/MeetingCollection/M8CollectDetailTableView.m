@@ -8,7 +8,7 @@
 
 #import "M8CollectDetailTableView.h"
 #import "MeetingLuanchCell.h"   /// 使用会议发起界面中的 cell
-#import "RecordModel.h"
+#import "M8MeetListModel.h"
 #import "M8CollectDetailCollection.h"
 #import "ModifyViewController.h"
 
@@ -27,7 +27,7 @@
 
 @property (nonatomic, strong) NSMutableArray *dataTagsArray;
 
-@property (nonatomic, strong) RecordModel *dataModel;
+@property (nonatomic, strong) M8MeetListModel *dataModel;
 
 @property (nonatomic, strong) M8CollectDetailCollection *detailCollection;
 
@@ -36,7 +36,7 @@
 
 @implementation M8CollectDetailTableView
 
-- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style dataModel:(RecordModel *)model {
+- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style dataModel:(M8MeetListModel *)model {
     if (self = [super initWithFrame:frame style:style]) {
         self.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
         self.tableHeaderView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -177,7 +177,7 @@
         if ([typeStr containsString:@"audio"]) {
             callVC.callType = TILCALL_TYPE_AUDIO;
         }
-        [M8MeetWindow M8_addSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
+        [M8MeetWindow M8_addCallSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
     }
 }
 

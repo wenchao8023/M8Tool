@@ -1,16 +1,16 @@
 //
-//  RecordDetailCollectionHeader.m
+//  M8RecordDetailCollectionHeader.m
 //  M8Tool
 //
 //  Created by chao on 2017/6/19.
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import "RecordDetailCollectionHeader.h"
+#import "M8RecordDetailCollectionHeader.h"
 
 
 
-@interface RecordDetailCollectionHeader ()
+@interface M8RecordDetailCollectionHeader ()
 {
     CGRect _myFrame;
 }
@@ -26,7 +26,7 @@
 
 @end
 
-@implementation RecordDetailCollectionHeader
+@implementation M8RecordDetailCollectionHeader
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {

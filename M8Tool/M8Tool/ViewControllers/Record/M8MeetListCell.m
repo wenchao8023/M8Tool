@@ -1,16 +1,16 @@
 //
-//  RecordCell.m
+//  M8MeetListCell.m
 //  M8Tool
 //
 //  Created by chao on 2017/5/12.
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import "RecordCell.h"
+#import "M8MeetListCell.h"
 
-#import "RecordModel.h"
+#import "M8MeetListModel.h"
 
-@interface RecordCell()
+@interface M8MeetListCell()
 
 @property (weak, nonatomic) IBOutlet UILabel *luancherLaber;
 @property (weak, nonatomic) IBOutlet UILabel *membersLabel;
@@ -22,9 +22,9 @@
 
 @end
 
-@implementation RecordCell
+@implementation M8MeetListCell
 
-- (void)config:(RecordModel *)model {
+- (void)config:(M8MeetListModel *)model {
     [self.callTypeImg setImage:kGetImage(model.recordType)];
     self.luancherLaber.text = [NSString stringWithFormat:@"%@(%ld人)", model.recordLuancher, [model.recordMembers count]];
     self.membersLabel.text  = [model.recordMembers componentsJoinedByString:@","];
