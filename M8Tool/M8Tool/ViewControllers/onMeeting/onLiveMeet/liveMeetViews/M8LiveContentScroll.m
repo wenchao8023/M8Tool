@@ -8,53 +8,70 @@
 
 #import "M8LiveContentScroll.h"
 
+#import "M8LiveHeaderView.h"
+#import "M8LiveDeviceView.h"
 
 
-/**
- 设置一个蒙版：是一个颜色、或者是一个图片
- */
-@interface SecondBackView : UIView
+@interface M8LiveContentScroll ()<UIGestureRecognizerDelegate>
+
+@property (nonatomic, strong) M8LiveHeaderView *headerView;
+@property (nonatomic, strong) M8LiveDeviceView *deviceView;
 
 @end
-
-@implementation SecondBackView
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = WCLightGray;
-    }
-    return self;
-}
-@end
-
-
 
 @implementation M8LiveContentScroll
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = WCClear;
-        self.contentSize = CGSizeMake(SCREEN_WIDTH * 2, SCREEN_HEIGHT);
-        self.pagingEnabled = YES;
-        self.bounces = NO;
-        self.showsHorizontalScrollIndicator = NO;
-        self.showsVerticalScrollIndicator = NO;
         
-        [self createUI];
+        [self configParams];
+        
+        [self loadSubviews];
     }
     return self;
 }
 
-
-/**
- 将界面设置在第二页上
- */
-- (void)createUI {
-    
-    // 设置第二页的蒙版
-    SecondBackView *backView = [[SecondBackView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    [self addSubview:backView];
+- (void)configParams {
+    self.pagingEnabled = YES;
+    self.directionalLockEnabled = YES;
+    self.bounces = NO;
+    self.showsHorizontalScrollIndicator = NO;
+    self.showsVerticalScrollIndicator = NO;
+    self.contentSize = CGSizeMake(self.width * 2, self.height);
+    self.contentOffset = CGPointMake(self.width, 0);
+    self.panGestureRecognizer.delegate = self;
 }
 
+- (void)loadSubviews {
+    
+    // 设置第二页的蒙版
+    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
+    effectView.frame = CGRectMake(self.width, 0, self.width, self.height);
+    [self addSubview:effectView];
+    
+    [self addSubview:self.headerView];
+    [self addSubview:self.deviceView];
+}
+
+- (M8LiveHeaderView *)headerView {
+    if (!_headerView) {
+        M8LiveHeaderView *headerView = [[M8LiveHeaderView alloc] initWithFrame:CGRectMake(self.width, 0, self.width, kDefaultNaviHeight)];
+        _headerView = headerView;
+    }
+    return _headerView;
+}
+
+- (M8LiveDeviceView *)deviceView {
+    if (!_deviceView) {
+        M8LiveDeviceView *deviceView = [[M8LiveDeviceView alloc] initWithFrame:CGRectMake(self.width, self.height - kBottomHeight, self.width, kBottomHeight) deviceType:M8LiveDeviceTypeHost];
+        _deviceView = deviceView;
+    }
+    return _deviceView;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
 
 @end

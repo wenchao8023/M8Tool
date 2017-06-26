@@ -8,14 +8,28 @@
 
 #import "M8LiveHeaderView.h"
 
-@implementation M8LiveHeaderView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
+@interface M8LiveHeaderView ()
+{
+    CGRect _myFrame;
+}
+@end
+
+
+@implementation M8LiveHeaderView
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        self = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil] firstObject];
+        _myFrame = frame;
+    }
+    return self;
+}
+
 - (void)drawRect:(CGRect)rect {
     // Drawing code
+    self.frame = _myFrame;
 }
-*/
+
+
 
 @end

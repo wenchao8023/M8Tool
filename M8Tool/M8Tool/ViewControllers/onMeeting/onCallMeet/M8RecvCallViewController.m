@@ -52,7 +52,6 @@
     _childVC = [[M8RecvChildViewController alloc] init];
     _childVC.invitation = self.invitation;
     _childVC.WCDelegate = self;
-//    _childVC.view.frame = self.view.bounds;
     [self addChildViewController:_childVC];
     [self.view addSubview:_childVC.view];
     [_childVC didMoveToParentViewController:self];

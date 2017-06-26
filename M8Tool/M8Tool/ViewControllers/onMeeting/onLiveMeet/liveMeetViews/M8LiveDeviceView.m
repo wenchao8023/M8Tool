@@ -14,6 +14,7 @@
 @interface M8LiveDeviceView ()
 {
     M8LiveDeviceType _liveDeviceType;
+    CGRect _myFrame;
 }
 @property (weak, nonatomic) IBOutlet UIButton *leftButton1;
 
@@ -34,9 +35,26 @@
 
 @implementation M8LiveDeviceView
 
-- (void)configDeviceWithType:(M8LiveDeviceType)deviceType {
-    _liveDeviceType = deviceType;
-    if (deviceType == M8LiveDeviceTypeHost) {   ///> 主播
+- (instancetype)initWithFrame:(CGRect)frame deviceType:(M8LiveDeviceType)deviceType {
+    if (self = [super initWithFrame:frame]) {
+        self = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil] firstObject];
+        _myFrame = frame;
+        _liveDeviceType = deviceType;
+        
+        [self configImages];
+    }
+    return self;
+}
+
+- (void)drawRect:(CGRect)rect {
+    // Drawing code
+    self.frame = _myFrame;
+}
+
+// 根据类型设置按钮图片
+- (void)configImages {
+
+    if (_liveDeviceType == M8LiveDeviceTypeHost) {   ///> 主播
         
     }
     else {  ///> 观众

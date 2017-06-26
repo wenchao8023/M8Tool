@@ -71,22 +71,21 @@
     [self hiddeFloatView];
 }
 
-#warning 这里需要判断是直播还是通话
+
 - (void)showFloatView {
     if (_callViewController) {
         [self.callViewController showFloatView];
     }
-    else {
+    else if (_liveViewController) {
         [self.liveViewController showFloatView];
     }
-    
 }
-#warning 这里需要判断是直播还是通话
+
 - (void)hiddeFloatView {
     if (_callViewController) {
         [self.callViewController hiddeFloatView];
     }
-    else {
+    else if (_liveViewController) {
         [self.liveViewController hiddeFloatView];
     }
 }

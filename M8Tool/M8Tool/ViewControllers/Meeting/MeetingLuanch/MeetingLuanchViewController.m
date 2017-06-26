@@ -12,6 +12,7 @@
 #import "M8MeetWindow.h"
 #import "M8MakeCallViewController.h"
 #import "M8LiveMakeViewController.h"
+#import "M8LiveJoinViewController.h"
 
 
 
@@ -157,11 +158,9 @@
         break;
         case LuanchMeetingType_live:    //直播
         {
-            [AppDelegate showAlertWithTitle:@"提示" message:@"正在开发中" okTitle:@"确定" cancelTitle:nil ok:nil cancel:nil];
-//            M8LiveMeetViewController *liveVC = [[M8LiveMeetViewController alloc] init];
-//            liveVC.roomId = roomId;
-//            liveVC.topic  = self.topic;
-//            [[AppDelegate sharedAppDelegate] presentNavigationController:liveVC];
+//            M8LiveMakeViewController *liveVC = [[M8LiveMakeViewController alloc] init];
+            M8LiveJoinViewController *liveVC = [[M8LiveJoinViewController alloc] init];
+            [M8MeetWindow M8_addLiveSource:liveVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
         }
         break;
         case LuanchMeetingType_order:   //预订

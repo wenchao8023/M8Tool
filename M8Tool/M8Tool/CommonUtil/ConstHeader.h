@@ -63,6 +63,8 @@ static const int kDefaultNaviHeight     = 64;
 static const int kDefaultTabbarHeight   = 49;
 static const int kDefaultStatuHeight    = 20;
 
+static const CGFloat kBottomHeight = 50.f; ///底部设备高度
+
 #define kFloatWindowWidth    (SCREEN_WIDTH - 50) / 4    ///浮动窗口宽、高
 #define kFloatWindowHeight   kFloatWindowWidth * 4 / 3
 

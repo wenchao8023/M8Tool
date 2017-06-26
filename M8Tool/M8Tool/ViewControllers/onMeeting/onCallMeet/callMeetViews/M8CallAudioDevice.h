@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-static NSString  * _Nullable  kCallAudioDeviceAction  = @"CallAudioDeviceAction";
-static NSString  * _Nullable  kCallAudioDeviceText    = @"CallAudioDeviceText";
+
 
 
 @protocol CallAudioDeviceDelegate <NSObject>

@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 
 
-static NSString * _Nonnull kHeaderAction = @"kHeaderAction";
-static NSString * _Nonnull kHeaderText   = @"kHeaderText";
 
 
 @protocol MeetHeaderDelegate <NSObject>

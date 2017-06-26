@@ -191,6 +191,7 @@
 		948E045D1EE641C30075903B /* UserTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 948E045C1EE641C30075903B /* UserTableView.m */; };
 		948E04611EE6421B0075903B /* UserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 948E045F1EE6421B0075903B /* UserTableViewCell.m */; };
 		948E04621EE6421B0075903B /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 948E04601EE6421B0075903B /* UserTableViewCell.xib */; };
+		9490CF761F010FB900A94E26 /* M8LiveJoinTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9490CF751F010FB900A94E26 /* M8LiveJoinTableView.m */; };
 		9494FD531EF528BF004C4637 /* M8FloatRenderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9494FD521EF528BF004C4637 /* M8FloatRenderView.xib */; };
 		94975C211ED2951F00EAB395 /* UserContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94975C201ED2951F00EAB395 /* UserContactViewController.m */; };
 		9497DF251ECA95FD009C35CB /* UserCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9497DF211ECA95FD009C35CB /* UserCardViewController.m */; };
@@ -304,6 +305,8 @@
 		94BDE5241ECC489200ECC089 /* MeetingOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BDE5231ECC489200ECC089 /* MeetingOrderViewController.m */; };
 		94BDE52C1ECC4D2200ECC089 /* MeetingLuanchTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BDE52B1ECC4D2200ECC089 /* MeetingLuanchTableView.m */; };
 		94BDE5351ECC599800ECC089 /* MeetingMembersCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BDE5341ECC599800ECC089 /* MeetingMembersCollection.m */; };
+		94BEF3231F00D912000844B8 /* M8LiveJoinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BEF3221F00D912000844B8 /* M8LiveJoinViewController.m */; };
+		94BEF3291F00DE80000844B8 /* M8LiveChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BEF3281F00DE80000844B8 /* M8LiveChildViewController.m */; };
 		94C06F3B1EBC50C900336E5F /* UserProtocol.html in Resources */ = {isa = PBXBuildFile; fileRef = 94C06F371EBC50C900336E5F /* UserProtocol.html */; };
 		94C06F3C1EBC50C900336E5F /* UserProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C06F391EBC50C900336E5F /* UserProtocolViewController.m */; };
 		94C06F3D1EBC50C900336E5F /* UserProtocolViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94C06F3A1EBC50C900336E5F /* UserProtocolViewController.xib */; };
@@ -640,6 +643,8 @@
 		948E045E1EE6421B0075903B /* UserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTableViewCell.h; sourceTree = "<group>"; };
 		948E045F1EE6421B0075903B /* UserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTableViewCell.m; sourceTree = "<group>"; };
 		948E04601EE6421B0075903B /* UserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
+		9490CF741F010FB900A94E26 /* M8LiveJoinTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LiveJoinTableView.h; sourceTree = "<group>"; };
+		9490CF751F010FB900A94E26 /* M8LiveJoinTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LiveJoinTableView.m; sourceTree = "<group>"; };
 		9494FD521EF528BF004C4637 /* M8FloatRenderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M8FloatRenderView.xib; sourceTree = "<group>"; };
 		9494FD541EF52E9C004C4637 /* ConstStringFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConstStringFile.h; sourceTree = "<group>"; };
 		94975C1F1ED2951F00EAB395 /* UserContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserContactViewController.h; sourceTree = "<group>"; };
@@ -782,6 +787,10 @@
 		94BDE52B1ECC4D2200ECC089 /* MeetingLuanchTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetingLuanchTableView.m; sourceTree = "<group>"; };
 		94BDE5331ECC599800ECC089 /* MeetingMembersCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingMembersCollection.h; sourceTree = "<group>"; };
 		94BDE5341ECC599800ECC089 /* MeetingMembersCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetingMembersCollection.m; sourceTree = "<group>"; };
+		94BEF3211F00D912000844B8 /* M8LiveJoinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LiveJoinViewController.h; sourceTree = "<group>"; };
+		94BEF3221F00D912000844B8 /* M8LiveJoinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LiveJoinViewController.m; sourceTree = "<group>"; };
+		94BEF3271F00DE80000844B8 /* M8LiveChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LiveChildViewController.h; sourceTree = "<group>"; };
+		94BEF3281F00DE80000844B8 /* M8LiveChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LiveChildViewController.m; sourceTree = "<group>"; };
 		94C06F371EBC50C900336E5F /* UserProtocol.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = UserProtocol.html; sourceTree = "<group>"; };
 		94C06F381EBC50C900336E5F /* UserProtocolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProtocolViewController.h; sourceTree = "<group>"; };
 		94C06F391EBC50C900336E5F /* UserProtocolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProtocolViewController.m; sourceTree = "<group>"; };
@@ -2050,6 +2059,10 @@
 			children = (
 				94D348B91EFD03F6008A1AEC /* M8LiveMakeViewController.h */,
 				94D348BA1EFD03F6008A1AEC /* M8LiveMakeViewController.m */,
+				94BEF3211F00D912000844B8 /* M8LiveJoinViewController.h */,
+				94BEF3221F00D912000844B8 /* M8LiveJoinViewController.m */,
+				9490CF741F010FB900A94E26 /* M8LiveJoinTableView.h */,
+				9490CF751F010FB900A94E26 /* M8LiveJoinTableView.m */,
 				94D348BC1EFD0415008A1AEC /* liveMeetViews */,
 			);
 			path = onLiveMeet;
@@ -2203,6 +2216,8 @@
 		94D348BC1EFD0415008A1AEC /* liveMeetViews */ = {
 			isa = PBXGroup;
 			children = (
+				94BEF3271F00DE80000844B8 /* M8LiveChildViewController.h */,
+				94BEF3281F00DE80000844B8 /* M8LiveChildViewController.m */,
 				94A6BB3D1EFD125A00EE1417 /* M8LiveContentScroll.h */,
 				94A6BB3E1EFD125A00EE1417 /* M8LiveContentScroll.m */,
 				94A6BB371EFD11AA00EE1417 /* headerView */,
@@ -2521,6 +2536,7 @@
 				94A6BB3F1EFD125A00EE1417 /* M8LiveContentScroll.m in Sources */,
 				946F7F091EF29E84005E757A /* M8CallVideoDevice.m in Sources */,
 				94D348BB1EFD03F6008A1AEC /* M8LiveMakeViewController.m in Sources */,
+				94BEF3291F00DE80000844B8 /* M8LiveChildViewController.m in Sources */,
 				946F7F0F1EF29E84005E757A /* M8CallRenderModel.m in Sources */,
 				946F7ED31EF29D4F005E757A /* M8CallComingListener.m in Sources */,
 				947DB4651EF7AAC90019AE2B /* BaseSearchView.m in Sources */,
@@ -2571,6 +2587,7 @@
 				947DB48B1EF7D6F00019AE2B /* M8CollectDetailCollection.m in Sources */,
 				9422BEEB1EE5838F00F9B56D /* M8ThemeViewController.m in Sources */,
 				94DE958B1EAE145400A44DB1 /* UIImage+TintColor.m in Sources */,
+				9490CF761F010FB900A94E26 /* M8LiveJoinTableView.m in Sources */,
 				9422BEF31EE5842600F9B56D /* M8ThemeModel.m in Sources */,
 				9497DF381ECA966A009C35CB /* MeetingAgendaCollection.m in Sources */,
 				943A086C1EDEBADE003CEA27 /* ReportMemIdRequest.m in Sources */,
@@ -2620,6 +2637,7 @@
 				94DE958C1EAE145400A44DB1 /* UIView+CustomAutoLayout.m in Sources */,
 				94A988051EF015030080BEF2 /* THLabel.m in Sources */,
 				94E5DE301ED6A732008632D7 /* UsrContactHeaderView.m in Sources */,
+				94BEF3231F00D912000844B8 /* M8LiveJoinViewController.m in Sources */,
 				944AF3131E9494C00044B44C /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				943A08661EDEBADE003CEA27 /* LiveStreamListRequest.m in Sources */,
 				946753CC1EBC16D500653A2C /* main.m in Sources */,

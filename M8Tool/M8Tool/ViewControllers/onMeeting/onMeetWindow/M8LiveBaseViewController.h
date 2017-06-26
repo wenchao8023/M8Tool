@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "M8LiveContentScroll.h"
+
 #import "M8FloatRenderView.h"
 
 
@@ -19,7 +19,6 @@
  */
 @property (nonatomic, strong, nonnull) UIImageView          *bgImageView;
 
-@property (nonatomic, strong, nullable) M8LiveContentScroll *contentScroll;
 
 @property (nonatomic, strong, nullable) M8FloatRenderView    *floatView;
 
@@ -41,12 +40,14 @@
 /**
  退出视图，为了看到调试信息，延时 1s 退出
  */
-//- (void)selfDismiss;
+- (void)selfDismiss;
+
 #pragma mark - 设置window窗口
 - (void)showFloatView;
 
 - (void)hiddeFloatView;
 
 - (void)setRootView;
+
 
 @end

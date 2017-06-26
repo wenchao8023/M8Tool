@@ -20,12 +20,6 @@ typedef enum : NSUInteger {
 
 
 
-static NSString *const kModifyText = @"kModifyText";
-static NSString *const kModifyTime = @"kModifyTime";
-static NSString *const kModifyDate = @"kModifyDate";
-
-
-
 @protocol ModifyViewDelegate <NSObject>
 
 @optional

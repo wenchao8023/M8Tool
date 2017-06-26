@@ -11,6 +11,7 @@
 @interface M8LiveBaseViewController ()<FloatRenderViewDelegate>
 
 @property (nonatomic, strong) UIWindow *meetWindow;
+@property (nonatomic, strong) UIButton *backButton;
 
 @end
 
@@ -23,15 +24,54 @@
     
     self.view.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT);
     
-    [self createUI];
+    [self createSuperUI];
     
-    [self.meetWindow addSubview:self.floatView];
-    
+    [self addNotifications];
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - 添加通知
+- (void)addNotifications {
     [WCNotificationCenter addObserver:self selector:@selector(themeSwichAction) name:kThemeSwich_Notification object:nil];
     [WCNotificationCenter addObserver:self selector:@selector(orientationChange:) name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 
-#pragma mark - link window in super viewController
+#pragma mark - createSuperUI(这里命名不能和子类同名)
+- (void)createSuperUI {
+    
+    [self bgImageView];
+    
+    [self backButton];
+    
+    [self.meetWindow addSubview:self.floatView];
+}
+
+- (UIButton *)backButton {
+    if (!_backButton) {
+        UIButton *backButton = [WCUIKitControl createButtonWithFrame:CGRectMake(SCREEN_WIDTH - 44, 24, 44, 36) Target:self Action:@selector(selfDismiss) ImageName:@""];
+        backButton.backgroundColor = WCRed;
+        [self.view addSubview:backButton];
+        [self.view bringSubviewToFront:(_backButton = backButton)];
+    }
+    return _backButton;
+}
+
+- (UIImageView *)bgImageView {
+    if (!_bgImageView) {
+        NSString *imgStr = [[NSUserDefaults standardUserDefaults] objectForKey:kThemeImage];
+        UIImageView *bgImageV = [WCUIKitControl createImageViewWithFrame:self.view.bounds ImageName:imgStr ? imgStr : kDefaultThemeImage];
+        [self.view addSubview:(_bgImageView = bgImageV)];
+    }
+    return _bgImageView;
+}
+
+
+#pragma mark -- link window in super viewController
 - (M8FloatRenderView *)floatView {
     if (!_floatView) {
         M8FloatRenderView *floatView = [[M8FloatRenderView alloc] initWithFrame:CGRectMake(0, 0, kFloatWindowWidth, kFloatWindowHeight)];
@@ -65,7 +105,6 @@
 }
 
 - (void)floatRenderViewDidClicked {
-    
     [self hiddeFloatView];
 }
 
@@ -123,32 +162,29 @@
     }];
 }
 
-#pragma mark - createUI
-- (void)createUI {
+
+#pragma mark - actions
+- (void)addTextToView:(NSString *)newText {
     
-    [self bgImageView];
-    [self contentScroll];
-}
-- (UIImageView *)bgImageView {
-    if (!_bgImageView) {
-        NSString *imgStr = [[NSUserDefaults standardUserDefaults] objectForKey:kThemeImage];
-        UIImageView *bgImageV = [WCUIKitControl createImageViewWithFrame:self.view.bounds ImageName:imgStr ? imgStr : kDefaultThemeImage];
-        [self.view addSubview:(_bgImageView = bgImageV)];
-    }
-    return _bgImageView;
 }
 
-- (M8LiveContentScroll *)contentScroll {
-    if (!_contentScroll) {
-        M8LiveContentScroll *contentScroll = [[M8LiveContentScroll alloc] initWithFrame:self.view.bounds];
-        [self.view addSubview:(_contentScroll = contentScroll)];
-    }
-    return _contentScroll;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)selfDismiss {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        // 1. 将 通话界面 移到视图底部，（造成退出界面的动画）
+        [UIView animateWithDuration:0.3 animations:^{
+            CGRect frame = self.view.frame;
+            frame.origin.y = [UIScreen mainScreen].bounds.size.height;
+            self.view.frame = frame;
+        } completion:^(BOOL finished) {
+            // 2. 将 self 移除父视图
+            [self.view removeFromSuperview];
+            [self removeFromParentViewController];
+            // 3. 将 属性 置为空
+            self.floatView = nil;
+            self.meetWindow = nil;
+        }];
+    });
 }
 
 #pragma mark - private actions

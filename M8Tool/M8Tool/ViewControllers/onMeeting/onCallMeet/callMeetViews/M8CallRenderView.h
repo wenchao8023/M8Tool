@@ -9,11 +9,6 @@
 #import <UIKit/UIKit.h>
 
 
-static NSString * _Nonnull kCallAction      = @"kCallAction";
-static NSString * _Nonnull kCallText        = @"kCallText";
-static NSString * _Nonnull kCallValue_bool  = @"kCallValue_bool";
-static NSString * _Nonnull kCallValue_id    = @"kCallValue_id";
-static NSString * _Nonnull kCallValue_model = @"kCallValue_model";  // dic: @{model : identify}
 
 
 @protocol CallRenderDelegate <NSObject>

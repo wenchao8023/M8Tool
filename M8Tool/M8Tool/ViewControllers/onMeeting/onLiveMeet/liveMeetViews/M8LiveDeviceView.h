@@ -10,12 +10,10 @@
 
 typedef NS_ENUM(NSInteger, M8LiveDeviceType) {
     M8LiveDeviceTypeHost,       ///>主播
-    M8LiveDeviceTypeAudience    ///>观众
+    M8LiveDeviceTypeGust    ///>观众
 };
 
 
-static NSString  * _Nullable  kLiveDeviceAction  = @"kLiveDeviceAction";
-static NSString  * _Nullable  kLiveDeviceText    = @"kLiveDeviceText";
 
 @protocol LiveDeviceViewDelegate <NSObject>
 
@@ -29,8 +27,8 @@ static NSString  * _Nullable  kLiveDeviceText    = @"kLiveDeviceText";
 
 @property (nonatomic, weak) id<LiveDeviceViewDelegate> _Nullable WCDelegate;
 
+- (instancetype _Nonnull )initWithFrame:(CGRect)frame deviceType:(M8LiveDeviceType)deviceType;
 
 
-- (void)configDeviceWithType:(M8LiveDeviceType)deviceType;
 
 @end
