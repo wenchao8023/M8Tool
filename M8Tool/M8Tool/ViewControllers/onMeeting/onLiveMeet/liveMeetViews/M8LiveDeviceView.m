@@ -100,12 +100,13 @@
 }
 
 - (IBAction)rightButton2Action:(id)sender {
-    if (_liveDeviceType == M8LiveDeviceTypeHost) {   ///> 主播
-        [self deviceActionInfoValue:@"主播评论" key:kLiveDeviceAction];
-    }
-    else {  ///> 观众
-        [self deviceActionInfoValue:@"观众退出" key:kLiveDeviceAction];
-    }
+    [self deviceActionInfoValue:@"onScrollRightAction" key:kLiveDeviceAction];
+//    if (_liveDeviceType == M8LiveDeviceTypeHost) {   ///> 主播
+//        [self deviceActionInfoValue:@"主播评论" key:kLiveDeviceAction];
+//    }
+//    else {  ///> 观众
+//        [self deviceActionInfoValue:@"观众退出" key:kLiveDeviceAction];
+//    }
 }
 
 

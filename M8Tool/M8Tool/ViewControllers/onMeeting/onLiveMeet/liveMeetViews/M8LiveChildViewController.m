@@ -7,15 +7,15 @@
 //
 
 #import "M8LiveChildViewController.h"
-#import "M8LiveContentScroll.h"
+#import "M8LiveHeaderView.h"
+#import "M8LiveDeviceView.h"
+
 
 @interface M8LiveChildViewController ()
 
-@property (nonatomic, assign) CGRect    selfFrame;
-@property (nonatomic, assign) CGFloat   selfWidth;
-@property (nonatomic, assign) CGFloat   selfHeight;
+@property (nonatomic, strong) M8LiveHeaderView *headerView;
+@property (nonatomic, strong) M8LiveDeviceView *deviceView;
 
-@property (strong, nonatomic) M8LiveContentScroll *contentScroll;
 
 
 @end
@@ -25,12 +25,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _selfFrame  = self.view.frame;
-    _selfWidth  = self.view.frame.size.width;
-    _selfHeight = self.view.frame.size.height;
     
-    [self contentScroll];
+    // 初始位置
+    self.view.bounds = CGRectMake(self.view.width, 0, self.view.width, self.view.height);
+    
+    [self loadSubviews];
+    
+    [self setCurrentFrame];
 }
+
 
 - (void)didMoveToParentViewController:(UIViewController *)parent {
     WCLog(@"livc child did move to parent vc");
@@ -41,17 +44,53 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (M8LiveContentScroll *)contentScroll {
-    if (!_contentScroll) {
-        M8LiveContentScroll *contentScroll = [[M8LiveContentScroll alloc] initWithFrame:_selfFrame];
-        [self.view addSubview:(_contentScroll = contentScroll)];
-    }
-    return _contentScroll;
-}
 
 
 - (void)updateFrameWithOffsetY:(CGFloat)offsetY {
     self.view.y = offsetY;
 }
+
+#pragma mark - setCurrentFrame
+- (void)setCurrentFrame {
+    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(horizontPan:)];
+    [self.view addGestureRecognizer:panGesture];
+    
+}
+
+- (void)horizontPan:(UIPanGestureRecognizer *)panGesture {
+    
+}
+
+
+#pragma mark - 添加子视图
+- (void)loadSubviews {
+    
+    // 设置第二页的蒙版
+    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
+    effectView.frame = CGRectMake(self.view.width, 0, self.view.width, self.view.height);
+    [self.view addSubview:effectView];
+    
+    [self.view addSubview:self.headerView];
+    [self.view addSubview:self.deviceView];
+}
+
+- (M8LiveHeaderView *)headerView {
+    if (!_headerView) {
+        M8LiveHeaderView *headerView = [[M8LiveHeaderView alloc] initWithFrame:CGRectMake(self.view.width, 0, self.view.width, kDefaultNaviHeight)];
+        _headerView = headerView;
+    }
+    return _headerView;
+}
+
+- (M8LiveDeviceView *)deviceView {
+    if (!_deviceView) {
+        M8LiveDeviceView *deviceView = [[M8LiveDeviceView alloc] initWithFrame:CGRectMake(self.view.width, self.view.height - kBottomHeight, self.view.width, kBottomHeight) deviceType:M8LiveDeviceTypeHost];
+        _deviceView = deviceView;
+    }
+    return _deviceView;
+}
+
+
 
 @end

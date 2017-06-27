@@ -8,7 +8,6 @@
 
 #import "M8LiveMakeViewController.h"
 
-#import "M8LiveChildViewController.h"
 
 @interface M8LiveMakeViewController ()
 
@@ -26,12 +25,12 @@
 
 - (void)addChildVC {
     
-    M8LiveChildViewController *childVC = [[M8LiveChildViewController alloc] init];
-    childVC.view.frame = self.view.bounds;
-    childVC.view.backgroundColor = WCClear;
-    [self addChildViewController:childVC];
-    [self.view insertSubview:childVC.view aboveSubview:self.bgImageView];
-    [childVC didMoveToParentViewController:self];
+//    M8LiveChildViewController *childVC = [[M8LiveChildViewController alloc] init];
+//    childVC.view.frame = self.view.bounds;
+//    childVC.view.backgroundColor = WCClear;
+//    [self addChildViewController:childVC];
+//    [self.view insertSubview:childVC.view aboveSubview:self.bgImageView];
+//    [childVC didMoveToParentViewController:self];
 }
 
 

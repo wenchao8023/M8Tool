@@ -220,7 +220,6 @@
 		94A203261EF8CA87007904D2 /* collectTag_blue@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A203201EF8CA87007904D2 /* collectTag_blue@2X.png */; };
 		94A203271EF8CA87007904D2 /* collectTag_blue@3X.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A203211EF8CA87007904D2 /* collectTag_blue@3X.png */; };
 		94A502871E95F12400F675B2 /* libCOSClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A502861E95F12400F675B2 /* libCOSClient.a */; };
-		94A6BB3F1EFD125A00EE1417 /* M8LiveContentScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A6BB3E1EFD125A00EE1417 /* M8LiveContentScroll.m */; };
 		94A6BB421EFD164400EE1417 /* M8LiveDeviceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A6BB411EFD164400EE1417 /* M8LiveDeviceView.m */; };
 		94A6BB441EFD172800EE1417 /* M8LiveDeviceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94A6BB431EFD172800EE1417 /* M8LiveDeviceView.xib */; };
 		94A851C11EE2BD8B00204B48 /* MeetingAgendaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94A851C01EE2BD8B00204B48 /* MeetingAgendaCell.xib */; };
@@ -305,8 +304,10 @@
 		94BDE5241ECC489200ECC089 /* MeetingOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BDE5231ECC489200ECC089 /* MeetingOrderViewController.m */; };
 		94BDE52C1ECC4D2200ECC089 /* MeetingLuanchTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BDE52B1ECC4D2200ECC089 /* MeetingLuanchTableView.m */; };
 		94BDE5351ECC599800ECC089 /* MeetingMembersCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BDE5341ECC599800ECC089 /* MeetingMembersCollection.m */; };
+		94BE45C51F0234FB00D0FB1A /* M8LiveInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BE45C41F0234FB00D0FB1A /* M8LiveInfoView.m */; };
+		94BE45CE1F023AB700D0FB1A /* M8LiveJoinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BE45CD1F023AB700D0FB1A /* M8LiveJoinCell.m */; };
+		94BE45DC1F02633B00D0FB1A /* M8LiveChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BE45DB1F02633B00D0FB1A /* M8LiveChildViewController.m */; };
 		94BEF3231F00D912000844B8 /* M8LiveJoinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BEF3221F00D912000844B8 /* M8LiveJoinViewController.m */; };
-		94BEF3291F00DE80000844B8 /* M8LiveChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BEF3281F00DE80000844B8 /* M8LiveChildViewController.m */; };
 		94C06F3B1EBC50C900336E5F /* UserProtocol.html in Resources */ = {isa = PBXBuildFile; fileRef = 94C06F371EBC50C900336E5F /* UserProtocol.html */; };
 		94C06F3C1EBC50C900336E5F /* UserProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C06F391EBC50C900336E5F /* UserProtocolViewController.m */; };
 		94C06F3D1EBC50C900336E5F /* UserProtocolViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94C06F3A1EBC50C900336E5F /* UserProtocolViewController.xib */; };
@@ -686,8 +687,6 @@
 		94A502841E95F12400F675B2 /* COSClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COSClient.h; sourceTree = "<group>"; };
 		94A502851E95F12400F675B2 /* COSTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COSTask.h; sourceTree = "<group>"; };
 		94A502861E95F12400F675B2 /* libCOSClient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCOSClient.a; sourceTree = "<group>"; };
-		94A6BB3D1EFD125A00EE1417 /* M8LiveContentScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LiveContentScroll.h; sourceTree = "<group>"; };
-		94A6BB3E1EFD125A00EE1417 /* M8LiveContentScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LiveContentScroll.m; sourceTree = "<group>"; };
 		94A6BB401EFD164400EE1417 /* M8LiveDeviceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LiveDeviceView.h; sourceTree = "<group>"; };
 		94A6BB411EFD164400EE1417 /* M8LiveDeviceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LiveDeviceView.m; sourceTree = "<group>"; };
 		94A6BB431EFD172800EE1417 /* M8LiveDeviceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M8LiveDeviceView.xib; sourceTree = "<group>"; };
@@ -787,10 +786,14 @@
 		94BDE52B1ECC4D2200ECC089 /* MeetingLuanchTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetingLuanchTableView.m; sourceTree = "<group>"; };
 		94BDE5331ECC599800ECC089 /* MeetingMembersCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingMembersCollection.h; sourceTree = "<group>"; };
 		94BDE5341ECC599800ECC089 /* MeetingMembersCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetingMembersCollection.m; sourceTree = "<group>"; };
+		94BE45C31F0234FB00D0FB1A /* M8LiveInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LiveInfoView.h; sourceTree = "<group>"; };
+		94BE45C41F0234FB00D0FB1A /* M8LiveInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LiveInfoView.m; sourceTree = "<group>"; };
+		94BE45CC1F023AB700D0FB1A /* M8LiveJoinCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LiveJoinCell.h; sourceTree = "<group>"; };
+		94BE45CD1F023AB700D0FB1A /* M8LiveJoinCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LiveJoinCell.m; sourceTree = "<group>"; };
+		94BE45DA1F02633B00D0FB1A /* M8LiveChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LiveChildViewController.h; sourceTree = "<group>"; };
+		94BE45DB1F02633B00D0FB1A /* M8LiveChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LiveChildViewController.m; sourceTree = "<group>"; };
 		94BEF3211F00D912000844B8 /* M8LiveJoinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LiveJoinViewController.h; sourceTree = "<group>"; };
 		94BEF3221F00D912000844B8 /* M8LiveJoinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LiveJoinViewController.m; sourceTree = "<group>"; };
-		94BEF3271F00DE80000844B8 /* M8LiveChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LiveChildViewController.h; sourceTree = "<group>"; };
-		94BEF3281F00DE80000844B8 /* M8LiveChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LiveChildViewController.m; sourceTree = "<group>"; };
 		94C06F371EBC50C900336E5F /* UserProtocol.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = UserProtocol.html; sourceTree = "<group>"; };
 		94C06F381EBC50C900336E5F /* UserProtocolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProtocolViewController.h; sourceTree = "<group>"; };
 		94C06F391EBC50C900336E5F /* UserProtocolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProtocolViewController.m; sourceTree = "<group>"; };
@@ -2063,6 +2066,8 @@
 				94BEF3221F00D912000844B8 /* M8LiveJoinViewController.m */,
 				9490CF741F010FB900A94E26 /* M8LiveJoinTableView.h */,
 				9490CF751F010FB900A94E26 /* M8LiveJoinTableView.m */,
+				94BE45CC1F023AB700D0FB1A /* M8LiveJoinCell.h */,
+				94BE45CD1F023AB700D0FB1A /* M8LiveJoinCell.m */,
 				94D348BC1EFD0415008A1AEC /* liveMeetViews */,
 			);
 			path = onLiveMeet;
@@ -2216,10 +2221,10 @@
 		94D348BC1EFD0415008A1AEC /* liveMeetViews */ = {
 			isa = PBXGroup;
 			children = (
-				94BEF3271F00DE80000844B8 /* M8LiveChildViewController.h */,
-				94BEF3281F00DE80000844B8 /* M8LiveChildViewController.m */,
-				94A6BB3D1EFD125A00EE1417 /* M8LiveContentScroll.h */,
-				94A6BB3E1EFD125A00EE1417 /* M8LiveContentScroll.m */,
+				94BE45DA1F02633B00D0FB1A /* M8LiveChildViewController.h */,
+				94BE45DB1F02633B00D0FB1A /* M8LiveChildViewController.m */,
+				94BE45C31F0234FB00D0FB1A /* M8LiveInfoView.h */,
+				94BE45C41F0234FB00D0FB1A /* M8LiveInfoView.m */,
 				94A6BB371EFD11AA00EE1417 /* headerView */,
 				94A6BB451EFD17A400EE1417 /* deviceView */,
 			);
@@ -2533,10 +2538,8 @@
 				946F7ED41EF29D4F005E757A /* M8RecvChildViewController.m in Sources */,
 				94E18D171EC47C5200132FB2 /* UserViewController.m in Sources */,
 				947DB4681EF7B1470019AE2B /* M8RecordDetailTableView.m in Sources */,
-				94A6BB3F1EFD125A00EE1417 /* M8LiveContentScroll.m in Sources */,
 				946F7F091EF29E84005E757A /* M8CallVideoDevice.m in Sources */,
 				94D348BB1EFD03F6008A1AEC /* M8LiveMakeViewController.m in Sources */,
-				94BEF3291F00DE80000844B8 /* M8LiveChildViewController.m in Sources */,
 				946F7F0F1EF29E84005E757A /* M8CallRenderModel.m in Sources */,
 				946F7ED31EF29D4F005E757A /* M8CallComingListener.m in Sources */,
 				947DB4651EF7AAC90019AE2B /* BaseSearchView.m in Sources */,
@@ -2572,9 +2575,12 @@
 				943A086D1EDEBADE003CEA27 /* ReportRoomRequest.m in Sources */,
 				9497DF3C1ECA966A009C35CB /* MeetingView.m in Sources */,
 				946753E31EBC24A900653A2C /* AppDelegate+ControlViewController.m in Sources */,
+				94BE45DC1F02633B00D0FB1A /* M8LiveChildViewController.m in Sources */,
 				943A08651EDEBADE003CEA27 /* LiveImageSignRequest.m in Sources */,
+				94BE45C51F0234FB00D0FB1A /* M8LiveInfoView.m in Sources */,
 				943A08621EDEBADE003CEA27 /* GetRoomPlayUrlRequest.m in Sources */,
 				947DB4751EF7C0DB0019AE2B /* M8RecordDetailCollectionHeader.m in Sources */,
+				94BE45CE1F023AB700D0FB1A /* M8LiveJoinCell.m in Sources */,
 				94D348B11EFCEE65008A1AEC /* M8NoteDetailCell.m in Sources */,
 				946753DA1EBC1F3E00653A2C /* RegistViewController.m in Sources */,
 				944AF3111E9494C00044B44C /* AFImageDownloader.m in Sources */,

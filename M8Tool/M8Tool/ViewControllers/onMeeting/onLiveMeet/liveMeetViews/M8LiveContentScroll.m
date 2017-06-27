@@ -12,7 +12,7 @@
 #import "M8LiveDeviceView.h"
 
 
-@interface M8LiveContentScroll ()<UIGestureRecognizerDelegate>
+@interface M8LiveContentScroll ()<UIScrollViewDelegate>
 
 @property (nonatomic, strong) M8LiveHeaderView *headerView;
 @property (nonatomic, strong) M8LiveDeviceView *deviceView;
@@ -32,6 +32,8 @@
 }
 
 - (void)configParams {
+
+    self.delegate = self;
     self.pagingEnabled = YES;
     self.directionalLockEnabled = YES;
     self.bounces = NO;
@@ -39,7 +41,7 @@
     self.showsVerticalScrollIndicator = NO;
     self.contentSize = CGSizeMake(self.width * 2, self.height);
     self.contentOffset = CGPointMake(self.width, 0);
-    self.panGestureRecognizer.delegate = self;
+
 }
 
 - (void)loadSubviews {
@@ -70,8 +72,23 @@
     return _deviceView;
 }
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    WCLog(@"gestureRecognizerShouldBegin");
+    if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
+        CGPoint translation = [(UIPanGestureRecognizer *)gestureRecognizer translationInView:self];
+        return fabs(translation.x) > fabs(translation.y);
+    }
     return YES;
 }
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    WCLog(@"shouldRecognizeSimultaneouslyWithGestureRecognizer");
+    return YES;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+}
+
 
 @end

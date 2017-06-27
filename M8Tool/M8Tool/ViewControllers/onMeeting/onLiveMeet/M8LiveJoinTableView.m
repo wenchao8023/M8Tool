@@ -7,9 +7,11 @@
 //
 
 #import "M8LiveJoinTableView.h"
+#import "M8LiveJoinCell.h"
 
 @interface M8LiveJoinTableView ()<UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, assign) NSInteger currentIndex;
 
 @end
 
@@ -17,26 +19,30 @@
 
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
     if (self = [super initWithFrame:frame style:style]) {
+        self.pagingEnabled = YES;
         self.delegate = self;
         self.dataSource = self;
         self.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
         self.tableHeaderView = [[UIView alloc] initWithFrame:CGRectZero];
+        self.scrollEnabled = NO;
+        self.userInteractionEnabled = NO;
     }
     return self;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return 20;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *joinCellID = @"joinTableViewCellID";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:joinCellID];
+    M8LiveJoinCell *cell = [tableView dequeueReusableCellWithIdentifier:joinCellID];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:joinCellID];
+        cell = [[M8LiveJoinCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:joinCellID];
     }
     
-    cell.backgroundColor = WCRandomColor;
+    [cell configWithNumStr:[NSString stringWithFormat:@"%ld", indexPath.row] isVisible:(indexPath.row == _currentIndex)];
+    
     return cell;
 }
 
@@ -44,21 +50,23 @@
     return self.height;
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-#warning 这里可以设置childVC的位置
-}
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-#warning 这里判断停止拖动之后是还原还是切换
-}
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-#warning 如果切换了，这里需要重新加载childVC
+    _currentIndex = self.contentOffset.y / self.height;
+    
+    [self reloadData];
 }
 
 
 - (void)reloadData {
     [super reloadData];
     
-    // cell 加载完成之后，计算当前视图中的cell
+    if ([self.WCDelegate respondsToSelector:@selector(LiveJoinTableViewCurrentCellIndex:)]) {
+        [self.WCDelegate LiveJoinTableViewCurrentCellIndex:_currentIndex];
+    }
 }
+
+
+
+
 
 @end
