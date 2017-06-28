@@ -11,7 +11,8 @@
 #import "MeetingAgendaCollection.h"
 #import "MeetingButtonsCollection.h"
 
-
+#import "M8MeetWindow.h"
+#import "M8LiveJoinViewController.h"
 
 
 
@@ -64,6 +65,7 @@
 
 - (void)moreAgendaAction {
     WCLog(@"点击去更多会议议程");
+    
 }
 
 @end
@@ -124,7 +126,11 @@
 }
 
 - (IBAction)moreAgendaAction:(id)sender {
-    WCLog(@"更多会议议程");
+    WCLog(@"更多会议议程   --> 测试直播");
+    M8LiveJoinViewController *joinVC = [[M8LiveJoinViewController alloc] init];
+    joinVC.host = @"user1";
+    joinVC.roomId = 101401;
+    [M8MeetWindow M8_addLiveSource:joinVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
 }
 
 

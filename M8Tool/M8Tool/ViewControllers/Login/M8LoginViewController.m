@@ -35,7 +35,10 @@
     
     [self getUserDefault];
     
-//    [self autoLogin];
+    if (!_isLogout) {
+        [self autoLogin];
+    }
+    
 }
     
 - (void)autoLogin {

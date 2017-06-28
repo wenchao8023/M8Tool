@@ -10,4 +10,7 @@
 
 @interface M8LiveJoinViewController : M8LiveBaseViewController
 
+@property (nonatomic, assign) int roomId;
+@property (nonatomic, strong) NSString *host;
+
 @end

@@ -30,33 +30,48 @@
                         </visualEffectView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NU2-qL-zXY">
                             <rect key="frame" x="4" y="4" width="28" height="28"/>
+                            <color key="backgroundColor" red="1" green="0.48543221260000002" blue="0.53181764870000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="NU2-qL-zXY" secondAttribute="height" id="Mhl-VR-Nel"/>
                             </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="14"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标题" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwu-lD-lzG">
                             <rect key="frame" x="40" y="4" width="56" height="14"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <nil key="textColor"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D5n-ar-jSU">
                             <rect key="frame" x="103" y="7" width="40" height="22"/>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="Fdd-iX-bwl"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="关注"/>
+                            <state key="normal" title="关注">
+                                <color key="titleColor" red="1" green="0.6698510796679551" blue="0.35987455829149839" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="11"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="人数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wn5-1K-5Li">
                             <rect key="frame" x="40" y="18" width="56" height="14"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <nil key="textColor"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="Tc5-XQ-OCj" secondAttribute="trailing" id="8U4-b2-4to"/>
                         <constraint firstAttribute="width" constant="150" id="9tI-wX-ree"/>
@@ -79,9 +94,15 @@
                         <constraint firstItem="vwu-lD-lzG" firstAttribute="height" secondItem="NU2-qL-zXY" secondAttribute="height" multiplier="0.5" id="hoe-48-wcI"/>
                         <constraint firstItem="NU2-qL-zXY" firstAttribute="leading" secondItem="dG9-O8-GYI" secondAttribute="leading" constant="4" id="vJe-ox-Trk"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="18"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="dG9-O8-GYI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="AeH-Yc-phK"/>
                 <constraint firstItem="dG9-O8-GYI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="24" id="t0J-xb-e9A"/>

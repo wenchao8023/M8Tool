@@ -30,10 +30,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
-//    [self autoLogin];
-    
-
     // 设置来电监听
     [[TILCallManager sharedInstance] setIncomingCallListener:[[M8CallComingListener alloc] init]];
     
@@ -75,9 +71,7 @@
     UITabBarItem *meetingItem   = [self.tabBar.items objectAtIndex:1];
     UITabBarItem *UserItem      = [self.tabBar.items objectAtIndex:2];
     
-//    [self setTabBarItem:recordItem  withNormalImageName:@"video" andSelectedImageName:@"video_hover" andTitle:@"记录"];
-//    [self setTabBarItem:meetingItem withNormalImageName:@"" andSelectedImageName:@""  andTitle:@""];
-//    [self setTabBarItem:UserItem withNormalImageName:@"User" andSelectedImageName:@"User_hover" andTitle:@"我的"];
+
     [self setTabBarItem:recordItem  withNormalImageName:@"tabbarHistory" andSelectedImageName:@"tabbarHistory_hover" andTitle:@"会议记录"];
     [self setTabBarItem:meetingItem withNormalImageName:@"" andSelectedImageName:@""  andTitle:@""];
     [self setTabBarItem:UserItem withNormalImageName:@"tabbarContact" andSelectedImageName:@"tabbarContact_hover" andTitle:@"我的"];
@@ -86,10 +80,7 @@
     // 会议中心
     _meetingButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _meetingButton.frame = CGRectMake(self.tabBar.frame.size.width/2-30, -15, 60, 60);
-//    _meetingButton.layer.cornerRadius = 30;
-//    _meetingButton.layer.borderWidth = 5;
-//    _meetingButton.layer.borderColor = WCWhite.CGColor;
-//    _meetingButton.layer.masksToBounds = YES;
+
     
     [_meetingButton setImage:[UIImage imageNamed:@"tabbarCenter"] forState:UIControlStateNormal];
     
@@ -102,15 +93,8 @@
 
 
 
-
 - (void)setTabBarItem:(UITabBarItem *) tabBarItem withNormalImageName:(NSString *)normalImageName andSelectedImageName:(NSString *)selectedImageName andTitle:(NSString *)title
 {
-//    CGSize imgSize = CGSizeMake(30, 30);
-
-    // 添加根据 size 裁剪的图片
-//    [tabBarItem setImage:[[UIImage imageWithImage:[UIImage imageNamed:normalImageName] convertToSize:imgSize] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-//    [tabBarItem setSelectedImage:[[UIImage imageWithImage:[UIImage imageNamed:selectedImageName] convertToSize:imgSize] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-    
     // 添加原始图片
     [tabBarItem setImage:[[UIImage imageNamed:normalImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     [tabBarItem setSelectedImage:[[UIImage imageNamed:selectedImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
@@ -132,7 +116,6 @@
 
 - (void)onLiveButtonClicked
 {
-
     if (self.selectedIndex == 1) {
         [self popToNaviTootViewController];
     }

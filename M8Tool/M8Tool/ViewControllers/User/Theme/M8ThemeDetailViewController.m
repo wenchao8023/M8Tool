@@ -47,7 +47,7 @@
     LoadView *reqIdWaitView = [LoadView loadViewWith:@"正在设置主题..."];
     [self.view addSubview:reqIdWaitView];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [reqIdWaitView removeFromSuperview];
         
         NSUserDefaults *userD = [NSUserDefaults standardUserDefaults];

@@ -48,6 +48,8 @@
     
     [self backButton];
     
+    [self livingPlayView];
+    
     [self.meetWindow addSubview:self.floatView];
 }
 
@@ -68,6 +70,22 @@
         [self.view addSubview:(_bgImageView = bgImageV)];
     }
     return _bgImageView;
+}
+
+- (M8LiveInfoView *)livingInfoView {
+    if (!_livingInfoView) {
+        M8LiveInfoView *livingInfoView = [[M8LiveInfoView alloc] initWithFrame:self.view.bounds];
+        [self.livingPlayView addSubview:(_livingInfoView = livingInfoView)];
+    }
+    return _livingInfoView;
+}
+
+- (M8LivePlayView *)livingPlayView {
+    if (!_livingPlayView) {
+        M8LivePlayView *livingPlayView = [[M8LivePlayView alloc] initWithFrame:self.view.bounds];
+        [self.view insertSubview:(_livingPlayView = livingPlayView) aboveSubview:self.bgImageView];
+    }
+    return _livingPlayView;
 }
 
 
@@ -148,7 +166,6 @@
  */
 - (void)hiddeFloatView {
     
-    
     // 1. 隐藏浮动窗口
     self.floatView.hidden = YES;
     // 2. 将通话界面从底部移动到手机视图
@@ -164,9 +181,9 @@
 
 
 #pragma mark - actions
-- (void)addTextToView:(NSString *)newText {
-    
-}
+//- (void)addTextToView:(NSString *)newText {
+//    
+//}
 
 - (void)selfDismiss {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

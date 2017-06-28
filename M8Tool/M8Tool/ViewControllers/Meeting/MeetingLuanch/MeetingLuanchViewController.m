@@ -158,8 +158,10 @@
         break;
         case LuanchMeetingType_live:    //直播
         {
-//            M8LiveMakeViewController *liveVC = [[M8LiveMakeViewController alloc] init];
-            M8LiveJoinViewController *liveVC = [[M8LiveJoinViewController alloc] init];
+            M8LiveMakeViewController *liveVC = [[M8LiveMakeViewController alloc] init];
+//            M8LiveJoinViewController *liveVC = [[M8LiveJoinViewController alloc] init];
+            liveVC.roomId = 101401;
+            liveVC.host   = [[ILiveLoginManager getInstance] getLoginId];
             [M8MeetWindow M8_addLiveSource:liveVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
         }
         break;
@@ -187,12 +189,6 @@
         [weakself sendCustomMsg];
     }];
 }
-
-
-//- (int)getRoomID {
-//    
-//    return (int)([[NSDate date] timeIntervalSince1970]) % 1000 * 1000 + arc4random() % 1000;
-//}
 
 
 

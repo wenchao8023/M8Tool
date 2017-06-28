@@ -10,6 +10,8 @@
 
 
 #import "M8FloatRenderView.h"
+#import "M8LivePlayView.h"
+#import "M8LiveInfoView.h"
 
 
 
@@ -18,6 +20,14 @@
  背景图片
  */
 @property (nonatomic, strong, nonnull) UIImageView          *bgImageView;
+/**
+ 显示主播图像
+ */
+@property (nonatomic, strong) M8LivePlayView * _Nullable livingPlayView;
+/**
+ 显示直播间信息
+ */
+@property (nonatomic, strong) M8LiveInfoView * _Nullable livingInfoView;
 
 
 @property (nonatomic, strong, nullable) M8FloatRenderView    *floatView;
@@ -35,7 +45,7 @@
  
  @param newText 调试内容
  */
-- (void)addTextToView:(NSString *_Nonnull)newText;
+//- (void)addTextToView:(NSString *_Nonnull)newText;
 
 /**
  退出视图，为了看到调试信息，延时 1s 退出

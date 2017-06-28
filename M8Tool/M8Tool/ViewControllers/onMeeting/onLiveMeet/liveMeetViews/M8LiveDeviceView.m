@@ -13,7 +13,7 @@
 
 @interface M8LiveDeviceView ()
 {
-    M8LiveDeviceType _liveDeviceType;
+//    M8LiveDeviceType _liveDeviceType;
     CGRect _myFrame;
 }
 @property (weak, nonatomic) IBOutlet UIButton *leftButton1;
@@ -35,13 +35,10 @@
 
 @implementation M8LiveDeviceView
 
-- (instancetype)initWithFrame:(CGRect)frame deviceType:(M8LiveDeviceType)deviceType {
+- (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil] firstObject];
         _myFrame = frame;
-        _liveDeviceType = deviceType;
-        
-        [self configImages];
     }
     return self;
 }
@@ -54,59 +51,33 @@
 // 根据类型设置按钮图片
 - (void)configImages {
 
-    if (_liveDeviceType == M8LiveDeviceTypeHost) {   ///> 主播
-        
-    }
-    else {  ///> 观众
-        
-    }
+
 }
 
 
 - (IBAction)leftButton1Action:(id)sender {
-    if (_liveDeviceType == M8LiveDeviceTypeHost) {   ///> 主播
-        [self deviceActionInfoValue:@"主播分享" key:kLiveDeviceAction];
-    }
-    else {  ///> 观众
-        [self deviceActionInfoValue:@"观众分享" key:kLiveDeviceAction];
-    }
+    [self deviceActionInfoValue:@"onLeftButton1Action" key:kLiveDeviceAction];
+
 }
 
 - (IBAction)leftButton2Action:(id)sender {
-    if (_liveDeviceType == M8LiveDeviceTypeHost) {   ///> 主播
-        [self deviceActionInfoValue:@"主播切换摄像头" key:kLiveDeviceAction];
-    }
-    else {  ///> 观众
-        [self deviceActionInfoValue:@"观众私信" key:kLiveDeviceAction];
-    }
+    [self deviceActionInfoValue:@"OnLeftButton2Action" key:kLiveDeviceAction];
+
 }
 
 - (IBAction)centerButtonAction:(id)sender {
-    if (_liveDeviceType == M8LiveDeviceTypeHost) {   ///> 主播
-        [self deviceActionInfoValue:@"主播退出" key:kLiveDeviceAction];
-    }
-    else {  ///> 观众
-        [self deviceActionInfoValue:@"观众特效" key:kLiveDeviceAction];
-    }
+    [self deviceActionInfoValue:@"onCenterButtonAction" key:kLiveDeviceAction];
+
 }
 
 - (IBAction)rightButton1Action:(id)sender {
-    if (_liveDeviceType == M8LiveDeviceTypeHost) {   ///> 主播
-        [self deviceActionInfoValue:@"主播静麦" key:kLiveDeviceAction];
-    }
-    else {  ///> 观众
-        [self deviceActionInfoValue:@"观众评论" key:kLiveDeviceAction];
-    }
+    [self deviceActionInfoValue:@"onRightButton1Action" key:kLiveDeviceAction];
+
 }
 
 - (IBAction)rightButton2Action:(id)sender {
-    [self deviceActionInfoValue:@"onScrollRightAction" key:kLiveDeviceAction];
-//    if (_liveDeviceType == M8LiveDeviceTypeHost) {   ///> 主播
-//        [self deviceActionInfoValue:@"主播评论" key:kLiveDeviceAction];
-//    }
-//    else {  ///> 观众
-//        [self deviceActionInfoValue:@"观众退出" key:kLiveDeviceAction];
-//    }
+    [self deviceActionInfoValue:@"onRightButton2Action" key:kLiveDeviceAction];
+
 }
 
 
