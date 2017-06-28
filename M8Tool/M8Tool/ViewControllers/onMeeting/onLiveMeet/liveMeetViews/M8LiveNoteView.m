@@ -19,6 +19,7 @@
     if (self = [super initWithFrame:frame]) {
         self = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil] firstObject];
         _myFrame = frame;
+        self.textView.scrollEnabled = NO;
     }
     return self;
 }

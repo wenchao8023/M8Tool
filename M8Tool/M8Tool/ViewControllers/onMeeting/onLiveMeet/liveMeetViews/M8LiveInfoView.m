@@ -96,7 +96,6 @@
             CGRect frame = self.frame;
             frame.origin.x = SCREEN_WIDTH;
             self.frame = frame;
-            
         }];
         
     }else{
@@ -109,10 +108,6 @@
     
 }
 
-#pragma mark --
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    
-}
 
 #pragma mark - public action
 - (void)addTextToView:(id)newText {
