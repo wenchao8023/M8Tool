@@ -53,7 +53,7 @@
 
 - (instancetype)initWithHeaderSize:(CGSize)headerSize itemSize:(CGSize)itemSize {
     if (self = [super init]) {
-        self.sectionHeadersPinToVisibleBounds = YES;
+//        self.sectionHeadersPinToVisibleBounds = YES;
         self.minimumLineSpacing = 10;
         self.minimumInteritemSpacing = 10;
         self.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);

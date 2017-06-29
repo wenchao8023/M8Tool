@@ -5,9 +5,13 @@
 //#define ShowAppId       @"1400025495"
 //#define ShowAccountType @"11456"
 
-//Tdemo
-#define ShowAppId @"1400026919"
-#define ShowAccountType @"11372"
+//ibuild - 独立模式
+#define ShowAppId       @"1400034304"
+#define ShowAccountType @"11456"
+
+//Tdemo  - 托管模式
+//#define ShowAppId @"1400026919"
+//#define ShowAccountType @"11372"
 
 
 /******************** font ********************************/

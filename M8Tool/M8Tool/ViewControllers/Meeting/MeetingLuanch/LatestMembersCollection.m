@@ -91,6 +91,10 @@ static NSString *CollectionHeaderID = @"LatestMembersCollectionHeaderID";
         [_dataMembersArray addObject:@"user8"];
         [_dataMembersArray addObject:@"user9"];
         [_dataMembersArray addObject:@"user10"];
+        [_dataMembersArray addObject:@"lcwyx1"];
+        [_dataMembersArray addObject:@"lcwyx2"];
+        [_dataMembersArray addObject:@"lcwyx3"];
+        [_dataMembersArray addObject:@"lcwyx4"];
     }
     return _dataMembersArray;
 }

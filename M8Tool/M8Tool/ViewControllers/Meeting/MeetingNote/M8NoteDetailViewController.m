@@ -30,8 +30,8 @@
 
 - (M8NoteDetailTableView *)detailTableView {
     if (!_detailTableView) {
-        M8NoteDetailTableView *detailTableView = [[M8NoteDetailTableView alloc] initWithFrame:self.contentView.bounds style:UITableViewStylePlain dataModel:_dataModel];
-        _detailTableView = detailTableView;
+//        M8NoteDetailTableView *detailTableView = [[M8NoteDetailTableView alloc] initWithFrame:self.contentView.bounds style:UITableViewStylePlain dataModel:_dataModel];
+//        _detailTableView = detailTableView;
     }
     return _detailTableView;
 }

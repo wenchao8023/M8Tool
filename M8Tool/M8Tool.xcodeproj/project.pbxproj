@@ -18,6 +18,16 @@
 		9422BEF31EE5842600F9B56D /* M8ThemeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9422BEF21EE5842600F9B56D /* M8ThemeModel.m */; };
 		9422BEF71EE5844B00F9B56D /* M8ThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9422BEF51EE5844B00F9B56D /* M8ThemeCell.m */; };
 		9422BEF81EE5844B00F9B56D /* M8ThemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9422BEF61EE5844B00F9B56D /* M8ThemeCell.xib */; };
+		9423C62A1F04EAF6002D2839 /* launchImgbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 9423C6291F04EAF6002D2839 /* launchImgbg.png */; };
+		9423C64E1F04F3AE002D2839 /* threeRDLoginIcon_CWeChat.png in Resources */ = {isa = PBXBuildFile; fileRef = 9423C6431F04F3AE002D2839 /* threeRDLoginIcon_CWeChat.png */; };
+		9423C64F1F04F3AE002D2839 /* threeRDLoginIcon_CWeChat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9423C6441F04F3AE002D2839 /* threeRDLoginIcon_CWeChat@2x.png */; };
+		9423C6501F04F3AE002D2839 /* threeRDLoginIcon_CWeChat@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9423C6451F04F3AE002D2839 /* threeRDLoginIcon_CWeChat@3x.png */; };
+		9423C6511F04F3AE002D2839 /* threeRDLoginIcon_QQ.png in Resources */ = {isa = PBXBuildFile; fileRef = 9423C6471F04F3AE002D2839 /* threeRDLoginIcon_QQ.png */; };
+		9423C6521F04F3AE002D2839 /* threeRDLoginIcon_QQ@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9423C6481F04F3AE002D2839 /* threeRDLoginIcon_QQ@2x.png */; };
+		9423C6531F04F3AE002D2839 /* threeRDLoginIcon_QQ@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9423C6491F04F3AE002D2839 /* threeRDLoginIcon_QQ@3x.png */; };
+		9423C6541F04F3AE002D2839 /* threeRDLoginIcon_Wechat.png in Resources */ = {isa = PBXBuildFile; fileRef = 9423C64B1F04F3AE002D2839 /* threeRDLoginIcon_Wechat.png */; };
+		9423C6551F04F3AE002D2839 /* threeRDLoginIcon_Wechat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9423C64C1F04F3AE002D2839 /* threeRDLoginIcon_Wechat@2x.png */; };
+		9423C6561F04F3AE002D2839 /* threeRDLoginIcon_Wechat@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9423C64D1F04F3AE002D2839 /* threeRDLoginIcon_Wechat@3x.png */; };
 		942A20F11F0497DF004F9E27 /* M8MeetWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 942A20F01F0497DF004F9E27 /* M8MeetWindowController.m */; };
 		942BCB201EC1C4A0000F9911 /* DroidSansFallback.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 942BCB1F1EC1C4A0000F9911 /* DroidSansFallback.ttf */; };
 		943A085C1EDEBADE003CEA27 /* BaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 943A082D1EDEBADE003CEA27 /* BaseRequest.m */; };
@@ -378,6 +388,16 @@
 		9422BEF41EE5844B00F9B56D /* M8ThemeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8ThemeCell.h; sourceTree = "<group>"; };
 		9422BEF51EE5844B00F9B56D /* M8ThemeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8ThemeCell.m; sourceTree = "<group>"; };
 		9422BEF61EE5844B00F9B56D /* M8ThemeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M8ThemeCell.xib; sourceTree = "<group>"; };
+		9423C6291F04EAF6002D2839 /* launchImgbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchImgbg.png; sourceTree = "<group>"; };
+		9423C6431F04F3AE002D2839 /* threeRDLoginIcon_CWeChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = threeRDLoginIcon_CWeChat.png; sourceTree = "<group>"; };
+		9423C6441F04F3AE002D2839 /* threeRDLoginIcon_CWeChat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "threeRDLoginIcon_CWeChat@2x.png"; sourceTree = "<group>"; };
+		9423C6451F04F3AE002D2839 /* threeRDLoginIcon_CWeChat@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "threeRDLoginIcon_CWeChat@3x.png"; sourceTree = "<group>"; };
+		9423C6471F04F3AE002D2839 /* threeRDLoginIcon_QQ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = threeRDLoginIcon_QQ.png; sourceTree = "<group>"; };
+		9423C6481F04F3AE002D2839 /* threeRDLoginIcon_QQ@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "threeRDLoginIcon_QQ@2x.png"; sourceTree = "<group>"; };
+		9423C6491F04F3AE002D2839 /* threeRDLoginIcon_QQ@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "threeRDLoginIcon_QQ@3x.png"; sourceTree = "<group>"; };
+		9423C64B1F04F3AE002D2839 /* threeRDLoginIcon_Wechat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = threeRDLoginIcon_Wechat.png; sourceTree = "<group>"; };
+		9423C64C1F04F3AE002D2839 /* threeRDLoginIcon_Wechat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "threeRDLoginIcon_Wechat@2x.png"; sourceTree = "<group>"; };
+		9423C64D1F04F3AE002D2839 /* threeRDLoginIcon_Wechat@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "threeRDLoginIcon_Wechat@3x.png"; sourceTree = "<group>"; };
 		942A20EF1F0497DF004F9E27 /* M8MeetWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8MeetWindowController.h; sourceTree = "<group>"; };
 		942A20F01F0497DF004F9E27 /* M8MeetWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8MeetWindowController.m; sourceTree = "<group>"; };
 		942BCB1F1EC1C4A0000F9911 /* DroidSansFallback.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DroidSansFallback.ttf; sourceTree = "<group>"; };
@@ -1012,6 +1032,46 @@
 				94D0A1261EE6C15F009399C6 /* M8ThemeDetailViewController.m */,
 			);
 			path = Theme;
+			sourceTree = "<group>";
+		};
+		9423C6411F04F3AE002D2839 /* threeRDLoginIcon */ = {
+			isa = PBXGroup;
+			children = (
+				9423C6421F04F3AE002D2839 /* threeRDLoginIcon_CWeChat */,
+				9423C6461F04F3AE002D2839 /* threeRDLoginIcon_QQ */,
+				9423C64A1F04F3AE002D2839 /* threeRDLoginIcon_Wechat */,
+			);
+			path = threeRDLoginIcon;
+			sourceTree = "<group>";
+		};
+		9423C6421F04F3AE002D2839 /* threeRDLoginIcon_CWeChat */ = {
+			isa = PBXGroup;
+			children = (
+				9423C6431F04F3AE002D2839 /* threeRDLoginIcon_CWeChat.png */,
+				9423C6441F04F3AE002D2839 /* threeRDLoginIcon_CWeChat@2x.png */,
+				9423C6451F04F3AE002D2839 /* threeRDLoginIcon_CWeChat@3x.png */,
+			);
+			path = threeRDLoginIcon_CWeChat;
+			sourceTree = "<group>";
+		};
+		9423C6461F04F3AE002D2839 /* threeRDLoginIcon_QQ */ = {
+			isa = PBXGroup;
+			children = (
+				9423C6471F04F3AE002D2839 /* threeRDLoginIcon_QQ.png */,
+				9423C6481F04F3AE002D2839 /* threeRDLoginIcon_QQ@2x.png */,
+				9423C6491F04F3AE002D2839 /* threeRDLoginIcon_QQ@3x.png */,
+			);
+			path = threeRDLoginIcon_QQ;
+			sourceTree = "<group>";
+		};
+		9423C64A1F04F3AE002D2839 /* threeRDLoginIcon_Wechat */ = {
+			isa = PBXGroup;
+			children = (
+				9423C64B1F04F3AE002D2839 /* threeRDLoginIcon_Wechat.png */,
+				9423C64C1F04F3AE002D2839 /* threeRDLoginIcon_Wechat@2x.png */,
+				9423C64D1F04F3AE002D2839 /* threeRDLoginIcon_Wechat@3x.png */,
+			);
+			path = threeRDLoginIcon_Wechat;
 			sourceTree = "<group>";
 		};
 		942BCB1E1EC1C4A0000F9911 /* font */ = {
@@ -2255,6 +2315,8 @@
 		94D8C9C01ECFEB020075C35D /* Pictures */ = {
 			isa = PBXGroup;
 			children = (
+				9423C6291F04EAF6002D2839 /* launchImgbg.png */,
+				9423C6411F04F3AE002D2839 /* threeRDLoginIcon */,
 				94A2031B1EF8CA87007904D2 /* collectTags */,
 				947DB44A1EF79DDC0019AE2B /* recordTypeImg */,
 				94BACD581EEE2CB30017FFDE /* liveViewsImg */,
@@ -2339,7 +2401,7 @@
 				TargetAttributes = {
 					9419FE981E891C6700B48D89 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = RS5VVQU2Q4;
+						DevelopmentTeam = CC4LGB83E3;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -2380,6 +2442,7 @@
 				94A851C71EE2C18600204B48 /* UsrContactHeaderView.xib in Resources */,
 				94BACD921EEE2CB30017FFDE /* liveReceiver_off@3x.png in Resources */,
 				943A08E91EDEC76B003CEA27 /* TILFilterResource.bundle in Resources */,
+				9423C6541F04F3AE002D2839 /* threeRDLoginIcon_Wechat.png in Resources */,
 				94D0A1131EE6AC67009399C6 /* userTheme.png in Resources */,
 				94BACD8A1EEE2CB30017FFDE /* liveMic_on.png in Resources */,
 				94BACD7F1EEE2CB30017FFDE /* liveCamera_off@2x.png in Resources */,
@@ -2397,7 +2460,9 @@
 				943A09071EDEDF92003CEA27 /* btnImg_meetingOrder.png in Resources */,
 				9422BED51EE52CD800F9B56D /* M8LoginStoryboard.storyboard in Resources */,
 				943A08F31EDED9F2003CEA27 /* FilterRes.bundle in Resources */,
+				9423C62A1F04EAF6002D2839 /* launchImgbg.png in Resources */,
 				94BACD841EEE2CB30017FFDE /* liveHangup.png in Resources */,
+				9423C6511F04F3AE002D2839 /* threeRDLoginIcon_QQ.png in Resources */,
 				94BACD911EEE2CB30017FFDE /* liveReceiver_off@2x.png in Resources */,
 				94A987FA1EF008500080BEF2 /* liveRemove.png in Resources */,
 				943A08F61EDED9F2003CEA27 /* QAVEffectRes.bundle in Resources */,
@@ -2409,6 +2474,7 @@
 				94D0A1101EE6AC67009399C6 /* userOwnCony.png in Resources */,
 				943A090A1EDEDF92003CEA27 /* btnImg_voiceMeeting.png in Resources */,
 				947DB45B1EF79DDC0019AE2B /* record_callType_live@2x.png in Resources */,
+				9423C6501F04F3AE002D2839 /* threeRDLoginIcon_CWeChat@3x.png in Resources */,
 				947DB45D1EF79DDC0019AE2B /* record_callType_video.png in Resources */,
 				94A987FB1EF008500080BEF2 /* liveRemove@2x.png in Resources */,
 				94D0A1111EE6AC67009399C6 /* userSetting.png in Resources */,
@@ -2439,6 +2505,7 @@
 				946753CF1EBC170200653A2C /* Assets.xcassets in Resources */,
 				94BACD961EEE2CB30017FFDE /* liveShare.png in Resources */,
 				94A203251EF8CA87007904D2 /* collectTag_blue.png in Resources */,
+				9423C64E1F04F3AE002D2839 /* threeRDLoginIcon_CWeChat.png in Resources */,
 				94B3C23D1EE793AE00244BC4 /* 栅格红@2x.png in Resources */,
 				94B3C2431EE793AE00244BC4 /* 灰白@2x.png in Resources */,
 				94A987FC1EF008500080BEF2 /* liveRemove@3x.png in Resources */,
@@ -2457,6 +2524,7 @@
 				94A127F91EF13ECA00ED2703 /* liveAudio_off.png in Resources */,
 				94BACD941EEE2CB30017FFDE /* liveReceiver_on@2x.png in Resources */,
 				947DB4591EF79DDC0019AE2B /* record_callType_audio@3x.png in Resources */,
+				9423C64F1F04F3AE002D2839 /* threeRDLoginIcon_CWeChat@2x.png in Resources */,
 				9497DF3A1ECA966A009C35CB /* MeetingButtonsCell.xib in Resources */,
 				943A09081EDEDF92003CEA27 /* btnImg_phoneMeeting.png in Resources */,
 				94BACD891EEE2CB30017FFDE /* liveMic_off@3x.png in Resources */,
@@ -2476,9 +2544,12 @@
 				94B3C2391EE793AE00244BC4 /* 木纹.png in Resources */,
 				94A127FD1EF13ECA00ED2703 /* liveAudio_on@2x.png in Resources */,
 				94C9B8401ECDA59000F42654 /* MeetingMembersCell.xib in Resources */,
+				9423C6521F04F3AE002D2839 /* threeRDLoginIcon_QQ@2x.png in Resources */,
 				94A6421F1F035C550051CA6D /* M8LiveNoteView.xib in Resources */,
+				9423C6551F04F3AE002D2839 /* threeRDLoginIcon_Wechat@2x.png in Resources */,
 				94A987F51EF008500080BEF2 /* liveEnlarge@2x.png in Resources */,
 				94A203221EF8CA87007904D2 /* collectTag_black.png in Resources */,
+				9423C6531F04F3AE002D2839 /* threeRDLoginIcon_QQ@3x.png in Resources */,
 				94B3C2451EE793AE00244BC4 /* 灰蓝.png in Resources */,
 				947DB4971EF7E3250019AE2B /* onCallRecv_refuse.png in Resources */,
 				94BACD901EEE2CB30017FFDE /* liveReceiver_off.png in Resources */,
@@ -2501,6 +2572,7 @@
 				94D0A1121EE6AC67009399C6 /* userSwitchCony.png in Resources */,
 				94A127FF1EF13ECA00ED2703 /* liveCloseMic.png in Resources */,
 				948E04621EE6421B0075903B /* UserTableViewCell.xib in Resources */,
+				9423C6561F04F3AE002D2839 /* threeRDLoginIcon_Wechat@3x.png in Resources */,
 				94A851C11EE2BD8B00204B48 /* MeetingAgendaCell.xib in Resources */,
 				94A203231EF8CA87007904D2 /* collectTag_black@2X.png in Resources */,
 				946F7F0C1EF29E84005E757A /* M8CallHeaderView.xib in Resources */,
@@ -2797,9 +2869,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lu WANG (RS5VVQU2Q4)";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = RS5VVQU2Q4;
+				DEVELOPMENT_TEAM = CC4LGB83E3;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2816,7 +2888,7 @@
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/M8Tool/Base/CSHeaderFile.pch";
 				INFOPLIST_FILE = M8Tool/Base/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2832,7 +2904,7 @@
 					"-ObjC",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ibuildtek.M8Tool;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibuildtek.M8Tool222;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2845,9 +2917,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lu WANG (RS5VVQU2Q4)";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = RS5VVQU2Q4;
+				DEVELOPMENT_TEAM = CC4LGB83E3;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2864,7 +2936,7 @@
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/M8Tool/Base/CSHeaderFile.pch";
 				INFOPLIST_FILE = M8Tool/Base/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2880,7 +2952,7 @@
 					"-ObjC",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ibuildtek.M8Tool;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibuildtek.M8Tool222;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

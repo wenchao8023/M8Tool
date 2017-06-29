@@ -111,19 +111,19 @@
     self.pageControl.currentPageIndicatorTintColor = WCWhite;
 }
 
-- (MeetingAgendaCollection *)agendaCollection {
-    if (!_agendaCollection) {
-        
-    }
-    return _agendaCollection;
-}
-
-- (MeetingButtonsCollection *)buttonsCollection {
-    if (!_buttonsCollection) {
-        
-    }
-    return _buttonsCollection;
-}
+//- (MeetingAgendaCollection *)agendaCollection {
+//    if (!_agendaCollection) {
+//        
+//    }
+//    return _agendaCollection;
+//}
+//
+//- (MeetingButtonsCollection *)buttonsCollection {
+//    if (!_buttonsCollection) {
+//        
+//    }
+//    return _buttonsCollection;
+//}
 
 - (IBAction)moreAgendaAction:(id)sender {
     WCLog(@"更多会议议程   --> 测试直播");
