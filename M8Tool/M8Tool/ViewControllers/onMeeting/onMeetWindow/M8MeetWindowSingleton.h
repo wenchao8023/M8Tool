@@ -12,7 +12,7 @@
 @interface M8MeetWindowSingleton : NSObject
 
 
-+ (instancetype)getInstance;
++ (instancetype _Nonnull )getInstance;
 
 - (void)addCallSource:(id _Nonnull)source WindowOnTarget:(UIViewController *_Nonnull)target;
 - (void)addLiveSource:(id _Nonnull)source WindowOnTarget:(UIViewController *_Nonnull)target;

@@ -18,6 +18,7 @@
 		9422BEF31EE5842600F9B56D /* M8ThemeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9422BEF21EE5842600F9B56D /* M8ThemeModel.m */; };
 		9422BEF71EE5844B00F9B56D /* M8ThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9422BEF51EE5844B00F9B56D /* M8ThemeCell.m */; };
 		9422BEF81EE5844B00F9B56D /* M8ThemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9422BEF61EE5844B00F9B56D /* M8ThemeCell.xib */; };
+		942A20F11F0497DF004F9E27 /* M8MeetWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 942A20F01F0497DF004F9E27 /* M8MeetWindowController.m */; };
 		942BCB201EC1C4A0000F9911 /* DroidSansFallback.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 942BCB1F1EC1C4A0000F9911 /* DroidSansFallback.ttf */; };
 		943A085C1EDEBADE003CEA27 /* BaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 943A082D1EDEBADE003CEA27 /* BaseRequest.m */; };
 		943A085D1EDEBADE003CEA27 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 943A08301EDEBADE003CEA27 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -377,6 +378,8 @@
 		9422BEF41EE5844B00F9B56D /* M8ThemeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8ThemeCell.h; sourceTree = "<group>"; };
 		9422BEF51EE5844B00F9B56D /* M8ThemeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8ThemeCell.m; sourceTree = "<group>"; };
 		9422BEF61EE5844B00F9B56D /* M8ThemeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M8ThemeCell.xib; sourceTree = "<group>"; };
+		942A20EF1F0497DF004F9E27 /* M8MeetWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8MeetWindowController.h; sourceTree = "<group>"; };
+		942A20F01F0497DF004F9E27 /* M8MeetWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8MeetWindowController.m; sourceTree = "<group>"; };
 		942BCB1F1EC1C4A0000F9911 /* DroidSansFallback.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DroidSansFallback.ttf; sourceTree = "<group>"; };
 		943A082B1EDEBADE003CEA27 /* ARCCompile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCCompile.h; sourceTree = "<group>"; };
 		943A082C1EDEBADE003CEA27 /* BaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRequest.h; sourceTree = "<group>"; };
@@ -1938,6 +1941,8 @@
 				94B43EC91EF3DAB700C57F0F /* M8MeetWindow.m */,
 				94B43ECF1EF3DB0400C57F0F /* M8MeetWindowSingleton.h */,
 				94B43ED01EF3DB0400C57F0F /* M8MeetWindowSingleton.m */,
+				942A20EF1F0497DF004F9E27 /* M8MeetWindowController.h */,
+				942A20F01F0497DF004F9E27 /* M8MeetWindowController.m */,
 				94B43ED21EF3E3F600C57F0F /* M8CallBaseViewController.h */,
 				94B43ED31EF3E3F600C57F0F /* M8CallBaseViewController.m */,
 				94D348B61EFD0002008A1AEC /* M8LiveBaseViewController.h */,
@@ -2655,6 +2660,7 @@
 				943A08671EDEBADE003CEA27 /* LoginRequest.m in Sources */,
 				9422BEDB1EE5359800F9B56D /* M8RegistViewController.m in Sources */,
 				94BDE5241ECC489200ECC089 /* MeetingOrderViewController.m in Sources */,
+				942A20F11F0497DF004F9E27 /* M8MeetWindowController.m in Sources */,
 				94D348B81EFD0002008A1AEC /* M8LiveBaseViewController.m in Sources */,
 				94ABD2D41E976B31007C1172 /* CommonUtil.m in Sources */,
 				946F7F041EF29E84005E757A /* M8CallRenderNote.m in Sources */,
