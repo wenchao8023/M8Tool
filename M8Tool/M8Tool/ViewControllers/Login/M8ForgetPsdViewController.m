@@ -1,23 +1,23 @@
 //
-//  M8RegistViewController.m
+//  M8ForgetPsdViewController.m
 //  M8Tool
 //
-//  Created by chao on 2017/6/5.
+//  Created by chao on 2017/6/29.
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import "M8RegistViewController.h"
+#import "M8ForgetPsdViewController.h"
 
-@interface M8RegistViewController ()
 
-@property (weak, nonatomic) IBOutlet UITextField *userNameTF;
+
+@interface M8ForgetPsdViewController ()
+
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumTF;
 @property (weak, nonatomic) IBOutlet UITextField *veriCodeTF;
 
-
 @end
 
-@implementation M8RegistViewController
+@implementation M8ForgetPsdViewController
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -28,8 +28,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-//    self.navigationController.navigationBarHidden = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,7 +45,6 @@
 }
 */
 
-
 /**
  获取验证码
  
@@ -59,22 +56,5 @@
 
 
 
-
-/**
- 服务条款
-
- @param sender sender description
- */
-- (IBAction)onServiceProtocolAction:(id)sender {
-}
-
-
-/**
- 隐私条款
- 
- @param sender sender description
- */
-- (IBAction)onPrivacyPolicyAction:(id)sender {
-}
 
 @end

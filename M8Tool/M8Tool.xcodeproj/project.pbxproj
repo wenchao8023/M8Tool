@@ -153,6 +153,9 @@
 		946753DA1EBC1F3E00653A2C /* RegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946753D81EBC1F3E00653A2C /* RegistViewController.m */; };
 		946753E01EBC237F00653A2C /* WCUIKitControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 946753DF1EBC237F00653A2C /* WCUIKitControl.m */; };
 		946753E31EBC24A900653A2C /* AppDelegate+ControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946753E21EBC24A900653A2C /* AppDelegate+ControlViewController.m */; };
+		946B32C91F050B36007530CE /* M8MutiLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946B32C81F050B36007530CE /* M8MutiLoginViewController.m */; };
+		946B32CC1F050B86007530CE /* M8RegistSuccViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946B32CB1F050B86007530CE /* M8RegistSuccViewController.m */; };
+		946B32CF1F051390007530CE /* M8ForgetPsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946B32CE1F051390007530CE /* M8ForgetPsdViewController.m */; };
 		946F7E8C1EF279D3005E757A /* M8MakeCallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946F7E8B1EF279D3005E757A /* M8MakeCallViewController.m */; };
 		946F7E8F1EF27A89005E757A /* M8RecvCallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946F7E8E1EF27A89005E757A /* M8RecvCallViewController.m */; };
 		946F7ED31EF29D4F005E757A /* M8CallComingListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 946F7ECF1EF29D4F005E757A /* M8CallComingListener.m */; };
@@ -599,6 +602,12 @@
 		946753DF1EBC237F00653A2C /* WCUIKitControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WCUIKitControl.m; path = ../WCUIKitControl.m; sourceTree = "<group>"; };
 		946753E11EBC24A900653A2C /* AppDelegate+ControlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+ControlViewController.h"; sourceTree = "<group>"; };
 		946753E21EBC24A900653A2C /* AppDelegate+ControlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+ControlViewController.m"; sourceTree = "<group>"; };
+		946B32C71F050B36007530CE /* M8MutiLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8MutiLoginViewController.h; sourceTree = "<group>"; };
+		946B32C81F050B36007530CE /* M8MutiLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8MutiLoginViewController.m; sourceTree = "<group>"; };
+		946B32CA1F050B86007530CE /* M8RegistSuccViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8RegistSuccViewController.h; sourceTree = "<group>"; };
+		946B32CB1F050B86007530CE /* M8RegistSuccViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8RegistSuccViewController.m; sourceTree = "<group>"; };
+		946B32CD1F051390007530CE /* M8ForgetPsdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8ForgetPsdViewController.h; sourceTree = "<group>"; };
+		946B32CE1F051390007530CE /* M8ForgetPsdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8ForgetPsdViewController.m; sourceTree = "<group>"; };
 		946F7E8A1EF279D3005E757A /* M8MakeCallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8MakeCallViewController.h; sourceTree = "<group>"; };
 		946F7E8B1EF279D3005E757A /* M8MakeCallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8MakeCallViewController.m; sourceTree = "<group>"; };
 		946F7E8D1EF27A89005E757A /* M8RecvCallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8RecvCallViewController.h; sourceTree = "<group>"; };
@@ -1548,10 +1557,16 @@
 			isa = PBXGroup;
 			children = (
 				9422BED41EE52CD800F9B56D /* M8LoginStoryboard.storyboard */,
-				9422BED91EE5359800F9B56D /* M8RegistViewController.h */,
-				9422BEDA1EE5359800F9B56D /* M8RegistViewController.m */,
+				946B32C71F050B36007530CE /* M8MutiLoginViewController.h */,
+				946B32C81F050B36007530CE /* M8MutiLoginViewController.m */,
 				9422BED61EE52FC400F9B56D /* M8LoginViewController.h */,
 				9422BED71EE52FC400F9B56D /* M8LoginViewController.m */,
+				946B32CD1F051390007530CE /* M8ForgetPsdViewController.h */,
+				946B32CE1F051390007530CE /* M8ForgetPsdViewController.m */,
+				9422BED91EE5359800F9B56D /* M8RegistViewController.h */,
+				9422BEDA1EE5359800F9B56D /* M8RegistViewController.m */,
+				946B32CA1F050B86007530CE /* M8RegistSuccViewController.h */,
+				946B32CB1F050B86007530CE /* M8RegistSuccViewController.m */,
 				946753D51EBC1F3E00653A2C /* LoginViewController.h */,
 				946753D61EBC1F3E00653A2C /* LoginViewController.m */,
 				946753D71EBC1F3E00653A2C /* RegistViewController.h */,
@@ -2401,7 +2416,7 @@
 				TargetAttributes = {
 					9419FE981E891C6700B48D89 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = CC4LGB83E3;
+						DevelopmentTeam = RS5VVQU2Q4;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -2627,6 +2642,7 @@
 				943A086F1EDEBADE003CEA27 /* RoomMemListRequest.m in Sources */,
 				94B3C2421EC58E94003ADF5F /* M8MeetListModel.m in Sources */,
 				94A6BB421EFD164400EE1417 /* M8LiveDeviceView.m in Sources */,
+				946B32CF1F051390007530CE /* M8ForgetPsdViewController.m in Sources */,
 				946753C71EBC16D500653A2C /* AppDelegate.m in Sources */,
 				94B3C2311EC565AC003ADF5F /* UIView+Extension.m in Sources */,
 				946F7ED41EF29D4F005E757A /* M8RecvChildViewController.m in Sources */,
@@ -2640,9 +2656,11 @@
 				94B3C2391EC585C5003ADF5F /* M8MeetListCell.m in Sources */,
 				94B43ECE1EF3DADA00C57F0F /* M8LiveLabel.m in Sources */,
 				943A08711EDEBADE003CEA27 /* WebServiceEngine.m in Sources */,
+				946B32CC1F050B86007530CE /* M8RegistSuccViewController.m in Sources */,
 				94BDE5201ECC451E00ECC089 /* MeetingLuanchViewController.m in Sources */,
 				94C9B8371ECD688400F42654 /* MeetingLuanchCell.m in Sources */,
 				946753D21EBC174100653A2C /* M8Tool.xcdatamodeld in Sources */,
+				946B32C91F050B36007530CE /* M8MutiLoginViewController.m in Sources */,
 				94D0A1271EE6C15F009399C6 /* M8ThemeDetailViewController.m in Sources */,
 				944AF3081E9494C00044B44C /* AFHTTPSessionManager.m in Sources */,
 				94081B511EC471290079583C /* BaseViewController.m in Sources */,
@@ -2871,7 +2889,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = CC4LGB83E3;
+				DEVELOPMENT_TEAM = RS5VVQU2Q4;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2904,7 +2922,7 @@
 					"-ObjC",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ibuildtek.M8Tool222;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibuildtek.M8Tool;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2919,7 +2937,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = CC4LGB83E3;
+				DEVELOPMENT_TEAM = RS5VVQU2Q4;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2952,7 +2970,7 @@
 					"-ObjC",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ibuildtek.M8Tool222;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibuildtek.M8Tool;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -11,11 +11,8 @@
 #import "UserProtocolViewController.h"
 
 @interface M8LoginViewController ()
-    
-@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
 
 @property (weak, nonatomic) IBOutlet UITextField *userNameTF;
-
 @property (weak, nonatomic) IBOutlet UITextField *passwordTF;
 
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
@@ -29,9 +26,17 @@
 
 @implementation M8LoginViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBarHidden = NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
     
     [self getUserDefault];
     
@@ -132,14 +137,7 @@
     [userDefaults synchronize];
 }
 
-- (IBAction)onRegistAction:(id)sender {
-    WCLog(@"新用户注册");
-}
-    
-- (IBAction)onForgetPwcAction:(id)sender {
-    WCLog(@"忘记密码");
-}
-    
+
     
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];

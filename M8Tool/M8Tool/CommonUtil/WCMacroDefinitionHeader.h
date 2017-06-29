@@ -49,9 +49,16 @@
 #define WCTabbarSelectedColor   [UIColor colorWithRed:0.07 green:0.45 blue:0.43 alpha:1]    // 底部 tabBar 选中文字颜色
 #define WCTabbarNormalColor     WCBlack                                                     // 底部 tabBar 未选中文字颜色
 
-
-
-
+/**
+ *  根据用户获取 登录模块 的视图控制器
+ */
+#define kM8LoginNaViewController(viewControllerName) [[UINavigationController alloc] initWithRootViewController:[[UIStoryboard storyboardWithName:@"M8LoginStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:(viewControllerName)]]
+#define kM8LoginSBViewController(viewControllerName) [[UIStoryboard storyboardWithName:@"M8LoginStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:(viewControllerName)]
+#define kM8MutiLoginViewController  @"M8MutiLoginViewController"    //首次进入App的登录页
+#define kM8LoginViewController      @"M8LoginViewController"        //登录页
+#define kM8ForgetPsdViewController  @"M8ForgetPsdViewController"    //忘记密码页
+#define kM8RegistViewController     @"M8RegistViewController"       //注册页
+#define kM8RegistSuccViewController @"M8RegistSuccViewController"   //验证码通过，设置密码页
 
 #pragma mark - 4 自定义高效率的 NSLog
 #ifdef DEBUG
