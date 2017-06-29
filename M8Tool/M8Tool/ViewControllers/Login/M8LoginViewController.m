@@ -96,30 +96,70 @@
     
     [self loginName:_userNameTF.text pwd:_passwordTF.text];
 }
-    
-- (void)loginName:(NSString *)name pwd:(NSString *)pwd {
-    
+
+- (void)loginName:(NSString *)identifier pwd:(NSString *)pwd
+{
     LoadView *loginWaitView = [LoadView loadViewWith:@"正在登录"];
     [self.view addSubview:loginWaitView];
     
-    WCWeakSelf(self);
-    [[ILiveLoginManager getInstance] tlsLogin:name pwd:pwd succ:^{
+    __weak typeof(self) ws = self;
+    //请求sig
+    LoginRequest *sigReq = [[LoginRequest alloc] initWithHandler:^(BaseRequest *request) {
+        LoginResponceData *responseData = (LoginResponceData *)request.response.data;
+        [AppDelegate sharedAppDelegate].token = responseData.token;
+        [[ILiveLoginManager getInstance] iLiveLogin:identifier sig:responseData.userSig succ:^{
+            NSLog(@"tillivesdkshow login succ");
+            [loginWaitView removeFromSuperview];
+            [self setUserDefault];
+            [ws enterMainUI];
+            
+        } failed:^(NSString *module, int errId, NSString *errMsg) {
+            [loginWaitView removeFromSuperview];
+            if (errId == 8050)//离线被踢,再次登录
+            {
+                [ws loginName:identifier pwd:pwd];
+            }
+            else
+            {
+                NSString *errInfo = [NSString stringWithFormat:@"module=%@,errid=%d,errmsg=%@",module,errId,errMsg];
+                NSLog(@"login fail.%@",errInfo);
+                [AlertHelp alertWith:@"登录失败" message:errInfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
+            }
+        }];
+    } failHandler:^(BaseRequest *request) {
         [loginWaitView removeFromSuperview];
-        NSLog(@"tillivesdkshow login succ");
-        [weakself setUserDefault];
-        [weakself enterMainUI];
-    } failed:^(NSString *module, int errId, NSString *errMsg) {
-        NSString *errInfo = [NSString stringWithFormat:@"module=%@,errid=%d,errmsg=%@",module,errId,errMsg];
+        NSString *errInfo = [NSString stringWithFormat:@"errid=%ld,errmsg=%@",(long)request.response.errorCode, request.response.errorInfo];
         NSLog(@"login fail.%@",errInfo);
-        [loginWaitView removeFromSuperview];
-        //errId=6208:离线被踢，此时再次登录即可
-        if (errId == 6208)
-            [weakself loginName:name pwd:pwd];
-        else
-            [weakself showAlert:@"提示" message:errInfo okTitle:@"确认" cancelTitle:nil ok:nil cancel:nil];
+        [AlertHelp alertWith:@"登录失败" message:errInfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
     }];
+    sigReq.identifier = identifier;
+    sigReq.pwd = pwd;
+    [[WebServiceEngine sharedEngine] asyncRequest:sigReq];
 }
- 
+
+//- (void)loginName:(NSString *)name pwd:(NSString *)pwd {
+//    
+//    LoadView *loginWaitView = [LoadView loadViewWith:@"正在登录"];
+//    [self.view addSubview:loginWaitView];
+//    
+//    WCWeakSelf(self);
+//    [[ILiveLoginManager getInstance] tlsLogin:name pwd:pwd succ:^{
+//        [loginWaitView removeFromSuperview];
+//        NSLog(@"tillivesdkshow login succ");
+//        [weakself setUserDefault];
+//        [weakself enterMainUI];
+//    } failed:^(NSString *module, int errId, NSString *errMsg) {
+//        NSString *errInfo = [NSString stringWithFormat:@"module=%@,errid=%d,errmsg=%@",module,errId,errMsg];
+//        NSLog(@"login fail.%@",errInfo);
+//        [loginWaitView removeFromSuperview];
+//        //errId=6208:离线被踢，此时再次登录即可
+//        if (errId == 6208)
+//            [weakself loginName:name pwd:pwd];
+//        else
+//            [weakself showAlert:@"提示" message:errInfo okTitle:@"确认" cancelTitle:nil ok:nil cancel:nil];
+//    }];
+//}
+
 - (void)getUserDefault {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *name = [userDefaults objectForKey:kLoginIdentifier];

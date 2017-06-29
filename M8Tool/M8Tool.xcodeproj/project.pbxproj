@@ -156,6 +156,7 @@
 		946B32C91F050B36007530CE /* M8MutiLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946B32C81F050B36007530CE /* M8MutiLoginViewController.m */; };
 		946B32CC1F050B86007530CE /* M8RegistSuccViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946B32CB1F050B86007530CE /* M8RegistSuccViewController.m */; };
 		946B32CF1F051390007530CE /* M8ForgetPsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946B32CE1F051390007530CE /* M8ForgetPsdViewController.m */; };
+		946B32D21F05293D007530CE /* AlertHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 946B32D11F05293D007530CE /* AlertHelp.m */; };
 		946F7E8C1EF279D3005E757A /* M8MakeCallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946F7E8B1EF279D3005E757A /* M8MakeCallViewController.m */; };
 		946F7E8F1EF27A89005E757A /* M8RecvCallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946F7E8E1EF27A89005E757A /* M8RecvCallViewController.m */; };
 		946F7ED31EF29D4F005E757A /* M8CallComingListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 946F7ECF1EF29D4F005E757A /* M8CallComingListener.m */; };
@@ -608,6 +609,8 @@
 		946B32CB1F050B86007530CE /* M8RegistSuccViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8RegistSuccViewController.m; sourceTree = "<group>"; };
 		946B32CD1F051390007530CE /* M8ForgetPsdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8ForgetPsdViewController.h; sourceTree = "<group>"; };
 		946B32CE1F051390007530CE /* M8ForgetPsdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8ForgetPsdViewController.m; sourceTree = "<group>"; };
+		946B32D01F05293D007530CE /* AlertHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertHelp.h; sourceTree = "<group>"; };
+		946B32D11F05293D007530CE /* AlertHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertHelp.m; sourceTree = "<group>"; };
 		946F7E8A1EF279D3005E757A /* M8MakeCallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8MakeCallViewController.h; sourceTree = "<group>"; };
 		946F7E8B1EF279D3005E757A /* M8MakeCallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8MakeCallViewController.m; sourceTree = "<group>"; };
 		946F7E8D1EF27A89005E757A /* M8RecvCallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8RecvCallViewController.h; sourceTree = "<group>"; };
@@ -2229,6 +2232,8 @@
 				94C06F421EBC5D1500336E5F /* CustomUIHeader.h */,
 				94C06F431EBC5D1500336E5F /* LoadView.h */,
 				94C06F441EBC5D1500336E5F /* LoadView.m */,
+				946B32D01F05293D007530CE /* AlertHelp.h */,
+				946B32D11F05293D007530CE /* AlertHelp.m */,
 			);
 			path = CustomUI;
 			sourceTree = "<group>";
@@ -2755,6 +2760,7 @@
 				94ABD2D41E976B31007C1172 /* CommonUtil.m in Sources */,
 				946F7F041EF29E84005E757A /* M8CallRenderNote.m in Sources */,
 				94DE958C1EAE145400A44DB1 /* UIView+CustomAutoLayout.m in Sources */,
+				946B32D21F05293D007530CE /* AlertHelp.m in Sources */,
 				94A988051EF015030080BEF2 /* THLabel.m in Sources */,
 				94E5DE301ED6A732008632D7 /* UsrContactHeaderView.m in Sources */,
 				94BEF3231F00D912000844B8 /* M8LiveJoinViewController.m in Sources */,
