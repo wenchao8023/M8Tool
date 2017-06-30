@@ -28,6 +28,10 @@
     
 }
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -37,6 +41,9 @@
                                                            NSFontAttributeName:[UIFont systemFontOfSize:kAppNaviFontSize]
                                                            }];
     
+    WCViewBorder_Radius_Width_Color(_loginButton, 30, 2, WCWhite);
+    WCViewBorder_Radius_Width_Color(_registButton, 30, 2, WCWhite);
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,15 +51,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
+#pragma mark - Navigation
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 
 /**

@@ -41,7 +41,7 @@
     [self getUserDefault];
     
     if (!_isLogout) {
-        [self autoLogin];
+//        [self autoLogin];
     }
     
 }
@@ -79,7 +79,6 @@
     
     
 #pragma mark - onActions
-
 - (IBAction)onLoginAction:(id)sender {
     WCLog(@"登录");
     
@@ -96,6 +95,12 @@
     
     [self loginName:_userNameTF.text pwd:_passwordTF.text];
 }
+
+- (IBAction)onMoreAction:(id)sender {
+    
+}
+
+
 
 - (void)loginName:(NSString *)identifier pwd:(NSString *)pwd
 {
@@ -136,29 +141,6 @@
     sigReq.pwd = pwd;
     [[WebServiceEngine sharedEngine] asyncRequest:sigReq];
 }
-
-//- (void)loginName:(NSString *)name pwd:(NSString *)pwd {
-//    
-//    LoadView *loginWaitView = [LoadView loadViewWith:@"正在登录"];
-//    [self.view addSubview:loginWaitView];
-//    
-//    WCWeakSelf(self);
-//    [[ILiveLoginManager getInstance] tlsLogin:name pwd:pwd succ:^{
-//        [loginWaitView removeFromSuperview];
-//        NSLog(@"tillivesdkshow login succ");
-//        [weakself setUserDefault];
-//        [weakself enterMainUI];
-//    } failed:^(NSString *module, int errId, NSString *errMsg) {
-//        NSString *errInfo = [NSString stringWithFormat:@"module=%@,errid=%d,errmsg=%@",module,errId,errMsg];
-//        NSLog(@"login fail.%@",errInfo);
-//        [loginWaitView removeFromSuperview];
-//        //errId=6208:离线被踢，此时再次登录即可
-//        if (errId == 6208)
-//            [weakself loginName:name pwd:pwd];
-//        else
-//            [weakself showAlert:@"提示" message:errInfo okTitle:@"确认" cancelTitle:nil ok:nil cancel:nil];
-//    }];
-//}
 
 - (void)getUserDefault {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];

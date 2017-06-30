@@ -14,15 +14,16 @@
 
 - (NSString *)url
 {
-//    return @"https://sxb.qcloud.com/sxb/index.php?svc=account&cmd=regist";
+
     NSString *host = [self hostUrl];
     return [NSString stringWithFormat:@"%@svc=account&cmd=regist",host];
 }
 
 - (NSDictionary *)packageParams
 {
-    NSDictionary *paramDic = @{@"uname"  : _identifier,
-                               @"pwd" : _pwd
+    NSDictionary *paramDic = @{@"id"  : _identifier,
+                               @"pwd" : _pwd,
+                               @"nick": _nick
                                };
     return paramDic;
 }

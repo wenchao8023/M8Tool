@@ -60,7 +60,7 @@
 
 - (NSString *)hostUrl
 {
-    return @"http://139.199.208.191/SuiXinBoPHPServer-StandaloneAuth/";
+    return @"http://139.199.208.191/SuiXinBoPHPServer-StandaloneAuth/index.php?";
 }
 
 - (NSString *)url

@@ -110,19 +110,54 @@
 }
 
 - (void)onLogoutAction {
-    WCWeakSelf(self);
-    [[ILiveLoginManager getInstance] tlsLogout:^{
-        [weakself enterLoginUI];
-    } failed:nil];
+    
+    LoadView *logoutWaitView = [LoadView loadViewWith:@"正在退出"];
+    [self addSubview:logoutWaitView];
+    
+    __weak typeof(self) ws = self;
+    //通知业务服务器登出
+    LogoutRequest *logoutReq = [[LogoutRequest alloc] initWithHandler:^(BaseRequest *request) {
+        [[ILiveLoginManager getInstance] iLiveLogout:^{
+            [logoutWaitView removeFromSuperview];
+            [ws deleteLoginParamFromLocal];
+            [ws enterLoginUI];
+            
+        } failed:^(NSString *module, int errId, NSString *errMsg) {
+            [logoutWaitView removeFromSuperview];
+            NSString *errinfo = [NSString stringWithFormat:@"module=%@,errid=%ld,errmsg=%@",module,(long)request.response.errorCode,request.response.errorInfo];
+            NSLog(@"regist fail.%@",errinfo);
+            [AlertHelp alertWith:@"退出失败" message:errinfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
+        }];
+    } failHandler:^(BaseRequest *request) {
+        NSString *errinfo = [NSString stringWithFormat:@"errid=%ld,errmsg=%@",(long)request.response.errorCode,request.response.errorInfo];
+        NSLog(@"regist fail.%@",errinfo);
+        [logoutWaitView removeFromSuperview];
+        [AlertHelp alertWith:@"退出失败" message:errinfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
+    }];
+    
+    logoutReq.token = [AppDelegate sharedAppDelegate].token;
+    [[WebServiceEngine sharedEngine] asyncRequest:logoutReq];
 }
 
 - (void)enterLoginUI {
+//    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+//    UINavigationController *navi = kM8LoginNaViewController(kM8LoginViewController);
+//    UIViewController *loginVC = navi.topViewController;
+//    [loginVC setValue:[NSNumber numberWithBool:YES] forKey:@"isLogout"];
+//    appDelegate.window.rootViewController = navi;
+//    [appDelegate.window makeKeyWindow];
+    
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    UIViewController *loginVC = [[UIStoryboard storyboardWithName:@"M8LoginStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"M8LoginViewController"];
-    [loginVC setValue:[NSNumber numberWithBool:YES] forKey:@"isLogout"];
-    appDelegate.window.rootViewController = loginVC;
+    UINavigationController *navi = kM8LoginNaViewController(kM8MutiLoginViewController);
+    appDelegate.window.rootViewController = navi;
     [appDelegate.window makeKeyWindow];
 }
 
+
+- (void)deleteLoginParamFromLocal
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults removeObjectForKey:kLoginParam];
+}
 
 @end

@@ -19,6 +19,14 @@
 @implementation M8LiveMakeViewController
 @synthesize livingInfoView;
 
+- (instancetype)initWithItem:(id)item {
+    if (self = [super init]) {
+        _liveItem = item;
+        _isHost = YES;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

@@ -149,8 +149,6 @@
 		946753CC1EBC16D500653A2C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 946753C61EBC16D500653A2C /* main.m */; };
 		946753CF1EBC170200653A2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 946753CE1EBC170200653A2C /* Assets.xcassets */; };
 		946753D21EBC174100653A2C /* M8Tool.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 946753D01EBC174100653A2C /* M8Tool.xcdatamodeld */; };
-		946753D91EBC1F3E00653A2C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946753D61EBC1F3E00653A2C /* LoginViewController.m */; };
-		946753DA1EBC1F3E00653A2C /* RegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946753D81EBC1F3E00653A2C /* RegistViewController.m */; };
 		946753E01EBC237F00653A2C /* WCUIKitControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 946753DF1EBC237F00653A2C /* WCUIKitControl.m */; };
 		946753E31EBC24A900653A2C /* AppDelegate+ControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946753E21EBC24A900653A2C /* AppDelegate+ControlViewController.m */; };
 		946B32C91F050B36007530CE /* M8MutiLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946B32C81F050B36007530CE /* M8MutiLoginViewController.m */; };
@@ -228,6 +226,7 @@
 		94A127FF1EF13ECA00ED2703 /* liveCloseMic.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A127F61EF13ECA00ED2703 /* liveCloseMic.png */; };
 		94A128001EF13ECA00ED2703 /* liveCloseMic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A127F71EF13ECA00ED2703 /* liveCloseMic@2x.png */; };
 		94A128011EF13ECA00ED2703 /* liveCloseMic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A127F81EF13ECA00ED2703 /* liveCloseMic@3x.png */; };
+		94A1683F1F06582600999D71 /* M8LoginWebService.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A1683E1F06582600999D71 /* M8LoginWebService.m */; };
 		94A203221EF8CA87007904D2 /* collectTag_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A2031C1EF8CA87007904D2 /* collectTag_black.png */; };
 		94A203231EF8CA87007904D2 /* collectTag_black@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A2031D1EF8CA87007904D2 /* collectTag_black@2X.png */; };
 		94A203241EF8CA87007904D2 /* collectTag_black@3X.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A2031E1EF8CA87007904D2 /* collectTag_black@3X.png */; };
@@ -257,6 +256,7 @@
 		94A988041EF015030080BEF2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94A988011EF015030080BEF2 /* Info.plist */; };
 		94A988051EF015030080BEF2 /* THLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A988031EF015030080BEF2 /* THLabel.m */; };
 		94ABD2D41E976B31007C1172 /* CommonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ABD2D31E976B31007C1172 /* CommonUtil.m */; };
+		94B1AE521F06209A00B87D67 /* M8UploadImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B1AE511F06209A00B87D67 /* M8UploadImageHelper.m */; };
 		94B3C2311EC565AC003ADF5F /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B3C2301EC565AC003ADF5F /* UIView+Extension.m */; };
 		94B3C2341EE793AE00244BC4 /* 木纹preview.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2201EE793AE00244BC4 /* 木纹preview.png */; };
 		94B3C2351EC5851F003ADF5F /* M8MeetListTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B3C2341EC5851F003ADF5F /* M8MeetListTableView.m */; };
@@ -330,7 +330,6 @@
 		94C06F3D1EBC50C900336E5F /* UserProtocolViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94C06F3A1EBC50C900336E5F /* UserProtocolViewController.xib */; };
 		94C06F401EBC512900336E5F /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C06F3F1EBC512900336E5F /* MainTabBarController.m */; };
 		94C06F451EBC5D1500336E5F /* LoadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C06F441EBC5D1500336E5F /* LoadView.m */; };
-		94C06F4E1EBC76BA00336E5F /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C06F4D1EBC76BA00336E5F /* LoginManager.m */; };
 		94C9B8371ECD688400F42654 /* MeetingLuanchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C9B8351ECD688400F42654 /* MeetingLuanchCell.m */; };
 		94C9B8381ECD688400F42654 /* MeetingLuanchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94C9B8361ECD688400F42654 /* MeetingLuanchCell.xib */; };
 		94C9B83B1ECDA52100F42654 /* LatestMembersCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C9B83A1ECDA52100F42654 /* LatestMembersCollection.m */; };
@@ -594,10 +593,6 @@
 		946753C61EBC16D500653A2C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		946753CE1EBC170200653A2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		946753D11EBC174100653A2C /* ComSystemForOC.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ComSystemForOC.xcdatamodel; sourceTree = "<group>"; };
-		946753D51EBC1F3E00653A2C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		946753D61EBC1F3E00653A2C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		946753D71EBC1F3E00653A2C /* RegistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistViewController.h; sourceTree = "<group>"; };
-		946753D81EBC1F3E00653A2C /* RegistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistViewController.m; sourceTree = "<group>"; };
 		946753DD1EBC237F00653A2C /* WCMacroDefinitionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCMacroDefinitionHeader.h; sourceTree = "<group>"; };
 		946753DE1EBC237F00653A2C /* WCUIKitControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WCUIKitControl.h; path = ../WCUIKitControl.h; sourceTree = "<group>"; };
 		946753DF1EBC237F00653A2C /* WCUIKitControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WCUIKitControl.m; path = ../WCUIKitControl.m; sourceTree = "<group>"; };
@@ -714,6 +709,8 @@
 		94A127F61EF13ECA00ED2703 /* liveCloseMic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = liveCloseMic.png; sourceTree = "<group>"; };
 		94A127F71EF13ECA00ED2703 /* liveCloseMic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liveCloseMic@2x.png"; sourceTree = "<group>"; };
 		94A127F81EF13ECA00ED2703 /* liveCloseMic@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liveCloseMic@3x.png"; sourceTree = "<group>"; };
+		94A1683D1F06582600999D71 /* M8LoginWebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LoginWebService.h; sourceTree = "<group>"; };
+		94A1683E1F06582600999D71 /* M8LoginWebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LoginWebService.m; sourceTree = "<group>"; };
 		94A2031C1EF8CA87007904D2 /* collectTag_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = collectTag_black.png; sourceTree = "<group>"; };
 		94A2031D1EF8CA87007904D2 /* collectTag_black@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "collectTag_black@2X.png"; sourceTree = "<group>"; };
 		94A2031E1EF8CA87007904D2 /* collectTag_black@3X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "collectTag_black@3X.png"; sourceTree = "<group>"; };
@@ -747,6 +744,8 @@
 		94A988031EF015030080BEF2 /* THLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THLabel.m; sourceTree = "<group>"; };
 		94ABD2D21E976B31007C1172 /* CommonUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtil.h; sourceTree = "<group>"; };
 		94ABD2D31E976B31007C1172 /* CommonUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonUtil.m; sourceTree = "<group>"; };
+		94B1AE501F06209A00B87D67 /* M8UploadImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8UploadImageHelper.h; sourceTree = "<group>"; };
+		94B1AE511F06209A00B87D67 /* M8UploadImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8UploadImageHelper.m; sourceTree = "<group>"; };
 		94B3C2201EE793AE00244BC4 /* 木纹preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "木纹preview.png"; sourceTree = "<group>"; };
 		94B3C2211EE793AE00244BC4 /* 栅格红preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "栅格红preview.png"; sourceTree = "<group>"; };
 		94B3C2221EE793AE00244BC4 /* 淡青preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "淡青preview.png"; sourceTree = "<group>"; };
@@ -843,8 +842,6 @@
 		94C06F421EBC5D1500336E5F /* CustomUIHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomUIHeader.h; sourceTree = "<group>"; };
 		94C06F431EBC5D1500336E5F /* LoadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadView.h; sourceTree = "<group>"; };
 		94C06F441EBC5D1500336E5F /* LoadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadView.m; sourceTree = "<group>"; };
-		94C06F4C1EBC76BA00336E5F /* LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginManager.h; sourceTree = "<group>"; };
-		94C06F4D1EBC76BA00336E5F /* LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
 		94C9B8341ECD688400F42654 /* MeetingLuanchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingLuanchCell.h; sourceTree = "<group>"; };
 		94C9B8351ECD688400F42654 /* MeetingLuanchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetingLuanchCell.m; sourceTree = "<group>"; };
 		94C9B8361ECD688400F42654 /* MeetingLuanchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeetingLuanchCell.xib; sourceTree = "<group>"; };
@@ -1570,12 +1567,8 @@
 				9422BEDA1EE5359800F9B56D /* M8RegistViewController.m */,
 				946B32CA1F050B86007530CE /* M8RegistSuccViewController.h */,
 				946B32CB1F050B86007530CE /* M8RegistSuccViewController.m */,
-				946753D51EBC1F3E00653A2C /* LoginViewController.h */,
-				946753D61EBC1F3E00653A2C /* LoginViewController.m */,
-				946753D71EBC1F3E00653A2C /* RegistViewController.h */,
-				946753D81EBC1F3E00653A2C /* RegistViewController.m */,
-				94C06F4C1EBC76BA00336E5F /* LoginManager.h */,
-				94C06F4D1EBC76BA00336E5F /* LoginManager.m */,
+				94A1683D1F06582600999D71 /* M8LoginWebService.h */,
+				94A1683E1F06582600999D71 /* M8LoginWebService.m */,
 			);
 			name = "Login(登录)";
 			path = Login;
@@ -2034,6 +2027,8 @@
 			children = (
 				94B43ECC1EF3DADA00C57F0F /* M8LiveLabel.h */,
 				94B43ECD1EF3DADA00C57F0F /* M8LiveLabel.m */,
+				94B1AE501F06209A00B87D67 /* M8UploadImageHelper.h */,
+				94B1AE511F06209A00B87D67 /* M8UploadImageHelper.m */,
 			);
 			path = onMeetCustom;
 			sourceTree = "<group>";
@@ -2662,6 +2657,7 @@
 				94B43ECE1EF3DADA00C57F0F /* M8LiveLabel.m in Sources */,
 				943A08711EDEBADE003CEA27 /* WebServiceEngine.m in Sources */,
 				946B32CC1F050B86007530CE /* M8RegistSuccViewController.m in Sources */,
+				94A1683F1F06582600999D71 /* M8LoginWebService.m in Sources */,
 				94BDE5201ECC451E00ECC089 /* MeetingLuanchViewController.m in Sources */,
 				94C9B8371ECD688400F42654 /* MeetingLuanchCell.m in Sources */,
 				946753D21EBC174100653A2C /* M8Tool.xcdatamodeld in Sources */,
@@ -2699,7 +2695,6 @@
 				947DB4751EF7C0DB0019AE2B /* M8RecordDetailCollectionHeader.m in Sources */,
 				94BE45CE1F023AB700D0FB1A /* M8LiveJoinCell.m in Sources */,
 				94D348B11EFCEE65008A1AEC /* M8NoteDetailCell.m in Sources */,
-				946753DA1EBC1F3E00653A2C /* RegistViewController.m in Sources */,
 				944AF3111E9494C00044B44C /* AFImageDownloader.m in Sources */,
 				9497DF491ECA9702009C35CB /* UserSettingViewController.m in Sources */,
 				946F7E8C1EF279D3005E757A /* M8MakeCallViewController.m in Sources */,
@@ -2707,6 +2702,7 @@
 				944AF3181E9494C00044B44C /* UIWebView+AFNetworking.m in Sources */,
 				948E045D1EE641C30075903B /* UserTableView.m in Sources */,
 				94BDE5351ECC599800ECC089 /* MeetingMembersCollection.m in Sources */,
+				94B1AE521F06209A00B87D67 /* M8UploadImageHelper.m in Sources */,
 				947DB48B1EF7D6F00019AE2B /* M8CollectDetailCollection.m in Sources */,
 				9422BEEB1EE5838F00F9B56D /* M8ThemeViewController.m in Sources */,
 				94DE958B1EAE145400A44DB1 /* UIImage+TintColor.m in Sources */,
@@ -2731,7 +2727,6 @@
 				946F7F061EF29E84005E757A /* M8CallRenderView.m in Sources */,
 				9497DF3B1ECA966A009C35CB /* MeetingButtonsCollection.m in Sources */,
 				944AF3091E9494C00044B44C /* AFNetworkReachabilityManager.m in Sources */,
-				94C06F4E1EBC76BA00336E5F /* LoginManager.m in Sources */,
 				943A08641EDEBADE003CEA27 /* LinkRoomSigRequest.m in Sources */,
 				943A08631EDEBADE003CEA27 /* HostHeartBeatRequest.m in Sources */,
 				9422BEF71EE5844B00F9B56D /* M8ThemeCell.m in Sources */,
@@ -2742,7 +2737,6 @@
 				9422BED81EE52FC400F9B56D /* M8LoginViewController.m in Sources */,
 				944AF3191E9494C00044B44C /* UIColor+KVNContrast.m in Sources */,
 				948E04611EE6421B0075903B /* UserTableViewCell.m in Sources */,
-				946753D91EBC1F3E00653A2C /* LoginViewController.m in Sources */,
 				94B43ED11EF3DB0400C57F0F /* M8MeetWindowSingleton.m in Sources */,
 				94DE95891EAE145400A44DB1 /* UIColor+MLPFlatColors.m in Sources */,
 				944AF31D1E9494C00044B44C /* KVNProgressConfiguration.m in Sources */,

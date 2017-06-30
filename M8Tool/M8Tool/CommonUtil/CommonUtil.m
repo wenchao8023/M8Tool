@@ -41,6 +41,27 @@
     }
 }
 
+
++ (BOOL)AVAuthorizationStatusAudio {
+    AVAuthorizationStatus audioStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio];
+    if(audioStatus == AVAuthorizationStatusRestricted || audioStatus == AVAuthorizationStatusDenied)
+    {
+        [AlertHelp alertWith:nil message:@"您没有麦克风使用权限,请到 设置->隐私->麦克风 中开启权限" cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
+        return NO;
+    }
+    return YES;
+}
+
++ (BOOL)AVAuthorizationStatusVideo {
+    AVAuthorizationStatus videoStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+    if(videoStatus == AVAuthorizationStatusRestricted || videoStatus == AVAuthorizationStatusDenied)
+    {
+        [AlertHelp alertWith:nil message:@"您没有相机使用权限,请到 设置->隐私->相机 中开启权限" cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
+        return NO;
+    }
+    return YES;
+}
+
 // 文字模糊背景
 // 默认：白色文字、黑色模糊
 // 文字大小 16

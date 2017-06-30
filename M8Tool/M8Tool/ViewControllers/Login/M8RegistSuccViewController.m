@@ -7,21 +7,35 @@
 //
 
 #import "M8RegistSuccViewController.h"
+#import "MainTabBarController.h"
+#import "UserProtocolViewController.h"
 
 @interface M8RegistSuccViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *psdFirstTF;
 @property (weak, nonatomic) IBOutlet UITextField *psdSecondTF;
 
+
+
+
+
 @end
 
 @implementation M8RegistSuccViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBarHidden = NO;
+    WCLog(@"%ld", (long)self.setPwdType);
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.navigationController.navigationBarHidden = NO;
+    
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -44,6 +58,140 @@
 */
 - (IBAction)onVerifyAction:(id)sender {
     
+    if (!_psdFirstTF || _psdSecondTF.text.length < 1)
+    {
+        [AlertHelp alertWith:@"提示" message:@"请输入密码" cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
+        return;
+    }
+    if (!_psdFirstTF || _psdSecondTF.text.length < 1)
+    {
+        [AlertHelp alertWith:@"提示" message:@"请再次输入密码" cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
+        return;
+    }
+    if (![_psdFirstTF.text isEqualToString:_psdSecondTF.text])
+    {
+        [AlertHelp alertWith:@"提示" message:@"两次输入不一致" cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
+        return;
+    }
+    
+    
+    if (_setPwdType == SetPwdTypeForgetPwd) {
+        [self resetPassWord];
+    }
+    else {
+        [self regist];
+    }
 }
+
+
+/**
+ 重设密码
+ */
+- (void)resetPassWord {
+    
+}
+
+/**
+ 注册
+ */
+- (void)regist {
+    LoadView *regWaitView = [LoadView loadViewWith:@"正在注册"];
+    [self.view addSubview:regWaitView];
+    
+    __weak typeof(self) ws = self;
+    //向业务后台注册
+    RegistRequest *registReq = [[RegistRequest alloc] initWithHandler:^(BaseRequest *request) {
+        [regWaitView removeFromSuperview];
+        
+//        [ws loginName:ws.userName pwd:ws.psdSecondTF.text];
+        
+    } failHandler:^(BaseRequest *request) {
+        [regWaitView removeFromSuperview];
+        NSString *errinfo = [NSString stringWithFormat:@"errid=%ld,errmsg=%@",(long)request.response.errorCode,request.response.errorInfo];
+        NSLog(@"regist fail.%@",errinfo);
+        [AlertHelp alertWith:@"注册失败" message:errinfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
+    }];
+    registReq.nick = _userName;
+    registReq.identifier = _phoneNum;
+    registReq.pwd = _psdSecondTF.text;
+    [[WebServiceEngine sharedEngine] asyncRequest:registReq];
+}
+
+
+
+/**
+ 登录
+ */
+- (void)loginName:(NSString *)identifier pwd:(NSString *)pwd
+{
+    LoadView *loginWaitView = [LoadView loadViewWith:@"正在登录"];
+    [self.view addSubview:loginWaitView];
+    
+    __weak typeof(self) ws = self;
+    //请求sig
+    LoginRequest *sigReq = [[LoginRequest alloc] initWithHandler:^(BaseRequest *request) {
+        LoginResponceData *responseData = (LoginResponceData *)request.response.data;
+        [AppDelegate sharedAppDelegate].token = responseData.token;
+        [[ILiveLoginManager getInstance] iLiveLogin:identifier sig:responseData.userSig succ:^{
+            [loginWaitView removeFromSuperview];
+            [self setUserDefault];
+            [ws enterMainUI];
+            
+        } failed:^(NSString *module, int errId, NSString *errMsg) {
+            [loginWaitView removeFromSuperview];
+            if (errId == 8050)//离线被踢,再次登录
+            {
+                [ws loginName:identifier pwd:pwd];
+            }
+            else
+            {
+                NSString *errInfo = [NSString stringWithFormat:@"module=%@,errid=%d,errmsg=%@",module,errId,errMsg];
+                NSLog(@"login fail.%@",errInfo);
+                [AlertHelp alertWith:@"登录失败" message:errInfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
+            }
+        }];
+    } failHandler:^(BaseRequest *request) {
+        [loginWaitView removeFromSuperview];
+        NSString *errInfo = [NSString stringWithFormat:@"errid=%ld,errmsg=%@",(long)request.response.errorCode, request.response.errorInfo];
+        NSLog(@"login fail.%@",errInfo);
+        [AlertHelp alertWith:@"登录失败" message:errInfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
+    }];
+    sigReq.identifier = identifier;
+    sigReq.pwd = pwd;
+    [[WebServiceEngine sharedEngine] asyncRequest:sigReq];
+}
+- (void)enterMainUI
+{
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    NSNumber *has = [[NSUserDefaults standardUserDefaults] objectForKey:kUserProtocol];
+    if (!has || !has.boolValue)
+    {
+        UserProtocolViewController *vc = [[UserProtocolViewController alloc] init];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+        appDelegate.window.rootViewController = nav;
+        return;
+    }
+    
+    MainTabBarController *tabBarVC = [[MainTabBarController alloc] init];
+    appDelegate.window.rootViewController = tabBarVC;
+    
+    [self rememberLoginStatu];
+}
+
+- (void)rememberLoginStatu {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@(YES) forKey:kHasLogin];
+    [defaults synchronize];
+}
+
+- (void)setUserDefault {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *name = self.userName;
+    NSString *pwd = self.psdSecondTF.text;
+    [userDefaults setObject:name forKey:kLoginIdentifier];
+    [userDefaults setObject:pwd forKey:kLoginPassward];
+    [userDefaults synchronize];
+}
+
 
 @end

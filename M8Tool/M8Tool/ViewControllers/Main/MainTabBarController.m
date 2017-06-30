@@ -8,8 +8,6 @@
 
 #import "MainTabBarController.h"
 
-#import "LoginManager.h"
-
 #import "M8MeetListViewController.h"
 #import "MeetingViewController.h"
 #import "UserViewController.h"
@@ -148,32 +146,6 @@
     }
 }
 
-- (void)autoLogin {
-    LoginManager *manager = [LoginManager new];
-    manager.loginTypeBlock = ^(LoginType type){
-        switch (type) {
-            case LoginType_Succ:
-            {
-                
-            }
-                break;
-            case LoginType_Fail:
-            {
-                
-            }
-                break;
-            case LoginType_Busy:
-            {
-                
-            }
-                break;
-                
-            default:
-                break;
-        }
-    };
-    [manager autoLogin];
-}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -32,7 +32,6 @@
     }
     return self;
 }
-
 @end
 ///////////////////////////////////////////////////
 
@@ -238,6 +237,8 @@
         self.separatorStyle = UITableViewCellSeparatorStyleNone;
         
         self.tableFooterView = self.tbFooterView;
+        
+        
     }
     return self;
 }
@@ -258,7 +259,6 @@
         CGRect frame = self.bounds;
         frame.size.height /= 2;
         _tbheaderView = [[TBheaderView alloc] initWithFrame:frame image:@"defaul_publishcover"];
-//        _tbheaderView.image = [UIImage imageNamed:@"defaul_publishcover"];
     }
     return _tbheaderView;
 }
@@ -312,8 +312,13 @@
     self.tableFooterView.hidden = isHiddenFooter;
     self.tableHeaderView.hidden = !isHiddenFooter;
     
-    if (isHiddenFooter)
-        self.tableHeaderView = [self tbheaderView];
+    if (isHiddenFooter) {
+        if ([self.WCDelegate respondsToSelector:@selector(luanchTableViewMeetingCoverImg:)]) {
+            [self.WCDelegate luanchTableViewMeetingCoverImg:self.tbheaderView.image];
+            self.tableHeaderView = [self tbheaderView];
+        }
+    }
+    
         
 }
 

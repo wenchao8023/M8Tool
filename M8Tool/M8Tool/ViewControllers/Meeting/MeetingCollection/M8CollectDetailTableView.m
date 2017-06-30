@@ -158,7 +158,8 @@
     
     NSString *typeStr = _dataModel.recordType;
     if ([typeStr containsString:@"live"]) {
-        [AppDelegate showAlertWithTitle:@"提示" message:@"暂时没有提供直播重新发起" okTitle:@"确定" cancelTitle:nil ok:nil cancel:nil];
+//        [AlertHelp alertWith:@"提示" message:@"暂时没有提供直播重新发起" cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
+//        [AppDelegate showAlertWithTitle:@"提示" message:@"暂时没有提供直播重新发起" okTitle:@"确定" cancelTitle:nil ok:nil cancel:nil];
     }
     else {
         M8MakeCallViewController *callVC = [[M8MakeCallViewController alloc] init];

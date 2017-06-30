@@ -10,8 +10,27 @@
 
 @protocol LuanchTableViewDelegate <NSObject>
 
+/**
+ 会议主题
+
+ @param topic 会议主题
+ */
 - (void)luanchTableViewMeetingTopic:(NSString *_Nonnull)topic;
 
+
+/**
+ 直播中的的封面图
+
+ @param coverImg 图片
+ */
+- (void)luanchTableViewMeetingCoverImg:(UIImage *_Nonnull)coverImg;
+
+
+/**
+ 通话成员
+
+ @param currentMembers 同话成员
+ */
 - (void)luanchTableViewMeetingCurrentMembers:(NSArray *_Nonnull)currentMembers;
 
 @end

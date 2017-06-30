@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, SetPwdType){
+    SetPwdTypeForgetPwd = 0,
+    SetPwdTypeRegistSucc
+};
+
 @interface M8RegistSuccViewController : UIViewController
+
+@property (nonatomic, assign) SetPwdType setPwdType;
+
+@property (nonatomic, copy) NSString *userName;
+@property (nonatomic, copy) NSString *phoneNum;
 
 @end
