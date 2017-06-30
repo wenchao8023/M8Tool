@@ -15,8 +15,7 @@
 
 @property (nonatomic, copy) NSString *token;
 + (instancetype)sharedAppDelegate;
-+ (UIAlertController *)showAlertWithTitle:(NSString *)title message:(NSString *)msg okTitle:(NSString *)okTitle cancelTitle:(NSString *)cancelTitle ok:(ActionHandle)succ cancel:(ActionHandle)fail;
-+ (UIAlertController *)showAlert:(UIViewController *)rootVC title:(NSString *)title message:(NSString *)msg okTitle:(NSString *)okTitle cancelTitle:(NSString *)cancelTitle ok:(ActionHandle)succ cancel:(ActionHandle)fail;
+
 - (UINavigationController *)navigationViewController;
 - (UIViewController *)topViewController;
 - (NSArray *)popToRootViewController;

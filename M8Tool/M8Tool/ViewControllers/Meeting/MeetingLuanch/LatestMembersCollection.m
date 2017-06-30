@@ -146,12 +146,11 @@ static NSString *CollectionHeaderID = @"LatestMembersCollectionHeaderID";
         if (self.currentMembers < self.totalNumbers) {
             [self.statusArray replaceObjectAtIndex:indexPath.row withObject:@"1"];
         } else {
-            [AppDelegate showAlertWithTitle:@"温馨提示"
-                                    message:[NSString stringWithFormat:@"最多只能邀请: %ld 人", (long)self.totalNumbers]
-                                    okTitle:@"确定"
-                                cancelTitle:nil
-                                         ok:nil
-                                     cancel:nil];
+            [AlertHelp alertWith:@"温馨提示"
+                         message:[NSString stringWithFormat:@"最多只能邀请: %ld 人", (long)self.totalNumbers]
+                       cancelBtn:@"确定"
+                      alertStyle:UIAlertControllerStyleAlert
+                    cancelAction:nil];
         }
         
     }

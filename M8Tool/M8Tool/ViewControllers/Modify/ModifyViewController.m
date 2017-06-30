@@ -214,15 +214,9 @@ typedef void(^SaveBlock)();
             break;
             
         default:
-            [AppDelegate showAlertWithTitle:nil
-                                    message:@"出错啦！"
-                                    okTitle:@"确定"
-                                cancelTitle:nil
-                                         ok:^(UIAlertAction * _Nonnull action)
-            {
+            [AlertHelp alertWith:nil message:@"出错啦！" cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:^(UIAlertAction * _Nonnull action) {
                 [[AppDelegate sharedAppDelegate] popViewController];
-            }
-                                     cancel:nil];
+            }];
             break;
     }
 

@@ -84,12 +84,13 @@
     
     if (!_userNameTF || _userNameTF.text.length < 1)
     {
-        [self showAlert:@"提示" message:@"用户名无效" okTitle:@"确定" cancelTitle:nil ok:nil cancel:nil];
+        [AlertHelp alertWith:@"提示" message:@"用户名无效" cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
+        
         return;
     }
     if (!_passwordTF || _passwordTF.text.length < 1)
     {
-        [self showAlert:@"提示" message:@"密码无效" okTitle:@"确定" cancelTitle:nil ok:nil cancel:nil];
+        [AlertHelp alertWith:@"提示" message:@"密码无效" cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
         return;
     }
     
@@ -164,30 +165,6 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
 }
-    
-- (void)showAlert:(NSString *)title message:(NSString *)msg okTitle:(NSString *)okTitle cancelTitle:(NSString *)cancelTitle ok:(ActionHandle)succ cancel:(ActionHandle)fail
-{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleAlert];
-    if (okTitle)
-    {
-        [alert addAction:[UIAlertAction actionWithTitle:okTitle style:UIAlertActionStyleDefault handler:succ]];
-    }
-    if (cancelTitle)
-    {
-        [alert addAction:[UIAlertAction actionWithTitle:cancelTitle style:UIAlertActionStyleCancel handler:fail]];
-    }
-    [self presentViewController:alert animated:YES completion:nil];
-}
-    
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
