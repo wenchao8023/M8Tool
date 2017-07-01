@@ -119,47 +119,6 @@
 
 
 
-/**
- 登录
- */
-- (void)loginName:(NSString *)identifier pwd:(NSString *)pwd
-{
-    LoadView *loginWaitView = [LoadView loadViewWith:@"正在登录"];
-    [self.view addSubview:loginWaitView];
-    
-    __weak typeof(self) ws = self;
-    //请求sig
-    LoginRequest *sigReq = [[LoginRequest alloc] initWithHandler:^(BaseRequest *request) {
-        LoginResponceData *responseData = (LoginResponceData *)request.response.data;
-        [AppDelegate sharedAppDelegate].token = responseData.token;
-        [[ILiveLoginManager getInstance] iLiveLogin:identifier sig:responseData.userSig succ:^{
-            [loginWaitView removeFromSuperview];
-            [self setUserDefault];
-            [ws enterMainUI];
-            
-        } failed:^(NSString *module, int errId, NSString *errMsg) {
-            [loginWaitView removeFromSuperview];
-            if (errId == 8050)//离线被踢,再次登录
-            {
-                [ws loginName:identifier pwd:pwd];
-            }
-            else
-            {
-                NSString *errInfo = [NSString stringWithFormat:@"module=%@,errid=%d,errmsg=%@",module,errId,errMsg];
-                NSLog(@"login fail.%@",errInfo);
-                [AlertHelp alertWith:@"登录失败" message:errInfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
-            }
-        }];
-    } failHandler:^(BaseRequest *request) {
-        [loginWaitView removeFromSuperview];
-        NSString *errInfo = [NSString stringWithFormat:@"errid=%ld,errmsg=%@",(long)request.response.errorCode, request.response.errorInfo];
-        NSLog(@"login fail.%@",errInfo);
-        [AlertHelp alertWith:@"登录失败" message:errInfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
-    }];
-    sigReq.identifier = identifier;
-    sigReq.pwd = pwd;
-    [[WebServiceEngine sharedEngine] asyncRequest:sigReq];
-}
 - (void)enterMainUI
 {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;

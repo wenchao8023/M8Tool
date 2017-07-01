@@ -19,11 +19,11 @@
 
 - (NSDictionary *)packageParams
 {
-    NSDictionary *dic = @{@"token" : _token,
-                              @"type" : _type,
-                              @"index" : [NSNumber numberWithInteger:_index],
-                              @"size" : [NSNumber numberWithInteger:_size],
-                              @"appid" : [NSNumber numberWithInteger:_appid],
+    NSDictionary *dic = @{@"token"  : _token,
+                          @"type"   : _type,
+                          @"index"  : [NSNumber numberWithInteger:_index],
+                          @"size"   : [NSNumber numberWithInteger:_size],
+                          @"appid"  : [NSNumber numberWithInteger:_appid],
                           };
     return dic;
 }

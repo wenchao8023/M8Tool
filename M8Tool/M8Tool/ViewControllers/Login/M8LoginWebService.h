@@ -9,16 +9,12 @@
 #import <Foundation/Foundation.h>
 
 
-typedef void (^M8LoginHandle)(NSString *_Nonnull loginInfo);
+typedef void (^M8LoginHandle)();
 
 @interface M8LoginWebService : NSObject
-{
-    @protected
-    M8LoginHandle _succHandle;
-    M8LoginHandle _failHandle;
-}
 
+- (void)M8LoginWithIdentifier:(NSString *_Nonnull)identifier password:(NSString *_Nonnull)password cancelPVN:(M8LoginHandle _Nullable)cancelHandle;
+- (void)M8LoginWithIdentifier:(NSString *_Nonnull)identifier password:(NSString *_Nonnull)password succ:(M8LoginHandle _Nullable)succHandle fail:(M8LoginHandle _Nullable )failHandle;
 
-- (void)M8LoginWithIdentifier:(NSString *_Nonnull)identifier password:(NSString *_Nonnull)password succ:(M8LoginHandle _Nullable )succHandle fail:(M8LoginHandle _Nullable )failHandle;
 
 @end

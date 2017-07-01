@@ -14,9 +14,12 @@ static const CGFloat kHeaderHeight = 60;
 
 
 @interface UsrContactView ()<UITableViewDelegate, UITableViewDataSource>
-
+{
+    UsrContactHeaderView *_headView;
+}
 @property (nonatomic, strong) NSMutableArray *sectionArray;
 @property (nonatomic, strong) NSMutableArray *dataArray;
+
 
 @end
 
@@ -28,10 +31,17 @@ static const CGFloat kHeaderHeight = 60;
         self.delegate = self;
         self.dataSource = self;
         self.backgroundColor = WCClear;
-        self.tableHeaderView = [[UsrContactHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.width, kHeaderHeight)];
+        _headView = [[UsrContactHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.width, kHeaderHeight)];
+        self.tableHeaderView = _headView;
+        
+        WCWeakSelf(self);
+        [self loadData:^{
+            [weakself reloadData];
+        }];
     }
     return self;
 }
+
 
 - (NSMutableArray *)sectionArray {
     if (!_sectionArray) {
@@ -44,23 +54,62 @@ static const CGFloat kHeaderHeight = 60;
 - (NSMutableArray *)dataArray {
     if (!_dataArray) {
         _dataArray = [NSMutableArray arrayWithCapacity:0];
-        [_dataArray addObjectsFromArray:@[@[@"user1", @"user2", @"user3"],
-                                          @[@"user4", @"user5", @"user6"],
-                                          @[@"user7", @"user8", @"user9", @"user10"]
-                                          ]
-         ];
+//        [_dataArray addObjectsFromArray:@[@[@"user1", @"user2", @"user3"],
+//                                          @[@"user4", @"user5", @"user6"],
+//                                          @[@"user7", @"user8", @"user9", @"user10"]
+//                                          ]
+//         ];
     }
     return _dataArray;
 }
 
 
+- (void)loadData:(TCIVoidBlock)complete {
+    
+    WCWeakSelf(self);
+    GetFriendsListRequest *friendListReq = [[GetFriendsListRequest alloc] initWithHandler:^(BaseRequest *request) {
+        GetFriendsListRequest *wreq = (GetFriendsListRequest *)request;
+        [weakself loadListSucc:wreq];
+        if (complete) {
+            complete();
+        }
+        
+    } failHandler:^(BaseRequest *request) {
+        if (complete) {
+            complete();
+        }
+    }];
+    friendListReq.identifier = [[ILiveLoginManager getInstance] getLoginId];
+    friendListReq.token = [AppDelegate sharedAppDelegate].token;
+    [[WebServiceEngine sharedEngine] asyncRequest:friendListReq];
+    
+}
+
+- (void)loadListSucc:(GetFriendsListRequest *)req {
+    GetFriendsListResponceData *respData = (GetFriendsListResponceData *)req.response.data;
+    
+    [_headView configWithTitle:nil friendsNum:respData.FriendNum];
+    
+    [self.dataArray removeAllObjects];
+    
+    for (NSDictionary *dic in respData.InfoItem) {
+        M8FriendInfo *info = [M8FriendInfo new];
+        [info setValuesForKeysWithDictionary:dic];
+        [self.dataArray addObject:info];
+    }
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.sectionArray.count;
+//    return self.sectionArray.count;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (self.dataArray && self.dataArray.count) {
-        return [self.dataArray[section] count];
+//    if (self.dataArray && self.dataArray.count) {
+//        return [self.dataArray[section] count];
+//    }
+    if (self.dataArray) {
+        return self.dataArray.count;
     }
     return 0;
 }
@@ -73,25 +122,27 @@ static const CGFloat kHeaderHeight = 60;
         cell.backgroundColor = WCClear;
     }
     
-    if (self.dataArray && self.dataArray.count &&
-        self.dataArray[indexPath.section] && [self.dataArray[indexPath.section] count]) {
-        cell.textLabel.text = self.dataArray[indexPath.section][indexPath.row];
+    if (self.dataArray && self.dataArray.count /* &&
+        self.dataArray[indexPath.section] && [self.dataArray[indexPath.section] count]*/) {
+//        cell.textLabel.text = self.dataArray[indexPath.section][indexPath.row];
+        M8FriendInfo *info = self.dataArray[indexPath.row];
+        cell.textLabel.text = info.Info_Account;
     }
     
     return cell;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *hView = [WCUIKitControl createViewWithFrame:CGRectMake(0, 0, self.width, 40) BgColor:WCClear];
-    UILabel *titleLabel = [WCUIKitControl createLabelWithFrame:CGRectMake(kMarginView_horizontal, 0, 100, 40) BgColor:WCClear];
-    titleLabel.text = self.sectionArray[section];
-    [hView addSubview:titleLabel];
-    return hView;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 40;
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+//    UIView *hView = [WCUIKitControl createViewWithFrame:CGRectMake(0, 0, self.width, 40) BgColor:WCClear];
+//    UILabel *titleLabel = [WCUIKitControl createLabelWithFrame:CGRectMake(kMarginView_horizontal, 0, 100, 40) BgColor:WCClear];
+//    titleLabel.text = self.sectionArray[section];
+//    [hView addSubview:titleLabel];
+//    return hView;
+//}
+//
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+//    return 40;
+//}
 
 
 

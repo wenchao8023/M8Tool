@@ -217,6 +217,9 @@
 		9497DF3D1ECA966A009C35CB /* MeetingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9497DF351ECA966A009C35CB /* MeetingView.xib */; };
 		9497DF491ECA9702009C35CB /* UserSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9497DF481ECA9702009C35CB /* UserSettingViewController.m */; };
 		9497DF511ECA98EA009C35CB /* UserSettingTabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9497DF501ECA98EA009C35CB /* UserSettingTabelView.m */; };
+		949A076B1F0740A100090E43 /* M8LoginWebService+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = 949A076A1F0740A100090E43 /* M8LoginWebService+UI.m */; };
+		949A07721F0745F900090E43 /* GetFriendsListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 949A07711F0745F900090E43 /* GetFriendsListRequest.m */; };
+		949A07781F076E6A00090E43 /* M8IMModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 949A07771F076E6A00090E43 /* M8IMModels.m */; };
 		94A127F91EF13ECA00ED2703 /* liveAudio_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A127EF1EF13ECA00ED2703 /* liveAudio_off.png */; };
 		94A127FA1EF13ECA00ED2703 /* liveAudio_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A127F01EF13ECA00ED2703 /* liveAudio_off@2x.png */; };
 		94A127FB1EF13ECA00ED2703 /* liveAudio_off@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A127F11EF13ECA00ED2703 /* liveAudio_off@3x.png */; };
@@ -700,6 +703,12 @@
 		9497DF481ECA9702009C35CB /* UserSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettingViewController.m; sourceTree = "<group>"; };
 		9497DF4F1ECA98EA009C35CB /* UserSettingTabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettingTabelView.h; sourceTree = "<group>"; };
 		9497DF501ECA98EA009C35CB /* UserSettingTabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettingTabelView.m; sourceTree = "<group>"; };
+		949A07691F0740A100090E43 /* M8LoginWebService+UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "M8LoginWebService+UI.h"; sourceTree = "<group>"; };
+		949A076A1F0740A100090E43 /* M8LoginWebService+UI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "M8LoginWebService+UI.m"; sourceTree = "<group>"; };
+		949A07701F0745F900090E43 /* GetFriendsListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetFriendsListRequest.h; sourceTree = "<group>"; };
+		949A07711F0745F900090E43 /* GetFriendsListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetFriendsListRequest.m; sourceTree = "<group>"; };
+		949A07761F076E6A00090E43 /* M8IMModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8IMModels.h; sourceTree = "<group>"; };
+		949A07771F076E6A00090E43 /* M8IMModels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8IMModels.m; sourceTree = "<group>"; };
 		94A127EF1EF13ECA00ED2703 /* liveAudio_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = liveAudio_off.png; sourceTree = "<group>"; };
 		94A127F01EF13ECA00ED2703 /* liveAudio_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liveAudio_off@2x.png"; sourceTree = "<group>"; };
 		94A127F11EF13ECA00ED2703 /* liveAudio_off@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liveAudio_off@3x.png"; sourceTree = "<group>"; };
@@ -1126,6 +1135,7 @@
 		943A08351EDEBADE003CEA27 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				949A076C1F0745A800090E43 /* IM */,
 				943A08361EDEBADE003CEA27 /* CreateRoomRequest.h */,
 				943A08371EDEBADE003CEA27 /* CreateRoomRequest.m */,
 				943A08381EDEBADE003CEA27 /* ExitRoomRequest.h */,
@@ -1569,6 +1579,8 @@
 				946B32CB1F050B86007530CE /* M8RegistSuccViewController.m */,
 				94A1683D1F06582600999D71 /* M8LoginWebService.h */,
 				94A1683E1F06582600999D71 /* M8LoginWebService.m */,
+				949A07691F0740A100090E43 /* M8LoginWebService+UI.h */,
+				949A076A1F0740A100090E43 /* M8LoginWebService+UI.m */,
 			);
 			name = "Login(登录)";
 			path = Login;
@@ -1825,6 +1837,17 @@
 				948E04601EE6421B0075903B /* UserTableViewCell.xib */,
 			);
 			path = UserViews;
+			sourceTree = "<group>";
+		};
+		949A076C1F0745A800090E43 /* IM */ = {
+			isa = PBXGroup;
+			children = (
+				949A07701F0745F900090E43 /* GetFriendsListRequest.h */,
+				949A07711F0745F900090E43 /* GetFriendsListRequest.m */,
+				949A07761F076E6A00090E43 /* M8IMModels.h */,
+				949A07771F076E6A00090E43 /* M8IMModels.m */,
+			);
+			name = IM;
 			sourceTree = "<group>";
 		};
 		94A127EE1EF13ECA00ED2703 /* liveAudio */ = {
@@ -2675,6 +2698,7 @@
 				94A642261F0390360051CA6D /* M8LivePlayView.m in Sources */,
 				946753E01EBC237F00653A2C /* WCUIKitControl.m in Sources */,
 				940DE9B51ED854D3006F061A /* UsrCardViewCell.m in Sources */,
+				949A076B1F0740A100090E43 /* M8LoginWebService+UI.m in Sources */,
 				94DE958D1EAE145400A44DB1 /* UIView+ShakeAnimation.m in Sources */,
 				944AF3161E9494C00044B44C /* UIProgressView+AFNetworking.m in Sources */,
 				946F7F0D1EF29E84005E757A /* M8CallRenderCell.m in Sources */,
@@ -2739,6 +2763,7 @@
 				948E04611EE6421B0075903B /* UserTableViewCell.m in Sources */,
 				94B43ED11EF3DB0400C57F0F /* M8MeetWindowSingleton.m in Sources */,
 				94DE95891EAE145400A44DB1 /* UIColor+MLPFlatColors.m in Sources */,
+				949A07721F0745F900090E43 /* GetFriendsListRequest.m in Sources */,
 				944AF31D1E9494C00044B44C /* KVNProgressConfiguration.m in Sources */,
 				94A6421D1F035C4C0051CA6D /* M8LiveNoteView.m in Sources */,
 				94D8C9CF1ED025840075C35D /* MeetingOrderTableView.m in Sources */,
@@ -2760,6 +2785,7 @@
 				94BEF3231F00D912000844B8 /* M8LiveJoinViewController.m in Sources */,
 				944AF3131E9494C00044B44C /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				943A08661EDEBADE003CEA27 /* LiveStreamListRequest.m in Sources */,
+				949A07781F076E6A00090E43 /* M8IMModels.m in Sources */,
 				946753CC1EBC16D500653A2C /* main.m in Sources */,
 				94C9B83F1ECDA59000F42654 /* MeetingMembersCell.m in Sources */,
 				946F7E8F1EF27A89005E757A /* M8RecvCallViewController.m in Sources */,

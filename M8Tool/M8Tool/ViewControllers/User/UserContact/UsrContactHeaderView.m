@@ -29,6 +29,10 @@
     return self;
 }
 
+- (void)configWithTitle:(NSString *)titleStr friendsNum:(long)friendsNum {
+    self.titleLabel.text = @"深圳市音飙科技有限公司";
+    self.membersLabel.text = [NSString stringWithFormat:@"%ld人", friendsNum];
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

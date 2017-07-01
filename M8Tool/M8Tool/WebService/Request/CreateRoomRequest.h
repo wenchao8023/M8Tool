@@ -12,6 +12,7 @@
 
 @property (nonatomic, copy) NSString *token;
 @property (nonatomic, copy) NSString *type;
+
 @end
 
 @interface CreateRoomResponceData : BaseResponseData

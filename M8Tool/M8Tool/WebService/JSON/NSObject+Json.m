@@ -142,6 +142,7 @@
     
     // 因JSON返回的字段中有id
     // 所以对此数据作特处理
+#warning 在获取好友列表时 crash
     id idTagValue = [dict objectForKey:kServiceTag_ID];
     if (idTagValue) {
         [aClassInstance setIdPropertyValue:idTagValue];

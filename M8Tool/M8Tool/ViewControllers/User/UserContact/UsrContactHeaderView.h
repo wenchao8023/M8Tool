@@ -10,4 +10,6 @@
 
 @interface UsrContactHeaderView : UIView
 
+- (void)configWithTitle:(NSString *)titleStr friendsNum:(long)friendsNum;
+
 @end

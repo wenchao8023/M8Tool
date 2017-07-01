@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -23,7 +22,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s4S-am-Ryd">
-                    <rect key="frame" x="305" y="42" width="60" height="18"/>
+                    <rect key="frame" x="305" y="9.5" width="60" height="18"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="60" id="FbY-pb-Q2e"/>
                     </constraints>
@@ -32,7 +31,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="深圳市音飙科技有限公司" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="umw-9x-lDm">
-                    <rect key="frame" x="60" y="42.5" width="225" height="18"/>
+                    <rect key="frame" x="60" y="10" width="225" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -42,10 +41,10 @@
             <constraints>
                 <constraint firstItem="umw-9x-lDm" firstAttribute="centerY" secondItem="s4S-am-Ryd" secondAttribute="centerY" id="6RT-jr-Teb"/>
                 <constraint firstAttribute="trailing" secondItem="s4S-am-Ryd" secondAttribute="trailing" constant="10" id="A1B-e2-KrM"/>
+                <constraint firstItem="umw-9x-lDm" firstAttribute="top" secondItem="zT1-RT-RlX" secondAttribute="top" id="CYe-hL-Yi6"/>
                 <constraint firstItem="s4S-am-Ryd" firstAttribute="leading" secondItem="umw-9x-lDm" secondAttribute="trailing" constant="20" id="DEt-BF-DRh"/>
                 <constraint firstItem="zT1-RT-RlX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="WGZ-Xg-T5y"/>
                 <constraint firstItem="umw-9x-lDm" firstAttribute="leading" secondItem="zT1-RT-RlX" secondAttribute="trailing" constant="10" id="nla-DN-wAs"/>
-                <constraint firstItem="s4S-am-Ryd" firstAttribute="bottom" secondItem="zT1-RT-RlX" secondAttribute="bottom" id="u2k-uw-WXQ"/>
                 <constraint firstItem="zT1-RT-RlX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="yvf-Qx-iDD"/>
             </constraints>
             <connections>

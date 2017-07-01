@@ -20,4 +20,8 @@
 #import "NSObject+Json.h"
 
 
+
+#import "M8IMModels.h"
+
+
 #endif /* WebServiceHeader_h */

@@ -40,8 +40,15 @@ static NSString *const kUserSettingVC   = @"UserSettingViewController";
 }
 
 - (void)createUI {
-    UILabel *titleLabel = [WCUIKitControl createLabelWithFrame:CGRectMake(48, 20, 80, 20) Text:@"林瑞" BgColor:WCClear];
-    [titleLabel setAttributedText:[CommonUtil customAttString:@"林瑞" fontSize:36 textColor:WCBlack charSpace:kAppKern_8]];
+    
+    NSString *identifier = [[ILiveLoginManager getInstance] getLoginId];
+    
+    UILabel *titleLabel = [WCUIKitControl createLabelWithFrame:CGRectMake(48, 20, self.width - 48, self.height - 20)
+                                                          Text:identifier
+                                                       BgColor:WCClear
+                           ];
+//    [titleLabel setAttributedText:[CommonUtil customAttString:identifier fontSize:36 textColor:WCBlack charSpace:kAppKern_2]];
+    [titleLabel setAttributedText:[CommonUtil customAttString:identifier fontSize:kAppNaviFontSize textColor:WCBlack charSpace:kAppKern_2 fontName:kFontNameSTHeiti]];
     [self addSubview:titleLabel];
     
     UILabel *LineLabel = [WCUIKitControl createLabelWithFrame:CGRectMake(0, self.height - 0.5, self.width, 0.5) Text:nil BgColor:[UIColor colorWithRed:0.86 green:0.84 blue:0.82 alpha:1]];
