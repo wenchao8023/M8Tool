@@ -223,12 +223,6 @@
             [self enterLive:(int)roomData.roomnum groupId:roomData.groupid imageUrl:imageUrl];
         });
     });
-    
-    
-    M8LiveMakeViewController *liveVC = [[M8LiveMakeViewController alloc] init];
-    liveVC.roomId = 101401;
-    liveVC.host   = [[ILiveLoginManager getInstance] getLoginId];
-    [M8MeetWindow M8_addLiveSource:liveVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
 }
 
 - (void)enterLive:(int)roomId groupId:(NSString *)groupid imageUrl:(NSString *)coverUrl
@@ -236,16 +230,16 @@
     TCShowLiveListItem *item = [[TCShowLiveListItem alloc] init];
     item.uid = [[ILiveLoginManager getInstance] getLoginId];
     item.info = [[ShowRoomInfo alloc] init];
-//    item.info.title = self.liveTitle.text && self.liveTitle.text.length > 0 ? self.liveTitle.text : self.liveTitle.placeholder;
     item.info.title = _topic;
     item.info.type = @"live";
     item.info.roomnum = roomId;
     item.info.groupid = groupid;
     item.info.cover = coverUrl ? coverUrl : @"";
     item.info.appid = [ShowAppId intValue];
+    item.info.host = [[ILiveLoginManager getInstance] getLoginId];
     
-//    LiveViewController *liveVC = [[LiveViewController alloc] initWith:item roomOptionType:RoomOptionType_CrateRoom];
-//    [[AppDelegate sharedAppDelegate] pushViewController:liveVC];
+    M8LiveMakeViewController *liveVC = [[M8LiveMakeViewController alloc] initWithItem:item];
+    [M8MeetWindow M8_addLiveSource:liveVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
 }
 
 

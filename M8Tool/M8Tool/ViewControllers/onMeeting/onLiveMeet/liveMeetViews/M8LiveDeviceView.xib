@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,8 +21,8 @@
                         <constraint firstAttribute="width" constant="40" id="SJy-Uh-UtA"/>
                         <constraint firstAttribute="height" constant="40" id="gWt-Eb-1Kv"/>
                     </constraints>
-                    <state key="normal" backgroundImage="liveShare.png">
-                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="左一">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="leftButton1Action:" destination="iN0-l3-epB" eventType="touchUpInside" id="Vjy-f7-yAZ"/>
@@ -32,9 +31,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tuq-Ul-ygI">
                     <rect key="frame" x="98.5" y="0.0" width="40" height="40"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" backgroundImage="liveMic_on.png">
-                        <color key="titleColor" red="0.27785402539999998" green="0.62752610450000001" blue="0.98874288799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
+                    <state key="normal" title="左二"/>
                     <connections>
                         <action selector="leftButton2Action:" destination="iN0-l3-epB" eventType="touchUpInside" id="NvE-e2-n9J"/>
                     </connections>
@@ -46,7 +43,7 @@
                         <constraint firstAttribute="width" constant="40" id="5Ex-Io-OVr"/>
                         <constraint firstAttribute="height" constant="40" id="s4o-Zi-7zm"/>
                     </constraints>
-                    <state key="normal" backgroundImage="liveHangup.png"/>
+                    <state key="normal" title="中"/>
                     <connections>
                         <action selector="centerButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="VC2-S6-VYk"/>
                     </connections>
@@ -54,8 +51,8 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1J-bU-kFv">
                     <rect key="frame" x="236" y="0.0" width="40" height="40"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" backgroundImage="liveReceiver_on.png">
-                        <color key="titleColor" red="0.27785402539999998" green="0.62752610450000001" blue="0.98874288799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="右一">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="rightButton1Action:" destination="iN0-l3-epB" eventType="touchUpInside" id="MZg-5I-bXa"/>
@@ -64,8 +61,8 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iST-LJ-w2N">
                     <rect key="frame" x="306" y="0.0" width="40" height="40"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" backgroundImage="liveNote.png">
-                        <color key="titleColor" red="0.27785402539999998" green="0.62752610450000001" blue="0.98874288799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="右二">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="rightButton2Action:" destination="iN0-l3-epB" eventType="touchUpInside" id="YA2-sK-jku"/>
@@ -161,11 +158,4 @@
             </connections>
         </view>
     </objects>
-    <resources>
-        <image name="liveHangup.png" width="50" height="50"/>
-        <image name="liveMic_on.png" width="40" height="40"/>
-        <image name="liveNote.png" width="40" height="40"/>
-        <image name="liveReceiver_on.png" width="40" height="40"/>
-        <image name="liveShare.png" width="40" height="40"/>
-    </resources>
 </document>

@@ -1,14 +1,14 @@
 //
-//  GetFriendsListRequest.m
+//  FriendsListRequest.m
 //  M8Tool
 //
 //  Created by chao on 2017/7/1.
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import "GetFriendsListRequest.h"
+#import "FriendsListRequest.h"
 
-@implementation GetFriendsListRequest
+@implementation FriendsListRequest
 
 - (NSString *)url {
     return [NSString stringWithFormat:@"%@svc=account&cmd=getAllFriends", [self hostUrl]];
@@ -24,7 +24,7 @@
 
 - (Class)responseDataClass
 {
-    return [GetFriendsListResponceData class];
+    return [FriendsListResponceData class];
 }
 
 - (BaseResponseData *)parseResponseData:(NSDictionary *)dataDic
@@ -34,7 +34,7 @@
 @end
 
 
-@implementation GetFriendsListResponceData
+@implementation FriendsListResponceData
 
 
 @end

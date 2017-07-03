@@ -67,8 +67,8 @@ static const CGFloat kHeaderHeight = 60;
 - (void)loadData:(TCIVoidBlock)complete {
     
     WCWeakSelf(self);
-    GetFriendsListRequest *friendListReq = [[GetFriendsListRequest alloc] initWithHandler:^(BaseRequest *request) {
-        GetFriendsListRequest *wreq = (GetFriendsListRequest *)request;
+    FriendsListRequest *friendListReq = [[FriendsListRequest alloc] initWithHandler:^(BaseRequest *request) {
+        FriendsListRequest *wreq = (FriendsListRequest *)request;
         [weakself loadListSucc:wreq];
         if (complete) {
             complete();
@@ -85,8 +85,8 @@ static const CGFloat kHeaderHeight = 60;
     
 }
 
-- (void)loadListSucc:(GetFriendsListRequest *)req {
-    GetFriendsListResponceData *respData = (GetFriendsListResponceData *)req.response.data;
+- (void)loadListSucc:(FriendsListRequest *)req {
+    FriendsListResponceData *respData = (FriendsListResponceData *)req.response.data;
     
     [_headView configWithTitle:nil friendsNum:respData.FriendNum];
     

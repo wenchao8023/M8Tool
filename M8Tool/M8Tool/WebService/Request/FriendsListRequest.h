@@ -1,5 +1,5 @@
 //
-//  GetFriendsListRequest.h
+//  FriendsListRequest.h
 //  M8Tool
 //
 //  Created by chao on 2017/7/1.
@@ -8,7 +8,7 @@
 
 #import "BaseRequest.h"
 
-@interface GetFriendsListRequest : BaseRequest
+@interface FriendsListRequest : BaseRequest
 
 @property (nonatomic, copy, nullable) NSString *identifier;
 @property (nonatomic, copy, nullable) NSString *token;
@@ -17,7 +17,7 @@
 
 
 
-@interface GetFriendsListResponceData : BaseResponseData
+@interface FriendsListResponceData : BaseResponseData
 
 /**
  时间戳

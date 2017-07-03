@@ -26,22 +26,11 @@
 
 @end
 
-//@interface HostLBS : NSObject
-//
-//@property (nonatomic, assign) float latitude;
-//@property (nonatomic, assign) float longitude;
-//@property (nonatomic, copy) NSString *address;
-//
-//- (NSDictionary *)toLBSDic;
-//
-//@end
 
 @interface TCShowLiveListItem : NSObject
 
 @property (nonatomic, copy) NSString *uid;
 @property (nonatomic, strong) ShowRoomInfo *info;
-
-//@property (nonatomic, strong) HostLBS *lbs;
 
 + (instancetype)loadFromToLocal;
 

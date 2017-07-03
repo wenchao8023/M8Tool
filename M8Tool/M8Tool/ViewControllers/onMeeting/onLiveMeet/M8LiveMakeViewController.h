@@ -12,12 +12,8 @@
 {
     TCShowLiveListItem *_liveItem;
     BOOL _isHost;
-    
 }
 
-- (instancetype)initWithItem:(id _Nonnull)item;
-
-@property (nonatomic, assign) int roomId;
-@property (nonatomic, strong) NSString *host;
+- (instancetype _Nonnull )initWithItem:(id _Nonnull)item;
 
 @end

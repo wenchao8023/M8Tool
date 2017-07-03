@@ -218,7 +218,7 @@
 		9497DF491ECA9702009C35CB /* UserSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9497DF481ECA9702009C35CB /* UserSettingViewController.m */; };
 		9497DF511ECA98EA009C35CB /* UserSettingTabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9497DF501ECA98EA009C35CB /* UserSettingTabelView.m */; };
 		949A076B1F0740A100090E43 /* M8LoginWebService+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = 949A076A1F0740A100090E43 /* M8LoginWebService+UI.m */; };
-		949A07721F0745F900090E43 /* GetFriendsListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 949A07711F0745F900090E43 /* GetFriendsListRequest.m */; };
+		949A07721F0745F900090E43 /* FriendsListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 949A07711F0745F900090E43 /* FriendsListRequest.m */; };
 		949A07781F076E6A00090E43 /* M8IMModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 949A07771F076E6A00090E43 /* M8IMModels.m */; };
 		94A127F91EF13ECA00ED2703 /* liveAudio_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A127EF1EF13ECA00ED2703 /* liveAudio_off.png */; };
 		94A127FA1EF13ECA00ED2703 /* liveAudio_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A127F01EF13ECA00ED2703 /* liveAudio_off@2x.png */; };
@@ -293,6 +293,7 @@
 		94B43ED41EF3E3F600C57F0F /* M8CallBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B43ED31EF3E3F600C57F0F /* M8CallBaseViewController.m */; };
 		94B541D11F09DEA8002B47CC /* VerifyCodeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B541D01F09DEA8002B47CC /* VerifyCodeRequest.m */; };
 		94B541D41F09EE39002B47CC /* VerifyVerifyCodeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B541D31F09EE39002B47CC /* VerifyVerifyCodeRequest.m */; };
+		94B541D71F0A2FA0002B47CC /* M8LiveModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B541D61F0A2FA0002B47CC /* M8LiveModels.m */; };
 		94BACD7E1EEE2CB30017FFDE /* liveCamera_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BACD5A1EEE2CB30017FFDE /* liveCamera_off.png */; };
 		94BACD7F1EEE2CB30017FFDE /* liveCamera_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BACD5B1EEE2CB30017FFDE /* liveCamera_off@2x.png */; };
 		94BACD801EEE2CB30017FFDE /* liveCamera_off@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BACD5C1EEE2CB30017FFDE /* liveCamera_off@3x.png */; };
@@ -707,8 +708,8 @@
 		9497DF501ECA98EA009C35CB /* UserSettingTabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettingTabelView.m; sourceTree = "<group>"; };
 		949A07691F0740A100090E43 /* M8LoginWebService+UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "M8LoginWebService+UI.h"; sourceTree = "<group>"; };
 		949A076A1F0740A100090E43 /* M8LoginWebService+UI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "M8LoginWebService+UI.m"; sourceTree = "<group>"; };
-		949A07701F0745F900090E43 /* GetFriendsListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetFriendsListRequest.h; sourceTree = "<group>"; };
-		949A07711F0745F900090E43 /* GetFriendsListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetFriendsListRequest.m; sourceTree = "<group>"; };
+		949A07701F0745F900090E43 /* FriendsListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsListRequest.h; sourceTree = "<group>"; };
+		949A07711F0745F900090E43 /* FriendsListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsListRequest.m; sourceTree = "<group>"; };
 		949A07761F076E6A00090E43 /* M8IMModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8IMModels.h; sourceTree = "<group>"; };
 		949A07771F076E6A00090E43 /* M8IMModels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8IMModels.m; sourceTree = "<group>"; };
 		94A127EF1EF13ECA00ED2703 /* liveAudio_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = liveAudio_off.png; sourceTree = "<group>"; };
@@ -804,6 +805,8 @@
 		94B541D01F09DEA8002B47CC /* VerifyCodeRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyCodeRequest.m; sourceTree = "<group>"; };
 		94B541D21F09EE39002B47CC /* VerifyVerifyCodeRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyVerifyCodeRequest.h; sourceTree = "<group>"; };
 		94B541D31F09EE39002B47CC /* VerifyVerifyCodeRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyVerifyCodeRequest.m; sourceTree = "<group>"; };
+		94B541D51F0A2FA0002B47CC /* M8LiveModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LiveModels.h; sourceTree = "<group>"; };
+		94B541D61F0A2FA0002B47CC /* M8LiveModels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LiveModels.m; sourceTree = "<group>"; };
 		94BACD5A1EEE2CB30017FFDE /* liveCamera_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = liveCamera_off.png; sourceTree = "<group>"; };
 		94BACD5B1EEE2CB30017FFDE /* liveCamera_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liveCamera_off@2x.png"; sourceTree = "<group>"; };
 		94BACD5C1EEE2CB30017FFDE /* liveCamera_off@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liveCamera_off@3x.png"; sourceTree = "<group>"; };
@@ -1113,13 +1116,13 @@
 				943A082B1EDEBADE003CEA27 /* ARCCompile.h */,
 				943A082C1EDEBADE003CEA27 /* BaseRequest.h */,
 				943A082D1EDEBADE003CEA27 /* BaseRequest.m */,
-				943A082E1EDEBADE003CEA27 /* JSON */,
-				943A08351EDEBADE003CEA27 /* Request */,
 				943A08571EDEBADE003CEA27 /* WebModels.h */,
 				943A08581EDEBADE003CEA27 /* WebModels.m */,
 				943A08591EDEBADE003CEA27 /* WebServiceEngine.h */,
 				943A085A1EDEBADE003CEA27 /* WebServiceEngine.m */,
 				943A085B1EDEBADE003CEA27 /* WebServiceHeader.h */,
+				943A082E1EDEBADE003CEA27 /* JSON */,
+				943A08351EDEBADE003CEA27 /* Request */,
 			);
 			name = "WebService(网络请求)";
 			path = WebService;
@@ -1157,10 +1160,6 @@
 				943A08411EDEBADE003CEA27 /* LiveImageSignRequest.m */,
 				943A08421EDEBADE003CEA27 /* LiveStreamListRequest.h */,
 				943A08431EDEBADE003CEA27 /* LiveStreamListRequest.m */,
-				943A08441EDEBADE003CEA27 /* LoginRequest.h */,
-				943A08451EDEBADE003CEA27 /* LoginRequest.m */,
-				943A08461EDEBADE003CEA27 /* LogoutRequest.h */,
-				943A08471EDEBADE003CEA27 /* LogoutRequest.m */,
 				943A08481EDEBADE003CEA27 /* RecordListRequest.h */,
 				943A08491EDEBADE003CEA27 /* RecordListRequest.m */,
 				943A084A1EDEBADE003CEA27 /* RecordReportRequest.h */,
@@ -1848,14 +1847,18 @@
 		949A076C1F0745A800090E43 /* IM */ = {
 			isa = PBXGroup;
 			children = (
-				949A07701F0745F900090E43 /* GetFriendsListRequest.h */,
-				949A07711F0745F900090E43 /* GetFriendsListRequest.m */,
 				949A07761F076E6A00090E43 /* M8IMModels.h */,
 				949A07771F076E6A00090E43 /* M8IMModels.m */,
 				94B541CF1F09DEA8002B47CC /* VerifyCodeRequest.h */,
 				94B541D01F09DEA8002B47CC /* VerifyCodeRequest.m */,
 				94B541D21F09EE39002B47CC /* VerifyVerifyCodeRequest.h */,
 				94B541D31F09EE39002B47CC /* VerifyVerifyCodeRequest.m */,
+				943A08441EDEBADE003CEA27 /* LoginRequest.h */,
+				943A08451EDEBADE003CEA27 /* LoginRequest.m */,
+				943A08461EDEBADE003CEA27 /* LogoutRequest.h */,
+				943A08471EDEBADE003CEA27 /* LogoutRequest.m */,
+				949A07701F0745F900090E43 /* FriendsListRequest.h */,
+				949A07711F0745F900090E43 /* FriendsListRequest.m */,
 			);
 			name = IM;
 			sourceTree = "<group>";
@@ -2186,6 +2189,8 @@
 		94BACDC11EEE62C30017FFDE /* onLiveMeet */ = {
 			isa = PBXGroup;
 			children = (
+				94B541D51F0A2FA0002B47CC /* M8LiveModels.h */,
+				94B541D61F0A2FA0002B47CC /* M8LiveModels.m */,
 				94D348B91EFD03F6008A1AEC /* M8LiveMakeViewController.h */,
 				94D348BA1EFD03F6008A1AEC /* M8LiveMakeViewController.m */,
 				94BEF3211F00D912000844B8 /* M8LiveJoinViewController.h */,
@@ -2775,7 +2780,7 @@
 				948E04611EE6421B0075903B /* UserTableViewCell.m in Sources */,
 				94B43ED11EF3DB0400C57F0F /* M8MeetWindowSingleton.m in Sources */,
 				94DE95891EAE145400A44DB1 /* UIColor+MLPFlatColors.m in Sources */,
-				949A07721F0745F900090E43 /* GetFriendsListRequest.m in Sources */,
+				949A07721F0745F900090E43 /* FriendsListRequest.m in Sources */,
 				944AF31D1E9494C00044B44C /* KVNProgressConfiguration.m in Sources */,
 				94A6421D1F035C4C0051CA6D /* M8LiveNoteView.m in Sources */,
 				94D8C9CF1ED025840075C35D /* MeetingOrderTableView.m in Sources */,
@@ -2792,6 +2797,7 @@
 				946F7F041EF29E84005E757A /* M8CallRenderNote.m in Sources */,
 				94DE958C1EAE145400A44DB1 /* UIView+CustomAutoLayout.m in Sources */,
 				946B32D21F05293D007530CE /* AlertHelp.m in Sources */,
+				94B541D71F0A2FA0002B47CC /* M8LiveModels.m in Sources */,
 				94A988051EF015030080BEF2 /* THLabel.m in Sources */,
 				94E5DE301ED6A732008632D7 /* UsrContactHeaderView.m in Sources */,
 				94BEF3231F00D912000844B8 /* M8LiveJoinViewController.m in Sources */,

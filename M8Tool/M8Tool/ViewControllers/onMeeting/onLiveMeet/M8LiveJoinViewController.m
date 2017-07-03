@@ -49,16 +49,25 @@
 
 @implementation M8LiveJoinViewController
 
+- (instancetype)initWithItem:(id)item {
+    if (self = [super init]) {
+        _liveItem = item;
+        _isHost = NO;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.livingInfoView.host = self.host;
-    self.livingPlayView.host = self.host;
+    self.livingInfoView.host = _liveItem.info.host;
+    self.livingPlayView.host = _liveItem.info.host;
     
     [self createUI];
     
-    [self joinLive];
+//    [self joinLive];
+    [self joinRoom:(int)_liveItem.info.roomnum groupId:_liveItem.info.groupid];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,9 +76,33 @@
 }
 
 #pragma mark - TILLiveSDK相关接口
-- (void)joinLive{
+//- (void)joinLive{
+//    TILLiveRoomOption *option = [TILLiveRoomOption defaultGuestLiveOption];
+//    option.controlRole = @"guestTest";
+//    
+//    TILLiveManager *manager = [TILLiveManager getInstance];
+//    [manager setAVListener:self.livingPlayView];
+//    [manager setIMListener:self.livingInfoView];
+//    [manager setAVRootView:self.livingPlayView];
+//    
+//    __weak typeof(self) ws = self;
+//    [manager joinRoom:self.roomId option:option succ:^{
+//        [ws.livingInfoView addTextToView:@"进入房间成功"];
+//        //进群消息
+//        ILVLiveCustomMessage *msg = [[ILVLiveCustomMessage alloc] init];
+//        msg.cmd = ILVLIVE_IMCMD_ENTER;
+//        msg.type = ILVLIVE_IMTYPE_GROUP;
+//        [manager sendCustomMessage:msg succ:nil failed:nil];
+//        
+//    } failed:^(NSString *moudle, int errId, NSString *errMsg) {
+//        [ws.livingInfoView addTextToView:[NSString stringWithFormat:@"进入房间失败,moldle=%@;errid=%d;errmsg=%@",moudle,errId,errMsg]];
+//    }];
+//}
+
+- (void)joinRoom:(int)roomId groupId:(NSString *)groupid
+{
     TILLiveRoomOption *option = [TILLiveRoomOption defaultGuestLiveOption];
-    option.controlRole = @"guestTest";
+    option.controlRole = kSxbRole_Guest;
     
     TILLiveManager *manager = [TILLiveManager getInstance];
     [manager setAVListener:self.livingPlayView];
@@ -77,19 +110,66 @@
     [manager setAVRootView:self.livingPlayView];
     
     __weak typeof(self) ws = self;
-    [manager joinRoom:self.roomId option:option succ:^{
-        [ws.livingInfoView addTextToView:@"进入房间成功"];
-        //进群消息
-        ILVLiveCustomMessage *msg = [[ILVLiveCustomMessage alloc] init];
-        msg.cmd = ILVLIVE_IMCMD_ENTER;
-        msg.type = ILVLIVE_IMTYPE_GROUP;
-        [manager sendCustomMessage:msg succ:nil failed:nil];
+    [manager joinRoom:roomId option:option succ:^{
+        NSLog(@"join room succ");
+        [ws sendJoinRoomMsg];
+        [ws setSelfInfo];
         
-    } failed:^(NSString *moudle, int errId, NSString *errMsg) {
-        [ws.livingInfoView addTextToView:[NSString stringWithFormat:@"进入房间失败,moldle=%@;errid=%d;errmsg=%@",moudle,errId,errMsg]];
+    } failed:^(NSString *module, int errId, NSString *errMsg) {
+        NSString *errLog = [NSString stringWithFormat:@"join room fail. module=%@,errid=%d,errmsg=%@",module,errId,errMsg];
+        [AlertHelp alertWith:@"加入房间失败" message:errLog cancelBtn:@"退出" alertStyle:UIAlertControllerStyleAlert cancelAction:^(UIAlertAction * _Nonnull action) {
+            [ws selfDismiss];
+        }];
+
+    }];
+    
+    [self reportMemberId:_liveItem.info.roomnum operate:0];
+}
+- (void)sendJoinRoomMsg
+{
+    ILVLiveCustomMessage *msg = [[ILVLiveCustomMessage alloc] init];
+    msg.type = ILVLIVE_IMTYPE_GROUP;
+    msg.cmd = (ILVLiveIMCmd)AVIMCMD_EnterLive;
+    msg.recvId = [[ILiveRoomManager getInstance] getIMGroupId];
+    
+    [[TILLiveManager getInstance] sendCustomMessage:msg succ:^{
+        NSLog(@"succ");
+    } failed:^(NSString *module, int errId, NSString *errMsg) {
+        NSLog(@"fail");
     }];
 }
 
+- (void)setSelfInfo
+{
+    __weak typeof(self) ws = self;
+    [[TIMFriendshipManager sharedInstance] GetSelfProfile:^(TIMUserProfile *profile) {
+        ws.selfProfile = profile;
+    } fail:^(int code, NSString *msg) {
+        NSLog(@"GetSelfProfile fail");
+        ws.selfProfile = nil;
+    }];
+}
+
+- (void)reportMemberId:(NSInteger)roomnum operate:(NSInteger)operate
+{
+//    __weak typeof(self) ws = self;
+    ReportMemIdRequest *req = [[ReportMemIdRequest alloc] initWithHandler:^(BaseRequest *request) {
+        NSLog(@"report memeber id succ");
+        [self.livingInfoView addTextToView:@"report memeber id succ"];
+//        [ws onRefreshMemberList];
+        
+    } failHandler:^(BaseRequest *request) {
+        NSLog(@"report memeber id fail");
+        [self.livingInfoView addTextToView:@"report memeber id fail"];
+    }];
+    req.token = [AppDelegate sharedAppDelegate].token;
+    req.userId = [[ILiveLoginManager getInstance] getLoginId];
+    req.roomnum = roomnum;
+    req.role = _isHost ? 1 : 0;
+    req.operate = operate;
+    
+    [[WebServiceEngine sharedEngine] asyncRequest:req wait:NO];
+}
 
 #pragma mark - 代理相关
 - (void)LiveJoinTableViewCurrentCellIndex:(NSInteger)index {
@@ -121,6 +201,8 @@
     __weak typeof(self) ws = self;
     [manager quitRoom:^{
         [ws.livingInfoView addTextToView:@"退出房间成功"];
+        
+        [ws reportMemberId:_liveItem.info.roomnum operate:1];
         
     } failed:^(NSString *moudle, int errId, NSString *errMsg) {
         [ws.livingInfoView addTextToView:[NSString stringWithFormat:@"退出房间失败,moldle=%@;errid=%d;errmsg=%@",moudle,errId,errMsg]];
