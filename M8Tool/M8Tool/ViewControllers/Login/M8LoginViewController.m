@@ -113,13 +113,6 @@
     [webService M8LoginWithIdentifier:identifier password:pwd cancelPVN:^{
         [loginWaitView removeFromSuperview];
     }];
-//    [webService M8LoginWithIdentifier:identifier password:pwd succ:^{
-//        [loginWaitView removeFromSuperview];
-//        [self setUserDefault];
-//        [ws enterMainUI];
-//    } fail:^{
-//        [loginWaitView removeFromSuperview];
-//    }];
 }
 
 - (void)getUserDefault {

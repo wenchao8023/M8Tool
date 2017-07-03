@@ -13,16 +13,23 @@
 
 @implementation M8LoginWebService (UI)
 
+- (void)onVerifyCodeFailAlertInfo:(NSString *)errorInfo
+{
+    [self onLoginAlert:nil message:errorInfo];
+}
 
-- (void)onLoginFailAlertInfo:(NSString *)errorInfo {
+- (void)onLoginFailAlertInfo:(NSString *)errorInfo
+{
     [self onLoginAlert:@"登录失败" message:errorInfo];
 }
 
-- (void)onRegistFailAlertInfo:(NSString *)errorInfo {
+- (void)onRegistFailAlertInfo:(NSString *)errorInfo
+{
     [self onLoginAlert:@"注册失败" message:errorInfo];
 }
 
-- (void)onLoginAlert:(NSString *)title message:(NSString *)msg {
+- (void)onLoginAlert:(NSString *)title message:(NSString *)msg
+{
     [AlertHelp alertWith:title message:msg cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
 }
 
@@ -49,6 +56,8 @@
     appDelegate.window.rootViewController = tabBarVC;
 }
 
-
++ (void)onLoginAelrt:(NSString *)msg {
+    [AlertHelp alertWith:nil message:msg cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
+}
 
 @end

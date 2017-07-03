@@ -13,13 +13,6 @@
 @implementation M8LoginWebService
 
 
-/**
- 登录
-
- @param identifier 用户
- @param password 密码
- @param cancelHandle 取消加载视图
- */
 - (void)M8LoginWithIdentifier:(NSString *)identifier password:(NSString *)password cancelPVN:(M8LoginHandle _Nullable)cancelHandle
 {
     [self M8LoginWithIdentifier:identifier password:password succ:cancelHandle fail:cancelHandle];
@@ -54,7 +47,6 @@
             {
                 NSString *errInfo = [NSString stringWithFormat:@"module=%@,errid=%d,errmsg=%@",module,errId,errMsg];
                 [self onLoginFailAlertInfo:errInfo];
-//                [AlertHelp alertWith:@"登录失败" message:errInfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
             }
             
             if (failHandle) {
@@ -69,49 +61,98 @@
         if (failHandle) {
             failHandle();
         }
-//        NSString *errInfo = [NSString stringWithFormat:@"errid=%ld,errmsg=%@",(long)request.response.errorCode, request.response.errorInfo];
-//        [AlertHelp alertWith:@"登录失败" message:errInfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
     }];
     sigReq.identifier = identifier;
     sigReq.pwd = password;
     [[WebServiceEngine sharedEngine] asyncRequest:sigReq];
 }
 
-
-
-/**
- 注册
-
- @param identifier 用户ID
- @param nick 昵称
- @param pwd 密码
- @param cancelHandle 取消加载视图
- */
-- (void)registWithIdentifier:(NSString *)identifier nick:(NSString *)nick pwd:(NSString *)pwd cancelHandle:(M8LoginHandle)cancelHandle {
-   
-    RegistRequest *registReq = [[RegistRequest alloc] initWithHandler:^(BaseRequest *request) {
-        
-        if (cancelHandle) {
-            cancelHandle();
+- (void)M8GetVerifyCode:(NSString *)phoneNumber succHandle:(M8LoginHandle)succHandle
+{
+    if (!(phoneNumber && phoneNumber.length))
+    {
+        [self onVerifyCodeFailAlertInfo:@"请输入手机号"];
+        return ;
+    }
+    
+    VerifyCodeRequest *verifyCodeRequest = [[VerifyCodeRequest alloc] initWithHandler:^(BaseRequest *request) {
+        if (succHandle) {
+            succHandle();
         }
+    } failHandler:^(BaseRequest *request) {
+        if (request.response.errorCode == 10003) {  // 手机号错误
+            [self onVerifyCodeFailAlertInfo:@"请输入正确的手机号"];
+        }
+    }];
+    verifyCodeRequest.phoneNumber = phoneNumber;
+    [[WebServiceEngine sharedEngine] asyncRequest:verifyCodeRequest];
+}
+
+
+- (void)M8VerifyVerifyCode:(NSString *)phoneNum verifyCode:(NSString *)verifyCode succHandle:(M8LoginHandle)succHandle failHandle:(M8LoginHandle)failHandle
+{
+    VerifyVerifyCodeRequest *verifyRequest = [[VerifyVerifyCodeRequest alloc] initWithHandler:^(BaseRequest *request) {
+        
+        if (succHandle) {
+            succHandle();
+        }
+        
+    } failHandler:^(BaseRequest *request) {
+        if (failHandle) {
+            failHandle();
+        }
+    }];
+    verifyRequest.phoneNumber = phoneNum;
+    verifyRequest.messageCode = verifyCode;
+    [[WebServiceEngine sharedEngine] asyncRequest:verifyRequest];
+}
+
+- (void)M8RegistWithIdentifier:(NSString *)identifier nick:(NSString *)nick pwd:(NSString *)pwd cancelHandle:(M8LoginHandle)cancelHandle {
+    RegistRequest *registReq = [[RegistRequest alloc] initWithHandler:^(BaseRequest *request) {
+
+        // 注册成功 -- 直接登录
+        [self M8LoginWithIdentifier:identifier password:pwd cancelPVN:cancelHandle];
         
     } failHandler:^(BaseRequest *request) {
         
         NSString *errinfo = [NSString stringWithFormat:@"errid=%ld,errmsg=%@",(long)request.response.errorCode,request.response.errorInfo];
         [self onRegistFailAlertInfo:errinfo];
-//        NSLog(@"regist fail.%@",errinfo);
-//        [AlertHelp alertWith:@"注册失败" message:errinfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
-        
-        
-        if (cancelHandle) {
-            cancelHandle();
-        }
     }];
     registReq.nick = nick;
     registReq.identifier = identifier;
     registReq.pwd = pwd;
     [[WebServiceEngine sharedEngine] asyncRequest:registReq];
 }
+///**
+// 注册
+//
+// @param identifier 用户ID
+// @param nick 昵称
+// @param pwd 密码
+// @param cancelHandle 取消加载视图
+// */
+//- (void)registWithIdentifier:(NSString *)identifier nick:(NSString *)nick pwd:(NSString *)pwd cancelHandle:(M8LoginHandle)cancelHandle {
+//   
+//    RegistRequest *registReq = [[RegistRequest alloc] initWithHandler:^(BaseRequest *request) {
+//        
+//        if (cancelHandle) {
+//            cancelHandle();
+//        }
+//        
+//    } failHandler:^(BaseRequest *request) {
+//        
+//        NSString *errinfo = [NSString stringWithFormat:@"errid=%ld,errmsg=%@",(long)request.response.errorCode,request.response.errorInfo];
+//        [self onRegistFailAlertInfo:errinfo];
+//        
+//        if (cancelHandle) {
+//            cancelHandle();
+//        }
+//    }];
+//    registReq.nick = nick;
+//    registReq.identifier = identifier;
+//    registReq.pwd = pwd;
+//    [[WebServiceEngine sharedEngine] asyncRequest:registReq];
+//}
 
 
 @end

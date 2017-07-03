@@ -42,6 +42,12 @@
 #import "LinkRoomSigRequest.h"
 
 
+
 #import "GetFriendsListRequest.h"
+
+#import "VerifyCodeRequest.h"
+
+#import "VerifyVerifyCodeRequest.h"
+
 
 #endif /* RequestHeader_h */

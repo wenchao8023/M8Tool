@@ -380,7 +380,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="姓名" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="IQK-hy-2jV">
                                 <rect key="frame" x="20" y="84" width="335" height="40"/>
@@ -413,11 +413,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="验证码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="DfT-Ji-jwo">
-                                <rect key="frame" x="20" y="214" width="235" height="40"/>
+                                <rect key="frame" x="20" y="214" width="167.5" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pHJ-iv-CNZ">
                                 <rect key="frame" x="20" y="258" width="335" height="1"/>
@@ -469,12 +469,9 @@
                                     <action selector="onPrivacyPolicyAction:" destination="55p-Hw-E1N" eventType="touchUpInside" id="5Vb-X5-UAO"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1aa-Ul-10a">
-                                <rect key="frame" x="275" y="219.5" width="80" height="29"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1aa-Ul-10a">
+                                <rect key="frame" x="187.5" y="219.5" width="167.5" height="29"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="zWc-67-vRP"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="获取验证码">
                                     <color key="titleColor" red="0.68224054570000003" green="0.68217527870000005" blue="0.69451206919999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -487,6 +484,7 @@
                         <color key="backgroundColor" red="0.34420636300000002" green="0.37222510580000001" blue="0.39724573489999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="vaw-4p-C0h" firstAttribute="trailing" secondItem="IQK-hy-2jV" secondAttribute="trailing" id="2kY-8D-ErC"/>
+                            <constraint firstItem="1aa-Ul-10a" firstAttribute="width" secondItem="DfT-Ji-jwo" secondAttribute="width" id="CI7-Df-6Je"/>
                             <constraint firstItem="e1y-2Q-Osq" firstAttribute="top" secondItem="yCA-aP-UYN" secondAttribute="bottom" constant="4" id="COG-EI-JuC"/>
                             <constraint firstItem="pHJ-iv-CNZ" firstAttribute="top" secondItem="DfT-Ji-jwo" secondAttribute="bottom" constant="4" id="Cmc-O7-PnO"/>
                             <constraint firstItem="b56-5b-rar" firstAttribute="top" secondItem="fDb-lz-sLt" secondAttribute="bottom" id="ETA-jR-GPK"/>
@@ -516,7 +514,7 @@
                             <constraint firstItem="CZz-1X-sjR" firstAttribute="centerY" secondItem="b56-5b-rar" secondAttribute="centerY" id="l8J-El-8Mq"/>
                             <constraint firstItem="e1y-2Q-Osq" firstAttribute="trailing" secondItem="yCA-aP-UYN" secondAttribute="trailing" id="ntN-mp-Ysy"/>
                             <constraint firstItem="yCA-aP-UYN" firstAttribute="height" secondItem="IQK-hy-2jV" secondAttribute="height" id="o95-um-SSn"/>
-                            <constraint firstItem="1aa-Ul-10a" firstAttribute="leading" secondItem="DfT-Ji-jwo" secondAttribute="trailing" constant="20" id="rM8-zm-dqq"/>
+                            <constraint firstItem="1aa-Ul-10a" firstAttribute="leading" secondItem="DfT-Ji-jwo" secondAttribute="trailing" id="rM8-zm-dqq"/>
                             <constraint firstItem="yCA-aP-UYN" firstAttribute="top" secondItem="vaw-4p-C0h" secondAttribute="bottom" constant="20" id="ucu-YI-1AC"/>
                             <constraint firstItem="IQK-hy-2jV" firstAttribute="leading" secondItem="B9T-R1-svn" secondAttribute="leading" constant="20" id="vGA-D1-VNV"/>
                             <constraint firstItem="b56-5b-rar" firstAttribute="centerX" secondItem="B9T-R1-svn" secondAttribute="centerX" constant="-40" id="xmD-cD-bzu"/>
@@ -525,9 +523,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="注册" id="F9z-9i-H74"/>
                     <connections>
+                        <outlet property="nextBtn" destination="15K-vx-jmC" id="bWz-We-Ga4"/>
                         <outlet property="phoneNumTF" destination="yCA-aP-UYN" id="wK7-55-e8d"/>
                         <outlet property="userNameTF" destination="IQK-hy-2jV" id="Stc-HL-QvI"/>
                         <outlet property="veriCodeTF" destination="DfT-Ji-jwo" id="Flb-Jz-FvP"/>
+                        <outlet property="verifyCodeBtn" destination="1aa-Ul-10a" id="eWj-26-34q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rP5-Mf-ET4" userLabel="First Responder" sceneMemberID="firstResponder"/>

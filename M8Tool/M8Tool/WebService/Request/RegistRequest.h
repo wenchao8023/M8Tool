@@ -11,8 +11,8 @@
 @interface RegistRequest : BaseRequest
 
 @property (nonatomic, copy, nullable) NSString *nick;
-@property (nonatomic, copy) NSString *identifier;
-@property (nonatomic, copy) NSString *pwd;
+@property (nonatomic, copy, nullable) NSString *identifier;
+@property (nonatomic, copy, nullable) NSString *pwd;
 
 @end
 

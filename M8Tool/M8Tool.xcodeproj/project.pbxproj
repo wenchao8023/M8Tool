@@ -291,6 +291,8 @@
 		94B43ECE1EF3DADA00C57F0F /* M8LiveLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B43ECD1EF3DADA00C57F0F /* M8LiveLabel.m */; };
 		94B43ED11EF3DB0400C57F0F /* M8MeetWindowSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B43ED01EF3DB0400C57F0F /* M8MeetWindowSingleton.m */; };
 		94B43ED41EF3E3F600C57F0F /* M8CallBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B43ED31EF3E3F600C57F0F /* M8CallBaseViewController.m */; };
+		94B541D11F09DEA8002B47CC /* VerifyCodeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B541D01F09DEA8002B47CC /* VerifyCodeRequest.m */; };
+		94B541D41F09EE39002B47CC /* VerifyVerifyCodeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B541D31F09EE39002B47CC /* VerifyVerifyCodeRequest.m */; };
 		94BACD7E1EEE2CB30017FFDE /* liveCamera_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BACD5A1EEE2CB30017FFDE /* liveCamera_off.png */; };
 		94BACD7F1EEE2CB30017FFDE /* liveCamera_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BACD5B1EEE2CB30017FFDE /* liveCamera_off@2x.png */; };
 		94BACD801EEE2CB30017FFDE /* liveCamera_off@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BACD5C1EEE2CB30017FFDE /* liveCamera_off@3x.png */; };
@@ -798,6 +800,10 @@
 		94B43ED01EF3DB0400C57F0F /* M8MeetWindowSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8MeetWindowSingleton.m; sourceTree = "<group>"; };
 		94B43ED21EF3E3F600C57F0F /* M8CallBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8CallBaseViewController.h; sourceTree = "<group>"; };
 		94B43ED31EF3E3F600C57F0F /* M8CallBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8CallBaseViewController.m; sourceTree = "<group>"; };
+		94B541CF1F09DEA8002B47CC /* VerifyCodeRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyCodeRequest.h; sourceTree = "<group>"; };
+		94B541D01F09DEA8002B47CC /* VerifyCodeRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyCodeRequest.m; sourceTree = "<group>"; };
+		94B541D21F09EE39002B47CC /* VerifyVerifyCodeRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyVerifyCodeRequest.h; sourceTree = "<group>"; };
+		94B541D31F09EE39002B47CC /* VerifyVerifyCodeRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyVerifyCodeRequest.m; sourceTree = "<group>"; };
 		94BACD5A1EEE2CB30017FFDE /* liveCamera_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = liveCamera_off.png; sourceTree = "<group>"; };
 		94BACD5B1EEE2CB30017FFDE /* liveCamera_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liveCamera_off@2x.png"; sourceTree = "<group>"; };
 		94BACD5C1EEE2CB30017FFDE /* liveCamera_off@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liveCamera_off@3x.png"; sourceTree = "<group>"; };
@@ -1135,6 +1141,7 @@
 		943A08351EDEBADE003CEA27 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				943A08521EDEBADE003CEA27 /* RequestHeader.h */,
 				949A076C1F0745A800090E43 /* IM */,
 				943A08361EDEBADE003CEA27 /* CreateRoomRequest.h */,
 				943A08371EDEBADE003CEA27 /* CreateRoomRequest.m */,
@@ -1164,7 +1171,6 @@
 				943A084F1EDEBADE003CEA27 /* ReportMemIdRequest.m */,
 				943A08501EDEBADE003CEA27 /* ReportRoomRequest.h */,
 				943A08511EDEBADE003CEA27 /* ReportRoomRequest.m */,
-				943A08521EDEBADE003CEA27 /* RequestHeader.h */,
 				943A08531EDEBADE003CEA27 /* RoomListRequest.h */,
 				943A08541EDEBADE003CEA27 /* RoomListRequest.m */,
 				943A08551EDEBADE003CEA27 /* RoomMemListRequest.h */,
@@ -1846,6 +1852,10 @@
 				949A07711F0745F900090E43 /* GetFriendsListRequest.m */,
 				949A07761F076E6A00090E43 /* M8IMModels.h */,
 				949A07771F076E6A00090E43 /* M8IMModels.m */,
+				94B541CF1F09DEA8002B47CC /* VerifyCodeRequest.h */,
+				94B541D01F09DEA8002B47CC /* VerifyCodeRequest.m */,
+				94B541D21F09EE39002B47CC /* VerifyVerifyCodeRequest.h */,
+				94B541D31F09EE39002B47CC /* VerifyVerifyCodeRequest.m */,
 			);
 			name = IM;
 			sourceTree = "<group>";
@@ -2645,6 +2655,7 @@
 			files = (
 				94E18D141EC47C3400132FB2 /* MeetingViewController.m in Sources */,
 				946F7F0B1EF29E84005E757A /* M8CallHeaderView.m in Sources */,
+				94B541D41F09EE39002B47CC /* VerifyVerifyCodeRequest.m in Sources */,
 				943A085E1EDEBADE003CEA27 /* NSMutableDictionary+Json.m in Sources */,
 				94A851C81EE2C18700204B48 /* UsrCardView.m in Sources */,
 				943A08611EDEBADE003CEA27 /* ExitRoomRequest.m in Sources */,
@@ -2682,6 +2693,7 @@
 				946B32CC1F050B86007530CE /* M8RegistSuccViewController.m in Sources */,
 				94A1683F1F06582600999D71 /* M8LoginWebService.m in Sources */,
 				94BDE5201ECC451E00ECC089 /* MeetingLuanchViewController.m in Sources */,
+				94B541D11F09DEA8002B47CC /* VerifyCodeRequest.m in Sources */,
 				94C9B8371ECD688400F42654 /* MeetingLuanchCell.m in Sources */,
 				946753D21EBC174100653A2C /* M8Tool.xcdatamodeld in Sources */,
 				946B32C91F050B36007530CE /* M8MutiLoginViewController.m in Sources */,
