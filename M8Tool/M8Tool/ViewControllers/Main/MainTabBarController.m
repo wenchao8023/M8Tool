@@ -24,6 +24,12 @@
 
 @implementation MainTabBarController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    WCLog(@"tabbar view controller will appear");
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

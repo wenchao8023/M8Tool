@@ -12,4 +12,12 @@
 
 + (instancetype _Nonnull )shareInstance;
 
+
+/**
+ 添加视图控制器到 window 的根视图
+ 
+ @param source 会议视图控制器
+ */
+- (void)addMeetSource:(id _Nonnull)source;
+
 @end

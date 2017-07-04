@@ -8,7 +8,6 @@
 
 #import "MMeetWindowSingleton.h"
 
-//#import "MMeetWindow.h"
 #import "MBaseMeetViewController.h"
 
 
@@ -53,5 +52,13 @@
     }
     return _meetWindow;
 }
+
+
+- (void)addMeetSource:(MBaseMeetViewController *)source
+{
+    _baseController = source;
+    self.meetWindow.rootViewController = _baseController;
+}
+
 
 @end

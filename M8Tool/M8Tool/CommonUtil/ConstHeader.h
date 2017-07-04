@@ -16,23 +16,6 @@
 
 /******************** font ********************************/
 //font size
-//#if ([[UIScreen mainScreen] bounds].size.width == 320.0f && [[UIScreen mainScreen] bounds].size.height == 568.0f)
-//static const int kAppNaviFontSize   = 18;
-//static const int kAppLargeFontSize  = 15;
-//static const int kAppMiddleFontSize = 13;
-//static const int kAppSmallFontSize  = 11;
-//#elif iPhone6_6s
-//static const int kAppNaviFontSize   = 19;
-//static const int kAppLargeFontSize  = 16;
-//static const int kAppMiddleFontSize = 14;
-//static const int kAppSmallFontSize  = 12;
-//#else 
-//static const int kAppNaviFontSize   = 20;
-//static const int kAppLargeFontSize  = 17;
-//static const int kAppMiddleFontSize = 15;
-//static const int kAppSmallFontSize  = 13;
-//#endif
-
 #define kAppNaviFontSize    20
 //#define kAppNaviFontSize    (iPhone5SE ? 18 : (iPhone6_6s ? 19 : 20))
 #define kAppLargeFontSize   (iPhone5SE ? 15 : (iPhone6_6s ? 16 : 17))
@@ -152,6 +135,7 @@ typedef NS_ENUM(NSInteger, BeautyViewType)
 #define kUserProtocol       @"kUserProtocol"
 #define kHasLogin           @"kHasLogin"
 #define kThemeImage         @"kThemeImage"
+#define kIsInMeeting        @"kIsInMeeting" //判断用户是否在会议中，如果是则推出视图的时候隐藏tabBar
 
 /******************** appstore **********************/
 #define kIsAppstoreVersion 0

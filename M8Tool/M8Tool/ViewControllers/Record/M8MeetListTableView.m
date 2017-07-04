@@ -198,21 +198,21 @@
         M8RecordDetailViewController *destinationVC = [[M8RecordDetailViewController alloc] init];
         destinationVC.isExitLeftItem = YES;
         destinationVC.dataModel = self.dataArray[indexPath.row];
-        [[[AppDelegate sharedAppDelegate] navigationViewController] pushViewController:destinationVC animated:YES];
+        [[AppDelegate sharedAppDelegate] pushViewController:destinationVC];
     }
     // 会议笔记
     else if (_listViewType == M8MeetListViewTypeNote) {
         M8NoteDetailViewController *destinationVC = [[M8NoteDetailViewController alloc] init];
         destinationVC.isExitLeftItem = YES;
         destinationVC.dataModel = self.dataArray[indexPath.row];
-        [[[AppDelegate sharedAppDelegate] navigationViewController] pushViewController:destinationVC animated:YES];
+        [[AppDelegate sharedAppDelegate] pushViewController:destinationVC];
     }
     // 会议收藏
     else if (_listViewType == M8MeetListViewTypeCollect) {
         M8CollectDetaiilViewController *destinationVC = [[M8CollectDetaiilViewController alloc] init];
         destinationVC.isExitLeftItem = YES;
         destinationVC.dataModel = self.dataArray[indexPath.row];
-        [[[AppDelegate sharedAppDelegate] navigationViewController] pushViewController:destinationVC animated:YES];
+        [[AppDelegate sharedAppDelegate] pushViewController:destinationVC];
     }
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

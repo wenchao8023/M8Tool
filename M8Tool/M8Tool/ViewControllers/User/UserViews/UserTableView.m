@@ -177,7 +177,7 @@ static NSString *const kUserSettingVC   = @"UserSettingViewController";
     Class myClass = NSClassFromString(viewControllerName);
     BaseViewController *vc = [myClass new];
     vc.isExitLeftItem = YES;
-    [[[AppDelegate sharedAppDelegate] navigationViewController] pushViewController:vc animated:YES];
+    [[AppDelegate sharedAppDelegate] pushViewController:vc];
 }
 
 

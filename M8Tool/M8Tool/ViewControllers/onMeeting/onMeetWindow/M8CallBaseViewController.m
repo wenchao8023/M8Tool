@@ -33,6 +33,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    NSUserDefaults *userD = [NSUserDefaults standardUserDefaults];
+    [userD setBool:YES forKey:kIsInMeeting];
+    [userD synchronize];
+    
     self.navigationController.navigationBarHidden = YES;
     
     self.view.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -129,6 +133,10 @@
  隐藏浮动窗口
  */
 - (void)hiddeFloatView {
+    
+    //将通话视图添加到视图的最上层
+    UIView *superView = self.view.superview;
+    [superView bringSubviewToFront:self.view];
     
     [self.renderView setIsFloatView:NO];
     // 1. 隐藏浮动窗口
@@ -249,7 +257,8 @@
             UserContactViewController *contactVC = [[UserContactViewController alloc] init];
             contactVC.isExitLeftItem = YES;
             contactVC.contactType = ContactType_sel;
-            [self.navigationController pushViewController:contactVC animated:YES];
+//            [self.navigationController pushViewController:contactVC animated:YES];
+            [[AppDelegate sharedAppDelegate] pushViewController:contactVC];
         }
     }
 }
@@ -292,6 +301,9 @@
 }
 
 - (void)dealloc {
+    NSUserDefaults *userD = [NSUserDefaults standardUserDefaults];
+    [userD setBool:NO forKey:kIsInMeeting];
+    [userD synchronize];
     
     [WCNotificationCenter removeObserver:self name:kThemeSwich_Notification object:nil];
     [WCNotificationCenter removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];

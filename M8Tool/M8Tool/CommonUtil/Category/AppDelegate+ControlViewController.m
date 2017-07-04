@@ -18,18 +18,18 @@
 #pragma mark - push
 - (void)pushViewController:(UIViewController *)viewController
 {
-    @autoreleasepool
-    {
-//        viewController.hidesBottomBarWhenPushed = YES;
-        [[self navigationViewController] pushViewController:viewController animated:YES];
-    }
+    [self pushViewController:viewController animated:YES];
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     @autoreleasepool
     {
+        BOOL isMeeting = [[[NSUserDefaults standardUserDefaults] objectForKey:kIsInMeeting] boolValue];
 //        viewController.hidesBottomBarWhenPushed = YES;
+        if (isMeeting) {
+            viewController.hidesBottomBarWhenPushed = YES;
+        }
         [[self navigationViewController] pushViewController:viewController animated:animated];
     }
 }
