@@ -49,5 +49,7 @@
 
 #import "VerifyVerifyCodeRequest.h"
 
+#import "CallRoomRequest.h"
+
 
 #endif /* RequestHeader_h */

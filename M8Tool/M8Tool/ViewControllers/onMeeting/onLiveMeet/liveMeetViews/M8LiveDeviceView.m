@@ -48,43 +48,54 @@
     self.frame = _myFrame;
 }
 
-// 根据类型设置按钮图片
-- (void)configImages {
+/**
+ 分享
+ */
+- (IBAction)onShareAction:(id)sender
+{
+    [self deviceActionInfoValue:@"onShareAction" key:kLiveDeviceAction];
+}
 
+/**
+ 发言
+ */
+- (IBAction)onNoteAction:(id)sender
+{
+    [self deviceActionInfoValue:@"onNoteAction" key:kLiveDeviceAction];
+}
+
+/**
+ 私信
+ */
+- (IBAction)onPrivateChatAction:(id)sender
+{
+    [self deviceActionInfoValue:@"onPrivateChatAction" key:kLiveDeviceAction];
 
 }
 
-
-- (IBAction)leftButton1Action:(id)sender {
-    [self deviceActionInfoValue:@"onLeftButton1Action" key:kLiveDeviceAction];
-
+/**
+ 菜单
+ */
+- (IBAction)onMenuAction:(id)sender
+{
+    [self deviceActionInfoValue:@"onMenuAction" key:kLiveDeviceAction];
 }
 
-- (IBAction)leftButton2Action:(id)sender {
-    [self deviceActionInfoValue:@"OnLeftButton2Action" key:kLiveDeviceAction];
-
-}
-
-- (IBAction)centerButtonAction:(id)sender {
-    [self deviceActionInfoValue:@"onCenterButtonAction" key:kLiveDeviceAction];
-
-}
-
-- (IBAction)rightButton1Action:(id)sender {
-    [self deviceActionInfoValue:@"onRightButton1Action" key:kLiveDeviceAction];
-
-}
-
-- (IBAction)rightButton2Action:(id)sender {
-    [self deviceActionInfoValue:@"onRightButton2Action" key:kLiveDeviceAction];
-
+/**
+ 缩小
+ */
+- (IBAction)onSwichRenderAction:(id)sender
+{
+    [self deviceActionInfoValue:@"onSwichRenderAction" key:kLiveDeviceAction];
 }
 
 
 #pragma mark - MeetDeviceActionInfo:
-- (void)deviceActionInfoValue:(id)value key:(NSString *)key {
+- (void)deviceActionInfoValue:(id)value key:(NSString *)key
+{
     NSDictionary *actionInfo = @{key : value};
-    if ([self.WCDelegate respondsToSelector:@selector(LiveDeviceViewActionInfo:)]) {
+    if ([self.WCDelegate respondsToSelector:@selector(LiveDeviceViewActionInfo:)])
+    {
         [self.WCDelegate LiveDeviceViewActionInfo:actionInfo];
     }
 }

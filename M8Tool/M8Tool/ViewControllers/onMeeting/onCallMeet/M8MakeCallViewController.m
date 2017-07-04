@@ -19,18 +19,21 @@
 
 
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    if (self.callType == TILCALL_TYPE_VIDEO) {
+    _isHost = YES;
+
+    if (_liveItem.callType == TILCALL_TYPE_VIDEO) {
         self.audioDeviceView.hidden = YES;
     }
-    else if (self.callType == TILCALL_TYPE_AUDIO) {
+    else if (_liveItem.callType == TILCALL_TYPE_AUDIO) {
         self.deviceView.hidden = YES;
     }
     
-    [self.headerView configTopic:self.topic];
+    [self.headerView configTopic:_liveItem.info.title];
     
     [self makeCall];
 }
@@ -45,9 +48,9 @@
 - (void)makeCall {
     TILCallConfig * config = [[TILCallConfig alloc] init];
     TILCallBaseConfig * baseConfig = [[TILCallBaseConfig alloc] init];
-    baseConfig.callType = self.callType;
+    baseConfig.callType = _liveItem.callType;
     baseConfig.isSponsor = YES;
-    baseConfig.memberArray = self.membersArray;
+    baseConfig.memberArray = _liveItem.members;
     baseConfig.heartBeatInterval = 15;
     config.baseConfig = baseConfig;
     
@@ -60,8 +63,8 @@
     config.callListener = listener;
     
     TILCallSponsorConfig *sponsorConfig = [[TILCallSponsorConfig alloc] init];
-    sponsorConfig.waitLimit = 15;
-    sponsorConfig.callId = self.callId;
+    sponsorConfig.waitLimit = 30;
+    sponsorConfig.callId = (int)_liveItem.info.roomnum;
     sponsorConfig.onlineInvite = NO;
     config.sponsorConfig = sponsorConfig;
     
@@ -72,10 +75,10 @@
     self.renderView.hostIdentify = [[ILiveLoginManager getInstance] getLoginId];
     
     __weak typeof(self) ws = self;
-    [_call makeCall:nil custom:self.topic result:^(TILCallError *err) {
+    [_call makeCall:nil custom:_liveItem.info.title result:^(TILCallError *err) {
         if(err){
             [ws addTextToView:[NSString stringWithFormat:@"呼叫失败:%@-%d-%@",err.domain,err.code,err.errMsg]];
-//            [ws selfDismiss];
+            [ws selfDismiss];
         }
         else{
             [ws addTextToView:@"呼叫成功"];
@@ -88,9 +91,39 @@
             
             [self.headerView beginCountTime];
             
+            [self reportRoomInfo:(int)_liveItem.info.roomnum groupId:_liveItem.info.groupid];
         }
     }];
 }
+
+- (void)reportRoomInfo:(int)roomId groupId:(NSString *)groupid
+{
+    WCWeakSelf(self);
+    ReportRoomRequest *reportReq = [[ReportRoomRequest alloc] initWithHandler:^(BaseRequest *request) {
+        
+        [weakself addTextToView:@"上报房间信息成功"];
+    } failHandler:^(BaseRequest *request) {
+        // 上传失败
+        [weakself addTextToView:@"上报房间信息失败"];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSString *errinfo = [NSString stringWithFormat:@"code=%ld,msg=%@",(long)request.response.errorCode,request.response.errorInfo];
+            [AlertHelp alertWith:@"上传RoomInfo失败" message:errinfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
+        });
+    }];
+    
+    reportReq.token = [AppDelegate sharedAppDelegate].token;
+    reportReq.members = _liveItem.members;
+    reportReq.room = [[ShowRoomInfo alloc] init];
+    reportReq.room.title = _liveItem.info.title;
+    reportReq.room.type = _liveItem.info.type;
+    reportReq.room.roomnum = roomId;
+    reportReq.room.groupid = [NSString stringWithFormat:@"%d",roomId];
+    reportReq.room.appid = [ShowAppId intValue];
+    
+    [[WebServiceEngine sharedEngine] asyncRequest:reportReq];
+}
+
 
 - (void)cancelAllCall {
     WCWeakSelf(self);
@@ -175,6 +208,20 @@
 
 - (void)deviceActionWithStr:(NSString *)actionStr {
     if ([actionStr isEqualToString:@"onHangupAction"]) {
+        
+        //通知业务服务器，退房
+        ExitRoomRequest *exitReq = [[ExitRoomRequest alloc] initWithHandler:^(BaseRequest *request) {
+            NSLog(@"上报退出房间成功");
+        } failHandler:^(BaseRequest *request) {
+            NSLog(@"上报退出房间失败");
+        }];
+        
+        exitReq.token = [AppDelegate sharedAppDelegate].token;
+        exitReq.roomnum = _liveItem.info.roomnum;
+        exitReq.type = _liveItem.info.type;
+        
+        [[WebServiceEngine sharedEngine] asyncRequest:exitReq wait:NO];
+        
         if (self.shouldHangup) {
             [self hangup];
         }

@@ -1,18 +1,18 @@
 //
-//  M8MeetWindowController.m
+//  MBaseMeetViewController.m
 //  M8Tool
 //
-//  Created by chao on 2017/6/29.
+//  Created by chao on 2017/7/4.
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import "M8MeetWindowController.h"
+#import "MBaseMeetViewController.h"
 
-@interface M8MeetWindowController ()
+@interface MBaseMeetViewController ()
 
 @end
 
-@implementation M8MeetWindowController
+@implementation MBaseMeetViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -16,6 +16,7 @@
 
 @property (nonatomic, copy) NSString * token;
 @property (nonatomic, strong) ShowRoomInfo * room;
+@property (nonatomic, strong, nullable) NSArray *members;
 //@property (nonatomic, strong) HostLBS * lbs;
 @end
 

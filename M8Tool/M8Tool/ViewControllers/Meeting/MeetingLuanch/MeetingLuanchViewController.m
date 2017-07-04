@@ -169,14 +169,51 @@
  */
 - (void)luanchCall:(TILCallType)callType {
     
-    int roomId = [[AppDelegate sharedAppDelegate] getRoomID];
+    LoadView *reqIdWaitView = [LoadView loadViewWith:@"正在请求房间ID"];
+    [self.view addSubview:reqIdWaitView];
+    __block CallRoomResponseData *roomData = nil;
+    __block NSString *imageUrl = nil;
+
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+        
+        //请求房间号
+        CallRoomRequest *callRoomReq = [[CallRoomRequest alloc] initWithHandler:^(BaseRequest *request) {
+            roomData = (CallRoomResponseData *)request.response.data;
+            dispatch_semaphore_signal(semaphore);
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [reqIdWaitView removeFromSuperview];
+                int callId = [roomData.callId integerValue];
+                [self enterCall:callId imageUrl:imageUrl callType:callType];
+            });
+            
+        } failHandler:^(BaseRequest *request) {
+            dispatch_semaphore_signal(semaphore);
+        }];
+        callRoomReq.token = [AppDelegate sharedAppDelegate].token;
+        [[WebServiceEngine sharedEngine] asyncRequest:callRoomReq];
+    });
+
+}
+
+- (void)enterCall:(int)roomId imageUrl:(NSString *)coverUrl callType:(TILCallType)callType
+{
+    TCShowLiveListItem *item = [[TCShowLiveListItem alloc] init];
+    item.uid = [[ILiveLoginManager getInstance] getLoginId];
+    item.members = self.selectedArray;
+    item.callType = callType;
+    item.info = [[ShowRoomInfo alloc] init];
+    item.info.title = _topic;
+    item.info.type = (callType == TILCALL_TYPE_VIDEO ? @"call_video" : @"call_audio");
+    item.info.roomnum = roomId;
+    item.info.groupid = [NSString stringWithFormat:@"%d", roomId];
+    item.info.cover = coverUrl ? coverUrl : @"";
+    item.info.appid = [ShowAppId intValue];
+    item.info.host = [[ILiveLoginManager getInstance] getLoginId];
     
-    M8MakeCallViewController *callVC = [[M8MakeCallViewController alloc] init];
-    callVC.membersArray = self.selectedArray;
-    callVC.callId       = roomId;
-    callVC.callType     = callType;
-    callVC.topic        = _topic;
-    [M8MeetWindow M8_addCallSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
+    M8MakeCallViewController *callVC = [[M8MakeCallViewController alloc] initWithItem:item];
+    [M8MeetWindow M8_addLiveSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
 }
 
 
@@ -184,7 +221,6 @@
  发起直播会议
  */
 - (void)luanchLiving {
-//  M8LiveJoinViewController *liveVC = [[M8LiveJoinViewController alloc] init];
     
     LoadView *reqIdWaitView = [LoadView loadViewWith:@"正在请求房间ID"];
     [self.view addSubview:reqIdWaitView];
@@ -206,7 +242,7 @@
         createRoomReq.type = @"live";
         [[WebServiceEngine sharedEngine] asyncRequest:createRoomReq];
         
-        
+        //上传图片
         [[M8UploadImageHelper shareInstance] upload:_coverImg completion:^(NSString *imageSaveUrl) {
             imageUrl = imageSaveUrl;
             dispatch_semaphore_signal(semaphore);

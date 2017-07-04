@@ -14,140 +14,112 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="djI-Mp-zGP">
-                    <rect key="frame" x="28.5" y="0.0" width="40" height="40"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="djI-Mp-zGP">
+                    <rect key="frame" x="10" y="0.0" width="40" height="40"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="40" id="SJy-Uh-UtA"/>
-                        <constraint firstAttribute="height" constant="40" id="gWt-Eb-1Kv"/>
+                        <constraint firstAttribute="height" constant="40" id="1d3-XM-PKV"/>
+                        <constraint firstAttribute="width" constant="40" id="Aby-4m-5zo"/>
                     </constraints>
-                    <state key="normal" title="左一">
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="分享">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="leftButton1Action:" destination="iN0-l3-epB" eventType="touchUpInside" id="Vjy-f7-yAZ"/>
+                        <action selector="onShareAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="mvq-9Y-09W"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tuq-Ul-ygI">
-                    <rect key="frame" x="98.5" y="0.0" width="40" height="40"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="左二"/>
+                <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tuq-Ul-ygI">
+                    <rect key="frame" x="60" y="0.0" width="155" height="40"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="   说点什么..."/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="leftButton2Action:" destination="iN0-l3-epB" eventType="touchUpInside" id="NvE-e2-n9J"/>
+                        <action selector="onNoteAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="kQ7-KS-wBb"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wXO-Cw-wG1">
-                    <rect key="frame" x="168" y="0.0" width="40" height="40"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="40" id="5Ex-Io-OVr"/>
-                        <constraint firstAttribute="height" constant="40" id="s4o-Zi-7zm"/>
-                    </constraints>
-                    <state key="normal" title="中"/>
+                <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wXO-Cw-wG1">
+                    <rect key="frame" x="225" y="0.0" width="40" height="40"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="私信"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="centerButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="VC2-S6-VYk"/>
+                        <action selector="onPrivateChatAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="iNE-yn-HBR"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1J-bU-kFv">
-                    <rect key="frame" x="236" y="0.0" width="40" height="40"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="右一">
+                <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1J-bU-kFv">
+                    <rect key="frame" x="275" y="0.0" width="40" height="40"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="菜单">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="rightButton1Action:" destination="iN0-l3-epB" eventType="touchUpInside" id="MZg-5I-bXa"/>
+                        <action selector="onMenuAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="A11-Cr-67u"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iST-LJ-w2N">
-                    <rect key="frame" x="306" y="0.0" width="40" height="40"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="右二">
+                <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iST-LJ-w2N">
+                    <rect key="frame" x="325" y="0.0" width="40" height="40"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="缩小">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="rightButton2Action:" destination="iN0-l3-epB" eventType="touchUpInside" id="YA2-sK-jku"/>
+                        <action selector="onSwichRenderAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="AEL-0b-5HM"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TiT-63-wA3">
-                    <rect key="frame" x="0.0" y="0.0" width="29" height="40"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Aa-gD-z3C">
-                    <rect key="frame" x="138.5" y="0.0" width="29.5" height="40"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MfB-L8-U6Y">
-                    <rect key="frame" x="208" y="0.0" width="28.5" height="40"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SeX-F2-TmJ">
-                    <rect key="frame" x="276" y="0.0" width="29.5" height="40"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ON-J2-gfw">
-                    <rect key="frame" x="68.5" y="0.0" width="29.5" height="40"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtk-Sc-egx">
-                    <rect key="frame" x="346" y="0.0" width="29" height="40"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="wXO-Cw-wG1" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="0hg-Jk-R5F"/>
-                <constraint firstItem="1ON-J2-gfw" firstAttribute="centerY" secondItem="TiT-63-wA3" secondAttribute="centerY" id="1IU-cK-f7j"/>
-                <constraint firstItem="SeX-F2-TmJ" firstAttribute="width" secondItem="TiT-63-wA3" secondAttribute="width" id="1ZV-5d-94k"/>
-                <constraint firstItem="MfB-L8-U6Y" firstAttribute="leading" secondItem="wXO-Cw-wG1" secondAttribute="trailing" id="34h-PD-Hex"/>
-                <constraint firstItem="e1J-bU-kFv" firstAttribute="height" secondItem="djI-Mp-zGP" secondAttribute="height" id="40g-9N-cUD"/>
-                <constraint firstItem="djI-Mp-zGP" firstAttribute="leading" secondItem="TiT-63-wA3" secondAttribute="trailing" id="4pa-cA-iFb"/>
-                <constraint firstItem="8Aa-gD-z3C" firstAttribute="height" secondItem="TiT-63-wA3" secondAttribute="height" id="8Q1-Ra-wr0"/>
-                <constraint firstItem="iST-LJ-w2N" firstAttribute="height" secondItem="djI-Mp-zGP" secondAttribute="height" id="8dY-zD-TTC"/>
-                <constraint firstItem="e1J-bU-kFv" firstAttribute="width" secondItem="djI-Mp-zGP" secondAttribute="width" id="9V8-qA-iux"/>
-                <constraint firstItem="Tuq-Ul-ygI" firstAttribute="width" secondItem="djI-Mp-zGP" secondAttribute="width" id="9oH-YB-hdx"/>
-                <constraint firstItem="e1J-bU-kFv" firstAttribute="bottom" secondItem="wXO-Cw-wG1" secondAttribute="bottom" id="CvM-8d-Slu"/>
-                <constraint firstItem="1ON-J2-gfw" firstAttribute="leading" secondItem="djI-Mp-zGP" secondAttribute="trailing" id="EtU-H4-bwm"/>
-                <constraint firstItem="MfB-L8-U6Y" firstAttribute="centerY" secondItem="TiT-63-wA3" secondAttribute="centerY" id="GlN-mN-4B4"/>
-                <constraint firstItem="djI-Mp-zGP" firstAttribute="bottom" secondItem="wXO-Cw-wG1" secondAttribute="bottom" id="ItY-TA-t6X"/>
-                <constraint firstItem="Tuq-Ul-ygI" firstAttribute="leading" secondItem="1ON-J2-gfw" secondAttribute="trailing" id="Iw6-pv-WSt"/>
-                <constraint firstItem="vtk-Sc-egx" firstAttribute="width" secondItem="TiT-63-wA3" secondAttribute="width" id="JlC-Xo-ynY"/>
-                <constraint firstItem="Tuq-Ul-ygI" firstAttribute="height" secondItem="djI-Mp-zGP" secondAttribute="height" id="LfI-Cl-sLj"/>
-                <constraint firstItem="wXO-Cw-wG1" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="OE2-sB-tMg"/>
-                <constraint firstAttribute="trailing" secondItem="vtk-Sc-egx" secondAttribute="trailing" id="Pt4-kZ-5GW"/>
-                <constraint firstItem="MfB-L8-U6Y" firstAttribute="height" secondItem="TiT-63-wA3" secondAttribute="height" id="Rvb-tR-PiA"/>
-                <constraint firstItem="SeX-F2-TmJ" firstAttribute="leading" secondItem="e1J-bU-kFv" secondAttribute="trailing" id="Tp4-Qg-vBU"/>
-                <constraint firstItem="1ON-J2-gfw" firstAttribute="height" secondItem="TiT-63-wA3" secondAttribute="height" id="UbL-yt-SnC"/>
-                <constraint firstItem="iST-LJ-w2N" firstAttribute="bottom" secondItem="wXO-Cw-wG1" secondAttribute="bottom" id="V3L-Gv-ZNl"/>
-                <constraint firstItem="Tuq-Ul-ygI" firstAttribute="bottom" secondItem="wXO-Cw-wG1" secondAttribute="bottom" id="WF2-pc-kac"/>
-                <constraint firstItem="8Aa-gD-z3C" firstAttribute="width" secondItem="TiT-63-wA3" secondAttribute="width" id="X28-Uq-Rf8"/>
-                <constraint firstItem="vtk-Sc-egx" firstAttribute="centerY" secondItem="TiT-63-wA3" secondAttribute="centerY" id="YhD-tJ-vYW"/>
-                <constraint firstItem="TiT-63-wA3" firstAttribute="height" secondItem="djI-Mp-zGP" secondAttribute="height" id="Zay-8R-Y1W"/>
-                <constraint firstItem="e1J-bU-kFv" firstAttribute="leading" secondItem="MfB-L8-U6Y" secondAttribute="trailing" id="c91-HY-Dtp"/>
-                <constraint firstItem="vtk-Sc-egx" firstAttribute="leading" secondItem="iST-LJ-w2N" secondAttribute="trailing" id="dGR-5D-Fx4"/>
-                <constraint firstItem="TiT-63-wA3" firstAttribute="centerY" secondItem="djI-Mp-zGP" secondAttribute="centerY" id="fgA-YV-4kK"/>
-                <constraint firstItem="SeX-F2-TmJ" firstAttribute="height" secondItem="TiT-63-wA3" secondAttribute="height" id="fio-R0-xf7"/>
-                <constraint firstItem="MfB-L8-U6Y" firstAttribute="width" secondItem="TiT-63-wA3" secondAttribute="width" id="gOK-Lh-7GL"/>
-                <constraint firstItem="iST-LJ-w2N" firstAttribute="width" secondItem="djI-Mp-zGP" secondAttribute="width" id="gUZ-fg-BTJ"/>
-                <constraint firstItem="8Aa-gD-z3C" firstAttribute="leading" secondItem="Tuq-Ul-ygI" secondAttribute="trailing" id="jc1-At-RQ7"/>
-                <constraint firstItem="iST-LJ-w2N" firstAttribute="leading" secondItem="SeX-F2-TmJ" secondAttribute="trailing" id="mTa-C5-pD0"/>
-                <constraint firstItem="8Aa-gD-z3C" firstAttribute="centerY" secondItem="TiT-63-wA3" secondAttribute="centerY" id="o3h-PV-o4D"/>
-                <constraint firstItem="TiT-63-wA3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qF3-qO-Gtx"/>
-                <constraint firstItem="vtk-Sc-egx" firstAttribute="height" secondItem="TiT-63-wA3" secondAttribute="height" id="tUS-aS-R0A"/>
-                <constraint firstItem="1ON-J2-gfw" firstAttribute="width" secondItem="TiT-63-wA3" secondAttribute="width" id="vrC-sX-eMc"/>
-                <constraint firstItem="SeX-F2-TmJ" firstAttribute="centerY" secondItem="TiT-63-wA3" secondAttribute="centerY" id="ybD-sK-rqN"/>
-                <constraint firstItem="wXO-Cw-wG1" firstAttribute="leading" secondItem="8Aa-gD-z3C" secondAttribute="trailing" id="ylO-Qe-D1A"/>
+                <constraint firstItem="e1J-bU-kFv" firstAttribute="width" secondItem="djI-Mp-zGP" secondAttribute="width" id="IVF-DC-EPX"/>
+                <constraint firstItem="wXO-Cw-wG1" firstAttribute="height" secondItem="djI-Mp-zGP" secondAttribute="height" id="KI3-cv-gOj"/>
+                <constraint firstItem="Tuq-Ul-ygI" firstAttribute="centerY" secondItem="djI-Mp-zGP" secondAttribute="centerY" id="KMc-do-QOQ"/>
+                <constraint firstItem="wXO-Cw-wG1" firstAttribute="width" secondItem="djI-Mp-zGP" secondAttribute="width" id="KUv-UD-Clx"/>
+                <constraint firstItem="e1J-bU-kFv" firstAttribute="height" secondItem="djI-Mp-zGP" secondAttribute="height" id="Ojb-iD-ysh"/>
+                <constraint firstItem="e1J-bU-kFv" firstAttribute="leading" secondItem="wXO-Cw-wG1" secondAttribute="trailing" constant="10" id="R00-lu-TaR"/>
+                <constraint firstItem="e1J-bU-kFv" firstAttribute="centerY" secondItem="djI-Mp-zGP" secondAttribute="centerY" id="R4l-xk-Kla"/>
+                <constraint firstItem="djI-Mp-zGP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="RSy-Is-MRt"/>
+                <constraint firstItem="wXO-Cw-wG1" firstAttribute="centerY" secondItem="djI-Mp-zGP" secondAttribute="centerY" id="TNS-O1-Bfa"/>
+                <constraint firstItem="iST-LJ-w2N" firstAttribute="leading" secondItem="e1J-bU-kFv" secondAttribute="trailing" constant="10" id="cI7-pz-HIy"/>
+                <constraint firstItem="wXO-Cw-wG1" firstAttribute="leading" secondItem="Tuq-Ul-ygI" secondAttribute="trailing" constant="10" id="dUA-4W-E84"/>
+                <constraint firstItem="Tuq-Ul-ygI" firstAttribute="leading" secondItem="djI-Mp-zGP" secondAttribute="trailing" constant="10" id="gm0-8Q-0ol"/>
+                <constraint firstAttribute="trailing" secondItem="iST-LJ-w2N" secondAttribute="trailing" constant="10" id="haK-ae-gBM"/>
+                <constraint firstItem="iST-LJ-w2N" firstAttribute="centerY" secondItem="djI-Mp-zGP" secondAttribute="centerY" id="jjb-3V-jSe"/>
+                <constraint firstItem="iST-LJ-w2N" firstAttribute="height" secondItem="djI-Mp-zGP" secondAttribute="height" id="jlA-o8-m5f"/>
+                <constraint firstItem="Tuq-Ul-ygI" firstAttribute="height" secondItem="djI-Mp-zGP" secondAttribute="height" id="l5W-wr-DBn"/>
+                <constraint firstItem="djI-Mp-zGP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="meg-zB-LFA"/>
+                <constraint firstItem="iST-LJ-w2N" firstAttribute="width" secondItem="djI-Mp-zGP" secondAttribute="width" id="uEs-8T-WZ5"/>
             </constraints>
             <connections>
                 <outlet property="centerButton" destination="wXO-Cw-wG1" id="Mrb-vo-9C7"/>
@@ -156,6 +128,7 @@
                 <outlet property="rightButton1" destination="e1J-bU-kFv" id="9HI-8z-IMK"/>
                 <outlet property="rightButton2" destination="iST-LJ-w2N" id="tgL-Pf-lqT"/>
             </connections>
+            <point key="canvasLocation" x="16.5" y="72.5"/>
         </view>
     </objects>
 </document>

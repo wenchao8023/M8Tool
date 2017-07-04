@@ -8,13 +8,8 @@
 
 #import "M8LiveInfoView.h"
 
-#import "M8LiveHeaderView.h"
-#import "M8LiveNoteView.h"
-#import "M8LiveDeviceView.h"
 
-#import "M8MeetWindow.h"
-
-@interface M8LiveInfoView ()<LiveDeviceViewDelegate>
+@interface M8LiveInfoView ()
 
 @property (nonatomic, strong) M8LiveHeaderView *headerView;
 @property (nonatomic, strong) M8LiveNoteView   *noteView;
@@ -121,52 +116,8 @@
     self.noteView.textView.text = dicStr;
 }
 
-#pragma mark - delegates
-#pragma mark -- LiveDeviceViewDelegate
-- (void)LiveDeviceViewActionInfo:(NSDictionary *)actionInfo {
-    NSString *infoKey = [[actionInfo allKeys] firstObject];
-    NSString *infoValue = [actionInfo valueForKey:infoKey];
-    
-    [self addTextToView:actionInfo];
-    if ([infoValue isEqualToString:@"onRightButton2Action"]) {
-        [M8MeetWindow M8_showFloatView];
-    }
-}
 
 
-#pragma mark - 消息回调
-- (void)onTextMessage:(ILVLiveTextMessage *)msg{
-    [self addTextToView:[NSString stringWithFormat:@"收到文本消息:%@",msg.text]];
-}
-
-- (void)onCustomMessage:(ILVLiveCustomMessage *)msg{
-    switch (msg.cmd) {
-        case ILVLIVE_IMCMD_INTERACT_REJECT:
-            [self addTextToView:[NSString stringWithFormat:@"%@拒绝了你的上麦邀请",msg.sendId]];
-            break;
-        case ILVLIVE_IMCMD_INVITE_CLOSE:
-            [self addTextToView:[NSString stringWithFormat:@"%@已经下麦",msg.sendId]];
-            break;
-        case ILVLIVE_IMCMD_INTERACT_AGREE:
-            [self addTextToView:[NSString stringWithFormat:@"%@同意了你的上麦邀请",msg.sendId]];
-            break;
-        case ILVLIVE_IMCMD_LEAVE:
-            [self addTextToView:[NSString stringWithFormat:@"%@退出房间",msg.sendId]];
-            break;
-        case ILVLIVE_IMCMD_ENTER:
-            [self addTextToView:[NSString stringWithFormat:@"%@进入房间",msg.sendId]];
-            break;
-        case ILVLIVE_IMCMD_CUSTOM_LOW_LIMIT:
-        {
-            //用户自定义消息
-            NSString *text = [NSString stringWithFormat:@"收到自定义消息:cmd=%ld,data=%@",(long)msg.cmd,[[NSString alloc] initWithData:msg.data encoding:NSUTF8StringEncoding]];
-            [self addTextToView:text];
-            break;
-        }
-        default:
-            break;
-    }
-}
 
 
 @end

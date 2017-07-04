@@ -31,6 +31,9 @@
 
 @property (nonatomic, copy) NSString *uid;
 @property (nonatomic, strong) ShowRoomInfo *info;
+@property (nonatomic, strong, nullable) NSArray *members;   //通话中邀请的成员
+@property (nonatomic, assign) TILCallType callType; //通话模式（音频、视频）
+
 
 + (instancetype)loadFromToLocal;
 

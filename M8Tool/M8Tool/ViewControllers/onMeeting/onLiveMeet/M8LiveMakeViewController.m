@@ -120,7 +120,39 @@
     [[WebServiceEngine sharedEngine] asyncRequest:reportReq];
 }
 
+- (BOOL)onRoomDisconnect:(int)reason
+{
+    return NO;
+}
+/*!
+ @abstract      本地画面预览回调
+ @param         frameData       本地视频帧数据
+ @see           QAVVideoFrame
+ */
+- (void)OnLocalVideoPreview:(QAVVideoFrame *)frameData
+{
+    
+}
 
+/*!
+ @abstract      本地画面预处理视频回调，修改了data的数据后会在编码后传给服务器。
+ @param         frameData       本地视频帧数据
+ @see           QAVVideoFrame
+ */
+- (void)OnLocalVideoPreProcess:(QAVVideoFrame *)frameData
+{
+    
+}
+
+/*!
+ @abstract      摄像头返回的本地画面原始数据
+ @param         buf             本地视频帧原始数据
+ @param         ret             本地视频帧原始数据
+ */
+- (void)OnLocalVideoRawSampleBuf:(CMSampleBufferRef)buf result:(CMSampleBufferRef *)ret
+{
+    
+}
 
 
 #pragma mark - 创建界面
@@ -147,6 +179,20 @@
 }
 
 - (void)selfDismiss {
+    
+    //通知业务服务器，退房
+    ExitRoomRequest *exitReq = [[ExitRoomRequest alloc] initWithHandler:^(BaseRequest *request) {
+        NSLog(@"上报退出房间成功");
+    } failHandler:^(BaseRequest *request) {
+        NSLog(@"上报退出房间失败");
+    }];
+    
+    exitReq.token = [AppDelegate sharedAppDelegate].token;
+    exitReq.roomnum = _liveItem.info.roomnum;
+    exitReq.type = @"live";
+    [[WebServiceEngine sharedEngine] asyncRequest:exitReq wait:NO];
+    
+    
     TILLiveManager *manager = [TILLiveManager getInstance];
     __weak typeof(self) ws = self;
     [manager quitRoom:^{

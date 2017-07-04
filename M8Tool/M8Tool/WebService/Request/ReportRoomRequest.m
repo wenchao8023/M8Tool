@@ -22,11 +22,26 @@
 
 - (NSDictionary *)packageParams
 {
-    NSDictionary *dic = @{ @"token" : _token,
-                           @"room"  : [_room toRoomDic],
-                        };
-    //@"lbs"   : [_lbs toLBSDic]
-    return dic;
+    if (_members && _members.count)
+    {
+        return @{
+                    @"token"   : _token,
+                    @"room"    : [_room toRoomDic],
+                    @"members" : _members
+                };
+    }
+    else
+    {
+        return @{
+                     @"token"   : _token,
+                     @"room"    : [_room toRoomDic],
+                };
+    }
+//    NSDictionary *dic = @{ @"token" : _token,
+//                           @"room"  : [_room toRoomDic],
+//                        };
+//    //@"lbs"   : [_lbs toLBSDic]
+//    return dic;
 }
 @end
 
