@@ -88,7 +88,6 @@ static WebServiceEngine *_sharedEngine = nil;
         {
             dispatch_sync(dispatch_get_main_queue(), ^{
                 
-//                [NSString isEmpty:msg] ? [[HUDHelper sharedInstance] syncLoading] : [[HUDHelper sharedInstance] syncLoading:msg];
             });
         }
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
@@ -127,7 +126,7 @@ static WebServiceEngine *_sharedEngine = nil;
                 TCILDebugLog(@"sxbparse responseString--> %@",responseString);
                 NSLog(@"[%@] request's responseString is :\n================================\n %@ \n================================" , [req class], responseString);
                 //TODO
-                NSObject *jsonObj = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];//[responseString objectFromJSONString];
+                NSObject *jsonObj = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
                 if (jsonObj)
                 {
                     TCILDebugLog(@"sxbparse --> %@",jsonObj);

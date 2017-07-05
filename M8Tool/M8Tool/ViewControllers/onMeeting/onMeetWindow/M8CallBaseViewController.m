@@ -21,7 +21,7 @@
 
 @implementation M8CallBaseViewController
 
-- (instancetype)initWithItem:(id)item {
+- (instancetype)initWithItem:(TCShowLiveListItem *)item {
     if (self = [super init]) {
         _liveItem = item;
         _isHost = YES;
@@ -148,7 +148,7 @@
         self.view.frame = frame;
     } completion:^(BOOL finished) {
         // 3. 应该要通知 通话界面 重新刷新位置
-        [self.renderView updateRenderCollection];
+//        [self.renderView updateRenderCollection];
     }];
 }
 
@@ -174,7 +174,7 @@
 
 - (M8CallRenderView *)renderView {
     if (!_renderView) {
-        M8CallRenderView *renderView = [[M8CallRenderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        M8CallRenderView *renderView = [[M8CallRenderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) item:_liveItem isHost:_isHost];
         renderView.WCDelegate = self;
         [self.view addSubview:(_renderView = renderView)];
     }

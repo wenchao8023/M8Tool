@@ -99,8 +99,11 @@
 - (void)reportRoomInfo:(int)roomId groupId:(NSString *)groupid
 {
     WCWeakSelf(self);
+    __block ReportRoomResponseData *reportRoomData = nil;
     ReportRoomRequest *reportReq = [[ReportRoomRequest alloc] initWithHandler:^(BaseRequest *request) {
-        
+        reportRoomData = (ReportRoomResponseData *)request.response.data;
+        weakself.renderView.mid = reportRoomData.mid;
+//        [weakself addTextToView:[NSString stringWithFormat:@"%d", reportRoomData.mid]];
         [weakself addTextToView:@"上报房间信息成功"];
     } failHandler:^(BaseRequest *request) {
         // 上传失败

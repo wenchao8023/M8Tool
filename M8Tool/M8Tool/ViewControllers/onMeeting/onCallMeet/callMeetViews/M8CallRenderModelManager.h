@@ -8,13 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-
-@class M8CallRenderModelManager;
-@class M8CallRenderModel;
 @protocol RenderModelManagerDelegate <NSObject>
 
-- (void)renderModelManager:(M8CallRenderModelManager *_Nonnull)modelManager
-              currentModel:(M8CallRenderModel *_Nullable)currentModel
+- (void)renderModelManager:(id _Nonnull)modelManager
+              currentModel:(id _Nullable)currentModel
+              membersArray:(NSArray *_Nullable)membersArray;
+
+@optional
+- (void)renderModelManager:(id _Nonnull)modelManager
+         currentIdentifier:(NSString *_Nullable)curId
               membersArray:(NSArray *_Nullable)membersArray;
 
 @end
@@ -29,7 +31,6 @@
 @property (nonatomic, assign) TILCallType callType;
 
 @property (nonatomic, weak) id _Nullable WCDelegate;
-
 
 
 

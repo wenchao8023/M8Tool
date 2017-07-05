@@ -51,5 +51,7 @@
 
 #import "CallRoomRequest.h"
 
+#import "ReportCallMemRequest.h"
+
 
 #endif /* RequestHeader_h */

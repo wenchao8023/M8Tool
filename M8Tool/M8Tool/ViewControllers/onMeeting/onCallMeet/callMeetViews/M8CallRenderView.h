@@ -19,7 +19,17 @@
 
 
 @interface M8CallRenderView : UIView<TILCallMemberEventListener, TILCallNotificationListener, TILCallStatusListener>
+{
+    TCShowLiveListItem *_liveItem;
+    BOOL _isHost;
+}
 
+- (instancetype _Nonnull )initWithFrame:(CGRect)frame item:(TCShowLiveListItem *_Nonnull)item isHost:(BOOL)isHost;
+
+/**
+ 记录房间号，用于上报成员信息
+ */
+@property (nonatomic, assign) NSInteger mid;
 
 /**
  会议发起人
@@ -53,6 +63,8 @@
  */
 - (void)updateRenderCollection;
 
-
+- (void)updateWithModelManager:(id _Nonnull)modelManger
+             currentIdentifier:(NSString * _Nullable)curId
+                  membersArray:(NSArray * _Nullable)membersArray;
 
 @end

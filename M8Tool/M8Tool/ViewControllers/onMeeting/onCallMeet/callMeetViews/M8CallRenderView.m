@@ -15,7 +15,7 @@
 
 
 
-@interface M8CallRenderView ()<UICollectionViewDelegate, UICollectionViewDataSource, RenderModelManagerDelegate>
+@interface M8CallRenderView ()<UICollectionViewDelegate, UICollectionViewDataSource>
 {
     CGRect _myFrame;
 }
@@ -43,26 +43,33 @@
 
 @implementation M8CallRenderView
 
+
+
+
 #pragma mark - init
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
+- (instancetype)initWithFrame:(CGRect)frame item:(TCShowLiveListItem *)item isHost:(BOOL)isHost
+{
+    if (self = [super initWithFrame:frame])
+    {
         self = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil] firstObject];
-        _myFrame = frame;
+        _myFrame    = frame;
+        _liveItem   = item;
+        _isHost     = isHost;
     }
     return self;
 }
 
-- (M8CallRenderModelManager *)modelManager {
-    if (!_modelManager) {
-        M8CallRenderModelManager *modelManager = [[M8CallRenderModelManager  alloc] init];
-        modelManager.WCDelegate     = self;
-        modelManager.hostIdentify   = self.hostIdentify;
-        modelManager.loginIdentify  = self.loginIdentify;
-        modelManager.callType       = [self.call getCallType];
-        _modelManager = modelManager;
-    }
-    return _modelManager;
-}
+//- (M8CallRenderModelManager *)modelManager {
+//    if (!_modelManager) {
+//        M8CallRenderModelManager *modelManager = [[M8CallRenderModelManager  alloc] init];
+//        modelManager.WCDelegate     = self;
+//        modelManager.hostIdentify   = self.hostIdentify;
+//        modelManager.loginIdentify  = self.loginIdentify;
+//        modelManager.callType       = [self.call getCallType];
+//        _modelManager = modelManager;
+//    }
+//    return _modelManager;
+//}
 
 - (NSString *)loginIdentify {
     if (!_loginIdentify) {
@@ -117,10 +124,13 @@
 
 #pragma mark - Delegate
 #pragma mark -- respondsToDelegate
-- (void)callRenderActionInfoValue:(id)value key:(NSString *)key {
-    if (value) {
+- (void)callRenderActionInfoValue:(id)value key:(NSString *)key
+{
+    if (value)
+    {
         NSDictionary *actionInfo = @{key : value};
-        if ([self.WCDelegate respondsToSelector:@selector(CallRenderActionInfo:)]) {
+        if ([self.WCDelegate respondsToSelector:@selector(CallRenderActionInfo:)])
+        {
             [self.WCDelegate CallRenderActionInfo:actionInfo];
         }
     }
@@ -128,23 +138,35 @@
 
 
 #pragma mark -- RenderModelManagerDelegate
-- (void)renderModelManager:(M8CallRenderModelManager *)modelManager currentModel:(M8CallRenderModel *)currentModel membersArray:(NSArray *)membersArray {
+//- (void)renderModelManager:(M8CallRenderModelManager *)modelManager currentModel:(M8CallRenderModel *)currentModel membersArray:(NSArray *)membersArray {
+//    
+//    self.membersArray = membersArray;
+//    _currentIdentify = currentModel.identify;
+//    
+//    [self updateRenderCollection];
+//    
+//    
+//    if (currentModel.identify) {
+//        [self callRenderActionInfoValue:@{currentModel.identify : currentModel} key:kCallValue_model];
+//    }
+//    else {
+//        if (membersArray.count) {
+//            M8CallRenderModel *model = membersArray[0];
+//            [self callRenderActionInfoValue:@{model.identify : model} key:kCallValue_model];
+//        }
+//    }
+//}
+- (void)updateWithModelManager:(M8CallRenderModelManager *)modelManger currentIdentifier:(NSString *)curId membersArray:(NSArray *)membersArray
+{
+    self.modelManager = nil;
+    self.membersArray = nil;
+    _currentIdentify = nil;
     
+    self.modelManager = modelManger;
     self.membersArray = membersArray;
-    _currentIdentify = currentModel.identify;
+    _currentIdentify  = curId;
     
-    [self updateRenderCollection];
-    
-    
-    if (currentModel.identify) {
-        [self callRenderActionInfoValue:@{currentModel.identify : currentModel} key:kCallValue_model];
-    }
-    else {
-        if (membersArray.count) {
-            M8CallRenderModel *model = membersArray[0];
-            [self callRenderActionInfoValue:@{model.identify : model} key:kCallValue_model];
-        }
-    }
+    [self.renderCollection reloadData];
 }
 
 
@@ -167,157 +189,176 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    if ([self.call getCallType] == TILCALL_TYPE_VIDEO) {
-        if (![self.modelManager onSelectItemAtIndexPath:indexPath]) {
+    if ([self.call getCallType] == TILCALL_TYPE_VIDEO)
+    {
+        if (self.modelManager &&
+            ![self.modelManager onSelectItemAtIndexPath:indexPath])
+        {
             [self addTextToView:@"没有成员开启摄像头"];
         }
     }
-    else if ([self.call getCallType] == TILCALL_TYPE_AUDIO) {
+    else if ([self.call getCallType] == TILCALL_TYPE_AUDIO)
+    {
         [self addTextToView:@"此时在音频模式下，不支持背景视图观看"];
     }
 }
 
-/**
- 建立通话成功
- */
-- (void)onCallEstablish {
-    [self addTextToView:@"通话建立成功"];
-}
+//
+//#pragma mark -- 音视频事件回调
+//- (void)onMemberAudioOn:(BOOL)isOn members:(NSArray *)members
+//{
+//    for (TILCallMember *member in members) {
+//        
+//        NSString *identify = member.identifier;
+//        [self.modelManager memberNotifyWithID:identify];
+//        [self.modelManager onMemberAudioOn:isOn WithID:identify];
+//    }
+//}
+//
+//- (void)onMemberCameraVideoOn:(BOOL)isOn members:(NSArray *)members
+//{
+//    for (TILCallMember *member in members) {
+//
+//        NSString *identify = member.identifier;
+//        [self.modelManager memberNotifyWithID:identify];
+//        [self.modelManager onMemberCameraVideoOn:isOn WithID:identify];
+//        
+//        if (isOn) {
+//            [self.call addRenderFor:identify atFrame:CGRectZero];
+//        }
+//        else {
+//            [self.call removeRenderFor:identify];
+//        }
+//    }
+//}
+//
+//
+//
+//
+//#pragma mark -- 通知回调
+//- (void)onRecvNotification:(TILCallNotification *)notify
+//{
+//    NSInteger notifId = notify.notifId;
+//    NSString *sender = notify.sender;
+//    NSString *target = [notify.targets componentsJoinedByString:@";"];
+//    
+//    [self.modelManager memberNotifyWithID:sender];
+//    
+//    switch (notifId) {
+//        case TILCALL_NOTIF_INVITE:
+//            [self addTextToView:[NSString stringWithFormat:@"%@邀请%@通话",sender,target]];
+//            break;
+//        case TILCALL_NOTIF_ACCEPTED:
+//        {   /*
+//             * sender 不会是发起方
+//             * sender 不会是 App登录用户 的接收方
+//             */
+//            [self reportCallMem:sender statu:1];
+//            [self addTextToView:[NSString stringWithFormat:@"%@接受了%@的邀请",sender,target]];
+//            [self callRenderActionInfoValue:[NSString stringWithFormat:@"%d", (self.shouldHangup = YES)] key:kCallValue_bool];
+//            [self.modelManager memberReceiveWithID:sender];
+//        }
+//            
+//            break;
+//        case TILCALL_NOTIF_CANCEL:
+//        {
+//            [self addTextToView:[NSString stringWithFormat:@"%@取消了对%@的邀请",sender,target]];
+//            if([notify.targets containsObject:self.loginIdentify]){
+//                [self addTextToView:@"通话被取消"];
+//                [self selfDismiss];
+//            }
+//        }
+//            break;
+//        case TILCALL_NOTIF_TIMEOUT:
+//        {
+//            if([sender isEqualToString:self.loginIdentify]) {
+//                [self addTextToView:[NSString stringWithFormat:@"%@呼叫超时",sender]];
+//                [self selfDismiss];
+//            }
+//            else{
+//                [self reportCallMem:sender statu:0];
+//                [self addTextToView:[NSString stringWithFormat:@"%@手机可能不在身边",sender]];
+//                [self.modelManager memberTimeoutWithID:sender];
+//            }
+//        }
+//            break;
+//        case TILCALL_NOTIF_REFUSE:
+//        {
+//            [self reportCallMem:sender statu:2];
+//            [self addTextToView:[NSString stringWithFormat:@"%@拒绝了%@的邀请",sender,target]];
+//            [self.modelManager memberRejectInviteWithID:sender];
+//        }
+//            break;
+//        case TILCALL_NOTIF_HANGUP:
+//        {
+//            [self addTextToView:[NSString stringWithFormat:@"%@挂断了%@邀请的通话",sender,target]];
+//            
+//            [self.modelManager memberHangupWithID:sender];
+//        }
+//            break;
+//        case TILCALL_NOTIF_LINEBUSY:
+//        {
+//            [self addTextToView:[NSString stringWithFormat:@"%@占线，无法接受%@的邀请",sender,target]];
+//            [self.modelManager memberLineBusyWithID:sender];
+//        }
+//            
+//            break;
+//        case TILCALL_NOTIF_HEARTBEAT:
+//        {
+//            [self addTextToView:[NSString stringWithFormat:@"%@发来心跳",sender]];
+//        }
+//            
+//            break;
+//        case TILCALL_NOTIF_DISCONNECT:
+//        {
+//            [self addTextToView:[NSString stringWithFormat:@"%@失去连接",sender]];
+//            if([sender isEqualToString:self.loginIdentify]){
+//                [self selfDismiss];
+//            }
+//            else {
+//                [self.modelManager memberDisconnetWithID:sender];
+//            }
+//        }
+//            break;
+//        default:
+//            break;
+//    }
+//}
 
-/**
- 通话结束
- 
- @param code 结束原因
- */
-- (void)onCallEnd:(TILCallEndCode)code {
-    [self addTextToView:@"通话结束"];
-}
 
-#pragma mark -- 音视频事件回调
-- (void)onMemberAudioOn:(BOOL)isOn members:(NSArray *)members
-{
-    for (TILCallMember *member in members) {
-        
-        NSString *identify = member.identifier;
-        [self.modelManager memberNotifyWithID:identify];
-        [self.modelManager onMemberAudioOn:isOn WithID:identify];
-    }
-}
-
-- (void)onMemberCameraVideoOn:(BOOL)isOn members:(NSArray *)members
-{
-    for (TILCallMember *member in members) {
-
-        NSString *identify = member.identifier;
-        [self.modelManager memberNotifyWithID:identify];
-        [self.modelManager onMemberCameraVideoOn:isOn WithID:identify];
-        
-        if (isOn) {
-            [self.call addRenderFor:identify atFrame:CGRectZero];
-        }
-        else {
-            [self.call removeRenderFor:identify];
-        }
-    }
-}
-
-
-
-
-#pragma mark -- 通知回调
-- (void)onRecvNotification:(TILCallNotification *)notify
-{
-    NSInteger notifId = notify.notifId;
-    NSString *sender = notify.sender;
-    NSString *target = [notify.targets componentsJoinedByString:@";"];
-    
-    [self.modelManager memberNotifyWithID:sender];
-    
-    switch (notifId) {
-        case TILCALL_NOTIF_INVITE:
-            [self addTextToView:[NSString stringWithFormat:@"%@邀请%@通话",sender,target]];
-            break;
-        case TILCALL_NOTIF_ACCEPTED:
-        {   /*
-             * sender 不会是发起方
-             * sender 不会是 App登录用户 的接收方
-             */
-            [self addTextToView:[NSString stringWithFormat:@"%@接受了%@的邀请",sender,target]];
-            [self callRenderActionInfoValue:[NSString stringWithFormat:@"%d", (self.shouldHangup = YES)] key:kCallValue_bool];
-            [self.modelManager memberReceiveWithID:sender];
-        }
-            
-            break;
-        case TILCALL_NOTIF_CANCEL:
-        {
-            [self addTextToView:[NSString stringWithFormat:@"%@取消了对%@的邀请",sender,target]];
-            if([notify.targets containsObject:self.loginIdentify]){
-                [self addTextToView:@"通话被取消"];
-                [self selfDismiss];
-            }
-        }
-            break;
-        case TILCALL_NOTIF_TIMEOUT:
-        {
-            if([sender isEqualToString:self.loginIdentify]) {
-                [self addTextToView:[NSString stringWithFormat:@"%@呼叫超时",sender]];
-                [self selfDismiss];
-            }
-            else{
-                [self addTextToView:[NSString stringWithFormat:@"%@手机可能不在身边",sender]];
-                [self.modelManager memberTimeoutWithID:sender];
-            }
-        }
-            break;
-        case TILCALL_NOTIF_REFUSE:
-        {
-            [self addTextToView:[NSString stringWithFormat:@"%@拒绝了%@的邀请",sender,target]];
-            [self.modelManager memberRejectInviteWithID:sender];
-        }
-            break;
-        case TILCALL_NOTIF_HANGUP:
-        {
-            [self addTextToView:[NSString stringWithFormat:@"%@挂断了%@邀请的通话",sender,target]];
-            
-            [self.modelManager memberHangupWithID:sender];
-        }
-            break;
-        case TILCALL_NOTIF_LINEBUSY:
-        {
-            [self addTextToView:[NSString stringWithFormat:@"%@占线，无法接受%@的邀请",sender,target]];
-            [self.modelManager memberLineBusyWithID:sender];
-        }
-            
-            break;
-        case TILCALL_NOTIF_HEARTBEAT:
-        {
-            [self addTextToView:[NSString stringWithFormat:@"%@发来心跳",sender]];
-        }
-            
-            break;
-        case TILCALL_NOTIF_DISCONNECT:
-        {
-            [self addTextToView:[NSString stringWithFormat:@"%@失去连接",sender]];
-            if([sender isEqualToString:self.loginIdentify]){
-                [self selfDismiss];
-            }
-            else {
-                [self.modelManager memberDisconnetWithID:sender];
-            }
-        }
-            break;
-        default:
-            break;
-    }
-}
-
+//#pragma mark - 上报成员信息
+//- (void)reportCallMem:(NSString *)mem statu:(int)statu {
+//    /* *token;
+//     *uid;
+//     ger mid;
+//     ger statu*/
+//    WCWeakSelf(self);
+//    ReportCallMemRequest *reportMemReq = [[ReportCallMemRequest alloc] initWithHandler:^(BaseRequest *request) {
+//        [weakself addTextToView:[NSString stringWithFormat:@"上报成员:%@ -- 状态:%d, 成功", mem, statu]];
+//    } failHandler:^(BaseRequest *request) {
+//        [weakself addTextToView:[NSString stringWithFormat:@"上报成员状态失败\n错误码:%ld，错误信息: %@", (long)request.response.errorCode, request.response.errorInfo]];
+//    }];
+//    reportMemReq.token = [AppDelegate sharedAppDelegate].token;
+//    reportMemReq.uid = mem;
+//    reportMemReq.mid = self.mid;
+////    reportMemReq.statu = statu;
+//    reportMemReq.statu = [NSString stringWithFormat:@"%d", statu];
+//    
+////    WebServiceEngine *engine = [WebServiceEngine sharedEngine];
+////    engine.testReportCallMemBlock = ^(NSString *str) {
+////        [weakself addTextToView:str];
+////    };
+////    [engine asyncRequest:reportMemReq];
+//    [[WebServiceEngine sharedEngine] asyncRequest:reportMemReq];
+//}
 
 
 
 
 #pragma mark - 界面相关
 // 如果成员超出 5 个，也就是超出手机界面，需要滑动的时候，调用 scrollViewDelegate 同步 renderView 与 cell 的 位置
-- (void)setRenderViewFrame:(CGRect)cellFrame identify:(NSString *)identify {
+- (void)setRenderViewFrame:(CGRect)cellFrame identify:(NSString *)identify
+{
     CGRect frame = cellFrame;
     frame.origin.y = 70;
     [self.call modifyRenderView:frame forIdentifier:identify];
@@ -346,11 +387,13 @@
     NSString *text = self.noteView.textView.text;
     
     NSString *dicStr = [NSString stringWithFormat:@"%@", newText];
-
     dicStr = [dicStr stringByAppendingString:@"\n"];
     dicStr = [dicStr stringByAppendingString:text];
     
-    self.noteView.textView.text = dicStr;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.noteView.textView.text = dicStr;
+    });
+    
 }
 
 - (void)selfDismiss {

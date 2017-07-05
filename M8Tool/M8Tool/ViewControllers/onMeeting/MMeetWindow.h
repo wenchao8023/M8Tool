@@ -10,4 +10,8 @@
 
 @interface MMeetWindow : UIWindow
 
++ (void)M_addMeetSource:(nonnull id)source WindowOnTarget:(nonnull id)target;
++ (void)M_showFloatView;
++ (void)M_hiddeFloatView;
+
 @end

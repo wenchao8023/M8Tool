@@ -28,6 +28,8 @@
 		9423C6541F04F3AE002D2839 /* threeRDLoginIcon_Wechat.png in Resources */ = {isa = PBXBuildFile; fileRef = 9423C64B1F04F3AE002D2839 /* threeRDLoginIcon_Wechat.png */; };
 		9423C6551F04F3AE002D2839 /* threeRDLoginIcon_Wechat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9423C64C1F04F3AE002D2839 /* threeRDLoginIcon_Wechat@2x.png */; };
 		9423C6561F04F3AE002D2839 /* threeRDLoginIcon_Wechat@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9423C64D1F04F3AE002D2839 /* threeRDLoginIcon_Wechat@3x.png */; };
+		94252FD51F0CF3B7005D9604 /* M8CallViewController+Net.m in Sources */ = {isa = PBXBuildFile; fileRef = 94252FD41F0CF3B7005D9604 /* M8CallViewController+Net.m */; };
+		94252FD81F0CF761005D9604 /* M8CallViewController+CallListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 94252FD71F0CF761005D9604 /* M8CallViewController+CallListener.m */; };
 		942A20F11F0497DF004F9E27 /* M8MeetWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 942A20F01F0497DF004F9E27 /* M8MeetWindowController.m */; };
 		942BCB201EC1C4A0000F9911 /* DroidSansFallback.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 942BCB1F1EC1C4A0000F9911 /* DroidSansFallback.ttf */; };
 		943A085C1EDEBADE003CEA27 /* BaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 943A082D1EDEBADE003CEA27 /* BaseRequest.m */; };
@@ -174,6 +176,14 @@
 		946F7F0E1EF29E84005E757A /* M8CallRenderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 946F7EFC1EF29E84005E757A /* M8CallRenderCell.xib */; };
 		946F7F0F1EF29E84005E757A /* M8CallRenderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 946F7EFE1EF29E84005E757A /* M8CallRenderModel.m */; };
 		946F7F101EF29E84005E757A /* M8CallRenderModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 946F7F001EF29E84005E757A /* M8CallRenderModelManager.m */; };
+		9473BB291F0C87BE0074F6A3 /* ReportCallMemRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9473BB281F0C87BE0074F6A3 /* ReportCallMemRequest.m */; };
+		9473BB2D1F0CCD590074F6A3 /* MBaseFloatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9473BB2C1F0CCD590074F6A3 /* MBaseFloatView.xib */; };
+		9473BB391F0CDB6E0074F6A3 /* M8LiveLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9473BB361F0CDB6E0074F6A3 /* M8LiveLabel.m */; };
+		9473BB3A1F0CDB6E0074F6A3 /* M8UploadImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9473BB381F0CDB6E0074F6A3 /* M8UploadImageHelper.m */; };
+		9473BB3D1F0CDD710074F6A3 /* M8CallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9473BB3C1F0CDD710074F6A3 /* M8CallViewController.m */; };
+		9473BB401F0CDFCE0074F6A3 /* M8CallViewController+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = 9473BB3F1F0CDFCE0074F6A3 /* M8CallViewController+UI.m */; };
+		9473BB491F0CED820074F6A3 /* M8DeviceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9473BB481F0CED820074F6A3 /* M8DeviceView.m */; };
+		9473BB4B1F0CED900074F6A3 /* M8DeviceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9473BB4A1F0CED900074F6A3 /* M8DeviceView.xib */; };
 		947DB4571EF79DDC0019AE2B /* record_callType_audio.png in Resources */ = {isa = PBXBuildFile; fileRef = 947DB44C1EF79DDC0019AE2B /* record_callType_audio.png */; };
 		947DB4581EF79DDC0019AE2B /* record_callType_audio@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 947DB44D1EF79DDC0019AE2B /* record_callType_audio@2x.png */; };
 		947DB4591EF79DDC0019AE2B /* record_callType_audio@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 947DB44E1EF79DDC0019AE2B /* record_callType_audio@3x.png */; };
@@ -259,7 +269,6 @@
 		94A988041EF015030080BEF2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94A988011EF015030080BEF2 /* Info.plist */; };
 		94A988051EF015030080BEF2 /* THLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A988031EF015030080BEF2 /* THLabel.m */; };
 		94ABD2D41E976B31007C1172 /* CommonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ABD2D31E976B31007C1172 /* CommonUtil.m */; };
-		94B1AE521F06209A00B87D67 /* M8UploadImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B1AE511F06209A00B87D67 /* M8UploadImageHelper.m */; };
 		94B3C2311EC565AC003ADF5F /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B3C2301EC565AC003ADF5F /* UIView+Extension.m */; };
 		94B3C2341EE793AE00244BC4 /* 木纹preview.png in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2201EE793AE00244BC4 /* 木纹preview.png */; };
 		94B3C2351EC5851F003ADF5F /* M8MeetListTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B3C2341EC5851F003ADF5F /* M8MeetListTableView.m */; };
@@ -288,7 +297,6 @@
 		94B3C24A1EE7C99C00244BC4 /* UserHeadIconViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B3C2491EE7C99C00244BC4 /* UserHeadIconViewController.m */; };
 		94B43EBA1EF389FD00C57F0F /* M8FloatRenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B43EB31EF389FD00C57F0F /* M8FloatRenderView.m */; };
 		94B43ECA1EF3DAB700C57F0F /* M8MeetWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B43EC91EF3DAB700C57F0F /* M8MeetWindow.m */; };
-		94B43ECE1EF3DADA00C57F0F /* M8LiveLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B43ECD1EF3DADA00C57F0F /* M8LiveLabel.m */; };
 		94B43ED11EF3DB0400C57F0F /* M8MeetWindowSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B43ED01EF3DB0400C57F0F /* M8MeetWindowSingleton.m */; };
 		94B43ED41EF3E3F600C57F0F /* M8CallBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B43ED31EF3E3F600C57F0F /* M8CallBaseViewController.m */; };
 		94B541D11F09DEA8002B47CC /* VerifyCodeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B541D01F09DEA8002B47CC /* VerifyCodeRequest.m */; };
@@ -415,6 +423,10 @@
 		9423C64B1F04F3AE002D2839 /* threeRDLoginIcon_Wechat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = threeRDLoginIcon_Wechat.png; sourceTree = "<group>"; };
 		9423C64C1F04F3AE002D2839 /* threeRDLoginIcon_Wechat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "threeRDLoginIcon_Wechat@2x.png"; sourceTree = "<group>"; };
 		9423C64D1F04F3AE002D2839 /* threeRDLoginIcon_Wechat@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "threeRDLoginIcon_Wechat@3x.png"; sourceTree = "<group>"; };
+		94252FD31F0CF3B7005D9604 /* M8CallViewController+Net.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "M8CallViewController+Net.h"; sourceTree = "<group>"; };
+		94252FD41F0CF3B7005D9604 /* M8CallViewController+Net.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "M8CallViewController+Net.m"; sourceTree = "<group>"; };
+		94252FD61F0CF761005D9604 /* M8CallViewController+CallListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "M8CallViewController+CallListener.h"; sourceTree = "<group>"; };
+		94252FD71F0CF761005D9604 /* M8CallViewController+CallListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "M8CallViewController+CallListener.m"; sourceTree = "<group>"; };
 		942A20EF1F0497DF004F9E27 /* M8MeetWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8MeetWindowController.h; sourceTree = "<group>"; };
 		942A20F01F0497DF004F9E27 /* M8MeetWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8MeetWindowController.m; sourceTree = "<group>"; };
 		942BCB1F1EC1C4A0000F9911 /* DroidSansFallback.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DroidSansFallback.ttf; sourceTree = "<group>"; };
@@ -651,6 +663,20 @@
 		946F7EFE1EF29E84005E757A /* M8CallRenderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8CallRenderModel.m; sourceTree = "<group>"; };
 		946F7EFF1EF29E84005E757A /* M8CallRenderModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8CallRenderModelManager.h; sourceTree = "<group>"; };
 		946F7F001EF29E84005E757A /* M8CallRenderModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8CallRenderModelManager.m; sourceTree = "<group>"; };
+		9473BB271F0C87BE0074F6A3 /* ReportCallMemRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportCallMemRequest.h; sourceTree = "<group>"; };
+		9473BB281F0C87BE0074F6A3 /* ReportCallMemRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportCallMemRequest.m; sourceTree = "<group>"; };
+		9473BB2C1F0CCD590074F6A3 /* MBaseFloatView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MBaseFloatView.xib; sourceTree = "<group>"; };
+		9473BB351F0CDB6E0074F6A3 /* M8LiveLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LiveLabel.h; sourceTree = "<group>"; };
+		9473BB361F0CDB6E0074F6A3 /* M8LiveLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LiveLabel.m; sourceTree = "<group>"; };
+		9473BB371F0CDB6E0074F6A3 /* M8UploadImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8UploadImageHelper.h; sourceTree = "<group>"; };
+		9473BB381F0CDB6E0074F6A3 /* M8UploadImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8UploadImageHelper.m; sourceTree = "<group>"; };
+		9473BB3B1F0CDD710074F6A3 /* M8CallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8CallViewController.h; sourceTree = "<group>"; };
+		9473BB3C1F0CDD710074F6A3 /* M8CallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8CallViewController.m; sourceTree = "<group>"; };
+		9473BB3E1F0CDFCE0074F6A3 /* M8CallViewController+UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "M8CallViewController+UI.h"; sourceTree = "<group>"; };
+		9473BB3F1F0CDFCE0074F6A3 /* M8CallViewController+UI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "M8CallViewController+UI.m"; sourceTree = "<group>"; };
+		9473BB471F0CED820074F6A3 /* M8DeviceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8DeviceView.h; sourceTree = "<group>"; };
+		9473BB481F0CED820074F6A3 /* M8DeviceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8DeviceView.m; sourceTree = "<group>"; };
+		9473BB4A1F0CED900074F6A3 /* M8DeviceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M8DeviceView.xib; sourceTree = "<group>"; };
 		947DB44C1EF79DDC0019AE2B /* record_callType_audio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_callType_audio.png; sourceTree = "<group>"; };
 		947DB44D1EF79DDC0019AE2B /* record_callType_audio@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_callType_audio@2x.png"; sourceTree = "<group>"; };
 		947DB44E1EF79DDC0019AE2B /* record_callType_audio@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_callType_audio@3x.png"; sourceTree = "<group>"; };
@@ -764,8 +790,6 @@
 		94A988031EF015030080BEF2 /* THLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THLabel.m; sourceTree = "<group>"; };
 		94ABD2D21E976B31007C1172 /* CommonUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtil.h; sourceTree = "<group>"; };
 		94ABD2D31E976B31007C1172 /* CommonUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonUtil.m; sourceTree = "<group>"; };
-		94B1AE501F06209A00B87D67 /* M8UploadImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8UploadImageHelper.h; sourceTree = "<group>"; };
-		94B1AE511F06209A00B87D67 /* M8UploadImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8UploadImageHelper.m; sourceTree = "<group>"; };
 		94B3C2201EE793AE00244BC4 /* 木纹preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "木纹preview.png"; sourceTree = "<group>"; };
 		94B3C2211EE793AE00244BC4 /* 栅格红preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "栅格红preview.png"; sourceTree = "<group>"; };
 		94B3C2221EE793AE00244BC4 /* 淡青preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "淡青preview.png"; sourceTree = "<group>"; };
@@ -803,8 +827,6 @@
 		94B43EB31EF389FD00C57F0F /* M8FloatRenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8FloatRenderView.m; sourceTree = "<group>"; };
 		94B43EC81EF3DAB700C57F0F /* M8MeetWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8MeetWindow.h; sourceTree = "<group>"; };
 		94B43EC91EF3DAB700C57F0F /* M8MeetWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8MeetWindow.m; sourceTree = "<group>"; };
-		94B43ECC1EF3DADA00C57F0F /* M8LiveLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LiveLabel.h; sourceTree = "<group>"; };
-		94B43ECD1EF3DADA00C57F0F /* M8LiveLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LiveLabel.m; sourceTree = "<group>"; };
 		94B43ECF1EF3DB0400C57F0F /* M8MeetWindowSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8MeetWindowSingleton.h; sourceTree = "<group>"; };
 		94B43ED01EF3DB0400C57F0F /* M8MeetWindowSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8MeetWindowSingleton.m; sourceTree = "<group>"; };
 		94B43ED21EF3E3F600C57F0F /* M8CallBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8CallBaseViewController.h; sourceTree = "<group>"; };
@@ -1059,15 +1081,16 @@
 		9422BEDC1EE558F200F9B56D /* onMeeting(会议中) */ = {
 			isa = PBXGroup;
 			children = (
+				94BCF97E1F0BA14C00EFB257 /* MMeetWindow.h */,
+				94BCF97F1F0BA14C00EFB257 /* MMeetWindow.m */,
 				94BCF9841F0BA7DF00EFB257 /* MMeetWindowSingleton.h */,
 				94BCF9851F0BA7DF00EFB257 /* MMeetWindowSingleton.m */,
 				94BCF97B1F0BA12E00EFB257 /* MBaseMeetViewController.h */,
 				94BCF97C1F0BA12E00EFB257 /* MBaseMeetViewController.m */,
-				94BCF97E1F0BA14C00EFB257 /* MMeetWindow.h */,
-				94BCF97F1F0BA14C00EFB257 /* MMeetWindow.m */,
 				94BCF9811F0BA77900EFB257 /* MBaseFloatView.h */,
 				94BCF9821F0BA77900EFB257 /* MBaseFloatView.m */,
-				94B43ECB1EF3DADA00C57F0F /* onMeetCustom */,
+				9473BB2C1F0CCD590074F6A3 /* MBaseFloatView.xib */,
+				9473BB341F0CDB630074F6A3 /* onMeetingUnit */,
 				94B43EC71EF3DA9B00C57F0F /* onMeetWindow */,
 				94B43EB11EF389ED00C57F0F /* onMeetFloat(浮动窗口) */,
 				94BACDA81EEE62C30017FFDE /* onCallMeet */,
@@ -1177,35 +1200,9 @@
 			isa = PBXGroup;
 			children = (
 				943A08521EDEBADE003CEA27 /* RequestHeader.h */,
+				9473BB2B1F0C89CD0074F6A3 /* Live */,
+				9473BB2A1F0C89C60074F6A3 /* Call */,
 				949A076C1F0745A800090E43 /* IM */,
-				943A08361EDEBADE003CEA27 /* CreateRoomRequest.h */,
-				943A08371EDEBADE003CEA27 /* CreateRoomRequest.m */,
-				943A08381EDEBADE003CEA27 /* ExitRoomRequest.h */,
-				943A08391EDEBADE003CEA27 /* ExitRoomRequest.m */,
-				943A083A1EDEBADE003CEA27 /* GetRoomPlayUrlRequest.h */,
-				943A083B1EDEBADE003CEA27 /* GetRoomPlayUrlRequest.m */,
-				943A083C1EDEBADE003CEA27 /* HostHeartBeatRequest.h */,
-				943A083D1EDEBADE003CEA27 /* HostHeartBeatRequest.m */,
-				943A083E1EDEBADE003CEA27 /* LinkRoomSigRequest.h */,
-				943A083F1EDEBADE003CEA27 /* LinkRoomSigRequest.m */,
-				943A08401EDEBADE003CEA27 /* LiveImageSignRequest.h */,
-				943A08411EDEBADE003CEA27 /* LiveImageSignRequest.m */,
-				943A08421EDEBADE003CEA27 /* LiveStreamListRequest.h */,
-				943A08431EDEBADE003CEA27 /* LiveStreamListRequest.m */,
-				943A08481EDEBADE003CEA27 /* RecordListRequest.h */,
-				943A08491EDEBADE003CEA27 /* RecordListRequest.m */,
-				943A084A1EDEBADE003CEA27 /* RecordReportRequest.h */,
-				943A084B1EDEBADE003CEA27 /* RecordReportRequest.m */,
-				943A084C1EDEBADE003CEA27 /* RegistRequest.h */,
-				943A084D1EDEBADE003CEA27 /* RegistRequest.m */,
-				943A084E1EDEBADE003CEA27 /* ReportMemIdRequest.h */,
-				943A084F1EDEBADE003CEA27 /* ReportMemIdRequest.m */,
-				943A08501EDEBADE003CEA27 /* ReportRoomRequest.h */,
-				943A08511EDEBADE003CEA27 /* ReportRoomRequest.m */,
-				943A08531EDEBADE003CEA27 /* RoomListRequest.h */,
-				943A08541EDEBADE003CEA27 /* RoomListRequest.m */,
-				943A08551EDEBADE003CEA27 /* RoomMemListRequest.h */,
-				943A08561EDEBADE003CEA27 /* RoomMemListRequest.m */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1714,6 +1711,64 @@
 			name = renderNote;
 			sourceTree = "<group>";
 		};
+		9473BB2A1F0C89C60074F6A3 /* Call */ = {
+			isa = PBXGroup;
+			children = (
+				94BCF9781F0B862600EFB257 /* CallRoomRequest.h */,
+				94BCF9791F0B862600EFB257 /* CallRoomRequest.m */,
+				9473BB271F0C87BE0074F6A3 /* ReportCallMemRequest.h */,
+				9473BB281F0C87BE0074F6A3 /* ReportCallMemRequest.m */,
+				943A08501EDEBADE003CEA27 /* ReportRoomRequest.h */,
+				943A08511EDEBADE003CEA27 /* ReportRoomRequest.m */,
+			);
+			name = Call;
+			sourceTree = "<group>";
+		};
+		9473BB2B1F0C89CD0074F6A3 /* Live */ = {
+			isa = PBXGroup;
+			children = (
+				943A08361EDEBADE003CEA27 /* CreateRoomRequest.h */,
+				943A08371EDEBADE003CEA27 /* CreateRoomRequest.m */,
+				943A08381EDEBADE003CEA27 /* ExitRoomRequest.h */,
+				943A08391EDEBADE003CEA27 /* ExitRoomRequest.m */,
+				943A083A1EDEBADE003CEA27 /* GetRoomPlayUrlRequest.h */,
+				943A083B1EDEBADE003CEA27 /* GetRoomPlayUrlRequest.m */,
+				943A083C1EDEBADE003CEA27 /* HostHeartBeatRequest.h */,
+				943A083D1EDEBADE003CEA27 /* HostHeartBeatRequest.m */,
+				943A083E1EDEBADE003CEA27 /* LinkRoomSigRequest.h */,
+				943A083F1EDEBADE003CEA27 /* LinkRoomSigRequest.m */,
+				943A08401EDEBADE003CEA27 /* LiveImageSignRequest.h */,
+				943A08411EDEBADE003CEA27 /* LiveImageSignRequest.m */,
+				943A08421EDEBADE003CEA27 /* LiveStreamListRequest.h */,
+				943A08431EDEBADE003CEA27 /* LiveStreamListRequest.m */,
+				943A08481EDEBADE003CEA27 /* RecordListRequest.h */,
+				943A08491EDEBADE003CEA27 /* RecordListRequest.m */,
+				943A084A1EDEBADE003CEA27 /* RecordReportRequest.h */,
+				943A084B1EDEBADE003CEA27 /* RecordReportRequest.m */,
+				943A084E1EDEBADE003CEA27 /* ReportMemIdRequest.h */,
+				943A084F1EDEBADE003CEA27 /* ReportMemIdRequest.m */,
+				943A08531EDEBADE003CEA27 /* RoomListRequest.h */,
+				943A08541EDEBADE003CEA27 /* RoomListRequest.m */,
+				943A08551EDEBADE003CEA27 /* RoomMemListRequest.h */,
+				943A08561EDEBADE003CEA27 /* RoomMemListRequest.m */,
+			);
+			name = Live;
+			sourceTree = "<group>";
+		};
+		9473BB341F0CDB630074F6A3 /* onMeetingUnit */ = {
+			isa = PBXGroup;
+			children = (
+				9473BB351F0CDB6E0074F6A3 /* M8LiveLabel.h */,
+				9473BB361F0CDB6E0074F6A3 /* M8LiveLabel.m */,
+				9473BB371F0CDB6E0074F6A3 /* M8UploadImageHelper.h */,
+				9473BB381F0CDB6E0074F6A3 /* M8UploadImageHelper.m */,
+				9473BB471F0CED820074F6A3 /* M8DeviceView.h */,
+				9473BB481F0CED820074F6A3 /* M8DeviceView.m */,
+				9473BB4A1F0CED900074F6A3 /* M8DeviceView.xib */,
+			);
+			path = onMeetingUnit;
+			sourceTree = "<group>";
+		};
 		947DB44A1EF79DDC0019AE2B /* recordTypeImg */ = {
 			isa = PBXGroup;
 			children = (
@@ -1885,14 +1940,14 @@
 				94B541D01F09DEA8002B47CC /* VerifyCodeRequest.m */,
 				94B541D21F09EE39002B47CC /* VerifyVerifyCodeRequest.h */,
 				94B541D31F09EE39002B47CC /* VerifyVerifyCodeRequest.m */,
+				943A084C1EDEBADE003CEA27 /* RegistRequest.h */,
+				943A084D1EDEBADE003CEA27 /* RegistRequest.m */,
 				943A08441EDEBADE003CEA27 /* LoginRequest.h */,
 				943A08451EDEBADE003CEA27 /* LoginRequest.m */,
 				943A08461EDEBADE003CEA27 /* LogoutRequest.h */,
 				943A08471EDEBADE003CEA27 /* LogoutRequest.m */,
 				949A07701F0745F900090E43 /* FriendsListRequest.h */,
 				949A07711F0745F900090E43 /* FriendsListRequest.m */,
-				94BCF9781F0B862600EFB257 /* CallRoomRequest.h */,
-				94BCF9791F0B862600EFB257 /* CallRoomRequest.m */,
 			);
 			name = IM;
 			sourceTree = "<group>";
@@ -2092,17 +2147,6 @@
 			path = onMeetWindow;
 			sourceTree = "<group>";
 		};
-		94B43ECB1EF3DADA00C57F0F /* onMeetCustom */ = {
-			isa = PBXGroup;
-			children = (
-				94B43ECC1EF3DADA00C57F0F /* M8LiveLabel.h */,
-				94B43ECD1EF3DADA00C57F0F /* M8LiveLabel.m */,
-				94B1AE501F06209A00B87D67 /* M8UploadImageHelper.h */,
-				94B1AE511F06209A00B87D67 /* M8UploadImageHelper.m */,
-			);
-			path = onMeetCustom;
-			sourceTree = "<group>";
-		};
 		94BACD581EEE2CB30017FFDE /* liveViewsImg */ = {
 			isa = PBXGroup;
 			children = (
@@ -2206,6 +2250,14 @@
 		94BACDA81EEE62C30017FFDE /* onCallMeet */ = {
 			isa = PBXGroup;
 			children = (
+				9473BB3B1F0CDD710074F6A3 /* M8CallViewController.h */,
+				9473BB3C1F0CDD710074F6A3 /* M8CallViewController.m */,
+				94252FD31F0CF3B7005D9604 /* M8CallViewController+Net.h */,
+				94252FD41F0CF3B7005D9604 /* M8CallViewController+Net.m */,
+				9473BB3E1F0CDFCE0074F6A3 /* M8CallViewController+UI.h */,
+				9473BB3F1F0CDFCE0074F6A3 /* M8CallViewController+UI.m */,
+				94252FD61F0CF761005D9604 /* M8CallViewController+CallListener.h */,
+				94252FD71F0CF761005D9604 /* M8CallViewController+CallListener.m */,
 				946F7ECE1EF29D4F005E757A /* M8CallComingListener.h */,
 				946F7ECF1EF29D4F005E757A /* M8CallComingListener.m */,
 				946F7E8A1EF279D3005E757A /* M8MakeCallViewController.h */,
@@ -2579,6 +2631,7 @@
 				94A851C41EE2C18600204B48 /* M8MeetListCell.xib in Resources */,
 				946F7F071EF29E84005E757A /* M8CallRenderView.xib in Resources */,
 				94BACD831EEE2CB30017FFDE /* liveCamera_on@3x.png in Resources */,
+				9473BB2D1F0CCD590074F6A3 /* MBaseFloatView.xib in Resources */,
 				946F7F051EF29E84005E757A /* M8CallRenderNote.xib in Resources */,
 				94BACD881EEE2CB30017FFDE /* liveMic_off@2x.png in Resources */,
 				94A987F61EF008500080BEF2 /* liveEnlarge@3x.png in Resources */,
@@ -2634,6 +2687,7 @@
 				94B3C2461EE793AE00244BC4 /* 灰蓝@2x.png in Resources */,
 				94B3C23F1EE793AE00244BC4 /* 淡青.png in Resources */,
 				944AF21A1E948DC10044B44C /* ShareSDK.bundle in Resources */,
+				9473BB4B1F0CED900074F6A3 /* M8DeviceView.xib in Resources */,
 				94B3C2391EE793AE00244BC4 /* 木纹.png in Resources */,
 				94A127FD1EF13ECA00ED2703 /* liveAudio_on@2x.png in Resources */,
 				94C9B8401ECDA59000F42654 /* MeetingMembersCell.xib in Resources */,
@@ -2713,6 +2767,7 @@
 				94BCF97D1F0BA12E00EFB257 /* MBaseMeetViewController.m in Sources */,
 				944AF31C1E9494C00044B44C /* KVNProgress.m in Sources */,
 				943A086B1EDEBADE003CEA27 /* RegistRequest.m in Sources */,
+				9473BB391F0CDB6E0074F6A3 /* M8LiveLabel.m in Sources */,
 				946F7F011EF29E84005E757A /* M8CallAudioDevice.m in Sources */,
 				944AF30A1E9494C00044B44C /* AFSecurityPolicy.m in Sources */,
 				94E5DE2D1ED6775B008632D7 /* UsrContactView.m in Sources */,
@@ -2731,11 +2786,12 @@
 				947DB4681EF7B1470019AE2B /* M8RecordDetailTableView.m in Sources */,
 				946F7F091EF29E84005E757A /* M8CallVideoDevice.m in Sources */,
 				94D348BB1EFD03F6008A1AEC /* M8LiveMakeViewController.m in Sources */,
+				9473BB291F0C87BE0074F6A3 /* ReportCallMemRequest.m in Sources */,
 				946F7F0F1EF29E84005E757A /* M8CallRenderModel.m in Sources */,
 				946F7ED31EF29D4F005E757A /* M8CallComingListener.m in Sources */,
+				94252FD51F0CF3B7005D9604 /* M8CallViewController+Net.m in Sources */,
 				947DB4651EF7AAC90019AE2B /* BaseSearchView.m in Sources */,
 				94B3C2391EC585C5003ADF5F /* M8MeetListCell.m in Sources */,
-				94B43ECE1EF3DADA00C57F0F /* M8LiveLabel.m in Sources */,
 				943A08711EDEBADE003CEA27 /* WebServiceEngine.m in Sources */,
 				946B32CC1F050B86007530CE /* M8RegistSuccViewController.m in Sources */,
 				94A1683F1F06582600999D71 /* M8LoginWebService.m in Sources */,
@@ -2754,6 +2810,7 @@
 				947DB4721EF7C0BC0019AE2B /* M8RecordDetailCollection.m in Sources */,
 				94BCF9861F0BA7DF00EFB257 /* MMeetWindowSingleton.m in Sources */,
 				94D348B51EFCF5A6008A1AEC /* M8NoteDetailModel.m in Sources */,
+				9473BB491F0CED820074F6A3 /* M8DeviceView.m in Sources */,
 				94DE958A1EAE145400A44DB1 /* UIImage+Common.m in Sources */,
 				944AF3171E9494C00044B44C /* UIRefreshControl+AFNetworking.m in Sources */,
 				94A642261F0390360051CA6D /* M8LivePlayView.m in Sources */,
@@ -2789,7 +2846,6 @@
 				944AF3181E9494C00044B44C /* UIWebView+AFNetworking.m in Sources */,
 				948E045D1EE641C30075903B /* UserTableView.m in Sources */,
 				94BDE5351ECC599800ECC089 /* MeetingMembersCollection.m in Sources */,
-				94B1AE521F06209A00B87D67 /* M8UploadImageHelper.m in Sources */,
 				947DB48B1EF7D6F00019AE2B /* M8CollectDetailCollection.m in Sources */,
 				9422BEEB1EE5838F00F9B56D /* M8ThemeViewController.m in Sources */,
 				94DE958B1EAE145400A44DB1 /* UIImage+TintColor.m in Sources */,
@@ -2823,12 +2879,14 @@
 				946F7F101EF29E84005E757A /* M8CallRenderModelManager.m in Sources */,
 				94D0A0FC1EE67463009399C6 /* UserModel.m in Sources */,
 				9422BED81EE52FC400F9B56D /* M8LoginViewController.m in Sources */,
+				9473BB401F0CDFCE0074F6A3 /* M8CallViewController+UI.m in Sources */,
 				944AF3191E9494C00044B44C /* UIColor+KVNContrast.m in Sources */,
 				948E04611EE6421B0075903B /* UserTableViewCell.m in Sources */,
 				94B43ED11EF3DB0400C57F0F /* M8MeetWindowSingleton.m in Sources */,
 				94DE95891EAE145400A44DB1 /* UIColor+MLPFlatColors.m in Sources */,
 				949A07721F0745F900090E43 /* FriendsListRequest.m in Sources */,
 				944AF31D1E9494C00044B44C /* KVNProgressConfiguration.m in Sources */,
+				9473BB3D1F0CDD710074F6A3 /* M8CallViewController.m in Sources */,
 				94A6421D1F035C4C0051CA6D /* M8LiveNoteView.m in Sources */,
 				94D8C9CF1ED025840075C35D /* MeetingOrderTableView.m in Sources */,
 				94B43ED41EF3E3F600C57F0F /* M8CallBaseViewController.m in Sources */,
@@ -2844,6 +2902,7 @@
 				946F7F041EF29E84005E757A /* M8CallRenderNote.m in Sources */,
 				94DE958C1EAE145400A44DB1 /* UIView+CustomAutoLayout.m in Sources */,
 				946B32D21F05293D007530CE /* AlertHelp.m in Sources */,
+				94252FD81F0CF761005D9604 /* M8CallViewController+CallListener.m in Sources */,
 				94BCF9741F0B34AB00EFB257 /* M8LiveInfoView+IMListener.m in Sources */,
 				94B541D71F0A2FA0002B47CC /* M8LiveModels.m in Sources */,
 				94A988051EF015030080BEF2 /* THLabel.m in Sources */,
@@ -2853,6 +2912,7 @@
 				943A08661EDEBADE003CEA27 /* LiveStreamListRequest.m in Sources */,
 				949A07781F076E6A00090E43 /* M8IMModels.m in Sources */,
 				946753CC1EBC16D500653A2C /* main.m in Sources */,
+				9473BB3A1F0CDB6E0074F6A3 /* M8UploadImageHelper.m in Sources */,
 				94C9B83F1ECDA59000F42654 /* MeetingMembersCell.m in Sources */,
 				946F7E8F1EF27A89005E757A /* M8RecvCallViewController.m in Sources */,
 			);

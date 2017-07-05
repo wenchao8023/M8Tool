@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class M8CallRenderModel;
 /**
  * 用于显示用户的视频流信息
  */

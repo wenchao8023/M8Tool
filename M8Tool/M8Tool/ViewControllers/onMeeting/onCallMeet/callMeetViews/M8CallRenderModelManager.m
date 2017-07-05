@@ -291,9 +291,20 @@
 - (void)respondsToDelegate {
     if ([self.WCDelegate respondsToSelector:@selector(renderModelManager:currentModel:membersArray:)]) {
         [self.WCDelegate renderModelManager:self
-                               currentModel:self.currentModel
+                               currentModel:_currentModel
                                membersArray:self.membersArray
-         ];
+        ];
+    }
+    if ([self.WCDelegate respondsToSelector:@selector(renderModelManager:currentIdentifier:membersArray:)]) {
+        NSString *curId = nil;
+        if (_currentModel)
+        {
+            curId = _currentModel.identify;
+        }
+        [self.WCDelegate renderModelManager:self
+                          currentIdentifier:curId
+                               membersArray:self.membersArray
+        ];
     }
 }
 

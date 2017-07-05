@@ -8,7 +8,7 @@
 
 #import "M8MeetWindowSingleton.h"
 
-#import "M8MeetWindowController.h"
+//#import "M8MeetWindowController.h"
 
 #import "M8CallBaseViewController.h"
 #import "M8LiveBaseViewController.h"
@@ -20,8 +20,8 @@
 @property (nonatomic, weak, nullable) M8CallBaseViewController *callViewController;
 @property (nonatomic, weak, nullable) M8LiveBaseViewController *liveViewController;
 
-@property (nonatomic, weak, nullable) M8MeetWindowController *windowController;
-@property (nonatomic, weak, nullable) UIWindow *meetWindow;
+//@property (nonatomic, weak, nullable) M8MeetWindowController *windowController;
+//@property (nonatomic, weak, nullable) UIWindow *meetWindow;
 
 @end
 
@@ -39,35 +39,35 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        [self meetWindow];
-        [self windowController];
+//        [self meetWindow];
+//        [self windowController];
     }
     return self;
 }
 
 
-- (M8MeetWindowController *)windowController {
-    if (!_windowController) {
-        M8MeetWindowController *windowController = [[M8MeetWindowController alloc] init];
-        _windowController = windowController;
-    }
-    return _windowController;
-}
+//- (M8MeetWindowController *)windowController {
+//    if (!_windowController) {
+//        M8MeetWindowController *windowController = [[M8MeetWindowController alloc] init];
+//        _windowController = windowController;
+//    }
+//    return _windowController;
+//}
 
-- (UIWindow *)meetWindow {
-    if (!_meetWindow) {
-        UIWindow *meetWindow = [[UIWindow alloc] init];
-        meetWindow.frame = [UIScreen mainScreen].bounds;
-        meetWindow.windowLevel = UIWindowLevelAlert + 1;
-        meetWindow.backgroundColor = [UIColor clearColor];
-        [meetWindow makeKeyAndVisible];
-        
-        meetWindow.rootViewController = self.windowController;
-        
-        _meetWindow = meetWindow;
-    }
-    return _meetWindow;
-}
+//- (UIWindow *)meetWindow {
+//    if (!_meetWindow) {
+//        UIWindow *meetWindow = [[UIWindow alloc] init];
+//        meetWindow.frame = [UIScreen mainScreen].bounds;
+//        meetWindow.windowLevel = UIWindowLevelAlert + 1;
+//        meetWindow.backgroundColor = [UIColor clearColor];
+//        [meetWindow makeKeyAndVisible];
+//        
+//        meetWindow.rootViewController = self.windowController;
+//        
+//        _meetWindow = meetWindow;
+//    }
+//    return _meetWindow;
+//}
 
 - (M8CallBaseViewController *)callViewController {
     if (!_callViewController) {

@@ -11,7 +11,7 @@
 @interface ShowRoomInfo : NSObject
 
 @property (nonatomic, copy) NSString * title;
-@property (nonatomic, copy) NSString * type;
+@property (nonatomic, copy) NSString * type;    //live : 直播, call_video : 视频通话, call_audio : 音频通话
 @property (nonatomic, assign) NSInteger roomnum;
 @property (nonatomic, copy) NSString * groupid;
 @property (nonatomic, copy) NSString * cover;

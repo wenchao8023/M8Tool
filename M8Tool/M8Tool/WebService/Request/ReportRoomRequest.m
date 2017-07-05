@@ -37,12 +37,18 @@
                      @"room"    : [_room toRoomDic],
                 };
     }
-//    NSDictionary *dic = @{ @"token" : _token,
-//                           @"room"  : [_room toRoomDic],
-//                        };
-//    //@"lbs"   : [_lbs toLBSDic]
-//    return dic;
 }
+
+- (Class)responseDataClass
+{
+    return [ReportRoomResponseData class];
+}
+@end
+
+@implementation ReportRoomResponseData
+
+
+
 @end
 
 

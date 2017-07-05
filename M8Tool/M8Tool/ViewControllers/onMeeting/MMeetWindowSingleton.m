@@ -16,7 +16,7 @@
 @interface MMeetWindowSingleton ()
 
 @property (nonatomic, weak, nullable) MBaseMeetViewController *baseController;
-@property (nonatomic, weak, nullable) UIWindow *meetWindow;
+
 
 @end
 
@@ -24,41 +24,39 @@
 
 @implementation MMeetWindowSingleton
 
-+ (instancetype)shareInstance {
++ (instancetype)shareInstance
+{
     static id sharedInstance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        
         sharedInstance = [[self alloc] init];
     });
     return sharedInstance;
 }
 
-- (instancetype)init {
-    if (self = [super init]) {
-        [self meetWindow];
-    }
-    return self;
-}
 
-- (UIWindow *)meetWindow {
-    if (!_meetWindow) {
-        UIWindow *meetWindow = [[UIWindow alloc] init];
-        meetWindow.frame = [UIScreen mainScreen].bounds;
-        meetWindow.windowLevel = UIWindowLevelAlert + 1;
-        meetWindow.backgroundColor = [UIColor clearColor];
-        [meetWindow makeKeyAndVisible];
-        
-        _meetWindow = meetWindow;
-    }
-    return _meetWindow;
-}
-
-
-- (void)addMeetSource:(MBaseMeetViewController *)source
+- (void)addMeetSource:(id)source WindowOnTarget:(UIViewController *)target
 {
-    _baseController = source;
-    self.meetWindow.rootViewController = _baseController;
+    self.baseController = source;
+    [target addChildViewController:self.baseController];
+    [target.view addSubview:self.baseController.view];
+    [self.baseController setRootView];
+    
+    [self hiddeFloatView];
 }
+
+- (void)showFloatView
+{
+    [self.baseController showFloatView];
+}
+
+- (void)hiddeFloatView
+{
+    [self.baseController hiddeFloatView];
+}
+
+
 
 
 @end

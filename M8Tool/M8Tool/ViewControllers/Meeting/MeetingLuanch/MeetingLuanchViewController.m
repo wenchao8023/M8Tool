@@ -17,6 +17,9 @@
 #import "M8UploadImageHelper.h"
 
 
+#import "MMeetWindow.h"
+#import "M8CallViewController.h"
+
 
 @interface MeetingLuanchViewController ()<LuanchTableViewDelegate>
 {
@@ -212,16 +215,19 @@
     item.info.appid = [ShowAppId intValue];
     item.info.host = [[ILiveLoginManager getInstance] getLoginId];
     
-    M8MakeCallViewController *callVC = [[M8MakeCallViewController alloc] initWithItem:item];
-    [M8MeetWindow M8_addLiveSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
+//    M8MakeCallViewController *callVC = [[M8MakeCallViewController alloc] initWithItem:item];
+//    [M8MeetWindow M8_addLiveSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
+    
+    M8CallViewController *callVC = [[M8CallViewController alloc] initWithItem:item];
+    [MMeetWindow M_addMeetSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
 }
 
 
 /**
  发起直播会议
  */
-- (void)luanchLiving {
-    
+- (void)luanchLiving
+{
     LoadView *reqIdWaitView = [LoadView loadViewWith:@"正在请求房间ID"];
     [self.view addSubview:reqIdWaitView];
     __block CreateRoomResponceData *roomData = nil;

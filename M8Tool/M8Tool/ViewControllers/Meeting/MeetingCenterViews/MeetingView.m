@@ -14,6 +14,9 @@
 #import "M8MeetWindow.h"
 #import "M8LiveJoinViewController.h"
 
+#import "MMeetWindow.h"
+#import "MBaseMeetViewController.h"
+
 
 
 /////////////////////////////////////////////////
@@ -137,8 +140,11 @@
     item.info.groupid = @"10004";
     item.info.appid = [ShowAppId intValue];
     item.info.host = @"user1";
-    M8LiveJoinViewController *joinVC = [[M8LiveJoinViewController alloc] initWithItem:item];
-    [M8MeetWindow M8_addLiveSource:joinVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
+//    M8LiveJoinViewController *joinVC = [[M8LiveJoinViewController alloc] initWithItem:item];
+//    [M8MeetWindow M8_addLiveSource:joinVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
+    MBaseMeetViewController *baseMeetVC = [[MBaseMeetViewController alloc] initWithItem:item];
+    [MMeetWindow M_addMeetSource:baseMeetVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
+    
 }
 
 

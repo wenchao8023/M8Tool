@@ -7,15 +7,23 @@
 //
 
 #import "MMeetWindow.h"
+#import "MMeetWindowSingleton.h"
 
 @implementation MMeetWindow
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
++ (void)M_addMeetSource:(id)source WindowOnTarget:(id)target
+{
+    [[MMeetWindowSingleton shareInstance] addMeetSource:source WindowOnTarget:target];
 }
-*/
+
++ (void)M_showFloatView
+{
+    [[MMeetWindowSingleton shareInstance] showFloatView];
+}
+
++ (void)M_hiddeFloatView
+{
+    [[MMeetWindowSingleton shareInstance] hiddeFloatView];
+}
 
 @end
