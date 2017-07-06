@@ -115,6 +115,7 @@
             break;
         case TILCALL_NOTIF_HANGUP:
         {
+            [self onNetReportMemExitRoom:sender];
             [self addTextToView:[NSString stringWithFormat:@"%@挂断了%@邀请的通话",sender,target]];
             [self.modelManager memberHangupWithID:sender];
         }

@@ -18,7 +18,8 @@
 
 - (NSDictionary *)packageParams
 {
-    return @{@"token" : _token,
+    return @{
+             @"token" : _token,
              @"state" : @"ok"
              };
 }

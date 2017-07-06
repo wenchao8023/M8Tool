@@ -53,5 +53,7 @@
 
 #import "ReportCallMemRequest.h"
 
+#import "ReportMemExitRequest.h"
+
 
 #endif /* RequestHeader_h */

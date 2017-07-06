@@ -142,7 +142,7 @@
     item.info.host = @"user1";
 //    M8LiveJoinViewController *joinVC = [[M8LiveJoinViewController alloc] initWithItem:item];
 //    [M8MeetWindow M8_addLiveSource:joinVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
-    MBaseMeetViewController *baseMeetVC = [[MBaseMeetViewController alloc] initWithItem:item];
+    MBaseMeetViewController *baseMeetVC = [[MBaseMeetViewController alloc] initWithItem:item isHost:NO];
     [MMeetWindow M_addMeetSource:baseMeetVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
     
 }

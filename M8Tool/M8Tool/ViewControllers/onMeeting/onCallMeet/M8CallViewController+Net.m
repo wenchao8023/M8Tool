@@ -64,12 +64,37 @@
     [[WebServiceEngine sharedEngine] asyncRequest:reportMemReq];
 }
 
+
+#pragma mark - 上报成员退出房间
+- (void)onNetReportMemExitRoom:(NSString *)uid
+{
+    WCWeakSelf(self);
+    ReportMemExitRequest *reportMemExitReq = [[ReportMemExitRequest alloc] initWithHandler:^(BaseRequest *request) {
+        
+        [weakself addTextToView:[NSString stringWithFormat:@"上报成员:<--%@ : 退出房间-->成功", uid]];
+        
+    } failHandler:^(BaseRequest *request) {
+        
+        [weakself addTextToView:[NSString stringWithFormat:@"上报成员状态失败\n错误码:%ld，错误信息: %@", (long)request.response.errorCode, request.response.errorInfo]];
+    }];
+    
+    reportMemExitReq.token = [AppDelegate sharedAppDelegate].token;
+    reportMemExitReq.uid = uid;
+    reportMemExitReq.mid = self.curMid;
+    [[WebServiceEngine sharedEngine] asyncRequest:reportMemExitReq];
+}
+
+
+#pragma mark - 上报服务器，会议结束
 - (void)onNetReportExitRoom
 {
     //通知业务服务器，退房
-    ExitRoomRequest *exitReq = [[ExitRoomRequest alloc] initWithHandler:^(BaseRequest *request) {
+    ExitRoomRequest *exitReq = [[ExitRoomRequest alloc] initWithHandler:^(BaseRequest *request)
+    {
         NSLog(@"上报退出房间成功");
+        
     } failHandler:^(BaseRequest *request) {
+        
         NSLog(@"上报退出房间失败");
     }];
     

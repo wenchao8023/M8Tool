@@ -27,7 +27,7 @@
 - (void)asyncRequest:(BaseRequest * _Nonnull)req wait:(BOOL)wait;
 
 // 异步请求Req 关显示提示语msg wait:是否加HUD同步等待
-- (void)asyncRequest:(BaseRequest * _Nonnull)req loadingMessage:(NSString * _Nonnull)msg wait:(BOOL)wait;
+- (void)asyncRequest:(BaseRequest * _Nonnull)req loadingMessage:(NSString * _Nullable)msg wait:(BOOL)wait;
 
 
 

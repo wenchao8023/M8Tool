@@ -61,7 +61,7 @@
 /**
  重新设置 视频流 位置
  */
-- (void)updateRenderCollection;
+//- (void)updateRenderCollection;
 
 - (void)updateWithModelManager:(id _Nonnull)modelManger
              currentIdentifier:(NSString * _Nullable)curId

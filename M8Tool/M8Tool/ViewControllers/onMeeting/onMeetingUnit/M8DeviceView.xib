@@ -22,7 +22,7 @@
                         <constraint firstAttribute="height" constant="40" id="lR9-8B-euX"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" title="分享">
+                    <state key="normal" backgroundImage="liveShare.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <userDefinedRuntimeAttributes>
@@ -54,7 +54,6 @@
                     <rect key="frame" x="225" y="0.0" width="40" height="40"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" title="中间"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                             <integer key="value" value="20"/>
@@ -69,7 +68,7 @@
                     <rect key="frame" x="275" y="0.0" width="40" height="40"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" title="菜单">
+                    <state key="normal" backgroundImage="menuIcon">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <userDefinedRuntimeAttributes>
@@ -86,7 +85,7 @@
                     <rect key="frame" x="325" y="0.0" width="40" height="40"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal" title="缩小">
+                    <state key="normal" backgroundImage="liveEnlarge.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <userDefinedRuntimeAttributes>
@@ -100,7 +99,7 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="ya0-Uo-oIe" firstAttribute="height" secondItem="wKh-yn-YaF" secondAttribute="height" id="FcN-Pu-7Ve"/>
                 <constraint firstItem="a9k-n5-4v7" firstAttribute="centerY" secondItem="wKh-yn-YaF" secondAttribute="centerY" id="Flq-dT-T07"/>
@@ -130,4 +129,9 @@
             </connections>
         </view>
     </objects>
+    <resources>
+        <image name="liveEnlarge.png" width="44" height="44"/>
+        <image name="liveShare.png" width="40" height="40"/>
+        <image name="menuIcon" width="60" height="44"/>
+    </resources>
 </document>

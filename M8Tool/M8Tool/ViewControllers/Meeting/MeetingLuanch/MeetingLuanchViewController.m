@@ -215,10 +215,7 @@
     item.info.appid = [ShowAppId intValue];
     item.info.host = [[ILiveLoginManager getInstance] getLoginId];
     
-//    M8MakeCallViewController *callVC = [[M8MakeCallViewController alloc] initWithItem:item];
-//    [M8MeetWindow M8_addLiveSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
-    
-    M8CallViewController *callVC = [[M8CallViewController alloc] initWithItem:item];
+    M8CallViewController *callVC = [[M8CallViewController alloc] initWithItem:item isHost:YES];
     [MMeetWindow M_addMeetSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
 }
 

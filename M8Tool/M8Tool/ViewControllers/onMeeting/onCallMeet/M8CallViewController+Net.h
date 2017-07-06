@@ -23,6 +23,14 @@
  */
 - (void)onNetReportCallMem:(NSString * _Nonnull)mem statu:(int)statu;
 
+
+/**
+ 上报成员退出房间
+
+ @param uid 成员ID
+ */
+- (void)onNetReportMemExitRoom:(NSString *_Nonnull)uid;
+
 /**
  上报退出房间
  */

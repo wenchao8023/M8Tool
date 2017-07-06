@@ -209,8 +209,10 @@
 }
 
 
-- (void)deviceActionWithStr:(NSString *)actionStr {
-    if ([actionStr isEqualToString:@"onHangupAction"]) {
+- (void)deviceActionWithStr:(NSString *)actionStr
+{
+    if ([actionStr isEqualToString:@"onHangupAction"])
+    {
         
         //通知业务服务器，退房
         ExitRoomRequest *exitReq = [[ExitRoomRequest alloc] initWithHandler:^(BaseRequest *request) {
@@ -225,10 +227,12 @@
         
         [[WebServiceEngine sharedEngine] asyncRequest:exitReq wait:NO];
         
-        if (self.shouldHangup) {
+        if (self.shouldHangup)
+        {
             [self hangup];
         }
-        else {
+        else
+        {
             [self cancelAllCall];
         }
         [self dismissViewControllerAnimated:YES completion:nil];

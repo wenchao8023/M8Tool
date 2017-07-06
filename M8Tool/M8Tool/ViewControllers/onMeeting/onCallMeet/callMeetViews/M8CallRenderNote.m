@@ -9,7 +9,7 @@
 #import "M8CallRenderNote.h"
 
 
-@interface M8CallRenderNote ()
+@interface M8CallRenderNote ()<UITextViewDelegate>
 {
     CGRect _myFrame;
 }
@@ -33,6 +33,22 @@
 - (void)drawRect:(CGRect)rect {
     // Drawing code
     self.frame = _myFrame;
+}
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    BOOL ret = [[NSUserDefaults standardUserDefaults] boolForKey:kPushMenuStatus];
+    if (ret)
+    {
+        [WCNotificationCenter postNotificationName:kHiddenMenuView_Notifycation object:nil];
+        return NO;
+    }
+    return YES;
+}
+
+- (void)dealloc
+{
+    [WCNotificationCenter removeObserver:self name:kHiddenMenuView_Notifycation object:nil];
 }
 
 

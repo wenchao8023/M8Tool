@@ -24,9 +24,21 @@ static NSString * _Nonnull const kMemberStatu_hangup        = @"挂断";
 static NSString * _Nonnull const kMemberStatu_disconnect    = @"断开";
 static NSString * _Nonnull const kMemberStatu_waiting       = @"连接中";   // 需考虑是否添加此状态
 
-/// M8CallVideoDevice
-static NSString * _Nonnull const kDeviceAction            = @"deviceAction";
-static NSString * _Nonnull const kDeviceText              = @"deviceText";
+/// M8DeviceView
+//  key
+static NSString * _Nonnull const kDeviceAction              = @"deviceAction";
+static NSString * _Nonnull const kDeviceText                = @"deviceText";
+//  value
+typedef NS_ENUM(NSInteger, kOnDeviceAction)
+{
+    kOnDeviceActionShare,
+    kOnDeviceActionNote,
+    kOnDeviceActionCenter,
+    kOnDeviceActionMenu,
+    kOnDeviceActionSwichRender
+};
+
+
 
 /// M8CallAudioDevice
 static NSString * _Nonnull const kCallAudioDeviceAction   = @"CallAudioDeviceAction";

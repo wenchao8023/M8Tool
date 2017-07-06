@@ -14,15 +14,32 @@
 
 #import "M8CallRenderModelManager.h"
 
+#import "M8RecvChildViewController.h"
+
+#import "M8MenuPushView.h"
+
 @interface M8CallViewController : MBaseMeetViewController
 
 @property (nonatomic, strong) TILMultiCall * _Nonnull call;
 
-@property (nonatomic, strong, nonnull) M8CallHeaderView     *headerView;
-@property (nonatomic, strong, nonnull) M8CallRenderView     *renderView;
-@property (nonatomic, strong, nonnull) M8DeviceView         *deviceView;
+@property (nonatomic, strong, nonnull) M8CallHeaderView *headerView;
+@property (nonatomic, strong, nonnull) M8CallRenderView *renderView;
+@property (nonatomic, strong, nonnull) M8DeviceView     *deviceView;
+@property (nonatomic, strong, nonnull) M8MenuPushView   *menuView;
 
+/**
+ 用于会议接受界面的弹出提示
+ */
+@property (nonatomic, strong, nullable) M8RecvChildViewController *childVC;
 
+/**
+ 用于接受界面的邀请信息
+ */
+@property (nonatomic, strong, nullable) TILCallInvitation *invitation;
+
+- (void)onReceiveCall;
+
+- (void)onRejectCall;
 
 /**
  当前的会议ID
@@ -41,5 +58,7 @@
 
 
 - (void)addTextToView:(id _Nullable )newText;
+
+
 
 @end

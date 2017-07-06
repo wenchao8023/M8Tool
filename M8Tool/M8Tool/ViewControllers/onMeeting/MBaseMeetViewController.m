@@ -25,12 +25,12 @@
 
 
 #pragma mark - inits
-- (instancetype)initWithItem:(TCShowLiveListItem *)item
+- (instancetype)initWithItem:(TCShowLiveListItem *)item isHost:(BOOL)isHost
 {
     if (self = [super init])
     {
         _liveItem = item;
-        _isHost = YES;
+        _isHost = isHost;
     }
     return self;
 }
@@ -225,6 +225,11 @@
 
 
 #pragma mark -- self dismiss
+
+//- (void)onExitAction
+//{
+//    [self selfDismiss];
+//}
 - (void)selfDismiss
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

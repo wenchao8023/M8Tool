@@ -1,19 +1,19 @@
 //
-//  ReportCallMemRequest.m
+//  ReportMemExitRequest.m
 //  M8Tool
 //
-//  Created by chao on 2017/7/5.
+//  Created by chao on 2017/7/6.
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import "ReportCallMemRequest.h"
+#import "ReportMemExitRequest.h"
 
-@implementation ReportCallMemRequest
+@implementation ReportMemExitRequest
 
 - (NSString *)url
 {
     NSString *host = [self hostUrl];
-    return [NSString stringWithFormat:@"%@svc=account&cmd=reportmemberstatu",host];
+    return [NSString stringWithFormat:@"%@svc=account&cmd=reportexitcall",host];
 }
 
 - (NSDictionary *)packageParams
@@ -27,10 +27,8 @@
     NSDictionary *dic = @{@"token" : _token,
                           @"uid" : _uid,
                           @"mid" :  @(_mid),
-                          @"statu" : _statu
                           };
     return dic;
 }
-
 
 @end

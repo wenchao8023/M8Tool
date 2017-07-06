@@ -35,7 +35,7 @@
 @property (nonatomic, strong, nonnull) UIImageView          *bgImageView;
 
 /**
- 退出按钮
+ 退出按钮, 按钮点击事件由子类实现
  */
 @property (nonatomic, strong, nullable) UIButton *exitButton;
 
@@ -47,7 +47,7 @@
 /**
  用 liveItem 初始化
  */
-- (instancetype _Nonnull )initWithItem:(id _Nonnull)item;
+- (instancetype _Nonnull )initWithItem:(id _Nonnull)item isHost:(BOOL)isHost;
 
 /**
  设置floatView的相对位置

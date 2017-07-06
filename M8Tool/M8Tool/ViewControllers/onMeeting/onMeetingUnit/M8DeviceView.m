@@ -43,7 +43,7 @@
 */
 - (IBAction)onShareAction:(id)sender
 {
-    [self deviceActionInfoValue:@"onShareAction" key:kDeviceAction];
+    [self deviceActionInfoValue:@(kOnDeviceActionShare) key:kDeviceAction];
 }
 
 /**
@@ -51,15 +51,15 @@
  */
 - (IBAction)onNoteAction:(id)sender
 {
-    [self deviceActionInfoValue:@"onNoteAction" key:kDeviceAction];
+    [self deviceActionInfoValue:@(kOnDeviceActionNote) key:kDeviceAction];
 }
 
 /**
- 私信
+ 私信、挂断
  */
 - (IBAction)onCenterAction:(id)sender
 {
-    [self deviceActionInfoValue:@"onCenterAction" key:kDeviceAction];
+    [self deviceActionInfoValue:@(kOnDeviceActionCenter) key:kDeviceAction];
     
 }
 
@@ -68,7 +68,7 @@
  */
 - (IBAction)onMenuAction:(id)sender
 {
-    [self deviceActionInfoValue:@"onMenuAction" key:kDeviceAction];
+    [self deviceActionInfoValue:@(kOnDeviceActionMenu) key:kDeviceAction];
 }
 
 /**
@@ -76,7 +76,7 @@
  */
 - (IBAction)onSwichRenderAction:(id)sender
 {
-    [self deviceActionInfoValue:@"onSwichRenderAction" key:kDeviceAction];
+    [self deviceActionInfoValue:@(kOnDeviceActionSwichRender) key:kDeviceAction];
 }
 
 #pragma mark - MeetDeviceActionInfo:

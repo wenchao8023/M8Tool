@@ -119,7 +119,9 @@ typedef NS_ENUM(NSInteger, BeautyViewType)
 #define kClickConnect_Notification      @"kClickConnect_Notification"
 #define kCancelConnect_Notification     @"kCancelConnect_Notification"
 #define kEnterBackGround_Notification   @"kEnterBackGround_Notification"
-#define kThemeSwich_Notification        @"kThemeSwich_Notification" //切换主题
+#define kThemeSwich_Notification        @"kThemeSwich_Notification"     //切换主题
+#define kHiddenMenuView_Notifycation    @"kHiddenMenuView_Notifycation" //隐藏菜单
+
 
 /******************** role string **********************/
 #define kSxbRole_Host       @"LiveMaster"
@@ -135,7 +137,8 @@ typedef NS_ENUM(NSInteger, BeautyViewType)
 #define kUserProtocol       @"kUserProtocol"
 #define kHasLogin           @"kHasLogin"
 #define kThemeImage         @"kThemeImage"
-#define kIsInMeeting        @"kIsInMeeting" //判断用户是否在会议中，如果是则推出视图的时候隐藏tabBar
+#define kIsInMeeting        @"kIsInMeeting"     //判断用户是否在会议中，如果是则推出视图的时候隐藏tabBar
+#define kPushMenuStatus     @"kPushMenuStatus"  //会话中推出菜单状态
 
 /******************** appstore **********************/
 #define kIsAppstoreVersion 0

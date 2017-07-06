@@ -25,6 +25,8 @@
     [self createUI];
     
     [self initCall];
+    
+    [WCNotificationCenter addObserver:self selector:@selector(onHiddeMenuView) name:kHiddenMenuView_Notifycation object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -33,39 +35,44 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - 通话相关接口
 - (void)initCall
 {
-    if (self.isHost)
-        [self makeCall];
-    else
-        [self recvCall];
-}
-
-- (void)makeCall
-{
     TILCallConfig * config = [[TILCallConfig alloc] init];
-    TILCallBaseConfig * baseConfig = [[TILCallBaseConfig alloc] init];
-    baseConfig.callType = self.liveItem.callType;
-    baseConfig.isSponsor = YES;
-    baseConfig.memberArray = self.liveItem.members;
-    baseConfig.heartBeatInterval = 15;
+    
+    TILCallBaseConfig * baseConfig  = [[TILCallBaseConfig alloc] init];
+    baseConfig.heartBeatInterval    = 15;
+    baseConfig.isSponsor            = self.isHost;
+    baseConfig.callType             = self.liveItem.callType;
+    baseConfig.memberArray          = self.liveItem.members;
     config.baseConfig = baseConfig;
     
-    
-    TILCallListener * listener = [[TILCallListener alloc] init];
+    TILCallListener * listener      = [[TILCallListener alloc] init];
     [listener setMemberEventListener:self];
     [listener setNotifListener:self];
-    
     config.callListener = listener;
     
+    
+    if (self.isHost)
+    {
+        [self makeCall:config];
+    }
+    else
+    {
+        [self recvCall:config];
+    }
+}
+
+#pragma mark -- 发起方
+- (void)makeCall:(TILCallConfig *)config
+{
     TILCallSponsorConfig *sponsorConfig = [[TILCallSponsorConfig alloc] init];
-    sponsorConfig.waitLimit = 30;
-    sponsorConfig.callId = (int)self.liveItem.info.roomnum;
-    sponsorConfig.onlineInvite = NO;
-    config.sponsorConfig = sponsorConfig;
+    sponsorConfig.waitLimit             = 30;
+    sponsorConfig.callId                = (int)self.liveItem.info.roomnum;
+    sponsorConfig.onlineInvite          = NO;
+    config.sponsorConfig                = sponsorConfig;
     
     _call = [[TILMultiCall alloc] initWithConfig:config];
-    
     [_call createRenderViewIn:self.renderView];
     self.renderView.call = _call;
     
@@ -73,7 +80,7 @@
     [_call makeCall:nil custom:self.liveItem.info.title result:^(TILCallError *err) {
         if(err){
             [ws addTextToView:[NSString stringWithFormat:@"呼叫失败:%@-%d-%@",err.domain,err.code,err.errMsg]];
-//            [ws selfDismiss];
+            [ws selfDismiss];
         }
         else{
             [ws addTextToView:@"呼叫成功"];
@@ -81,35 +88,27 @@
             [[ILiveRoomManager getInstance] setBeauty:2];
             [[ILiveRoomManager getInstance] setWhite:2];
             
-//            [self.deviceView configButtonBackImgs];
-//            [self.audioDeviceView configButtonBackImgs];
-            
-//            [self.headerView beginCountTime];
-            
             [ws onNetReportRoomInfo];
         }
     }];
 }
 
-- (void)recvCall
-{
-    
-}
-
 /**
  取消
  */
-- (void)cancelAllCall {
+- (void)cancelAllCall
+{
     WCWeakSelf(self);
     [_call cancelAllCall:^(TILCallError *err) {
-        if(err){
+        if(err)
+        {
             [weakself addTextToView:[NSString stringWithFormat:@"取消失败:%@-%d-%@",err.domain,err.code,err.errMsg]];
-//            [weakself selfDismiss];
-            [weakself cancelAllCall];
+            [super selfDismiss];
         }
-        else{
+        else
+        {
             [weakself addTextToView:@"取消成功"];
-            [weakself selfDismiss];
+            [super selfDismiss];
         }
     }];
 }
@@ -117,22 +116,91 @@
 /**
  挂断
  */
-- (void)hangup {
+- (void)hangup
+{
     WCWeakSelf(self);
-    [_call hangup:^(TILCallError *err) {
-        if(err){
+    [_call hangup:^(TILCallError *err)
+     {
+        if(err)
+        {
             [weakself addTextToView:[NSString stringWithFormat:@"挂断失败:%@-%d-%@",err.domain,err.code,err.errMsg]];
-//            [weakself selfDismiss];
-            [weakself hangup];
+            [super selfDismiss];
         }
-        else{
+        else
+        {
             [weakself addTextToView:@"挂断成功"];
-            [weakself selfDismiss];
+            [super selfDismiss];
         }
     }];
 }
 
 
+#pragma mark -- 接收方
+- (void)recvCall:(TILCallConfig *)config
+{
+    TILCallResponderConfig *responderConfig = [[TILCallResponderConfig alloc] init];
+    responderConfig.callInvitation          = _invitation;
+    config.responderConfig                  = responderConfig;
+    
+    _call = [[TILMultiCall alloc] initWithConfig:config];
+    [_call createRenderViewIn:self.renderView];
+    self.renderView.call = _call;
+    
+    [self addRecvChildVC];
+}
+//添加接受子视图
+- (void)addRecvChildVC
+{
+    _childVC = [[M8RecvChildViewController alloc] init];
+    _childVC.invitation = self.invitation;
+    _childVC.WCDelegate = self;
+    [self addChildViewController:_childVC];
+    [self.view addSubview:_childVC.view];
+}
+//移除接受子视图
+- (void)removeRecvChildVC
+{
+    [_childVC.view removeFromSuperview];
+    [_childVC removeFromParentViewController];
+    _childVC = nil;
+}
+// 接受邀请
+- (void)onReceiveCall
+{
+    WCWeakSelf(self);
+    [_call accept:^(TILCallError *err)
+    {
+        if(err)
+        {
+            [weakself addTextToView:[NSString stringWithFormat:@"接受失败:%@-%d-%@", err.domain,err.code,err.errMsg]];
+            [weakself selfDismiss];
+        }
+        else
+        {
+            [weakself addTextToView:@"接受成功"];
+            
+            [[ILiveRoomManager getInstance] setBeauty:3];
+            [[ILiveRoomManager getInstance] setWhite:3];
+            
+            [self removeRecvChildVC];
+        }
+    }];
+}
+// 拒绝邀请
+- (void)onRejectCall
+{
+    WCWeakSelf(self);
+    [_call refuse:^(TILCallError *err)
+     {
+         if(err)
+         {
+             [weakself addTextToView:[NSString stringWithFormat:@"拒绝失败:%@-%d-%@", err.domain,err.code,err.errMsg]];
+         }
+         [weakself selfDismiss];
+     }];
+}
+
+#pragma mark - 初始化容器
 - (M8CallRenderModelManager *)modelManager
 {
     if (!_modelManager)
@@ -147,21 +215,13 @@
     return _modelManager;
 }
 
-#pragma mark - createUI
-- (void)createUI
-{
-    [self headerView];
-    [self deviceView];
-    [self.view insertSubview:self.renderView aboveSubview:self.bgImageView];
-}
-
 - (M8CallHeaderView *)headerView
 {
     if (!_headerView)
     {
         M8CallHeaderView *headerView = [[M8CallHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, kDefaultNaviHeight)];
         headerView.WCDelegate = self;
-        [self.view addSubview:(_headerView = headerView)];
+        [self.view insertSubview:(_headerView = headerView) aboveSubview:self.renderView];
     }
     return _headerView;
 }
@@ -170,9 +230,9 @@
 {
     if (!_deviceView)
     {
-        M8DeviceView *deviceView = [[M8DeviceView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - kBottomHeight - kDefaultMargin, SCREEN_WIDTH, kBottomHeight)];
+        M8DeviceView *deviceView = [[M8DeviceView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - kBottomHeight, SCREEN_WIDTH, kBottomHeight)];
         deviceView.WCDelegate = self;
-        [self.view addSubview:(_deviceView = deviceView)];
+        [self.view insertSubview:(_deviceView = deviceView) aboveSubview:self.renderView];
     }
     return _deviceView;
 }
@@ -183,10 +243,36 @@
     {
         M8CallRenderView *renderView = [[M8CallRenderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) item:self.liveItem isHost:self.isHost];
         renderView.WCDelegate = self;
-        [self.view addSubview:(_renderView = renderView)];
+        [self.view insertSubview:(_renderView = renderView) aboveSubview:self.bgImageView];
     }
     return _renderView;
 }
+
+- (M8MenuPushView *)menuView
+{
+    if (!_menuView)
+    {
+        M8MenuPushView *menuView = [[M8MenuPushView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, kBottomHeight)
+                                                               itemCount:self.liveItem.callType == TILCALL_TYPE_VIDEO ? 4 : 2];
+        [self.view addSubview:menuView];
+        [self.view bringSubviewToFront:menuView];
+        _menuView = menuView;
+    }
+    return _menuView;
+}
+#pragma mark - createUI
+- (void)createUI
+{
+    // 实现父类退出按钮的点击事件
+    [self.exitButton addTarget:self action:@selector(selfDismiss) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self headerView];
+    [self deviceView];
+    [self renderView];
+    [self menuView];
+}
+
+
 
 - (void)addTextToView:(id)newText
 {
@@ -195,15 +281,36 @@
 
 - (void)selfDismiss
 {
-    [self onNetReportExitRoom];
-    
-    if (self.shouldHangup)
+    BOOL ret = [[NSUserDefaults standardUserDefaults] boolForKey:kPushMenuStatus];
+    if (ret)
     {
-        [self hangup];
+        [self onHiddeMenuView];
+        return ;
+    }
+    
+    if (self.isHost)
+    {
+        [self onNetReportExitRoom];
+        
+        if (self.shouldHangup)
+        {
+            [self hangup];
+        }
+        else
+        {
+            [self cancelAllCall];
+        }
     }
     else
     {
-        [self cancelAllCall];
+        [self hangup];
     }
 }
+
+
+- (void)dealloc
+{
+    [WCNotificationCenter removeObserver:self name:kHiddenMenuView_Notifycation object:nil];
+}
+
 @end
