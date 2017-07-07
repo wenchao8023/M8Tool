@@ -21,12 +21,8 @@
 
  @param invitation 邀请信息, title 由发起的时候配置custom
  */
-- (void)onMultiCallInvitation:(TILCallInvitation *)invitation {
-
-//    M8RecvCallViewController *recvCallVC = [[M8RecvCallViewController alloc] init];
-//    recvCallVC.invitation = invitation;
-//    [M8MeetWindow M8_addCallSource:recvCallVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
-    
+- (void)onMultiCallInvitation:(TILCallInvitation *)invitation
+{    
     TCShowLiveListItem *item = [[TCShowLiveListItem alloc] init];
     item.uid = [[ILiveLoginManager getInstance] getLoginId];
     item.members = invitation.memberArray;

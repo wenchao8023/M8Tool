@@ -278,9 +278,7 @@
     item.info.appid = [ShowAppId intValue];
     item.info.host = [[ILiveLoginManager getInstance] getLoginId];
     
-//    M8LiveMakeViewController *liveVC = [[M8LiveMakeViewController alloc] initWithItem:item];
-//    [M8MeetWindow M8_addLiveSource:liveVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
-    M8LiveViewController *liveVC = [[M8LiveViewController alloc] initWithItem:item isHost:NO];
+    M8LiveViewController *liveVC = [[M8LiveViewController alloc] initWithItem:item isHost:YES];
     [M8MeetWindow M8_addMeetSource:liveVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
 }
 

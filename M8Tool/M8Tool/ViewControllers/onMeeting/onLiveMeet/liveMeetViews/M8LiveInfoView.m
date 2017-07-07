@@ -31,4 +31,22 @@
     return self;
 }
 
+#pragma mark - UI相关
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    BOOL ret = [[NSUserDefaults standardUserDefaults] boolForKey:kPushMenuStatus];
+    if (ret)
+    {
+        [WCNotificationCenter postNotificationName:kHiddenMenuView_Notifycation object:nil];
+        return ;
+    }
+    
+    [self endEditing:YES];
+}
+
+- (void)dealloc
+{
+    [WCNotificationCenter removeObserver:self name:kHiddenMenuView_Notifycation object:nil];
+}
+
 @end

@@ -21,7 +21,8 @@
     NSString *host = self.liveItem.info.host;
     
     TILLiveManager *manager = [TILLiveManager getInstance];
-    switch(event) {
+    switch(event)
+    {
         case ILVLIVE_AVEVENT_MEMBER_ENTER:
         {
             
@@ -33,28 +34,39 @@
         case ILVLIVE_AVEVENT_CAMERA_ON:
         {
             //视频事件
-            for (NSString *user in users) {
-                if(![user isEqualToString:host]){
+            for (NSString *user in users)
+            {
+                if(![user isEqualToString:host])
+                {
                     [manager addAVRenderView:[self getRenderFrame:self.identifierArray.count] forIdentifier:user srcType:QAVVIDEO_SRC_TYPE_CAMERA];
                     [self.identifierArray addObject:user];
                     [self.srcTypeArray addObject:@(QAVVIDEO_SRC_TYPE_CAMERA)];
                 }
-                else{
+                else
+                {
                     [manager addAVRenderView:self.view.bounds forIdentifier:host srcType:QAVVIDEO_SRC_TYPE_CAMERA];
+                    if (self.isInFloatView)
+                    {
+                        [self.floatView onLiveVideoListener:YES];
+                    }
                 }
             }
         }
             break;
         case ILVLIVE_AVEVENT_CAMERA_OFF:
         {
-            for (NSString *user in users) {
-                if(![user isEqualToString:host]){
+            for (NSString *user in users)
+            {
+                if(![user isEqualToString:host])
+                {
                     NSInteger index = [self.identifierArray indexOfObject:user];
                     [manager removeAVRenderView:user srcType:QAVVIDEO_SRC_TYPE_CAMERA];
                     [self.identifierArray removeObjectAtIndex:index];
                     [self.srcTypeArray removeObjectAtIndex:index];
                 }
-                else{
+                else
+                {
+                    [self.floatView onLiveVideoListener:NO];
                 }
                 [self updateRenderFrame];
             }
@@ -62,13 +74,17 @@
             break;
         case ILVLIVE_AVEVENT_SCREEN_ON:
         {
-            for (NSString *user in users) {
-                if(![user isEqualToString:host]){
+            for (NSString *user in users)
+            {
+                if(![user isEqualToString:host])
+                {
                     [manager addAVRenderView:[self getRenderFrame:self.identifierArray.count] forIdentifier:user srcType:QAVVIDEO_SRC_TYPE_SCREEN];
                     [self.identifierArray addObject:user];
                     [self.srcTypeArray addObject:@(QAVVIDEO_SRC_TYPE_SCREEN)];
                 }
-                else{
+                else
+                {
+                    
                 }
             }
         }
@@ -84,34 +100,44 @@
                     [self.identifierArray removeObjectAtIndex:index];
                     [self.srcTypeArray removeObjectAtIndex:index];
                 }
-                else{
+                else
+                {
+                    
                 }
                 [self updateRenderFrame];
             }
         }
         case ILVLIVE_AVEVENT_MEDIA_ON:
         {
-            for (NSString *user in users) {
-                if(![user isEqualToString:host]){
+            for (NSString *user in users)
+            {
+                if(![user isEqualToString:host])
+                {
                     [manager addAVRenderView:[self getRenderFrame:self.identifierArray.count] forIdentifier:user srcType:QAVVIDEO_SRC_TYPE_MEDIA];
                     [self.identifierArray addObject:user];
                     [self.srcTypeArray addObject:@(QAVVIDEO_SRC_TYPE_MEDIA)];
                 }
-                else{
+                else
+                {
+                    
                 }
             }
         }
             break;
         case ILVLIVE_AVEVENT_MEDIA_OFF:
         {
-            for (NSString *user in users) {
-                if(![user isEqualToString:host]){
+            for (NSString *user in users)
+            {
+                if(![user isEqualToString:host])
+                {
                     NSInteger index = [self.identifierArray indexOfObject:user];
                     [manager removeAVRenderView:user srcType:QAVVIDEO_SRC_TYPE_MEDIA];
                     [self.identifierArray removeObjectAtIndex:index];
                     [self.srcTypeArray removeObjectAtIndex:index];
                 }
-                else{
+                else
+                {
+                    
                 }
                 [self updateRenderFrame];
             }
@@ -121,8 +147,10 @@
     }
 }
 
-- (CGRect)getRenderFrame:(NSInteger)count{
-    if(count == 3){
+- (CGRect)getRenderFrame:(NSInteger)count
+{
+    if(count == 3)
+    {
         return CGRectZero;
     }
     CGFloat height = (self.view.height - 2*20 - 3 * 10)/3;
@@ -132,9 +160,11 @@
     return CGRectMake(x, y, width, height);
 }
 
-- (void)updateRenderFrame{
+- (void)updateRenderFrame
+{
     TILLiveManager *manager = [TILLiveManager getInstance];
-    for(NSInteger index = 0; index < self.identifierArray.count; index++){
+    for(NSInteger index = 0; index < self.identifierArray.count; index++)
+    {
         CGRect frame = [self getRenderFrame:index];
         NSString *identifier = self.identifierArray[index];
         avVideoSrcType srcType = [self.srcTypeArray[index] intValue];
@@ -153,6 +183,8 @@
 {
     
 }
+
+
 
 /**
  * SDK主动退出房间提示。该回调方法表示SDK内部主动退出了房间。SDK内部会因为30s心跳包超时等原因主动退出房间，APP需要监听此退出房间事件并对该事件进行相应处理
@@ -197,6 +229,7 @@
 {
     
 }
+
 
 
 @end

@@ -41,7 +41,7 @@
         cell = [[M8LiveJoinCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:joinCellID];
     }
     
-    [cell configWithNumStr:[NSString stringWithFormat:@"%ld", indexPath.row] isVisible:(indexPath.row == _currentIndex)];
+    [cell configWithNumStr:[NSString stringWithFormat:@"%ld", (long)indexPath.row] isVisible:(indexPath.row == _currentIndex)];
     
     return cell;
 }

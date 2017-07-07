@@ -10,6 +10,6 @@
 
 @interface M8MenuPushView : UIScrollView
 
-- (instancetype)initWithFrame:(CGRect)frame itemCount:(int)itemCount;
+- (instancetype)initWithFrame:(CGRect)frame itemCount:(int)itemCount meetType:(M8MeetType)meetType;
 
 @end

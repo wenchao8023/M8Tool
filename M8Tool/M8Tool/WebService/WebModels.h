@@ -8,6 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+
+
+typedef NS_ENUM(NSInteger, M8MeetType)
+{
+    M8MeetTypeCall,
+    M8MeetTypeLive,
+};
+
+
+
 @interface ShowRoomInfo : NSObject
 
 @property (nonatomic, copy) NSString * title;

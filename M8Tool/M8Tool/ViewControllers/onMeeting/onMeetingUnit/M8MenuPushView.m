@@ -21,11 +21,19 @@
 
 @implementation M8MenuPushView
 
-- (instancetype)initWithFrame:(CGRect)frame itemCount:(int)itemCount
+- (instancetype)initWithFrame:(CGRect)frame itemCount:(int)itemCount meetType:(M8MeetType)meetType
 {
     if (self = [super initWithFrame:frame])
     {
-        _btnImgsArray = @[@"liveMic_on", @"liveReceiver_on", @"liveCamera_on", @"liveSwitchCamera"];
+        if (meetType == M8MeetTypeCall)
+        {
+            _btnImgsArray = @[@"liveMic_on", @"liveReceiver_on", @"liveCamera_on", @"liveSwitchCamera"];
+        }
+        else
+        {
+            //加载直播菜单中的按钮
+        }
+        
         
         UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
         UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];

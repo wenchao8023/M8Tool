@@ -257,7 +257,9 @@
     if (!_menuView)
     {
         M8MenuPushView *menuView = [[M8MenuPushView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, kBottomHeight)
-                                                               itemCount:self.liveItem.callType == TILCALL_TYPE_VIDEO ? 4 : 2];
+                                                               itemCount:self.liveItem.callType == TILCALL_TYPE_VIDEO ? 4 : 2
+                                                                meetType:M8MeetTypeCall
+                                    ];
         [self.view addSubview:menuView];
         [self.view bringSubviewToFront:menuView];
         _menuView = menuView;

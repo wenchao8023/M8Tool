@@ -22,6 +22,10 @@
 
 @implementation M8BaseFloatView
 
+
+
+
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame])

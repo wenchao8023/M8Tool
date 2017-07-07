@@ -30,6 +30,20 @@
     self.frame = _myFrame;
 }
 
+- (IBAction)onAttentionAction:(id)sender {
+    BOOL ret = [[NSUserDefaults standardUserDefaults] boolForKey:kPushMenuStatus];
+    if (ret)
+    {
+        [WCNotificationCenter postNotificationName:kHiddenMenuView_Notifycation object:nil];
+        return ;
+    }
+    WCLog(@"点击关注");
+}
+
+- (void)dealloc
+{
+    [WCNotificationCenter removeObserver:self name:kHiddenMenuView_Notifycation object:nil];
+}
 
 
 @end

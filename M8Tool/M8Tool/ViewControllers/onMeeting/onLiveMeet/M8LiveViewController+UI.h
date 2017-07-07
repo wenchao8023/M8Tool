@@ -8,6 +8,10 @@
 
 #import "M8LiveViewController.h"
 
-@interface M8LiveViewController (UI)<M8MeetDeviceViewDelegate>
+
+
+@interface M8LiveViewController (UI)<M8MeetDeviceViewDelegate, UIScrollViewDelegate>
+
+- (void)onHiddeMenuView;
 
 @end

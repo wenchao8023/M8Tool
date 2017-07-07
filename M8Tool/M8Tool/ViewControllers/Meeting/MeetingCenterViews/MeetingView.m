@@ -12,7 +12,7 @@
 #import "MeetingButtonsCollection.h"
 
 #import "M8MeetWindow.h"
-#import "M8BaseMeetViewController.h"
+#import "M8LiveViewController.h"
 
 
 @interface MeetingView ()<AgendaCollectionDelegate>
@@ -63,12 +63,12 @@
     item.info = [[ShowRoomInfo alloc] init];
     item.info.title = @"木木的会议";
     item.info.type = @"live";
-    item.info.roomnum = 10004;
-    item.info.groupid = @"10004";
+    item.info.roomnum = 10003;
+    item.info.groupid = @"10003";
     item.info.appid = [ShowAppId intValue];
-    item.info.host = @"user1";
-    
-    M8BaseMeetViewController *baseMeetVC = [[M8BaseMeetViewController alloc] initWithItem:item isHost:NO];
+    item.info.host = @"user2";
+
+    M8LiveViewController *baseMeetVC = [[M8LiveViewController alloc] initWithItem:item isHost:NO];
     [M8MeetWindow M8_addMeetSource:baseMeetVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
     
 }

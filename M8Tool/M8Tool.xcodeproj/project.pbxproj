@@ -2248,6 +2248,7 @@
 				94E18D121EC47C3400132FB2 /* MeetingViewController.h */,
 				94E18D131EC47C3400132FB2 /* MeetingViewController.m */,
 				9497DF281ECA966A009C35CB /* MeetingCenterViews */,
+				94FFF7C81F0FB98600F0CE96 /* MeetingAgenda */,
 				94BDE51D1ECC451E00ECC089 /* MeetingLuanch */,
 				94BDE5211ECC488A00ECC089 /* MeetingOrder */,
 				947DB4821EF7D4880019AE2B /* MeetingCollection */,
@@ -2387,6 +2388,13 @@
 				94E5DE311ED6A738008632D7 /* UsrContactHeaderView.xib */,
 			);
 			name = UserContactViews;
+			sourceTree = "<group>";
+		};
+		94FFF7C81F0FB98600F0CE96 /* MeetingAgenda */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MeetingAgenda;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

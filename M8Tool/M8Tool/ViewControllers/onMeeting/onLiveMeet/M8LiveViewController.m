@@ -27,6 +27,8 @@
     [self createUI];
     
     [self initCall];
+    
+    [WCNotificationCenter addObserver:self selector:@selector(onHiddeMenuView) name:kHiddenMenuView_Notifycation object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,7 +56,6 @@
     TILLiveRoomOption *option = [TILLiveRoomOption defaultHostLiveOption];
     option.controlRole = kSxbRole_Host;
     option.avOption.autoHdAudio = YES;//使用高音质模式，可以传背景音乐
-//    option.roomDisconnectListener = self;
     option.imOption.imSupport = YES;
     
     LoadView *createRoomWaitView = [LoadView loadViewWith:@"正在创建房间"];
@@ -71,7 +72,7 @@
     //设置承载渲染的界面
     [manager setAVRootView:self.livePlayView];
     
-    WCWeakSelf(self);
+//    WCWeakSelf(self);
     [manager createRoom:(int)self.liveItem.info.roomnum option:option succ:^{
         [createRoomWaitView removeFromSuperview];
         
@@ -117,12 +118,12 @@
 //        [ws sendJoinRoomMsg];
 //        [ws setSelfInfo];
         
-    } failed:^(NSString *module, int errId, NSString *errMsg) {
+    } failed:^(NSString *module, int errId, NSString *errMsg)
+     {
         NSString *errLog = [NSString stringWithFormat:@"join room fail. module=%@,errid=%d,errmsg=%@",module,errId,errMsg];
         [AlertHelp alertWith:@"加入房间失败" message:errLog cancelBtn:@"退出" alertStyle:UIAlertControllerStyleAlert cancelAction:^(UIAlertAction * _Nonnull action) {
             [ws selfDismiss];
         }];
-        
     }];
 }
 
@@ -212,6 +213,23 @@
     return _deviceView;
 }
 
+- (M8MenuPushView *)menuView
+{
+    if (!_menuView)
+    {
+        M8MenuPushView *menuView = [[M8MenuPushView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, kBottomHeight)
+                                                               itemCount:self.liveItem.callType == TILCALL_TYPE_VIDEO ? 4 : 2
+                                                                meetType:M8MeetTypeLive
+                                    ];
+        [self.view addSubview:menuView];
+        [self.view bringSubviewToFront:menuView];
+        _menuView = menuView;
+    }
+    return _menuView;
+}
+
+
+
 #pragma mark -- datas container
 - (NSMutableArray *)identifierArray
 {
@@ -232,6 +250,8 @@
 }
 
 
+
+
 #pragma mark - createUI
 - (void)createUI
 {
@@ -239,18 +259,39 @@
     [self.exitButton addTarget:self action:@selector(selfDismiss) forControlEvents:UIControlEventTouchUpInside];
     [self.view insertSubview:self.scrollView    belowSubview:self.exitButton];
     [self.view insertSubview:self.livePlayView  belowSubview:self.scrollView];
-    [self.view insertSubview:self.tableView     belowSubview:self.livePlayView];
+    
     
     if (!self.isHost)
     {
+        [self.view insertSubview:self.tableView     belowSubview:self.livePlayView];
         UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
         [self.view addGestureRecognizer:pan];
     }
 }
 
+- (void)addTextToView:(id)newText
+{
+    NSString *text = self.noteView.textView.text;
+    
+    NSString *dicStr = [NSString stringWithFormat:@"%@", newText];
+    dicStr = [dicStr stringByAppendingString:@"\n"];
+    dicStr = [dicStr stringByAppendingString:text];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        self.noteView.textView.text = dicStr;
+    });
+}
 
 
 - (void)selfDismiss {
+    
+    BOOL ret = [[NSUserDefaults standardUserDefaults] boolForKey:kPushMenuStatus];
+    if (ret)
+    {
+        [self onHiddeMenuView];
+        return ;
+    }
     
     //通知业务服务器，退房
     [self onNetReportExitRoom];
@@ -356,4 +397,10 @@
         }];
     }
 }
+
+- (void)dealloc
+{
+    [WCNotificationCenter removeObserver:self name:kHiddenMenuView_Notifycation object:nil];
+}
+
 @end

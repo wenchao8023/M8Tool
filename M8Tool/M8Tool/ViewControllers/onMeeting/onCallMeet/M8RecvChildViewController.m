@@ -36,20 +36,25 @@
     
 }
 
-- (IBAction)onRejectAction:(id)sender {
+- (IBAction)onRejectAction:(id)sender
+{
     [self respondsToDelegate:@"reject"];
 }
 
-- (IBAction)onReceiveAction:(id)sender {
+- (IBAction)onReceiveAction:(id)sender
+{
     [self respondsToDelegate:@"receive"];
 }
 
-- (void)respondsToDelegate:(NSString *)actionStr {
-    if ([self.WCDelegate respondsToSelector:@selector(RecvChildVCAction:)]) {
+- (void)respondsToDelegate:(NSString *)actionStr
+{
+    if ([self.WCDelegate respondsToSelector:@selector(RecvChildVCAction:)])
+    {
         [self.WCDelegate RecvChildVCAction:actionStr];
     }
 }
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     
     self.bgImageView.frame = self.view.bounds;
@@ -78,10 +83,12 @@
     [WCNotificationCenter addObserver:self selector:@selector(themeSwichAction) name:kThemeSwich_Notification object:nil];
     
     NSString *inviteInfo;
-    if (_invitation.callType == TILCALL_TYPE_VIDEO) {
+    if (_invitation.callType == TILCALL_TYPE_VIDEO)
+    {
         inviteInfo = [NSString stringWithFormat:@"%@邀请你视频通话", _invitation.sponsorId];
     }
-    else if (_invitation.callType == TILCALL_TYPE_AUDIO) {
+    else if (_invitation.callType == TILCALL_TYPE_AUDIO)
+    {
         inviteInfo = [NSString stringWithFormat:@"%@邀请你音频通话", _invitation.sponsorId];
     }
     self.infoLabel.text = inviteInfo;
@@ -93,8 +100,10 @@
     
     WCLog(@"Recv call child frame is : %@", NSStringFromCGRect(self.view.frame));
 }
-- (UIImageView *)bgImageView {
-    if (!_bgImageView) {
+- (UIImageView *)bgImageView
+{
+    if (!_bgImageView)
+    {
         NSString *imgStr = [[NSUserDefaults standardUserDefaults] objectForKey:kThemeImage];
         UIImageView *bgImageV = [WCUIKitControl createImageViewWithFrame:self.view.bounds ImageName:imgStr ? imgStr : kDefaultThemeImage];
         [self.view addSubview:(_bgImageView = bgImageV)];
@@ -102,18 +111,20 @@
     return _bgImageView;
 }
 
-- (void)themeSwichAction {
+- (void)themeSwichAction
+{
     NSString *imgStr = [[NSUserDefaults standardUserDefaults] objectForKey:kThemeImage];
     [self.bgImageView setImage:[UIImage imageNamed:imgStr]];
 }
 
-- (void)dealloc {
-    
+- (void)dealloc
+{
     [WCNotificationCenter removeObserver:self name:kThemeSwich_Notification object:nil];
 }
 
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

@@ -10,4 +10,8 @@
 
 @interface M8BaseFloatView (Live)
 
+- (void)configLiveFloatView:(TCShowLiveListItem *_Nonnull)item isCameraOn:(BOOL)isCameraOn;
+
+- (void)onLiveVideoListener:(BOOL)isOn;
+
 @end

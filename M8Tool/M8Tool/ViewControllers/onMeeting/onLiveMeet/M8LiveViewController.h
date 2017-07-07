@@ -16,6 +16,8 @@
 #import "M8LiveNoteView.h"
 #import "M8MeetDeviceView.h"
 
+#import "M8BaseFloatView+Live.h"
+
 
 @interface M8LiveViewController : M8BaseMeetViewController
 
@@ -38,7 +40,7 @@
 @property (nonatomic, strong, nullable) M8LiveHeaderView *headerView;
 @property (nonatomic, strong, nullable) M8LiveNoteView   *noteView;
 @property (nonatomic, strong, nullable) M8MeetDeviceView *deviceView;
-
+@property (nonatomic, strong, nullable) M8MenuPushView   *menuView;
 
 
 /**
@@ -46,5 +48,10 @@
  */
 @property (nonatomic, strong, nullable) NSMutableArray *identifierArray;
 @property (nonatomic, strong, nullable) NSMutableArray *srcTypeArray;
+
+
+
+
+- (void)addTextToView:(id _Nullable)newText;
 
 @end

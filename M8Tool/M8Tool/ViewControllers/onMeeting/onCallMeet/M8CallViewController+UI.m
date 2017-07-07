@@ -8,8 +8,6 @@
 
 #import "M8CallViewController+UI.h"
 
-#import "M8MenuPushView.h"
-
 #import "UserContactViewController.h"
 
 
@@ -21,7 +19,8 @@
 
 #pragma mark - views delegate
 #pragma mark -- MeetHeaderDelegate
-- (void)MeetHeaderActionInfo:(NSDictionary *)actionInfo {
+- (void)MeetHeaderActionInfo:(NSDictionary *)actionInfo
+{
     
 }
 
@@ -141,6 +140,7 @@
     }
 }
 
+#pragma mark -- M8FloatViewDelegate
 - (void)M8FloatView:(id)floatView centerChanged:(CGPoint)center
 {
     self.floatView = floatView;

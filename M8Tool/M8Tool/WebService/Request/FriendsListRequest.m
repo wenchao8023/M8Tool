@@ -16,7 +16,8 @@
 
 - (NSDictionary *)packageParams
 {
-    NSDictionary *paramDic = @{@"token"  : _token,
+    NSDictionary *paramDic = @{
+                               @"token"  : _token,
                                @"id" : _identifier,
                                };
     return paramDic;
