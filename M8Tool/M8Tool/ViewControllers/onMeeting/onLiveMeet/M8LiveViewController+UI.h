@@ -8,6 +8,6 @@
 
 #import "M8LiveViewController.h"
 
-@interface M8LiveViewController (UI)
+@interface M8LiveViewController (UI)<M8MeetDeviceViewDelegate>
 
 @end

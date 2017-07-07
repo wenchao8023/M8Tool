@@ -12,8 +12,8 @@
 #import "M8CollectDetailCollection.h"
 #import "ModifyViewController.h"
 
-#import "M8MeetWindow.h"
-#import "M8MakeCallViewController.h"
+//#import "M8MeetWindow.h"
+//#import "M8MakeCallViewController.h"
 
 #define kItemWidth (self.width - 60) / 5
 #define kSectionHeight 40.f
@@ -85,7 +85,7 @@
         [dataContentArray addObject:_dataModel.recordTopic];
         [dataContentArray addObject:_dataModel.recordLuancher];
         [dataContentArray addObject:_dataModel.recordTime];
-        [dataContentArray addObject:[NSString stringWithFormat:@"%lu人", _dataModel.recordMembers.count]];
+        [dataContentArray addObject:[NSString stringWithFormat:@"%u人", _dataModel.recordMembers.count]];
         _dataContentArray = dataContentArray;
         
         [self reloadData];
@@ -162,23 +162,24 @@
 //        [AppDelegate showAlertWithTitle:@"提示" message:@"暂时没有提供直播重新发起" okTitle:@"确定" cancelTitle:nil ok:nil cancel:nil];
     }
     else {
-        M8MakeCallViewController *callVC = [[M8MakeCallViewController alloc] init];
-        NSMutableArray *membersArray = [NSMutableArray arrayWithArray:_dataModel.recordMembers];
-        NSString *loginIdentify = [[ILiveLoginManager getInstance] getLoginId];
-        if ([membersArray containsObject:loginIdentify]) {
-            [membersArray removeObject:loginIdentify];
-        }
-        
-        callVC.membersArray = membersArray;
-        callVC.callId       = [[AppDelegate sharedAppDelegate] getRoomID];
-        callVC.topic        = _dataModel.recordTopic;
-        if ([typeStr containsString:@"video"]) {
-            callVC.callType = TILCALL_TYPE_VIDEO;
-        }
-        if ([typeStr containsString:@"audio"]) {
-            callVC.callType = TILCALL_TYPE_AUDIO;
-        }
-        [M8MeetWindow M8_addCallSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
+#warning M8MakeCallViewController
+//        M8MakeCallViewController *callVC = [[M8MakeCallViewController alloc] init];
+//        NSMutableArray *membersArray = [NSMutableArray arrayWithArray:_dataModel.recordMembers];
+//        NSString *loginIdentify = [[ILiveLoginManager getInstance] getLoginId];
+//        if ([membersArray containsObject:loginIdentify]) {
+//            [membersArray removeObject:loginIdentify];
+//        }
+//        
+//        callVC.membersArray = membersArray;
+//        callVC.callId       = [[AppDelegate sharedAppDelegate] getRoomID];
+//        callVC.topic        = _dataModel.recordTopic;
+//        if ([typeStr containsString:@"video"]) {
+//            callVC.callType = TILCALL_TYPE_VIDEO;
+//        }
+//        if ([typeStr containsString:@"audio"]) {
+//            callVC.callType = TILCALL_TYPE_AUDIO;
+//        }
+//        [M8MeetWindow M8_addCallSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
     }
 }
 

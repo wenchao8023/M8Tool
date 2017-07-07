@@ -1,15 +1,15 @@
 //
-//  M8DeviceView.m
+//  M8MeetDeviceView.m
 //  M8Tool
 //
 //  Created by chao on 2017/7/5.
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import "M8DeviceView.h"
+#import "M8MeetDeviceView.h"
 
 
-@interface M8DeviceView ()
+@interface M8MeetDeviceView ()
 {
     CGRect _myFrame;
 }
@@ -22,7 +22,7 @@
 @end
 
 
-@implementation M8DeviceView
+@implementation M8MeetDeviceView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -83,9 +83,9 @@
 - (void)deviceActionInfoValue:(id)value key:(NSString *)key
 {
     NSDictionary *actionInfo = @{key : value};
-    if ([self.WCDelegate respondsToSelector:@selector(M8DeviceViewActionInfo:)])
+    if ([self.WCDelegate respondsToSelector:@selector(M8MeetDeviceViewActionInfo:)])
     {
-        [self.WCDelegate M8DeviceViewActionInfo:actionInfo];
+        [self.WCDelegate M8MeetDeviceViewActionInfo:actionInfo];
     }
 }
 

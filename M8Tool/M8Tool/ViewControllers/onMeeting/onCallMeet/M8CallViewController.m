@@ -226,11 +226,11 @@
     return _headerView;
 }
 
-- (M8DeviceView *)deviceView
+- (M8MeetDeviceView *)deviceView
 {
     if (!_deviceView)
     {
-        M8DeviceView *deviceView = [[M8DeviceView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - kBottomHeight, SCREEN_WIDTH, kBottomHeight)];
+        M8MeetDeviceView *deviceView = [[M8MeetDeviceView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - kBottomHeight, SCREEN_WIDTH, kBottomHeight)];
         deviceView.WCDelegate = self;
         [self.view insertSubview:(_deviceView = deviceView) aboveSubview:self.renderView];
     }

@@ -24,7 +24,7 @@ static NSString * _Nonnull const kMemberStatu_hangup        = @"挂断";
 static NSString * _Nonnull const kMemberStatu_disconnect    = @"断开";
 static NSString * _Nonnull const kMemberStatu_waiting       = @"连接中";   // 需考虑是否添加此状态
 
-/// M8DeviceView
+/// M8MeetDeviceView
 //  key
 static NSString * _Nonnull const kDeviceAction              = @"deviceAction";
 static NSString * _Nonnull const kDeviceText                = @"deviceText";

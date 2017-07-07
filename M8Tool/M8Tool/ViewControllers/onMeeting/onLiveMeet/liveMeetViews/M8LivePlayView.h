@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface M8LivePlayView : UIView<ILVLiveAVListener>
+@interface M8LivePlayView : UIView
 
-@property (nonatomic, strong) NSString *host;
 
 @end

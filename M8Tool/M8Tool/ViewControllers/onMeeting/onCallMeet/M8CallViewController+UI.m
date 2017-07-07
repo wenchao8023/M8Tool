@@ -27,7 +27,7 @@
 
 
 #pragma mark -- M8DeviceDelegate
-- (void)M8DeviceViewActionInfo:(NSDictionary *)actionInfo
+- (void)M8MeetDeviceViewActionInfo:(NSDictionary *)actionInfo
 {
     NSString *infoKey = [[actionInfo allKeys] firstObject];
     if ([infoKey isEqualToString:kDeviceAction])

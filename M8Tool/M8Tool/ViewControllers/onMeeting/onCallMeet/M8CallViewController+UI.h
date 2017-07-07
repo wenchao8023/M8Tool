@@ -8,7 +8,7 @@
 
 #import "M8CallViewController.h"
 
-@interface M8CallViewController (UI)<CallRenderDelegate, MeetHeaderDelegate, M8DeviceViewDelegate, RecvChildVCDelegate>
+@interface M8CallViewController (UI)<CallRenderDelegate, MeetHeaderDelegate, M8MeetDeviceViewDelegate, RecvChildVCDelegate>
 
 - (void)onHiddeMenuView;
 

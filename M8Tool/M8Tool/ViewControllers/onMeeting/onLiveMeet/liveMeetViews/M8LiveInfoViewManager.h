@@ -12,16 +12,8 @@
 
 
 
-@protocol M8LiveInfoViewManagerDelegate <NSObject>
-
-- (void)LiveInfoViewManagerLog:(id)log;
-
-@end
-
-
-
 @interface M8LiveInfoViewManager : NSObject
 
-@property (nonatomic, weak) id<M8LiveInfoViewManagerDelegate> _Nullable WCDelegate;
+
 
 @end

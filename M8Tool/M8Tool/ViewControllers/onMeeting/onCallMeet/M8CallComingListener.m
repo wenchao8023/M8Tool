@@ -8,10 +8,8 @@
 
 #import "M8CallComingListener.h"
 
-#import "M8RecvCallViewController.h"
-#import "M8MeetWindow.h"
 
-#import "MMeetWindow.h"
+#import "M8MeetWindow.h"
 #import "M8CallViewController.h"
 
 
@@ -43,7 +41,7 @@
     
     M8CallViewController *callVC = [[M8CallViewController alloc] initWithItem:item isHost:NO];
     callVC.invitation = invitation;
-    [MMeetWindow M_addMeetSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
+    [M8MeetWindow M8_addMeetSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
 }
 
 @end

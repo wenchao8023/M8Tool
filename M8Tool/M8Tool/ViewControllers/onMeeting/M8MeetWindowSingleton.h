@@ -1,5 +1,5 @@
 //
-//  MMeetWindowSingleton.h
+//  M8MeetWindowSingleton.h
 //  M8Tool
 //
 //  Created by chao on 2017/7/4.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MMeetWindowSingleton : NSObject
+@interface M8MeetWindowSingleton : NSObject
 
 + (instancetype _Nonnull )shareInstance;
 

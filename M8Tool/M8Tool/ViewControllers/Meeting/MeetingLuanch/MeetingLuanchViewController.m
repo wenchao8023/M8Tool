@@ -9,16 +9,17 @@
 #import "MeetingLuanchViewController.h"
 #import "MeetingLuanchTableView.h"
 
-#import "M8MeetWindow.h"
-#import "M8MakeCallViewController.h"
-#import "M8LiveMakeViewController.h"
-#import "M8LiveJoinViewController.h"
+//#import "M8MeetWindow.h"
+//#import "M8MakeCallViewController.h"
+//#import "M8LiveMakeViewController.h"
+//#import "M8LiveJoinViewController.h"
 
 #import "M8UploadImageHelper.h"
 
 
-#import "MMeetWindow.h"
+#import "M8MeetWindow.h"
 #import "M8CallViewController.h"
+#import "M8LiveViewController.h"
 
 
 @interface MeetingLuanchViewController ()<LuanchTableViewDelegate>
@@ -216,7 +217,7 @@
     item.info.host = [[ILiveLoginManager getInstance] getLoginId];
     
     M8CallViewController *callVC = [[M8CallViewController alloc] initWithItem:item isHost:YES];
-    [MMeetWindow M_addMeetSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
+    [M8MeetWindow M8_addMeetSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
 }
 
 
@@ -277,8 +278,10 @@
     item.info.appid = [ShowAppId intValue];
     item.info.host = [[ILiveLoginManager getInstance] getLoginId];
     
-    M8LiveMakeViewController *liveVC = [[M8LiveMakeViewController alloc] initWithItem:item];
-    [M8MeetWindow M8_addLiveSource:liveVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
+//    M8LiveMakeViewController *liveVC = [[M8LiveMakeViewController alloc] initWithItem:item];
+//    [M8MeetWindow M8_addLiveSource:liveVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
+    M8LiveViewController *liveVC = [[M8LiveViewController alloc] initWithItem:item isHost:NO];
+    [M8MeetWindow M8_addMeetSource:liveVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
 }
 
 

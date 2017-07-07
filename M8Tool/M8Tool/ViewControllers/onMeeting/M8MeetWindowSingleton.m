@@ -1,19 +1,19 @@
 //
-//  MMeetWindowSingleton.m
+//  M8MeetWindowSingleton.m
 //  M8Tool
 //
 //  Created by chao on 2017/7/4.
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import "MMeetWindowSingleton.h"
+#import "M8MeetWindowSingleton.h"
 
 #import "MBaseMeetViewController.h"
 
 
 
 
-@interface MMeetWindowSingleton ()
+@interface M8MeetWindowSingleton ()
 
 @property (nonatomic, weak, nullable) MBaseMeetViewController *baseController;
 
@@ -22,7 +22,7 @@
 
 
 
-@implementation MMeetWindowSingleton
+@implementation M8MeetWindowSingleton
 
 + (instancetype)shareInstance
 {

@@ -1,5 +1,5 @@
 //
-//  M8DeviceView.h
+//  M8MeetDeviceView.h
 //  M8Tool
 //
 //  Created by chao on 2017/7/5.
@@ -19,14 +19,14 @@ typedef NS_ENUM(NSInteger, DeviceType) {
 };
 
 
-@protocol M8DeviceViewDelegate <NSObject>
+@protocol M8MeetDeviceViewDelegate <NSObject>
 
-- (void)M8DeviceViewActionInfo:(NSDictionary *_Nonnull)actionInfo;
+- (void)M8MeetDeviceViewActionInfo:(NSDictionary *_Nonnull)actionInfo;
 
 @end
 
-@interface M8DeviceView : UIView
+@interface M8MeetDeviceView : UIView
 
-@property (nonatomic, weak) id<M8DeviceViewDelegate> _Nullable WCDelegate;
+@property (nonatomic, weak) id<M8MeetDeviceViewDelegate> _Nullable WCDelegate;
 
 @end

@@ -10,7 +10,7 @@
 
 #import "M8CallHeaderView.h"
 #import "M8CallRenderView.h"
-#import "M8DeviceView.h"
+#import "M8MeetDeviceView.h"
 
 #import "M8CallRenderModelManager.h"
 
@@ -24,7 +24,7 @@
 
 @property (nonatomic, strong, nonnull) M8CallHeaderView *headerView;
 @property (nonatomic, strong, nonnull) M8CallRenderView *renderView;
-@property (nonatomic, strong, nonnull) M8DeviceView     *deviceView;
+@property (nonatomic, strong, nonnull) M8MeetDeviceView *deviceView;
 @property (nonatomic, strong, nonnull) M8MenuPushView   *menuView;
 
 /**

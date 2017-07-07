@@ -13,6 +13,7 @@
 #import "M8LiveViewController+AVListener.h"
 #import "M8LiveViewController+IMListener.h"
 
+
 @interface M8LiveViewController ()
 
 @end
@@ -51,7 +52,7 @@
 - (void)makeLive
 {
     TILLiveRoomOption *option = [TILLiveRoomOption defaultHostLiveOption];
-    option.controlRole = @"LiveMaster";
+    option.controlRole = kSxbRole_Host;
     option.avOption.autoHdAudio = YES;//使用高音质模式，可以传背景音乐
 //    option.roomDisconnectListener = self;
     option.imOption.imSupport = YES;
@@ -99,13 +100,57 @@
 
 - (void)joinLive
 {
+    TILLiveRoomOption *option = [TILLiveRoomOption defaultGuestLiveOption];
+    option.controlRole = kSxbRole_Guest;
     
+    TILLiveManager *manager = [TILLiveManager getInstance];
+    //设置消息监听
+    [manager setIMListener:self];
+    //设置音视频事件监听
+    [manager setAVListener:self];
+    //设置承载渲染的界面
+    [manager setAVRootView:self.livePlayView];
+    
+    __weak typeof(self) ws = self;
+    [manager joinRoom:(int)self.liveItem.info.roomnum option:option succ:^{
+        NSLog(@"join room succ");
+//        [ws sendJoinRoomMsg];
+//        [ws setSelfInfo];
+        
+    } failed:^(NSString *module, int errId, NSString *errMsg) {
+        NSString *errLog = [NSString stringWithFormat:@"join room fail. module=%@,errid=%d,errmsg=%@",module,errId,errMsg];
+        [AlertHelp alertWith:@"加入房间失败" message:errLog cancelBtn:@"退出" alertStyle:UIAlertControllerStyleAlert cancelAction:^(UIAlertAction * _Nonnull action) {
+            [ws selfDismiss];
+        }];
+        
+    }];
 }
 
 
 #pragma mark - inits
-- (UIScrollView *)scrollView {
-    if (!_scrollView) {
+#pragma mark -- views container
+- (M8LiveJoinTableView *)tableView {
+    if (!_tableView) {
+        M8LiveJoinTableView *tableView = [[M8LiveJoinTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        _tableView = tableView;
+    }
+    return _tableView;
+}
+
+- (M8LivePlayView *)livePlayView
+{
+    if (!_livePlayView)
+    {
+        M8LivePlayView *livePlayView = [[M8LivePlayView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
+        _livePlayView = livePlayView;
+    }
+    return _livePlayView;
+}
+
+- (UIScrollView *)scrollView
+{
+    if (!_scrollView)
+    {
         UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
         scrollView.pagingEnabled = YES;
         scrollView.contentSize = CGSizeMake(self.view.width * 2, self.view.height);
@@ -121,33 +166,71 @@
     return _scrollView;
 }
 
-- (M8LivePlayView *)livePlayView
-{
-    if (!_livePlayView)
-    {
-        M8LivePlayView *livePlayView = [[M8LivePlayView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
-        _livePlayView = livePlayView;
-    }
-    return _livePlayView;
-}
-
 - (M8LiveInfoView *)liveInfoView
 {
     if (!_liveInfoView)
     {
         M8LiveInfoView *livingInfoView = [[M8LiveInfoView alloc] initWithFrame:CGRectMake(self.view.width, 0, self.view.width, self.view.height)];
-        _liveInfoView =livingInfoView;
+        
+        [livingInfoView addSubview:self.headerView];
+        [livingInfoView addSubview:self.noteView];
+        [livingInfoView addSubview:self.deviceView];
+        
+        _liveInfoView = livingInfoView;
     }
     return _liveInfoView;
 }
 
-- (M8LiveJoinTableView *)tableView {
-    if (!_tableView) {
-        M8LiveJoinTableView *tableView = [[M8LiveJoinTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-        _tableView = tableView;
+- (M8LiveHeaderView *)headerView
+{
+    if (!_headerView)
+    {
+        M8LiveHeaderView *headerView = [[M8LiveHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, kDefaultNaviHeight)];
+        _headerView = headerView;
     }
-    return _tableView;
+    return _headerView;
 }
+
+- (M8LiveNoteView *)noteView
+{
+    if (!_noteView)
+    {
+        M8LiveNoteView *noteView = [[M8LiveNoteView alloc] initWithFrame:CGRectMake(0, self.view.height - kBottomHeight - 200, self.view.width, 200)];
+        _noteView = noteView;
+    }
+    return _noteView;
+}
+
+- (M8MeetDeviceView *)deviceView
+{
+    if (!_deviceView)
+    {
+        M8MeetDeviceView *deviceView = [[M8MeetDeviceView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - kBottomHeight, SCREEN_WIDTH, kBottomHeight)];
+        deviceView.WCDelegate = self;
+        _deviceView = deviceView;
+    }
+    return _deviceView;
+}
+
+#pragma mark -- datas container
+- (NSMutableArray *)identifierArray
+{
+    if (!_identifierArray)
+    {
+        _identifierArray = [[NSMutableArray alloc] init];
+    }
+    return _identifierArray;
+}
+
+- (NSMutableArray *)srcTypeArray
+{
+    if (!_srcTypeArray)
+    {
+        _srcTypeArray = [[NSMutableArray alloc] init];
+    }
+    return _srcTypeArray;
+}
+
 
 #pragma mark - createUI
 - (void)createUI
@@ -164,44 +247,6 @@
         [self.view addGestureRecognizer:pan];
     }
 }
-
-
-/**
- 需要随着手指移动的视图，只计算竖直方向的位移
- self.scrollView
- self.livePlayView
- self.tableView
- */
-- (void)pan:(UIPanGestureRecognizer *)pan
-{
-    CGPoint translation = [pan translationInView:self.view];
-    
-    
-    
-    
-    switch (pan.state) {
-        case UIGestureRecognizerStateBegan:
-        {
-            
-        }
-            break;
-        case UIGestureRecognizerStateChanged:
-        {
-            
-        }
-            break;
-        case UIGestureRecognizerStateEnded:
-        {
-            
-            
-            [pan setTranslation:CGPointMake(0, 0) inView:self.view];
-        }
-            break;
-        default:
-            break;
-    }
-}
-
 
 
 
@@ -221,4 +266,94 @@
     [super selfDismiss];
 }
 
+
+#pragma mark - 观众端添加移动手势
+/**
+ 需要随着手指移动的视图，只计算竖直方向的位移
+ self.scrollView
+ self.livePlayView
+ self.tableView     要做成轮播图样式
+ */
+- (void)pan:(UIPanGestureRecognizer *)pan
+{
+    CGPoint translation = [pan translationInView:self.view];
+
+    [self panChanged:translation.y];
+    
+    if (pan.state == UIGestureRecognizerStateEnded)
+    {
+        [self panEnded];
+    }
+    
+    [pan setTranslation:CGPointZero inView:self.view];
+}
+
+- (void)panChanged:(CGFloat)transY
+{
+    self.scrollView.y       += transY;
+    self.livePlayView.y     += transY;
+    
+    CGPoint tableViewY      = self.tableView.contentOffset;
+    tableViewY.y            -= transY;
+    [self.tableView setContentOffset:tableViewY];
+}
+
+- (void)panEnded
+{
+    CGFloat offsetY = self.livePlayView.y;
+    
+    if (offsetY > SCREEN_WIDTH * 0.2)            //下滑
+    {
+        [UIView animateWithDuration:0.2 animations:^{
+            
+            CGPoint tableViewY      = self.tableView.contentOffset;
+            tableViewY.y            -= (SCREEN_HEIGHT - offsetY);
+            [self.tableView setContentOffset:tableViewY];
+            
+            self.scrollView.y = SCREEN_HEIGHT;
+            self.livePlayView.y = SCREEN_HEIGHT;
+            
+        } completion:^(BOOL finished) {
+            
+            if (finished)
+            {
+                self.scrollView.y = 0;
+                self.livePlayView.y = 0;
+            }
+        }];
+    }
+    else if (offsetY <= -(SCREEN_WIDTH * 0.2))   //上滑
+    {
+        [UIView animateWithDuration:0.2 animations:^{
+            
+            CGPoint tableViewY      = self.tableView.contentOffset;
+            tableViewY.y            += (SCREEN_HEIGHT + offsetY);
+            [self.tableView setContentOffset:tableViewY];
+            
+            self.scrollView.y = -SCREEN_HEIGHT;
+            self.livePlayView.y = -SCREEN_HEIGHT;
+            
+        } completion:^(BOOL finished) {
+            
+            if (finished)
+            {
+                self.scrollView.y = 0;
+                self.livePlayView.y = 0;
+            }
+        }];
+    }
+    else    //还原
+    {
+        [UIView animateWithDuration:0.06 animations:^{
+            
+            CGPoint tableViewY      = self.tableView.contentOffset;
+            tableViewY.y            += offsetY;
+            [self.tableView setContentOffset:tableViewY];
+            
+            self.scrollView.y   -= offsetY;
+            self.livePlayView.y -= offsetY;
+            
+        }];
+    }
+}
 @end

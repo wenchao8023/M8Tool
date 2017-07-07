@@ -12,67 +12,7 @@
 #import "MeetingButtonsCollection.h"
 
 #import "M8MeetWindow.h"
-#import "M8LiveJoinViewController.h"
-
-#import "MMeetWindow.h"
 #import "MBaseMeetViewController.h"
-
-
-
-/////////////////////////////////////////////////
-///**
-// 添加 ‘会议议程’ 标题，和 ‘更多’ 按钮
-// */
-//@interface AgendaHeaderView : UICollectionReusableView
-//
-//@end
-//
-//
-//@implementation AgendaHeaderView
-//
-//- (instancetype)initWithFrame:(CGRect)frame {
-//    if (self = [super initWithFrame:frame]) {
-//        [self createHeaderUI];
-//    }
-//    return self;
-//}
-//
-//- (void)createHeaderUI {
-//    UILabel *titleLabel = [WCUIKitControl createLabelWithFrame:CGRectMake(20, 0, 80, self.height)
-//                                                          Text:@"会议议程"
-//                                                      FontSize:kAppLargeFontSize
-//                                                       BgColor:WCClear
-//                           ];
-//    [titleLabel setAttributedText:[CommonUtil customAttString:@"会议议程"
-//                                                          fontSize:kAppLargeFontSize
-//                                                         textColor:WCWhite
-//                                                         charSpace:kAppKern_0]
-//     ];
-//    
-//    [self addSubview:titleLabel];
-//    
-//    UIButton *moreButton = [WCUIKitControl createButtonWithFrame:CGRectMake(SCREEN_WIDTH - 80, 0, 60, self.height)
-//                                                       ImageName:@""
-//                                                          Target:self
-//                                                          Action:@selector(moreAgendaAction)
-//                                                           Title:@"更多"
-//                            ];
-//    
-//    [moreButton.titleLabel setAttributedText:[CommonUtil customAttString:@"更多"
-//                                                     fontSize:kAppLargeFontSize
-//                                                    textColor:WCWhite
-//                                                    charSpace:kAppKern_0]
-//     ];
-//    [self addSubview:moreButton];
-//}
-//
-//- (void)moreAgendaAction {
-//    WCLog(@"点击去更多会议议程");
-//    
-//}
-//
-//@end
-/////////////////////////////////////////////////
 
 
 @interface MeetingView ()<AgendaCollectionDelegate>
@@ -114,19 +54,6 @@
     self.pageControl.currentPageIndicatorTintColor = WCWhite;
 }
 
-//- (MeetingAgendaCollection *)agendaCollection {
-//    if (!_agendaCollection) {
-//        
-//    }
-//    return _agendaCollection;
-//}
-//
-//- (MeetingButtonsCollection *)buttonsCollection {
-//    if (!_buttonsCollection) {
-//        
-//    }
-//    return _buttonsCollection;
-//}
 
 - (IBAction)moreAgendaAction:(id)sender {
     WCLog(@"更多会议议程   --> 测试直播");
@@ -140,10 +67,9 @@
     item.info.groupid = @"10004";
     item.info.appid = [ShowAppId intValue];
     item.info.host = @"user1";
-//    M8LiveJoinViewController *joinVC = [[M8LiveJoinViewController alloc] initWithItem:item];
-//    [M8MeetWindow M8_addLiveSource:joinVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
+    
     MBaseMeetViewController *baseMeetVC = [[MBaseMeetViewController alloc] initWithItem:item isHost:NO];
-    [MMeetWindow M_addMeetSource:baseMeetVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
+    [M8MeetWindow M8_addMeetSource:baseMeetVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
     
 }
 
