@@ -148,6 +148,7 @@
 }
 
 
+
 #pragma mark - on action
 - (BOOL)onSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if ([self isExitVideoCaption]) {
@@ -170,6 +171,19 @@
     }
 }
 
+#pragma mark -- on back from floatView
+- (void)onBackFromFloatView {
+    
+    [self respondsToDelegate];
+}
+
+
+#pragma mark -- on get host camera statu
+- (BOOL)onGetHostCameraStatu {
+    
+    M8CallRenderModel *hostModel = [self getMemberWithID:self.hostIdentify];
+    return hostModel.isCameraOn;
+}
 
 #pragma mark - private actions
 
@@ -289,12 +303,7 @@
 
 #pragma mark - respondsToDelegate
 - (void)respondsToDelegate {
-    if ([self.WCDelegate respondsToSelector:@selector(renderModelManager:currentModel:membersArray:)]) {
-        [self.WCDelegate renderModelManager:self
-                               currentModel:_currentModel
-                               membersArray:self.membersArray
-        ];
-    }
+
     if ([self.WCDelegate respondsToSelector:@selector(renderModelManager:currentIdentifier:membersArray:)]) {
         NSString *curId = nil;
         if (_currentModel)

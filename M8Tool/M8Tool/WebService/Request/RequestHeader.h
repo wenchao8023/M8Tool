@@ -55,5 +55,7 @@
 
 #import "ReportMemExitRequest.h"
 
+#import "MeetsListRequest.h"
+
 
 #endif /* RequestHeader_h */

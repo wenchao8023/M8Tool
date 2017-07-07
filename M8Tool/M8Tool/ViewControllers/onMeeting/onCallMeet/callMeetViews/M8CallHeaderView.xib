@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,51 +14,47 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" text="59:59" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfX-vU-ssG" customClass="M8LiveLabel">
-                    <rect key="frame" x="311" y="33.5" width="54" height="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="研发部的视频会议" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdc-DG-BV6" customClass="M8LiveLabel">
+                    <rect key="frame" x="10" y="20" width="131" height="19.5"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="9lB-8T-XC6"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" text="会议发起人" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQc-mF-f4Y" customClass="M8LiveLabel">
+                    <rect key="frame" x="30" y="39.5" width="71.5" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="9m8-jU-cul"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="研发部的视频会议" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdc-DG-BV6" customClass="M8LiveLabel">
-                    <rect key="frame" x="64" y="31" width="247" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" text="会议时间" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfX-vU-ssG" customClass="M8LiveLabel">
+                    <rect key="frame" x="121.5" y="39.5" width="57.5" height="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hxx-b4-mOk">
-                    <rect key="frame" x="10" y="20" width="44" height="44"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="44" id="ec4-P0-0q3"/>
-                        <constraint firstAttribute="width" constant="44" id="mlc-Iz-aHH"/>
-                    </constraints>
-                    <state key="normal" backgroundImage="liveEnlarge.png"/>
-                    <connections>
-                        <action selector="enlargeAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="5jA-XI-Nm6"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="pdc-DG-BV6" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="3gz-jt-JMH"/>
-                <constraint firstItem="mfX-vU-ssG" firstAttribute="leading" secondItem="pdc-DG-BV6" secondAttribute="trailing" id="A5M-Qn-QIS"/>
-                <constraint firstAttribute="trailing" secondItem="mfX-vU-ssG" secondAttribute="trailing" constant="10" id="ayM-wj-f2b"/>
-                <constraint firstItem="pdc-DG-BV6" firstAttribute="centerY" secondItem="Hxx-b4-mOk" secondAttribute="centerY" id="blJ-7S-jn3"/>
-                <constraint firstItem="pdc-DG-BV6" firstAttribute="leading" secondItem="Hxx-b4-mOk" secondAttribute="trailing" constant="10" id="k1C-yY-5QI"/>
-                <constraint firstItem="Hxx-b4-mOk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="rKV-re-DCY"/>
-                <constraint firstItem="Hxx-b4-mOk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="rf3-xW-hrN"/>
-                <constraint firstItem="mfX-vU-ssG" firstAttribute="centerY" secondItem="pdc-DG-BV6" secondAttribute="centerY" id="ycT-Il-uJo"/>
+                <constraint firstItem="mfX-vU-ssG" firstAttribute="height" secondItem="aQc-mF-f4Y" secondAttribute="height" id="D8i-WY-nCK"/>
+                <constraint firstItem="mfX-vU-ssG" firstAttribute="centerY" secondItem="aQc-mF-f4Y" secondAttribute="centerY" id="HHP-AI-GGk"/>
+                <constraint firstItem="mfX-vU-ssG" firstAttribute="leading" secondItem="aQc-mF-f4Y" secondAttribute="trailing" constant="20" id="U63-eg-tgC"/>
+                <constraint firstItem="aQc-mF-f4Y" firstAttribute="top" secondItem="pdc-DG-BV6" secondAttribute="bottom" id="fK6-Rm-d4G"/>
+                <constraint firstItem="pdc-DG-BV6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="h8k-Ot-cfo"/>
+                <constraint firstItem="pdc-DG-BV6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="kkY-Ie-hhr"/>
+                <constraint firstItem="aQc-mF-f4Y" firstAttribute="leading" secondItem="pdc-DG-BV6" secondAttribute="leading" constant="20" id="xs1-2y-u1j"/>
             </constraints>
             <connections>
                 <outlet property="durationLabel" destination="mfX-vU-ssG" id="DlC-5m-CZF"/>
-                <outlet property="enlargeButton" destination="Hxx-b4-mOk" id="dgY-Ld-qrG"/>
+                <outlet property="luancherLabel" destination="aQc-mF-f4Y" id="1hI-re-HVw"/>
                 <outlet property="topicLabel" destination="pdc-DG-BV6" id="fcv-fe-rBU"/>
             </connections>
-            <point key="canvasLocation" x="24" y="65"/>
+            <point key="canvasLocation" x="23.5" y="64.5"/>
         </view>
     </objects>
-    <resources>
-        <image name="liveEnlarge.png" width="44" height="44"/>
-    </resources>
 </document>

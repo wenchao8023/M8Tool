@@ -1,5 +1,5 @@
 //
-//  MBaseMeetViewController.h
+//  M8BaseMeetViewController.h
 //  M8Tool
 //
 //  Created by chao on 2017/7/4.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "MBaseFloatView.h"
+#import "M8BaseFloatView.h"
 
 
 /**
@@ -16,7 +16,7 @@
  
  提供切换窗口、退出接口
  */
-@interface MBaseMeetViewController : UIViewController
+@interface M8BaseMeetViewController : UIViewController<M8FloatViewDelegate>
 
 /**
  记录直播(包含通话)信息
@@ -42,7 +42,12 @@
 /**
  小窗口
  */
-@property (nonatomic, strong, nullable) MBaseFloatView *floatView;
+@property (nonatomic, strong, nullable) M8BaseFloatView *floatView;
+
+/**
+ 判断视频流信息是否在浮动窗口
+ */
+@property (nonatomic, assign) BOOL isInFloatView;
 
 /**
  用 liveItem 初始化

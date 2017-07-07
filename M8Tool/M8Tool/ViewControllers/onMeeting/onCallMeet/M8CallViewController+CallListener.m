@@ -16,6 +16,10 @@
 #pragma mark -- RenderModelManagerDelegate
 - (void)renderModelManager:(id)modelManager currentIdentifier:(NSString *)curId membersArray:(NSArray *)membersArray
 {
+    if (self.isInFloatView)
+    {
+        return ;
+    }
     [self.renderView updateWithModelManager:modelManager currentIdentifier:curId membersArray:membersArray];
 }
 
@@ -45,6 +49,13 @@
         else
         {
             [self.call removeRenderFor:identify];
+        }
+        
+        //判断浮动视图的时候 发起人的状态 (用于接收端)
+        if (self.isInFloatView &&
+            [identify isEqualToString:self.liveItem.info.host])
+        {
+            [self.floatView onCallVideoListener:isOn];
         }
     }
 }

@@ -76,19 +76,21 @@
     [_call createRenderViewIn:self.renderView];
     self.renderView.call = _call;
     
-    __weak typeof(self) ws = self;
+    WCWeakSelf(self);
     [_call makeCall:nil custom:self.liveItem.info.title result:^(TILCallError *err) {
         if(err){
-            [ws addTextToView:[NSString stringWithFormat:@"呼叫失败:%@-%d-%@",err.domain,err.code,err.errMsg]];
-            [ws selfDismiss];
+            [weakself addTextToView:[NSString stringWithFormat:@"呼叫失败:%@-%d-%@",err.domain,err.code,err.errMsg]];
+            [weakself selfDismiss];
         }
         else{
-            [ws addTextToView:@"呼叫成功"];
+            [weakself addTextToView:@"呼叫成功"];
             
             [[ILiveRoomManager getInstance] setBeauty:2];
             [[ILiveRoomManager getInstance] setWhite:2];
             
-            [ws onNetReportRoomInfo];
+            [weakself onNetReportRoomInfo];
+            
+            [weakself.headerView configHeaderView:self.liveItem];
         }
     }];
 }
@@ -183,6 +185,8 @@
             [[ILiveRoomManager getInstance] setWhite:3];
             
             [self removeRecvChildVC];
+            
+            [weakself.headerView configHeaderView:self.liveItem];
         }
     }];
 }

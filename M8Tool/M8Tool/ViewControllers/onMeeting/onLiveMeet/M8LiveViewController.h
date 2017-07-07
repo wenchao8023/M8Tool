@@ -6,7 +6,7 @@
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import "MBaseMeetViewController.h"
+#import "M8BaseMeetViewController.h"
 
 #import "M8LiveJoinTableView.h"
 #import "M8LivePlayView.h"
@@ -17,7 +17,7 @@
 #import "M8MeetDeviceView.h"
 
 
-@interface M8LiveViewController : MBaseMeetViewController
+@interface M8LiveViewController : M8BaseMeetViewController
 
 /**
  视图层级

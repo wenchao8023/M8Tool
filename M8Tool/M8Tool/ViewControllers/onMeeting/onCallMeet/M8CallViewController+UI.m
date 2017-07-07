@@ -124,7 +124,6 @@
         {
             [self onHiddeMenuView];
         }
-        
     }
 }
 
@@ -132,14 +131,44 @@
 #pragma mark -- RecvChildVCDelegate
 - (void)RecvChildVCAction:(NSString *)actionStr
 {
-    if ([actionStr isEqualToString:@"reject"]) {
+    if ([actionStr isEqualToString:@"reject"])
+    {
         [self onRejectCall];
     }
-    else if ([actionStr isEqualToString:@"receive"]) {
+    else if ([actionStr isEqualToString:@"receive"])
+    {
         [self onReceiveCall];
     }
 }
 
+- (void)M8FloatView:(id)floatView centerChanged:(CGPoint)center
+{
+    self.floatView = floatView;
+    self.floatView.superview.center = center;
+    
+    [self modifyHostRenderViewInFloatView:center];
+}
+
+- (void)M8FloatView:(id)floatView centerEnded:(CGPoint)center
+{
+    self.floatView = floatView;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        self.floatView.superview.center = center;
+        [self modifyHostRenderViewInFloatView:center];
+    }];
+}
+
+- (void)modifyHostRenderViewInFloatView:(CGPoint)center
+{
+    CGRect curFrame = CGRectMake(0, 0, kFloatWindowWidth, kFloatWindowHeight);
+    curFrame.origin.x = center.x - kFloatWindowWidth / 2;
+    curFrame.origin.y = center.y - kFloatWindowHeight / 2 - SCREEN_HEIGHT;
+    
+    ILiveRenderView *hostRV = [self.call getRenderFor:self.liveItem.info.host];
+    hostRV.frame = curFrame;
+}
 
 #pragma mark - UI相关
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -148,7 +177,49 @@
     {
         [self onHiddeMenuView];
     }
+}
+
+#pragma mark - super action
+- (void)showFloatView
+{
+    [self.floatView configCallFloatView:self.liveItem isCameraOn:[self.modelManager onGetHostCameraStatu]];
     
+    [super showFloatView];
+    
+    // 1. 将通话界面移动到视图底部，移出手机界面
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        CGRect frame = self.view.frame;
+        frame.origin.y = [UIScreen mainScreen].bounds.size.height;
+        self.view.frame = frame;
+        
+    } completion:^(BOOL finished) {
+        
+        // 2. 显示浮动窗口
+        self.floatView.hidden = NO;
+        // 3. 重新设置视频流位置
+        [self modifyHostRenderViewInFloatView:self.floatView.superview.center];
+    }];
+}
+
+- (void)hiddeFloatView
+{
+    [super hiddeFloatView];
+    
+    // 1. 隐藏浮动窗口
+    self.floatView.hidden = YES;
+    // 2. 将通话界面从底部移动到手机视图
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        CGRect frame = self.view.frame;
+        frame.origin.y = 0;
+        self.view.frame = frame;
+        
+    } completion:^(BOOL finished) {
+        
+        // 3. 应该要通知 通话界面 重新刷新位置
+        [self.modelManager onBackFromFloatView];
+    }];
 }
 
 

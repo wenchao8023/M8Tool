@@ -1,15 +1,15 @@
 //
-//  MBaseFloatView.m
+//  M8BaseFloatView.m
 //  M8Tool
 //
 //  Created by chao on 2017/7/4.
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import "MBaseFloatView.h"
+#import "M8BaseFloatView.h"
 
 
-@interface MBaseFloatView ()
+@interface M8BaseFloatView ()
 {
     CGRect _myFrame;
 }
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation MBaseFloatView
+@implementation M8BaseFloatView
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -29,7 +29,6 @@
         self = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil] firstObject];
         _myFrame = frame;
         self.backgroundColor = WCClear;
-        
     }
     return self;
 }
@@ -67,9 +66,9 @@ typedef NS_ENUM(NSInteger, M8ScreenChangeOrientation)
     UITouch *touch = [touches anyObject];
     CGPoint curPoint = [touch locationInView:_rootView];
     curPoint = [self ConvertDir:curPoint];
-    self.superview.center = curPoint;
+//    self.superview.center = curPoint;
     
-    [self respondsToCenterDelegate];
+    [self respondsToChangedDelegate:curPoint];
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -116,41 +115,48 @@ typedef NS_ENUM(NSInteger, M8ScreenChangeOrientation)
         minDir = M8FloatWindowBOTTOM;
     }
     
+    //获取停靠之后的位置
+    CGPoint endedCenter;
+    
     switch (minDir)
     {
         case M8FloatWindowLEFT:
         {
-            [UIView animateWithDuration:0.3 animations:^{
-                self.superview.center = CGPointMake(self.superview.frame.size.width/2, self.superview.center.y);
-            }];
+//            [UIView animateWithDuration:0.3 animations:^{
+//                self.superview.center = CGPointMake(self.superview.frame.size.width/2, self.superview.center.y);
+//            }];
+            endedCenter = CGPointMake(self.superview.frame.size.width/2, self.superview.center.y);
             break;
         }
         case M8FloatWindowRIGHT:
         {
-            [UIView animateWithDuration:0.3 animations:^{
-                self.superview.center = CGPointMake(W - self.superview.frame.size.width/2, self.superview.center.y);
-            }];
+//            [UIView animateWithDuration:0.3 animations:^{
+//                self.superview.center = CGPointMake(W - self.superview.frame.size.width/2, self.superview.center.y);
+//            }];
+            endedCenter = CGPointMake(W - self.superview.frame.size.width/2, self.superview.center.y);
             break;
         }
         case M8FloatWindowTOP:
         {
-            [UIView animateWithDuration:0.3 animations:^{
-                self.superview.center = CGPointMake(self.superview.center.x, self.superview.frame.size.height/2);
-            }];
+//            [UIView animateWithDuration:0.3 animations:^{
+//                self.superview.center = CGPointMake(self.superview.center.x, self.superview.frame.size.height/2);
+//            }];
+            endedCenter = CGPointMake(self.superview.center.x, self.superview.frame.size.height/2);
             break;
         }
         case M8FloatWindowBOTTOM:
         {
-            [UIView animateWithDuration:0.3 animations:^{
-                self.superview.center = CGPointMake(self.superview.center.x, H - self.superview.frame.size.height/2);
-            }];
+//            [UIView animateWithDuration:0.3 animations:^{
+//                self.superview.center = CGPointMake(self.superview.center.x, H - self.superview.frame.size.height/2);
+//            }];
+            endedCenter = CGPointMake(self.superview.center.x, H - self.superview.frame.size.height/2);
             break;
         }
         default:
             break;
     }
     
-    [self respondsToCenterDelegate];
+    [self respondsToEndedDelegate:endedCenter];
 }
 
 - (void)floatViewRotate
@@ -210,7 +216,6 @@ typedef NS_ENUM(NSInteger, M8ScreenChangeOrientation)
 
 - (M8ScreenChangeOrientation)screenChange
 {
-    
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
     
     // 1. M8Change2Origin(1->1 | 2->2 | 3->3 | 4->4)
@@ -272,19 +277,27 @@ typedef NS_ENUM(NSInteger, M8ScreenChangeOrientation)
 }
 
 #pragma mark - respondToDelegate
-- (void)respondsToCenterDelegate
+- (void)respondsToChangedDelegate:(CGPoint)center
 {
-    if ([self.WCDelegate respondsToSelector:@selector(MFloatViewCenter:)])
+    if ([self.WCDelegate respondsToSelector:@selector(M8FloatView:centerChanged:)])
     {
-        [self.WCDelegate MFloatViewCenter:self.superview.center];
+        [self.WCDelegate M8FloatView:self centerChanged:center];
+    }
+}
+- (void)respondsToEndedDelegate:(CGPoint)center
+{
+    if ([self.WCDelegate respondsToSelector:@selector(M8FloatView:centerEnded:)])
+    {
+        [self.WCDelegate M8FloatView:self centerEnded:center];
     }
 }
 
+
 - (void)respondsToClickDelegate
 {
-    if ([self.WCDelegate respondsToSelector:@selector(MFloatViewDidClick)])
+    if ([self.WCDelegate respondsToSelector:@selector(M8FloatViewDidClick)])
     {
-        [self.WCDelegate MFloatViewDidClick];
+        [self.WCDelegate M8FloatViewDidClick];
     }
 }
 

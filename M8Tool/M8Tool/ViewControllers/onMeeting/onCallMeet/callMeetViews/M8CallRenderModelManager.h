@@ -10,9 +10,9 @@
 
 @protocol RenderModelManagerDelegate <NSObject>
 
-- (void)renderModelManager:(id _Nonnull)modelManager
-              currentModel:(id _Nullable)currentModel
-              membersArray:(NSArray *_Nullable)membersArray;
+//- (void)renderModelManager:(id _Nonnull)modelManager
+//              currentModel:(id _Nullable)currentModel
+//              membersArray:(NSArray *_Nullable)membersArray;
 
 @optional
 - (void)renderModelManager:(id _Nonnull)modelManager
@@ -115,6 +115,15 @@
  */
 - (BOOL)onSelectItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 
+/**
+ 从浮动视图返回到主视图
+ */
+- (void)onBackFromFloatView;
+
+/**
+ 获取 host 的摄像头状态
+ */
+- (BOOL)onGetHostCameraStatu;
 @end
 
 

@@ -15,10 +15,20 @@
     int _beginTime; // 单位 s
 }
 
-@property (weak, nonatomic) IBOutlet UIButton *enlargeButton;
-
+/**
+ 会议主题
+ */
 @property (weak, nonatomic) IBOutlet M8LiveLabel *topicLabel;
+
+/**
+ 会议时间
+ */
 @property (weak, nonatomic) IBOutlet M8LiveLabel *durationLabel;
+
+/**
+ 会议发起人
+ */
+@property (weak, nonatomic) IBOutlet M8LiveLabel *luancherLabel;
 
 
 @end
@@ -40,20 +50,14 @@
     
     [self.topicLabel    configLiveText];
     [self.durationLabel configLiveText];
+    [self.luancherLabel configLiveText];
 }
 
-- (IBAction)enlargeAction:(id)sender {
-    
-    [self headerActionInfoValue:@"缩小视图" key:kHeaderAction];
-    
-}
-
-
-
-
-
-- (void)configTopic:(NSString *)topic {
-    self.topicLabel.text = topic;
+- (void)configHeaderView:(TCShowLiveListItem *)item
+{
+    self.topicLabel.text = item.info.title;
+    self.luancherLabel.text = item.info.host;
+    [self beginCountTime];
 }
 
 - (void)beginCountTime {
@@ -63,7 +67,6 @@
     [timer fire];
     
 }
-
 
 - (void)countTime {
     

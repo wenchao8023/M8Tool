@@ -6,7 +6,7 @@
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import "MBaseMeetViewController.h"
+#import "M8BaseMeetViewController.h"
 
 #import "M8CallHeaderView.h"
 #import "M8CallRenderView.h"
@@ -18,7 +18,9 @@
 
 #import "M8MenuPushView.h"
 
-@interface M8CallViewController : MBaseMeetViewController
+#import "M8BaseFloatView+Call.h"
+
+@interface M8CallViewController : M8BaseMeetViewController
 
 @property (nonatomic, strong) TILMultiCall * _Nonnull call;
 
@@ -26,6 +28,7 @@
 @property (nonatomic, strong, nonnull) M8CallRenderView *renderView;
 @property (nonatomic, strong, nonnull) M8MeetDeviceView *deviceView;
 @property (nonatomic, strong, nonnull) M8MenuPushView   *menuView;
+
 
 /**
  用于会议接受界面的弹出提示
@@ -55,6 +58,8 @@
  判断发起人在退出界面的时候是结束通话还是取消邀请
  */
 @property (nonatomic, assign) BOOL shouldHangup;
+
+
 
 
 - (void)addTextToView:(id _Nullable )newText;

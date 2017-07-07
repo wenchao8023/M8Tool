@@ -32,6 +32,7 @@
         self.dataSource = self;
         
         [self loadData];
+        [self loadNetData];
     }
     return self;
 }
@@ -44,7 +45,20 @@
     return _dataArray;
 }
 
-
+- (void)loadNetData
+{
+    MeetsListRequest *listReq = [[MeetsListRequest alloc] initWithHandler:^(BaseRequest *request) {
+        
+    } failHandler:^(BaseRequest *request) {
+        
+    }];
+    
+    listReq.token = [AppDelegate sharedAppDelegate].token;
+    listReq.uid   = [[ILiveLoginManager getInstance] getLoginId];
+    listReq.offset= 1;
+    listReq.nums  = 20;
+    [[WebServiceEngine sharedEngine] asyncRequest:listReq];
+}
 
 
 #warning Model 不应该在这里加载

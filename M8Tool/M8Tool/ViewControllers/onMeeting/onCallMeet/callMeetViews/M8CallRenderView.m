@@ -189,22 +189,6 @@
     [self.call modifyRenderView:frame forIdentifier:identify];
 }
 
-/**
- 更新 renderCollection
-
- 所有进入过房间的成员最新的状态都保存在了 数组和currentModel 里面了
- */
-//- (void)updateRenderCollection
-//{
-//
-//    if (!_isFloatView)
-//    {
-//        [self.call modifyRenderView:self.bounds forIdentifier:_currentIdentify];
-//        [self.call sendRenderViewToBack:_currentIdentify];
-//        
-//        [self.renderCollection reloadData];
-//    }
-//}
 
 - (void)setIsFloatView:(BOOL)isFloatView
 {
@@ -228,6 +212,12 @@
 
 - (IBAction)inviteAction:(id)sender
 {
+    BOOL ret = [[NSUserDefaults standardUserDefaults] boolForKey:kPushMenuStatus];
+    if (ret)
+    {
+        [WCNotificationCenter postNotificationName:kHiddenMenuView_Notifycation object:nil];
+        return ;
+    }
     [self callRenderActionInfoValue:@"inviteAction" key:kCallAction];
 }
 

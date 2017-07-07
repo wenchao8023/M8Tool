@@ -8,14 +8,14 @@
 
 #import "M8MeetWindowSingleton.h"
 
-#import "MBaseMeetViewController.h"
+#import "M8BaseMeetViewController.h"
 
 
 
 
 @interface M8MeetWindowSingleton ()
 
-@property (nonatomic, weak, nullable) MBaseMeetViewController *baseController;
+@property (nonatomic, weak, nullable) M8BaseMeetViewController *baseController;
 
 
 @end

@@ -30,16 +30,10 @@
 @property (nonatomic, weak) id<MeetHeaderDelegate> _Nullable WCDelegate;
 
 /**
- 设置会议主题
+ 配置头部视图信息
 
- @param topic 会议主题
+ @param item item
  */
-- (void)configTopic:(NSString *_Nonnull)topic;
-
-
-/**
- 开始计时
- */
-- (void)beginCountTime;
+- (void)configHeaderView:(TCShowLiveListItem *_Nonnull)item;
 
 @end

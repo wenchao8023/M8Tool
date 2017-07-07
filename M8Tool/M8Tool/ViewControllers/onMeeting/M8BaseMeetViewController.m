@@ -1,15 +1,15 @@
 //
-//  MBaseMeetViewController.m
+//  M8BaseMeetViewController.m
 //  M8Tool
 //
 //  Created by chao on 2017/7/4.
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import "MBaseMeetViewController.h"
+#import "M8BaseMeetViewController.h"
 
 
-@interface MBaseMeetViewController ()<MFloatViewDelegate>
+@interface M8BaseMeetViewController ()
 
 @property (nonatomic, strong) UIWindow *meetWindow;
 
@@ -17,9 +17,7 @@
 
 
 
-
-
-@implementation MBaseMeetViewController
+@implementation M8BaseMeetViewController
 
 
 
@@ -58,11 +56,11 @@
     return _exitButton;
 }
 
-- (MBaseFloatView *)floatView
+- (M8BaseFloatView *)floatView
 {
     if (!_floatView)
     {
-        MBaseFloatView *floatView = [[MBaseFloatView alloc] initWithFrame:CGRectMake(0, 0, kFloatWindowWidth, kFloatWindowHeight)];
+        M8BaseFloatView *floatView = [[M8BaseFloatView alloc] initWithFrame:CGRectMake(0, 0, kFloatWindowWidth, kFloatWindowHeight)];
         floatView.contentMode = UIViewContentModeScaleAspectFill;
         floatView.WCDelegate = self;
         floatView.initOrientation = [UIApplication sharedApplication].statusBarOrientation;
@@ -159,22 +157,11 @@
  */
 - (void)hiddeFloatView
 {
+    self.isInFloatView = NO;
+    
     //将通话视图添加到视图的最上层
     UIView *superView = self.view.superview;
     [superView bringSubviewToFront:self.view];
-    
-    //    [self.floatView setIsFloatView:NO];
-    // 1. 隐藏浮动窗口
-    self.floatView.hidden = YES;
-    // 2. 将通话界面从底部移动到手机视图
-    [UIView animateWithDuration:0.3 animations:^{
-        CGRect frame = self.view.frame;
-        frame.origin.y = 0;
-        self.view.frame = frame;
-    } completion:^(BOOL finished) {
-        // 3. 应该要通知 通话界面 重新刷新位置
-        //        [self.renderView updateRenderCollection];
-    }];
 }
 
 /**
@@ -182,29 +169,12 @@
  */
 - (void)showFloatView
 {
-    //    _isFloatView = YES;
-    //    [self.renderView setIsFloatView:YES];
-    // 1. 将通话界面移动到视图底部，移出手机界面
-    [UIView animateWithDuration:0.3 animations:^{
-        CGRect frame = self.view.frame;
-        frame.origin.y = [UIScreen mainScreen].bounds.size.height;
-        self.view.frame = frame;
-    } completion:^(BOOL finished) {
-        // 2. 显示浮动窗口
-        self.floatView.hidden = NO;
-        // 3. 重新设置视频流位置
-        //        [self modifyRenderViewWithFloatViewCenter:self.meetWindow.center];
-    }];
+    self.isInFloatView = YES;
 }
 
-- (void)MFloatViewDidClick
+- (void)M8FloatViewDidClick
 {
     [self hiddeFloatView];
-}
-
-- (void)MFloatViewCenter:(CGPoint)center
-{
-    
 }
 
 
@@ -225,11 +195,6 @@
 
 
 #pragma mark -- self dismiss
-
-//- (void)onExitAction
-//{
-//    [self selfDismiss];
-//}
 - (void)selfDismiss
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

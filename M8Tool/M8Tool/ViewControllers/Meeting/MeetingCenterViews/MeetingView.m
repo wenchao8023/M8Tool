@@ -12,7 +12,7 @@
 #import "MeetingButtonsCollection.h"
 
 #import "M8MeetWindow.h"
-#import "MBaseMeetViewController.h"
+#import "M8BaseMeetViewController.h"
 
 
 @interface MeetingView ()<AgendaCollectionDelegate>
@@ -68,7 +68,7 @@
     item.info.appid = [ShowAppId intValue];
     item.info.host = @"user1";
     
-    MBaseMeetViewController *baseMeetVC = [[MBaseMeetViewController alloc] initWithItem:item isHost:NO];
+    M8BaseMeetViewController *baseMeetVC = [[M8BaseMeetViewController alloc] initWithItem:item isHost:NO];
     [M8MeetWindow M8_addMeetSource:baseMeetVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
     
 }
