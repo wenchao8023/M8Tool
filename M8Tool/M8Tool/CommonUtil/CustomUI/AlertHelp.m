@@ -44,6 +44,19 @@
     return [AlertHelp alertWith:title message:msg funBtns:nil cancelBtn:cancelTitle destructiveBtn:nil alertStyle:style cancelAction:cancelHandle destrutiveAction:nil];
 }
 
+// “确定” 和 “取消” 两个按钮
++ (UIAlertController *)alertWith:(NSString *)title message:(NSString *)msg cancelAction:(AlertActionHandle)cancelHandle okAction:(AlertActionHandle)okAction
+{
+    return [AlertHelp alertWith:title
+                        message:msg
+                        funBtns:@{@"确定" : okAction}
+                      cancelBtn:@"取消"
+                 destructiveBtn:nil
+                     alertStyle:UIAlertControllerStyleAlert
+                   cancelAction:cancelHandle
+               destrutiveAction:nil];
+}
+
 //没有destrutive
 + (UIAlertController *)alertWith:(NSString *_Nullable)title message:(NSString *_Nullable)msg funBtns:(NSDictionary *_Nullable)btns cancelBtn:(NSString *_Nullable)cancelTitle  alertStyle:(UIAlertControllerStyle)style cancelAction:(AlertActionHandle _Nullable )cancelHandle
 {

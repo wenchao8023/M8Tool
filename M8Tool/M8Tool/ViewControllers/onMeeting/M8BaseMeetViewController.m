@@ -197,6 +197,11 @@
 #pragma mark -- self dismiss
 - (void)selfDismiss
 {
+    //退出视图的时候需要将 菜单的推出状态记为NO
+    NSUserDefaults *userD = [NSUserDefaults standardUserDefaults];
+    [userD setObject:@(NO) forKey:kPushMenuStatus];
+    [userD synchronize];
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         // 1. 将 通话界面 移到视图底部，（造成退出界面的动画）

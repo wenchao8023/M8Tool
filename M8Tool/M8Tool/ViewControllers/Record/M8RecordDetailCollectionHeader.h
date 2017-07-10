@@ -12,10 +12,12 @@
 
 
 /**
- 只显示为响应的
+ 配置头部信息
 
- @param array 未响应人数名
+ @param recNum 接受人数
+ @param rejNum 拒绝人数
+ @param unrNum 未响应人数
  */
-- (void)config:(NSArray *_Nonnull)array;
+- (void)configRecNum:(NSInteger)recNum rejNum:(NSInteger)rejNum unrNum:(NSInteger)unrNum;
 
 @end

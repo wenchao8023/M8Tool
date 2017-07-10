@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -84,13 +83,13 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PZ7-wu-Azx">
-                    <rect key="frame" x="40" y="0.0" width="334.5" height="1"/>
+                    <rect key="frame" x="0.0" y="0.0" width="374.5" height="1"/>
                     <color key="backgroundColor" red="0.1041005711" green="0.1041005711" blue="0.1041005711" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="0.59999999999999998" id="NtX-V8-smw"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.1041005711" green="0.1041005711" blue="0.1041005711" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
@@ -106,10 +105,10 @@
                 <constraint firstItem="7w7-No-Vy0" firstAttribute="leading" secondItem="gKa-nG-TEM" secondAttribute="leading" id="Qi6-Wk-iGm"/>
                 <constraint firstItem="K5a-tQ-5bn" firstAttribute="width" secondItem="7w7-No-Vy0" secondAttribute="width" id="Qqd-Lu-gXq"/>
                 <constraint firstAttribute="trailing" secondItem="Cje-Is-lKz" secondAttribute="trailing" constant="20" id="TSx-jm-Mer"/>
+                <constraint firstItem="PZ7-wu-Azx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="VBd-OK-zC1"/>
                 <constraint firstItem="Da1-1S-ZDj" firstAttribute="centerY" secondItem="K5a-tQ-5bn" secondAttribute="centerY" id="Vkp-B2-ihP"/>
                 <constraint firstItem="Rk0-jX-hoc" firstAttribute="leading" secondItem="kJi-sp-wXv" secondAttribute="leading" id="W6Q-lA-cKW"/>
                 <constraint firstItem="Da1-1S-ZDj" firstAttribute="leading" secondItem="Rk0-jX-hoc" secondAttribute="leading" id="Zsf-Q1-JjR"/>
-                <constraint firstItem="PZ7-wu-Azx" firstAttribute="leading" secondItem="gKa-nG-TEM" secondAttribute="leading" id="aLv-Ch-poE"/>
                 <constraint firstAttribute="trailing" secondItem="gKa-nG-TEM" secondAttribute="trailing" id="b0z-wv-S9P"/>
                 <constraint firstItem="K5a-tQ-5bn" firstAttribute="leading" secondItem="Ns4-Wh-ErS" secondAttribute="leading" id="clB-jR-z3q"/>
                 <constraint firstItem="Cje-Is-lKz" firstAttribute="top" secondItem="gKa-nG-TEM" secondAttribute="bottom" id="lDw-S8-Yy0"/>

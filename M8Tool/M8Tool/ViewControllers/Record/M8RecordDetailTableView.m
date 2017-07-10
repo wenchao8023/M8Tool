@@ -18,6 +18,7 @@
 #define kItemWidth (self.width - 60) / 5
 #define kSectionHeight 118.f
 
+
 @interface M8RecordDetailTableView ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSMutableArray *dataItemArray;
@@ -34,8 +35,10 @@
 @implementation M8RecordDetailTableView
 
 
-- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style dataModel:(M8MeetListModel *)model {
-    if (self = [super initWithFrame:frame style:style]) {
+- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style dataModel:(M8MeetListModel *)model
+{
+    if (self = [super initWithFrame:frame style:style])
+    {
         self.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
         self.tableHeaderView = [[UIView alloc] initWithFrame:CGRectZero];
         self.backgroundColor = WCClear;
@@ -52,8 +55,10 @@
     return self;
 }
 
-- (M8RecordDetailCollection *)detailCollection {
-    if (!_detailCollection) {
+- (M8RecordDetailCollection *)detailCollection
+{
+    if (!_detailCollection)
+    {
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         flowLayout.minimumLineSpacing = 10;
         flowLayout.minimumInteritemSpacing = 10;
@@ -61,7 +66,10 @@
         flowLayout.headerReferenceSize = CGSizeMake(self.width, kSectionHeight);
         flowLayout.itemSize = CGSizeMake(kItemWidth, kItemWidth);
         
-        M8RecordDetailCollection *detailCollection = [[M8RecordDetailCollection alloc] initWithFrame:CGRectMake(0, kDefaultCellHeight * 4, self.width, self.height - kDefaultCellHeight * 4) collectionViewLayout:flowLayout];
+        M8RecordDetailCollection *detailCollection = [[M8RecordDetailCollection alloc] initWithFrame:CGRectMake(0, kDefaultCellHeight * 4, self.width, self.height - kDefaultCellHeight * 4)
+                                                                                collectionViewLayout:flowLayout
+                                                                                           dataModel:_dataModel
+                                                      ];
         [self addSubview:(_detailCollection = detailCollection)];
     }
     
@@ -69,21 +77,25 @@
 }
 
 
-- (NSMutableArray *)dataItemArray {
-    if (!_dataItemArray) {
+- (NSMutableArray *)dataItemArray
+{
+    if (!_dataItemArray)
+    {
         _dataItemArray = [NSMutableArray arrayWithCapacity:0];
         [_dataItemArray addObjectsFromArray:@[@"会议主题", @"主持人", @"会议时间", @"参会人数"]];
     }
     return _dataItemArray;
 }
 
-- (NSMutableArray *)dataContentArray {
-    if (!_dataContentArray) {
+- (NSMutableArray *)dataContentArray
+{
+    if (!_dataContentArray)
+    {
         NSMutableArray *dataContentArray = [NSMutableArray arrayWithCapacity:0];
-        [dataContentArray addObject:_dataModel.recordTopic];
-        [dataContentArray addObject:_dataModel.recordLuancher];
-        [dataContentArray addObject:_dataModel.recordTime];
-        [dataContentArray addObject:[NSString stringWithFormat:@"%ld人", _dataModel.recordMembers.count]];
+        [dataContentArray addObject:_dataModel.title];
+        [dataContentArray addObject:_dataModel.mainuser];
+        [dataContentArray addObject:[CommonUtil getDateStrWithTime:[_dataModel.starttime doubleValue]]];
+        [dataContentArray addObject:[NSString stringWithFormat:@"%u人", _dataModel.members.count]];
         _dataContentArray = dataContentArray;
         
         [self reloadData];
@@ -91,56 +103,25 @@
     return _dataContentArray;
 }
 
-- (void)reloadData {
-    [super reloadData];
-    
-    [self.detailCollection configDataArray:_dataModel.recordMembers];
-}
+
 
 #pragma mark - UITableViewDelegate
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return self.dataItemArray.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     MeetingLuanchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MeetingLuanchCellID"];
-    if (!cell) {
+    if (!cell)
+    {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"MeetingLuanchCell" owner:self options:nil] firstObject];
     }
-                       [cell configWithItem:self.dataItemArray[indexPath.row]
+    
+    [cell configWithItem:self.dataItemArray[indexPath.row]
                  content:self.dataContentArray[indexPath.row]];
+    
     return cell;
 }
-
-
-- (void)reluanch {
-    
-    NSString *typeStr = _dataModel.recordType;
-    if ([typeStr containsString:@"live"]) {
-        [AlertHelp alertWith:@"提示" message:@"暂时没有提供直播重新发起" cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
-    }
-    else {
-#warning M8MakeCallViewController
-//        M8MakeCallViewController *callVC = [[M8MakeCallViewController alloc] init];
-//        NSMutableArray *membersArray = [NSMutableArray arrayWithArray:_dataModel.recordMembers];
-//        NSString *loginIdentify = [[ILiveLoginManager getInstance] getLoginId];
-//        if ([membersArray containsObject:loginIdentify]) {
-//            [membersArray removeObject:loginIdentify];
-//        }
-//        
-//        callVC.membersArray = membersArray;
-//        callVC.callId       = [[AppDelegate sharedAppDelegate] getRoomID];
-//        callVC.topic        = _dataModel.recordTopic;
-//        if ([typeStr containsString:@"video"]) {
-//            callVC.callType = TILCALL_TYPE_VIDEO;
-//        }
-//        if ([typeStr containsString:@"audio"]) {
-//            callVC.callType = TILCALL_TYPE_AUDIO;
-//        }
-//        [M8MeetWindow M8_addCallSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
-    }
-}
-
-
-
 @end

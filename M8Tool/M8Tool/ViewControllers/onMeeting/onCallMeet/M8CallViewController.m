@@ -52,10 +52,9 @@
     [listener setNotifListener:self];
     config.callListener = listener;
     
-    
     if (self.isHost)
     {
-        [self makeCall:config];
+        [self makeCall:config]; //创建会议需要在获取到会议ID之后创建，获取到会议ID只需要将成员信息上报给服务器之后才能返回，然后在tip中将会议ID传给接收端
     }
     else
     {
@@ -66,32 +65,39 @@
 #pragma mark -- 发起方
 - (void)makeCall:(TILCallConfig *)config
 {
-    TILCallSponsorConfig *sponsorConfig = [[TILCallSponsorConfig alloc] init];
-    sponsorConfig.waitLimit             = 30;
-    sponsorConfig.callId                = (int)self.liveItem.info.roomnum;
-    sponsorConfig.onlineInvite          = NO;
-    config.sponsorConfig                = sponsorConfig;
+    __block ReportRoomResponseData *reportRoomData = nil;
+    [self onNetReportRoomInfo:^(BaseRequest *request) {
     
-    _call = [[TILMultiCall alloc] initWithConfig:config];
-    [_call createRenderViewIn:self.renderView];
-    self.renderView.call = _call;
-    
-    WCWeakSelf(self);
-    [_call makeCall:nil custom:self.liveItem.info.title result:^(TILCallError *err) {
-        if(err){
-            [weakself addTextToView:[NSString stringWithFormat:@"呼叫失败:%@-%d-%@",err.domain,err.code,err.errMsg]];
-            [weakself selfDismiss];
-        }
-        else{
-            [weakself addTextToView:@"呼叫成功"];
+        reportRoomData = (ReportRoomResponseData *)request.response.data;
+        self.curMid = reportRoomData.mid;
+        
+        TILCallSponsorConfig *sponsorConfig = [[TILCallSponsorConfig alloc] init];
+        sponsorConfig.waitLimit             = 30;
+        sponsorConfig.callId                = (int)self.liveItem.info.roomnum;
+        sponsorConfig.onlineInvite          = NO;
+        config.sponsorConfig                = sponsorConfig;
+        
+        self.call = [[TILMultiCall alloc] initWithConfig:config];
+        [self.call createRenderViewIn:self.renderView];
+        self.renderView.call = self.call;
+        
+        WCWeakSelf(self);
+        [_call makeCall:kGetStringFMInt(self.curMid) custom:self.liveItem.info.title result:^(TILCallError *err) {
             
-            [[ILiveRoomManager getInstance] setBeauty:2];
-            [[ILiveRoomManager getInstance] setWhite:2];
-            
-            [weakself onNetReportRoomInfo];
-            
-            [weakself.headerView configHeaderView:self.liveItem];
-        }
+            if(err){
+                [weakself addTextToView:[NSString stringWithFormat:@"呼叫失败:%@-%d-%@",err.domain,err.code,err.errMsg]];
+                [weakself selfDismiss];
+            }
+            else{
+                [weakself addTextToView:@"呼叫成功"];
+                
+                [[ILiveRoomManager getInstance] setBeauty:2];
+                [[ILiveRoomManager getInstance] setWhite:2];
+
+                [weakself.headerView configHeaderView:self.liveItem];
+            }
+        }];
+        
     }];
 }
 
@@ -309,6 +315,8 @@
     }
     else
     {
+        [self onNetReportMemExitRoom];
+        
         [self hangup];
     }
 }

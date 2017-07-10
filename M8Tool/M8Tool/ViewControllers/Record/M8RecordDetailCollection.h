@@ -10,6 +10,8 @@
 
 @interface M8RecordDetailCollection : UICollectionView
 
-- (void)configDataArray:(NSArray *_Nonnull)array;
+- (instancetype _Nonnull)initWithFrame:(CGRect)frame
+                  collectionViewLayout:(UICollectionViewLayout * _Nonnull)layout
+                             dataModel:(id _Nonnull)model;
 
 @end

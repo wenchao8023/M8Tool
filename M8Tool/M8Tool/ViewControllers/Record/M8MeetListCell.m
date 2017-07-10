@@ -25,10 +25,36 @@
 @implementation M8MeetListCell
 
 - (void)config:(M8MeetListModel *)model {
-    [self.callTypeImg setImage:kGetImage(model.recordType)];
-    self.luancherLaber.text = [NSString stringWithFormat:@"%@(%ld人)", model.recordLuancher, [model.recordMembers count]];
-    self.membersLabel.text  = [model.recordMembers componentsJoinedByString:@","];
-    self.timeLabel.text     = model.recordTime;
+    if ([model.type isEqualToString:@"live"])
+    {
+        [self.callTypeImg setImage:kGetImage(@"record_callType_live")];
+    }
+    if ([model.type isEqualToString:@"call_audio"])
+    {
+        [self.callTypeImg setImage:kGetImage(@"record_callType_audio")];
+    }
+    if ([model.type isEqualToString:@"call_video"])
+    {
+        [self.callTypeImg setImage:kGetImage(@"record_callType_video")];
+    }
+    
+    if ([model.mainuser isEqualToString:[[ILiveLoginManager getInstance] getLoginId]])
+    {
+        self.luancherLaber.text = [NSString stringWithFormat:@"我(%u人)", model.members.count];
+    }
+    else
+    {
+        self.luancherLaber.text = [NSString stringWithFormat:@"%@(%u人)", model.mainuser, model.members.count];
+    }
+    
+    NSMutableString *membersStr = [[NSMutableString alloc] initWithCapacity:0];
+    for (M8MeetMemberInfo *info in model.members)
+    {
+        [membersStr appendString:[NSString stringWithFormat:@"%@,", info.user]];
+    }
+    
+    self.membersLabel.text = membersStr;
+    self.timeLabel.text = [CommonUtil getDateStrWithTime:[model.starttime doubleValue]];
 }
 
 - (void)awakeFromNib {

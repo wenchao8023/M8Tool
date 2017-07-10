@@ -12,9 +12,4 @@
 
 - (instancetype _Nonnull)initWithFrame:(CGRect)frame style:(UITableViewStyle)style dataModel:(id _Nonnull)model;
 
-
-/**
- 测试 - 重新发起会议
- */
-- (void)reluanch;
 @end

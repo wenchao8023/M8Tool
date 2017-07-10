@@ -23,4 +23,7 @@ typedef void (^AlertActionHandle)(UIAlertAction * _Nonnull action);
 
 + (void)tipWith:(NSString *_Nullable)msg wait:(NSTimeInterval)time;
 
+// “确定” 和 “取消” 两个按钮
++ (UIAlertController *_Nullable)alertWith:(NSString * _Nullable)title message:(NSString * _Nullable)msg cancelAction:(AlertActionHandle _Nullable)cancelHandle okAction:(AlertActionHandle _Nullable)okAction;
+
 @end

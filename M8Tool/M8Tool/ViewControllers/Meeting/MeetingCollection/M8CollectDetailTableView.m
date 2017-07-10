@@ -82,10 +82,10 @@
 - (NSMutableArray *)dataContentArray {
     if (!_dataContentArray) {
         NSMutableArray *dataContentArray = [NSMutableArray arrayWithCapacity:0];
-        [dataContentArray addObject:_dataModel.recordTopic];
-        [dataContentArray addObject:_dataModel.recordLuancher];
-        [dataContentArray addObject:_dataModel.recordTime];
-        [dataContentArray addObject:[NSString stringWithFormat:@"%u人", _dataModel.recordMembers.count]];
+//        [dataContentArray addObject:_dataModel.recordTopic];
+//        [dataContentArray addObject:_dataModel.recordLuancher];
+//        [dataContentArray addObject:_dataModel.recordTime];
+//        [dataContentArray addObject:[NSString stringWithFormat:@"%u人", _dataModel.recordMembers.count]];
         _dataContentArray = dataContentArray;
         
         [self reloadData];
@@ -105,7 +105,7 @@
 - (void)reloadData {
     [super reloadData];
     
-    [self.detailCollection configDataArray:_dataModel.recordMembers];
+//    [self.detailCollection configDataArray:_dataModel.recordMembers];
 }
 
 #pragma mark - UITableViewDelegate
@@ -156,13 +156,12 @@
 
 - (void)reluanch {
     
-    NSString *typeStr = _dataModel.recordType;
-    if ([typeStr containsString:@"live"]) {
+//    NSString *typeStr = _dataModel.recordType;
+//    if ([typeStr containsString:@"live"]) {
 //        [AlertHelp alertWith:@"提示" message:@"暂时没有提供直播重新发起" cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
 //        [AppDelegate showAlertWithTitle:@"提示" message:@"暂时没有提供直播重新发起" okTitle:@"确定" cancelTitle:nil ok:nil cancel:nil];
-    }
-    else {
-#warning M8MakeCallViewController
+//    }
+//    else {
 //        M8MakeCallViewController *callVC = [[M8MakeCallViewController alloc] init];
 //        NSMutableArray *membersArray = [NSMutableArray arrayWithArray:_dataModel.recordMembers];
 //        NSString *loginIdentify = [[ILiveLoginManager getInstance] getLoginId];
@@ -180,7 +179,7 @@
 //            callVC.callType = TILCALL_TYPE_AUDIO;
 //        }
 //        [M8MeetWindow M8_addCallSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
-    }
+//    }
 }
 
 

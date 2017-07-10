@@ -8,9 +8,21 @@
 
 #import "M8MeetListModel.h"
 
+
+@implementation M8MeetMemberInfo
+
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key
+{
+    
+}
+
+@end
+
+
 @implementation M8MeetListModel
 
-- (void)setValue:(id)value forUndefinedKey:(NSString *)key {
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key
+{
     
 }
 

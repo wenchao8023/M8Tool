@@ -13,5 +13,6 @@
 @property (nonatomic, copy) NSString *token;
 @property (nonatomic, assign) NSInteger roomnum;
 @property (nonatomic, copy) NSString *type;
+@property (nonatomic, assign) int mid;
 
 @end

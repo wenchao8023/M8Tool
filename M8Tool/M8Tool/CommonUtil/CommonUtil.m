@@ -41,6 +41,16 @@
     }
 }
 
++(NSString *)getDateStrWithTime:(NSTimeInterval)time
+{
+    NSString *timeStr;
+    NSDate *startDate = [NSDate dateWithTimeIntervalSince1970:time];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy年MM月dd日"];
+    timeStr = [formatter stringFromDate:startDate];
+    return timeStr;
+}
+
 
 + (BOOL)AVAuthorizationStatusAudio {
     AVAuthorizationStatus audioStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio];

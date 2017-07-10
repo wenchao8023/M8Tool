@@ -30,7 +30,8 @@
     // Do any additional setup after loading the view.
     
     if (_listViewType == M8MeetListViewTypeNote ||
-        _listViewType == M8MeetListViewTypeCollect) {
+        _listViewType == M8MeetListViewTypeCollect)
+    {
         
         // 添加 搜索视图
         [self addSearchView];

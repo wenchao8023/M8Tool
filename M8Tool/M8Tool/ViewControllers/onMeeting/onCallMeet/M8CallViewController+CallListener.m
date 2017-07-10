@@ -88,7 +88,11 @@
             [self onNetReportCallMem:sender statu:1];
             [self addTextToView:[NSString stringWithFormat:@"%@接受了%@的邀请",sender,target]];
             // 只要有人接受了邀请，就应该是结束通话
-            self.shouldHangup = YES;
+            if (self.isHost)
+            {
+                self.shouldHangup = YES;
+            }
+            
             [self.modelManager memberReceiveWithID:sender];
         }
             break;
@@ -126,9 +130,12 @@
             break;
         case TILCALL_NOTIF_HANGUP:
         {
-            [self onNetReportMemExitRoom:sender];
             [self addTextToView:[NSString stringWithFormat:@"%@挂断了%@邀请的通话",sender,target]];
             [self.modelManager memberHangupWithID:sender];
+            if ([sender isEqualToString:self.liveItem.uid])
+            {
+                [self selfDismiss];
+            }
         }
             break;
         case TILCALL_NOTIF_LINEBUSY:

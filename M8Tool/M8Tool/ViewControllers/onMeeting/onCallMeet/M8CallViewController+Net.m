@@ -10,18 +10,11 @@
 
 @implementation M8CallViewController (Net)
 
-- (void)onNetReportRoomInfo
+- (void)onNetReportRoomInfo:(RequestCompletionHandler)requestSucc
 {
     WCWeakSelf(self);
-    __block ReportRoomResponseData *reportRoomData = nil;
-    ReportRoomRequest *reportReq = [[ReportRoomRequest alloc] initWithHandler:^(BaseRequest *request) {
-        
-        reportRoomData = (ReportRoomResponseData *)request.response.data;
-        weakself.curMid = reportRoomData.mid;
-        [weakself addTextToView:[NSString stringWithFormat:@"%d", reportRoomData.mid]];
-        [weakself addTextToView:@"上报房间信息成功"];
-        
-    } failHandler:^(BaseRequest *request) {
+    ReportRoomRequest *reportReq = [[ReportRoomRequest alloc] initWithHandler:requestSucc
+                                                                  failHandler:^(BaseRequest *request) {
         
         // 上传失败
         [weakself addTextToView:@"上报房间信息失败"];
@@ -42,6 +35,18 @@
     reportReq.room.appid = [ShowAppId intValue];
     
     [[WebServiceEngine sharedEngine] asyncRequest:reportReq];
+}
+
+- (void)onNetReportRoomInfo
+{
+    WCWeakSelf(self);
+    __block ReportRoomResponseData *reportRoomData = nil;
+    [self onNetReportRoomInfo:^(BaseRequest *request) {
+        reportRoomData = (ReportRoomResponseData *)request.response.data;
+        weakself.curMid = reportRoomData.mid;
+        [weakself addTextToView:[NSString stringWithFormat:@"%d", reportRoomData.mid]];
+        [weakself addTextToView:@"上报房间信息成功"];
+    }];
 }
 
 #pragma mark - 上报成员信息
@@ -66,12 +71,12 @@
 
 
 #pragma mark - 上报成员退出房间
-- (void)onNetReportMemExitRoom:(NSString *)uid
+- (void)onNetReportMemExitRoom
 {
     WCWeakSelf(self);
     ReportMemExitRequest *reportMemExitReq = [[ReportMemExitRequest alloc] initWithHandler:^(BaseRequest *request) {
         
-        [weakself addTextToView:[NSString stringWithFormat:@"上报成员:<--%@ : 退出房间-->成功", uid]];
+        [weakself addTextToView:[NSString stringWithFormat:@"上报成员:<--%@ : 退出房间-->成功", weakself.liveItem.uid]];
         
     } failHandler:^(BaseRequest *request) {
         
@@ -79,7 +84,7 @@
     }];
     
     reportMemExitReq.token = [AppDelegate sharedAppDelegate].token;
-    reportMemExitReq.uid = uid;
+    reportMemExitReq.uid = self.liveItem.uid;
     reportMemExitReq.mid = self.curMid;
     [[WebServiceEngine sharedEngine] asyncRequest:reportMemExitReq];
 }
@@ -88,19 +93,23 @@
 #pragma mark - 上报服务器，会议结束
 - (void)onNetReportExitRoom
 {
+    WCWeakSelf(self);
     //通知业务服务器，退房
     ExitRoomRequest *exitReq = [[ExitRoomRequest alloc] initWithHandler:^(BaseRequest *request)
-    {
-        NSLog(@"上报退出房间成功");
-        
-    } failHandler:^(BaseRequest *request) {
-        
-        NSLog(@"上报退出房间失败");
-    }];
-    
+                                {
+                                    NSLog(@"上报退出房间成功");
+                                    [weakself addTextToView:@"上报退出房间成功"];
+                                    
+                                } failHandler:^(BaseRequest *request) {
+                                    
+                                    NSLog(@"上报退出房间失败");
+                                    [weakself addTextToView:@"上报退出房间成功"];
+                                }];
+
     exitReq.token   = [AppDelegate sharedAppDelegate].token;
     exitReq.type    = self.liveItem.info.type;
     exitReq.roomnum = self.liveItem.info.roomnum;
+    exitReq.mid     = self.curMid;
     [[WebServiceEngine sharedEngine] asyncRequest:exitReq wait:NO];
 }
 @end

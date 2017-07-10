@@ -23,6 +23,6 @@
 
 @interface MeetsListResponseData : BaseResponseData
 
-@property (nonatomic, strong, nullable) NSArray *meetsArray;
+@property (nonatomic, strong, nullable) NSArray *meets;
 
 @end

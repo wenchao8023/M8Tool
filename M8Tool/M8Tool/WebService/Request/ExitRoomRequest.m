@@ -12,16 +12,17 @@
 
 - (NSString *)url
 {
-//    return @"https://sxb.qcloud.com/sxb/index.php?svc=live&cmd=exitroom";
     NSString *host = [self hostUrl];
     return [NSString stringWithFormat:@"%@svc=live&cmd=exitroom",host];
 }
 
 - (NSDictionary *)packageParams
 {
-    NSDictionary *dic = @{@"token" : _token,
-                          @"roomnum" : [NSNumber numberWithInteger:_roomnum],
-                          @"type" : _type,
+    NSDictionary *dic = @{
+                          @"token"      : _token,
+                          @"roomnum"    : [NSNumber numberWithInteger:_roomnum],
+                          @"type"       : _type,
+                          @"mid"        : @(_mid)
                           };
     return dic;
 }

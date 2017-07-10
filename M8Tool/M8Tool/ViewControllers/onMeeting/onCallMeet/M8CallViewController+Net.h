@@ -14,6 +14,8 @@
  上报房间信息
  */
 - (void)onNetReportRoomInfo;
+//
+- (void)onNetReportRoomInfo:(RequestCompletionHandler _Nullable)requestSucc;
 
 /**
  上报成员信息
@@ -26,10 +28,8 @@
 
 /**
  上报成员退出房间
-
- @param uid 成员ID
  */
-- (void)onNetReportMemExitRoom:(NSString *_Nonnull)uid;
+- (void)onNetReportMemExitRoom;
 
 /**
  上报退出房间

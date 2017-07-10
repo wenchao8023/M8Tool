@@ -12,6 +12,10 @@
 
 #import "M8RecordDetailCollectionHeader.h"
 
+#import "M8MeetListModel.h"
+
+
+
 static NSString *CollectionHeaderID = @"M8RecordDetailCollectionID";
 
 static CGFloat kRecordDetailHeaderHeight = 118.0;
@@ -20,15 +24,18 @@ static CGFloat kRecordDetailHeaderHeight = 118.0;
 
 @interface M8RecordDetailCollection ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray *receiveArray;
+@property (nonatomic, strong) NSMutableArray *rejectArray;
+@property (nonatomic, strong) NSMutableArray *unresponseArray;
 
 @end
 
 @implementation M8RecordDetailCollection
 
-- (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout {
-    if (self = [super initWithFrame:frame collectionViewLayout:layout]) {
-        
+- (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout dataModel:(M8MeetListModel *)model
+{
+    if (self = [super initWithFrame:frame collectionViewLayout:layout])
+    {
         self.backgroundColor = WCClear;
         self.delegate   = self;
         self.dataSource = self;
@@ -36,50 +43,99 @@ static CGFloat kRecordDetailHeaderHeight = 118.0;
         
         [self registerNib:[UINib nibWithNibName:@"MeetingMembersCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"MeetingMembersCellID"];
         [self registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:CollectionHeaderID];
+        
+        [self configDataModel:model];
     }
+    
     return self;
 }
 
-- (NSMutableArray *)dataArray {
-    if (!_dataArray) {
-        NSMutableArray *dataArray = [NSMutableArray arrayWithCapacity:0];
-        _dataArray = dataArray;
+- (NSMutableArray *)receiveArray
+{
+    if (!_receiveArray)
+    {
+        _receiveArray = [NSMutableArray arrayWithCapacity:0];
     }
-    return _dataArray;
+    return _receiveArray;
 }
 
-- (void)configDataArray:(NSArray *)array {
-    [self.dataArray removeAllObjects];
-    [self.dataArray addObjectsFromArray:array];
-    [self reloadData];
+- (NSMutableArray *)rejectArray
+{
+    if (!_rejectArray)
+    {
+        _rejectArray = [NSMutableArray arrayWithCapacity:0];
+    }
+    return _rejectArray;
 }
 
+- (NSMutableArray *)unresponseArray
+{
+    if (!_unresponseArray)
+    {
+        _unresponseArray = [NSMutableArray arrayWithCapacity:0];
+    }
+    return _unresponseArray;
+}
+
+
+- (void)configDataModel:(M8MeetListModel *)model
+{
+    for (M8MeetMemberInfo *info in model.members)
+    {
+        switch ([info.statu intValue])
+        {
+            case 0: //未响应
+                [self.unresponseArray addObject:info];
+                break;
+            case 1: //接听
+                [self.receiveArray addObject:info];
+                break;
+            case 2: //拒绝
+                [self.rejectArray addObject:info];
+                break;
+            default:
+                break;
+        }
+    }
+}
 
 #pragma mark - UICollectionViewDelegate
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
-    return self.dataArray.count;
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return self.unresponseArray.count;
 }
 
-- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    MeetingMembersCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MeetingMembersCellID" forIndexPath:indexPath];
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    MeetingMembersCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MeetingMembersCellID"
+                                                                         forIndexPath:indexPath];
     WCViewBorder_Radius(cell, kItemWidth / 2);
-    [cell configRecordDetailWithNameStr:self.dataArray[indexPath.row]];
+    
+    if (self.unresponseArray &&
+        self.unresponseArray.count)
+    {
+        M8MeetMemberInfo *info = self.unresponseArray[indexPath.row];
+        [cell configRecordDetailWithNameStr:info.user];
+    }
     return cell;
 }
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader])
+    {
         UICollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:CollectionHeaderID forIndexPath:indexPath];
 
-        M8RecordDetailCollectionHeader *headerView = [[M8RecordDetailCollectionHeader alloc] initWithFrame:CGRectMake(0, 0, self.width, kRecordDetailHeaderHeight)];
+        M8RecordDetailCollectionHeader *headerView = [[M8RecordDetailCollectionHeader alloc]
+                                                      initWithFrame:CGRectMake(0, 0, self.width, kRecordDetailHeaderHeight)];
         [header addSubview:headerView];
-        [headerView config:self.dataArray];
+        
+        [headerView configRecNum:self.receiveArray.count
+                          rejNum:self.rejectArray.count
+                          unrNum:self.unresponseArray.count];
+        
+        
         return header;
     }
     return nil;
 }
-
-
-
-
 @end

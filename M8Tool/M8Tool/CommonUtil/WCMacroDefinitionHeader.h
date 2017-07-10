@@ -109,7 +109,9 @@
 
 
 #pragma mark - 9 获取图片资源
-#define kGetImage(imageName) [UIImage imageNamed:[NSString stringWithFormat:@"%@",imageName]]
+#define kGetImage(imageName)    [UIImage imageNamed:[NSString stringWithFormat:@"%@",imageName]]
+#define kGetString(string)      [NSString stringWithFormat:@"%@", string]
+#define kGetStringFMInt(int)    [NSString stringWithFormat:@"%d", int]
 
 
 #pragma mark - 10 获取当前语言

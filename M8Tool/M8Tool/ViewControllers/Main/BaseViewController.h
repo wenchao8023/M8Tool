@@ -37,6 +37,9 @@ static const float kRadiusView              = 10;
 @interface BaseViewController : UIViewController
 
 
+
+
+
 /**
  会议记录中会使用到 searchView
  */

@@ -28,21 +28,30 @@
 
 @implementation M8RecordDetailCollectionHeader
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame])
+    {
         self = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil] firstObject];
         _myFrame = frame;
     }
     return self;
 }
 
-- (void)drawRect:(CGRect)rect {
-    
+- (void)drawRect:(CGRect)rect
+{
     self.frame = _myFrame;
 }
 
-- (void)config:(NSArray *)array {
-    self.unresponseLabel.text = [NSString stringWithFormat:@"%ld人", array.count];
+- (void)configRecNum:(NSInteger)recNum rejNum:(NSInteger)rejNum unrNum:(NSInteger)unrNum
+{
+    self.recieveLabel.text = [self numString:recNum];
+    self.rejectLabel.text = [self numString:rejNum];
+    self.unresponseLabel.text = [self numString:unrNum];
 }
 
+- (NSString *)numString:(NSInteger)num
+{
+    return [NSString stringWithFormat:@"%ld人", num];
+}
 @end

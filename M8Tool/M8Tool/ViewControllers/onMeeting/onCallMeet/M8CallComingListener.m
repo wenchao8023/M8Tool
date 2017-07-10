@@ -37,6 +37,7 @@
     
     M8CallViewController *callVC = [[M8CallViewController alloc] initWithItem:item isHost:NO];
     callVC.invitation = invitation;
+    callVC.curMid     = [invitation.callTip intValue];
     [M8MeetWindow M8_addMeetSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
 }
 

@@ -18,6 +18,15 @@
 
 +(NSString *)getIconLabelStr:(NSString *)str ;
 
+
+/**
+ 将时间戳转成日期格式
+
+ @param time 时间戳
+ @return 日期字符串
+ */
++(NSString *)getDateStrWithTime:(NSTimeInterval)time;
+
 // 文字模糊背景
 // 默认：白色文字、黑色模糊
 // 文字默认 16

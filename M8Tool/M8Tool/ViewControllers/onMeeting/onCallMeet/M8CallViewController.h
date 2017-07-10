@@ -54,14 +54,13 @@
 
 /**
  判断发起人在退出界面的时候是结束通话还是取消邀请
+ 在使用这个参数的时候，保证用户是发起端
  */
 @property (nonatomic, assign) BOOL shouldHangup;
 
 
-
-
 - (void)addTextToView:(id _Nullable )newText;
 
-
+- (void)hangup;
 
 @end
