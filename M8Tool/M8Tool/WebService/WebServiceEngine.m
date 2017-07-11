@@ -1,10 +1,7 @@
-//
-//  WebServiceEngine.m
-//
-//
-//  Created by Alexi on 14-8-5.
-//  Copyright (c) 2014年 Alexi Chen. All rights reserved.
-//
+
+
+
+
 
 #import "WebServiceEngine.h"
 
@@ -18,6 +15,93 @@
 @implementation WebServiceEngine
 
 static WebServiceEngine *_sharedEngine = nil;
+
+- (void)AFAsynRequest:(BaseRequest *)req
+{
+    if (!req)
+    {
+        return ;
+    }
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        
+        NSString *urlStr = [req url];
+        NSData *postData = [req toPostJsonData];
+        
+        if (urlStr == nil || urlStr.length < 1)
+        {
+            NSLog(@"[%@]请求出错了", [req class]);
+            return ;
+        }
+        
+        NSLog(@"request url = %@", urlStr);
+        
+        AFHTTPSessionManager *manger = [AFHTTPSessionManager manager];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        
+        if (postData)
+        {
+            [manger POST:urlStr parameters:postData progress:^(NSProgress * _Nonnull uploadProgress) {
+                
+                NSLog(@">>>>>>>>>>>>>uploadProgress is %.2f", uploadProgress.completedUnitCount / (float)(uploadProgress.totalUnitCount));
+                
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                
+                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+                
+
+                if (![NSJSONSerialization isValidJSONObject:responseObject])
+                {
+                    TCILDebugLog(@"sxbparse fail --> %@",responseObject);
+                    NSLog(@"请求出错");
+                    if (req.failHandler)
+                    {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            req.response.errorCode = -1;
+                            req.response.errorInfo = @"返回数据非Json格式";
+                            req.failHandler(req);
+                        });
+                    }
+                }
+                else    // 请求数据成功
+                {
+                    NSError *parseError;
+                    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:responseObject options:NSJSONWritingPrettyPrinted error:&parseError];
+                    
+                    NSString *responseString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+                    TCILDebugLog(@"sxbparse responseString--> %@",responseString);
+                    NSLog(@"[%@] request's responseString is :\n================================\n %@ \n================================" , [req class], responseString);
+                    //TODO
+                    if (responseObject)
+                    {
+                        TCILDebugLog(@"sxbparse --> %@",responseObject);
+                        [req parseResponse:responseObject];
+                    }
+                }
+                
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                
+                if (error)
+                {
+                    NSLog(@"Request = %@, Error = %@", req, error);
+                    
+                    if (req.failHandler)
+                    {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            req.failHandler(req);
+                        });
+                    }
+                }
+                
+            }];
+        }
+        
+    });
+    
+    
+    
+}
 
 - (void)asyncRequest:(BaseRequest *)req
 {

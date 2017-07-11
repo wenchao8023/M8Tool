@@ -81,6 +81,12 @@
 
 - (void)reluanchAction
 {
+    if ([CommonUtil alertTipInMeeting])
+    {
+        return ;
+    }
+    
+    
     if ([_dataModel.type isEqualToString:@"live"])
     {
         
@@ -111,7 +117,7 @@
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 [reqIdWaitView removeFromSuperview];
-                int callId = [roomData.callId integerValue];
+                int callId = [roomData.callId intValue];
                 [self enterCall:callId callType:callType];
             });
             
@@ -126,9 +132,16 @@
 
 - (void)enterCall:(int)roomId callType:(TILCallType)callType
 {
+    NSMutableArray *membersArr = [NSMutableArray arrayWithCapacity:0];
+    for (M8MeetMemberInfo *info in _dataModel.members)
+    {
+        [membersArr addObject:info.user];
+    }
+    
+    
     TCShowLiveListItem *item = [[TCShowLiveListItem alloc] init];
     item.uid = [[ILiveLoginManager getInstance] getLoginId];
-    item.members = _dataModel.members;
+    item.members = membersArr;
     item.callType = callType;
     item.info = [[ShowRoomInfo alloc] init];
     item.info.title = _dataModel.title;

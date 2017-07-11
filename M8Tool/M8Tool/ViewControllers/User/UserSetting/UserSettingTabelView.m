@@ -19,8 +19,10 @@
 
 @implementation UserSettingTabelView
 
-- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
-    if (self = [super initWithFrame:frame style:style]) {
+- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style
+{
+    if (self = [super initWithFrame:frame style:style])
+    {
         self.tableFooterView    = [WCUIKitControl createViewWithFrame:CGRectZero];
         self.tableHeaderView    = [WCUIKitControl createViewWithFrame:CGRectZero];
         self.dataSource         = self;
@@ -32,8 +34,10 @@
     return self;
 }
 
-- (NSArray *)dataArray {
-    if (!_dataArray) {
+- (NSArray *)dataArray
+{
+    if (!_dataArray)
+    {
         NSArray *dataArrray = @[@[@"密码设置", @"新消息设置", @"关于iBuild"],
                                 @[@"退出"]];
         _dataArray = dataArrray;
@@ -41,25 +45,32 @@
     return _dataArray;
 }
 
-- (NSArray *)actionsArray {
-    if (!_actionsArray) {
+- (NSArray *)actionsArray
+{
+    if (!_actionsArray)
+    {
         _actionsArray = @[@[@"onPwdSetAction", @"onNewMsgSetAction", @"onAboutAction"],
                           @[@"onLogoutAction"]];
     }
     return _actionsArray;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return self.dataArray.count;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return [self.dataArray[section] count];
 }
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     static NSString *cellID = @"UserSettingCellID";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (!cell) {
+    if (!cell)
+    {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = WCClear;
@@ -72,24 +83,29 @@
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
     return 0.1;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
     return 0.1;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
     return [WCUIKitControl createViewWithFrame:CGRectZero];
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
     return [WCUIKitControl createViewWithFrame:CGRectZero];
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     [self performSelector:NSSelectorFromString(self.actionsArray[indexPath.section][indexPath.row]) withObject:indexPath afterDelay:0];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -109,7 +125,12 @@
     
 }
 
-- (void)onLogoutAction {
+- (void)onLogoutAction
+{
+    if ([CommonUtil alertTipInMeeting])
+    {
+        return ;
+    }
     
     LoadView *logoutWaitView = [LoadView loadViewWith:@"正在退出"];
     [self addSubview:logoutWaitView];
@@ -117,18 +138,23 @@
     __weak typeof(self) ws = self;
     //通知业务服务器登出
     LogoutRequest *logoutReq = [[LogoutRequest alloc] initWithHandler:^(BaseRequest *request) {
+        
         [[ILiveLoginManager getInstance] iLiveLogout:^{
+            
             [logoutWaitView removeFromSuperview];
             [ws deleteLoginParamFromLocal];
             [ws enterLoginUI];
             
         } failed:^(NSString *module, int errId, NSString *errMsg) {
+            
             [logoutWaitView removeFromSuperview];
             NSString *errinfo = [NSString stringWithFormat:@"module=%@,errid=%ld,errmsg=%@",module,(long)request.response.errorCode,request.response.errorInfo];
             NSLog(@"regist fail.%@",errinfo);
             [AlertHelp alertWith:@"退出失败" message:errinfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
         }];
+        
     } failHandler:^(BaseRequest *request) {
+        
         NSString *errinfo = [NSString stringWithFormat:@"errid=%ld,errmsg=%@",(long)request.response.errorCode,request.response.errorInfo];
         NSLog(@"regist fail.%@",errinfo);
         [logoutWaitView removeFromSuperview];
@@ -139,14 +165,8 @@
     [[WebServiceEngine sharedEngine] asyncRequest:logoutReq];
 }
 
-- (void)enterLoginUI {
-//    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//    UINavigationController *navi = kM8LoginNaViewController(kM8LoginViewController);
-//    UIViewController *loginVC = navi.topViewController;
-//    [loginVC setValue:[NSNumber numberWithBool:YES] forKey:@"isLogout"];
-//    appDelegate.window.rootViewController = navi;
-//    [appDelegate.window makeKeyWindow];
-    
+- (void)enterLoginUI
+{
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     UINavigationController *navi = kM8LoginNaViewController(kM8MutiLoginViewController);
     appDelegate.window.rootViewController = navi;

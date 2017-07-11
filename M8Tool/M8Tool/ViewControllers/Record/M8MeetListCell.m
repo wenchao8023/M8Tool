@@ -40,19 +40,26 @@
     
     if ([model.mainuser isEqualToString:[[ILiveLoginManager getInstance] getLoginId]])
     {
-        self.luancherLaber.text = [NSString stringWithFormat:@"我(%u人)", model.members.count];
+        self.luancherLaber.text = [NSString stringWithFormat:@"我(%lu人)", model.members.count];
     }
     else
     {
-        self.luancherLaber.text = [NSString stringWithFormat:@"%@(%u人)", model.mainuser, model.members.count];
+        self.luancherLaber.text = [NSString stringWithFormat:@"%@(%lu人)", model.mainuser, model.members.count];
     }
     
     NSMutableString *membersStr = [[NSMutableString alloc] initWithCapacity:0];
     for (M8MeetMemberInfo *info in model.members)
     {
-        [membersStr appendString:[NSString stringWithFormat:@"%@,", info.user]];
+        if ([info isEqual:[model.members lastObject]])
+        {
+            [membersStr appendString:[NSString stringWithFormat:@"%@", info.user]];
+        }
+        else
+        {
+            [membersStr appendString:[NSString stringWithFormat:@"%@,", info.user]];
+        }
+        
     }
-    
     self.membersLabel.text = membersStr;
     self.timeLabel.text = [CommonUtil getDateStrWithTime:[model.starttime doubleValue]];
 }

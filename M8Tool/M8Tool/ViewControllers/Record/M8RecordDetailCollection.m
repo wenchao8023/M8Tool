@@ -82,19 +82,26 @@ static CGFloat kRecordDetailHeaderHeight = 118.0;
 {
     for (M8MeetMemberInfo *info in model.members)
     {
-        switch ([info.statu intValue])
+        if ([info.user isEqualToString:model.mainuser])
         {
-            case 0: //未响应
-                [self.unresponseArray addObject:info];
-                break;
-            case 1: //接听
-                [self.receiveArray addObject:info];
-                break;
-            case 2: //拒绝
-                [self.rejectArray addObject:info];
-                break;
-            default:
-                break;
+            [self.receiveArray addObject:info];
+        }
+        else
+        {
+            switch ([info.statu intValue])
+            {
+                case 0: //未响应
+                    [self.unresponseArray addObject:info];
+                    break;
+                case 1: //接听
+                    [self.receiveArray addObject:info];
+                    break;
+                case 2: //拒绝
+                    [self.rejectArray addObject:info];
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

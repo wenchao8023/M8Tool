@@ -19,6 +19,9 @@
 
 @implementation M8FriendInfo
 
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key {
+    
+}
 
 
 @end

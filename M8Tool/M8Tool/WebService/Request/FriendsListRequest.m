@@ -30,7 +30,7 @@
 
 - (BaseResponseData *)parseResponseData:(NSDictionary *)dataDic
 {
-    return [NSObject parse:[self responseDataClass] dictionary:dataDic itemClass:[M8IMModels class]];
+    return [NSObject parse:[self responseDataClass] dictionary:dataDic itemClass:[M8FriendInfo class]];
 }
 @end
 

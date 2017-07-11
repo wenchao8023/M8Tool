@@ -9,13 +9,7 @@
 #import "MeetingLuanchViewController.h"
 #import "MeetingLuanchTableView.h"
 
-//#import "M8MeetWindow.h"
-//#import "M8MakeCallViewController.h"
-//#import "M8LiveMakeViewController.h"
-//#import "M8LiveJoinViewController.h"
-
 #import "M8UploadImageHelper.h"
-
 
 #import "M8MeetWindow.h"
 #import "M8CallViewController.h"
@@ -57,17 +51,18 @@
 
 
 
-- (void)createUI {
-    // 重新设置 contentView 的高度
-//    [self.contentView setHeight:kContentHeight_bottom30];
+- (void)createUI
+{
     // 添加 tableView
     [self tableView];
     // 添加 发起按钮
     [self luanchButton];
 }
 
-- (MeetingLuanchTableView *)tableView {
-    if (!_tableView) {
+- (MeetingLuanchTableView *)tableView
+{
+    if (!_tableView)
+    {
         CGRect frame = self.contentView.bounds;
         frame.size.height -= (kDefaultMargin + kDefaultCellHeight);     // 减去 底部按钮所占的高度
         MeetingLuanchTableView *tableView = [[MeetingLuanchTableView alloc] initWithFrame:frame
@@ -78,14 +73,17 @@
     return _tableView;
 }
 
-- (NSMutableArray *)selectedArray {
-    if (!_selectedArray) {
+- (NSMutableArray *)selectedArray
+{
+    if (!_selectedArray)
+    {
         _selectedArray = [NSMutableArray arrayWithCapacity:0];
     }
     return _selectedArray;
 }
 
-- (void)luanchButton {
+- (void)luanchButton
+{
     UIButton *luanchButton = [WCUIKitControl createButtonWithFrame:CGRectMake(kDefaultMargin,
                                                                               self.contentView.height - kDefaultMargin - kDefaultCellHeight,
                                                                               self.contentView.width - 2 * kDefaultMargin,
@@ -103,8 +101,14 @@
     [self.contentView addSubview:luanchButton];
 }
 
-- (void)luanchMeetingAction {
+- (void)luanchMeetingAction
+{
     WCLog(@"立即发起<!--%@--!>", [[self getTitle] substringFromIndex:2]);
+    
+    if ([CommonUtil alertTipInMeeting])
+    {
+        return ;
+    }
     
     AVAuthorizationStatus videoStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
     if(videoStatus == AVAuthorizationStatusRestricted || videoStatus == AVAuthorizationStatusDenied)
@@ -125,23 +129,17 @@
         return;
     }
     
-    LoadView *reqIdWaitView = [LoadView loadViewWith:@"正在请求房间ID"];
-    [self.view addSubview:reqIdWaitView];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [reqIdWaitView removeFromSuperview];
-        
-        [self luanchMeeting];
-    });
+    [self luanchMeeting];
 }
 
     
 /**
  发起会议
  */
-- (void)luanchMeeting {
-    
-    switch (self.luanchMeetingType) {
+- (void)luanchMeeting
+{
+    switch (self.luanchMeetingType)
+    {
         case LuanchMeetingType_phone:   //电话(语音)
         {
             [self luanchCall:TILCALL_TYPE_AUDIO];
@@ -171,8 +169,8 @@
 
  @param callType 会议类型
  */
-- (void)luanchCall:(TILCallType)callType {
-    
+- (void)luanchCall:(TILCallType)callType
+{
     LoadView *reqIdWaitView = [LoadView loadViewWith:@"正在请求房间ID"];
     [self.view addSubview:reqIdWaitView];
     __block CallRoomResponseData *roomData = nil;
@@ -183,22 +181,25 @@
         
         //请求房间号
         CallRoomRequest *callRoomReq = [[CallRoomRequest alloc] initWithHandler:^(BaseRequest *request) {
+            
             roomData = (CallRoomResponseData *)request.response.data;
             dispatch_semaphore_signal(semaphore);
             
             dispatch_async(dispatch_get_main_queue(), ^{
+                
                 [reqIdWaitView removeFromSuperview];
-                int callId = [roomData.callId integerValue];
+                int callId = [roomData.callId intValue];
                 [self enterCall:callId imageUrl:imageUrl callType:callType];
             });
             
         } failHandler:^(BaseRequest *request) {
+            
             dispatch_semaphore_signal(semaphore);
         }];
+        
         callRoomReq.token = [AppDelegate sharedAppDelegate].token;
         [[WebServiceEngine sharedEngine] asyncRequest:callRoomReq];
     });
-
 }
 
 - (void)enterCall:(int)roomId imageUrl:(NSString *)coverUrl callType:(TILCallType)callType
@@ -236,29 +237,36 @@
         
         // 请求房间号
         CreateRoomRequest *createRoomReq = [[CreateRoomRequest alloc] initWithHandler:^(BaseRequest *request) {
+            
             roomData = (CreateRoomResponceData *)request.response.data;
             dispatch_semaphore_signal(semaphore);
             
         } failHandler:^(BaseRequest *request) {
+            
             dispatch_semaphore_signal(semaphore);
         }];
+        
         createRoomReq.token = [AppDelegate sharedAppDelegate].token;
         createRoomReq.type = @"live";
         [[WebServiceEngine sharedEngine] asyncRequest:createRoomReq];
         
         //上传图片
         [[M8UploadImageHelper shareInstance] upload:_coverImg completion:^(NSString *imageSaveUrl) {
+            
             imageUrl = imageSaveUrl;
             dispatch_semaphore_signal(semaphore);
             
         } failed:^(NSString *failTip) {
+            
             dispatch_semaphore_signal(semaphore);
         }];
+        
         dispatch_time_t timeoutTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0 * NSEC_PER_SEC));
         dispatch_semaphore_wait(semaphore, timeoutTime);
         dispatch_semaphore_wait(semaphore, timeoutTime);
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            
             [reqIdWaitView removeFromSuperview];
             [self enterLive:(int)roomData.roomnum groupId:roomData.groupid imageUrl:imageUrl];
         });
@@ -283,7 +291,8 @@
 }
 
 
-- (void)sendCustomMsg {
+- (void)sendCustomMsg
+{
     TILLiveManager *manager = [TILLiveManager getInstance];
     
     ILVLiveCustomMessage *customMsg = [ILVLiveCustomMessage new];
@@ -348,15 +357,18 @@
 
     
 #pragma mark - LuanchTableViewDelegate
-- (void)luanchTableViewMeetingTopic:(NSString *)topic {
+- (void)luanchTableViewMeetingTopic:(NSString *)topic
+{
     _topic = topic;
 }
 
-- (void)luanchTableViewMeetingCoverImg:(UIImage *)coverImg {
+- (void)luanchTableViewMeetingCoverImg:(UIImage *)coverImg
+{
     _coverImg = coverImg;
 }
 
-- (void)luanchTableViewMeetingCurrentMembers:(NSArray *)currentMembers {
+- (void)luanchTableViewMeetingCurrentMembers:(NSArray *)currentMembers
+{
     
     [self.selectedArray removeAllObjects];
     // 添加自己
@@ -367,7 +379,8 @@
 }
 
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

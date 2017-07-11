@@ -84,7 +84,8 @@
     {
         [alert addAction:[UIAlertAction actionWithTitle:destTitle style:UIAlertActionStyleDestructive handler:destHandle]];
     }
-    __block UIViewController *topVC = [AlertHelp topViewController];
+//    __block UIViewController *topVC = [AlertHelp topViewController];
+    __block UIViewController *topVC = [[AppDelegate sharedAppDelegate] topViewController];
     if ([topVC isKindOfClass:[UIAlertController class]])
     {
         [topVC dismissViewControllerAnimated:YES completion:^{

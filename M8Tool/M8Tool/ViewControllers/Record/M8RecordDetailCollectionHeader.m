@@ -45,9 +45,9 @@
 
 - (void)configRecNum:(NSInteger)recNum rejNum:(NSInteger)rejNum unrNum:(NSInteger)unrNum
 {
-    self.recieveLabel.text = [self numString:recNum];
-    self.rejectLabel.text = [self numString:rejNum];
-    self.unresponseLabel.text = [self numString:unrNum];
+    self.recieveLabel.text      = [self numString:recNum];
+    self.rejectLabel.text       = [self numString:rejNum];
+    self.unresponseLabel.text   = [self numString:unrNum];
 }
 
 - (NSString *)numString:(NSInteger)num

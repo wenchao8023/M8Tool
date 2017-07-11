@@ -18,6 +18,8 @@
 
 +(NSString *)getIconLabelStr:(NSString *)str ;
 
++(BOOL)alertTipInMeeting;
+
 
 /**
  将时间戳转成日期格式

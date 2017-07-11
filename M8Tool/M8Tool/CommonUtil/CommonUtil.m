@@ -41,12 +41,30 @@
     }
 }
 
++(BOOL)alertTipInMeeting
+{
+    BOOL isMeeting = [[[NSUserDefaults standardUserDefaults] objectForKey:kIsInMeeting] boolValue];
+    
+    if (isMeeting)
+    {
+        [AlertHelp alertWith:@"温馨提示"
+                     message:@"正在会议中，请先结束会议"
+                   cancelBtn:@"确定"
+                  alertStyle:UIAlertControllerStyleAlert
+                cancelAction:nil];
+    }
+    
+    return isMeeting;
+}
+
+
+
 +(NSString *)getDateStrWithTime:(NSTimeInterval)time
 {
     NSString *timeStr;
     NSDate *startDate = [NSDate dateWithTimeIntervalSince1970:time];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy年MM月dd日"];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     timeStr = [formatter stringFromDate:startDate];
     return timeStr;
 }

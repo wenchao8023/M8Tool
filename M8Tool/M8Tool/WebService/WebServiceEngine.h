@@ -1,10 +1,7 @@
-//
-//  WebServiceEngine.h
-//  
-//
-//  Created by Alexi on 14-8-5.
-//  Copyright (c) 2014年 Alexi Chen. All rights reserved.
-//
+
+
+
+
 
 #import <Foundation/Foundation.h>
 
@@ -29,6 +26,13 @@
 // 异步请求Req 关显示提示语msg wait:是否加HUD同步等待
 - (void)asyncRequest:(BaseRequest * _Nonnull)req loadingMessage:(NSString * _Nullable)msg wait:(BOOL)wait;
 
+
+/**
+ 使用AFNet请求数据
+
+ @param req 请求数据类
+ */
+- (void)AFAsynRequest:(BaseRequest *)req;
 
 
 

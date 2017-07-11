@@ -90,13 +90,7 @@ static const CGFloat kHeaderHeight = 60;
     
     [_headView configWithTitle:nil friendsNum:respData.FriendNum];
     
-    [self.dataArray removeAllObjects];
-    
-    for (NSDictionary *dic in respData.InfoItem) {
-        M8FriendInfo *info = [M8FriendInfo new];
-        [info setValuesForKeysWithDictionary:dic];
-        [self.dataArray addObject:info];
-    }
+    [self.dataArray addObjectsFromArray:respData.InfoItem];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

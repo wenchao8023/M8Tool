@@ -20,7 +20,7 @@ static NSString * _Nonnull const kSnsProfileItemTag_Nick = @ "Tag_Profile_IM_Nic
 
 
 
-@interface M8FriendInfo : M8IMModels
+@interface M8FriendInfo : NSObject
 
 @property (nonatomic, copy, nullable) NSString *Info_Account;
 @property (nonatomic, strong, nullable) NSArray *SnsProfileItem;
