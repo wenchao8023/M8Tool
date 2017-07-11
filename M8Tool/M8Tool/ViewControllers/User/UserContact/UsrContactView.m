@@ -81,7 +81,8 @@ static const CGFloat kHeaderHeight = 60;
     }];
     friendListReq.identifier = [[ILiveLoginManager getInstance] getLoginId];
     friendListReq.token = [AppDelegate sharedAppDelegate].token;
-    [[WebServiceEngine sharedEngine] asyncRequest:friendListReq];
+//    [[WebServiceEngine sharedEngine] asyncRequest:friendListReq];
+    [[WebServiceEngine sharedEngine] AFAsynRequest:friendListReq];
     
 }
 

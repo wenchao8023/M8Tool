@@ -26,7 +26,9 @@ static WebServiceEngine *_sharedEngine = nil;
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         
         NSString *urlStr = [req url];
-        NSData *postData = [req toPostJsonData];
+        NSDictionary *postDic = [req packageParams];
+        
+        NSLog(@"post json is \n%@", postDic);
         
         if (urlStr == nil || urlStr.length < 1)
         {
@@ -37,11 +39,15 @@ static WebServiceEngine *_sharedEngine = nil;
         NSLog(@"request url = %@", urlStr);
         
         AFHTTPSessionManager *manger = [AFHTTPSessionManager manager];
+        manger.requestSerializer = [AFJSONRequestSerializer serializer];
+        [manger.requestSerializer setValue:@"application/json; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+        [manger.requestSerializer setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+        
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         
-        if (postData)
+        if (postDic)
         {
-            [manger POST:urlStr parameters:postData progress:^(NSProgress * _Nonnull uploadProgress) {
+            [manger POST:urlStr parameters:postDic progress:^(NSProgress * _Nonnull uploadProgress) {
                 
                 NSLog(@">>>>>>>>>>>>>uploadProgress is %.2f", uploadProgress.completedUnitCount / (float)(uploadProgress.totalUnitCount));
                 

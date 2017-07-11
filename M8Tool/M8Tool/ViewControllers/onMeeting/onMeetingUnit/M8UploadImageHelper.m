@@ -92,7 +92,8 @@ static M8UploadImageHelper *_shareInstance = nil;
     } failHandler:^(BaseRequest *request) {
         
     }];
-    [[WebServiceEngine sharedEngine] asyncRequest:req];
+//    [[WebServiceEngine sharedEngine] asyncRequest:req];
+    [[WebServiceEngine sharedEngine] AFAsynRequest:req];
 }
 
 

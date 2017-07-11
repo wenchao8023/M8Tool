@@ -34,7 +34,8 @@
     reportReq.room.groupid = self.liveItem.info.groupid;
     reportReq.room.appid = [ShowAppId intValue];
     
-    [[WebServiceEngine sharedEngine] asyncRequest:reportReq];
+//    [[WebServiceEngine sharedEngine] asyncRequest:reportReq];
+    [[WebServiceEngine sharedEngine] AFAsynRequest:reportReq];
 }
 
 - (void)onNetReportRoomInfo
@@ -66,7 +67,8 @@
     reportMemReq.uid = mem;
     reportMemReq.mid = self.curMid;
     reportMemReq.statu = [NSString stringWithFormat:@"%d", statu];
-    [[WebServiceEngine sharedEngine] asyncRequest:reportMemReq];
+//    [[WebServiceEngine sharedEngine] asyncRequest:reportMemReq];
+    [[WebServiceEngine sharedEngine] AFAsynRequest:reportMemReq];
 }
 
 
@@ -86,7 +88,8 @@
     reportMemExitReq.token = [AppDelegate sharedAppDelegate].token;
     reportMemExitReq.uid = self.liveItem.uid;
     reportMemExitReq.mid = self.curMid;
-    [[WebServiceEngine sharedEngine] asyncRequest:reportMemExitReq];
+//    [[WebServiceEngine sharedEngine] asyncRequest:reportMemExitReq];
+    [[WebServiceEngine sharedEngine] AFAsynRequest:reportMemExitReq];
 }
 
 
@@ -110,6 +113,7 @@
     exitReq.type    = self.liveItem.info.type;
     exitReq.roomnum = self.liveItem.info.roomnum;
     exitReq.mid     = self.curMid;
-    [[WebServiceEngine sharedEngine] asyncRequest:exitReq wait:NO];
+//    [[WebServiceEngine sharedEngine] asyncRequest:exitReq wait:NO];
+    [[WebServiceEngine sharedEngine] AFAsynRequest:exitReq];
 }
 @end

@@ -162,7 +162,8 @@
     }];
     
     logoutReq.token = [AppDelegate sharedAppDelegate].token;
-    [[WebServiceEngine sharedEngine] asyncRequest:logoutReq];
+//    [[WebServiceEngine sharedEngine] asyncRequest:logoutReq];
+    [[WebServiceEngine sharedEngine] AFAsynRequest:logoutReq];
 }
 
 - (void)enterLoginUI

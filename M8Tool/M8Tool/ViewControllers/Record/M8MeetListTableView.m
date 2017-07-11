@@ -14,7 +14,7 @@
 #import "M8NoteDetailViewController.h"
 
 
-@interface M8MeetListTableView ()<UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
+@interface M8MeetListTableView ()<UITableViewDelegate, UITableViewDataSource>
 {
     CGFloat _lastOffsetY;
 }
@@ -39,6 +39,21 @@
         self.backgroundColor = WCClear;
         self.delegate   = self;
         self.dataSource = self;
+
+        WCWeakSelf(self);
+        self.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            
+            [weakself loadNetData];
+        }];
+//        self.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNetData)];
+//        self.mj_header.automaticallyChangeAlpha = YES;
+//        [self.mj_header beginRefreshing];
+    
+        self.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+        
+        
+        [self.mj_header endRefreshing];
+        [self.mj_footer endRefreshing];
         
         _pageNums = 20;
         _pageOffset = 0;
@@ -58,40 +73,65 @@
     return _dataArray;
 }
 
-
-
 - (void)loadNetData
 {
-    [self.dataArray removeAllObjects];
     _pageOffset = 0;
+    [self.dataArray removeAllObjects];
+    if (self.mj_footer.state == MJRefreshStateNoMoreData)
+    {
+        [self.mj_footer resetNoMoreData];
+    }
     
     [self loadDataWithOffset:_pageOffset];
 }
 
 - (void)loadMoreData
 {
-    _pageOffset += 1;
+    _pageOffset = (int)self.dataArray.count;
     
     [self loadDataWithOffset:_pageOffset];
 }
 
 - (void)loadDataWithOffset:(int)offset
 {
+    WCLog(@"offset is : %d", offset);
+    
     WCWeakSelf(self);
     MeetsListRequest *listReq = [[MeetsListRequest alloc] initWithHandler:^(BaseRequest *request) {
         
         MeetsListResponseData *listData = (MeetsListResponseData *)request.response.data;
         [weakself loadRespondData:listData];
         
+        [weakself endAllRefresh];
+        
     } failHandler:^(BaseRequest *request) {
         
+        if (request.response.errorCode == 10086)
+        {
+            [weakself.mj_footer endRefreshingWithNoMoreData];
+        }
     }];
     
     listReq.token = [AppDelegate sharedAppDelegate].token;
     listReq.uid   = [[ILiveLoginManager getInstance] getLoginId];
     listReq.offset= offset;
     listReq.nums  = _pageNums;
-    [[WebServiceEngine sharedEngine] asyncRequest:listReq];
+    [[WebServiceEngine sharedEngine] AFAsynRequest:listReq];
+}
+
+- (void)endAllRefresh
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.mj_header.isRefreshing)
+        {
+            [self.mj_header endRefreshing];
+        }
+        
+        if (self.mj_footer.isRefreshing)
+        {
+            [self.mj_footer endRefreshing];
+        }
+    });
 }
 
 - (void)loadRespondData:(MeetsListResponseData *)responseData
@@ -132,7 +172,11 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"M8MeetListCell" owner:self options:nil] firstObject];
     }
     
-    [cell config:self.dataArray[indexPath.row]];
+    if (self.dataArray.count)
+    {
+        [cell config:self.dataArray[indexPath.row]];
+    }
+    
     return cell;
 }
 
@@ -168,23 +212,6 @@
     }
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-#pragma mark - scroll load more data
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    if ([scrollView isEqual:self])
-    {
-        if (scrollView.contentSize.height - scrollView.contentOffset.y <= (self.height + 60.0))
-        {
-            [self loadMoreData];
-        }
-    }
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    _lastOffsetY = scrollView.contentOffset.y;
 }
 
 @end

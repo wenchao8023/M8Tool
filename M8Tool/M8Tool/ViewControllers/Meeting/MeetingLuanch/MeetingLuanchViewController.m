@@ -198,7 +198,8 @@
         }];
         
         callRoomReq.token = [AppDelegate sharedAppDelegate].token;
-        [[WebServiceEngine sharedEngine] asyncRequest:callRoomReq];
+//        [[WebServiceEngine sharedEngine] asyncRequest:callRoomReq];
+        [[WebServiceEngine sharedEngine] AFAsynRequest:callRoomReq];
     });
 }
 
@@ -248,7 +249,8 @@
         
         createRoomReq.token = [AppDelegate sharedAppDelegate].token;
         createRoomReq.type = @"live";
-        [[WebServiceEngine sharedEngine] asyncRequest:createRoomReq];
+//        [[WebServiceEngine sharedEngine] asyncRequest:createRoomReq];
+        [[WebServiceEngine sharedEngine] AFAsynRequest:createRoomReq];
         
         //上传图片
         [[M8UploadImageHelper shareInstance] upload:_coverImg completion:^(NSString *imageSaveUrl) {
