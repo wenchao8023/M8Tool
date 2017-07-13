@@ -17,4 +17,7 @@
 #import "AppDelegate+ControlViewController.h"
 #import "UIView+Extension.h"
 
+#import "NSString+SimpleName.h"
+
+
 #endif /* CategoryHeader_h */

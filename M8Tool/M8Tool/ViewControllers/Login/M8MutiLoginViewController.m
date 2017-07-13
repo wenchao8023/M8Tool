@@ -28,8 +28,11 @@
     
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
+    
+    
 }
 
 - (void)viewDidLoad {
@@ -43,8 +46,24 @@
     
     WCViewBorder_Radius_Width_Color(_loginButton, 30, 2, WCWhite);
     WCViewBorder_Radius_Width_Color(_registButton, 30, 2, WCWhite);
-
+    
+    _registButton.backgroundColor = WCWhite;
+    [_registButton setTitleColor:WCRGBColor(0x6e / 255.0, 0x6e / 255.0, 0x70 / 255.0) forState:UIControlStateNormal];
+    
+    
+//    _loginButton.adjustsImageWhenHighlighted = NO;//去除按钮的按下效果（阴影）
+//    _registButton.adjustsImageWhenHighlighted = NO;
+//    
+//    [_loginButton setBackgroundImage:[UIImage imageWithColor:WCWhite] forState:UIControlStateHighlighted];
+//    [_loginButton setTitleColor:WCLightGray forState:UIControlStateHighlighted];
+//
+//    [_registButton setBackgroundImage:[UIImage imageWithColor:WCWhite] forState:UIControlStateHighlighted];
+//    [_registButton setTitleColor:WCLightGray forState:UIControlStateHighlighted];
 }
+
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

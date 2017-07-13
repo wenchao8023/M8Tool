@@ -10,7 +10,7 @@
 
 #import "M8LoginWebService.h"
 
-@interface M8RegistSuccViewController ()
+@interface M8RegistSuccViewController ()<UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *psdFirstTF;
 @property (weak, nonatomic) IBOutlet UITextField *psdSecondTF;
@@ -19,19 +19,29 @@
 
 @implementation M8RegistSuccViewController
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    self.navigationController.navigationBarHidden = NO;
-    WCLog(@"%ld", (long)self.setPwdType);
-}
+//- (void)viewWillAppear:(BOOL)animated {
+//    [super viewWillAppear:animated];
+//    
+//    self.navigationController.navigationBarHidden = NO;
+//    WCLog(@"%ld", (long)self.setPwdType);
+//}
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
+    //添加滑动返回
+    [self addSwipeBack];
+}
+
+- (void)addSwipeBack
+{
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    id target = self.navigationController.interactivePopGestureRecognizer.delegate;
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:target action:@selector(handleNavigationTransition:)];
+    pan.delegate = self;
+    [self.view addGestureRecognizer:pan];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -44,6 +54,10 @@
 }
 
 #pragma mark - 确认注册
+- (IBAction)onBackAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (IBAction)onVerifyAction:(id)sender {
     
     if (!_psdFirstTF || _psdSecondTF.text.length < 1)

@@ -8,10 +8,25 @@
 
 #import <UIKit/UIKit.h>
 
+#import "M8MeetListModel.h"
+
+#import "M8RecordDetailViewController.h"
+#import "M8CollectDetaiilViewController.h"
+#import "M8NoteDetailViewController.h"
 
 
 @interface M8MeetListTableView : UITableView
 
+@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, assign) int pageNums;
+@property (nonatomic, assign) int pageOffset;
+
 @property (nonatomic, assign) M8MeetListViewType listViewType;
+
+
+
+
+- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style listViewType:(M8MeetListViewType)listViewType;
+
 
 @end

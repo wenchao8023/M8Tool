@@ -23,51 +23,51 @@ typedef NS_ENUM(NSInteger, M8MeetType)
 @property (nonatomic, copy) NSString * _Nullable title;
 @property (nonatomic, copy) NSString * _Nullable type;    //live : 直播, call_video : 视频通话, call_audio : 音频通话
 @property (nonatomic, assign) NSInteger roomnum;
-@property (nonatomic, copy) NSString * groupid;
-@property (nonatomic, copy) NSString * cover;
-@property (nonatomic, copy) NSString * host;
+@property (nonatomic, copy) NSString * _Nullable groupid;
+@property (nonatomic, copy) NSString * _Nullable cover;
+@property (nonatomic, copy) NSString * _Nullable host;
 @property (nonatomic, assign) NSInteger appid;
 @property (nonatomic, assign) int thumbup;//点赞数
 @property (nonatomic, assign) int memsize;//观看人数
 @property (nonatomic, assign) NSInteger device;
 @property (nonatomic, assign) NSInteger videotype;
 
-- (NSDictionary *)toRoomDic;
+- (NSDictionary *_Nullable)toRoomDic;
 
 @end
 
 
 @interface TCShowLiveListItem : NSObject
 
-@property (nonatomic, copy) NSString *uid;
-@property (nonatomic, strong) ShowRoomInfo *info;
+@property (nonatomic, copy) NSString * _Nullable uid;
+@property (nonatomic, strong) ShowRoomInfo * _Nullable info;
 @property (nonatomic, strong, nullable) NSArray *members;   //通话中邀请的成员
 @property (nonatomic, assign) TILCallType callType; //通话模式（音频、视频）
 
 
-+ (instancetype)loadFromToLocal;
++ (instancetype _Nullable )loadFromToLocal;
 
 - (void)saveToLocal;
 - (void)cleanLocalData;
 
-- (NSDictionary *)toLiveStartJson;
-- (NSDictionary *)toHeartBeatJson;
+- (NSDictionary * _Nullable )toLiveStartJson;
+- (NSDictionary * _Nullable )toHeartBeatJson;
 
 @end
 
 @interface RecordVideoItem : NSObject
 
-@property (nonatomic, copy) NSString *uid;
-@property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSString *cover;
-@property (nonatomic, copy) NSString *videoId;
-@property (nonatomic, strong) NSMutableArray *playurl;
+@property (nonatomic, copy) NSString * _Nullable uid;
+@property (nonatomic, copy) NSString * _Nullable name;
+@property (nonatomic, copy) NSString * _Nullable cover;
+@property (nonatomic, copy) NSString * _Nullable videoId;
+@property (nonatomic, strong) NSMutableArray * _Nullable playurl;
 
 @end
 
 @interface MemberListItem : NSObject
 
-@property (nonatomic, copy) NSString *identifier;
+@property (nonatomic, copy) NSString * _Nullable identifier;
 @property (nonatomic, assign) int role;
 
 //业务逻辑需要
@@ -77,10 +77,10 @@ typedef NS_ENUM(NSInteger, M8MeetType)
 
 @interface LiveStreamListItem : NSObject
 
-@property (nonatomic, copy) NSString *uid;
-@property (nonatomic, copy) NSString *cover;
-@property (nonatomic, copy) NSString *address;//拼接地址
-@property (nonatomic, copy) NSString *address2;//拼接地址
-@property (nonatomic, copy) NSString *address3;//拼接地址
+@property (nonatomic, copy) NSString * _Nullable uid;
+@property (nonatomic, copy) NSString * _Nullable cover;
+@property (nonatomic, copy) NSString * _Nullable address;//拼接地址
+@property (nonatomic, copy) NSString * _Nullable address2;//拼接地址
+@property (nonatomic, copy) NSString * _Nullable address3;//拼接地址
 
 @end

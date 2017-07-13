@@ -20,12 +20,14 @@
 @synthesize _searchView;
 
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     
     [self setHeaderTitle:[self getTitle]];
 }
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
@@ -43,16 +45,20 @@
     [self.contentView addSubview:self.tableView];
 }
 
-- (M8MeetListTableView *)tableView {
-    if (!_tableView) {
-        M8MeetListTableView *tableView = [[M8MeetListTableView alloc] initWithFrame:self.contentView.bounds style:UITableViewStylePlain];
-        tableView.listViewType  = _listViewType;
+- (M8MeetListTableView *)tableView
+{
+    if (!_tableView)
+    {
+        M8MeetListTableView *tableView = [[M8MeetListTableView alloc] initWithFrame:self.contentView.bounds
+                                                                              style:UITableViewStylePlain
+                                                                       listViewType:_listViewType];
         _tableView = tableView;
     }
     return _tableView;
 }
 
-- (void)addSearchView {
+- (void)addSearchView
+{
     CGRect frame = self.contentView.frame;
     frame.size.height = kSearchView_height;
     BaseSearchView *searchView = [[BaseSearchView alloc] initWithFrame:frame target:self];
@@ -61,7 +67,8 @@
     [self.view addSubview:(_searchView = searchView)];
 }
 
-- (void)resetContentView {
+- (void)resetContentView
+{
     CGFloat originY = CGRectGetMaxY(_searchView.frame) + kMarginView_top;
     self.contentView.y = originY;
     self.contentView.height = self.contentView.height - originY + kDefaultNaviHeight;
@@ -85,7 +92,8 @@
 }
 
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

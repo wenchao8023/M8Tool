@@ -104,6 +104,8 @@ static CGFloat kRecordDetailHeaderHeight = 118.0;
             }
         }
     }
+    
+    [self reloadData];
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -116,13 +118,12 @@ static CGFloat kRecordDetailHeaderHeight = 118.0;
 {
     MeetingMembersCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MeetingMembersCellID"
                                                                          forIndexPath:indexPath];
-    WCViewBorder_Radius(cell, kItemWidth / 2);
     
     if (self.unresponseArray &&
         self.unresponseArray.count)
     {
         M8MeetMemberInfo *info = self.unresponseArray[indexPath.row];
-        [cell configRecordDetailWithNameStr:info.user];
+        [cell configRecordDetailWithNameStr:info.user radiusBorder:kItemWidth / 2];
     }
     return cell;
 }

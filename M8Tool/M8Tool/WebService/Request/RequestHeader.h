@@ -57,5 +57,7 @@
 
 #import "MeetsListRequest.h"
 
+#import "MeetsCollectRequest.h"
+
 
 #endif /* RequestHeader_h */

@@ -15,7 +15,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *MeetingItemLabel;
 @property (weak, nonatomic) IBOutlet UILabel *MeetingContentLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *MeetingIconImage;
 
 @end
 
@@ -23,11 +22,11 @@
 
 @implementation MeetingLuanchCell
 
-- (void)configWithTageArray:(NSArray *)tagsArray {
-    
-    self.MeetingItemLabel.hidden = YES;
+- (void)configWithTageArray:(NSArray *)tagsArray
+{
+    self.MeetingItemLabel.hidden    = YES;
     self.MeetingContentLabel.hidden = YES;
-    self.MeetingIconImage.hidden = YES;
+//    self.MeetingIconImage.hidden    = YES;
     
     UILabel *topLineLabel = [WCUIKitControl createLabelWithFrame:CGRectMake(0, 0, self.width, 0.6) BgColor:WCDarkGray];
     [self.contentView addSubview:topLineLabel];
@@ -42,20 +41,26 @@
     [self.contentView addSubview:tagsLabel];
 }
 
-- (void)configWithItem:(NSString *)item content:(NSString *)content {
-    self.MeetingContentLabel.textAlignment = 0;
-    [self configWithItem:item content:content imageName:nil];
-}
 
-- (void)configWithItem:(NSString *)item content:(NSString *)content imageName:(NSString *)imageName {
+- (void)configWithItem:(NSString *)item content:(NSString *)content
+{
     self.MeetingItemLabel.text = item;
     self.MeetingContentLabel.text = content;
-    if (imageName &&
-        imageName.length)
-        self.MeetingIconImage.image = [UIImage imageNamed:imageName];
-    else
-        self.MeetingIconImage.hidden = YES;
+//    self.MeetingContentLabel.textAlignment = 0;
+//    [self configWithItem:item content:content imageName:nil];
 }
+
+
+//- (void)configWithItem:(NSString *)item content:(NSString *)content imageName:(NSString *)imageName
+//{
+//    self.MeetingItemLabel.text = item;
+//    self.MeetingContentLabel.text = content;
+//    if (imageName &&
+//        imageName.length)
+//        self.MeetingIconImage.image = [UIImage imageNamed:imageName];
+//    else
+//        self.MeetingIconImage.hidden = YES;
+//}
 
 
 

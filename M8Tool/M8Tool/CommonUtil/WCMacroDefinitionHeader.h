@@ -46,6 +46,7 @@
 
 #define WCBgColor               [UIColor colorWithRed:0.98 green:0.96 blue:0.93 alpha:1]    // 视图背景颜色
 #define WCButtonColor           [UIColor colorWithRed:0.04 green:0.43 blue:0.4 alpha:1]     // 按钮背景颜色
+#define WCCollectMemberColor    [UIColor colorWithRed:0.95 green:0.92 blue:0.85 alpha:1]    // 参会成员默认背景颜色
 #define WCTabbarSelectedColor   [UIColor colorWithRed:0.07 green:0.45 blue:0.43 alpha:1]    // 底部 tabBar 选中文字颜色
 #define WCTabbarNormalColor     WCBlack                                                     // 底部 tabBar 未选中文字颜色
 

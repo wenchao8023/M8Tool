@@ -10,7 +10,7 @@
 
 
 
-@interface M8ForgetPsdViewController ()
+@interface M8ForgetPsdViewController ()<UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumTF;
 @property (weak, nonatomic) IBOutlet UITextField *veriCodeTF;
@@ -19,15 +19,28 @@
 
 @implementation M8ForgetPsdViewController
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    self.navigationController.navigationBarHidden = NO;
-}
+//- (void)viewWillAppear:(BOOL)animated {
+//    [super viewWillAppear:animated];
+//    
+//    self.navigationController.navigationBarHidden = NO;
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //添加滑动返回
+    [self addSwipeBack];
+    
     // Do any additional setup after loading the view.
+}
+
+- (void)addSwipeBack
+{
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    id target = self.navigationController.interactivePopGestureRecognizer.delegate;
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:target action:@selector(handleNavigationTransition:)];
+    pan.delegate = self;
+    [self.view addGestureRecognizer:pan];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -40,6 +53,11 @@
 }
 
 #pragma mark - Navigation
+
+- (IBAction)onBackAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].

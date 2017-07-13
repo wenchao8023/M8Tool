@@ -4,8 +4,10 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -39,22 +41,22 @@
                             <constraint firstAttribute="width" constant="10" id="Qsw-o2-5FN"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="木木、林瑞、前女友木木、林瑞、前女友木木、林瑞、前女友木木、林瑞、前女友木木、林瑞、前女友木木、林瑞、前女友木木、林瑞、前女友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdQ-Pi-Ly2">
-                        <rect key="frame" x="44" y="139" width="727" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11111111" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdQ-Pi-Ly2">
+                        <rect key="frame" x="44" y="139" width="665" height="20"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" name="DroidSansFallback" family="Droid Sans Fallback" pointSize="13"/>
                         <color key="textColor" red="0.73727768660000004" green="0.7333641648" blue="0.73319798709999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017.5.7 15:07" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6m-X8-hdw">
-                        <rect key="frame" x="407.5" y="125" width="363.5" height="20"/>
+                        <rect key="frame" x="374.5" y="117" width="396.5" height="20"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" name="DroidSansFallback" family="Droid Sans Fallback" pointSize="13"/>
                         <color key="textColor" red="0.73727768659591675" green="0.73336416482925415" blue="0.73319798707962036" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="木木的会议（3人）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="crs-5a-uIx">
-                        <rect key="frame" x="44" y="117" width="363.5" height="20"/>
+                        <rect key="frame" x="44" y="117" width="330.5" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="1ul-SY-Z66"/>
                         </constraints>
@@ -62,16 +64,28 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已收藏" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="01X-lP-tV3">
+                        <rect key="frame" x="729" y="141.5" width="42" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="42" id="16b-M4-geq"/>
+                            <constraint firstAttribute="height" constant="16" id="uVk-dg-X7N"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="DroidSansFallback" family="Droid Sans Fallback" pointSize="12"/>
+                        <color key="textColor" red="0.68224054570000003" green="0.68217527870000005" blue="0.69451206919999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="XmJ-rf-6oa" firstAttribute="leading" secondItem="H6m-X8-hdw" secondAttribute="trailing" constant="10" id="19W-ZJ-i64"/>
                     <constraint firstItem="qdQ-Pi-Ly2" firstAttribute="height" secondItem="crs-5a-uIx" secondAttribute="height" id="3S1-mW-lva"/>
+                    <constraint firstItem="01X-lP-tV3" firstAttribute="trailing" secondItem="H6m-X8-hdw" secondAttribute="trailing" id="93t-p1-2p2"/>
+                    <constraint firstItem="H6m-X8-hdw" firstAttribute="top" secondItem="crs-5a-uIx" secondAttribute="top" id="Apd-yF-kCI"/>
                     <constraint firstItem="H6m-X8-hdw" firstAttribute="height" secondItem="crs-5a-uIx" secondAttribute="height" id="AxD-wn-hyx"/>
-                    <constraint firstItem="H6m-X8-hdw" firstAttribute="width" secondItem="crs-5a-uIx" secondAttribute="width" id="BZJ-sq-eF4"/>
-                    <constraint firstItem="qdQ-Pi-Ly2" firstAttribute="trailing" secondItem="H6m-X8-hdw" secondAttribute="trailing" id="DeR-zL-JQo"/>
+                    <constraint firstItem="H6m-X8-hdw" firstAttribute="width" secondItem="crs-5a-uIx" secondAttribute="width" multiplier="1.2" id="BZJ-sq-eF4"/>
                     <constraint firstItem="XHi-mX-gAa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="O1I-bC-9eA"/>
+                    <constraint firstItem="01X-lP-tV3" firstAttribute="centerY" secondItem="qdQ-Pi-Ly2" secondAttribute="centerY" id="Pn5-cm-pS2"/>
                     <constraint firstAttribute="trailing" secondItem="XmJ-rf-6oa" secondAttribute="trailing" constant="10" id="RrR-s0-eBV"/>
-                    <constraint firstItem="H6m-X8-hdw" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Tzu-ym-7AE"/>
+                    <constraint firstItem="01X-lP-tV3" firstAttribute="leading" secondItem="qdQ-Pi-Ly2" secondAttribute="trailing" constant="20" id="WRf-DP-DP9"/>
                     <constraint firstItem="crs-5a-uIx" firstAttribute="leading" secondItem="XHi-mX-gAa" secondAttribute="trailing" constant="10" id="eFd-yZ-rJ5"/>
                     <constraint firstItem="crs-5a-uIx" firstAttribute="top" secondItem="XHi-mX-gAa" secondAttribute="top" constant="-6" id="fcC-jD-89q"/>
                     <constraint firstItem="XmJ-rf-6oa" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="il5-pw-El7"/>
@@ -85,6 +99,7 @@
             <inset key="separatorInset" minX="50" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
                 <outlet property="callTypeImg" destination="XHi-mX-gAa" id="UXa-qW-odm"/>
+                <outlet property="isCollectLabel" destination="01X-lP-tV3" id="5lh-P3-vZ8"/>
                 <outlet property="luancherLaber" destination="crs-5a-uIx" id="RLa-6O-fU7"/>
                 <outlet property="membersLabel" destination="qdQ-Pi-Ly2" id="Ipz-C9-c9i"/>
                 <outlet property="timeLabel" destination="H6m-X8-hdw" id="uZa-4f-rRs"/>

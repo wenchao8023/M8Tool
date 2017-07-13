@@ -139,6 +139,7 @@ typedef NS_ENUM(NSInteger, BeautyViewType)
 #define kThemeImage         @"kThemeImage"
 #define kIsInMeeting        @"kIsInMeeting"     //判断用户是否在会议中，如果是则推出视图的时候隐藏tabBar
 #define kPushMenuStatus     @"kPushMenuStatus"  //会话中推出菜单状态
+#define kMeetList           @"kMeetList"        //保存本地用户列表
 
 /******************** appstore **********************/
 #define kIsAppstoreVersion 0

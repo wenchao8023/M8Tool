@@ -12,7 +12,7 @@
 
 #import "M8LoginWebService.h"
 
-@interface M8LoginViewController ()
+@interface M8LoginViewController ()<UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *userNameTF;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTF;
@@ -28,15 +28,18 @@
 
 @implementation M8LoginViewController
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    self.navigationController.navigationBarHidden = NO;
-}
+//- (void)viewWillAppear:(BOOL)animated {
+//    [super viewWillAppear:animated];
+//    
+//    self.navigationController.navigationBarHidden = NO;
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    //添加滑动返回
+    [self addSwipeBack];
     
     
     
@@ -45,9 +48,17 @@
     if (!_isLogout) {
 //        [self autoLogin];
     }
-    
 }
-    
+
+- (void)addSwipeBack
+{
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    id target = self.navigationController.interactivePopGestureRecognizer.delegate;
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:target action:@selector(handleNavigationTransition:)];
+    pan.delegate = self;
+    [self.view addGestureRecognizer:pan];
+}
+
 - (void)autoLogin {
     [self loginName:_userNameTF.text pwd:_passwordTF.text];
 }
@@ -81,6 +92,12 @@
     
     
 #pragma mark - onActions
+
+- (IBAction)onBackAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
 - (IBAction)onLoginAction:(id)sender {
     WCLog(@"登录");
     

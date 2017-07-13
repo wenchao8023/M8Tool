@@ -83,16 +83,17 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
 
 
 #pragma mark - init
-- (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout {
-    if (self = [super initWithFrame:frame collectionViewLayout:layout]) {
+- (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout
+{
+    if (self = [super initWithFrame:frame collectionViewLayout:layout])
+    {
         self.backgroundColor = WCClear;
         self.delegate   = self;
         self.dataSource = self;
         self.scrollEnabled = NO;
+        
         [self registerNib:[UINib nibWithNibName:@"MeetingMembersCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"MeetingMembersCellID"];
-        [self registerClass:[MembersCollectionHeader class]
- forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
-        withReuseIdentifier:CollectionHeaderID];
+        [self registerClass:[MembersCollectionHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:CollectionHeaderID];
         
         [self addObserver:self forKeyPath:@"dataMembersArray" options:NSKeyValueObservingOptionNew context:NULL];
         [self addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:NULL];
@@ -108,8 +109,10 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
  *
  *  刚进来的时候数组是空的，用户可以选择最近联系人中的元素添加，也可以选择通讯录中的人来添加
  */
-- (NSMutableArray *)dataMembersArray {
-    if (!_dataMembersArray) {
+- (NSMutableArray *)dataMembersArray
+{
+    if (!_dataMembersArray)
+    {
         _dataMembersArray = [NSMutableArray arrayWithCapacity:0];
     }
     return _dataMembersArray;
@@ -123,8 +126,8 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
 
 
 #pragma mark - UICollectionViewDelegate
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
     if (self.dataMembersArray &&
         self.dataMembersArray.count)
     {  //数组中至少有一个元素
@@ -139,7 +142,7 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     MeetingMembersCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MeetingMembersCellID" forIndexPath:indexPath];
-    WCViewBorder_Radius(cell, kItemWidth / 2);
+
     if (self.dataMembersArray &&
         self.dataMembersArray.count)
     {   //数组中至少有一个元素
@@ -203,7 +206,8 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
     [collectionView reloadData];
 }
 
-- (void)inviteMembersFromContact {
+- (void)inviteMembersFromContact
+{
     if (self.dataMembersArray.count < self.totalNumbers)
     {
         UserContactViewController *contactVC = [[UserContactViewController alloc] init];
@@ -224,22 +228,27 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
 
 
 #pragma mark - KVO
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
     // 监听数组元素的变化
-    if ([keyPath isEqualToString:@"dataMembersArray"]) {
+    if ([keyPath isEqualToString:@"dataMembersArray"])
+    {
 //        WCLog(@"dataMembersArray is changing");
         
-        if (!self.dataMembersArray.count) {
+        if (!self.dataMembersArray.count)
+        {
             self.isDeling = NO;
         }
         
-        if ([self.WCDelegate respondsToSelector:@selector(MeetingMembersCollectionCurrentMembers:)]) {
+        if ([self.WCDelegate respondsToSelector:@selector(MeetingMembersCollectionCurrentMembers:)])
+        {
             [self.WCDelegate MeetingMembersCollectionCurrentMembers:self.dataMembersArray];
         }   
     }
     
     // 监听 contentSize
-    if ([keyPath isEqualToString:@"contentSize"]) {
+    if ([keyPath isEqualToString:@"contentSize"])
+    {
         if ([self.WCDelegate respondsToSelector:@selector(MeetingMembersCollectionContentHeight:)]) {
             [self.WCDelegate MeetingMembersCollectionContentHeight:self.contentSize.height];
         }
@@ -249,19 +258,24 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
 
 #pragma mark - public function
 // 同步从最近联系人发来的数据
-- (void)syncDataMembersArrayWithDic:(NSDictionary *)memberInfo {
+- (void)syncDataMembersArrayWithDic:(NSDictionary *)memberInfo
+{
     
-    if (self.isDeling) {
+    if (self.isDeling)
+    {
         self.isDeling = NO;
     }
     
     NSString *identifier    = [[memberInfo allKeys] firstObject];
     NSString *statu         = [[memberInfo allValues] firstObject];
-    if ([statu isEqualToString:@"1"]) {
+    if ([statu isEqualToString:@"1"])
+    {
         [[self mutableArrayValueForKey:@"dataMembersArray"] addObject:identifier];
     }
-    else {
-        if ([self.dataMembersArray containsObject:identifier]) {
+    else
+    {
+        if ([self.dataMembersArray containsObject:identifier])
+        {
             [[self mutableArrayValueForKey:@"dataMembersArray"] removeObject:identifier];
         }
     }

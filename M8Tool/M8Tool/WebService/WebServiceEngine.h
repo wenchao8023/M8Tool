@@ -32,7 +32,7 @@
 
  @param req 请求数据类
  */
-- (void)AFAsynRequest:(BaseRequest *)req;
+- (void)AFAsynRequest:(BaseRequest *_Nullable)req;
 
 
 

@@ -63,8 +63,8 @@ static CGFloat kSectionHeight = 40.f;
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     MeetingMembersCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MeetingMembersCellID" forIndexPath:indexPath];
-    WCViewBorder_Radius(cell, kItemWidth / 2);
-    [cell configRecordDetailWithNameStr:self.dataArray[indexPath.row]];
+
+    [cell configRecordDetailWithNameStr:self.dataArray[indexPath.row] radiusBorder:kItemWidth / 2];
     return cell;
 }
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {

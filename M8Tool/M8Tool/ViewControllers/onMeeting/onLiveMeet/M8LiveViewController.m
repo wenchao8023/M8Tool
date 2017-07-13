@@ -235,7 +235,11 @@
     {
         M8MeetDeviceView *deviceView = [[M8MeetDeviceView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - kBottomHeight, SCREEN_WIDTH, kBottomHeight)];
         deviceView.WCDelegate = self;
+        [deviceView setCenterBtnImg:@"onMeetChat"];
+        
         _deviceView = deviceView;
+        
+        
     }
     return _deviceView;
 }

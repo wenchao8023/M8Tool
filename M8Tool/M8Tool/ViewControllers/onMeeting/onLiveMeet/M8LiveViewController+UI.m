@@ -39,13 +39,13 @@
                 break;
             case kOnDeviceActionCenter:
             {
-                [self addTextToView:@"点击菜单"];
-                [self onMenuAction];
+                [self addTextToView:@"点击私信"];
             }
                 break;
             case kOnDeviceActionMenu:
             {
-                [self addTextToView:@"点击私信"];
+                [self addTextToView:@"点击菜单"];
+                [self onMenuAction];
             }
                 break;
             case kOnDeviceActionSwichRender:

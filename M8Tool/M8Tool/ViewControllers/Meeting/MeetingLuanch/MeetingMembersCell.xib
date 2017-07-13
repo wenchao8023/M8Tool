@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,78 +19,55 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="MeetingMembersCellID" id="gTV-IL-0wX" customClass="MeetingMembersCell">
-            <rect key="frame" x="0.0" y="0.0" width="316" height="318"/>
+            <rect key="frame" x="0.0" y="0.0" width="253" height="238"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="316" height="318"/>
+                <rect key="frame" x="0.0" y="0.0" width="253" height="238"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="木木" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0K5-1O-klg">
-                        <rect key="frame" x="0.0" y="0.0" width="316" height="318"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0K5-1O-klg">
+                        <rect key="frame" x="0.0" y="0.0" width="253" height="238"/>
+                        <color key="backgroundColor" red="0.94588989020000003" green="0.91870552299999997" blue="0.85172021389999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <fontDescription key="fontDescription" name="DroidSansFallback" family="Droid Sans Fallback" pointSize="15"/>
                         <color key="textColor" red="0.040044300258159637" green="0.43273401260375977" blue="0.40109637379646301" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WNc-t1-8tg">
-                        <rect key="frame" x="40" y="41" width="237" height="237"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="WNc-t1-8tg" secondAttribute="height" id="EfO-xc-v1C"/>
-                        </constraints>
-                    </imageView>
                     <imageView hidden="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cZ4-3g-EHW">
-                        <rect key="frame" x="296" y="0.0" width="20" height="20"/>
+                        <rect key="frame" x="233" y="0.0" width="20" height="10"/>
                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="20" id="6yu-vq-UCC"/>
-                            <constraint firstAttribute="height" constant="20" id="B5Z-RW-iNH"/>
+                            <constraint firstAttribute="height" constant="10" id="B5Z-RW-iNH"/>
                         </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="10"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskTobounds" value="YES"/>
-                        </userDefinedRuntimeAttributes>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rvX-k8-Xil">
-                        <rect key="frame" x="296" y="298" width="20" height="20"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xeZ-1m-aQ9">
+                        <rect key="frame" x="31.5" y="24" width="190" height="190"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="FYD-KQ-P1V"/>
-                            <constraint firstAttribute="width" constant="20" id="HoH-tq-YfZ"/>
+                            <constraint firstAttribute="width" secondItem="xeZ-1m-aQ9" secondAttribute="height" id="WPh-KY-Syf"/>
                         </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="10"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskTobounds" value="YES"/>
-                        </userDefinedRuntimeAttributes>
                     </imageView>
                 </subviews>
             </view>
-            <color key="backgroundColor" red="0.94588989019393921" green="0.9187055230140686" blue="0.85172021389007568" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="0K5-1O-klg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="8ss-ef-y8d"/>
                 <constraint firstItem="cZ4-3g-EHW" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="F9f-h5-H86"/>
-                <constraint firstItem="WNc-t1-8tg" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="I2O-1o-yXv"/>
-                <constraint firstAttribute="bottom" secondItem="rvX-k8-Xil" secondAttribute="bottom" id="I6K-mv-AC7"/>
+                <constraint firstItem="xeZ-1m-aQ9" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="QTX-xa-3xS"/>
                 <constraint firstItem="0K5-1O-klg" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="V8X-PT-1FW"/>
+                <constraint firstItem="xeZ-1m-aQ9" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Wsj-v2-xBx"/>
                 <constraint firstAttribute="trailing" secondItem="0K5-1O-klg" secondAttribute="trailing" id="XG5-2l-CCP"/>
                 <constraint firstAttribute="trailing" secondItem="cZ4-3g-EHW" secondAttribute="trailing" id="a9Y-NV-dFC"/>
-                <constraint firstAttribute="trailing" secondItem="rvX-k8-Xil" secondAttribute="trailing" id="bOp-2r-KZm"/>
-                <constraint firstItem="WNc-t1-8tg" firstAttribute="width" secondItem="0K5-1O-klg" secondAttribute="width" multiplier="3:4" id="gMV-Fg-J9b"/>
-                <constraint firstItem="WNc-t1-8tg" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="ghl-0T-vl1"/>
+                <constraint firstItem="xeZ-1m-aQ9" firstAttribute="width" secondItem="0K5-1O-klg" secondAttribute="width" multiplier="3:4" id="akV-YY-fxL"/>
                 <constraint firstAttribute="bottom" secondItem="0K5-1O-klg" secondAttribute="bottom" id="ne4-0Z-gy7"/>
             </constraints>
-            <size key="customSize" width="316" height="318"/>
+            <size key="customSize" width="253" height="238"/>
             <connections>
-                <outlet property="actionImg" destination="WNc-t1-8tg" id="uau-2m-Wx0"/>
+                <outlet property="actionImg" destination="xeZ-1m-aQ9" id="uX2-Ds-Pae"/>
                 <outlet property="delImg" destination="cZ4-3g-EHW" id="gcb-73-wc6"/>
                 <outlet property="nameLabel" destination="0K5-1O-klg" id="4Dc-zs-wgp"/>
-                <outlet property="selImg" destination="rvX-k8-Xil" id="DGw-Mk-j03"/>
             </connections>
-            <point key="canvasLocation" x="128" y="106"/>
+            <point key="canvasLocation" x="-14.5" y="86"/>
         </collectionViewCell>
     </objects>
 </document>

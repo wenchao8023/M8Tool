@@ -50,9 +50,15 @@
 
 @implementation MyFlowLayout
 
-- (instancetype)initWithHeaderSize:(CGSize)headerSize itemSize:(CGSize)itemSize {
-    if (self = [super init]) {
-//        self.sectionHeadersPinToVisibleBounds = YES;
+- (instancetype)initWithHeaderSize:(CGSize)headerSize itemSize:(CGSize)itemSize
+{
+    if (self = [super init])
+    {
+        if (IOS_SYSTEM_VERSION >= 9.0)
+        {
+            self.sectionHeadersPinToVisibleBounds = YES;
+        }
+        
         self.minimumLineSpacing = 10;
         self.minimumInteritemSpacing = 10;
         self.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
@@ -199,7 +205,8 @@
  *
  *  @param memberInfo 点击最近联系人的信息
  */
-- (void)LatestMembersCollectionDidSelectedMembers:(NSDictionary *)memberInfo {
+- (void)LatestMembersCollectionDidSelectedMembers:(NSDictionary *)memberInfo
+{
     WCLog(@"The Member %@'s statu is %@", [[memberInfo allKeys] firstObject], [[memberInfo allValues] firstObject]);
     [self.membersCollection syncDataMembersArrayWithDic:memberInfo];
 }
@@ -226,8 +233,10 @@
 @implementation MeetingLuanchTableView
 
 #pragma mark - init
-- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
-    if (self = [super initWithFrame:frame style:style]) {
+- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style
+{
+    if (self = [super initWithFrame:frame style:style])
+    {
         self.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
         self.tableHeaderView = [[UIView alloc] initWithFrame:CGRectZero];
         self.backgroundColor = WCClear;
@@ -349,7 +358,7 @@
     }
     [cell configWithItem:self.dataItemArray[indexPath.row]
                  content:self.dataContentArray[indexPath.row]
-               imageName:@""];
+     ];
     return cell;
 }
 

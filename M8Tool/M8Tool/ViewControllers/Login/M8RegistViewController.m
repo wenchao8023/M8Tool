@@ -10,7 +10,7 @@
 
 #import "M8LoginWebService.h"
 
-@interface M8RegistViewController ()<UITextFieldDelegate>
+@interface M8RegistViewController ()<UITextFieldDelegate, UIGestureRecognizerDelegate>
 {
     NSTimer *_waitVerifyTimer;
     NSTimeInterval _waitTime;
@@ -29,21 +29,34 @@
 
 @implementation M8RegistViewController
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    self.navigationController.navigationBarHidden = NO;
-}
+//- (void)viewWillAppear:(BOOL)animated {
+//    [super viewWillAppear:animated];
+//    
+//    self.navigationController.navigationBarHidden = NO;
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    //添加滑动返回
+    [self addSwipeBack];
+    
     
     _nextBtn.enabled = NO;
     [_nextBtn setTitleColor:WCLightGray forState:UIControlStateDisabled];
     [_nextBtn setTitleColor:WCDarkGray forState:UIControlStateNormal];
     
     [_veriCodeTF addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+}
+
+- (void)addSwipeBack
+{
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    id target = self.navigationController.interactivePopGestureRecognizer.delegate;
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:target action:@selector(handleNavigationTransition:)];
+    pan.delegate = self;
+    [self.view addGestureRecognizer:pan];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -68,6 +81,10 @@
 
 
 #pragma mark - actions
+- (IBAction)onBackAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 /**
  获取验证码
  

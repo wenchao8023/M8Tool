@@ -12,74 +12,86 @@
 
 @interface MeetingMembersCell ()
 
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *delImg;   // 显示正在删除的元素 - meeting
 @property (weak, nonatomic) IBOutlet UIImageView *actionImg;
 
-@property (weak, nonatomic) IBOutlet UIImageView *delImg;   // 显示正在删除的元素 - meeting
-
-@property (weak, nonatomic) IBOutlet UIImageView *selImg;   // 显示元素选中状态 - latest
-
-
 @end
-
 
 
 @implementation MeetingMembersCell
 
 
 #pragma mark - 配置 参会人员
-- (void)configMeetingMembersWithNameStr:(NSString *)nameStr isDeling:(BOOL)isDeling {
-    self.backgroundColor = [UIColor colorWithRed:0.95 green:0.92 blue:0.85 alpha:1];
-    [self setNameHidden:NO];
+- (void)configMeetingMembersWithNameStr:(NSString *)nameStr isDeling:(BOOL)isDeling
+{
+    self.actionImg.hidden = YES;
+    self.nameLabel.hidden = NO;
     self.delImg.hidden = !isDeling;
-    [self.nameLabel setAttributedText:[CommonUtil customAttString:nameStr
+    
+    // 设置Label圆形
+    WCViewBorder_Radius(self.nameLabel, self.nameLabel.width / 2);
+    
+    [self.nameLabel setAttributedText:[CommonUtil customAttString:[nameStr getSimpleName]
                                                          fontSize:kAppMiddleFontSize
                                                         textColor:WCButtonColor
                                                         charSpace:kAppKern_0]
      ];
+    self.nameLabel.backgroundColor = WCCollectMemberColor;
+    self.nameLabel.textColor = WCButtonColor;
 }
-
-- (void)configMeetingMembersWithImageStr:(NSString *)imageStr {
-    self.backgroundColor = WCClear;
-    [self setNameHidden:YES];
+//设置添加和删除两个按钮图片
+- (void)configMeetingMembersWithImageStr:(NSString *)imageStr
+{
     self.delImg.hidden = YES;
-    self.actionImg.image = [UIImage imageNamed:imageStr];
-    
-}
-
-- (void)setNameHidden:(BOOL)hidden {
-    self.selImg.hidden      = YES;
-    self.nameLabel.hidden   = hidden;
-    self.actionImg.hidden   = !hidden;
+    self.nameLabel.hidden = YES;
+    self.actionImg.hidden = NO;
+    self.actionImg.image = kGetImage(imageStr);
 }
 
 #pragma mark - 配置 最近联系人
-- (void)configLatestMembersWithNameStr:(NSString *)nameStr isSelected:(BOOL)isSelected {
-    self.actionImg.hidden   = YES;
-    self.delImg.hidden      = YES;
+- (void)configLatestMembersWithNameStr:(NSString *)nameStr isSelected:(BOOL)isSelected radiusBorder:(CGFloat)radius
+{
     
-    [self.nameLabel setAttributedText:[CommonUtil customAttString:nameStr
+    // 设置Label圆形
+    WCViewBorder_Radius(self.nameLabel, radius);
+    
+    self.actionImg.hidden = YES;
+    self.delImg.hidden = YES;
+    self.nameLabel.hidden = NO;
+    
+    [self.nameLabel setAttributedText:[CommonUtil customAttString:[nameStr getSimpleName]
                                                          fontSize:kAppMiddleFontSize
-                                                        textColor:WCButtonColor
+                                                        textColor:nil
                                                         charSpace:kAppKern_0]
      ];
     
-    self.selImg.backgroundColor = isSelected ? WCButtonColor : WCWhite;
+    if (isSelected)
+    {
+        self.nameLabel.backgroundColor = WCButtonColor;
+        self.nameLabel.textColor = WCCollectMemberColor;
+    }
+    else
+    {
+        self.nameLabel.backgroundColor = WCCollectMemberColor;
+        self.nameLabel.textColor = WCButtonColor;
+    }
 }
-
 
 #pragma mark - 配置 会议详情
-- (void)configRecordDetailWithNameStr:(NSString *)nameStr {
-    [self configLatestMembersWithNameStr:nameStr isSelected:NO];
-    self.selImg.hidden = YES;
+- (void)configRecordDetailWithNameStr:(NSString *)nameStr  radiusBorder:(CGFloat)radius
+{
+    [self configLatestMembersWithNameStr:nameStr isSelected:NO radiusBorder:radius];
 }
+
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
     
-    self.backgroundColor = [UIColor colorWithRed:0.95 green:0.92 blue:0.85 alpha:1];
+    
 }
 
 @end

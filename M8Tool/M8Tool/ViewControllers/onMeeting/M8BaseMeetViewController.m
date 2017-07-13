@@ -48,9 +48,8 @@
 {
     if (!_exitButton)
     {
-        UIButton *exitButton = [WCUIKitControl createButtonWithFrame:CGRectMake(SCREEN_WIDTH - 44, 24, 44, 36) Target:self Action:@selector(selfDismiss) ImageName:@""];
+        UIButton *exitButton = [WCUIKitControl createButtonWithFrame:CGRectMake(SCREEN_WIDTH - 44, 24, 44, 36) Target:self Action:@selector(selfDismiss) ImageName:@"onMeetExit"];
         exitButton.backgroundColor = WCClear;
-        [exitButton setTitle:@"X" forState:UIControlStateNormal];
         [self.view addSubview:(_exitButton = exitButton)];
     }
     return _exitButton;

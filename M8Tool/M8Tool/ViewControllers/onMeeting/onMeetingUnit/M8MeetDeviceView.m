@@ -38,6 +38,12 @@
 }
 
 
+- (void)setCenterBtnImg:(NSString *)imgStr
+{
+    [self.centerBtn setBackgroundImage:kGetImage(imgStr) forState:UIControlStateNormal];
+}
+
+
 /**
 分享
 */

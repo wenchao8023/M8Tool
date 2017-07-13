@@ -18,6 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *callTypeImg;
 
+@property (weak, nonatomic) IBOutlet UILabel *isCollectLabel;
 
 
 @end
@@ -25,6 +26,7 @@
 @implementation M8MeetListCell
 
 - (void)config:(M8MeetListModel *)model {
+    //通话类型图片
     if ([model.type isEqualToString:@"live"])
     {
         [self.callTypeImg setImage:kGetImage(@"record_callType_live")];
@@ -38,15 +40,20 @@
         [self.callTypeImg setImage:kGetImage(@"record_callType_video")];
     }
     
+    //通话发起人+人数
     if ([model.mainuser isEqualToString:[[ILiveLoginManager getInstance] getLoginId]])
     {
-        self.luancherLaber.text = [NSString stringWithFormat:@"我(%lu人)", model.members.count];
+        self.luancherLaber.text = [NSString stringWithFormat:@"我(%u人)", model.members.count];
     }
     else
     {
-        self.luancherLaber.text = [NSString stringWithFormat:@"%@(%lu人)", model.mainuser, model.members.count];
+        self.luancherLaber.text = [NSString stringWithFormat:@"%@(%u人)", model.mainuser, model.members.count];
     }
     
+    //通话时间
+    self.timeLabel.text = [CommonUtil getDateStrWithTime:[model.starttime doubleValue]];
+    
+    //通话成员
     NSMutableString *membersStr = [[NSMutableString alloc] initWithCapacity:0];
     for (M8MeetMemberInfo *info in model.members)
     {
@@ -61,7 +68,10 @@
         
     }
     self.membersLabel.text = membersStr;
-    self.timeLabel.text = [CommonUtil getDateStrWithTime:[model.starttime doubleValue]];
+    
+    //是否有收藏
+    self.isCollectLabel.hidden = ![model.collect boolValue];
+    
 }
 
 - (void)awakeFromNib {
@@ -73,6 +83,7 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+    WCViewBorder_Radius_Width_Color(self.isCollectLabel, 2, 1, WCLightGray);
 }
 
 @end

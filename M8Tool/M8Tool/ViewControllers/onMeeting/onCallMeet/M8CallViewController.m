@@ -10,6 +10,7 @@
 #import "M8CallViewController+UI.h"
 #import "M8CallViewController+Net.h"
 #import "M8CallViewController+CallListener.h"
+#import "M8CallViewController+IMListener.h"
 
 @interface M8CallViewController ()
 
@@ -50,6 +51,7 @@
     TILCallListener * listener      = [[TILCallListener alloc] init];
     [listener setMemberEventListener:self];
     [listener setNotifListener:self];
+    [listener setMsgListener:self];
     config.callListener = listener;
     
     if (self.isHost)
@@ -242,7 +244,11 @@
     {
         M8MeetDeviceView *deviceView = [[M8MeetDeviceView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - kBottomHeight, SCREEN_WIDTH, kBottomHeight)];
         deviceView.WCDelegate = self;
+//        [deviceView setCenterBtnImg:@"onMeetHangupRed"];
+        [deviceView setCenterBtnImg:@"onMeetHangup"];
         [self.view insertSubview:(_deviceView = deviceView) aboveSubview:self.renderView];
+        
+        
     }
     return _deviceView;
 }

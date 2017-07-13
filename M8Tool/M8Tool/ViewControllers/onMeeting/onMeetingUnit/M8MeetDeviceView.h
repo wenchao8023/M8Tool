@@ -29,4 +29,7 @@ typedef NS_ENUM(NSInteger, DeviceType) {
 
 @property (nonatomic, weak) id<M8MeetDeviceViewDelegate> _Nullable WCDelegate;
 
+
+- (void)setCenterBtnImg:(NSString *_Nonnull)imgStr;
+
 @end
