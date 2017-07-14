@@ -59,5 +59,7 @@
 
 #import "MeetsCollectRequest.h"
 
+#import "RecentlyContactRequest.h"
+
 
 #endif /* RequestHeader_h */

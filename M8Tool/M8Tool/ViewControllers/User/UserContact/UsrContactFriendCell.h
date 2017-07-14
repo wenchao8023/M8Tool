@@ -19,6 +19,6 @@
 /**
  配置好友列表
  */
-- (void)configWithFriendItem;
+- (void)configWithFriendItem:(id _Nullable)friendInfo;
 
 @end

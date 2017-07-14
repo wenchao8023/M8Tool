@@ -19,21 +19,26 @@
 @implementation UserContactViewController
 @synthesize _searchView;
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     
     [self setHeaderTitle:[self getTitle]];
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     [self createUI];
 }
 
-- (void)createUI {
+- (void)createUI
+{
     // 重新设置导航视图 >> 添加右侧按钮
     [self resetNavi];
     
@@ -44,7 +49,8 @@
     [self resetContentView];
 }
 
-- (void)resetNavi {
+- (void)resetNavi
+{
     CGFloat btnWidth = 40;
     UIButton *addBtn = [WCUIKitControl createButtonWithFrame:CGRectMake(SCREEN_WIDTH - kContentOriginX - btnWidth,
                                                                         kDefaultStatuHeight,
@@ -74,19 +80,21 @@
     self.contentView.height = self.contentView.height - originY + kDefaultNaviHeight;
     
     UsrContactView *contactView = [[UsrContactView alloc] initWithFrame:self.contentView.bounds style:UITableViewStyleGrouped];
-    contactView.y = 0;
     [self.contentView addSubview:(_contactView = contactView)];
 }
 
 
 #pragma mark -- actions
-- (void)addAction {
+- (void)addAction
+{
     WCLog(@"add more contact");
 }
 
 #pragma mark -- 判断视图类型
-- (NSString *)getTitle {
-    switch (self.contactType) {
+- (NSString *)getTitle
+{
+    switch (self.contactType)
+    {
         case ContactType_tel:
             return @"手机通话";
             break;
@@ -102,7 +110,8 @@
     }
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
     [self.view endEditing:YES];
 }
 

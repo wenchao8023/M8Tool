@@ -17,6 +17,7 @@
 
 
 
+
 @interface FriendsListResponceData : BaseResponseData
 
 /**
@@ -65,7 +66,7 @@
 
 
 /**
- 成员列表
+ 成员列表 InfoItem M8FriendInfo
  */
 @property (nonatomic, strong, nullable) NSArray *InfoItem;
 

@@ -76,10 +76,8 @@ static NSString *CollectionHeaderID = @"LatestMembersCollectionHeaderID";
         
         [self registerNib:[UINib nibWithNibName:@"MeetingMembersCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"MeetingMembersCellID"];
         [self registerClass:[LatestCollectionHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:CollectionHeaderID];
-        
-        [self dataMembersArray];
-        [self statusArray];
-        [self reloadData];
+
+        [self onNetLoadLatestContact];
     }
     return self;
 }
@@ -89,20 +87,20 @@ static NSString *CollectionHeaderID = @"LatestMembersCollectionHeaderID";
     if (!_dataMembersArray)
     {
         _dataMembersArray = [NSMutableArray arrayWithCapacity:0];
-        [_dataMembersArray addObject:@"user1"];
-        [_dataMembersArray addObject:@"user2"];
-        [_dataMembersArray addObject:@"user3"];
-        [_dataMembersArray addObject:@"user4"];
-        [_dataMembersArray addObject:@"user5"];
-        [_dataMembersArray addObject:@"user6"];
-        [_dataMembersArray addObject:@"user7"];
-        [_dataMembersArray addObject:@"user8"];
-        [_dataMembersArray addObject:@"user9"];
-        [_dataMembersArray addObject:@"user10"];
-        [_dataMembersArray addObject:@"lcwyx1"];
-        [_dataMembersArray addObject:@"lcwyx2"];
-        [_dataMembersArray addObject:@"lcwyx3"];
-        [_dataMembersArray addObject:@"lcwyx4"];
+//        [_dataMembersArray addObject:@"user1"];
+//        [_dataMembersArray addObject:@"user2"];
+//        [_dataMembersArray addObject:@"user3"];
+//        [_dataMembersArray addObject:@"user4"];
+//        [_dataMembersArray addObject:@"user5"];
+//        [_dataMembersArray addObject:@"user6"];
+//        [_dataMembersArray addObject:@"user7"];
+//        [_dataMembersArray addObject:@"user8"];
+//        [_dataMembersArray addObject:@"user9"];
+//        [_dataMembersArray addObject:@"user10"];
+//        [_dataMembersArray addObject:@"lcwyx1"];
+//        [_dataMembersArray addObject:@"lcwyx2"];
+//        [_dataMembersArray addObject:@"lcwyx3"];
+//        [_dataMembersArray addObject:@"lcwyx4"];
     }
     return _dataMembersArray;
 }
@@ -116,6 +114,36 @@ static NSString *CollectionHeaderID = @"LatestMembersCollectionHeaderID";
         _statusArray = statusArray;      
     }
     return _statusArray;
+}
+
+
+- (void)onNetLoadLatestContact
+{
+    __block RecentlyContactResponseData *responseData = nil;
+    WCWeakSelf(self);
+    RecentlyContactRequest *recRequset = [[RecentlyContactRequest alloc] initWithHandler:^(BaseRequest *request) {
+        
+         responseData = (RecentlyContactResponseData *)request.response.data;
+        [weakself loadMembers:responseData.nearusers];
+        
+    } failHandler:^(BaseRequest *request) {
+        
+    }];
+    
+    recRequset.token = [AppDelegate sharedAppDelegate].token;
+    recRequset.uid   = [[ILiveLoginManager getInstance] getLoginId];
+    [[WebServiceEngine sharedEngine] AFAsynRequest:recRequset];
+}
+
+- (void)loadMembers:(NSArray *)members
+{
+    [self.dataMembersArray removeAllObjects];
+    [self.dataMembersArray addObjectsFromArray:members];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+       
+        [self reloadData];
+    });
 }
 
 
@@ -135,6 +163,7 @@ static NSString *CollectionHeaderID = @"LatestMembersCollectionHeaderID";
      ];
     return cell;
 }
+
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     if ([kind isEqualToString:UICollectionElementKindSectionHeader])

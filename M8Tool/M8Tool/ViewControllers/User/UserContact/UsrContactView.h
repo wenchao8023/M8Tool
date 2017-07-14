@@ -29,6 +29,14 @@
 
 @property (nonatomic, strong) NSMutableArray * _Nonnull dataArray;
 
+@property (nonatomic, strong) NSArray * _Nonnull actionArray;
+
+@property (nonatomic, assign) NSInteger clickSection;
+
+@property (nonatomic, strong, nullable) NSMutableArray *statuArray;
+
+
+- (void)configStatuArray;
 
 
 @end

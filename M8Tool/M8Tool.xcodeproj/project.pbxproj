@@ -236,6 +236,11 @@
 		9495225F1F188BE10095647D /* UsrContactView+Net.m in Sources */ = {isa = PBXBuildFile; fileRef = 9495225E1F188BE10095647D /* UsrContactView+Net.m */; };
 		949522631F188F0B0095647D /* UsrContactFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 949522611F188F0B0095647D /* UsrContactFriendCell.m */; };
 		949522641F188F0B0095647D /* UsrContactFriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 949522621F188F0B0095647D /* UsrContactFriendCell.xib */; };
+		9495226C1F18BE680095647D /* FriendListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9495226B1F18BE680095647D /* FriendListViewController.m */; };
+		9495226F1F18C48D0095647D /* UsrContactView+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = 9495226E1F18C48D0095647D /* UsrContactView+UI.m */; };
+		949522721F18EB6A0095647D /* MobContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 949522711F18EB6A0095647D /* MobContactViewController.m */; };
+		949522741F18EC3C0095647D /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 949522731F18EC3C0095647D /* AddressBook.framework */; };
+		949522771F18F1DE0095647D /* RecentlyContactRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 949522761F18F1DE0095647D /* RecentlyContactRequest.m */; };
 		94975C211ED2951F00EAB395 /* UserContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94975C201ED2951F00EAB395 /* UserContactViewController.m */; };
 		9497DF251ECA95FD009C35CB /* UserCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9497DF211ECA95FD009C35CB /* UserCardViewController.m */; };
 		9497DF361ECA966A009C35CB /* MeetingAgendaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9497DF2A1ECA966A009C35CB /* MeetingAgendaCell.m */; };
@@ -801,6 +806,15 @@
 		949522601F188F0B0095647D /* UsrContactFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsrContactFriendCell.h; sourceTree = "<group>"; };
 		949522611F188F0B0095647D /* UsrContactFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsrContactFriendCell.m; sourceTree = "<group>"; };
 		949522621F188F0B0095647D /* UsrContactFriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UsrContactFriendCell.xib; sourceTree = "<group>"; };
+		9495226A1F18BE680095647D /* FriendListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendListViewController.h; sourceTree = "<group>"; };
+		9495226B1F18BE680095647D /* FriendListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendListViewController.m; sourceTree = "<group>"; };
+		9495226D1F18C48D0095647D /* UsrContactView+UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UsrContactView+UI.h"; sourceTree = "<group>"; };
+		9495226E1F18C48D0095647D /* UsrContactView+UI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UsrContactView+UI.m"; sourceTree = "<group>"; };
+		949522701F18EB6A0095647D /* MobContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobContactViewController.h; sourceTree = "<group>"; };
+		949522711F18EB6A0095647D /* MobContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobContactViewController.m; sourceTree = "<group>"; };
+		949522731F18EC3C0095647D /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		949522751F18F1DE0095647D /* RecentlyContactRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentlyContactRequest.h; sourceTree = "<group>"; };
+		949522761F18F1DE0095647D /* RecentlyContactRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentlyContactRequest.m; sourceTree = "<group>"; };
 		94975C1F1ED2951F00EAB395 /* UserContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserContactViewController.h; sourceTree = "<group>"; };
 		94975C201ED2951F00EAB395 /* UserContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserContactViewController.m; sourceTree = "<group>"; };
 		9497DF201ECA95FD009C35CB /* UserCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCardViewController.h; sourceTree = "<group>"; };
@@ -1077,6 +1091,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				949522741F18EC3C0095647D /* AddressBook.framework in Frameworks */,
 				943A08F91EDEDB07003CEA27 /* AssetsLibrary.framework in Frameworks */,
 				944AF2921E94918D0044B44C /* CoreVideo.framework in Frameworks */,
 				944AF2B01E94921F0044B44C /* Accelerate.framework in Frameworks */,
@@ -1528,6 +1543,7 @@
 		944AF2821E9491110044B44C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				949522731F18EC3C0095647D /* AddressBook.framework */,
 				943A08F81EDEDB07003CEA27 /* AssetsLibrary.framework */,
 				944AF2AF1E94921F0044B44C /* Accelerate.framework */,
 				944AF2AD1E9492170044B44C /* libbz2.tbd */,
@@ -2032,6 +2048,10 @@
 			children = (
 				94975C1F1ED2951F00EAB395 /* UserContactViewController.h */,
 				94975C201ED2951F00EAB395 /* UserContactViewController.m */,
+				9495226A1F18BE680095647D /* FriendListViewController.h */,
+				9495226B1F18BE680095647D /* FriendListViewController.m */,
+				949522701F18EB6A0095647D /* MobContactViewController.h */,
+				949522711F18EB6A0095647D /* MobContactViewController.m */,
 				94E5DE2A1ED67720008632D7 /* UserContactViews */,
 			);
 			path = UserContact;
@@ -2117,6 +2137,8 @@
 				94FFF7C61F0F8B0100F0CE96 /* MeetsListRequest.m */,
 				94AFAACC1F176CBB0025FB0B /* MeetsCollectRequest.h */,
 				94AFAACD1F176CBB0025FB0B /* MeetsCollectRequest.m */,
+				949522751F18F1DE0095647D /* RecentlyContactRequest.h */,
+				949522761F18F1DE0095647D /* RecentlyContactRequest.m */,
 			);
 			name = IM;
 			sourceTree = "<group>";
@@ -2703,6 +2725,8 @@
 			children = (
 				94E5DE2B1ED6775B008632D7 /* UsrContactView.h */,
 				94E5DE2C1ED6775B008632D7 /* UsrContactView.m */,
+				9495226D1F18C48D0095647D /* UsrContactView+UI.h */,
+				9495226E1F18C48D0095647D /* UsrContactView+UI.m */,
 				9495225D1F188BE10095647D /* UsrContactView+Net.h */,
 				9495225E1F188BE10095647D /* UsrContactView+Net.m */,
 				949522601F188F0B0095647D /* UsrContactFriendCell.h */,
@@ -3022,6 +3046,7 @@
 				947DB4651EF7AAC90019AE2B /* BaseSearchView.m in Sources */,
 				94B3C2391EC585C5003ADF5F /* M8MeetListCell.m in Sources */,
 				943A08711EDEBADE003CEA27 /* WebServiceEngine.m in Sources */,
+				949522771F18F1DE0095647D /* RecentlyContactRequest.m in Sources */,
 				94A1D81A1F160A53008769A5 /* M8MeetListCache.m in Sources */,
 				946B32CC1F050B86007530CE /* M8RegistSuccViewController.m in Sources */,
 				94FFF7AB1F0F2F2400F0CE96 /* M8RecvChildViewController.m in Sources */,
@@ -3048,6 +3073,7 @@
 				944AF3171E9494C00044B44C /* UIRefreshControl+AFNetworking.m in Sources */,
 				94AFAAC81F1769260025FB0B /* M8MeetListTableView+Net.m in Sources */,
 				94A642261F0390360051CA6D /* M8LivePlayView.m in Sources */,
+				9495226F1F18C48D0095647D /* UsrContactView+UI.m in Sources */,
 				946753E01EBC237F00653A2C /* WCUIKitControl.m in Sources */,
 				940DE9B51ED854D3006F061A /* UsrCardViewCell.m in Sources */,
 				949A076B1F0740A100090E43 /* M8LoginWebService+UI.m in Sources */,
@@ -3068,6 +3094,7 @@
 				94AFAAC51F173ED50025FB0B /* NSString+SimpleName.m in Sources */,
 				94FFF7B81F0F37A800F0CE96 /* M8LiveModels.m in Sources */,
 				948BFCED1F0E550300FC87A7 /* M8LiveViewController.m in Sources */,
+				949522721F18EB6A0095647D /* MobContactViewController.m in Sources */,
 				943A086D1EDEBADE003CEA27 /* ReportRoomRequest.m in Sources */,
 				9497DF3C1ECA966A009C35CB /* MeetingView.m in Sources */,
 				946753E31EBC24A900653A2C /* AppDelegate+ControlViewController.m in Sources */,
@@ -3089,6 +3116,7 @@
 				947DB48B1EF7D6F00019AE2B /* M8CollectDetailCollection.m in Sources */,
 				9422BEEB1EE5838F00F9B56D /* M8ThemeViewController.m in Sources */,
 				94DE958B1EAE145400A44DB1 /* UIImage+TintColor.m in Sources */,
+				9495226C1F18BE680095647D /* FriendListViewController.m in Sources */,
 				9422BEF31EE5842600F9B56D /* M8ThemeModel.m in Sources */,
 				948BFCF01F0E561500FC87A7 /* M8LiveViewController+UI.m in Sources */,
 				9497DF381ECA966A009C35CB /* MeetingAgendaCollection.m in Sources */,

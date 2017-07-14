@@ -30,9 +30,10 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
 
 @implementation MembersCollectionHeader
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame])
+    {
         UILabel *titleLabel = [WCUIKitControl createLabelWithFrame:CGRectMake(20, 0, 80, 40)
                                                               Text:@"参会人员"
                                                           FontSize:kAppMiddleFontSize
@@ -53,7 +54,8 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
     return self;
 }
 
-- (void)setNumbersWithCurrentNumbers:(NSInteger)currenNumbers totalNumbers:(NSInteger)totalNumbers {
+- (void)setNumbersWithCurrentNumbers:(NSInteger)currenNumbers totalNumbers:(NSInteger)totalNumbers
+{
     UILabel *numbersLabel = [self viewWithTag:64];
     NSString *textStr = [NSString stringWithFormat:@"%ld/%ld（最多可邀请%ld人）", (long)currenNumbers, (long)totalNumbers, (long)totalNumbers];
     [numbersLabel setAttributedText:[CommonUtil customAttString:textStr fontSize:kAppMiddleFontSize]];

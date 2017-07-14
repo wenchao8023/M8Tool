@@ -18,6 +18,14 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *subTitleLabel;
 
+
+/**
+ 用于配置第一组item
+ */
+@property (nonatomic, strong) UIImageView *iconImg;
+
+@property (nonatomic, strong) UILabel *itemTitleLabel;
+
 @end
 
 
@@ -28,31 +36,44 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    
+    self.iconImg = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 40, 40)];
+    [self.contentView addSubview:self.iconImg];
+    
+    self.itemTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 10, self.width - 70, 40)];
+    [self.contentView addSubview:self.itemTitleLabel];
 }
 
 /**
- 配置群组列表
+ 配置第一分组里面的项
  */
 - (void)configWithItem:(NSString *)itemImg itemText:(NSString *)itemText
 {
     [self hiddeXibViews:YES];
     
-//    UIImageView *iconImg = [WCUIKitControl createImageViewWithFrame:CGRectMake(10, 10, 40, 40) ImageName:itemImg];
-    UIImageView *iconImg = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 40, 40)];
-    iconImg.image = [UIImage imageWithColor:WCBlue];
-    [self.contentView addSubview:iconImg];
+    self.iconImg.image = [UIImage imageWithColor:WCRed];
     
-    UILabel *titleLabel = [WCUIKitControl createLabelWithFrame:CGRectMake(60, 10, self.width - 70, 40) Text:itemText];
-    [self.contentView addSubview:titleLabel];
+    self.itemTitleLabel.text = itemText;
 }
 
 
 /**
  配置好友列表
  */
-- (void)configWithFriendItem
+- (void)configWithFriendItem:(M8FriendInfo *)friendInfo
 {
+    self.backgroundColor = WCClear;
+    self.contentView.backgroundColor = WCClear;
+    
     [self hiddeXibViews:NO];
+
+    NSDictionary *dic = [friendInfo.SnsProfileItem firstObject];
+    NSString *nick = [dic objectForKey:@"Value"];
+    NSString *phone = friendInfo.Info_Account;
+    
+    self.iconLabel.text = [nick getSimpleName];
+    self.titleLabel.text = nick;
+    self.subTitleLabel.text = phone;
 }
 
 
@@ -61,6 +82,9 @@
     self.iconLabel.hidden = hidden;
     self.titleLabel.hidden = hidden;
     self.subTitleLabel.hidden = hidden;
+    
+    self.iconImg.hidden = !hidden;
+    self.itemTitleLabel.hidden = !hidden;
 }
 
 
