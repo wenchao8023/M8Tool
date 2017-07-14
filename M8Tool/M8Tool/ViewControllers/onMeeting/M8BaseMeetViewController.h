@@ -12,6 +12,9 @@
 
 #import "M8MenuPushView.h"
 
+
+
+
 /**
  会议界面
  
@@ -70,9 +73,25 @@
  */
 - (void)hiddeFloatView;
 
+
+
+
 /**
  退出
  */
 - (void)selfDismiss;
 
+
+#pragma mark - 推流
+
+@property (nonatomic, assign) UInt64 pushID;    //记录推流ID
+/**
+ 开始推流
+ */
+- (void)onLivePushStart;
+
+/**
+ 停止推流
+ */
+- (void)onLivePushStop;
 @end

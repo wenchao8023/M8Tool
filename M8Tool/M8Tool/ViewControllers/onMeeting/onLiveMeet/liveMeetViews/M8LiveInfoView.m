@@ -25,7 +25,7 @@
 //        UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
 
         UIImageView *effectImg = [WCUIKitControl createImageViewWithFrame:self.bounds ImageName:@"QQAVEffect7_1"];
-        effectImg.alpha = 0.2;
+        effectImg.alpha = 0.1;
         [self addSubview:effectImg];
 //        UIVisualEffectView *headerEffectView = [[UIVisualEffectView alloc] initWithEffect:effect];
 //        headerEffectView.frame = CGRectMake(0, 0, self.width, kDefaultNaviHeight);

@@ -7,139 +7,157 @@
 //
 
 #import "UsrContactView.h"
-#import "UsrContactHeaderView.h"
+#import "UsrContactView+Net.h"
+#import "UsrContactFriendCell.h"
 
 
-static const CGFloat kHeaderHeight = 60;
+
+static const CGFloat kItemHeight = 60;
 
 
 @interface UsrContactView ()<UITableViewDelegate, UITableViewDataSource>
-{
-    UsrContactHeaderView *_headView;
-}
-@property (nonatomic, strong) NSMutableArray *sectionArray;
-@property (nonatomic, strong) NSMutableArray *dataArray;
-
 
 @end
 
 
 @implementation UsrContactView
 
-- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
-    if (self = [super initWithFrame:frame style:style]) {
+- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style
+{
+    if (self = [super initWithFrame:frame style:style])
+    {
         self.delegate = self;
         self.dataSource = self;
         self.backgroundColor = WCClear;
-        _headView = [[UsrContactHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.width, kHeaderHeight)];
-        self.tableHeaderView = _headView;
+        self.tableHeaderView = [[UIView alloc] initWithFrame:CGRectZero];
+        self.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+        self.sectionFooterHeight = 0.1;
+        self.sectionHeaderHeight = 0.1;
+        
+        [self registerNib:[UINib nibWithNibName:@"UsrContactFriendCell" bundle:nil] forCellReuseIdentifier:@"UsrContactFriendCellID"];
+        
+        
+//        [self onNetGetFriendList];
         
         WCWeakSelf(self);
-        [self loadData:^{
-            [weakself reloadData];
+        [self onNetLoadLocalList:^{
+           
+            [weakself loadDataInMainThread];
         }];
     }
     return self;
 }
 
+- (void)loadDataInMainThread
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [self reloadData];
+    });
+}
 
-- (NSMutableArray *)sectionArray {
-    if (!_sectionArray) {
+- (NSMutableArray *)sectionArray
+{
+    if (!_sectionArray)
+    {
         _sectionArray = [NSMutableArray arrayWithCapacity:0];
-        [_sectionArray addObjectsFromArray:@[@"研发部", @"销售部", @"市场部"]];
+        [_sectionArray addObject:@"个人信息"];
+        [_sectionArray addObject:@"公司1"];
+        [_sectionArray addObject:@"公司2"];
+        [_sectionArray addObject:@"公司3"];
     }
     return _sectionArray;
 }
 
-- (NSMutableArray *)dataArray {
-    if (!_dataArray) {
+- (NSMutableArray *)dataArray
+{
+    if (!_dataArray)
+    {
         _dataArray = [NSMutableArray arrayWithCapacity:0];
-//        [_dataArray addObjectsFromArray:@[@[@"user1", @"user2", @"user3"],
-//                                          @[@"user4", @"user5", @"user6"],
-//                                          @[@"user7", @"user8", @"user9", @"user10"]
-//                                          ]
-//         ];
     }
     return _dataArray;
 }
 
 
-- (void)loadData:(TCIVoidBlock)complete {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return self.sectionArray.count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (section)
+    {
+        return 3;
+    }
     
-    WCWeakSelf(self);
-    FriendsListRequest *friendListReq = [[FriendsListRequest alloc] initWithHandler:^(BaseRequest *request) {
-        FriendsListRequest *wreq = (FriendsListRequest *)request;
-        [weakself loadListSucc:wreq];
-        if (complete) {
-            complete();
-        }
+    if (self.dataArray.count &&
+        self.dataArray[section])
         
-    } failHandler:^(BaseRequest *request) {
-        if (complete) {
-            complete();
+        return [self.dataArray[section] count];
+    else
+        return 0;
+}
+
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    if (section)
+    {
+        headView.frame = CGRectMake(0, 0, self.width, kItemHeight);
+        
+
+        UIImageView *iconImg = [WCUIKitControl createImageViewWithFrame:CGRectMake(10, 10, 40, 40) ImageName:nil BgColor:WCBlue];
+        [headView addSubview:iconImg];
+        
+        UILabel *titleLabel = [WCUIKitControl createLabelWithFrame:CGRectMake(60, 10, self.width - 70, 40) Text:self.sectionArray[section]];
+        [headView addSubview:titleLabel];
+    }
+    
+    return headView;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UsrContactFriendCell *friendCell = [tableView dequeueReusableCellWithIdentifier:@"UsrContactFriendCellID" forIndexPath:indexPath];
+    
+    if (indexPath.section == 0)
+    {
+        if (self.dataArray.count &&
+           self.dataArray[indexPath.section])
+        {
+            [friendCell configWithItem:nil itemText:self.dataArray[indexPath.section][indexPath.row]];
         }
-    }];
-    friendListReq.identifier = [[ILiveLoginManager getInstance] getLoginId];
-    friendListReq.token = [AppDelegate sharedAppDelegate].token;
-//    [[WebServiceEngine sharedEngine] asyncRequest:friendListReq];
-    [[WebServiceEngine sharedEngine] AFAsynRequest:friendListReq];
+    }
     
+    return friendCell;
 }
 
-- (void)loadListSucc:(FriendsListRequest *)req {
-    FriendsListResponceData *respData = (FriendsListResponceData *)req.response.data;
-    
-    [_headView configWithTitle:nil friendsNum:respData.FriendNum];
-    
-    [self.dataArray addObjectsFromArray:respData.InfoItem];
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return kItemHeight;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    return self.sectionArray.count;
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    if (self.dataArray && self.dataArray.count) {
-//        return [self.dataArray[section] count];
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return kItemHeight;
+//    if (section)
+//    {
+//        return kItemHeight;
 //    }
-    if (self.dataArray) {
-        return self.dataArray.count;
-    }
-    return 0;
+//    
+//    return 0.01;    //第一组没有头视图
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellID = @"UsrContactViewID";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        cell.backgroundColor = WCClear;
-    }
-    
-    if (self.dataArray && self.dataArray.count /* &&
-        self.dataArray[indexPath.section] && [self.dataArray[indexPath.section] count]*/) {
-//        cell.textLabel.text = self.dataArray[indexPath.section][indexPath.row];
-        M8FriendInfo *info = self.dataArray[indexPath.row];
-        cell.textLabel.text = info.Info_Account;
-    }
-    
-    return cell;
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.01;
 }
-
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-//    UIView *hView = [WCUIKitControl createViewWithFrame:CGRectMake(0, 0, self.width, 40) BgColor:WCClear];
-//    UILabel *titleLabel = [WCUIKitControl createLabelWithFrame:CGRectMake(kMarginView_horizontal, 0, 100, 40) BgColor:WCClear];
-//    titleLabel.text = self.sectionArray[section];
-//    [hView addSubview:titleLabel];
-//    return hView;
-//}
-//
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-//    return 40;
-//}
-
-
 
 
 @end

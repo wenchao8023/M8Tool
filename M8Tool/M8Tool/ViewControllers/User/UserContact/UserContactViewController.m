@@ -57,7 +57,8 @@
 }
 
 
-- (void)addSearchView {
+- (void)addSearchView
+{
     CGRect frame = self.contentView.frame;
     frame.size.height = kSearchView_height;
     BaseSearchView *searchView = [[BaseSearchView alloc] initWithFrame:frame target:self];
@@ -66,12 +67,14 @@
     [self.view addSubview:(_searchView = searchView)];
 }
 
-- (void)resetContentView {
+- (void)resetContentView
+{
     CGFloat originY = CGRectGetMaxY(_searchView.frame) + kMarginView_top;
     self.contentView.y = originY;
     self.contentView.height = self.contentView.height - originY + kDefaultNaviHeight;
     
     UsrContactView *contactView = [[UsrContactView alloc] initWithFrame:self.contentView.bounds style:UITableViewStyleGrouped];
+    contactView.y = 0;
     [self.contentView addSubview:(_contactView = contactView)];
 }
 

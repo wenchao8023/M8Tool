@@ -320,7 +320,8 @@
                                 BgColor:(UIColor *)bgColor
 {
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
-    imageView.image = [UIImage imageNamed:imageName];
+    if (imageName)
+        imageView.image = [UIImage imageNamed:imageName];
     imageView.userInteractionEnabled = YES;
     if (bgColor)
         imageView.backgroundColor = bgColor;

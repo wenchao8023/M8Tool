@@ -83,6 +83,8 @@
         [self.call createRenderViewIn:self.renderView];
         self.renderView.call = self.call;
         
+        
+        
         WCWeakSelf(self);
         [_call makeCall:kGetStringFMInt(self.curMid) custom:self.liveItem.info.title result:^(TILCallError *err) {
             
@@ -97,6 +99,9 @@
                 [[ILiveRoomManager getInstance] setWhite:2];
 
                 [weakself.headerView configHeaderView:self.liveItem];
+                
+                //开始推流
+                [self onLivePushStart];
             }
         }];
         
@@ -244,8 +249,9 @@
     {
         M8MeetDeviceView *deviceView = [[M8MeetDeviceView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - kBottomHeight, SCREEN_WIDTH, kBottomHeight)];
         deviceView.WCDelegate = self;
-//        [deviceView setCenterBtnImg:@"onMeetHangupRed"];
-        [deviceView setCenterBtnImg:@"onMeetHangup"];
+        [deviceView setCenterBtnImg:@"onMeetHangupCRed"];   //白底红按钮
+//        [deviceView setCenterBtnImg:@"onMeetHangupRed"];    //红底白按钮
+//        [deviceView setCenterBtnImg:@"onMeetHangup"];     //白底白按钮
         [self.view insertSubview:(_deviceView = deviceView) aboveSubview:self.renderView];
         
         

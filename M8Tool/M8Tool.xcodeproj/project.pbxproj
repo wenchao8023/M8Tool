@@ -230,6 +230,12 @@
 		948E045D1EE641C30075903B /* UserTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 948E045C1EE641C30075903B /* UserTableView.m */; };
 		948E04611EE6421B0075903B /* UserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 948E045F1EE6421B0075903B /* UserTableViewCell.m */; };
 		948E04621EE6421B0075903B /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 948E04601EE6421B0075903B /* UserTableViewCell.xib */; };
+		9495225A1F1866DE0095647D /* onMeetHangupCRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 949522571F1866DE0095647D /* onMeetHangupCRed.png */; };
+		9495225B1F1866DE0095647D /* onMeetHangupCRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 949522581F1866DE0095647D /* onMeetHangupCRed@2x.png */; };
+		9495225C1F1866DE0095647D /* onMeetHangupCRed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 949522591F1866DE0095647D /* onMeetHangupCRed@3x.png */; };
+		9495225F1F188BE10095647D /* UsrContactView+Net.m in Sources */ = {isa = PBXBuildFile; fileRef = 9495225E1F188BE10095647D /* UsrContactView+Net.m */; };
+		949522631F188F0B0095647D /* UsrContactFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 949522611F188F0B0095647D /* UsrContactFriendCell.m */; };
+		949522641F188F0B0095647D /* UsrContactFriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 949522621F188F0B0095647D /* UsrContactFriendCell.xib */; };
 		94975C211ED2951F00EAB395 /* UserContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94975C201ED2951F00EAB395 /* UserContactViewController.m */; };
 		9497DF251ECA95FD009C35CB /* UserCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9497DF211ECA95FD009C35CB /* UserCardViewController.m */; };
 		9497DF361ECA966A009C35CB /* MeetingAgendaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9497DF2A1ECA966A009C35CB /* MeetingAgendaCell.m */; };
@@ -268,7 +274,6 @@
 		94A851C11EE2BD8B00204B48 /* MeetingAgendaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94A851C01EE2BD8B00204B48 /* MeetingAgendaCell.xib */; };
 		94A851C31EE2C18600204B48 /* UsrCardViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 940DE9B41ED854D3006F061A /* UsrCardViewCell.xib */; };
 		94A851C41EE2C18600204B48 /* M8MeetListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2381EC585C5003ADF5F /* M8MeetListCell.xib */; };
-		94A851C71EE2C18600204B48 /* UsrContactHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94E5DE311ED6A738008632D7 /* UsrContactHeaderView.xib */; };
 		94A851C81EE2C18700204B48 /* UsrCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 940DE9AB1ED84D67006F061A /* UsrCardView.m */; };
 		94A987F41EF008500080BEF2 /* liveEnlarge.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A987E91EF008500080BEF2 /* liveEnlarge.png */; };
 		94A987F51EF008500080BEF2 /* liveEnlarge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A987EA1EF008500080BEF2 /* liveEnlarge@2x.png */; };
@@ -413,7 +418,6 @@
 		94E18D141EC47C3400132FB2 /* MeetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E18D131EC47C3400132FB2 /* MeetingViewController.m */; };
 		94E18D171EC47C5200132FB2 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E18D161EC47C5200132FB2 /* UserViewController.m */; };
 		94E5DE2D1ED6775B008632D7 /* UsrContactView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E5DE2C1ED6775B008632D7 /* UsrContactView.m */; };
-		94E5DE301ED6A732008632D7 /* UsrContactHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E5DE2F1ED6A732008632D7 /* UsrContactHeaderView.m */; };
 		94FFF7AB1F0F2F2400F0CE96 /* M8RecvChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FFF7A91F0F2F2400F0CE96 /* M8RecvChildViewController.m */; };
 		94FFF7AC1F0F2F2400F0CE96 /* M8RecvChildViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94FFF7AA1F0F2F2400F0CE96 /* M8RecvChildViewController.xib */; };
 		94FFF7B51F0F37A800F0CE96 /* M8LiveInfoViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FFF7AE1F0F37A800F0CE96 /* M8LiveInfoViewManager.m */; };
@@ -789,6 +793,14 @@
 		948E045F1EE6421B0075903B /* UserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTableViewCell.m; sourceTree = "<group>"; };
 		948E04601EE6421B0075903B /* UserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		9494FD541EF52E9C004C4637 /* ConstStringFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConstStringFile.h; sourceTree = "<group>"; };
+		949522571F1866DE0095647D /* onMeetHangupCRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = onMeetHangupCRed.png; sourceTree = "<group>"; };
+		949522581F1866DE0095647D /* onMeetHangupCRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "onMeetHangupCRed@2x.png"; sourceTree = "<group>"; };
+		949522591F1866DE0095647D /* onMeetHangupCRed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "onMeetHangupCRed@3x.png"; sourceTree = "<group>"; };
+		9495225D1F188BE10095647D /* UsrContactView+Net.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UsrContactView+Net.h"; sourceTree = "<group>"; };
+		9495225E1F188BE10095647D /* UsrContactView+Net.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UsrContactView+Net.m"; sourceTree = "<group>"; };
+		949522601F188F0B0095647D /* UsrContactFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsrContactFriendCell.h; sourceTree = "<group>"; };
+		949522611F188F0B0095647D /* UsrContactFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsrContactFriendCell.m; sourceTree = "<group>"; };
+		949522621F188F0B0095647D /* UsrContactFriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UsrContactFriendCell.xib; sourceTree = "<group>"; };
 		94975C1F1ED2951F00EAB395 /* UserContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserContactViewController.h; sourceTree = "<group>"; };
 		94975C201ED2951F00EAB395 /* UserContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserContactViewController.m; sourceTree = "<group>"; };
 		9497DF201ECA95FD009C35CB /* UserCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCardViewController.h; sourceTree = "<group>"; };
@@ -1039,9 +1051,6 @@
 		94E18D161EC47C5200132FB2 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
 		94E5DE2B1ED6775B008632D7 /* UsrContactView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsrContactView.h; sourceTree = "<group>"; };
 		94E5DE2C1ED6775B008632D7 /* UsrContactView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsrContactView.m; sourceTree = "<group>"; };
-		94E5DE2E1ED6A732008632D7 /* UsrContactHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsrContactHeaderView.h; sourceTree = "<group>"; };
-		94E5DE2F1ED6A732008632D7 /* UsrContactHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsrContactHeaderView.m; sourceTree = "<group>"; };
-		94E5DE311ED6A738008632D7 /* UsrContactHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UsrContactHeaderView.xib; sourceTree = "<group>"; };
 		94FFF7A81F0F2F2400F0CE96 /* M8RecvChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8RecvChildViewController.h; sourceTree = "<group>"; };
 		94FFF7A91F0F2F2400F0CE96 /* M8RecvChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8RecvChildViewController.m; sourceTree = "<group>"; };
 		94FFF7AA1F0F2F2400F0CE96 /* M8RecvChildViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M8RecvChildViewController.xib; sourceTree = "<group>"; };
@@ -2008,6 +2017,16 @@
 			path = onCallRecv_refuse;
 			sourceTree = "<group>";
 		};
+		949522561F1866DE0095647D /* onMeetHangupCRed */ = {
+			isa = PBXGroup;
+			children = (
+				949522571F1866DE0095647D /* onMeetHangupCRed.png */,
+				949522581F1866DE0095647D /* onMeetHangupCRed@2x.png */,
+				949522591F1866DE0095647D /* onMeetHangupCRed@3x.png */,
+			);
+			path = onMeetHangupCRed;
+			sourceTree = "<group>";
+		};
 		94975C1E1ED294F800EAB395 /* UserContact */ = {
 			isa = PBXGroup;
 			children = (
@@ -2192,6 +2211,7 @@
 			isa = PBXGroup;
 			children = (
 				94AFAACF1F176F1A0025FB0B /* onMeetNote.png */,
+				949522561F1866DE0095647D /* onMeetHangupCRed */,
 				94AFAAE61F1770CC0025FB0B /* onMeetHangupRed */,
 				94AFAADF1F1770810025FB0B /* onMeetShrink */,
 				94AFAAD81F176FDC0025FB0B /* onMeetChat */,
@@ -2683,9 +2703,11 @@
 			children = (
 				94E5DE2B1ED6775B008632D7 /* UsrContactView.h */,
 				94E5DE2C1ED6775B008632D7 /* UsrContactView.m */,
-				94E5DE2E1ED6A732008632D7 /* UsrContactHeaderView.h */,
-				94E5DE2F1ED6A732008632D7 /* UsrContactHeaderView.m */,
-				94E5DE311ED6A738008632D7 /* UsrContactHeaderView.xib */,
+				9495225D1F188BE10095647D /* UsrContactView+Net.h */,
+				9495225E1F188BE10095647D /* UsrContactView+Net.m */,
+				949522601F188F0B0095647D /* UsrContactFriendCell.h */,
+				949522611F188F0B0095647D /* UsrContactFriendCell.m */,
+				949522621F188F0B0095647D /* UsrContactFriendCell.xib */,
 			);
 			name = UserContactViews;
 			sourceTree = "<group>";
@@ -2768,7 +2790,6 @@
 				94BACD811EEE2CB30017FFDE /* liveCamera_on.png in Resources */,
 				94BACD8C1EEE2CB30017FFDE /* liveMic_on@3x.png in Resources */,
 				94A988041EF015030080BEF2 /* Info.plist in Resources */,
-				94A851C71EE2C18600204B48 /* UsrContactHeaderView.xib in Resources */,
 				94AFAAEA1F1770CC0025FB0B /* onMeetHangupRed.png in Resources */,
 				94BACD921EEE2CB30017FFDE /* liveReceiver_off@3x.png in Resources */,
 				943A08E91EDEC76B003CEA27 /* TILFilterResource.bundle in Resources */,
@@ -2784,6 +2805,7 @@
 				943A09051EDEDF92003CEA27 /* btnImg_meetingCollect.png in Resources */,
 				94A128011EF13ECA00ED2703 /* liveCloseMic@3x.png in Resources */,
 				94D348C11EFD043A008A1AEC /* M8LiveHeaderView.xib in Resources */,
+				949522641F188F0B0095647D /* UsrContactFriendCell.xib in Resources */,
 				943A09061EDEDF92003CEA27 /* btnImg_meetingNote.png in Resources */,
 				94AFAAA11F171D6E0025FB0B /* onMeetHangup@2x.png in Resources */,
 				947DB4981EF7E3250019AE2B /* onCallRecv_refuse@2x.png in Resources */,
@@ -2794,6 +2816,7 @@
 				943A08F31EDED9F2003CEA27 /* FilterRes.bundle in Resources */,
 				9423C62A1F04EAF6002D2839 /* launchImgbg.png in Resources */,
 				94AFAADE1F176FDC0025FB0B /* onMeetChat@3x.png in Resources */,
+				9495225C1F1866DE0095647D /* onMeetHangupCRed@3x.png in Resources */,
 				94BACD841EEE2CB30017FFDE /* liveHangup.png in Resources */,
 				9423C6511F04F3AE002D2839 /* threeRDLoginIcon_QQ.png in Resources */,
 				94BACD911EEE2CB30017FFDE /* liveReceiver_off@2x.png in Resources */,
@@ -2826,6 +2849,7 @@
 				946F7F051EF29E84005E757A /* M8CallRenderNote.xib in Resources */,
 				94BACD881EEE2CB30017FFDE /* liveMic_off@2x.png in Resources */,
 				94A987F61EF008500080BEF2 /* liveEnlarge@3x.png in Resources */,
+				9495225A1F1866DE0095647D /* onMeetHangupCRed.png in Resources */,
 				94A851C31EE2C18600204B48 /* UsrCardViewCell.xib in Resources */,
 				94BACD8D1EEE2CB30017FFDE /* liveNote.png in Resources */,
 				947DB45A1EF79DDC0019AE2B /* record_callType_live.png in Resources */,
@@ -2872,6 +2896,7 @@
 				94BACD891EEE2CB30017FFDE /* liveMic_off@3x.png in Resources */,
 				94BACD991EEE2CB30017FFDE /* liveSwitchCamera.png in Resources */,
 				947DB45E1EF79DDC0019AE2B /* record_callType_video@2x.png in Resources */,
+				9495225B1F1866DE0095647D /* onMeetHangupCRed@2x.png in Resources */,
 				943A08E21EDEC461003CEA27 /* Shaderv.glsl in Resources */,
 				94BACD821EEE2CB30017FFDE /* liveCamera_on@2x.png in Resources */,
 				946F7F0E1EF29E84005E757A /* M8CallRenderCell.xib in Resources */,
@@ -2993,6 +3018,7 @@
 				946F7F0F1EF29E84005E757A /* M8CallRenderModel.m in Sources */,
 				946F7ED31EF29D4F005E757A /* M8CallComingListener.m in Sources */,
 				94252FD51F0CF3B7005D9604 /* M8CallViewController+Net.m in Sources */,
+				949522631F188F0B0095647D /* UsrContactFriendCell.m in Sources */,
 				947DB4651EF7AAC90019AE2B /* BaseSearchView.m in Sources */,
 				94B3C2391EC585C5003ADF5F /* M8MeetListCell.m in Sources */,
 				943A08711EDEBADE003CEA27 /* WebServiceEngine.m in Sources */,
@@ -3072,6 +3098,7 @@
 				944AF30D1E9494C00044B44C /* AFURLSessionManager.m in Sources */,
 				944AF31A1E9494C00044B44C /* UIImage+KVNEmpty.m in Sources */,
 				94C9B83B1ECDA52100F42654 /* LatestMembersCollection.m in Sources */,
+				9495225F1F188BE10095647D /* UsrContactView+Net.m in Sources */,
 				9497DF361ECA966A009C35CB /* MeetingAgendaCell.m in Sources */,
 				944AF3101E9494C00044B44C /* AFAutoPurgingImageCache.m in Sources */,
 				943A08601EDEBADE003CEA27 /* CreateRoomRequest.m in Sources */,
@@ -3126,7 +3153,6 @@
 				946B32D21F05293D007530CE /* AlertHelp.m in Sources */,
 				94252FD81F0CF761005D9604 /* M8CallViewController+CallListener.m in Sources */,
 				94A988051EF015030080BEF2 /* THLabel.m in Sources */,
-				94E5DE301ED6A732008632D7 /* UsrContactHeaderView.m in Sources */,
 				94FFF7B51F0F37A800F0CE96 /* M8LiveInfoViewManager.m in Sources */,
 				944AF3131E9494C00044B44C /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				943A08661EDEBADE003CEA27 /* LiveStreamListRequest.m in Sources */,

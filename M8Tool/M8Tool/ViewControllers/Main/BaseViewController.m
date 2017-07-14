@@ -47,6 +47,8 @@
         }
     }
     
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
 - (void)viewDidLoad
