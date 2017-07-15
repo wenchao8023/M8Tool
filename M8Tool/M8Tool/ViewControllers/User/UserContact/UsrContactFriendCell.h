@@ -25,4 +25,9 @@
  */
 - (void)configWithFriendItem:(id _Nullable)friendInfo;
 
+
+/**
+ 配置创建公司时添加的成员信息
+ */
+- (void)configWithMemberItem:(id _Nullable)memberInfo;
 @end

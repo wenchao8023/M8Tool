@@ -196,7 +196,7 @@ static const CGFloat kItemHeight = 60;
             
             NSString *btnStr = nil;
             
-            if ([cInfo.uid isEqualToString:[[ILiveLoginManager getInstance] getLoginId]])
+            if ([cInfo.uid isEqualToString:[M8UserDefault getLoginId]])
                 btnStr = @"编辑";
             else
                 btnStr = @"邀请";

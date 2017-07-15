@@ -105,7 +105,7 @@
     }];
     
     listReq.token = [AppDelegate sharedAppDelegate].token;
-    listReq.uid   = [[ILiveLoginManager getInstance] getLoginId];
+    listReq.uid   = [M8UserDefault getLoginId];
     listReq.offset= offset;
     listReq.nums  = self.pageNums;
     [[WebServiceEngine sharedEngine] AFAsynRequest:listReq];
@@ -133,7 +133,7 @@
     }];
     
     collectReq.token = [AppDelegate sharedAppDelegate].token;
-    collectReq.uid   = [[ILiveLoginManager getInstance] getLoginId];
+    collectReq.uid   = [M8UserDefault getLoginId];
     collectReq.offset= offset;
     collectReq.nums  = self.pageNums;
     [[WebServiceEngine sharedEngine] AFAsynRequest:collectReq];

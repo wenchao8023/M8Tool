@@ -92,6 +92,21 @@
 }
 
 
+/**
+ 配置创建公司时添加的成员信息
+ */
+- (void)configWithMemberItem:(M8MemberInfo *)memberInfo
+{
+    self.backgroundColor = WCClear;
+    self.contentView.backgroundColor = WCClear;
+    
+    [self hiddeXibViews:NO];
+    
+    self.iconLabel.text = [memberInfo.nick getSimpleName];
+    self.titleLabel.text = memberInfo.nick;
+    self.subTitleLabel.text = memberInfo.uid;
+}
+
 - (void)hiddeXibViews:(BOOL)hidden
 {
     self.iconLabel.hidden = hidden;

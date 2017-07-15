@@ -9,6 +9,7 @@
 #import "UsrContactView.h"
 
 #import "FriendListViewController.h"
+#import "CreateCompanyViewController.h"
 
 @interface UsrContactView (UI)
 

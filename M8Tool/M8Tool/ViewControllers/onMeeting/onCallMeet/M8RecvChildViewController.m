@@ -94,7 +94,7 @@
     self.infoLabel.text = inviteInfo;
     
     self.sponsorLabel.text = _invitation.sponsorId;
-    self.inviteLabel.text  = [[ILiveLoginManager getInstance] getLoginId];
+    self.inviteLabel.text  = [M8UserDefault getLoginId];
     
     [self.view sendSubviewToBack:self.bgImageView];
     

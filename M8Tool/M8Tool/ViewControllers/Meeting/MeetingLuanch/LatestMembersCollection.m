@@ -120,7 +120,7 @@ static NSString *CollectionHeaderID = @"LatestMembersCollectionHeaderID";
     }];
     
     recRequset.token = [AppDelegate sharedAppDelegate].token;
-    recRequset.uid   = [[ILiveLoginManager getInstance] getLoginId];
+    recRequset.uid   = [M8UserDefault getLoginId];
     [[WebServiceEngine sharedEngine] AFAsynRequest:recRequset];
 }
 

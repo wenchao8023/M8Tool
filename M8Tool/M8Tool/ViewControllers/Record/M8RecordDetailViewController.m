@@ -141,7 +141,7 @@
     
     
     TCShowLiveListItem *item = [[TCShowLiveListItem alloc] init];
-    item.uid = [[ILiveLoginManager getInstance] getLoginId];
+    item.uid = [M8UserDefault getLoginId];
     item.members = membersArr;
     item.callType = callType;
     item.info = [[ShowRoomInfo alloc] init];
@@ -150,7 +150,7 @@
     item.info.roomnum = roomId;
     item.info.groupid = [NSString stringWithFormat:@"%d", roomId];
     item.info.appid = [ShowAppId intValue];
-    item.info.host = [[ILiveLoginManager getInstance] getLoginId];
+    item.info.host = [M8UserDefault getLoginId];
     
     M8CallViewController *callVC = [[M8CallViewController alloc] initWithItem:item isHost:YES];
     [M8MeetWindow M8_addMeetSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];

@@ -61,7 +61,7 @@
     } failHandler:^(BaseRequest *request) {
         
     }];
-    cListReq.uid = [[ILiveLoginManager getInstance] getLoginId];
+    cListReq.uid = [M8UserDefault getLoginId];
     cListReq.token = [AppDelegate sharedAppDelegate].token;
     [[WebServiceEngine sharedEngine] AFAsynRequest:cListReq];
 }
@@ -79,7 +79,7 @@
     } failHandler:^(BaseRequest *request) {
         
     }];
-    friendListReq.identifier = [[ILiveLoginManager getInstance] getLoginId];
+    friendListReq.identifier = [M8UserDefault getLoginId];
     friendListReq.token = [AppDelegate sharedAppDelegate].token;
     [[WebServiceEngine sharedEngine] AFAsynRequest:friendListReq];
 }

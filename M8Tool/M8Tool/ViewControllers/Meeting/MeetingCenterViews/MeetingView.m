@@ -59,7 +59,7 @@
     WCLog(@"更多会议议程   --> 测试直播");
 
     TCShowLiveListItem *item = [[TCShowLiveListItem alloc] init];
-    item.uid = [[ILiveLoginManager getInstance] getLoginId];
+    item.uid = [M8UserDefault getLoginId];
     item.info = [[ShowRoomInfo alloc] init];
     item.info.title = @"木木的会议";
     item.info.type = @"live";

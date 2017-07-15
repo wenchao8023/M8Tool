@@ -41,7 +41,7 @@
     }
     
     //通话发起人+人数
-    if ([model.mainuser isEqualToString:[[ILiveLoginManager getInstance] getLoginId]])
+    if ([model.mainuser isEqualToString:[M8UserDefault getLoginId]])
     {
         self.luancherLaber.text = [NSString stringWithFormat:@"我(%u人)", model.members.count];
     }

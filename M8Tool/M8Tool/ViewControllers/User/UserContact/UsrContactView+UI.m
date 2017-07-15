@@ -90,7 +90,9 @@
  */
 - (void)onCreateTeamAction
 {
-    WCLog(@"创建公司");
+    CreateCompanyViewController *createCVC = [[CreateCompanyViewController alloc] init];
+    createCVC.isExitLeftItem = YES;
+    [[AppDelegate sharedAppDelegate] pushViewController:createCVC];
 }
 
 

@@ -206,7 +206,7 @@
 - (void)enterCall:(int)roomId imageUrl:(NSString *)coverUrl callType:(TILCallType)callType
 {
     TCShowLiveListItem *item = [[TCShowLiveListItem alloc] init];
-    item.uid = [[ILiveLoginManager getInstance] getLoginId];
+    item.uid = [M8UserDefault getLoginId];
     item.members = self.selectedArray;
     item.callType = callType;
     item.info = [[ShowRoomInfo alloc] init];
@@ -216,7 +216,7 @@
     item.info.groupid = [NSString stringWithFormat:@"%d", roomId];
     item.info.cover = coverUrl ? coverUrl : @"";
     item.info.appid = [ShowAppId intValue];
-    item.info.host = [[ILiveLoginManager getInstance] getLoginId];
+    item.info.host = [M8UserDefault getLoginId];
     
     M8CallViewController *callVC = [[M8CallViewController alloc] initWithItem:item isHost:YES];
     [M8MeetWindow M8_addMeetSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
@@ -278,7 +278,7 @@
 - (void)enterLive:(int)roomId groupId:(NSString *)groupid imageUrl:(NSString *)coverUrl
 {
     TCShowLiveListItem *item = [[TCShowLiveListItem alloc] init];
-    item.uid = [[ILiveLoginManager getInstance] getLoginId];
+    item.uid = [M8UserDefault getLoginId];
     item.info = [[ShowRoomInfo alloc] init];
     item.info.title = _topic;
     item.info.type = @"live";
@@ -286,7 +286,7 @@
     item.info.groupid = groupid;
     item.info.cover = coverUrl ? coverUrl : @"";
     item.info.appid = [ShowAppId intValue];
-    item.info.host = [[ILiveLoginManager getInstance] getLoginId];
+    item.info.host = [M8UserDefault getLoginId];
     
     M8LiveViewController *liveVC = [[M8LiveViewController alloc] initWithItem:item isHost:YES];
     [M8MeetWindow M8_addMeetSource:liveVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
@@ -373,7 +373,7 @@
 {
     [self.selectedArray removeAllObjects];
     // 添加自己
-    [self.selectedArray addObject:[[ILiveLoginManager getInstance] getLoginId]];
+    [self.selectedArray addObject:[M8UserDefault getLoginId]];
     // 添加选中用户
     [self.selectedArray addObjectsFromArray:currentMembers];
     

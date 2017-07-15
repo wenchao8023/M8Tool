@@ -24,7 +24,7 @@
 - (void)onMultiCallInvitation:(TILCallInvitation *)invitation
 {    
     TCShowLiveListItem *item = [[TCShowLiveListItem alloc] init];
-    item.uid = [[ILiveLoginManager getInstance] getLoginId];
+    item.uid = [M8UserDefault getLoginId];
     item.members = invitation.memberArray;
     item.callType = invitation.callType;
     item.info = [[ShowRoomInfo alloc] init];
