@@ -52,7 +52,7 @@
 #pragma mark - UI相关
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    BOOL ret = [[NSUserDefaults standardUserDefaults] boolForKey:kPushMenuStatus];
+    BOOL ret = [M8UserDefault getPushMenuStatu];
     if (ret)
     {
         [WCNotificationCenter postNotificationName:kHiddenMenuView_Notifycation object:nil];

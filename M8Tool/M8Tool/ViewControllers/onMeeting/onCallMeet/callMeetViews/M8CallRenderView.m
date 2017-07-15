@@ -158,8 +158,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    BOOL ret = [[NSUserDefaults standardUserDefaults] boolForKey:kPushMenuStatus];
+    BOOL ret = [M8UserDefault getPushMenuStatu];
     if (ret)
     {
         [WCNotificationCenter postNotificationName:kHiddenMenuView_Notifycation object:nil];
@@ -212,7 +211,7 @@
 
 - (IBAction)inviteAction:(id)sender
 {
-    BOOL ret = [[NSUserDefaults standardUserDefaults] boolForKey:kPushMenuStatus];
+    BOOL ret = [M8UserDefault getPushMenuStatu];
     if (ret)
     {
         [WCNotificationCenter postNotificationName:kHiddenMenuView_Notifycation object:nil];
@@ -228,7 +227,7 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    BOOL ret = [[NSUserDefaults standardUserDefaults] boolForKey:kPushMenuStatus];
+    BOOL ret = [M8UserDefault getPushMenuStatu];
     if (ret)
     {
         [WCNotificationCenter postNotificationName:kHiddenMenuView_Notifycation object:nil];

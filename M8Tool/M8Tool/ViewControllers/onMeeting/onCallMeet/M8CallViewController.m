@@ -305,7 +305,7 @@
 
 - (void)selfDismiss
 {
-    BOOL ret = [[NSUserDefaults standardUserDefaults] boolForKey:kPushMenuStatus];
+    BOOL ret = [M8UserDefault getPushMenuStatu];
     if (ret)
     {
         [self onHiddeMenuView];

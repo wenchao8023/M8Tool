@@ -12,7 +12,7 @@
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    BOOL ret = [[NSUserDefaults standardUserDefaults] boolForKey:kPushMenuStatus];
+    BOOL ret = [M8UserDefault getPushMenuStatu];
     if (ret)
     {
         [self onHiddeMenuView];
@@ -71,11 +71,7 @@
         
     } completion:^(BOOL finished) {
         
-        // 保存菜单推出状态到本地
-        NSUserDefaults *userD = [NSUserDefaults standardUserDefaults];
-        [userD setObject:@(YES) forKey:kPushMenuStatus];
-        [userD synchronize];
-        
+        [M8UserDefault setPushMenuStatu:YES];
     }];
 }
 
@@ -87,11 +83,8 @@
         self.menuView.y = SCREEN_HEIGHT;
         
     } completion:^(BOOL finished) {
-        
-        NSUserDefaults *userD = [NSUserDefaults standardUserDefaults];
-        [userD setObject:@(NO) forKey:kPushMenuStatus];
-        [userD synchronize];
-        
+
+        [M8UserDefault setPushMenuStatu:NO];
     }];
 }
 

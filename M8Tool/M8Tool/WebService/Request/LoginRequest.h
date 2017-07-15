@@ -19,5 +19,6 @@
 
 @property (nonatomic, copy) NSString *userSig;
 @property (nonatomic, copy) NSString *token;
+@property (nonatomic, copy, nullable) NSString *nick;
 
 @end

@@ -49,10 +49,8 @@
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [reqIdWaitView removeFromSuperview];
-        
-        NSUserDefaults *userD = [NSUserDefaults standardUserDefaults];
-        [userD setObject:self.headerTitle forKey:kThemeImage];
-        [userD synchronize];
+
+        [M8UserDefault setThemeImageString:self.headerTitle];
         
         [WCNotificationCenter postNotificationName:kThemeSwich_Notification object:nil];
     });

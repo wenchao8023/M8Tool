@@ -142,7 +142,7 @@
         [[ILiveLoginManager getInstance] iLiveLogout:^{
             
             [logoutWaitView removeFromSuperview];
-            [ws deleteLoginParamFromLocal];
+
             [ws enterLoginUI];
             
         } failed:^(NSString *module, int errId, NSString *errMsg) {
@@ -175,10 +175,5 @@
 }
 
 
-- (void)deleteLoginParamFromLocal
-{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults removeObjectForKey:kLoginParam];
-}
 
 @end

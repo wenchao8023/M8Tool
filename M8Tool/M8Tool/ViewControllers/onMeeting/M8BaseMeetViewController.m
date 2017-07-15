@@ -37,7 +37,7 @@
 {
     if (!_bgImageView)
     {
-        NSString *imgStr = [[NSUserDefaults standardUserDefaults] objectForKey:kThemeImage];
+        NSString *imgStr = [M8UserDefault getThemeImageString];
         UIImageView *bgImageV = [WCUIKitControl createImageViewWithFrame:self.view.bounds ImageName:imgStr ? imgStr : kDefaultThemeImage];
         [self.view addSubview:(_bgImageView = bgImageV)];
     }
@@ -123,9 +123,7 @@
 #pragma mark -- view did load
 - (void)setMeetingStatu
 {
-    NSUserDefaults *userD = [NSUserDefaults standardUserDefaults];
-    [userD setBool:YES forKey:kIsInMeeting];
-    [userD synchronize];
+    [M8UserDefault setMeetingStatu:YES];
 }
 
 - (void)addSubViews
@@ -188,7 +186,7 @@
 
 - (void)themeSwichAction
 {
-    NSString *imgStr = [[NSUserDefaults standardUserDefaults] objectForKey:kThemeImage];
+    NSString *imgStr = [M8UserDefault getThemeImageString];
     [self.bgImageView setImage:[UIImage imageNamed:imgStr]];
 }
 
@@ -197,9 +195,7 @@
 - (void)selfDismiss
 {
     //退出视图的时候需要将 菜单的推出状态记为NO
-    NSUserDefaults *userD = [NSUserDefaults standardUserDefaults];
-    [userD setObject:@(NO) forKey:kPushMenuStatus];
-    [userD synchronize];
+    [M8UserDefault setPushMenuStatu:NO];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
@@ -267,9 +263,7 @@
 #pragma mark -- dealloc
 - (void)dealloc
 {
-    NSUserDefaults *userD = [NSUserDefaults standardUserDefaults];
-    [userD setBool:NO forKey:kIsInMeeting];
-    [userD synchronize];
+    [M8UserDefault setMeetingStatu:NO];
     
     [WCNotificationCenter removeObserver:self name:kThemeSwich_Notification object:nil];
     [WCNotificationCenter removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];

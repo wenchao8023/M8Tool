@@ -79,9 +79,7 @@
     } completion:^(BOOL finished) {
         
         // 保存菜单推出状态到本地
-        NSUserDefaults *userD = [NSUserDefaults standardUserDefaults];
-        [userD setObject:@(YES) forKey:kPushMenuStatus];
-        [userD synchronize];
+        [M8UserDefault setPushMenuStatu:YES];
         
     }];
 }
@@ -94,10 +92,7 @@
         
     } completion:^(BOOL finished) {
         
-        NSUserDefaults *userD = [NSUserDefaults standardUserDefaults];
-        [userD setObject:@(NO) forKey:kPushMenuStatus];
-        [userD synchronize];
-        
+        [M8UserDefault setPushMenuStatu:NO];
     }];
 }
 

@@ -25,7 +25,6 @@
 {
     @autoreleasepool
     {
-//        BOOL isMeeting = [[[NSUserDefaults standardUserDefaults] objectForKey:kIsInMeeting] boolValue];
         BOOL isMeeting = [M8UserDefault getIsInMeeting];
 //        viewController.hidesBottomBarWhenPushed = YES;
         if (isMeeting) {

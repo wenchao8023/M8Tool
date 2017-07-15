@@ -20,8 +20,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-//    BOOL isMeeting = [[[NSUserDefaults standardUserDefaults] objectForKey:kIsInMeeting] boolValue];
 
     BOOL isMeeting = [M8UserDefault getIsInMeeting];
     
@@ -72,7 +70,8 @@
 {
     if (!_bgImageView)
     {
-        NSString *imgStr = [[NSUserDefaults standardUserDefaults] objectForKey:kThemeImage];
+        NSString *imgStr = [M8UserDefault getThemeImageString];
+        
         UIImageView *bgImageV = [WCUIKitControl createImageViewWithFrame:self.view.bounds ImageName:imgStr ? imgStr : kDefaultThemeImage];
         [self.view addSubview:(_bgImageView = bgImageV)];
     }
@@ -228,7 +227,8 @@
 
 - (void)themeSwichAction
 {
-    NSString *imgStr = [[NSUserDefaults standardUserDefaults] objectForKey:kThemeImage];
+
+    NSString *imgStr = [M8UserDefault getThemeImageString];
     [self.bgImageView setImage:[UIImage imageNamed:imgStr]];
 }
 

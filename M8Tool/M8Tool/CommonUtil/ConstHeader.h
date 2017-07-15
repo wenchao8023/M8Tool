@@ -129,8 +129,8 @@ typedef NS_ENUM(NSInteger, BeautyViewType)
 #define kSxbRole_Interact   @"LiveGuest"
 
 /******************** local param **********************/
-#define kLoginParam         @"kLoginParam"
 #define kLoginIdentifier    @"kLoginIdentifier"
+#define kLoginNick          @"kLoginNick"
 #define kLoginPassward      @"kLoginPassward"
 #define kEnvParam           @"kEnvParam"
 #define kLogLevel           @"kLogLevel"

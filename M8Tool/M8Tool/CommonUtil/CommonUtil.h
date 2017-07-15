@@ -12,9 +12,6 @@
 
 @interface CommonUtil : NSObject
 
-+(void)saveUserID:(NSString *)userid ;
-
-+(NSString *)getUserID ;
 
 +(NSString *)getIconLabelStr:(NSString *)str ;
 

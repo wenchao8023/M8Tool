@@ -84,7 +84,7 @@
     M8ThemeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"M8ThemeCellID" forIndexPath:indexPath];
     
     M8ThemeModel *model = self.dataArray[indexPath.row];
-    [cell config:model isCurrentTheme:[model.nameStr isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:kThemeImage]]];
+    [cell config:model isCurrentTheme:[model.nameStr isEqualToString:[M8UserDefault getThemeImageString]]];
     
     return cell;
 }

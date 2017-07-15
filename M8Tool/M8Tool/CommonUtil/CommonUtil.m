@@ -10,21 +10,6 @@
 
 @implementation CommonUtil
 
-
-+(void)saveUserID:(NSString *)userid {
-    
-    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
-    
-    [def setObject:userid forKey:@"loginUserid"];
-    
-    [def synchronize];
-}
-
-+(NSString *)getUserID {
-    
-    return (NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:@"loginUserid"];
-}
-
 +(NSString *)getIconLabelStr:(NSString *)str {
     
     if (str.length <= 2) {
@@ -43,7 +28,7 @@
 
 +(BOOL)alertTipInMeeting
 {
-    BOOL isMeeting = [[[NSUserDefaults standardUserDefaults] objectForKey:kIsInMeeting] boolValue];
+    BOOL isMeeting = [M8UserDefault getIsInMeeting];
     
     if (isMeeting)
     {

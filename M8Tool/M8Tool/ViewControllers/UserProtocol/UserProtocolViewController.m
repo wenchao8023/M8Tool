@@ -33,7 +33,7 @@
 
 - (void)onClickDone
 {
-    [[NSUserDefaults standardUserDefaults] setObject:@(YES) forKey:kUserProtocol];
+    [M8UserDefault setUserProtocolStatu:YES];
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     MainTabBarController *tabBarVC = [[MainTabBarController alloc] init];

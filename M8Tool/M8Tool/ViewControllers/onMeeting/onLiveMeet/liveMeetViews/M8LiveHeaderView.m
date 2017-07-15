@@ -30,8 +30,9 @@
     self.frame = _myFrame;
 }
 
-- (IBAction)onAttentionAction:(id)sender {
-    BOOL ret = [[NSUserDefaults standardUserDefaults] boolForKey:kPushMenuStatus];
+- (IBAction)onAttentionAction:(id)sender
+{
+    BOOL ret = [M8UserDefault getPushMenuStatu];
     if (ret)
     {
         [WCNotificationCenter postNotificationName:kHiddenMenuView_Notifycation object:nil];

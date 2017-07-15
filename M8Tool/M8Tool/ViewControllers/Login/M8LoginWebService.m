@@ -26,6 +26,7 @@
     LoginRequest *sigReq = [[LoginRequest alloc] initWithHandler:^(BaseRequest *request) {
         LoginResponceData *responseData = (LoginResponceData *)request.response.data;
         [AppDelegate sharedAppDelegate].token = responseData.token;
+        [M8UserDefault setLoginNick:responseData.nick];
         
         [[ILiveLoginManager getInstance] iLiveLogin:identifier sig:responseData.userSig succ:^{
             
@@ -63,7 +64,6 @@
     }];
     sigReq.identifier = identifier;
     sigReq.pwd = password;
-//    [[WebServiceEngine sharedEngine] asyncRequest:sigReq];
     [[WebServiceEngine sharedEngine] AFAsynRequest:sigReq];
 }
 
@@ -85,7 +85,6 @@
         }
     }];
     verifyCodeRequest.phoneNumber = phoneNumber;
-//    [[WebServiceEngine sharedEngine] asyncRequest:verifyCodeRequest];
     [[WebServiceEngine sharedEngine] AFAsynRequest:verifyCodeRequest];
 }
 
@@ -139,10 +138,13 @@
     // 这里不能用 weakSelf, 到里面的时候是空的
 //    __block __weak typeof(self) ws = self;
     
+    
+    
     //请求sig
     LoginRequest *sigReq = [[LoginRequest alloc] initWithHandler:^(BaseRequest *request) {
         LoginResponceData *responseData = (LoginResponceData *)request.response.data;
         [AppDelegate sharedAppDelegate].token = responseData.token;
+        
         
         [[ILiveLoginManager getInstance] iLiveLogin:identifier sig:responseData.userSig succ:^{
             
@@ -180,7 +182,6 @@
     }];
     sigReq.identifier = identifier;
     sigReq.pwd = password;
-//    [[WebServiceEngine sharedEngine] asyncRequest:sigReq];
     [[WebServiceEngine sharedEngine] AFAsynRequest:sigReq];
 }
 
@@ -202,7 +203,6 @@
         }
     }];
     verifyCodeRequest.phoneNumber = phoneNumber;
-//    [[WebServiceEngine sharedEngine] asyncRequest:verifyCodeRequest];
     [[WebServiceEngine sharedEngine] AFAsynRequest:VerifyCodeRequest];
 }
 

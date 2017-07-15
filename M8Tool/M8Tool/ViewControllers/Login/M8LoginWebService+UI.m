@@ -37,15 +37,13 @@
 - (void)onLoginSucc:(NSString *)identifier password:(NSString *)password {
     
     // 保存用户信息到本地
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:identifier forKey:kLoginIdentifier];
-    [userDefaults setObject:password forKey:kLoginPassward];
-    [userDefaults synchronize];
+    [M8UserDefault setLoginId:identifier];
+    [M8UserDefault setLoginPwd:password];
     
     // 进入主界面
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    NSNumber *has = [[NSUserDefaults standardUserDefaults] objectForKey:kUserProtocol];
-    if (!has || !has.boolValue)
+    
+    if (![M8UserDefault getUserProtocolStatu])
     {
         UserProtocolViewController *vc = [[UserProtocolViewController alloc] init];
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];

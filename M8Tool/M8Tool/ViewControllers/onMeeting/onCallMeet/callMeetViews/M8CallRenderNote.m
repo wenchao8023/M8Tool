@@ -37,7 +37,7 @@
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
-    BOOL ret = [[NSUserDefaults standardUserDefaults] boolForKey:kPushMenuStatus];
+    BOOL ret = [M8UserDefault getPushMenuStatu];
     if (ret)
     {
         [WCNotificationCenter postNotificationName:kHiddenMenuView_Notifycation object:nil];

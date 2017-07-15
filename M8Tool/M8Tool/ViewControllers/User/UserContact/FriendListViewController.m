@@ -64,7 +64,8 @@
     } failHandler:^(BaseRequest *request) {
         
     }];
-    friendListReq.identifier = [[NSUserDefaults standardUserDefaults] objectForKey:kLoginIdentifier];
+    
+    friendListReq.identifier = [M8UserDefault getLoginId];
     friendListReq.token = [AppDelegate sharedAppDelegate].token;
     [[WebServiceEngine sharedEngine] AFAsynRequest:friendListReq];
 }

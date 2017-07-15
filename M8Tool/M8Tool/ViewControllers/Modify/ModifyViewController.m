@@ -281,12 +281,13 @@ typedef void(^SaveBlock)();
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)themeSwichAction {
-    NSString *imgStr = [[NSUserDefaults standardUserDefaults] objectForKey:kThemeImage];
-    [self.bgImageView setImage:[UIImage imageNamed:imgStr]];
+- (void)themeSwichAction
+{
+    [self.bgImageView setImage:[UIImage imageNamed:[M8UserDefault getThemeImageString]]];
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
     [self.view endEditing:YES];
 }
 

@@ -28,11 +28,6 @@
 
 @implementation M8LoginViewController
 
-//- (void)viewWillAppear:(BOOL)animated {
-//    [super viewWillAppear:animated];
-//    
-//    self.navigationController.navigationBarHidden = NO;
-//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,8 +35,6 @@
     
     //添加滑动返回
     [self addSwipeBack];
-    
-    
     
     [self getUserDefault];
     
@@ -69,28 +62,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-    
-    
-#pragma mark - UI
-- (void)enterMainUI {
-    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    NSNumber *has = [[NSUserDefaults standardUserDefaults] objectForKey:kUserProtocol];
-    if (!has || !has.boolValue)
-    {
-        UserProtocolViewController *vc = [[UserProtocolViewController alloc] init];
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-        appDelegate.window.rootViewController = nav;
-        return;
-    }
-    
-    MainTabBarController *tabBarVC = [[MainTabBarController alloc] init];
-    appDelegate.window.rootViewController = tabBarVC;
-}
-    
-    
-    
-    
-    
+
+
 #pragma mark - onActions
 
 - (IBAction)onBackAction:(id)sender {
@@ -116,7 +89,8 @@
     [self loginName:_userNameTF.text pwd:_passwordTF.text];
 }
 
-- (IBAction)onMoreAction:(id)sender {
+- (IBAction)onMoreAction:(id)sender
+{
     
 }
 
@@ -128,30 +102,23 @@
     
     M8LoginWebService *webService = [[M8LoginWebService alloc] init];
     [webService M8LoginWithIdentifier:identifier password:pwd cancelPVN:^{
+        
         [loginWaitView removeFromSuperview];
     }];
 }
 
-- (void)getUserDefault {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *name = [userDefaults objectForKey:kLoginIdentifier];
-    NSString *pwd = [userDefaults objectForKey:kLoginPassward];
+- (void)getUserDefault
+{
+    NSString *name  = [M8UserDefault getLoginId];
+    NSString *pwd   = [M8UserDefault getLoginPwd];
     self.userNameTF.text = name;
     self.passwordTF.text = pwd;
 }
 
-- (void)setUserDefault {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *name = self.userNameTF.text;
-    NSString *pwd = self.passwordTF.text;
-    [userDefaults setObject:name forKey:kLoginIdentifier];
-    [userDefaults setObject:pwd forKey:kLoginPassward];
-    [userDefaults synchronize];
-}
-
 
     
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
     [self.view endEditing:YES];
 }
 

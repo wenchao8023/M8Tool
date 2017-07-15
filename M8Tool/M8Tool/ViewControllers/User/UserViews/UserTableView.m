@@ -41,13 +41,13 @@ static NSString *const kUserSettingVC   = @"UserSettingViewController";
 
 - (void)createUI {
     
-    NSString *identifier = [[ILiveLoginManager getInstance] getLoginId];
+    NSString *identifier = [M8UserDefault getLoginNick];
     
     UILabel *titleLabel = [WCUIKitControl createLabelWithFrame:CGRectMake(48, 20, self.width - 48, self.height - 20)
                                                           Text:identifier
                                                        BgColor:WCClear
                            ];
-//    [titleLabel setAttributedText:[CommonUtil customAttString:identifier fontSize:36 textColor:WCBlack charSpace:kAppKern_2]];
+
     [titleLabel setAttributedText:[CommonUtil customAttString:identifier fontSize:kAppNaviFontSize textColor:WCBlack charSpace:kAppKern_2 fontName:kFontNameSTHeiti]];
     [self addSubview:titleLabel];
     
