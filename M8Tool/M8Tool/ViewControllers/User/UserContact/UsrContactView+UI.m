@@ -82,7 +82,15 @@
  */
 - (void)onMangerComAction
 {
-    
+    WCLog(@"管理公司");
+}
+
+/**
+ 最后一个头部分组创建公司
+ */
+- (void)onCreateTeamAction
+{
+    WCLog(@"创建公司");
 }
 
 

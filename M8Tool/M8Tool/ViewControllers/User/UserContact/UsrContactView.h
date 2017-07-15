@@ -21,9 +21,9 @@
 @property (nonatomic, weak) id _Nullable WCDelegate;
 
 /**
- 分组标题
- 默认是：我的好友，通讯录，常用群组，常用联系人
- 如果有公司：那么会在后面添加公司组织架构
+ 第一分组：我的好友，通讯录，常用群组，常用联系人   保存的是字符串信息
+ 如果有公司：那么会在后面添加公司组织架构          保存的是 Model
+ 最后一分组：保存一个添加按钮，用于用户添加公司
  */
 @property (nonatomic, strong) NSMutableArray * _Nonnull sectionArray;
 

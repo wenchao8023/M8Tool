@@ -1,17 +1,16 @@
 //
-//  M8MeetListCache.m
+//  M8UserInfoCache.m
 //  M8Tool
 //
-//  Created by chao on 2017/7/12.
+//  Created by chao on 2017/7/15.
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import "M8MeetListCache.h"
+#import "M8UserInfoCache.h"
 
 #import "M8MeetListModel.h"
 
-
-@implementation M8MeetListCache
+@implementation M8UserInfoCache
 
 + (void)addMeetListToLocal:(NSArray *)dataArray
 {
@@ -65,8 +64,6 @@
     }
     
 }
-
-
 
 
 @end

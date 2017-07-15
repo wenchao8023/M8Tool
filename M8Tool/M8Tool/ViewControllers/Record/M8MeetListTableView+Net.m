@@ -8,7 +8,6 @@
 
 #import "M8MeetListTableView+Net.h"
 
-#import "M8MeetListCache.h"
 
 @implementation M8MeetListTableView (Net)
 

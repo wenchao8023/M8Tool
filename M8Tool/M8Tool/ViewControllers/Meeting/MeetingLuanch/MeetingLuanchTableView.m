@@ -142,12 +142,16 @@
     self.latestCollection.hidden = YES;
 }
 
-- (void)MeetingMembersCollectionDeletedMember:(NSString *)delNameStr {
+
+#pragma mark - delegates
+#pragma mark -- MeetingMembersCollectionDelegate
+- (void)MeetingMembersCollectionDeletedMember:(NSString *)delNameStr
+{
     [self.latestCollection syncDataMembersArrayWithIdentifier:delNameStr];
 }
 
-- (void)MeetingMembersCollectionContentHeight:(CGFloat)contentHeight {
-    
+- (void)MeetingMembersCollectionContentHeight:(CGFloat)contentHeight
+{
     // 改变设置顺序，修复出现视图重叠现象
     if (contentHeight < _membersCollection.height) {
         
@@ -175,7 +179,6 @@
         }];
     }
     
-    
     [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
 
         [self.latestCollection setY:contentHeight];
@@ -190,24 +193,37 @@
 
  @param currenMembers 当前的成员
  */
-- (void)MeetingMembersCollectionCurrentMembers:(NSArray *)currenMembers {
+- (void)MeetingMembersCollectionCurrentMembers:(NSArray *)currenMembers
+{
     [self.latestCollection syncCurrentNumbers:currenMembers.count];
     
-    if ([self.WCDelegate respondsToSelector:@selector(TBFooterViewCurrentMembers:)]) {
-        [self.WCDelegate TBFooterViewCurrentMembers:currenMembers];
+    if ([self.WCDelegate respondsToSelector:@selector(TBFooterViewCurrentMembers:)])
+    {
+        NSMutableArray *uidArr = [NSMutableArray arrayWithCapacity:0];
+        
+        for (M8MemberInfo *info in currenMembers)
+        {
+            [uidArr addObject:info.uid];
+        }
+        
+        [self.WCDelegate TBFooterViewCurrentMembers:uidArr];
     }
 }
 
 
-
+#pragma mark -- LatestMembersCollectionDelegate
 /**
  *  LatestMembersCollectionDelegate
  *
  *  @param memberInfo 点击最近联系人的信息
+                 {
+                     key : memberInfo,  value : M8MemberInfo;
+                     key : memberStatu, value : @"1"-表示选中 @"0"-表示反选
+                 }
  */
 - (void)LatestMembersCollectionDidSelectedMembers:(NSDictionary *)memberInfo
 {
-    WCLog(@"The Member %@'s statu is %@", [[memberInfo allKeys] firstObject], [[memberInfo allValues] firstObject]);
+    WCLog(@"The Member %@'s statu is %@", [memberInfo objectForKey:@"memberInfo"], [memberInfo objectForKey:@"memberStatu"]);
     [self.membersCollection syncDataMembersArrayWithDic:memberInfo];
 }
 @end
@@ -391,8 +407,10 @@
 }
 
 #pragma mark - TBFooterViewDelegate 
-- (void)TBFooterViewCurrentMembers:(NSArray *)currentMembers {
-    if ([self.WCDelegate respondsToSelector:@selector(luanchTableViewMeetingCurrentMembers:)]) {
+- (void)TBFooterViewCurrentMembers:(NSArray *)currentMembers
+{
+    if ([self.WCDelegate respondsToSelector:@selector(luanchTableViewMeetingCurrentMembers:)])
+    {
         [self.WCDelegate luanchTableViewMeetingCurrentMembers:currentMembers];
     }
 }

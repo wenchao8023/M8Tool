@@ -87,28 +87,17 @@ static NSString *CollectionHeaderID = @"LatestMembersCollectionHeaderID";
     if (!_dataMembersArray)
     {
         _dataMembersArray = [NSMutableArray arrayWithCapacity:0];
-//        [_dataMembersArray addObject:@"user1"];
-//        [_dataMembersArray addObject:@"user2"];
-//        [_dataMembersArray addObject:@"user3"];
-//        [_dataMembersArray addObject:@"user4"];
-//        [_dataMembersArray addObject:@"user5"];
-//        [_dataMembersArray addObject:@"user6"];
-//        [_dataMembersArray addObject:@"user7"];
-//        [_dataMembersArray addObject:@"user8"];
-//        [_dataMembersArray addObject:@"user9"];
-//        [_dataMembersArray addObject:@"user10"];
-//        [_dataMembersArray addObject:@"lcwyx1"];
-//        [_dataMembersArray addObject:@"lcwyx2"];
-//        [_dataMembersArray addObject:@"lcwyx3"];
-//        [_dataMembersArray addObject:@"lcwyx4"];
     }
     return _dataMembersArray;
 }
 
-- (NSMutableArray *)statusArray {
-    if (!_statusArray) {
+- (NSMutableArray *)statusArray
+{
+    if (!_statusArray)
+    {
         NSMutableArray *statusArray = [NSMutableArray arrayWithCapacity:0];
-        for (int i = 0; i < self.dataMembersArray.count; i++) {
+        for (int i = 0; i < self.dataMembersArray.count; i++)
+        {
             [statusArray addObject:@"0"];
         }
         _statusArray = statusArray;      
@@ -137,8 +126,12 @@ static NSString *CollectionHeaderID = @"LatestMembersCollectionHeaderID";
 
 - (void)loadMembers:(NSArray *)members
 {
-    [self.dataMembersArray removeAllObjects];
-    [self.dataMembersArray addObjectsFromArray:members];
+    for (NSDictionary *dic in members)
+    {
+        M8MemberInfo *info = [[M8MemberInfo alloc] init];
+        [info setValuesForKeysWithDictionary:dic];
+        [self.dataMembersArray addObject:info];
+    }
     
     dispatch_async(dispatch_get_main_queue(), ^{
        
@@ -157,10 +150,16 @@ static NSString *CollectionHeaderID = @"LatestMembersCollectionHeaderID";
 {
     MeetingMembersCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MeetingMembersCellID" forIndexPath:indexPath];
 
-    [cell configLatestMembersWithNameStr:self.dataMembersArray[indexPath.row]
-                              isSelected:[self.statusArray[indexPath.row] isEqualToString:@"1"] ? YES : NO
-                            radiusBorder:kItemWidth / 2
-     ];
+    if (self.dataMembersArray.count)
+    {
+        M8MemberInfo *memberInfo = self.dataMembersArray[indexPath.row];
+        
+        [cell configLatestMembersWithNameStr:memberInfo.nick
+                                  isSelected:[self.statusArray[indexPath.row] isEqualToString:@"1"] ? YES : NO
+                                radiusBorder:kItemWidth / 2
+         ];
+    }
+    
     return cell;
 }
 
@@ -199,32 +198,40 @@ static NSString *CollectionHeaderID = @"LatestMembersCollectionHeaderID";
                     cancelAction:nil];
         }
         
+        
     }
     
     if ([self.WCDelegate respondsToSelector:@selector(LatestMembersCollectionDidSelectedMembers:)])
     {
-        [self.WCDelegate LatestMembersCollectionDidSelectedMembers:@{self.dataMembersArray[indexPath.row] : self.statusArray[indexPath.row]}];
+        [self.WCDelegate LatestMembersCollectionDidSelectedMembers:@{
+                                                                     @"memberInfo"  : self.dataMembersArray[indexPath.row],
+                                                                     @"memberStatu" : self.statusArray[indexPath.row]
+                                                                     }
+         ];
     }
     
     [collectionView reloadData];
 }
 
 
-
-- (void)syncDataMembersArrayWithIdentifier:(NSString *)identifier {
-    if ([self.dataMembersArray containsObject:identifier]) {
-        [self.statusArray replaceObjectAtIndex:[self.dataMembersArray indexOfObject:identifier] withObject:@"0"];
+//同步参会人员中被删除的成员信息
+- (void)syncDataMembersArrayWithIdentifier:(NSString *)identifier
+{
+    for (M8MemberInfo *info in self.dataMembersArray)
+    {
+        if ([info.uid isEqualToString:identifier])
+        {
+            [self.statusArray replaceObjectAtIndex:[self.dataMembersArray indexOfObject:info] withObject:@"0"];
+        }
     }
     
     [self reloadData];
 }
 
-- (void)syncCurrentNumbers:(NSInteger)currentNumbers {
+- (void)syncCurrentNumbers:(NSInteger)currentNumbers
+{
     self.currentMembers = currentNumbers;
 }
-
-
-
 
 
 @end

@@ -21,7 +21,9 @@
 {
     [super viewWillAppear:animated];
     
-    BOOL isMeeting = [[[NSUserDefaults standardUserDefaults] objectForKey:kIsInMeeting] boolValue];
+//    BOOL isMeeting = [[[NSUserDefaults standardUserDefaults] objectForKey:kIsInMeeting] boolValue];
+
+    BOOL isMeeting = [M8UserDefault getIsInMeeting];
     
     UINavigationController *curNavi = [[AppDelegate sharedAppDelegate] navigationViewController];
     

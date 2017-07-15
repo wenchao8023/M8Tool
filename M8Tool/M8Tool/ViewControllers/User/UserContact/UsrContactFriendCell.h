@@ -13,8 +13,12 @@
 /**
  配置第一分组里面的项
  */
-- (void)configWithItem:(NSString *)itemImg itemText:(NSString *)itemText;
+- (void)configWithItem:(NSString *_Nullable)itemImg itemText:(NSString *_Nullable)itemText;
 
+/**
+ 配置部门信息
+ */
+- (void)configWithDepartmentItem:(id _Nullable)dInfo;
 
 /**
  配置好友列表

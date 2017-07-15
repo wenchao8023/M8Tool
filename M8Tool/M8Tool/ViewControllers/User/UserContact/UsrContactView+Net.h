@@ -16,6 +16,13 @@
  */
 - (void)onNetLoadLocalList:(TCIVoidBlock)succHandle;
 
+
+/**
+ 获取公司列表
+ */
+- (void)onNetGetCompanyList:(TCIVoidBlock)succHandle;
+
+
 /**
  获取好友列表
  */

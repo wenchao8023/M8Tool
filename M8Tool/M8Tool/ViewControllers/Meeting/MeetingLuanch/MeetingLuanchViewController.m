@@ -371,7 +371,6 @@
 
 - (void)luanchTableViewMeetingCurrentMembers:(NSArray *)currentMembers
 {
-    
     [self.selectedArray removeAllObjects];
     // 添加自己
     [self.selectedArray addObject:[[ILiveLoginManager getInstance] getLoginId]];

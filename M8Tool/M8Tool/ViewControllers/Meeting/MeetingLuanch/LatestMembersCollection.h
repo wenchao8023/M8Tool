@@ -13,8 +13,11 @@
 
 /**
  返回选择用户之后的状态
-
- @param memberInfo {key: 用户id, value: 是否被选中 @"1"-表示选中 @"0"-表示反选}
+ 
+ @param memberInfo {
+                     key : memberInfo,  value : M8MemberInfo;
+                     key : memberStatu, value : @"1"-表示选中 @"0"-表示反选
+                    }
  */
 - (void)LatestMembersCollectionDidSelectedMembers:(NSDictionary *)memberInfo;
 

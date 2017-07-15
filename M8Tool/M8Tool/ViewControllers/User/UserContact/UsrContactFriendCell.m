@@ -58,6 +58,21 @@
 
 
 /**
+ 配置部门信息
+ */
+- (void)configWithDepartmentItem:(M8DepartmentInfo *)dInfo
+{
+    self.backgroundColor = WCClear;
+    self.contentView.backgroundColor = WCClear;
+    
+    [self hiddeXibViews:YES];
+    
+    self.iconImg.image = [UIImage imageWithColor:WCLightGray];
+    
+    self.itemTitleLabel.text = dInfo.dname;
+}
+
+/**
  配置好友列表
  */
 - (void)configWithFriendItem:(M8FriendInfo *)friendInfo

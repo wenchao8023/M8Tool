@@ -10,7 +10,8 @@
 
 @implementation M8IMModels
 
-- (void)setValue:(id)value forUndefinedKey:(NSString *)key {
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key
+{
     
 }
 
@@ -19,9 +20,46 @@
 
 @implementation M8FriendInfo
 
-- (void)setValue:(id)value forUndefinedKey:(NSString *)key {
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key
+{
     
 }
 
+@end
+
+
+@implementation M8MemberInfo
+
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key
+{
+    
+}
+
+
+
+
+@end
+
+
+
+
+@implementation M8DepartmentInfo
+
+- (void)setValue:(id)value forUndefinedKey:(nonnull NSString *)key
+{
+    
+}
+
+
+@end
+
+
+
+@implementation M8CompanyInfo
+
+- (void)setValue:(id)value forUndefinedKey:(nonnull NSString *)key
+{
+    
+}
 
 @end

@@ -149,7 +149,11 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
         self.dataMembersArray.count)
     {   //数组中至少有一个元素
         if (indexPath.row < self.dataMembersArray.count)
-            [cell configMeetingMembersWithNameStr:self.dataMembersArray[indexPath.row] isDeling:self.isDeling];
+        {
+            M8MemberInfo *memberInfo = self.dataMembersArray[indexPath.row];
+            
+            [cell configMeetingMembersWithNameStr:memberInfo.nick isDeling:self.isDeling];
+        }
         else if (indexPath.row == self.dataMembersArray.count)
             [cell configMeetingMembersWithImageStr:@"addMember"];
         else
@@ -184,8 +188,11 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
         {
             if (self.isDeling)  // 正在删除中
             {
-                if ([self.WCDelegate respondsToSelector:@selector(MeetingMembersCollectionDeletedMember:)]) {
-                    [self.WCDelegate MeetingMembersCollectionDeletedMember:self.dataMembersArray[indexPath.row]];
+                if ([self.WCDelegate respondsToSelector:@selector(MeetingMembersCollectionDeletedMember:)])
+                {
+                    M8MemberInfo *info = self.dataMembersArray[indexPath.row];
+                    
+                    [self.WCDelegate MeetingMembersCollectionDeletedMember:info.uid];
                 }
                 [[self mutableArrayValueForKey:@"dataMembersArray"] removeObjectAtIndex:indexPath.row];
             }
@@ -235,8 +242,6 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
     // 监听数组元素的变化
     if ([keyPath isEqualToString:@"dataMembersArray"])
     {
-//        WCLog(@"dataMembersArray is changing");
-        
         if (!self.dataMembersArray.count)
         {
             self.isDeling = NO;
@@ -251,7 +256,8 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
     // 监听 contentSize
     if ([keyPath isEqualToString:@"contentSize"])
     {
-        if ([self.WCDelegate respondsToSelector:@selector(MeetingMembersCollectionContentHeight:)]) {
+        if ([self.WCDelegate respondsToSelector:@selector(MeetingMembersCollectionContentHeight:)])
+        {
             [self.WCDelegate MeetingMembersCollectionContentHeight:self.contentSize.height];
         }
     }
@@ -262,23 +268,26 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
 // 同步从最近联系人发来的数据
 - (void)syncDataMembersArrayWithDic:(NSDictionary *)memberInfo
 {
-    
     if (self.isDeling)
     {
         self.isDeling = NO;
     }
     
-    NSString *identifier    = [[memberInfo allKeys] firstObject];
-    NSString *statu         = [[memberInfo allValues] firstObject];
+    M8MemberInfo *info  = [memberInfo objectForKey:@"memberInfo"];
+    NSString     *statu = [memberInfo objectForKey:@"memberStatu"];
+    
     if ([statu isEqualToString:@"1"])
     {
-        [[self mutableArrayValueForKey:@"dataMembersArray"] addObject:identifier];
+        [[self mutableArrayValueForKey:@"dataMembersArray"] addObject:info];
     }
     else
     {
-        if ([self.dataMembersArray containsObject:identifier])
+        for (M8MemberInfo *member in self.dataMembersArray)
         {
-            [[self mutableArrayValueForKey:@"dataMembersArray"] removeObject:identifier];
+            if ([member.uid isEqualToString:info.uid])
+            {
+                [[self mutableArrayValueForKey:@"dataMembersArray"] removeObject:member];
+            }
         }
     }
     

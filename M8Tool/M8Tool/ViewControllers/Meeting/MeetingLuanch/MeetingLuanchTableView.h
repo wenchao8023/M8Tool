@@ -28,8 +28,8 @@
 
 /**
  通话成员
-
- @param currentMembers 同话成员
+ 
+ @param currentMembers 返回给VC的是 @[@(uid)]
  */
 - (void)luanchTableViewMeetingCurrentMembers:(NSArray *_Nonnull)currentMembers;
 

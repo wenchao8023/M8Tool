@@ -61,5 +61,7 @@
 
 #import "RecentlyContactRequest.h"
 
+#import "CompanyListRequest.h"
+
 
 #endif /* RequestHeader_h */

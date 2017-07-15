@@ -64,7 +64,7 @@
     } failHandler:^(BaseRequest *request) {
         
     }];
-    friendListReq.identifier = [[ILiveLoginManager getInstance] getLoginId];
+    friendListReq.identifier = [[NSUserDefaults standardUserDefaults] objectForKey:kLoginIdentifier];
     friendListReq.token = [AppDelegate sharedAppDelegate].token;
     [[WebServiceEngine sharedEngine] AFAsynRequest:friendListReq];
 }
