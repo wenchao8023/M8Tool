@@ -20,6 +20,13 @@
 
 
 /**
+ 用于记录 cell 状态的图片
+ 如果是编辑的时候，将会存放一张可编辑的图片
+ 如果是选择的时候，将会显示是否选中
+ */
+@property (weak, nonatomic) IBOutlet UIImageView *statuImg;
+
+/**
  用于配置第一组item
  */
 @property (nonatomic, strong) UIImageView *iconImg;
@@ -77,23 +84,17 @@
  */
 - (void)configWithFriendItem:(M8FriendInfo *)friendInfo
 {
-    self.backgroundColor = WCClear;
-    self.contentView.backgroundColor = WCClear;
-    
-    [self hiddeXibViews:NO];
-
     NSDictionary *dic = [friendInfo.SnsProfileItem firstObject];
-    NSString *nick = [dic objectForKey:@"Value"];
-    NSString *phone = friendInfo.Info_Account;
-    
-    self.iconLabel.text = [nick getSimpleName];
-    self.titleLabel.text = nick;
-    self.subTitleLabel.text = phone;
+
+    M8MemberInfo *info = [M8MemberInfo new];
+    info.uid    = friendInfo.Info_Account;
+    info.nick   = [dic objectForKey:@"Value"];
+    [self configWithMemberItem:info];
 }
 
 
 /**
- 配置创建公司时添加的成员信息
+ 配置默认状态下的样式
  */
 - (void)configWithMemberItem:(M8MemberInfo *)memberInfo
 {
@@ -115,6 +116,33 @@
     
     self.iconImg.hidden = !hidden;
     self.itemTitleLabel.hidden = !hidden;
+}
+
+
+/**
+ 管理员进入，显示编辑图片
+ */
+- (void)configMemberItemEditing:(M8MemberInfo *)memberInfo
+{
+    self.statuImg.hidden = NO;
+    
+    [self configWithMemberItem:memberInfo];
+}
+
+
+- (void)configMemberItem:(id)memberInfo isSelected:(BOOL)selected
+{
+    self.statuImg.hidden = NO;
+    if (selected)
+    {
+        self.backgroundColor = WCGreen;
+        WCViewBorder_Radius(self.statuImg, 10);
+    }
+    else
+    {
+        self.backgroundColor = WCClear;
+        WCViewBorder_Width_Color(self.statuImg, 2, WCGreen);
+    }
 }
 
 

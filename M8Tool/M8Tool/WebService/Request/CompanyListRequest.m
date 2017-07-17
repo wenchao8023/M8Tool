@@ -33,7 +33,6 @@
 - (BaseResponseData *)parseResponseData:(NSDictionary *)dataDic
 {
     return [NSObject parse:[self responseDataClass] dictionary:dataDic];
-//    return [NSObject parse:[self responseDataClass] dictionary:dataDic itemClass:[M8CompanyInfo class]];
 }
 @end
 

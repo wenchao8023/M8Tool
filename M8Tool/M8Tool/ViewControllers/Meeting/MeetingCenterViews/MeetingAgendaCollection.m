@@ -13,7 +13,9 @@
 
 
 @interface MeetingAgendaCollection ()<UICollectionViewDelegate, UICollectionViewDataSource>
-
+{
+    CGRect _myFrame;
+}
 @property (nonatomic, strong) NSArray *titleArray;
 
 @end
@@ -21,9 +23,26 @@
 @implementation MeetingAgendaCollection
 
 
+- (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout
+{
+    if (self = [super initWithFrame:frame collectionViewLayout:layout])
+    {
+        self = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil] firstObject];
+        _myFrame = frame;
+    }
+    return self;
+}
 
-- (NSArray *)titleArray {
-    if (!_titleArray) {
+- (void)drawRect:(CGRect)rect
+{
+    
+}
+
+
+- (NSArray *)titleArray
+{
+    if (!_titleArray)
+    {
 //        NSArray *titleArray = @[@"5月17号", @"5月16号", @"5月15号", @"5月14号", @"5月13号",
 //                                @"5月11号", @"5月10号", @"5月9号", @"5月8号", @"5月7号",
 //                                @"5月6号", @"5月5号", @"5月4号", @"5月3号", @"5月2号"];
@@ -72,20 +91,23 @@
     return cell;
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    
-    if ([_agendaDelegate respondsToSelector:@selector(AgendaCollectionCurrentPage:)]) {
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    if ([_agendaDelegate respondsToSelector:@selector(AgendaCollectionCurrentPage:)])
+    {
         [_agendaDelegate AgendaCollectionCurrentPage:(int)self.contentOffset.x / SCREEN_WIDTH];
     }
 }
 
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
     
     WCLog(@"点击第 %ld 个按钮", (long)indexPath.row);
 }
 
-- (int)getTotalPage:(NSInteger)count {
+- (int)getTotalPage:(NSInteger)count
+{
     return (int)(count % 5 == 0 ? count / 5 : count / 5 + 1);
 }
 @end

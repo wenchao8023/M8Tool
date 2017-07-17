@@ -27,7 +27,22 @@
 
 
 /**
- 配置创建公司时添加的成员信息
+ 配置默认状态下的样式
  */
 - (void)configWithMemberItem:(id _Nullable)memberInfo;
+
+
+/**
+ 配置管理者进入，- 可编辑样式
+ */
+- (void)configMemberItemEditing:(id _Nullable)memberInfo;
+
+/**
+ 配置选择模式下成员选中状态
+
+ @param memberInfo 成员
+ @param selected 是否选中
+ */
+- (void)configMemberItem:(id _Nullable)memberInfo isSelected:(BOOL)selected;
+
 @end

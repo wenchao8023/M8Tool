@@ -253,8 +253,8 @@
 {
     if (self = [super initWithFrame:frame style:style])
     {
-        self.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-        self.tableHeaderView = [[UIView alloc] initWithFrame:CGRectZero];
+        self.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 0.01)];
+        self.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 0.01)];
         self.backgroundColor = WCClear;
         self.scrollEnabled = NO;
         self.delegate   = self;

@@ -32,6 +32,7 @@
 
 @implementation MeetingView
 
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     
@@ -55,34 +56,23 @@
 }
 
 
-- (IBAction)moreAgendaAction:(id)sender {
+- (IBAction)moreAgendaAction:(id)sender
+{
     WCLog(@"更多会议议程   --> 测试直播");
-
-    TCShowLiveListItem *item = [[TCShowLiveListItem alloc] init];
-    item.uid = [M8UserDefault getLoginId];
-    item.info = [[ShowRoomInfo alloc] init];
-    item.info.title = @"木木的会议";
-    item.info.type = @"live";
-    item.info.roomnum = 10003;
-    item.info.groupid = @"10003";
-    item.info.appid = [ShowAppId intValue];
-    item.info.host = @"user2";
-
-    M8LiveViewController *baseMeetVC = [[M8LiveViewController alloc] initWithItem:item isHost:NO];
-    [M8MeetWindow M8_addMeetSource:baseMeetVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
-    
 }
 
 
 
 #pragma mark - AgendaCollectionDelegate
-- (void)AgendaCollectionNumberPage:(int)pageNumber {
+- (void)AgendaCollectionNumberPage:(int)pageNumber
+{
     WCLog(@"numberOfPages is : %d", pageNumber);
     self.pageControl.numberOfPages = pageNumber;
     [self.pageControl setWidth:20 * pageNumber];
 }
 
-- (void)AgendaCollectionCurrentPage:(int)pageIndex {
+- (void)AgendaCollectionCurrentPage:(int)pageIndex
+{
     WCLog(@"pageIndex is : %d", pageIndex);
     self.pageControl.currentPage = pageIndex;
 }

@@ -63,5 +63,12 @@
 
 #import "CompanyListRequest.h"
 
+#import "CreateCompanyRequest.h"
+
+#import "CreatePartRequest.h"
+
+#import "JoinPartRequest.h"
+
+#import "PartDetailRequest.h"
 
 #endif /* RequestHeader_h */

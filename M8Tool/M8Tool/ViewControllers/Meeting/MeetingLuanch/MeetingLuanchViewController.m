@@ -315,8 +315,10 @@
 
 
 #pragma mark - 判断视图类型
-- (NSString *)getTitle {
-    switch (self.luanchMeetingType) {
+- (NSString *)getTitle
+{
+    switch (self.luanchMeetingType)
+    {
         case LuanchMeetingType_phone:
             return @"创建电话会议";
             break;
@@ -334,8 +336,10 @@
     }
 }
 
-- (void)configTabelViewArgu {
-    switch (self.luanchMeetingType) {
+- (void)configTabelViewArgu
+{
+    switch (self.luanchMeetingType)
+    {
         case LuanchMeetingType_phone:
             self.tableView.isHiddenFooter = NO;
             self.tableView.MaxMembers = 5;

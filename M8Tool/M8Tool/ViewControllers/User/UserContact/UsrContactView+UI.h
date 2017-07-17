@@ -9,15 +9,18 @@
 #import "UsrContactView.h"
 
 #import "FriendListViewController.h"
-#import "CreateCompanyViewController.h"
+
+#import "MangerTeamViewController.h"
 
 @interface UsrContactView (UI)
 
 - (void)loadDataInMainThread;
 
-- (void)onHeaderAction:(UITapGestureRecognizer *)tap;
+- (void)onDidSelectAtIndex:(NSIndexPath *_Nonnull)indexPath;
 
-- (void)onMangerComAction;
+- (void)onHeaderAction:(UITapGestureRecognizer *_Nullable)tap;
 
+- (void)onMangerComAction:(UIButton *_Nullable)mangerBtn;
 
+- (void)onCreateTeamAction;
 @end

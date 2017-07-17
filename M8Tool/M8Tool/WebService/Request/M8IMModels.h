@@ -14,6 +14,22 @@
 static NSString * _Nonnull const kSnsProfileItemTag_Nick = @ "Tag_Profile_IM_Nick";
 
 
+/**
+ *  进入联系人界面的类型
+ *  ContactType_contact : 显示用户的公司关系链
+ *  ContactType_tel     : 使用 普通手机通话 提供联系人名字及手机号，方便直接拨打电话
+ *  ContactType_sel     : 从会议发起界面进入 选人时的类型
+ */
+typedef NS_ENUM(NSInteger, ContactType)
+{
+    ContactType_contact,
+    ContactType_tel,
+    ContactType_sel
+};
+
+
+
+
 @interface M8IMModels : NSObject
 
 @end

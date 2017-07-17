@@ -14,20 +14,18 @@
 /**
  本地加载第一个分组里面的数据
  */
-- (void)onNetLoadLocalList:(TCIVoidBlock)succHandle;
+- (void)onNetLoadLocalList:(TCIVoidBlock _Nullable )succHandle;
 
 
 /**
  获取公司列表
  */
-- (void)onNetGetCompanyList:(TCIVoidBlock)succHandle;
+- (void)onNetGetCompanyList:(TCIVoidBlock _Nullable )succHandle;
 
 
 /**
- 获取好友列表
+ 创建公司
  */
-- (void)onNetGetFriendList:(TCIVoidBlock)succHandle;
-
-
+- (void)onNetCreateTeam:(NSString *_Nullable)teamName  succ:(TCIVoidBlock _Nullable )succHandle;
 
 @end

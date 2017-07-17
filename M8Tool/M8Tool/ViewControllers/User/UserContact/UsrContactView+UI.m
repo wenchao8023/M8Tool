@@ -7,6 +7,7 @@
 //
 
 #import "UsrContactView+UI.h"
+#import "UsrContactView+Net.h"
 
 @implementation UsrContactView (UI)
 
@@ -19,11 +20,21 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)onDidSelectAtIndex:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0)
     {
         [self performSelector:NSSelectorFromString(self.actionArray[indexPath.row]) withObject:nil afterDelay:0];
+    }
+    else    //选择部门
+    {
+        M8CompanyInfo *cInfo = self.sectionArray[indexPath.section];
+        BOOL isManger = [cInfo.uid isEqualToString:[M8UserDefault getLoginId]];
+        
+        MangerTeamViewController *mangerVC = [[MangerTeamViewController alloc] initWithType:MangerTeamType_Partment isManager:isManger];
+        mangerVC.isExitLeftItem = YES;
+        mangerVC.dInfo = self.dataArray[indexPath.section][indexPath.row];
+        [[AppDelegate sharedAppDelegate] pushViewController:mangerVC];
     }
 }
 
@@ -80,9 +91,27 @@
 /**
  头部按钮事件
  */
-- (void)onMangerComAction
+- (void)onMangerComAction:(UIButton *)mangerBtn
 {
-    WCLog(@"管理公司");
+    NSInteger section = mangerBtn.tag - 50;
+    
+    if ([mangerBtn.titleLabel.text isEqualToString:@"管理"])
+    {
+        WCLog(@"管理公司");
+        MangerTeamViewController *mangerVC = [[MangerTeamViewController alloc] initWithType:MangerTeamType_Company isManager:YES];
+        mangerVC.isExitLeftItem = YES;
+        mangerVC.cInfo = self.sectionArray[section];
+        [[AppDelegate sharedAppDelegate] pushViewController:mangerVC];
+    }
+    else if ([mangerBtn.titleLabel.text isEqualToString:@"邀请"])
+    {
+        WCLog(@"邀请好友");
+        MangerTeamViewController *mangerVC = [[MangerTeamViewController alloc] initWithType:MangerTeamType_Company isManager:NO];
+        mangerVC.isExitLeftItem = YES;
+        mangerVC.cInfo = self.sectionArray[section];
+        [[AppDelegate sharedAppDelegate] pushViewController:mangerVC];
+    }
+    
 }
 
 /**
@@ -90,9 +119,47 @@
  */
 - (void)onCreateTeamAction
 {
-    CreateCompanyViewController *createCVC = [[CreateCompanyViewController alloc] init];
-    createCVC.isExitLeftItem = YES;
-    [[AppDelegate sharedAppDelegate] pushViewController:createCVC];
+    UIAlertController *createTeamAlert = [UIAlertController alertControllerWithTitle:@"添加成员" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    WCWeakSelf(self);
+    self.saveAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        UITextField *nameTF  = createTeamAlert.textFields.firstObject;
+        
+        [self onNetCreateTeam:nameTF.text succ:^{
+            
+            [weakself loadDataInMainThread];
+        }];
+    }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    
+    self.saveAction.enabled = NO;
+    [createTeamAlert addAction:self.saveAction];
+    [createTeamAlert addAction:cancelAction];
+    
+    [createTeamAlert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        
+        textField.placeholder = @"不少于三个字";
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alertTextFieldDidChange:) name:UITextFieldTextDidChangeNotification object:textField];
+    }];
+    
+    [[AppDelegate sharedAppDelegate].topViewController presentViewController:createTeamAlert animated:YES completion:nil];
+}
+
+
+- (void)alertTextFieldDidChange:(NSNotification *)notification
+{
+    UIAlertController *alertController = (UIAlertController *)[AppDelegate sharedAppDelegate].topViewController;
+    if (alertController)
+    {
+        UITextField *nameTF  = alertController.textFields.firstObject;
+        self.saveAction.enabled = (nameTF.text.length >= 3);
+    }
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:nil];
 }
 
 

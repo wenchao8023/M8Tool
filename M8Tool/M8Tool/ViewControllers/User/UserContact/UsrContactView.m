@@ -70,15 +70,16 @@ static const CGFloat kItemHeight = 60;
     if (!_statuArray)
     {
         NSMutableArray *statuArray = [NSMutableArray arrayWithCapacity:0];
-//        for (id obj in self.sectionArray)
-//        {
-//            [statuArray addObject:@"0"];
-//        }
         _statuArray = statuArray;
     }
     
     return _statuArray;
 }
+
+/**
+ 如果是创建公司之后则需要保存上一次点击头部分组的分组状态，防止刷新的时候被修改
+ 使用策略 ： 将 clickSection = -1，还原点击值
+ */
 
 - (void)configStatuArray
 {
@@ -102,7 +103,6 @@ static const CGFloat kItemHeight = 60;
         {
             [self.statuArray addObject:@"0"];
         }
-        
     }
 }
 
@@ -172,7 +172,7 @@ static const CGFloat kItemHeight = 60;
     {
         if (section == self.sectionArray.count)
         {
-            UIButton *createTeamBtn = [WCUIKitControl createButtonWithFrame:CGRectMake(0, 10, self.width, 40) Target:self Action:@selector(onCreateTeamAction) Title:@"+创建团队"];
+            UIButton *createTeamBtn = [WCUIKitControl createButtonWithFrame:CGRectMake(0, 10, self.width, 40) Target:self Action:@selector(onCreateTeamAction) Title:@"+创建公司"];
             createTeamBtn.titleLabel.font = [UIFont systemFontOfSize:kAppMiddleFontSize];
             [createTeamBtn setTitleColor:WCBlack forState:UIControlStateNormal];
             [headView addSubview:createTeamBtn];
@@ -197,12 +197,13 @@ static const CGFloat kItemHeight = 60;
             NSString *btnStr = nil;
             
             if ([cInfo.uid isEqualToString:[M8UserDefault getLoginId]])
-                btnStr = @"编辑";
+                btnStr = @"管理";
             else
                 btnStr = @"邀请";
             
-            UIButton *mangerBtn = [WCUIKitControl createButtonWithFrame:CGRectMake(self.width - 60, 10, 50, 40) Target:self Action:@selector(onMangerComAction) Title:btnStr];
+            UIButton *mangerBtn = [WCUIKitControl createButtonWithFrame:CGRectMake(self.width - 60, 10, 50, 40) Target:self Action:@selector(onMangerComAction:) Title:btnStr];
             mangerBtn.titleLabel.font = [UIFont systemFontOfSize:kAppMiddleFontSize];
+            mangerBtn.tag = 50 + section;
             [mangerBtn setTitleColor:WCBlack forState:UIControlStateNormal];
             [mangerBtn setBorder_left_color:WCLightGray width:1];
             [headView addSubview:mangerBtn];
@@ -270,6 +271,14 @@ static const CGFloat kItemHeight = 60;
     }
     return 10;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self onDidSelectAtIndex:indexPath];
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 
 
 @end

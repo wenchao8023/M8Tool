@@ -182,7 +182,8 @@
                                     charSpace:(int)charSpace
                                      fontName:(NSString *)fontName
 {
-    if (string)
+    if (string &&
+        [string isKindOfClass:[NSString class]])
         return [[NSMutableAttributedString alloc] initWithString:string
                                                       attributes:[self customAttsWithFontSize:fontSize
                                                                                     textColor:textColor

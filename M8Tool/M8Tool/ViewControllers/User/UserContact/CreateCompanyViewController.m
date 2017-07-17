@@ -208,10 +208,73 @@
     _companyName = textField.text;
 }
 
-
+/**
+ 创建公司
+ 1. 根据公司名创建公司
+ 2. 创建公司成功之后创建一个默认的部门 “组织架构”
+ 3. 将添加的成员加入 “组织架构” 部门
+ */
 - (void)onCreateTeamAction
 {
     WCLog(@"创建团队");
+    WCWeakSelf(self);
+    CreateCompanyRequest *createTeamReq = [[CreateCompanyRequest alloc] initWithHandler:^(BaseRequest *request) {
+        
+        NSString *cid = ((CreateCompanyResponseData *)request.response.data).cid;
+        [weakself createDefaultPart:cid];
+        
+    } failHandler:^(BaseRequest *request) {
+        
+        if (request.response.errorCode ==  10086)
+        {
+            [AlertHelp tipWith:@"团队已存在，请确认是否输入正确！" wait:1];
+        }
+    }];
+    
+    createTeamReq.token = [AppDelegate sharedAppDelegate].token;
+    createTeamReq.uid   = [M8UserDefault getLoginId];
+    createTeamReq.name  = _companyName;
+    [[WebServiceEngine sharedEngine] AFAsynRequest:createTeamReq];
+}
+
+- (void)createDefaultPart:(NSString *)cid
+{
+    WCWeakSelf(self);
+    int myCid = [cid intValue];
+    CreatePartRequest *createPartReq = [[CreatePartRequest alloc] initWithHandler:^(BaseRequest *request) {
+       
+        NSString *did = ((CreatePartResponseData *)request.response.data).did;
+        [weakself inviteMemberJoinPart:did];
+        
+    } failHandler:^(BaseRequest *request) {
+        
+    }];
+    
+    createPartReq.token = [AppDelegate sharedAppDelegate].token;
+    createPartReq.uid   = [M8UserDefault getLoginId];
+    createPartReq.cid   = myCid;
+    createPartReq.name  = @"组织架构";
+    [[WebServiceEngine sharedEngine] AFAsynRequest:createPartReq];
+}
+
+
+/**
+ 给用户发送邀请
+ */
+- (void)inviteMemberJoinPart:(NSString *)did
+{
+    NSMutableArray *memArr = [NSMutableArray arrayWithCapacity:0];
+    for (M8MemberInfo *info in (NSArray *)self.itemsArray[1])
+    {
+        [memArr addObject:info.uid];
+    }
+    
+    TIMFriendshipManager *manger = [TIMFriendshipManager sharedInstance];
+    [manger AddFriendsToFriendGroup:did users:memArr succ:^(NSArray *friends) {
+        
+    } fail:^(int code, NSString *msg) {
+        
+    }];
 }
 
 
@@ -289,7 +352,8 @@
     {
         UITextField *nameTF  = alertController.textFields.firstObject;
         UITextField *phoneTF = alertController.textFields.lastObject;
-        _saveAction.enabled = (nameTF.text.length >= 1 && phoneTF.text.length == 11);
+        _saveAction.enabled = YES;
+//        _saveAction.enabled = (nameTF.text.length > 1 && [phoneTF.text validateMobile]);
     }
 }
 

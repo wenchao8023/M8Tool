@@ -84,7 +84,6 @@
         self.renderView.call = self.call;
         
         
-        
         WCWeakSelf(self);
         [_call makeCall:kGetStringFMInt(self.curMid) custom:self.liveItem.info.title result:^(TILCallError *err) {
             

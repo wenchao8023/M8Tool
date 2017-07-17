@@ -31,6 +31,14 @@
         CompanyListRequest *wreq = (CompanyListRequest *)request;
         CompanyListResponseData *respData = (CompanyListResponseData *)wreq.response.data;
         
+        //移除数组中原有的（第一个分组中的除外） -- 删除的时候要从后往前删
+        while (self.sectionArray.count > 1)     //确保跳过第一个元素
+        {
+            [self.sectionArray  removeObjectAtIndex:1];     //每次删除第二个元素
+            [self.dataArray     removeObjectAtIndex:1];
+        }
+
+        
         for (NSDictionary *dic in respData.companys)
         {
             //添加公司信息（头部分组数据）
@@ -50,8 +58,7 @@
         }
 
         [weakself configStatuArray];
-//        weakself.statuArray = nil;
-//        [weakself statuArray];
+
         
         if (succHandle)
         {
@@ -66,26 +73,80 @@
     [[WebServiceEngine sharedEngine] AFAsynRequest:cListReq];
 }
 
-- (void)onNetGetFriendList:(TCIVoidBlock)succHandle
+// 创建公司
+- (void)onNetCreateTeam:(NSString *)teamName succ:(TCIVoidBlock)succHandle
 {
     WCWeakSelf(self);
-    FriendsListRequest *friendListReq = [[FriendsListRequest alloc] initWithHandler:^(BaseRequest *request) {
+    CreateCompanyRequest *createTeamReq = [[CreateCompanyRequest alloc] initWithHandler:^(BaseRequest *request) {
         
-        FriendsListRequest *wreq = (FriendsListRequest *)request;
-        FriendsListResponceData *respData = (FriendsListResponceData *)wreq.response.data;
-        
-        
+        NSString *cid = ((CreateCompanyResponseData *)request.response.data).cid;
+        [weakself onNetCreateDefaultPart:cid succ:succHandle];
         
     } failHandler:^(BaseRequest *request) {
         
+        if (request.response.errorCode ==  10086)
+        {
+            [AlertHelp tipWith:@"公司已存在，请确认是否输入正确！" wait:1];
+        }
     }];
-    friendListReq.identifier = [M8UserDefault getLoginId];
-    friendListReq.token = [AppDelegate sharedAppDelegate].token;
-    [[WebServiceEngine sharedEngine] AFAsynRequest:friendListReq];
+    
+    createTeamReq.token = [AppDelegate sharedAppDelegate].token;
+    createTeamReq.uid   = [M8UserDefault getLoginId];
+    createTeamReq.name  = teamName;
+    [[WebServiceEngine sharedEngine] AFAsynRequest:createTeamReq];
 }
 
+//创建默认分组
+- (void)onNetCreateDefaultPart:(NSString *)cid succ:(TCIVoidBlock)succHandle
+{
+    WCWeakSelf(self);
+    int myCid = [cid intValue];
+    CreatePartRequest *createPartReq = [[CreatePartRequest alloc] initWithHandler:^(BaseRequest *request) {
+        
+        NSString *did = ((CreatePartResponseData *)request.response.data).did;
+        [weakself onNetJoinSelfToDefaultPart:did succ:succHandle];
+        
+    } failHandler:^(BaseRequest *request) {
+        
+        //如果该默认分组存在, 那么就直接将自己加入该分组
+        if (request.response.errorCode ==  10086)
+        {
+            [AlertHelp tipWith:@"部门已存在!" wait:1];
+        }
+    }];
+    
+    createPartReq.token = [AppDelegate sharedAppDelegate].token;
+    createPartReq.uid   = [M8UserDefault getLoginId];
+    createPartReq.cid   = myCid;
+    createPartReq.name  = @"组织架构";
+    [[WebServiceEngine sharedEngine] AFAsynRequest:createPartReq];
+}
 
-
-
+//将自己加入默认分组
+- (void)onNetJoinSelfToDefaultPart:(NSString *)did succ:(TCIVoidBlock)succHandle
+{
+    WCWeakSelf(self);
+    int myDid = [did intValue];
+    JoinPartRequest *joinPartReq = [[JoinPartRequest alloc] initWithHandler:^(BaseRequest *request) {
+        
+        weakself.clickSection = -1;
+        
+        [weakself onNetGetCompanyList:succHandle];
+        
+    } failHandler:^(BaseRequest *request) {
+        
+        //加入失败，再次加入
+        if (!(request.response.errorCode == 0 ||
+            request.response.errorCode == 10086))
+        {
+            [weakself onNetJoinSelfToDefaultPart:did succ:succHandle];
+        }
+    }];
+    
+    joinPartReq.token = [AppDelegate sharedAppDelegate].token;
+    joinPartReq.uid   = [M8UserDefault getLoginId];
+    joinPartReq.did   = myDid;
+    [[WebServiceEngine sharedEngine] AFAsynRequest:joinPartReq];
+}
 
 @end
