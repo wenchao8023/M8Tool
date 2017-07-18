@@ -12,6 +12,7 @@
 
 @interface CommonUtil : NSObject
 
++ (void)makePhone:(NSString *)phoneStr;
 
 +(NSString *)getIconLabelStr:(NSString *)str ;
 

@@ -123,7 +123,7 @@ static CGFloat kRecordDetailHeaderHeight = 118.0;
         self.unresponseArray.count)
     {
         M8MeetMemberInfo *info = self.unresponseArray[indexPath.row];
-        [cell configRecordDetailWithNameStr:info.user radiusBorder:kItemWidth / 2];
+        [cell configRecordDetailWithNameStr:info.nick radiusBorder:kItemWidth / 2];
     }
     return cell;
 }

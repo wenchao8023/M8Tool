@@ -36,7 +36,7 @@
 /**
  背景图片
  */
-@property (nonatomic, strong, nonnull) UIImageView          *bgImageView;
+@property (nonatomic, strong, nonnull) UIImageView *bgImageView;
 
 /**
  退出按钮, 按钮点击事件由子类实现

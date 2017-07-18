@@ -121,6 +121,7 @@ typedef NS_ENUM(NSInteger, BeautyViewType)
 #define kEnterBackGround_Notification   @"kEnterBackGround_Notification"
 #define kThemeSwich_Notification        @"kThemeSwich_Notification"     //切换主题
 #define kHiddenMenuView_Notifycation    @"kHiddenMenuView_Notifycation" //隐藏菜单
+#define kMeetCollcet_Notification       @"kMeetCollcet_Notification"    //会议收藏状态变化
 
 
 /******************** role string **********************/

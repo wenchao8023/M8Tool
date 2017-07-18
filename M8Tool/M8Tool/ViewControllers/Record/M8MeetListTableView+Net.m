@@ -63,6 +63,11 @@
         M8MeetListModel *model = [[M8MeetListModel alloc] init];
         [model setValuesForKeysWithDictionary:dataDic];
         
+        if (self.listViewType == M8MeetListViewTypeCollect) //如果是会议收藏中获取到的数据，需要本地添加一个 collect = 1
+        {
+            model.collect = 1;
+        }
+        
         NSMutableArray *tempMembers = [NSMutableArray arrayWithCapacity:0];
         for (NSDictionary *infoDic in model.members)
         {
@@ -76,8 +81,6 @@
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        
-        //        [M8MeetListCache addMeetListToLocal:self.dataArray];
         
         [self reloadData];
     });

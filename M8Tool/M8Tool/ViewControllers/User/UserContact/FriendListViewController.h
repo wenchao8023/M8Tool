@@ -10,4 +10,6 @@
 
 @interface FriendListViewController : BaseViewController
 
+@property (nonatomic, assign) ContactType contactType;
+
 @end

@@ -79,7 +79,7 @@
     self.contentView.y = originY;
     self.contentView.height = self.contentView.height - originY + kDefaultNaviHeight;
     
-    UsrContactView *contactView = [[UsrContactView alloc] initWithFrame:self.contentView.bounds style:UITableViewStyleGrouped];
+    UsrContactView *contactView = [[UsrContactView alloc] initWithFrame:self.contentView.bounds style:UITableViewStyleGrouped contactType:self.contactType];
     [self.contentView addSubview:(_contactView = contactView)];
 }
 
@@ -103,6 +103,9 @@
             break;
         case ContactType_sel:
             return @"选择参会人员";
+            break;
+        case ContactType_invite:
+            return @"邀请成员参会";
             break;
         default:
             return @"通讯录";

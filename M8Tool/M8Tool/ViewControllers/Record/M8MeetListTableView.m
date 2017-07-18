@@ -46,6 +46,8 @@
         [self.mj_footer endRefreshing];
         
         [self loadNetData];
+        
+        [WCNotificationCenter addObserver:self selector:@selector(meetCollectStatuChanged:) name:kMeetCollcet_Notification object:nil];
     }
     return self;
 }
@@ -88,6 +90,40 @@
     [self didSelectRowAtIndexPath:indexPath];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
+
+// 接受收藏状态的变化，并刷新对应 cell
+- (void)meetCollectStatuChanged:(NSNotification *)notify
+{
+    // if for-in(self.dataArray) directly than crash with " NSGenericException', reason: '*** Collection <__NSArrayM: 0x170246b70> was mutated while being enumerated "
+    M8MeetListModel *model = (M8MeetListModel *)notify.object;
+    
+    NSMutableArray *tempArr = [self.dataArray mutableCopy];
+    
+    for (NSInteger row = 0; row < tempArr.count; row++)
+    {
+        M8MeetListModel *listModel = tempArr[row];
+        if ([model isEqual:listModel])
+        {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+            [self.dataArray replaceObjectAtIndex:row withObject:model];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+
+                [self reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            });
+            
+            break;
+        }
+    }
+}
+
+
+- (void)dealloc
+{
+    [WCNotificationCenter removeObserver:self name:kMeetCollcet_Notification object:nil];
 }
 
 @end

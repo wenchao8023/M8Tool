@@ -17,9 +17,6 @@ static NSString *CollectionHeaderID = @"LatestMembersCollectionHeaderID";
 
 
 
-
-
-
 ///////////////////////////////////////////////////////////////
 @interface LatestCollectionHeader : UICollectionReusableView
 

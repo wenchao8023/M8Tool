@@ -19,6 +19,10 @@
 
 @interface UsrContactView : UITableView
 
+- (instancetype _Nullable )initWithFrame:(CGRect)frame style:(UITableViewStyle)style contactType:(ContactType)contactType;
+
+@property (nonatomic, assign) ContactType contactType;
+
 @property (nonatomic, weak) id _Nullable WCDelegate;
 
 /**

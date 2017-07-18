@@ -19,7 +19,9 @@ static NSString * const kMeetingButtonsCellID = @"MeetingButtonsCellID";
 
 
 @interface MeetingButtonsCollection ()<UICollectionViewDelegate, UICollectionViewDataSource>
-
+{
+    CGRect _myFrame;
+}
 @property (nonatomic, strong) NSArray *titleArray;
 @property (nonatomic, strong) NSArray *imageArray;
 
@@ -27,6 +29,27 @@ static NSString * const kMeetingButtonsCellID = @"MeetingButtonsCellID";
 
 
 @implementation MeetingButtonsCollection
+
+- (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout
+{
+    if (self = [super initWithFrame:frame collectionViewLayout:layout])
+    {
+        self.backgroundColor = WCClear;
+//        _myFrame = frame;
+        self.delegate               = self;
+        self.dataSource             = self;
+        self.scrollEnabled          = NO;
+        self.delaysContentTouches   = NO;   // 此时当点击的时候会立刻调用点击事件的begin方法，率先变成高亮状态。
+        
+        [self registerNib:[UINib nibWithNibName:NSStringFromClass([MeetingButtonsCell class]) bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:kMeetingButtonsCellID];
+    }
+    return self;
+}
+
+//- (void)drawRect:(CGRect)rect
+//{
+//    self.frame = _myFrame;
+//}
 
 - (NSArray *)titleArray {
     if (!_titleArray) {
@@ -48,22 +71,22 @@ static NSString * const kMeetingButtonsCellID = @"MeetingButtonsCellID";
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    WCCollectionViewHorizontalLayout *layout = [[WCCollectionViewHorizontalLayout alloc] initWithRowCount:2 itemCountPerRow:4];
-    layout.itemSize = CGSizeMake(SCREEN_WIDTH / 4, SCREEN_WIDTH / 4);
-    layout.scrollDirection          = UICollectionViewScrollDirectionHorizontal;
-    layout.minimumLineSpacing       = 0;
-    layout.headerReferenceSize      = CGSizeMake(0, 0);
-    layout.minimumInteritemSpacing  = 0;
-    
-    
-    self.collectionViewLayout   = layout;
-    self.delegate               = self;
-    self.dataSource             = self;
-    self.scrollEnabled          = NO;
-    self.delaysContentTouches   = NO;   // 此时当点击的时候会立刻调用点击事件的begin方法，率先变成高亮状态。
-    
-    
-    [self registerNib:[UINib nibWithNibName:NSStringFromClass([MeetingButtonsCell class]) bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:kMeetingButtonsCellID];
+//    WCCollectionViewHorizontalLayout *layout = [[WCCollectionViewHorizontalLayout alloc] initWithRowCount:2 itemCountPerRow:4];
+//    layout.itemSize = CGSizeMake(SCREEN_WIDTH / 4, SCREEN_WIDTH / 4);
+//    layout.scrollDirection          = UICollectionViewScrollDirectionHorizontal;
+//    layout.minimumLineSpacing       = 0;
+//    layout.headerReferenceSize      = CGSizeMake(0, 0);
+//    layout.minimumInteritemSpacing  = 0;
+//    
+//    
+//    self.collectionViewLayout   = layout;
+//    self.delegate               = self;
+//    self.dataSource             = self;
+//    self.scrollEnabled          = NO;
+//    self.delaysContentTouches   = NO;   // 此时当点击的时候会立刻调用点击事件的begin方法，率先变成高亮状态。
+//    
+//    
+//    [self registerNib:[UINib nibWithNibName:NSStringFromClass([MeetingButtonsCell class]) bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:kMeetingButtonsCellID];
 }
 
 

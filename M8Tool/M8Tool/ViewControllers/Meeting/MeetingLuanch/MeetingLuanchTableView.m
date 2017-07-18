@@ -7,241 +7,20 @@
 //
 
 #import "MeetingLuanchTableView.h"
-#import "MeetingMembersCollection.h"
-#import "LatestMembersCollection.h"
+#import "M8LuanchTableViewHeader.h"
+#import "M8LuanchTableViewFooter.h"
 #import "MeetingLuanchCell.h"
 
 
-#define kItemWidth (self.width - 60) / 5
-#define kSectionHeight 40
 
-
-
-
-///////////////////直播类型的时候--标题图片//////////////////////
-#pragma mark - header image in live_type
-@interface TBheaderView : UIImageView
-
-@end
-
-
-@implementation TBheaderView
-- (instancetype)initWithFrame:(CGRect)frame image:(NSString *)image {
-    if (self = [super initWithFrame:frame]) {
-        self.image = [UIImage imageNamed:image];
-    }
-    return self;
-}
-@end
-///////////////////////////////////////////////////
-
-
-
-
-
-
-
-/*****************设置 UICollectionViewFlowLayout *************************/
-#pragma mark - CollectionView >>>>>>>>>>>>>>  flowLayout
-@interface MyFlowLayout : UICollectionViewFlowLayout
-
-
-@end
-
-@implementation MyFlowLayout
-
-- (instancetype)initWithHeaderSize:(CGSize)headerSize itemSize:(CGSize)itemSize
-{
-    if (self = [super init])
-    {
-        if (IOS_SYSTEM_VERSION >= 9.0)
-        {
-            self.sectionHeadersPinToVisibleBounds = YES;
-        }
-        
-        self.minimumLineSpacing = 10;
-        self.minimumInteritemSpacing = 10;
-        self.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
-        self.headerReferenceSize = headerSize;
-        self.itemSize = itemSize;
-        self.scrollDirection = UICollectionViewScrollDirectionVertical;
-    }
-    return self;
-}
-@end
-/**************************************************************************/
-
-
-
-///////////////////tableView 的 tableFooterView///////////////////////////
-#pragma mark - tableView >>>>>>>>>>> footerView: LatestMembersCollection + MeetingMembersCollection
-
-@protocol TBFooterViewDelegate <NSObject>
-
-- (void)TBFooterViewCurrentMembers:(NSArray *)currentMembers;
-
-@end
-
-
-@interface TBFooterView : UIView<MeetingMembersCollectionDelegate, LatestMembersCollectionDelegate>
-
-@property (nonatomic, strong) LatestMembersCollection   *latestCollection;
-@property (nonatomic, strong) MeetingMembersCollection  *membersCollection;
-
-@property (nonatomic, weak) id WCDelegate;
-
-@end
-
-
-@implementation TBFooterView
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        
-        [self membersCollection];
-        self.membersCollection.WCDelegate   = self;
-        
-        [self latestCollection];
-        self.latestCollection.WCDelegate    = self;
-        
-        
-    }
-    return self;
-}
-
-- (MeetingMembersCollection *)membersCollection {
-    if (!_membersCollection) {
-        CGRect membersFrame = self.bounds;
-        membersFrame.size.height = kSectionHeight + kItemWidth;
-        MeetingMembersCollection *membersCollection = [[MeetingMembersCollection alloc] initWithFrame:membersFrame
-                                                                                 collectionViewLayout:[[MyFlowLayout alloc] initWithHeaderSize:CGSizeMake(self.width, kSectionHeight)
-                                                                                                                                      itemSize:CGSizeMake(kItemWidth, kItemWidth)]];
-        [self addSubview:(_membersCollection = membersCollection)];
-    }
-    return _membersCollection;
-}
-
-- (LatestMembersCollection *)latestCollection {
-    if (!_latestCollection) {
-        CGRect latestFrame = self.bounds;
-        latestFrame.origin.y    = CGRectGetMaxY(self.membersCollection.frame);
-        latestFrame.size.height -= CGRectGetMaxY(self.membersCollection.frame);
-        LatestMembersCollection *latestCollection = [[LatestMembersCollection alloc] initWithFrame:latestFrame
-                                                                                 collectionViewLayout:[[MyFlowLayout alloc] initWithHeaderSize:CGSizeMake(self.width, kSectionHeight)
-                                                                                                                                      itemSize:CGSizeMake(kItemWidth, kItemWidth)]];
-        [self addSubview:(_latestCollection = latestCollection)];
-    }
-    return _latestCollection;
-}
-
-/**
- *  设置预约会议视图
- *  隐藏最近联系人
- */
-- (void)setOrderView {
-    self.latestCollection.hidden = YES;
-}
-
-
-#pragma mark - delegates
-#pragma mark -- MeetingMembersCollectionDelegate
-- (void)MeetingMembersCollectionDeletedMember:(NSString *)delNameStr
-{
-    [self.latestCollection syncDataMembersArrayWithIdentifier:delNameStr];
-}
-
-- (void)MeetingMembersCollectionContentHeight:(CGFloat)contentHeight
-{
-    // 改变设置顺序，修复出现视图重叠现象
-    if (contentHeight < _membersCollection.height) {
-        
-        [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-            
-            [self.membersCollection setHeight:contentHeight];
-            
-        } completion:^(BOOL finished) {
-            if (finished) {
-                [self.latestCollection setY:contentHeight];
-                [self.latestCollection setHeight:self.height - contentHeight - kSectionHeight];
-            }
-        }];
-    }
-    else {
-        [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-            
-            [self.latestCollection setHeight:self.height - contentHeight - kSectionHeight];
-            [self.latestCollection setY:contentHeight];
-
-        } completion:^(BOOL finished) {
-            if (finished) {
-                [self.membersCollection setHeight:contentHeight];
-            }
-        }];
-    }
-    
-    [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-
-        [self.latestCollection setY:contentHeight];
-        [self.latestCollection setHeight:self.height - contentHeight - kSectionHeight];
-
-    } completion:nil];
-}
-
-
-/**
- 返回当前选中的成员给 tableView
-
- @param currenMembers 当前的成员
- */
-- (void)MeetingMembersCollectionCurrentMembers:(NSArray *)currenMembers
-{
-    [self.latestCollection syncCurrentNumbers:currenMembers.count];
-    
-    if ([self.WCDelegate respondsToSelector:@selector(TBFooterViewCurrentMembers:)])
-    {
-        NSMutableArray *uidArr = [NSMutableArray arrayWithCapacity:0];
-        
-        for (M8MemberInfo *info in currenMembers)
-        {
-            [uidArr addObject:info.uid];
-        }
-        
-        [self.WCDelegate TBFooterViewCurrentMembers:uidArr];
-    }
-}
-
-
-#pragma mark -- LatestMembersCollectionDelegate
-/**
- *  LatestMembersCollectionDelegate
- *
- *  @param memberInfo 点击最近联系人的信息
-                 {
-                     key : memberInfo,  value : M8MemberInfo;
-                     key : memberStatu, value : @"1"-表示选中 @"0"-表示反选
-                 }
- */
-- (void)LatestMembersCollectionDidSelectedMembers:(NSDictionary *)memberInfo
-{
-    WCLog(@"The Member %@'s statu is %@", [memberInfo objectForKey:@"memberInfo"], [memberInfo objectForKey:@"memberStatu"]);
-    [self.membersCollection syncDataMembersArrayWithDic:memberInfo];
-}
-@end
-///////////////////////////////////////////////////
-
-
-
-
-#pragma mark - main class
 @interface MeetingLuanchTableView()<UITableViewDelegate, UITableViewDataSource, ModifyViewDelegate, TBFooterViewDelegate>
-
 
 
 @property (nonatomic, strong) NSMutableArray *dataItemArray;
 @property (nonatomic, strong) NSMutableArray *dataContentArray;
 
-@property (nonatomic, strong) TBFooterView *tbFooterView;
-@property (nonatomic, strong) TBheaderView *tbheaderView;
+@property (nonatomic, strong) M8LuanchTableViewHeader *tbHeaderView;
+@property (nonatomic, strong) M8LuanchTableViewFooter *tbFooterView;
 
 @end
 
@@ -268,50 +47,60 @@
     return self;
 }
 
-- (TBFooterView *)tbFooterView {
-    if (!_tbFooterView) {
+- (M8LuanchTableViewFooter *)tbFooterView
+{
+    if (!_tbFooterView)
+    {
         CGRect footerFrame = self.bounds;
         footerFrame.size.height -= 89;
         
-        _tbFooterView = [[TBFooterView alloc] initWithFrame:footerFrame];
+        _tbFooterView = [[M8LuanchTableViewFooter alloc] initWithFrame:footerFrame];
         _tbFooterView.WCDelegate = self;
     }
     return _tbFooterView;
 }
 
-- (TBheaderView *)tbheaderView {
-    if (!_tbheaderView) {
+- (M8LuanchTableViewHeader *)tbHeaderView
+{
+    if (!_tbHeaderView)
+    {
         CGRect frame = self.bounds;
         frame.size.height /= 2;
-        _tbheaderView = [[TBheaderView alloc] initWithFrame:frame image:@"defaul_publishcover"];
+        _tbHeaderView = [[M8LuanchTableViewHeader alloc] initWithFrame:frame image:@"defaul_publishcover"];
     }
-    return _tbheaderView;
+    return _tbHeaderView;
 }
 
 
 
-- (NSMutableArray *)dataItemArray {
-    if (!_dataItemArray) {
+- (NSMutableArray *)dataItemArray
+{
+    if (!_dataItemArray)
+    {
         _dataItemArray = [NSMutableArray arrayWithCapacity:0];
         [_dataItemArray addObjectsFromArray:@[@"会议主题", @"剩余分钟数"]];
     }
     return _dataItemArray;
 }
 
-- (NSMutableArray *)dataContentArray {
-    if (!_dataContentArray) {
+- (NSMutableArray *)dataContentArray
+{
+    if (!_dataContentArray)
+    {
         _dataContentArray = [NSMutableArray arrayWithCapacity:0];
         [_dataContentArray addObjectsFromArray:@[@"木木的会议", @"600分钟"]];
     }
     return _dataContentArray;
 }
     
-- (void)reloadData {
+- (void)reloadData
+{
     [super reloadData];
     
     NSString *topic = [self.dataContentArray firstObject];
     
-    if ([self.WCDelegate respondsToSelector:@selector(luanchTableViewMeetingTopic:)]) {
+    if ([self.WCDelegate respondsToSelector:@selector(luanchTableViewMeetingTopic:)])
+    {
         [self.WCDelegate luanchTableViewMeetingTopic:topic];
     }
 }
@@ -319,7 +108,8 @@
 /**
  *  加载预约会议的数据
  */
-- (void)reloadContentData {
+- (void)reloadContentData
+{
     [self.dataItemArray removeAllObjects];
     [self.dataItemArray addObjectsFromArray:@[@"会议类型", @"会议主题", @"会议室预订",
                                               @"会议时间", @"预估时长", @"剩余分钟数"]];
@@ -332,29 +122,33 @@
 
 
 #pragma mark - setter
-- (void)setIsHiddenFooter:(BOOL)isHiddenFooter {
+- (void)setIsHiddenFooter:(BOOL)isHiddenFooter
+{
     _isHiddenFooter = isHiddenFooter;
     self.tableFooterView.hidden = isHiddenFooter;
     self.tableHeaderView.hidden = !isHiddenFooter;
     
-    if (isHiddenFooter) {
-        if ([self.WCDelegate respondsToSelector:@selector(luanchTableViewMeetingCoverImg:)]) {
-            [self.WCDelegate luanchTableViewMeetingCoverImg:self.tbheaderView.image];
-            self.tableHeaderView = [self tbheaderView];
+    if (isHiddenFooter)
+    {
+        if ([self.WCDelegate respondsToSelector:@selector(luanchTableViewMeetingCoverImg:)])
+        {
+            [self.WCDelegate luanchTableViewMeetingCoverImg:self.tbHeaderView.image];
+            self.tableHeaderView = [self tbHeaderView];
         }
     }
     
         
 }
 
-- (void)setMaxMembers:(NSInteger)MaxMembers {
+- (void)setMaxMembers:(NSInteger)MaxMembers
+{
     _MaxMembers = MaxMembers;
-    self.tbFooterView.membersCollection.totalNumbers = _MaxMembers;
-    self.tbFooterView.latestCollection.totalNumbers  = _MaxMembers;
     
-    if (_MaxMembers == 100) {   // 表示 预约会议
+    [self.tbFooterView setTotalNumbers:_MaxMembers];
+    
+    if (_MaxMembers == 100)
+    {   // 表示 预约会议
         [self reloadContentData];
-        [self.tbFooterView setOrderView];
     }
 }
 
@@ -363,13 +157,16 @@
 
 
 #pragma mark - UITableViewDelegate
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return self.dataItemArray.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     MeetingLuanchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MeetingLuanchCellID"];
-    if (!cell) {
+    if (!cell)
+    {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"MeetingLuanchCell" owner:self options:nil] firstObject];
     }
     [cell configWithItem:self.dataItemArray[indexPath.row]
@@ -378,23 +175,28 @@
     return cell;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
     if (self.isHiddenFooter)
         return [WCUIKitControl createViewWithFrame:CGRectZero BgColor:WCClear];
     else
         return [WCUIKitControl createViewWithFrame:CGRectZero BgColor:[UIColor colorWithRed:0.84 green:0.82 blue:0.79 alpha:1]];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
     return 0.1;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
     return 1;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0)
+    {
         ModifyViewController *modifyVC = [[ModifyViewController alloc] init];
         modifyVC.naviTitle      = self.dataItemArray[indexPath.row];
         modifyVC.originContent  = self.dataContentArray[indexPath.row];
@@ -406,7 +208,8 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-#pragma mark - TBFooterViewDelegate 
+#pragma mark - delegates
+#pragma mark -- TBFooterViewDelegate
 - (void)TBFooterViewCurrentMembers:(NSArray *)currentMembers
 {
     if ([self.WCDelegate respondsToSelector:@selector(luanchTableViewMeetingCurrentMembers:)])
@@ -416,11 +219,11 @@
 }
 
 
-#pragma mark - ModifyViewDelegate
-- (void)modifyViewMofifyInfo:(NSDictionary *)modifyInfo {
-    
-    if ([[[modifyInfo allKeys] firstObject] isEqualToString:kModifyText]) {
-        
+#pragma mark -- ModifyViewDelegate
+- (void)modifyViewMofifyInfo:(NSDictionary *)modifyInfo
+{
+    if ([[[modifyInfo allKeys] firstObject] isEqualToString:kModifyText])
+    {
         NSString *topic = [modifyInfo objectForKey:kModifyText];
         
         [self.dataContentArray replaceObjectAtIndex:0 withObject:topic];

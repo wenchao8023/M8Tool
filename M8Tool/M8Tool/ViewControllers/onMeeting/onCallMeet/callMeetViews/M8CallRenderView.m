@@ -21,8 +21,8 @@
 }
 
 @property (weak, nonatomic) IBOutlet UICollectionView *renderCollection;
-@property (weak, nonatomic) IBOutlet UIButton *inviteButton;
-@property (weak, nonatomic) IBOutlet UIButton *removeButton;
+//@property (weak, nonatomic) IBOutlet UIButton *inviteButton;
+//@property (weak, nonatomic) IBOutlet UIButton *removeButton;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *layoutHeight_render;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *layoutTop_render;
@@ -78,7 +78,7 @@
     self.frame = _myFrame;
     
     // reset collection
-    CGFloat itemWidth  = (SCREEN_WIDTH - 50 - 40) / 4;
+    CGFloat itemWidth  = (SCREEN_WIDTH - 50) / 4;
     CGFloat itemHeight = itemWidth * 4 / 3;
     
     _layoutHeight_render.constant = itemHeight;
@@ -209,21 +209,6 @@
     
 }
 
-- (IBAction)inviteAction:(id)sender
-{
-    BOOL ret = [M8UserDefault getPushMenuStatu];
-    if (ret)
-    {
-        [WCNotificationCenter postNotificationName:kHiddenMenuView_Notifycation object:nil];
-        return ;
-    }
-    [self callRenderActionInfoValue:@"inviteAction" key:kCallAction];
-}
-
-- (IBAction)removeAction:(id)sender
-{
-    [self callRenderActionInfoValue:@"removeAction" key:kCallAction];
-}
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {

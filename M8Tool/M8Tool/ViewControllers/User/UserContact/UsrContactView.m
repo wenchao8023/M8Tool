@@ -24,10 +24,12 @@ static const CGFloat kItemHeight = 60;
 
 @implementation UsrContactView
 
-- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style
+- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style contactType:(ContactType)contactType
 {
     if (self = [super initWithFrame:frame style:style])
     {
+        self.contactType = contactType;
+        
         self.delegate = self;
         self.dataSource = self;
         self.backgroundColor = WCClear;

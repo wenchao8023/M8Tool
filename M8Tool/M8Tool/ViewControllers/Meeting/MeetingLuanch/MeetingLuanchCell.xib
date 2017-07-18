@@ -25,9 +25,9 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="会议选项会议选项会议选项" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G8S-v7-02R">
-                        <rect key="frame" x="98" y="42" width="254" height="21"/>
+                        <rect key="frame" x="98" y="42" width="216" height="21"/>
                         <fontDescription key="fontDescription" name="DroidSansFallback" family="Droid Sans Fallback" pointSize="15"/>
-                        <color key="textColor" red="0.74893707036972046" green="0.74906712770462036" blue="0.74892884492874146" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="会议选项" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mE0-xC-FxP">
@@ -40,20 +40,37 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eqN-PA-kom">
+                        <rect key="frame" x="322" y="8" width="40" height="88.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="pag-Tc-cHI"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <state key="normal" title="已收藏">
+                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="onCollectMeetingAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ZnK-Mp-1dL"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="eqN-PA-kom" secondAttribute="bottom" constant="8" id="7xI-qX-Hid"/>
                     <constraint firstItem="mE0-xC-FxP" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="EHz-l4-U13"/>
+                    <constraint firstAttribute="trailing" secondItem="eqN-PA-kom" secondAttribute="trailing" constant="8" id="EJS-09-KCL"/>
+                    <constraint firstItem="eqN-PA-kom" firstAttribute="leading" secondItem="G8S-v7-02R" secondAttribute="trailing" constant="8" id="cBG-Sf-VBd"/>
                     <constraint firstItem="G8S-v7-02R" firstAttribute="leading" secondItem="mE0-xC-FxP" secondAttribute="trailing" id="cni-mf-fUh"/>
                     <constraint firstItem="G8S-v7-02R" firstAttribute="centerY" secondItem="mE0-xC-FxP" secondAttribute="centerY" id="e3B-no-xHS"/>
                     <constraint firstItem="mE0-xC-FxP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="eVz-Y3-iT8"/>
+                    <constraint firstItem="eqN-PA-kom" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="haK-gp-EYy"/>
                     <constraint firstItem="G8S-v7-02R" firstAttribute="height" secondItem="mE0-xC-FxP" secondAttribute="height" id="jt5-1q-bFQ"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="G8S-v7-02R" secondAttribute="trailing" constant="10" id="vFU-MH-oo5"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="MeetingContentLabel" destination="G8S-v7-02R" id="Wl0-nC-u0i"/>
                 <outlet property="MeetingItemLabel" destination="mE0-xC-FxP" id="aaE-kU-4y3"/>
+                <outlet property="meetingCollectBtn" destination="eqN-PA-kom" id="gEK-Lt-TsA"/>
             </connections>
             <point key="canvasLocation" x="59" y="84.5"/>
         </tableViewCell>

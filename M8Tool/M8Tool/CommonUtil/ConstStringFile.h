@@ -55,6 +55,8 @@ static NSString * _Nonnull const kCallValue_model           = @"kCallValue_model
 static NSString * _Nonnull const kHeaderAction              = @"kHeaderAction";
 static NSString * _Nonnull const kHeaderText                = @"kHeaderText";
 
+static NSString * _Nonnull const kMenuPushAction            = @"kMenuPushAction"; 
+
 
 #pragma mark - strings in live
 /// M8LiveDeviceView

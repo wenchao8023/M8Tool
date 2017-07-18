@@ -49,9 +49,10 @@
         FriendsListResponceData *respData = (FriendsListResponceData *)wreq.response.data;
         
         for (NSDictionary *dic in respData.InfoItem)
-        {
-            M8FriendInfo *info = [M8FriendInfo new];
-            [info setValuesForKeysWithDictionary:dic];
+        {   
+            M8MemberInfo *info = [M8MemberInfo new];
+            info.uid    = [dic objectForKey:@"Info_Account"];
+            info.nick   = [[[dic objectForKey:@"SnsProfileItem"] firstObject] objectForKey:@"Value"];
             [weakself.dataArray addObject:info];
         }
         
@@ -112,11 +113,10 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"UsrContactFriendCell" owner:nil options:nil] firstObject];
     }
     
-    if (self.dataArray
-        && self.dataArray.count)
+    if (indexPath.row < self.dataArray.count)
     {
-        M8FriendInfo *info = self.dataArray[indexPath.row];
-        [cell configWithFriendItem:info];
+        M8MemberInfo *info = self.dataArray[indexPath.row];
+        [cell configWithMemberItem:info];
     }
     
     return cell;
@@ -127,6 +127,39 @@
     return 60.f;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (self.contactType)
+    {
+        case ContactType_sel :
+        {
+            
+            
+        }
+            break;
+        case ContactType_tel :
+        {
+            M8MemberInfo *info = self.dataArray[indexPath.row];
+            [CommonUtil makePhone:info.uid];
+        }
+            break;
+        case ContactType_contact :
+        {
+            
+        }
+            break;
+        case ContactType_invite:
+        {
+            
+        }
+            break;
+
+        default:
+            break;
+    }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 
 

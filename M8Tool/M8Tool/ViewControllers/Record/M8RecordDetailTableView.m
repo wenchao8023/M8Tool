@@ -117,11 +117,88 @@
     if (!cell)
     {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"MeetingLuanchCell" owner:self options:nil] firstObject];
+        
+        WCWeakSelf(self);
+        cell.onCollectMeetBlock = ^{
+          
+            [weakself onNetCollectMeet];
+        };
+        
+        cell.onCancelMeetBlock = ^{
+          
+            [weakself onNetCancelCollectionMeet];
+        };
     }
     
-    [cell configWithItem:self.dataItemArray[indexPath.row]
-                 content:self.dataContentArray[indexPath.row]];
+    if (indexPath.row < self.dataContentArray.count)
+    {
+        if (indexPath.row == 0)
+        {
+            [cell configWithItem:self.dataItemArray[indexPath.row]
+                         content:self.dataContentArray[indexPath.row]
+                       isCollect:self.dataModel.collect];
+        }
+        else
+        {
+            [cell configWithItem:self.dataItemArray[indexPath.row]
+                         content:self.dataContentArray[indexPath.row]];
+        }
+    }
     
     return cell;
 }
+
+
+/**
+ 收藏会议
+ */
+- (void)onNetCollectMeet
+{
+    WCWeakSelf(self);
+    MeetCollectRequest *mcReq = [[MeetCollectRequest alloc] initWithHandler:^(BaseRequest *request) {
+        
+        weakself.dataModel.collect = 1;
+        [weakself reloadData];
+        [WCNotificationCenter postNotificationName:kMeetCollcet_Notification object:weakself.dataModel];
+        
+    } failHandler:^(BaseRequest *request) {
+        
+    }];
+    
+    mcReq.token = [AppDelegate sharedAppDelegate].token;
+    mcReq.uid   = [M8UserDefault getLoginId];
+    mcReq.mid   = [self.dataModel.mid intValue];
+    [[WebServiceEngine sharedEngine] AFAsynRequest:mcReq];
+}
+
+/**
+ 取消收藏会议
+ */
+- (void)onNetCancelCollectionMeet
+{
+    WCWeakSelf(self);
+    MeetCancelCRequest *mccReq = [[MeetCancelCRequest alloc] initWithHandler:^(BaseRequest *request) {
+        
+        weakself.dataModel.collect = 0;
+        [weakself reloadData];
+        [WCNotificationCenter postNotificationName:kMeetCollcet_Notification object:weakself.dataModel];
+        
+    } failHandler:^(BaseRequest *request) {
+        
+    }];
+    
+    mccReq.token = [AppDelegate sharedAppDelegate].token;
+    mccReq.uid   = [M8UserDefault getLoginId];
+    mccReq.mid   = [self.dataModel.mid intValue];
+    [[WebServiceEngine sharedEngine] AFAsynRequest:mccReq];
+}
+
+
+- (void)dealloc
+{
+    [WCNotificationCenter removeObserver:self name:kMeetCollcet_Notification object:nil];
+}
+
+
+
 @end

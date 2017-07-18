@@ -12,10 +12,13 @@
 
 @interface MeetingLuanchCell : UITableViewCell
 
-- (void)configWithItem:(NSString *_Nonnull)item content:(NSString *_Nonnull)content;
+@property (nonatomic, copy, nullable) TCIVoidBlock onCollectMeetBlock;  //收藏会议
+@property (nonatomic, copy, nullable) TCIVoidBlock onCancelMeetBlock;   //取消收藏会议
 
-//- (void)configWithItem:(NSString *_Nullable)item content:(NSString *_Nullable)content imageName:(NSString *_Nullable)imageName;
+- (void)configWithItem:(NSString *_Nullable)item content:(NSString *_Nullable)content;
 
-- (void)configWithTageArray:(NSArray *_Nonnull)tagsArray;
+- (void)configWithItem:(NSString *_Nullable)item content:(NSString *_Nullable)content isCollect:(BOOL)isCollect;
+
+- (void)configWithTageArray:(NSArray *_Nullable)tagsArray;
 
 @end

@@ -16,6 +16,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *MeetingItemLabel;
 @property (weak, nonatomic) IBOutlet UILabel *MeetingContentLabel;
 
+@property (weak, nonatomic) IBOutlet UIButton *meetingCollectBtn;
+
+
 @end
 
 
@@ -26,7 +29,7 @@
 {
     self.MeetingItemLabel.hidden    = YES;
     self.MeetingContentLabel.hidden = YES;
-//    self.MeetingIconImage.hidden    = YES;
+    self.meetingCollectBtn.hidden   = YES;
     
     UILabel *topLineLabel = [WCUIKitControl createLabelWithFrame:CGRectMake(0, 0, self.width, 0.6) BgColor:WCDarkGray];
     [self.contentView addSubview:topLineLabel];
@@ -41,26 +44,44 @@
     [self.contentView addSubview:tagsLabel];
 }
 
-
-- (void)configWithItem:(NSString *)item content:(NSString *)content
+//配置会议详情中的第一个item 判断是否收藏
+- (void)configWithItem:(NSString *)item content:(NSString *)content isCollect:(BOOL)isCollect
 {
-    self.MeetingItemLabel.text = item;
-    self.MeetingContentLabel.text = content;
-//    self.MeetingContentLabel.textAlignment = 0;
-//    [self configWithItem:item content:content imageName:nil];
+    [self configWithItem:item content:content];
+    
+    self.meetingCollectBtn.hidden = NO;
+    [self.meetingCollectBtn setTitle:(isCollect ? @"已收藏" : @"收藏") forState:UIControlStateNormal];
+    WCViewBorder_Radius_Width_Color(self.meetingCollectBtn, 2, 1, WCGray);
 }
 
 
-//- (void)configWithItem:(NSString *)item content:(NSString *)content imageName:(NSString *)imageName
-//{
-//    self.MeetingItemLabel.text = item;
-//    self.MeetingContentLabel.text = content;
-//    if (imageName &&
-//        imageName.length)
-//        self.MeetingIconImage.image = [UIImage imageNamed:imageName];
-//    else
-//        self.MeetingIconImage.hidden = YES;
-//}
+- (void)configWithItem:(NSString *)item content:(NSString *)content
+{
+    self.meetingCollectBtn.hidden = YES;
+    
+    self.MeetingItemLabel.text = item;
+    self.MeetingContentLabel.text = content;
+}
+
+
+- (IBAction)onCollectMeetingAction:(id)sender
+{
+    if ([self.meetingCollectBtn.titleLabel.text isEqualToString:@"收藏"])
+    {
+        if (self.onCollectMeetBlock)
+        {
+            self.onCollectMeetBlock();
+        }
+    }
+    
+    if ([self.meetingCollectBtn.titleLabel.text isEqualToString:@"已收藏"])
+    {
+        if (self.onCancelMeetBlock)
+        {
+            self.onCancelMeetBlock();
+        }
+    }
+}
 
 
 

@@ -90,10 +90,6 @@
     if (!_dataContentArray)
     {
         NSMutableArray *dataContentArray = [NSMutableArray arrayWithCapacity:0];
-//        [dataContentArray addObject:_dataModel.recordTopic];
-//        [dataContentArray addObject:_dataModel.recordLuancher];
-//        [dataContentArray addObject:_dataModel.recordTime];
-//        [dataContentArray addObject:[NSString stringWithFormat:@"%u人", _dataModel.recordMembers.count]];
         _dataContentArray = dataContentArray;
         
         [self reloadData];

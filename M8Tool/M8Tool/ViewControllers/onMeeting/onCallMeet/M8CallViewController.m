@@ -12,6 +12,8 @@
 #import "M8CallViewController+CallListener.h"
 #import "M8CallViewController+IMListener.h"
 
+#import "M8InviteModelManger.h"
+
 @interface M8CallViewController ()
 
 @end
@@ -83,9 +85,22 @@
         [self.call createRenderViewIn:self.renderView];
         self.renderView.call = self.call;
         
+        // 配置 callTip
+        NSString *tipStr = [NSString stringWithFormat:@"%@,%@", kGetStringFMInt(self.curMid), self.liveItem.info.title];
+        
+        //在发起 call 的时候，配置成员信息，通过 custom 传递给接收端
+        M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance]; //这时已经有完整成员信息
+        
+        NSMutableArray *nickArr = [NSMutableArray arrayWithCapacity:0];
+        for (M8MemberInfo *info in modelManger.inviteMemberArray)
+        {
+            [nickArr addObject:info.nick];
+        }
+        //配置 custom
+        NSString *nickStr = [nickArr componentsJoinedByString:@","];
         
         WCWeakSelf(self);
-        [_call makeCall:kGetStringFMInt(self.curMid) custom:self.liveItem.info.title result:^(TILCallError *err) {
+        [_call makeCall:tipStr custom:nickStr result:^(TILCallError *err) {
             
             if(err){
                 [weakself addTextToView:[NSString stringWithFormat:@"呼叫失败:%@-%d-%@",err.domain,err.code,err.errMsg]];
@@ -96,7 +111,7 @@
                 
                 [[ILiveRoomManager getInstance] setBeauty:2];
                 [[ILiveRoomManager getInstance] setWhite:2];
-
+                
                 [weakself.headerView configHeaderView:self.liveItem];
                 
                 //开始推流
@@ -104,6 +119,25 @@
             }
         }];
         
+//        WCWeakSelf(self);
+//        [_call makeCall:kGetStringFMInt(self.curMid) custom:self.liveItem.info.title result:^(TILCallError *err) {
+//            
+//            if(err){
+//                [weakself addTextToView:[NSString stringWithFormat:@"呼叫失败:%@-%d-%@",err.domain,err.code,err.errMsg]];
+//                [weakself selfDismiss];
+//            }
+//            else{
+//                [weakself addTextToView:@"呼叫成功"];
+//                
+//                [[ILiveRoomManager getInstance] setBeauty:2];
+//                [[ILiveRoomManager getInstance] setWhite:2];
+//
+//                [weakself.headerView configHeaderView:self.liveItem];
+//                
+//                //开始推流
+//                [self onLivePushStart];
+//            }
+//        }];
     }];
 }
 
@@ -274,9 +308,10 @@
     if (!_menuView)
     {
         M8MenuPushView *menuView = [[M8MenuPushView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, kBottomHeight)
-                                                               itemCount:self.liveItem.callType == TILCALL_TYPE_VIDEO ? 4 : 2
+                                                               itemCount:self.liveItem.callType == TILCALL_TYPE_VIDEO ? 5 : 3
                                                                 meetType:M8MeetTypeCall
                                     ];
+        menuView.WCDelegate = self;
         [self.view addSubview:menuView];
         [self.view bringSubviewToFront:menuView];
         _menuView = menuView;

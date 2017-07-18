@@ -43,11 +43,18 @@
     //通话发起人+人数
     if ([model.mainuser isEqualToString:[M8UserDefault getLoginId]])
     {
-        self.luancherLaber.text = [NSString stringWithFormat:@"我(%u人)", model.members.count];
+        self.luancherLaber.text = [NSString stringWithFormat:@"我(%lu人)", model.members.count];
     }
     else
     {
-        self.luancherLaber.text = [NSString stringWithFormat:@"%@(%u人)", model.mainuser, model.members.count];
+        for (M8MeetMemberInfo *info  in model.members)
+        {
+            if ([info.user isEqualToString:model.mainuser])
+            {
+                self.luancherLaber.text = [NSString stringWithFormat:@"%@(%lu人)", info.nick, model.members.count];
+                break;
+            }
+        }
     }
     
     //通话时间
@@ -59,18 +66,17 @@
     {
         if ([info isEqual:[model.members lastObject]])
         {
-            [membersStr appendString:[NSString stringWithFormat:@"%@", info.user]];
+            [membersStr appendString:[NSString stringWithFormat:@"%@", info.nick]];
         }
         else
         {
-            [membersStr appendString:[NSString stringWithFormat:@"%@,", info.user]];
+            [membersStr appendString:[NSString stringWithFormat:@"%@,", info.nick]];
         }
-        
     }
     self.membersLabel.text = membersStr;
     
     //是否有收藏
-    self.isCollectLabel.hidden = ![model.collect boolValue];
+    self.isCollectLabel.hidden = !model.collect;
     
 }
 

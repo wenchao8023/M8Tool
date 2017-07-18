@@ -106,6 +106,8 @@
     self.iconLabel.text = [memberInfo.nick getSimpleName];
     self.titleLabel.text = memberInfo.nick;
     self.subTitleLabel.text = memberInfo.uid;
+    
+    self.statuImg.hidden = YES; //默认会设置成 隐藏，如果需要显示请自行设置
 }
 
 - (void)hiddeXibViews:(BOOL)hidden
@@ -124,25 +126,45 @@
  */
 - (void)configMemberItemEditing:(M8MemberInfo *)memberInfo
 {
-    self.statuImg.hidden = NO;
-    
     [self configWithMemberItem:memberInfo];
+    
+    self.statuImg.hidden = NO;
 }
 
 
+/**
+ 配置选人的状态
+ */
 - (void)configMemberItem:(id)memberInfo isSelected:(BOOL)selected
 {
+    [self configWithMemberItem:memberInfo];
+    
     self.statuImg.hidden = NO;
     if (selected)
     {
-        self.backgroundColor = WCGreen;
+        self.statuImg.backgroundColor = WCGreen;
         WCViewBorder_Radius(self.statuImg, 10);
     }
     else
     {
-        self.backgroundColor = WCClear;
-        WCViewBorder_Width_Color(self.statuImg, 2, WCGreen);
+        self.statuImg.backgroundColor = WCClear; 
+        WCViewBorder_Radius_Width_Color(self.statuImg, 10, 2, WCGreen);
     }
+}
+
+/**
+ 配置管理者进入，- 不可反选样式
+ */
+- (void)configMemberitemUnableUnselect:(M8MemberInfo *)info
+{
+    [self configWithMemberItem:info];
+    
+    self.statuImg.hidden = NO;
+    
+    self.statuImg.backgroundColor = WCGray;
+    WCViewBorder_Radius(self.statuImg, 10);
+    
+    self.userInteractionEnabled = NO;
 }
 
 

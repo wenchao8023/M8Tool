@@ -41,7 +41,7 @@ typedef NS_ENUM(NSInteger, M8MeetType)
 
 @property (nonatomic, copy) NSString * _Nullable uid;
 @property (nonatomic, strong) ShowRoomInfo * _Nullable info;
-@property (nonatomic, strong, nullable) NSArray *members;   //通话中邀请的成员
+@property (nonatomic, strong, nullable) NSArray *members;  //通话中邀请的成员
 @property (nonatomic, assign) TILCallType callType; //通话模式（音频、视频）
 
 

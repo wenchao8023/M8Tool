@@ -20,6 +20,7 @@
     [self setMyValue:self.statu key:@"statu" inDic:dic];
     [self setMyValue:self.entertime key:@"entertime" inDic:dic];
     [self setMyValue:self.exittime key:@"exittime" inDic:dic];
+    [self setMyValue:self.nick key:@"nick" inDic:dic];
 
     return (NSDictionary *)dic;
 }
@@ -57,7 +58,7 @@
     [self setMyValue:self.type key:@"type" inDic:dic];
     [self setMyValue:self.starttime key:@"starttime" inDic:dic];
     [self setMyValue:self.endtime key:@"endtime" inDic:dic];
-    [self setMyValue:self.collect key:@"collect" inDic:dic];
+    [self setMyValue:@(self.collect) key:@"collect" inDic:dic];
     
     NSMutableArray *memArr = [NSMutableArray arrayWithCapacity:0];
     for (M8MeetMemberInfo *info in self.members)

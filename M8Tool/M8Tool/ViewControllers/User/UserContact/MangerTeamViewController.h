@@ -8,6 +8,7 @@
 
 #import "BaseViewController.h"
 
+#import "M8InviteModelManger.h"
 
 typedef NS_ENUM(NSInteger, MangerTeamType)
 {
@@ -18,7 +19,7 @@ typedef NS_ENUM(NSInteger, MangerTeamType)
 
 @interface MangerTeamViewController : BaseViewController
 
-- (instancetype _Nullable )initWithType:(MangerTeamType)type isManager:(BOOL)isManager;
+- (instancetype _Nullable )initWithType:(MangerTeamType)type isManager:(BOOL)isManager contactType:(ContactType)contactType;
 
 /**
  进入视图类型

@@ -10,6 +10,17 @@
 
 @implementation CommonUtil
 
++ (void)makePhone:(NSString *)phoneStr
+{
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+    [webView loadRequest:
+     [NSURLRequest requestWithURL:
+      [NSURL URLWithString:
+       [NSString stringWithFormat:@"tel://%@", phoneStr]
+       ]]];
+}
+
+
 +(NSString *)getIconLabelStr:(NSString *)str {
     
     if (str.length <= 2) {

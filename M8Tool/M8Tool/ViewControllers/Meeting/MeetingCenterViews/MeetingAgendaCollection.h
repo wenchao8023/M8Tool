@@ -21,6 +21,6 @@
 
 @interface MeetingAgendaCollection : UICollectionView
 
-@property (nonatomic, weak) id agendaDelegate;
+@property (nonatomic, weak) id<AgendaCollectionDelegate> agendaDelegate;
 
 @end

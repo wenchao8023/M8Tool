@@ -38,17 +38,6 @@
     
     TIMManager *manager = [[ILiveSDK getInstance] getTIMManager];
     
-    //设置APNS配置
-    TIMAPNSConfig *APNSConfig = [TIMAPNSConfig new];
-    APNSConfig.openPush = 1;
-    [manager setAPNS:APNSConfig succ:^{
-        
-        WCLog(@"设置APNS成功");
-    } fail:^(int code, NSString *msg) {
-        
-        WCLog(@"%@", [NSString stringWithFormat:@"设置APNS失败, \n错误码 : %d, \n错误信息 : %@", code, msg]);
-    }];
-    
     // 保存用户信息到本地
     [M8UserDefault setLoginId:identifier];
     [M8UserDefault setLoginPwd:password];

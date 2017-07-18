@@ -45,4 +45,8 @@
  */
 - (void)configMemberItem:(id _Nullable)memberInfo isSelected:(BOOL)selected;
 
+/**
+ 配置管理者进入，- 不可反选样式
+ */
+- (void)configMemberitemUnableUnselect:(id _Nullable)info;
 @end

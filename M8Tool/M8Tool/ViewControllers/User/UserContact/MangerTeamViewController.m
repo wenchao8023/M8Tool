@@ -26,12 +26,13 @@ static CGFloat kItemHeight = 60.f;
 @implementation MangerTeamViewController
 
 
-- (instancetype)initWithType:(MangerTeamType)type isManager:(BOOL)isManager
+- (instancetype)initWithType:(MangerTeamType)type isManager:(BOOL)isManager  contactType:(ContactType)contactType
 {
     if (self = [super init])
     {
         self.teamType = type;
         self.isManger = isManager;
+        self.contactType = contactType;
     }
     return self;
 }
@@ -115,14 +116,56 @@ static CGFloat kItemHeight = 60.f;
                                                             Target:self
                                                             Action:@selector(onShareAction)
                                                              Title:@"分享"];
-    [shareButton setAttributedTitle:[CommonUtil customAttString:shareButton.titleLabel.text
-                                                       fontSize:kAppMiddleFontSize
-                                                      textColor:WCWhite
-                                                      charSpace:kAppKern_2]
-                            forState:UIControlStateNormal];
+//    [shareButton setAttributedTitle:[CommonUtil customAttString:shareButton.titleLabel.text
+//                                                       fontSize:kAppMiddleFontSize
+//                                                      textColor:WCWhite
+//                                                      charSpace:kAppKern_2]
+//                            forState:UIControlStateNormal];
     [shareButton setBorder_right_color:WCWhite width:1];
     [shareButton setBackgroundColor:WCButtonColor];
     [self.contentView addSubview:(self.shareButton = shareButton)];
+    
+    NSString *buttonStr = nil;
+    BOOL buttonEnable = NO;
+    
+    switch (self.contactType)
+    {
+        case ContactType_sel:       //选人
+        {
+            buttonStr = @"选择";
+        }
+            break;
+        case ContactType_tel:       //电话
+        {
+            buttonStr = @"添加";
+        }
+            break;
+        case ContactType_contact:   //通讯录
+        {
+            buttonStr = @"添加";
+            if (self.isManger)
+            {
+                if (self.teamType == MangerTeamType_Company)
+                {
+                    buttonStr = @"添加部门";
+                }
+                if (self.teamType == MangerTeamType_Partment)
+                {
+                    buttonStr = @"添加成员";
+                }
+                buttonEnable = YES;
+            }
+        }
+            break;
+        case ContactType_invite:    //邀请成员
+        {
+            buttonStr = @"邀请";
+        }
+            break;
+        default:
+            break;
+    }
+
     
     // 添加按钮
     UIButton *addButton = [WCUIKitControl createButtonWithFrame:CGRectMake(self.contentView.width / 2,
@@ -131,20 +174,19 @@ static CGFloat kItemHeight = 60.f;
                                                                              kDefaultCellHeight)
                                                            Target:self
                                                            Action:@selector(onAddAction)
-                                                            Title:@"添加"];
+                                                            Title:buttonStr];
     [addButton setAttributedTitle:[CommonUtil customAttString:addButton.titleLabel.text
                                                        fontSize:kAppMiddleFontSize
                                                       textColor:WCWhite
                                                       charSpace:kAppKern_2]
                            forState:UIControlStateNormal];
+    addButton.enabled = buttonEnable;
+    [addButton setTitleColor:WCGray forState:UIControlStateDisabled];
+    [addButton setTitleColor:WCWhite forState:UIControlStateNormal];
     [addButton setBackgroundColor:WCButtonColor];
     [self.contentView addSubview:(self.addButton = addButton)];
     
-    if (!self.isManger ||
-        self.contactType == ContactType_tel)
-    {
-        self.addButton.enabled = NO;
-    }
+    
 }
 
 
@@ -180,7 +222,7 @@ static CGFloat kItemHeight = 60.f;
         headView.tag = 110 + section;
         [headView setBackgroundColor:WCWhite];
         
-        if (self.sectionArray.count)
+        if (section < self.sectionArray.count)
         {
             UILabel *partLabel = [WCUIKitControl createLabelWithFrame:CGRectMake(10, 10, self.view.width - 100, 40) Text:self.sectionArray[section]];
             [headView addSubview:partLabel];
@@ -190,13 +232,14 @@ static CGFloat kItemHeight = 60.f;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onHeaderViewAction:)];
         [headView addGestureRecognizer:tap];
         
-        if (self.isManger)
+        if (self.isManger &&
+            self.contactType == ContactType_contact)
         {
             // 添加成员按钮
             UIButton *addMemButton = [WCUIKitControl createButtonWithFrame:CGRectMake(self.tableView.width - 80, 10, 70, 40)
                                                                  Target:self
                                                                  Action:@selector(onAddMemberAction)
-                                                                  Title:@"添加成员"
+                                                                  Title:@"+成员"
                                    ];
             addMemButton.titleLabel.font = [UIFont systemFontOfSize:kAppMiddleFontSize];
             [addMemButton setTitleColor:WCBlack forState:UIControlStateNormal];
@@ -225,7 +268,29 @@ static CGFloat kItemHeight = 60.f;
     if (indexPath.section   < self.itemArray.count &&
         indexPath.row       < [self.itemArray[indexPath.section] count])
     {
-        [friendCell configWithMemberItem:self.itemArray[indexPath.section][indexPath.row]];
+        if (self.contactType == ContactType_sel ||
+            self.contactType == ContactType_invite)
+        {
+            M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
+            
+            M8MemberInfo *info = self.itemArray[indexPath.section][indexPath.row];
+            if ([modelManger isExistInviteArray:info.uid])
+            {
+                [friendCell configMemberitemUnableUnselect:info];
+            }
+            else if ([modelManger isExistSelectArray:info.uid])
+            {
+                [friendCell configMemberItem:info isSelected:YES];
+            }
+            else
+            {
+                [friendCell configMemberItem:info isSelected:NO];
+            }
+        }
+        else
+        {
+            [friendCell configWithMemberItem:self.itemArray[indexPath.section][indexPath.row]];
+        }
     }
     
     return friendCell;

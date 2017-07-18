@@ -14,6 +14,7 @@
 {
     int _itemCount;
     NSArray *_btnImgsArray;
+    M8MeetType _meetType;
 }
 @end
 
@@ -25,23 +26,33 @@
 {
     if (self = [super initWithFrame:frame])
     {
+        self.backgroundColor = WCClear;
+        
+        _itemCount = itemCount;
+        _meetType  = meetType;
+        
         if (meetType == M8MeetTypeCall)
         {
-            _btnImgsArray = @[@"liveMic_on", @"liveReceiver_on", @"liveCamera_on", @"liveSwitchCamera"];
+            if (itemCount == 3)
+            {
+                _btnImgsArray = @[@"liveMic_on", @"liveReceiver_on", @"liveInvite"];
+            }
+            else if (itemCount == 5)
+            {
+                _btnImgsArray = @[@"liveMic_on", @"liveReceiver_on", @"liveCamera_on", @"liveSwitchCamera", @"liveInvite"];
+            }
         }
         else
         {
             //加载直播菜单中的按钮
         }
         
-        
         UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
         UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
         effectView.frame = self.bounds;
         [self addSubview:effectView];
         
-        self.backgroundColor = WCClear;
-        _itemCount = itemCount;
+        
         [self addItems];
     }
     return self;
@@ -71,31 +82,77 @@
 - (void)btnAction:(UIButton *)btn
 {
     NSInteger tag = btn.tag;
-    switch (tag) {
-        case 101:
+    if (_meetType == M8MeetTypeCall)
+    {
+        if (_itemCount == 3)
         {
-            [self onCloseMicAction:btn];
+            switch (tag) {
+                case 101:
+                {
+                    [self onCloseMicAction:btn];
+                }
+                    break;
+                case 102:
+                {
+                    [self onSwitchReceiverAction:btn];
+                }
+                    break;
+                case 103:
+                {
+                    [self onResponseToDelegate:@"onInviteAction"];
+                }
+                    break;
+                default:
+                    break;
+            }
         }
-            break;
-        case 102:
+        if (_itemCount == 5)
         {
-            [self onSwitchReceiverAction:btn];
+            switch (tag) {
+                case 101:
+                {
+                    [self onCloseMicAction:btn];
+                }
+                    break;
+                case 102:
+                {
+                    [self onSwitchReceiverAction:btn];
+                }
+                    break;
+                case 103:
+                {
+                    [self onCloseCameraAction:btn];
+                }
+                    break;
+                case 104:
+                {
+                    [self onSwitchCameraAction:btn];
+                }
+                    break;
+                case 105:
+                {
+                    [self onResponseToDelegate:@"onInviteAction"];
+                }
+                    break;
+                default:
+                    break;
+            }
         }
-            break;
-        case 103:
-        {
-            [self onCloseCameraAction:btn];
-        }
-            break;
-        case 104:
-        {
-            [self onSwitchCameraAction:btn];
-        }
-            break;
-        default:
-            break;
     }
 }
+
+
+- (void)onResponseToDelegate:(id)actionStr
+{
+    if ([self.WCDelegate respondsToSelector:@selector(MenuPushActionInfo:)])
+    {
+        [self.WCDelegate MenuPushActionInfo:@{kMenuPushAction : actionStr}];
+    }
+}
+
+
+
+
 - (void)onCloseMicAction:(UIButton *)btn
 {
     ILiveRoomManager *manager = [ILiveRoomManager getInstance];

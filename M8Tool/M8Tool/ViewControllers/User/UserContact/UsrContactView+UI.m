@@ -31,7 +31,9 @@
         M8CompanyInfo *cInfo = self.sectionArray[indexPath.section];
         BOOL isManger = [cInfo.uid isEqualToString:[M8UserDefault getLoginId]];
         
-        MangerTeamViewController *mangerVC = [[MangerTeamViewController alloc] initWithType:MangerTeamType_Partment isManager:isManger];
+        MangerTeamViewController *mangerVC = [[MangerTeamViewController alloc] initWithType:MangerTeamType_Partment
+                                                                                  isManager:isManger
+                                                                                contactType:self.contactType];
         mangerVC.isExitLeftItem = YES;
         mangerVC.dInfo = self.dataArray[indexPath.section][indexPath.row];
         [[AppDelegate sharedAppDelegate] pushViewController:mangerVC];
@@ -45,8 +47,9 @@
  */
 - (void)onFriendListAction
 {
-    FriendListViewController *friendVC = [[FriendListViewController alloc] init];
-    friendVC.isExitLeftItem = YES;
+    FriendListViewController *friendVC  = [[FriendListViewController alloc] init];
+    friendVC.isExitLeftItem             = YES;
+    friendVC.contactType                = self.contactType;
     [[AppDelegate sharedAppDelegate] pushViewController:friendVC];
 }
 
@@ -98,7 +101,9 @@
     if ([mangerBtn.titleLabel.text isEqualToString:@"管理"])
     {
         WCLog(@"管理公司");
-        MangerTeamViewController *mangerVC = [[MangerTeamViewController alloc] initWithType:MangerTeamType_Company isManager:YES];
+        MangerTeamViewController *mangerVC = [[MangerTeamViewController alloc] initWithType:MangerTeamType_Company
+                                                                                  isManager:YES
+                                                                                contactType:self.contactType];
         mangerVC.isExitLeftItem = YES;
         mangerVC.cInfo = self.sectionArray[section];
         [[AppDelegate sharedAppDelegate] pushViewController:mangerVC];
@@ -106,12 +111,13 @@
     else if ([mangerBtn.titleLabel.text isEqualToString:@"邀请"])
     {
         WCLog(@"邀请好友");
-        MangerTeamViewController *mangerVC = [[MangerTeamViewController alloc] initWithType:MangerTeamType_Company isManager:NO];
+        MangerTeamViewController *mangerVC = [[MangerTeamViewController alloc] initWithType:MangerTeamType_Company
+                                                                                  isManager:NO
+                                                                                contactType:self.contactType];
         mangerVC.isExitLeftItem = YES;
         mangerVC.cInfo = self.sectionArray[section];
         [[AppDelegate sharedAppDelegate] pushViewController:mangerVC];
     }
-    
 }
 
 /**

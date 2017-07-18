@@ -107,18 +107,45 @@
     if ([infoKey isEqualToString:kCallAction])
     {
         NSString *infoValue = [actionInfo objectForKey:infoKey];
-        if ([infoValue isEqualToString:@"inviteAction"])
-        {   // 邀请更多成员
-            UserContactViewController *contactVC = [[UserContactViewController alloc] init];
-            contactVC.isExitLeftItem = YES;
-            contactVC.contactType = ContactType_sel;
-            [[AppDelegate sharedAppDelegate] pushViewController:contactVC];
-        }
         if ([infoValue isEqualToString:@"touchesBegan"])
         {
             [self onHiddeMenuView];
         }
     }
+}
+
+
+#pragma mark -- MenuPushDelegate
+- (void)MenuPushActionInfo:(NSDictionary *)info
+{
+    [self addTextToView:[info allValues][0]];
+    
+    NSString *infoKey = [[info allKeys] firstObject];
+    
+    if ([infoKey isEqualToString:kMenuPushAction])
+    {
+        NSString *infoValue = [info objectForKey:infoKey];
+        if ([infoValue isEqualToString:@"onInviteAction"])
+        {
+            [self onInviteAction];// 邀请更多成员
+        }
+    }
+}
+
+
+
+
+/**
+ 在会议中推出联系人界面的时候需要将会议界面换成小视图
+ */
+- (void)onInviteAction
+{
+    [self showFloatView];
+    
+    UserContactViewController *contactVC = [[UserContactViewController alloc] init];
+    contactVC.isExitLeftItem = YES;
+    contactVC.contactType = ContactType_sel;
+    [[AppDelegate sharedAppDelegate] pushViewController:contactVC];
 }
 
 

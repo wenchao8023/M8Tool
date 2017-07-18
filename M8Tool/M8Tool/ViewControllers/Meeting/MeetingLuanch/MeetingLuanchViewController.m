@@ -198,7 +198,6 @@
         }];
         
         callRoomReq.token = [AppDelegate sharedAppDelegate].token;
-//        [[WebServiceEngine sharedEngine] asyncRequest:callRoomReq];
         [[WebServiceEngine sharedEngine] AFAsynRequest:callRoomReq];
     });
 }
