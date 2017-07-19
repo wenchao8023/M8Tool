@@ -15,10 +15,12 @@
 
 + (instancetype _Nullable)shareInstance;
 
+
 /**
  记录发起call时邀请的成员，在选人的时候不能被反选
  */
 @property (nonatomic, strong, nullable) NSMutableArray *inviteMemberArray;
+
 
 /**
  记录选中的成员
@@ -34,8 +36,6 @@
 - (void)updateInviteMemberArray:(NSArray *_Nullable)currentArray;
 
 
-//- (void)addMemberWithUid:(NSString *_Nullable)uid;
-
 /**
  判断用户是否在初始数组中
 
@@ -43,6 +43,7 @@
  @return 存在数据
  */
 - (BOOL)isExistInviteArray:(NSString *_Nullable)uid;
+
 
 /**
  判断用户是否在选择的数组中
@@ -53,5 +54,29 @@
 - (BOOL)isExistSelectArray:(NSString *_Nullable)uid;
 
 
+
+/**
+ 点击 cell 进行选择和反选
+
+ @param member 成员
+ */
 - (void)onSelectAtMemberInfo:(M8MemberInfo *_Nullable)member;
+
+
+/**
+ 移除所有数组中的所有成员
+ */
+- (void)removeAllMembers;
+
+/**
+ 移除 inviteArray 中的所有成员
+ */
+- (void)removeInviteMembers;
+
+/**
+ 移除 selectArray 中的所有成员
+ */
+- (void)removeSelectMembers;
+
+
 @end

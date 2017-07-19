@@ -7,13 +7,80 @@
 //
 
 #import "MeetingLuanchTableView.h"
-#import "M8LuanchTableViewHeader.h"
-#import "M8LuanchTableViewFooter.h"
 #import "MeetingLuanchCell.h"
+#import "MeetingMembersCollection.h"
+#import "LatestMembersCollection.h"
 
 
 
-@interface MeetingLuanchTableView()<UITableViewDelegate, UITableViewDataSource, ModifyViewDelegate, TBFooterViewDelegate>
+
+#define kItemWidth (self.width - 60) / 5
+#define kSectionHeight 40
+
+/*****************设置 UICollectionViewFlowLayout *************************/
+#pragma mark - CollectionView >>>>>>>>>>>>>>  flowLayout
+@interface MyFlowLayout : UICollectionViewFlowLayout
+
+
+@end
+
+@implementation MyFlowLayout
+
+- (instancetype)initWithHeaderSize:(CGSize)headerSize itemSize:(CGSize)itemSize
+{
+    if (self = [super init])
+    {
+        if (IOS_SYSTEM_VERSION >= 9.0)
+        {
+            self.sectionHeadersPinToVisibleBounds = YES;
+        }
+        
+        self.minimumLineSpacing = 10;
+        self.minimumInteritemSpacing = 10;
+        self.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
+        self.headerReferenceSize = headerSize;
+        self.itemSize = itemSize;
+        self.scrollDirection = UICollectionViewScrollDirectionVertical;
+    }
+    return self;
+}
+@end
+/**************************************************************************/
+
+
+/********************* M8LuanchTableViewHeader ****************************/
+@interface M8LuanchTableViewHeader : UIImageView
+
+@end
+
+@implementation M8LuanchTableViewHeader
+
+- (instancetype)initWithFrame:(CGRect)frame image:(NSString *)image
+{
+    if (self = [super initWithFrame:frame])
+    {
+        self.image = [UIImage imageNamed:image];
+        self.userInteractionEnabled = YES;
+    }
+    return self;
+}
+
+@end
+/**************************************************************************/
+
+
+/********************* M8LuanchTableViewFooter ****************************/
+@interface M8LuanchTableViewFooter : UIView
+
+@end
+
+@implementation M8LuanchTableViewFooter
+
+@end
+/**************************************************************************/
+
+
+@interface MeetingLuanchTableView()<UITableViewDelegate, UITableViewDataSource, ModifyViewDelegate, MeetingMembersCollectionDelegate, LatestMembersCollectionDelegate>
 
 
 @property (nonatomic, strong) NSMutableArray *dataItemArray;
@@ -21,6 +88,9 @@
 
 @property (nonatomic, strong) M8LuanchTableViewHeader *tbHeaderView;
 @property (nonatomic, strong) M8LuanchTableViewFooter *tbFooterView;
+
+@property (nonatomic, strong) LatestMembersCollection   *latestCollection;
+@property (nonatomic, strong) MeetingMembersCollection  *membersCollection;
 
 @end
 
@@ -40,24 +110,14 @@
         self.dataSource = self;
         self.separatorStyle = UITableViewCellSeparatorStyleNone;
         
+        [self membersCollection];
+        [self latestCollection];
+        
         self.tableFooterView = self.tbFooterView;
         
         
     }
     return self;
-}
-
-- (M8LuanchTableViewFooter *)tbFooterView
-{
-    if (!_tbFooterView)
-    {
-        CGRect footerFrame = self.bounds;
-        footerFrame.size.height -= 89;
-        
-        _tbFooterView = [[M8LuanchTableViewFooter alloc] initWithFrame:footerFrame];
-        _tbFooterView.WCDelegate = self;
-    }
-    return _tbFooterView;
 }
 
 - (M8LuanchTableViewHeader *)tbHeaderView
@@ -69,6 +129,50 @@
         _tbHeaderView = [[M8LuanchTableViewHeader alloc] initWithFrame:frame image:@"defaul_publishcover"];
     }
     return _tbHeaderView;
+}
+
+- (M8LuanchTableViewFooter *)tbFooterView
+{
+    if (!_tbFooterView)
+    {
+        CGRect footerFrame = self.bounds;
+        footerFrame.size.height -= 89;
+        
+        _tbFooterView = [[M8LuanchTableViewFooter alloc] initWithFrame:footerFrame];
+//        _tbFooterView.WCDelegate = self;
+    }
+    return _tbFooterView;
+}
+
+- (MeetingMembersCollection *)membersCollection
+{
+    if (!_membersCollection)
+    {
+        CGRect membersFrame = self.bounds;
+        membersFrame.size.height = kSectionHeight + kItemWidth;
+        MeetingMembersCollection *membersCollection = [[MeetingMembersCollection alloc] initWithFrame:membersFrame
+                                                                                 collectionViewLayout:[[MyFlowLayout alloc] initWithHeaderSize:CGSizeMake(self.width, kSectionHeight)
+                                                                                                                                      itemSize:CGSizeMake(kItemWidth, kItemWidth)]];
+        membersCollection.WCDelegate = self;
+        [self.tbFooterView addSubview:(_membersCollection = membersCollection)];
+    }
+    return _membersCollection;
+}
+
+- (LatestMembersCollection *)latestCollection
+{
+    if (!_latestCollection)
+    {
+        CGRect latestFrame = self.bounds;
+        latestFrame.origin.y    = CGRectGetMaxY(self.membersCollection.frame);
+        latestFrame.size.height -= CGRectGetMaxY(self.membersCollection.frame);
+        LatestMembersCollection *latestCollection = [[LatestMembersCollection alloc] initWithFrame:latestFrame
+                                                                              collectionViewLayout:[[MyFlowLayout alloc] initWithHeaderSize:CGSizeMake(self.width, kSectionHeight)
+                                                                                                                                   itemSize:CGSizeMake(kItemWidth, kItemWidth)]];
+        latestCollection.WCDelegate = self;
+        [self.tbFooterView addSubview:(_latestCollection = latestCollection)];
+    }
+    return _latestCollection;
 }
 
 
@@ -136,24 +240,34 @@
             self.tableHeaderView = [self tbHeaderView];
         }
     }
-    
-        
 }
+
 
 - (void)setMaxMembers:(NSInteger)MaxMembers
 {
     _MaxMembers = MaxMembers;
     
-    [self.tbFooterView setTotalNumbers:_MaxMembers];
+    self.membersCollection.totalNumbers = MaxMembers;
+    self.latestCollection.totalNumbers  = MaxMembers;
+    
     
     if (_MaxMembers == 100)
     {   // 表示 预约会议
+        self.latestCollection.hidden = YES;
+        
         [self reloadContentData];
     }
 }
 
 
-
+/**
+ 获取到了从通讯录选人模式下返回的消息，准备重新组装数据
+ 应该将消息传给 参会人员 去处理
+ */
+- (void)shouldReloadDataFromSelectContact:(TCIVoidBlock)succHandle
+{
+    [self.membersCollection shouldReloadDataFromSelectContact:succHandle];
+}
 
 
 #pragma mark - UITableViewDelegate
@@ -209,16 +323,6 @@
 }
 
 #pragma mark - delegates
-#pragma mark -- TBFooterViewDelegate
-- (void)TBFooterViewCurrentMembers:(NSArray *)currentMembers
-{
-    if ([self.WCDelegate respondsToSelector:@selector(luanchTableViewMeetingCurrentMembers:)])
-    {
-        [self.WCDelegate luanchTableViewMeetingCurrentMembers:currentMembers];
-    }
-}
-
-
 #pragma mark -- ModifyViewDelegate
 - (void)modifyViewMofifyInfo:(NSDictionary *)modifyInfo
 {
@@ -229,9 +333,109 @@
         [self.dataContentArray replaceObjectAtIndex:0 withObject:topic];
     }
     
-    
     [self reloadData];
 }
 
+#pragma mark -- MeetingMembersCollectionDelegate
+- (void)MeetingMembersCollectionDeletedMember:(NSString *)delNameStr
+{
+    [self.latestCollection syncDataMembersArrayWithIdentifier:delNameStr];
+}
+
+- (void)MeetingMembersCollectionContentHeight:(CGFloat)contentHeight
+{
+    // 改变设置顺序，修复出现视图重叠现象
+    if (contentHeight < _membersCollection.height)
+    {
+        [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            
+            [self.membersCollection setHeight:contentHeight];
+            
+        } completion:^(BOOL finished) {
+            
+            if (finished)
+            {
+                [self.latestCollection setY:contentHeight];
+                [self.latestCollection setHeight:self.height - contentHeight - kSectionHeight];
+            }
+        }];
+    }
+    else
+    {
+        [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            
+            [self.latestCollection setHeight:self.height - contentHeight - kSectionHeight];
+            [self.latestCollection setY:contentHeight];
+            
+        } completion:^(BOOL finished) {
+            
+            if (finished)
+            {
+                [self.membersCollection setHeight:contentHeight];
+            }
+        }];
+    }
+    
+    [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        
+        [self.latestCollection setY:contentHeight];
+        [self.latestCollection setHeight:self.height - contentHeight - kSectionHeight];
+        
+    } completion:nil];
+}
+
+
+/**
+ 返回当前选中的成员给 tableView
+ 
+ @param currenMembers 当前的成员
+ */
+- (void)MeetingMembersCollectionCurrentMembers:(NSArray *)currenMembers
+{
+    NSMutableArray *tempArr = [NSMutableArray arrayWithArray:currenMembers];
+    
+    M8MemberInfo *selfInfo = [[M8MemberInfo alloc] init];
+    selfInfo.uid = [M8UserDefault getLoginId];
+    selfInfo.nick = [M8UserDefault getLoginNick];
+    [tempArr insertObject:selfInfo atIndex:0];
+    
+    M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
+    [modelManger updateInviteMemberArray:tempArr];
+    
+    [self.latestCollection syncCurrentNumbers:currenMembers.count];
+    
+    //保存发起 call 时邀请的成员，对于自己的信息只记录在单例，不返回给视图
+    //如果保存在了 currentMmebers 中，则会导致显示参会人员会自动添加自己
+    //所以在组装发起会议成员时，将 self.uid 放在最前面，这里对应的保存在最前面
+    
+
+    if ([self.WCDelegate respondsToSelector:@selector(luanchTableViewMeetingCurrentMembers:)])
+    {
+        NSMutableArray *uidArr = [NSMutableArray arrayWithCapacity:0];
+
+        for (M8MemberInfo *info in currenMembers)
+        {
+            [uidArr addObject:info.uid];
+        }
+        
+        [self.WCDelegate luanchTableViewMeetingCurrentMembers:uidArr];
+    }
+}
+
+#pragma mark -- LatestMembersCollectionDelegate
+/**
+ *  LatestMembersCollectionDelegate
+ *
+ *  @param memberInfo 点击最近联系人的信息
+ {
+ key : memberInfo,  value : M8MemberInfo;
+ key : memberStatu, value : @"1"-表示选中 @"0"-表示反选
+ }
+ */
+- (void)LatestMembersCollectionDidSelectedMembers:(NSDictionary *)memberInfo
+{
+    WCLog(@"The Member %@'s statu is %@", [memberInfo objectForKey:@"memberInfo"], [memberInfo objectForKey:@"memberStatu"]);
+    [self.membersCollection syncDataMembersArrayWithDic:memberInfo];
+}
 
 @end

@@ -1,22 +1,22 @@
 //
-//  M8MeetListViewController.m
+//  M8MeetRecordViewController.m
 //  M8Tool
 //
 //  Created by chao on 2017/5/11.
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import "M8MeetListViewController.h"
-#import "M8MeetListTableView.h"
+#import "M8MeetRecordViewController.h"
+#import "M8MeetRecordTableView.h"
 
 
-@interface M8MeetListViewController ()<UITextFieldDelegate>
+@interface M8MeetRecordViewController ()<UITextFieldDelegate>
 
-@property (nonatomic, strong) M8MeetListTableView *tableView;
+@property (nonatomic, strong) M8MeetRecordTableView *tableView;
 
 @end
 
-@implementation M8MeetListViewController
+@implementation M8MeetRecordViewController
 @synthesize _searchView;
 
 
@@ -45,11 +45,11 @@
     [self.contentView addSubview:self.tableView];
 }
 
-- (M8MeetListTableView *)tableView
+- (M8MeetRecordTableView *)tableView
 {
     if (!_tableView)
     {
-        M8MeetListTableView *tableView = [[M8MeetListTableView alloc] initWithFrame:self.contentView.bounds
+        M8MeetRecordTableView *tableView = [[M8MeetRecordTableView alloc] initWithFrame:self.contentView.bounds
                                                                               style:UITableViewStylePlain
                                                                        listViewType:_listViewType];
         _tableView = tableView;

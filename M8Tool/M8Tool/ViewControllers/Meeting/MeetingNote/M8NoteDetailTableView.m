@@ -8,12 +8,12 @@
 
 #import "M8NoteDetailTableView.h"
 
-#import "M8MeetListModel.h"
+#import "M8MeetRecordModel.h"
 
 
 @interface M8NoteDetailTableView () ///<UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong) M8MeetListModel *dataModel;
+@property (nonatomic, strong) M8MeetRecordModel *dataModel;
 
 
 @end
@@ -21,7 +21,7 @@
 
 @implementation M8NoteDetailTableView
 
-//- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style dataModel:(M8MeetListModel *)model {
+//- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style dataModel:(M8MeetRecordModel *)model {
 //    if (self = [super initWithFrame:frame style:style]) {
 //        self.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 //        self.tableHeaderView = [[UIView alloc] initWithFrame:CGRectZero];

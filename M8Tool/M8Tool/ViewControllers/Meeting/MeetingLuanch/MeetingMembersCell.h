@@ -21,12 +21,11 @@
 @interface MeetingMembersCell : UICollectionViewCell
 
 #pragma mark - 配置 参会人员
-- (void)configMeetingMembersWithNameStr:(NSString *_Nullable)nameStr isDeling:(BOOL)isDeling ;
+- (void)configMeetingMembersWithNameStr:(NSString *_Nullable)nameStr isDeling:(BOOL)isDeling radiusBorder:(CGFloat)radius ;
 // 添加和删除的图片
 - (void)configMeetingMembersWithImageStr:(NSString *_Nullable)imageStr ;
 
 #pragma mark - 配置 最近联系人
-//- (void)configLatestMembersWithNameStr:(NSString *_Nonnull)nameStr isSelected:(BOOL)isSelected ;
 - (void)configLatestMembersWithNameStr:(NSString *_Nullable)nameStr isSelected:(BOOL)isSelected radiusBorder:(CGFloat)radius ;
 
 #pragma mark - 配置 会议详情

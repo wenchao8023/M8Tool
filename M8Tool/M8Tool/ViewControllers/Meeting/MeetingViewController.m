@@ -14,10 +14,12 @@
 #import "M8MeetWindow.h"
 #import "M8LiveViewController.h"
 
-@interface MeetingViewController ()<AgendaCollectionDelegate>
+#import "M8MeetListViewController.h"
+
+@interface MeetingViewController ()<AgendaCollectionDelegate, UIScrollViewDelegate>
 
 
-@property (nonatomic, strong) UIScrollView *headerScroll;
+@property (nonatomic, strong) UIScrollView              *headerScroll;
 @property (nonatomic, strong) UIImageView                *bannerImage;
 
 @property (nonatomic, strong) MeetingAgendaHeader        *agendaHeader;
@@ -29,7 +31,9 @@
 @property (nonatomic, strong) UILabel *agendaCollectionHeadLabel;
 @property (nonatomic, strong) UIButton *agendaCollectionMoreButton;
 
-
+//加载scrollView轮播图图片
+@property (nonatomic, strong) NSArray *scrollImgArray;
+@property (nonatomic, strong) NSTimer *scrollTimer;
 
 @end
 
@@ -44,7 +48,6 @@
 }
 
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -55,7 +58,8 @@
 
 
 
-- (void)reloadSuperViews {
+- (void)reloadSuperViews
+{
     
     self.contentView.hidden = YES;
     
@@ -76,6 +80,7 @@
     [self agendaCollection];
     [self agendaHeader];
     [self headerScroll];
+    [self reloadScrollView];
 }
 
 - (MeetingButtonsCollection *)buttonsCollection
@@ -139,18 +144,107 @@
     return _agendaHeader;
 }
 
-- (UIScrollView *)headerScroll  //不要用agendaHeader判断
+
+- (UIScrollView *)headerScroll
 {
+    //不要用agendaHeader判断
     if (!_headerScroll)
     {
-        UIScrollView *headerScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, self.agendaCollection.y - 64 - 40)];
-        headerScroll.backgroundColor = WCRed;
-        headerScroll.contentSize = CGSizeMake(self.view.width * 2, headerScroll.height);
+        UIScrollView *headerScroll      = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, self.agendaCollection.y - 64 - 40)];
+        headerScroll.backgroundColor    = WCClear;
+        headerScroll.delegate           = self;
+        headerScroll.pagingEnabled      = YES;
+        headerScroll.showsHorizontalScrollIndicator = NO;
         [self.view addSubview:(_headerScroll = headerScroll)];
     }
     
     return _headerScroll;
 }
+
+- (NSArray *)scrollImgArray
+{
+    if (!_scrollImgArray)
+    {
+        _scrollImgArray = @[@"M8", @"defaul_publishcover", @"M8", @"defaul_publishcover"];
+    }
+    return _scrollImgArray;
+}
+
+- (void)reloadScrollView
+{
+    self.headerScroll.contentSize   = CGSizeMake(self.view.width * 4, self.headerScroll.height);
+    self.headerScroll.contentOffset = CGPointMake(self.view.width, 0);
+    
+    for (int i = 0; i < self.scrollImgArray.count; i++)
+    {
+        UIImageView *headerImg = [WCUIKitControl createImageViewWithFrame:CGRectMake(self.headerScroll.width * i, 0, self.headerScroll.width, self.headerScroll.height) ImageName:self.scrollImgArray[i]];
+        headerImg.tag = 120 + i;
+        [self.headerScroll addSubview:headerImg];
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onHeaderImgAction:)];
+        [headerImg addGestureRecognizer:tap];
+    }
+    
+    _scrollTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(onScrollImageTimer) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:_scrollTimer forMode:NSDefaultRunLoopMode];
+    [_scrollTimer fire];
+}
+
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self setHeaderScrollOffsetInBackground];
+}
+
+- (void)onScrollImageTimer
+{
+    [UIView animateWithDuration:1.0 animations:^{
+       
+        CGPoint lastOffset = self.headerScroll.contentOffset;
+        lastOffset.x += self.headerScroll.width;
+        [self.headerScroll setContentOffset:lastOffset animated:YES];
+        
+    } completion:^(BOOL finished) {
+        
+        if (finished)
+        {
+            [self setHeaderScrollOffsetInBackground];
+        }
+    }];
+}
+
+- (void)setHeaderScrollOffsetInBackground
+{
+    if (self.headerScroll.contentOffset.x == self.headerScroll.width * 3)
+    {
+        [self.headerScroll setContentOffset:CGPointMake(self.headerScroll.width, 0) animated:NO];
+    }
+    else if (self.headerScroll.contentOffset.x == 0)
+    {
+        [self.headerScroll setContentOffset:CGPointMake(self.headerScroll.width * 2, 0) animated:NO];
+    }
+}
+
+
+
+- (void)onHeaderImgAction:(UITapGestureRecognizer *)tap
+{
+    UIView *headImg = tap.view;
+    NSInteger tag = headImg.tag - 120;
+    if (tag == 1)
+    {
+        M8MeetListViewController *listVC = [[M8MeetListViewController alloc] init];
+        listVC.isExitLeftItem = YES;
+        [[AppDelegate sharedAppDelegate] pushViewControllerWithBottomBarHidden:listVC];
+    }
+    else if (tag == 2)
+    {
+        [AlertHelp tipWith:@"去购买会议系统吧，木木!!!" wait:2];
+    }
+}
+
+
+
 
 
 #pragma mark - AgendaCollectionDelegate

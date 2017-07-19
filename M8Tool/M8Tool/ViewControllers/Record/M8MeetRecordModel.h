@@ -1,5 +1,5 @@
 //
-//  M8MeetListModel.h
+//  M8MeetRecordModel.h
 //  M8Tool
 //
 //  Created by chao on 2017/5/12.
@@ -29,7 +29,7 @@
 
 
 
-@interface M8MeetListModel : NSObject
+@interface M8MeetRecordModel : NSObject
 
 @property (nonatomic, copy, nullable) NSString *mid;        //会议id
 @property (nonatomic, copy, nullable) NSString *title;      //主题

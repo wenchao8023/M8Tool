@@ -24,23 +24,14 @@
 
 
 #pragma mark - 配置 参会人员
-- (void)configMeetingMembersWithNameStr:(NSString *)nameStr isDeling:(BOOL)isDeling
+- (void)configMeetingMembersWithNameStr:(NSString *)nameStr isDeling:(BOOL)isDeling  radiusBorder:(CGFloat)radius
 {
-    self.actionImg.hidden = YES;
+    [self configLatestMembersWithNameStr:nameStr isSelected:NO radiusBorder:radius];
+    
     self.nameLabel.hidden = NO;
     self.delImg.hidden = !isDeling;
-    
-    // 设置Label圆形
-    WCViewBorder_Radius(self.nameLabel, self.nameLabel.width / 2);
-    
-    [self.nameLabel setAttributedText:[CommonUtil customAttString:[nameStr getSimpleName]
-                                                         fontSize:kAppMiddleFontSize
-                                                        textColor:WCButtonColor
-                                                        charSpace:kAppKern_0]
-     ];
-    self.nameLabel.backgroundColor = WCCollectMemberColor;
-    self.nameLabel.textColor = WCButtonColor;
 }
+
 //设置添加和删除两个按钮图片
 - (void)configMeetingMembersWithImageStr:(NSString *)imageStr
 {
@@ -50,10 +41,15 @@
     self.actionImg.image = kGetImage(imageStr);
 }
 
+#pragma mark - 配置 会议详情
+- (void)configRecordDetailWithNameStr:(NSString *)nameStr  radiusBorder:(CGFloat)radius
+{
+    [self configLatestMembersWithNameStr:nameStr isSelected:NO radiusBorder:radius];
+}
+
 #pragma mark - 配置 最近联系人
 - (void)configLatestMembersWithNameStr:(NSString *)nameStr isSelected:(BOOL)isSelected radiusBorder:(CGFloat)radius
 {
-    
     // 设置Label圆形
     WCViewBorder_Radius(self.nameLabel, radius);
     
@@ -78,13 +74,6 @@
         self.nameLabel.textColor = WCButtonColor;
     }
 }
-
-#pragma mark - 配置 会议详情
-- (void)configRecordDetailWithNameStr:(NSString *)nameStr  radiusBorder:(CGFloat)radius
-{
-    [self configLatestMembersWithNameStr:nameStr isSelected:NO radiusBorder:radius];
-}
-
 
 
 - (void)awakeFromNib {

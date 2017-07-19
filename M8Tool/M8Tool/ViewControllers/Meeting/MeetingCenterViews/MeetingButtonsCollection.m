@@ -10,7 +10,7 @@
 #import "MeetingButtonsCell.h"
 #import "MeetingLuanchViewController.h"
 #import "MeetingOrderViewController.h"
-#import "M8MeetListViewController.h"
+#import "M8MeetRecordViewController.h"
 #import "UserContactViewController.h"
 
 
@@ -159,6 +159,16 @@ static NSString * const kMeetingButtonsCellID = @"MeetingButtonsCellID";
         index == 1 ||
         index == 2 ||
         index == 4) {       //发起 手机会议、视频会议、直播会议、会议预约
+        
+        if (index != 4)
+        {
+            if ([CommonUtil alertTipInMeeting])
+            {
+                return ;
+            }
+        }
+        
+        
         MeetingLuanchViewController *luanchVC = [[MeetingLuanchViewController alloc] init];
         luanchVC.isExitLeftItem = YES;
         luanchVC.luanchMeetingType = index;
@@ -178,7 +188,7 @@ static NSString * const kMeetingButtonsCellID = @"MeetingButtonsCellID";
 //    }
     else if (index == 5 ||
              index == 6) {  //进入 会议笔记、会议收藏
-        M8MeetListViewController *recordvc = [[M8MeetListViewController alloc] init];
+        M8MeetRecordViewController *recordvc = [[M8MeetRecordViewController alloc] init];
         recordvc.listViewType = index - 4;
         recordvc.isExitLeftItem = YES;
         [[AppDelegate sharedAppDelegate] pushViewController:recordvc];

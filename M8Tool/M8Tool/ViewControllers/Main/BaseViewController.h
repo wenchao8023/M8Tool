@@ -77,4 +77,10 @@ static const float kRadiusView              = 10;
 // 图片按钮
 - (void)setRightButtonImage:(NSString * _Nonnull)imgStr target:(id _Nonnull)target action:(SEL _Nonnull)action ;
 
+
+/**
+ 点击导航栏返回
+ */
+//- (void)backClick;
+
 @end

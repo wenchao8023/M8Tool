@@ -12,7 +12,6 @@
 #import "M8CallViewController+CallListener.h"
 #import "M8CallViewController+IMListener.h"
 
-#import "M8InviteModelManger.h"
 
 @interface M8CallViewController ()
 

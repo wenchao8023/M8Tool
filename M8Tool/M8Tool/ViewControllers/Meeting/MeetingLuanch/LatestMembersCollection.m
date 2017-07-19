@@ -228,6 +228,27 @@ static NSString *CollectionHeaderID = @"LatestMembersCollectionHeaderID";
 - (void)syncCurrentNumbers:(NSInteger)currentNumbers
 {
     self.currentMembers = currentNumbers;
+    
+    M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
+    
+    for (M8MemberInfo *info in self.dataMembersArray)
+    {
+        if ([info.uid isEqualToString:[M8UserDefault getLoginId]])
+        {
+            continue;
+        }
+        
+        if ([modelManger isExistInviteArray:info.uid])
+        {
+            [self.statusArray replaceObjectAtIndex:[self.dataMembersArray indexOfObject:info] withObject:@"1"];
+        }
+        else
+        {
+            [self.statusArray replaceObjectAtIndex:[self.dataMembersArray indexOfObject:info] withObject:@"0"];
+        }
+    }
+    
+    [self reloadData];
 }
 
 

@@ -8,10 +8,10 @@
 
 #import "BaseViewController.h"
 
-@class M8MeetListModel;
+@class M8MeetRecordModel;
 
 @interface M8CollectDetaiilViewController : BaseViewController
 
-@property (nonatomic, strong, nullable) M8MeetListModel *dataModel;
+@property (nonatomic, strong, nullable) M8MeetRecordModel *dataModel;
 
 @end

@@ -13,6 +13,7 @@ static M8InviteModelManger *shareInstance = nil;
 
 @implementation M8InviteModelManger
 
+#pragma mark - init
 + (instancetype)shareInstance
 {
     static dispatch_once_t onceToken;
@@ -26,13 +27,31 @@ static M8InviteModelManger *shareInstance = nil;
 {
     if (self = [super init])
     {
-        self.selectMemberArray = [NSMutableArray arrayWithCapacity:0];
-        self.inviteMemberArray = [NSMutableArray arrayWithCapacity:0];
+        
     }
     return self;
 }
 
+- (NSMutableArray *)selectMemberArray
+{
+    if (!_selectMemberArray)
+    {
+        _selectMemberArray = [NSMutableArray arrayWithCapacity:0];
+    }
+    return _selectMemberArray;
+}
 
+- (NSMutableArray *)inviteMemberArray
+{
+    if (!_inviteMemberArray)
+    {
+        _inviteMemberArray = [NSMutableArray arrayWithCapacity:0];
+    }
+    return _inviteMemberArray;
+}
+
+
+#pragma mark - public actions
 - (BOOL)isExistInviteArray:(NSString *)uid
 {
     return [self user:uid isExistInArray:self.inviteMemberArray];
@@ -63,6 +82,27 @@ static M8InviteModelManger *shareInstance = nil;
     }
 }
 
+- (void)removeAllMembers
+{
+    [self removeInviteMembers];
+    [self removeSelectMembers];
+}
+
+- (void)removeInviteMembers
+{
+    [self.inviteMemberArray removeAllObjects];
+    self.inviteMemberArray = nil;
+}
+
+- (void)removeSelectMembers
+{
+    [self.selectMemberArray removeAllObjects];
+    self.selectMemberArray = nil;
+}
+
+
+
+#pragma mark - private actions
 - (void)removeUserFromSelectArray:(NSString *)uid
 {
     for (int i = 0; i < self.selectMemberArray.count; i++)
@@ -88,5 +128,6 @@ static M8InviteModelManger *shareInstance = nil;
     
     return NO;
 }
+
 
 @end

@@ -100,7 +100,8 @@ typedef void(^SaveBlock)();
     }
 }
 
-- (void)backAction{
+- (void)backAction
+{
     [[AppDelegate sharedAppDelegate] popViewController];
 }
 

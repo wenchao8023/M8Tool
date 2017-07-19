@@ -17,7 +17,7 @@ static CGFloat kItemHeight = 60.f;
 
 
 
-@interface MangerTeamViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface MangerTeamViewController ()<UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate>
 
 
 
@@ -25,7 +25,7 @@ static CGFloat kItemHeight = 60.f;
 
 @implementation MangerTeamViewController
 
-
+#pragma mark - inits
 - (instancetype)initWithType:(MangerTeamType)type isManager:(BOOL)isManager  contactType:(ContactType)contactType
 {
     if (self = [super init])
@@ -35,38 +35,6 @@ static CGFloat kItemHeight = 60.f;
         self.contactType = contactType;
     }
     return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    [self onNetloadData];
-    
-    [self tableView];
-    
-    [self createButtons];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    if (self.teamType == MangerTeamType_Company)
-    {
-        [self setHeaderTitle:self.cInfo.cname];
-    }
-    else if (self.teamType == MangerTeamType_Partment)
-    {
-        [self setHeaderTitle:self.dInfo.dname];
-    }
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (NSMutableArray *)sectionArray
@@ -106,6 +74,44 @@ static CGFloat kItemHeight = 60.f;
     return _tableView;
 }
 
+#pragma mark - view life
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    
+    
+    
+    [self onNetloadData];
+    
+    [self tableView];
+    
+    [self createButtons];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.navigationController.delegate = self;
+    
+    if (self.teamType == MangerTeamType_Company)
+    {
+        [self setHeaderTitle:self.cInfo.cname];
+    }
+    else if (self.teamType == MangerTeamType_Partment)
+    {
+        [self setHeaderTitle:self.dInfo.dname];
+    }
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - UIKit
 - (void)createButtons
 {
     // 分享按钮
@@ -116,15 +122,17 @@ static CGFloat kItemHeight = 60.f;
                                                             Target:self
                                                             Action:@selector(onShareAction)
                                                              Title:@"分享"];
-//    [shareButton setAttributedTitle:[CommonUtil customAttString:shareButton.titleLabel.text
-//                                                       fontSize:kAppMiddleFontSize
-//                                                      textColor:WCWhite
-//                                                      charSpace:kAppKern_2]
-//                            forState:UIControlStateNormal];
+    [shareButton setAttributedTitle:[CommonUtil customAttString:shareButton.titleLabel.text
+                                                       fontSize:kAppMiddleFontSize
+                                                      textColor:WCWhite
+                                                      charSpace:kAppKern_2]
+                            forState:UIControlStateNormal];
     [shareButton setBorder_right_color:WCWhite width:1];
     [shareButton setBackgroundColor:WCButtonColor];
     [self.contentView addSubview:(self.shareButton = shareButton)];
     
+    
+    //添加按钮标题 + 添加按钮是否可点击
     NSString *buttonStr = nil;
     BOOL buttonEnable = NO;
     
@@ -189,7 +197,7 @@ static CGFloat kItemHeight = 60.f;
     
 }
 
-
+#pragma mark - UITableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     if (self.teamType == MangerTeamType_Company)
@@ -332,6 +340,18 @@ static CGFloat kItemHeight = 60.f;
 }
 
 
+#pragma mark - UINavigationControllerDelegate
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    WCLog(@"didShowViewController : %@", [viewController class]);
+    
+    //选人之后退出界面需要清空 selectArray 中的数据
+    if ([NSStringFromClass([viewController class]) isEqualToString:@"UserContactViewController"])
+    {
+        M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
+        [modelManger removeSelectMembers];
+    }
+}
 
 
 @end

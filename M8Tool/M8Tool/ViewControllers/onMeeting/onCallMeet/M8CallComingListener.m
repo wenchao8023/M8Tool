@@ -11,7 +11,7 @@
 #import "M8MeetWindow.h"
 #import "M8CallViewController.h"
 
-#import "M8InviteModelManger.h"
+
 
 
 @implementation M8CallComingListener

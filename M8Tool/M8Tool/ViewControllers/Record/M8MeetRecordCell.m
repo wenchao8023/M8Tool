@@ -1,16 +1,16 @@
 //
-//  M8MeetListCell.m
+//  M8MeetRecordCell.m
 //  M8Tool
 //
 //  Created by chao on 2017/5/12.
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import "M8MeetListCell.h"
+#import "M8MeetRecordCell.h"
 
-#import "M8MeetListModel.h"
+#import "M8MeetRecordModel.h"
 
-@interface M8MeetListCell()
+@interface M8MeetRecordCell()
 
 @property (weak, nonatomic) IBOutlet UILabel *luancherLaber;
 @property (weak, nonatomic) IBOutlet UILabel *membersLabel;
@@ -23,9 +23,9 @@
 
 @end
 
-@implementation M8MeetListCell
+@implementation M8MeetRecordCell
 
-- (void)config:(M8MeetListModel *)model {
+- (void)config:(M8MeetRecordModel *)model {
     //通话类型图片
     if ([model.type isEqualToString:@"live"])
     {

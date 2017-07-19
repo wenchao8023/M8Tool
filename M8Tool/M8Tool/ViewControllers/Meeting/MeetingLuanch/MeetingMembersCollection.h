@@ -35,6 +35,9 @@
 @property (nonatomic, weak) id WCDelegate;
 
 
+- (void)shouldReloadDataFromSelectContact:(TCIVoidBlock)succHandle;
+
+
 - (void)syncDataMembersArrayWithDic:(NSDictionary *)memberInfo ;
 
 @end

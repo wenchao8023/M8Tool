@@ -7,6 +7,7 @@
 //
 
 #import "MangerTeamViewController+UI.h"
+#import "MeetingLuanchViewController.h"
 
 @implementation MangerTeamViewController (UI)
 
@@ -29,9 +30,21 @@
             
             [self onReloadDataInMainThread];
             
-            NSString *buttonStr = self.addButton.titleLabel.text;
+            NSInteger selectNum = modelManger.selectMemberArray.count;
+            
+            NSString *buttonStr = nil;
+            if (selectNum)
+            {
+                buttonStr = [NSString stringWithFormat:@"选择(%ld)人", (long)selectNum];
+            }
+            else
+            {
+                buttonStr = @"选择";
+            }
+            self.addButton.enabled = (selectNum > 0);
+            
             [UIView setAnimationsEnabled:NO];
-            [self.addButton setTitle:[NSString stringWithFormat:@"%@(%ld)人", buttonStr, modelManger.selectMemberArray.count] forState:UIControlStateNormal];
+            [self.addButton setAttributedTitle:[CommonUtil customAttString:buttonStr fontSize:kAppMiddleFontSize textColor:WCWhite charSpace:kAppKern_2] forState:UIControlStateNormal];
             [UIView setAnimationsEnabled:YES];
         }
             break;
@@ -87,21 +100,38 @@
 
 - (void)onAddAction
 {
-    if (self.isManger)
-    {
-        if (self.teamType == MangerTeamType_Company)
-        {
-            WCLog(@"添加部门");
-        }
-        else if (self.teamType == MangerTeamType_Partment)
-        {
-            WCLog(@"添加员工");
-        }
-    }
-    
-    if (self.contactType == ContactType_sel)
+    if (self.contactType == ContactType_sel ||
+        self.contactType == ContactType_invite)
     {
         WCLog(@"选择成员添加");
+
+        NSArray *viewControllers = self.navigationController.viewControllers;
+        if (viewControllers.count > 3)
+        {
+            UIViewController *vc = [viewControllers objectAtIndex:viewControllers.count - 3];
+            if ([vc isKindOfClass:[MeetingLuanchViewController class]])
+            {
+                MeetingLuanchViewController *luanchVC = (MeetingLuanchViewController *)vc;
+                luanchVC.isBackFromSelectContact = YES;
+                [self.navigationController popToViewController:luanchVC animated:YES];
+            }
+            
+        }
+        
+    }
+    else
+    {
+        if (self.isManger)
+        {
+            if (self.teamType == MangerTeamType_Company)
+            {
+                WCLog(@"添加部门");
+            }
+            else if (self.teamType == MangerTeamType_Partment)
+            {
+                WCLog(@"添加员工");
+            }
+        }
     }
 }
 @end

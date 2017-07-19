@@ -33,6 +33,9 @@
         
         if (meetType == M8MeetTypeCall)
         {
+            
+            
+            
             if (itemCount == 3)
             {
                 _btnImgsArray = @[@"liveMic_on", @"liveReceiver_on", @"liveInvite"];

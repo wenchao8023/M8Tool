@@ -9,7 +9,7 @@
 #import "M8RecordDetailViewController.h"
 #import "M8RecordDetailTableView.h"
 
-#import "M8MeetListModel.h"
+#import "M8MeetRecordModel.h"
 
 #import "M8MeetWindow.h"
 #import "M8CallViewController.h"
@@ -23,13 +23,13 @@
 
 @property (nonatomic, strong) UIButton *reluanchBtn;
 
-@property (nonatomic, strong) M8MeetListModel *dataModel;
+@property (nonatomic, strong) M8MeetRecordModel *dataModel;
 
 @end
 
 @implementation M8RecordDetailViewController
 
-- (instancetype)initWithDataModel:(M8MeetListModel *)dataModel
+- (instancetype)initWithDataModel:(M8MeetRecordModel *)dataModel
 {
     if (self = [super init])
     {

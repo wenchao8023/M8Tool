@@ -49,4 +49,7 @@
 
 @property (nonatomic, weak) id _Nullable WCDelegate;
 
+
+- (void)shouldReloadDataFromSelectContact:(TCIVoidBlock _Nullable )succHandle;
+
 @end

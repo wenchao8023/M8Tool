@@ -1,12 +1,12 @@
 //
-//  M8MeetListModel.m
+//  M8MeetRecordModel.m
 //  M8Tool
 //
 //  Created by chao on 2017/5/12.
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import "M8MeetListModel.h"
+#import "M8MeetRecordModel.h"
 
 
 @implementation M8MeetMemberInfo
@@ -46,7 +46,7 @@
 @end
 
 
-@implementation M8MeetListModel
+@implementation M8MeetRecordModel
 
 - (NSDictionary *)toDictionary
 {
@@ -71,16 +71,8 @@
     
     return (NSDictionary *)dic;
 }
-/*
- mid;
- title;
- mainuser;
- type;
- starttime
- endtime;
- collect;
- *members;
- */
+
+
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key
 {
     

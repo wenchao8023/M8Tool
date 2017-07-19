@@ -8,7 +8,7 @@
 
 #import "MeetingLuanchCell.h"
 
-#import "M8MeetListModel.h"
+#import "M8MeetRecordModel.h"
 
 
 @interface MeetingLuanchCell ()

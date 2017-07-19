@@ -1,25 +1,25 @@
 //
-//  M8MeetListTableView.m
+//  M8MeetRecordTableView.m
 //  M8Tool
 //
 //  Created by chao on 2017/5/12.
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import "M8MeetListTableView.h"
-#import "M8MeetListCell.h"
+#import "M8MeetRecordTableView.h"
+#import "M8MeetRecordCell.h"
 
-#import "M8MeetListTableView+UI.h"
-#import "M8MeetListTableView+Net.h"
+#import "M8MeetRecordTableView+UI.h"
+#import "M8MeetRecordTableView+Net.h"
 
 
-@interface M8MeetListTableView ()<UITableViewDelegate, UITableViewDataSource>
+@interface M8MeetRecordTableView ()<UITableViewDelegate, UITableViewDataSource>
 
 @end
 
 
 
-@implementation M8MeetListTableView
+@implementation M8MeetRecordTableView
 
 
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style listViewType:(M8MeetListViewType)listViewType
@@ -66,10 +66,10 @@
     return self.dataArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    M8MeetListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"M8MeetListCellID"];
+    M8MeetRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:@"M8MeetRecordCellID"];
     if (!cell)
     {
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"M8MeetListCell" owner:self options:nil] firstObject];
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"M8MeetRecordCell" owner:self options:nil] firstObject];
     }
     
     if (self.dataArray.count)
@@ -98,13 +98,13 @@
 - (void)meetCollectStatuChanged:(NSNotification *)notify
 {
     // if for-in(self.dataArray) directly than crash with " NSGenericException', reason: '*** Collection <__NSArrayM: 0x170246b70> was mutated while being enumerated "
-    M8MeetListModel *model = (M8MeetListModel *)notify.object;
+    M8MeetRecordModel *model = (M8MeetRecordModel *)notify.object;
     
     NSMutableArray *tempArr = [self.dataArray mutableCopy];
     
     for (NSInteger row = 0; row < tempArr.count; row++)
     {
-        M8MeetListModel *listModel = tempArr[row];
+        M8MeetRecordModel *listModel = tempArr[row];
         if ([model isEqual:listModel])
         {
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];

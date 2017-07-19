@@ -8,7 +8,7 @@
 
 #import "MainTabBarController.h"
 
-#import "M8MeetListViewController.h"
+#import "M8MeetRecordViewController.h"
 #import "MeetingViewController.h"
 #import "UserViewController.h"
 
@@ -58,7 +58,7 @@
     
     self.delegate = self;
     
-    M8MeetListViewController *recordVC  = [[M8MeetListViewController alloc] init];
+    M8MeetRecordViewController *recordVC  = [[M8MeetRecordViewController alloc] init];
     recordVC.listViewType               = M8MeetListViewTypeRecord;
     UINavigationController *recordNav   = [[UINavigationController alloc] initWithRootViewController:recordVC];
     

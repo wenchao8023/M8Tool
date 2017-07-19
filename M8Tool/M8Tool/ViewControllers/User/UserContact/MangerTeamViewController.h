@@ -8,13 +8,13 @@
 
 #import "BaseViewController.h"
 
-#import "M8InviteModelManger.h"
 
 typedef NS_ENUM(NSInteger, MangerTeamType)
 {
     MangerTeamType_Company, //管理公司
     MangerTeamType_Partment //管理部门
 };
+
 
 
 @interface MangerTeamViewController : BaseViewController
@@ -60,6 +60,8 @@ typedef NS_ENUM(NSInteger, MangerTeamType)
 
 @property (nonatomic, strong, nonnull) NSMutableArray *statuArray;
 
+
+@property (nonatomic, copy, nullable) TCIVoidBlock ensureAddSelectMembersBlock;
 
 
 @end

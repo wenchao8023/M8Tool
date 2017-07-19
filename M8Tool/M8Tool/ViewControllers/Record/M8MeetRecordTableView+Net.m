@@ -1,15 +1,15 @@
 //
-//  M8MeetListTableView+Net.m
+//  M8MeetRecordTableView+Net.m
 //  M8Tool
 //
 //  Created by chao on 2017/7/13.
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import "M8MeetListTableView+Net.h"
+#import "M8MeetRecordTableView+Net.h"
 
 
-@implementation M8MeetListTableView (Net)
+@implementation M8MeetRecordTableView (Net)
 
 - (void)loadNetData
 {
@@ -60,7 +60,7 @@
 {
     for (NSDictionary *dataDic in responseData.meets)
     {
-        M8MeetListModel *model = [[M8MeetListModel alloc] init];
+        M8MeetRecordModel *model = [[M8MeetRecordModel alloc] init];
         [model setValuesForKeysWithDictionary:dataDic];
         
         if (self.listViewType == M8MeetListViewTypeCollect) //如果是会议收藏中获取到的数据，需要本地添加一个 collect = 1

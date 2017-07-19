@@ -1,5 +1,5 @@
 //
-//  M8MeetListTableView.h
+//  M8MeetRecordTableView.h
 //  M8Tool
 //
 //  Created by chao on 2017/5/12.
@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-#import "M8MeetListModel.h"
+#import "M8MeetRecordModel.h"
 
 #import "M8RecordDetailViewController.h"
 #import "M8CollectDetaiilViewController.h"
 #import "M8NoteDetailViewController.h"
 
 
-@interface M8MeetListTableView : UITableView
+@interface M8MeetRecordTableView : UITableView
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, assign) int pageNums;

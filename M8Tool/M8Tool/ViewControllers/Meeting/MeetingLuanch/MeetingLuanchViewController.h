@@ -26,4 +26,9 @@ typedef enum : NSInteger {
 
 @property (nonatomic, assign) LuanchMeetingType luanchMeetingType;
 
+/**
+ 判断是否从通讯录选人模式下返回
+ */
+@property (nonatomic, assign) BOOL isBackFromSelectContact;
+
 @end

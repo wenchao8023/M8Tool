@@ -16,7 +16,7 @@
 #import "M8LiveViewController.h"
 
 
-@interface MeetingLuanchViewController ()<LuanchTableViewDelegate>
+@interface MeetingLuanchViewController ()<LuanchTableViewDelegate, UINavigationControllerDelegate>
 {
     UIImage *_coverImg;
     NSString *_topic;
@@ -30,13 +30,17 @@
 
 @implementation MeetingLuanchViewController
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     
     [self setHeaderTitle:[self getTitle]];
+    
+    self.navigationController.delegate = self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
@@ -48,7 +52,21 @@
 }
 
 
-
+- (void)setIsBackFromSelectContact:(BOOL)isBackFromSelectContact
+{
+    _isBackFromSelectContact = isBackFromSelectContact;
+    
+    //如果为真的时候就表示是从通讯录选人模式下返回，这时需要从新组装数据
+    if (isBackFromSelectContact)
+    {
+        [self.tableView shouldReloadDataFromSelectContact:^{
+            
+            _isBackFromSelectContact = NO;
+            M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
+            [modelManger removeSelectMembers];
+        }];
+    }
+}
 
 
 - (void)createUI
@@ -248,7 +266,6 @@
         
         createRoomReq.token = [AppDelegate sharedAppDelegate].token;
         createRoomReq.type = @"live";
-//        [[WebServiceEngine sharedEngine] asyncRequest:createRoomReq];
         [[WebServiceEngine sharedEngine] AFAsynRequest:createRoomReq];
         
         //上传图片
@@ -381,6 +398,20 @@
     [self.selectedArray addObjectsFromArray:currentMembers];
     
 }
+
+
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    WCLog(@"didShowViewController : %@", [viewController class]);
+    
+    //选人之后退出界面需要清空所有数据
+    if ([NSStringFromClass([viewController class]) isEqualToString:@"MeetingViewController"])
+    {
+        M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
+        [modelManger removeAllMembers];
+    }
+}
+
 
 
 - (void)didReceiveMemoryWarning

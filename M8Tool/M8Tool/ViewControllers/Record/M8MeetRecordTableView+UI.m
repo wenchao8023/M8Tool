@@ -1,14 +1,14 @@
 //
-//  M8MeetListTableView+UI.m
+//  M8MeetRecordTableView+UI.m
 //  M8Tool
 //
 //  Created by chao on 2017/7/13.
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import "M8MeetListTableView+UI.h"
+#import "M8MeetRecordTableView+UI.h"
 
-@implementation M8MeetListTableView (UI)
+@implementation M8MeetRecordTableView (UI)
 
 - (void)didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

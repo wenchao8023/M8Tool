@@ -152,7 +152,9 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
         {
             M8MemberInfo *memberInfo = self.dataMembersArray[indexPath.row];
             
-            [cell configMeetingMembersWithNameStr:memberInfo.nick isDeling:self.isDeling];
+            [cell configMeetingMembersWithNameStr:memberInfo.nick
+                                         isDeling:self.isDeling
+                                     radiusBorder:kItemWidth / 2];
         }
         else if (indexPath.row == self.dataMembersArray.count)
             [cell configMeetingMembersWithImageStr:@"addMember"];
@@ -219,6 +221,16 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
 {
     if (self.dataMembersArray.count < self.totalNumbers)
     {
+        //从通讯录选择成员
+        M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
+        if (!modelManger.inviteMemberArray.count)   //如果没有成员，则需要通知 tableview 中的代理，把自己加上
+        {
+            if ([self.WCDelegate respondsToSelector:@selector(MeetingMembersCollectionCurrentMembers:)])
+            {
+                [self.WCDelegate MeetingMembersCollectionCurrentMembers:self.dataMembersArray];
+            }
+        }
+        
         UserContactViewController *contactVC = [[UserContactViewController alloc] init];
         contactVC.contactType = ContactType_sel;
         contactVC.isExitLeftItem = YES;
@@ -294,7 +306,23 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
     [self reloadData];
 }
 
-
+#pragma mark -0- 同步从通讯录选人模式下选择的成员
+- (void)shouldReloadDataFromSelectContact:(TCIVoidBlock)succHandle
+{
+    M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
+    
+    for (M8MemberInfo *info in modelManger.selectMemberArray)
+    {
+        [[self mutableArrayValueForKey:@"dataMembersArray"] addObject:info];
+    }
+    //操作成功，将信息回传给上一级去还原设置
+    if (succHandle)
+    {
+        succHandle();
+    }
+    
+    [self reloadData];
+}
 
 
 @end

@@ -21,12 +21,20 @@
     [self pushViewController:viewController animated:YES];
 }
 
+- (void)pushViewControllerWithBottomBarHidden:(UIViewController *)viewController
+{
+    @autoreleasepool
+    {
+        viewController.hidesBottomBarWhenPushed = YES;
+        [[self navigationViewController] pushViewController:viewController animated:YES];
+    }
+}
+
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     @autoreleasepool
     {
         BOOL isMeeting = [M8UserDefault getIsInMeeting];
-//        viewController.hidesBottomBarWhenPushed = YES;
         if (isMeeting) {
             viewController.hidesBottomBarWhenPushed = YES;
         }
@@ -35,13 +43,16 @@
 }
 
 #pragma mark - model
-- (void)presentViewController:(UIViewController *)viewController {
-    @autoreleasepool {
+- (void)presentViewController:(UIViewController *)viewController
+{
+    @autoreleasepool
+    {
         [[self navigationViewController] presentViewController:viewController animated:YES completion:nil];
     }
 }
 
-- (void)presentNavigationController:(UIViewController *)naviController {
+- (void)presentNavigationController:(UIViewController *)naviController
+{
     UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:naviController];
     [self presentViewController:navi];
 }

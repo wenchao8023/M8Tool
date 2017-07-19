@@ -23,6 +23,7 @@
 - (NSArray *)popToViewController:(UIViewController *)viewController;
 - (void)pushViewController:(UIViewController *)viewController;
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated;
+- (void)pushViewControllerWithBottomBarHidden:(UIViewController *)viewController;
 
 /**
  模态推出视图控制器

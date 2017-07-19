@@ -12,7 +12,7 @@
 
 #import "M8RecordDetailCollectionHeader.h"
 
-#import "M8MeetListModel.h"
+#import "M8MeetRecordModel.h"
 
 
 
@@ -32,7 +32,7 @@ static CGFloat kRecordDetailHeaderHeight = 118.0;
 
 @implementation M8RecordDetailCollection
 
-- (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout dataModel:(M8MeetListModel *)model
+- (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout dataModel:(M8MeetRecordModel *)model
 {
     if (self = [super initWithFrame:frame collectionViewLayout:layout])
     {
@@ -78,7 +78,7 @@ static CGFloat kRecordDetailHeaderHeight = 118.0;
 }
 
 
-- (void)configDataModel:(M8MeetListModel *)model
+- (void)configDataModel:(M8MeetRecordModel *)model
 {
     for (M8MeetMemberInfo *info in model.members)
     {

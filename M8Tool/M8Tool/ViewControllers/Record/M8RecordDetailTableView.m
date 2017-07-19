@@ -9,7 +9,7 @@
 #import "M8RecordDetailTableView.h"
 
 #import "MeetingLuanchCell.h"   /// 使用会议发起界面中的 cell
-#import "M8MeetListModel.h"
+#import "M8MeetRecordModel.h"
 
 #import "M8RecordDetailCollection.h"
 //#import "M8MeetWindow.h"
@@ -25,7 +25,7 @@
 
 @property (nonatomic, strong) NSMutableArray *dataContentArray;
 
-@property (nonatomic, strong) M8MeetListModel *dataModel;
+@property (nonatomic, strong) M8MeetRecordModel *dataModel;
 
 @property (nonatomic, strong) M8RecordDetailCollection *detailCollection;
 
@@ -35,7 +35,7 @@
 @implementation M8RecordDetailTableView
 
 
-- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style dataModel:(M8MeetListModel *)model
+- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style dataModel:(M8MeetRecordModel *)model
 {
     if (self = [super initWithFrame:frame style:style])
     {
