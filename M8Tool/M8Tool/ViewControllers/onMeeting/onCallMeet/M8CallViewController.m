@@ -77,7 +77,7 @@
         TILCallSponsorConfig *sponsorConfig = [[TILCallSponsorConfig alloc] init];
         sponsorConfig.waitLimit             = 30;
         sponsorConfig.callId                = (int)self.liveItem.info.roomnum;
-        sponsorConfig.onlineInvite          = NO;
+        sponsorConfig.onlineInvite          = YES;
         config.sponsorConfig                = sponsorConfig;
         
         self.call = [[TILMultiCall alloc] initWithConfig:config];
@@ -117,27 +117,21 @@
                 [self onLivePushStart];
             }
         }];
-        
-//        WCWeakSelf(self);
-//        [_call makeCall:kGetStringFMInt(self.curMid) custom:self.liveItem.info.title result:^(TILCallError *err) {
-//            
-//            if(err){
-//                [weakself addTextToView:[NSString stringWithFormat:@"呼叫失败:%@-%d-%@",err.domain,err.code,err.errMsg]];
-//                [weakself selfDismiss];
-//            }
-//            else{
-//                [weakself addTextToView:@"呼叫成功"];
-//                
-//                [[ILiveRoomManager getInstance] setBeauty:2];
-//                [[ILiveRoomManager getInstance] setWhite:2];
-//
-//                [weakself.headerView configHeaderView:self.liveItem];
-//                
-//                //开始推流
-//                [self onLivePushStart];
-//            }
-//        }];
     }];
+}
+
+#pragma mark -- 接收方
+- (void)recvCall:(TILCallConfig *)config
+{
+    TILCallResponderConfig *responderConfig = [[TILCallResponderConfig alloc] init];
+    responderConfig.callInvitation          = _invitation;
+    config.responderConfig                  = responderConfig;
+    
+    _call = [[TILMultiCall alloc] initWithConfig:config];
+    [_call createRenderViewIn:self.renderView];
+    self.renderView.call = _call;
+    
+    [self addRecvChildVC];
 }
 
 /**
@@ -168,33 +162,46 @@
     WCWeakSelf(self);
     [_call hangup:^(TILCallError *err)
      {
-        if(err)
-        {
-            [weakself addTextToView:[NSString stringWithFormat:@"挂断失败:%@-%d-%@",err.domain,err.code,err.errMsg]];
-            [super selfDismiss];
-        }
-        else
-        {
-            [weakself addTextToView:@"挂断成功"];
-            [super selfDismiss];
-        }
-    }];
+         if(err)
+         {
+             [weakself addTextToView:[NSString stringWithFormat:@"挂断失败:%@-%d-%@",err.domain,err.code,err.errMsg]];
+             [super selfDismiss];
+         }
+         else
+         {
+             [weakself addTextToView:@"挂断成功"];
+             [super selfDismiss];
+         }
+     }];
 }
 
 
-#pragma mark -- 接收方
-- (void)recvCall:(TILCallConfig *)config
+- (void)inviteMembers:(NSArray *)membersArr
 {
-    TILCallResponderConfig *responderConfig = [[TILCallResponderConfig alloc] init];
-    responderConfig.callInvitation          = _invitation;
-    config.responderConfig                  = responderConfig;
+    // 配置 callTip
+    NSString *tipStr = [NSString stringWithFormat:@"%@,%@", kGetStringFMInt(self.curMid), self.liveItem.info.title];
     
-    _call = [[TILMultiCall alloc] initWithConfig:config];
-    [_call createRenderViewIn:self.renderView];
-    self.renderView.call = _call;
+    //在发起 call 的时候，配置成员信息，通过 custom 传递给接收端
+    M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance]; //这时已经有完整成员信息
     
-    [self addRecvChildVC];
+    NSMutableArray *nickArr = [NSMutableArray arrayWithCapacity:0];
+    for (M8MemberInfo *info in modelManger.inviteMemberArray)
+    {
+        [nickArr addObject:info.nick];
+    }
+    //配置 custom
+    NSString *nickStr = [nickArr componentsJoinedByString:@","];
+    
+    [self.call inviteCall:membersArr callTip:tipStr custom:nickStr result:nil];
 }
+
+- (void)inviteMember:(NSString *)memberId
+{
+    [self inviteMembers:@[memberId]];
+}
+
+
+#pragma mark -- 接收方子视图相关
 //添加接受子视图
 - (void)addRecvChildVC
 {
@@ -250,19 +257,29 @@
 }
 
 #pragma mark - 初始化容器
-- (M8CallRenderModelManager *)modelManager
+- (M8CallRenderModelManger *)renderModelManger
 {
-    if (!_modelManager)
+    if (!_renderModelManger)
     {
-        M8CallRenderModelManager *modelManager = [[M8CallRenderModelManager  alloc] init];
-        modelManager.WCDelegate     = self;
-        modelManager.hostIdentify   = self.liveItem.info.host;
-        modelManager.loginIdentify  = self.liveItem.uid;
-        modelManager.callType       = self.liveItem.callType;
-        _modelManager = modelManager;
+        M8CallRenderModelManger *renderModelManger = [[M8CallRenderModelManger alloc] initWithItem:self.liveItem];
+        renderModelManger.WCDelegate = self;
+        _renderModelManger = renderModelManger;
     }
-    return _modelManager;
+    return _renderModelManger;
 }
+//- (M8CallRenderModelManager *)modelManager
+//{
+//    if (!_modelManager)
+//    {
+//        M8CallRenderModelManager *modelManager = [[M8CallRenderModelManager  alloc] init];
+//        modelManager.WCDelegate     = self;
+//        modelManager.hostIdentify   = self.liveItem.info.host;
+//        modelManager.loginIdentify  = self.liveItem.uid;
+//        modelManager.callType       = self.liveItem.callType;
+//        _modelManager = modelManager;
+//    }
+//    return _modelManager;
+//}
 
 - (M8CallHeaderView *)headerView
 {

@@ -60,6 +60,9 @@ static const CGFloat kBottomHeight = 50.f; ///底部设备高度
 typedef void (^ActionHandle)(UIAlertAction * _Nonnull action);
 typedef void (^EditAlertHandle)(NSString * _Nonnull editString);
 
+typedef void (^M8VoidBlock)();
+typedef void (^M8StrBlock)(NSString * _Nullable info);
+
 /******************** custom msg cmd **********************/
 typedef NS_ENUM(NSInteger, ShowCustomCmd)
 {

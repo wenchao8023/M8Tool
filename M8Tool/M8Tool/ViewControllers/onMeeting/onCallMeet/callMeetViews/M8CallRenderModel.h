@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 
 
-typedef NS_ENUM(NSInteger, onMeetMemberStatus) {
-    MeetMemberStatus_none       = 0,   ///< 默认值，无意义
+typedef NS_ENUM(NSInteger, onMeetMemberStatus)
+{
+    MeetMemberStatus_none       = 0,   ///< 默认值，表示等待用户接听
     MeetMemberStatus_linebusy   = 1,   ///< 用户忙
     MeetMemberStatus_reject     = 2,   ///< 用户已拒绝
     MeetMemberStatus_timeout    = 3,   ///< 用户呼叫超时
@@ -27,6 +28,10 @@ typedef NS_ENUM(NSInteger, onMeetMemberStatus) {
  */
 @property (nonatomic, copy, nullable) NSString *identify;
 
+/**
+ 成员Nick，用于显示在 renderView 里面
+ */
+@property (nonatomic, copy, nullable) NSString *nick;
 
 /**
  用户状态
@@ -49,38 +54,26 @@ typedef NS_ENUM(NSInteger, onMeetMemberStatus) {
 @property (nonatomic, assign) avVideoSrcType videoScrType;
 
 
+/**
+ 判断用户是不是在操作不在房间的成员
+ */
+@property (nonatomic, assign) BOOL isInUserAction;
 
-///**
-// 是否是用户忙
-// */
-//@property (nonatomic, assign) BOOL isLineBusy;
-///**
-// 是否是主动拒绝
-// */
-//@property (nonatomic, assign) BOOL isCallReject;
-//
-///**
-// 是否是呼叫超时
-// */
-//@property (nonatomic, assign) BOOL isCallTimeout;
-//
-///**
-// 成员是否进入房间  只记录一次
-// */
-//@property (nonatomic, assign) BOOL isEnterRoom;
-//
-///**
-// 成员失去连接（可能是网络原因）
-// */
-//@property (nonatomic, assign) BOOL isDisconnect;
-//
-///**
-// 是否离开房间 可以有多次
-// * 一次也没调用，表示成员重来没有离开过房间
-// * 调用基数次，成员离开房间， 设为 YES
-// * 调用偶数次，成员离开房间后又进入， 设为 NO
-// */
-//@property (nonatomic, assign) BOOL isLeaveRoom;
+/**
+ 用于记录用户点击不在房间中的成员之后唤起的 移除 和 邀请按钮
+ */
+@property (nonatomic, strong, nullable) NSTimer *userActionTimer;
+
+/**
+ 默认是0，点击之后设置为10s
+ 当从10到0之间用户没有继续操作这两个，就将还原状态
+ */
+@property (nonatomic, assign) NSInteger userActionDuration;
+
+- (void)onUserActionBegin;
+- (void)onUserActionEnd;
+@property (nonatomic, copy, nullable) TCIVoidBlock userActionEndAutom;
+
 
 
 @end

@@ -12,7 +12,8 @@
 #import "M8CallRenderView.h"
 #import "M8MeetDeviceView.h"
 
-#import "M8CallRenderModelManager.h"
+//#import "M8CallRenderModelManager.h"
+#import "M8CallRenderModelManger.h"
 
 #import "M8RecvChildViewController.h"
 
@@ -50,7 +51,8 @@
 /**
  用于处理 renderView 的数据
  */
-@property (nonatomic, strong, nonnull) M8CallRenderModelManager *modelManager;
+//@property (nonatomic, strong, nonnull) M8CallRenderModelManager *modelManager;
+@property (nonatomic, strong, nonnull) M8CallRenderModelManger *renderModelManger;
 
 /**
  判断发起人在退出界面的时候是结束通话还是取消邀请
@@ -62,5 +64,10 @@
 - (void)addTextToView:(id _Nullable )newText;
 
 - (void)hangup;
+
+/**
+ 邀请当个成员
+ */
+- (void)inviteMember:(NSString *_Nullable)memberId;
 
 @end

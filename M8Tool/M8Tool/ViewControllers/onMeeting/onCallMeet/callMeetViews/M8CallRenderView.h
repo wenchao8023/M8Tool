@@ -36,7 +36,6 @@
  */
 @property (nonatomic, copy, nonnull) NSString *hostIdentify;
 
-
 /**
  获取 renderView
  */
@@ -52,19 +51,22 @@
 @property (nonatomic, assign) BOOL isFloatView;
 
 
-
-
 @property (nonatomic, weak) id<CallRenderDelegate> _Nullable WCDelegate;
+
+
+@property (nonatomic, copy, nullable) TCIVoidBlock removeBlock;
+@property (nonatomic, copy, nullable) TCIVoidBlock inviteBlock;
+
+
 
 - (void)addTextToView:(id _Nullable)newText;
 
 /**
  重新设置 视频流 位置
  */
-//- (void)updateRenderCollection;
+- (void)updateWithRenderModelManager:(id _Nonnull)renderModelManger
+                bgViewIdentify:(NSString * _Nullable)bgViewIdentify
+               renderViewArray:(NSArray * _Nullable)renderViewArray;
 
-- (void)updateWithModelManager:(id _Nonnull)modelManger
-             currentIdentifier:(NSString * _Nullable)curId
-                  membersArray:(NSArray * _Nullable)membersArray;
 
 @end

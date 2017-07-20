@@ -17,7 +17,7 @@
 @protocol MeetingMembersCollectionDelegate <NSObject>
 
 //返回当前删除的用户
-- (void)MeetingMembersCollectionDeletedMember:(NSString *)delNameStr;
+- (void)MeetingMembersCollectionDeletedMember:(NSString *_Nullable)delNameStr;
 //返回当前的self.height
 - (void)MeetingMembersCollectionContentHeight:(CGFloat)contentHeight;
 //返回当前的成员
@@ -39,5 +39,7 @@
 
 
 - (void)syncDataMembersArrayWithDic:(NSDictionary *)memberInfo ;
+
+- (NSArray *_Nullable)getMembersArray;
 
 @end

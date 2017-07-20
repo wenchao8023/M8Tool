@@ -7,11 +7,10 @@
 //
 
 #import "M8CallRenderView.h"
-
-#import "M8CallRenderModelManager.h"
-
 #import "M8CallRenderCell.h"
 #import "M8CallRenderNote.h"
+#import "M8CallRenderModelManger.h"
+#import "M8CallRenderModel.h"
 
 
 
@@ -21,22 +20,19 @@
 }
 
 @property (weak, nonatomic) IBOutlet UICollectionView *renderCollection;
-//@property (weak, nonatomic) IBOutlet UIButton *inviteButton;
-//@property (weak, nonatomic) IBOutlet UIButton *removeButton;
+
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *layoutHeight_render;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *layoutTop_render;
 
 @property (strong, nonatomic) M8CallRenderNote *noteView;
+@property (nonatomic, strong) M8CallRenderModelManger *modelManager;
 
-@property (nonatomic, strong) M8CallRenderModelManager *modelManager;
+@property (nonatomic, copy) NSString *bgViewIdentify;
+@property (nonatomic, strong) NSArray *membersArray;    //记录为有音视频上行的成员
+@property (nonatomic, strong) NSArray *inviteArray;     //记录会议开始前邀请的成员
 
 
-@property (nonatomic, copy) NSString *currentIdentify;
-
-@property (nonatomic, strong) NSArray *membersArray;
-
-//@property (nonatomic, copy) NSString *loginIdentify;
 
 @end
 
@@ -52,13 +48,14 @@
     if (self = [super initWithFrame:frame])
     {
         self = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil] firstObject];
-        _myFrame        = frame;
-        _liveItem       = item;
-        _isHost         = isHost;
-//        _loginIdentify  = item.uid;
+        _myFrame  = frame;
+        _liveItem = item;
+        _isHost   = isHost;
+        [self inviteArray];
     }
     return self;
 }
+
 
 - (M8CallRenderNote *)noteView
 {
@@ -120,21 +117,24 @@
 
 
 #pragma mark -- RenderModelManagerDelegate
-
-- (void)updateWithModelManager:(M8CallRenderModelManager *)modelManger currentIdentifier:(NSString *)curId membersArray:(NSArray *)membersArray
+- (void)updateWithRenderModelManager:(id)renderModelManger
+                      bgViewIdentify:(NSString *)bgViewIdentify
+                     renderViewArray:(NSArray *)renderViewArray
 {
     self.modelManager = nil;
     self.membersArray = nil;
-    _currentIdentify = nil;
-    
-    self.modelManager = modelManger;
-    self.membersArray = membersArray;
-    _currentIdentify  = curId;
-    
-    [self.call modifyRenderView:self.bounds forIdentifier:_currentIdentify];
-    [self.call sendRenderViewToBack:_currentIdentify];
+    _bgViewIdentify   = nil;
+
+    self.modelManager = renderModelManger;
+    self.membersArray = renderViewArray;
+    _bgViewIdentify   = bgViewIdentify;
+
+    [self.call modifyRenderView:self.bounds forIdentifier:_bgViewIdentify];
+    [self.call sendRenderViewToBack:_bgViewIdentify];
     [self.renderCollection reloadData];
 }
+
+
 
 
 #pragma mark -- UICollectionViewDelegate
@@ -147,11 +147,31 @@
 {
     M8CallRenderCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"M8CallRenderCellID" forIndexPath:indexPath];
     
-    M8CallRenderModel *model = self.membersArray[indexPath.row];
+    if (cell)
+    {
+        WCWeakSelf(self);
+        cell.removeBlock = ^(NSString * _Nullable info) {
+        
+            [weakself callRenderActionInfoValue:@{@"invite" : info} key:kCallAction];
+        };
+        
+        cell.inviteBlock = ^(NSString * _Nullable info) {
+          
+            [weakself callRenderActionInfoValue:@{@"invite" : info} key:kCallAction];
+        };
+    }
     
-    [cell configWithModel:model];
-    
-    [self setRenderViewFrame:cell.frame identify:model.identify];
+    if (indexPath.row < self.membersArray.count)
+    {
+        M8CallRenderModel *model = self.membersArray[indexPath.row];
+        
+        [cell configWithModel:model radius:(SCREEN_WIDTH - 50) / 4 / 4];
+        
+        if (model.isCameraOn)
+        {
+            [self setRenderViewFrame:cell.frame identify:model.identify];
+        }
+    }
     
     return cell;
 }
@@ -164,13 +184,12 @@
         [WCNotificationCenter postNotificationName:kHiddenMenuView_Notifycation object:nil];
         return ;
     }
-    
+
     if ([self.call getCallType] == TILCALL_TYPE_VIDEO)
     {
-        if (self.modelManager &&
-            ![self.modelManager onSelectItemAtIndexPath:indexPath])
+        if (self.modelManager)
         {
-            [self addTextToView:@"没有成员开启摄像头"];
+            [self.modelManager onCollectionDidSelectModel:self.membersArray[indexPath.row]];
         }
     }
     else if ([self.call getCallType] == TILCALL_TYPE_AUDIO)
@@ -193,6 +212,7 @@
 {
     _isFloatView = isFloatView;
 }
+
 
 - (void)addTextToView:(id)newText
 {

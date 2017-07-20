@@ -106,7 +106,7 @@
 {
     if (!_pageControl)
     {
-        UIPageControl *pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 60) / 2, self.buttonsCollection.y - 30, 60, 20)];
+        UIPageControl *pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 60) / 2, self.buttonsCollection.y - 20, 60, 20)];
         pageControl.pageIndicatorTintColor = WCLightGray;
         pageControl.currentPageIndicatorTintColor = WCWhite;
         [self.view addSubview:(_pageControl = pageControl)];
@@ -137,7 +137,7 @@
 {
     if (!_agendaHeader)
     {
-        MeetingAgendaHeader *agendaHeader = [[MeetingAgendaHeader alloc] initWithFrame:CGRectMake(0, self.agendaCollection.y - 40, self.view.width, 40)];
+        MeetingAgendaHeader *agendaHeader = [[MeetingAgendaHeader alloc] initWithFrame:CGRectMake(0, self.agendaCollection.y - 30, self.view.width, 30)];
         [self.view addSubview:(_agendaHeader = agendaHeader)];
     }
     
@@ -150,7 +150,7 @@
     //不要用agendaHeader判断
     if (!_headerScroll)
     {
-        UIScrollView *headerScroll      = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, self.agendaCollection.y - 64 - 40)];
+        UIScrollView *headerScroll      = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, self.agendaCollection.y - 64 - 30)];
         headerScroll.backgroundColor    = WCClear;
         headerScroll.delegate           = self;
         headerScroll.pagingEnabled      = YES;
@@ -186,7 +186,7 @@
     }
     
     _scrollTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(onScrollImageTimer) userInfo:nil repeats:YES];
-    [[NSRunLoop mainRunLoop] addTimer:_scrollTimer forMode:NSDefaultRunLoopMode];
+    [[NSRunLoop currentRunLoop] addTimer:_scrollTimer forMode:NSDefaultRunLoopMode];
     [_scrollTimer fire];
 }
 

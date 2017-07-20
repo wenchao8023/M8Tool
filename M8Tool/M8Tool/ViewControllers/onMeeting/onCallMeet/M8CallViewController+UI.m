@@ -106,10 +106,18 @@
 
     if ([infoKey isEqualToString:kCallAction])
     {
-        NSString *infoValue = [actionInfo objectForKey:infoKey];
-        if ([infoValue isEqualToString:@"touchesBegan"])
+         id infoValue = [actionInfo objectForKey:infoKey];
+        
+        if ([infoValue isKindOfClass:[NSDictionary class]])
         {
-            [self onHiddeMenuView];
+            NSString *subKey = [[infoValue allKeys] firstObject];
+            if ([subKey isEqualToString:@"invite"])
+            {
+                NSString *inviteId = [infoValue objectForKey:@"invite"];
+                [self inviteMember:inviteId];
+                
+                [self.renderModelManger memberUserAction:inviteId onAction:subKey];
+            }
         }
     }
 }
@@ -204,7 +212,8 @@
 #pragma mark - super action
 - (void)showFloatView
 {
-    [self.floatView configCallFloatView:self.liveItem isCameraOn:[self.modelManager onGetHostCameraStatu]];
+//    [self.floatView configCallFloatView:self.liveItem isCameraOn:[self.modelManager onGetHostCameraStatu]];
+    [self.floatView configCallFloatView:self.liveItem isCameraOn:[self.renderModelManger onGetHostCameraStatu]];
     
     [super showFloatView];
     
@@ -240,7 +249,8 @@
     } completion:^(BOOL finished) {
         
         // 3. 应该要通知 通话界面 重新刷新位置
-        [self.modelManager onBackFromFloatView];
+//        [self.modelManager onBackFromFloatView];
+        [self.renderModelManger onBackFromFloatView];
     }];
 }
 

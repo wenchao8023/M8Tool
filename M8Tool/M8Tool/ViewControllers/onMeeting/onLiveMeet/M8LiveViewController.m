@@ -93,29 +93,7 @@
         [self onNetReportRoomInfo];
         
 
-        [self onLivePushStart]; 
-//        ILivePushOption *option = [[ILivePushOption alloc] init];
-//        ILiveChannelInfo *info = [[ILiveChannelInfo alloc] init];
-//        info.channelName = @"测试频道";     //直播码模式下无意义
-//        info.channelDesc = @"测试频道描述";  //直播码模式下无意义
-//        option.channelInfo = info;
-//        option.encodeType = AV_ENCODE_HLS;
-//        option.recrodFileType = AV_RECORD_FILE_TYPE_HLS;
-//        
-//        [[ILiveRoomManager getInstance] startPushStream:option succ:^(id selfPtr) {
-//            AVStreamerResp *resp = (AVStreamerResp *)selfPtr;
-//            NSLog(@"推流成功 %@", [resp urls]);
-//            WCLog(@"=================================");
-//            for (AVLiveUrl *url in [resp urls])
-//            {
-//                WCLog(@"%@", [NSString stringWithFormat:@"推流地址是:\t%@", url.playUrl]);
-//            }
-//            WCLog(@"=================================");
-//            NSLog(@"推流获取到的频道ID：%llu", resp.channelID);
-//        } failed:^(NSString *module, int errId, NSString *errMsg) {
-//            NSLog(@"推流失败");
-//        }];
-        
+        [self onLivePushStart];         
         
         
     } failed:^(NSString *module, int errId, NSString *errMsg) {

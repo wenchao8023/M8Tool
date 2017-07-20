@@ -269,6 +269,27 @@
     [self.membersCollection shouldReloadDataFromSelectContact:succHandle];
 }
 
+/**
+ 获取立即发起会议的消息
+ 如果是结束会议然后立即发起，这个时候 inviteArray中没有数据，需要重新加载数据
+ */
+- (void)loadDataWithLuanchCall
+{
+    M8InviteModelManger *inviteModelManger = [M8InviteModelManger shareInstance];
+    
+    if (!inviteModelManger.inviteMemberArray.count)
+    {
+        NSMutableArray *tempArr = [NSMutableArray arrayWithArray:[self.membersCollection getMembersArray]];
+        
+        M8MemberInfo *selfInfo = [[M8MemberInfo alloc] init];
+        selfInfo.uid = [M8UserDefault getLoginId];
+        selfInfo.nick = [M8UserDefault getLoginNick];
+        [tempArr insertObject:selfInfo atIndex:0];
+        
+        [inviteModelManger updateInviteMemberArray:tempArr];
+    }
+}
+
 
 #pragma mark - UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

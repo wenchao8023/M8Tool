@@ -8,7 +8,7 @@
 
 #import "M8CallRenderCell.h"
 
-
+#import "M8CallRenderModel.h"
 
 
 
@@ -24,31 +24,137 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *onVioceImg;
 
+@property (nonatomic, strong) M8CallRenderModel *renderModel;
+
+@property (nonatomic, strong) UIButton *removeButton;
+@property (nonatomic, strong) UIButton *inviteButton;
+
 @end
 
 
 @implementation M8CallRenderCell
 
-- (void)config:(M8CallRenderModel *)model {
-
-    
+- (void)setButtonsHidden:(BOOL)hidden
+{
+    self.removeButton.hidden = hidden;
+    self.inviteButton.hidden = hidden;
 }
 
-- (void)configWithModel:(M8CallRenderModel *)model {
-    
-    WCViewBorder_Radius(self.onVioceImg, _onVioceImg.width / 2);
-    
-    self.identifyLabel.text = model.identify;
+- (UIButton *)removeButton
+{
+    if (!_removeButton)
+    {
+        CGFloat buttonsHeight = self.height - 15;
+        
+        CGFloat buttonWidth = (buttonsHeight - 10) / 2;
+        CGFloat buttonX = (self.width - buttonWidth) / 2;
+        
+        UIButton *removeButton = [WCUIKitControl createButtonWithFrame:CGRectMake(buttonX, 0, buttonWidth, buttonWidth)
+                                                                Target:self
+                                                                Action:@selector(onRemoveAction)
+                                                                 Title:@"移除"];
+        removeButton.backgroundColor = WCButtonColor;
+        removeButton.alpha = 0.5;
+        [removeButton setTitleColor:WCWhite forState:UIControlStateNormal];
+        WCViewBorder_Radius(removeButton, buttonWidth / 2);
+        [self.contentView addSubview:(self.removeButton = removeButton)];
+    }
+    return _removeButton;
+}
 
+- (UIButton *)inviteButton
+{
+    if (!_inviteButton)
+    {
+        CGFloat buttonsHeight = self.height - 15;
+        
+        CGFloat buttonWidth = (buttonsHeight - 10) / 2;
+        CGFloat buttonX = (self.width - buttonWidth) / 2;
+        
+        UIButton *inviteButton = [WCUIKitControl createButtonWithFrame:CGRectMake(buttonX, 10 + buttonWidth, buttonWidth, buttonWidth)
+                                                                Target:self
+                                                                Action:@selector(onInviteAction)
+                                                                 Title:@"邀请"];
+        inviteButton.backgroundColor = WCButtonColor;
+        inviteButton.alpha = 0.5;
+        [inviteButton setTitleColor:WCWhite forState:UIControlStateNormal];
+        WCViewBorder_Radius(inviteButton, buttonWidth / 2);
+        [self.contentView addSubview:(self.inviteButton = inviteButton)];
+    }
+    return _inviteButton;
+}
+
+
+- (void)onRemoveAction
+{
+    if (self.removeBlock)
+    {
+        self.removeBlock(_renderModel.identify);
+    }
+}
+
+- (void)onInviteAction
+{
+    if (self.inviteBlock)
+    {
+        self.inviteBlock(_renderModel.identify);
+    }
+}
+
+- (void)setImagesHidden:(BOOL)hidden
+{
+    self.onVioceImg.hidden = hidden;
+    self.onCloseMicImg.hidden = hidden;
+}
+
+- (void)configWithModel:(M8CallRenderModel *)model radius:(CGFloat)radius
+{
+    _renderModel = model;
+    
+    if (model.isInUserAction)
+    {
+        [self configWithClick:model radius:radius];
+    }
+    else
+    {
+        [self configWithUnClick:model radius:radius];
+    }
+}
+
+//用户正在进行点击操作
+- (void)configWithClick:(M8CallRenderModel *)model radius:(CGFloat)radius
+{
+    self.identifyLabel.text = model.nick;
+    
+    self.effectView.hidden = NO;
+    
+    self.infoLabel.hidden = YES;
+    
+    [self setButtonsHidden:NO];
+    [self setImagesHidden:YES];
+}
+
+//用户在房间内
+- (void)configWithUnClick:(M8CallRenderModel *)model radius:(CGFloat)radius
+{
+    WCViewBorder_Radius(self.onVioceImg, radius);
+    
+    self.identifyLabel.text = model.nick;
+    
     self.infoLabel.hidden = NO;
     
     self.effectView.hidden = NO;
     
-    self.onCloseMicImg.hidden = YES;
-    self.onVioceImg.hidden    = YES;
+    [self setImagesHidden:YES];
+    [self setButtonsHidden:YES];
     
     
     switch (model.meetMemberStatus) {
+        case MeetMemberStatus_none:
+        {
+            self.infoLabel.text = kMemberStatu_waiting;
+        }
+            break;
         case MeetMemberStatus_linebusy:
         {
             self.infoLabel.text = kMemberStatu_lineBusy;
@@ -97,12 +203,14 @@
 }
 
 
+
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
     
     [self.identifyLabel configLiveRenderText];
-    [self.infoLabel configLiveRenderText];
+    [self.infoLabel     configLiveRenderText];
 }
 
 @end

@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-#import "M8CallRenderModel.h"
 
 @interface M8CallRenderCell : UICollectionViewCell
 
-- (void)config:(M8CallRenderModel *)model;
+@property (nonatomic, copy, nullable) M8StrBlock removeBlock;
+@property (nonatomic, copy, nullable) M8StrBlock inviteBlock;
 
-- (void)configWithModel:(M8CallRenderModel *)model;
+- (void)configWithModel:(id _Nullable)model radius:(CGFloat)radius;
 
 @end

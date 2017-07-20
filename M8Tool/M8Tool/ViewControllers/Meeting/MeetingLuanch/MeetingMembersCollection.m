@@ -306,7 +306,7 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
     [self reloadData];
 }
 
-#pragma mark -0- 同步从通讯录选人模式下选择的成员
+#pragma mark -- 同步从通讯录选人模式下选择的成员
 - (void)shouldReloadDataFromSelectContact:(TCIVoidBlock)succHandle
 {
     M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
@@ -322,6 +322,11 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
     }
     
     [self reloadData];
+}
+
+- (NSArray *)getMembersArray
+{
+    return (NSArray *)self.dataMembersArray;
 }
 
 

@@ -52,4 +52,6 @@
 
 - (void)shouldReloadDataFromSelectContact:(TCIVoidBlock _Nullable )succHandle;
 
+- (void)loadDataWithLuanchCall;
+
 @end

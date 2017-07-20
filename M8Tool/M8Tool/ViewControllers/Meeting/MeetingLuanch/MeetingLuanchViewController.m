@@ -189,6 +189,9 @@
  */
 - (void)luanchCall:(TILCallType)callType
 {
+    //通知 inviteArray单例，这里要发起会议了，如果数组中没有成员，则需要从MeetingMembersCollection的数组中添加
+    [self.tableView loadDataWithLuanchCall];
+    
     LoadView *reqIdWaitView = [LoadView loadViewWith:@"正在请求房间ID"];
     [self.view addSubview:reqIdWaitView];
     __block CallRoomResponseData *roomData = nil;
@@ -403,6 +406,12 @@
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     WCLog(@"didShowViewController : %@", [viewController class]);
+    
+    //如果是在直播中，这里不应该清空数据
+    if ([M8UserDefault getIsInMeeting])
+    {
+        return ;
+    }
     
     //选人之后退出界面需要清空所有数据
     if ([NSStringFromClass([viewController class]) isEqualToString:@"MeetingViewController"])

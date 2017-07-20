@@ -8,7 +8,7 @@
 
 #import "M8CallViewController.h"
 
-@interface M8CallViewController (CallListener)<TILCallMemberEventListener, TILCallNotificationListener, RenderModelManagerDelegate>
+@interface M8CallViewController (CallListener)<TILCallMemberEventListener, TILCallNotificationListener, RenderModelMangerDelegate>
 
 
 
