@@ -121,7 +121,7 @@ static const CGFloat kItemHeight = 60;
 {
     if (!_actionArray)
     {
-        _actionArray = @[@"onFriendListAction", @"onMobContactAction", @"onCommonGroupAction", @"onCommonContactAction"];
+        _actionArray = @[@"onFriendListAction", @"onMobContactAction"];
     }
     return _actionArray;
 }

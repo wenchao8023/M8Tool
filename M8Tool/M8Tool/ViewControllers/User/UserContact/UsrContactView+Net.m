@@ -13,7 +13,7 @@
 
 - (void)onNetLoadLocalList:(TCIVoidBlock)succHandle
 {
-    NSArray *selfInfoArr = @[@"我的好友", @"手机通讯录", @"常用群组", @"常用联系人"];
+    NSArray *selfInfoArr = @[@"我的好友", @"手机通讯录"];
     [self.dataArray addObject:selfInfoArr];
     
     if (succHandle)
