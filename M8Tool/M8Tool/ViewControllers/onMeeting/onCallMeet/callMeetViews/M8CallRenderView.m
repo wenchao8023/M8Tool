@@ -76,7 +76,7 @@
     
     // reset collection
     CGFloat itemWidth  = (SCREEN_WIDTH - 50) / 4;
-    CGFloat itemHeight = itemWidth * 4 / 3;
+    CGFloat itemHeight = itemWidth * 5 / 3;
     
     _layoutHeight_render.constant = itemHeight;
     
@@ -152,12 +152,12 @@
         WCWeakSelf(self);
         cell.removeBlock = ^(NSString * _Nullable info) {
         
-            [weakself callRenderActionInfoValue:@{@"invite" : info} key:kCallAction];
+            [weakself callRenderActionInfoValue:@{@"remove" : info} key:kCallAction];
         };
         
         cell.inviteBlock = ^(NSString * _Nullable info) {
           
-            [weakself callRenderActionInfoValue:@{@"invite" : info} key:kCallAction];
+            [weakself callRenderActionInfoValue:@{@"invite" : info} key:kCallAction];    
         };
     }
     

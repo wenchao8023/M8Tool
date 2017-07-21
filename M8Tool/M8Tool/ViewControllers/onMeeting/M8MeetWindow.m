@@ -26,4 +26,5 @@
     [[M8MeetWindowSingleton shareInstance] hiddeFloatView];
 }
 
+
 @end

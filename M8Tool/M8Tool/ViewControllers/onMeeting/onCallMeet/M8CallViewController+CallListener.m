@@ -14,7 +14,6 @@
 @implementation M8CallViewController (CallListener)
 
 #pragma mark -- RenderModelMangerDelegate
-
 - (void)renderModelManager:(id)renderModelManger
             bgViewIdentify:(NSString *)bgViewIdentify
            renderViewArray:(NSArray *)renderViewArray
@@ -176,6 +175,26 @@
         default:
             break;
     }
+}
+
+#pragma mark - 接到邀请成员加入会议的通知
+- (void)onReceiveInviteMembers
+{
+    [self hiddeFloatView];
+    
+    M8InviteModelManger *inviteModelManger = [M8InviteModelManger shareInstance];
+    
+    //保存选中的成员
+    NSMutableArray *nickArr = [NSMutableArray arrayWithCapacity:0];
+    for (M8MemberInfo *info in inviteModelManger.selectMemberArray)
+    {
+        [nickArr addObject:info.uid];
+    }
+    
+    [self.renderModelManger onInviteMembers];   //这里去加载数据
+    
+    // 发起邀请 + 配置成员信息（这一步由 ModelManger 完成）
+    [self inviteMembers:nickArr];
 }
 
 @end

@@ -17,7 +17,6 @@
 
 @property (nonatomic, weak, nullable) M8BaseMeetViewController *baseController;
 
-
 @end
 
 

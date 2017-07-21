@@ -36,7 +36,6 @@
     reportReq.room.cover    = self.liveItem.info.cover.length > 0 ? self.liveItem.info.cover : @"";
     reportReq.room.appid    = [ShowAppId intValue];
     
-//    [[WebServiceEngine sharedEngine] asyncRequest:reportReq];
     [[WebServiceEngine sharedEngine] AFAsynRequest:reportReq];
 }
 
@@ -51,7 +50,6 @@
     exitReq.token = [AppDelegate sharedAppDelegate].token;
     exitReq.roomnum = self.liveItem.info.roomnum;
     exitReq.type = @"live";
-//    [[WebServiceEngine sharedEngine] asyncRequest:exitReq wait:NO];
     [[WebServiceEngine sharedEngine] AFAsynRequest:exitReq];
 }
 

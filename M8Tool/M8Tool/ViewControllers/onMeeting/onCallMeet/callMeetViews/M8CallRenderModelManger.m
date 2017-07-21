@@ -156,9 +156,13 @@
     M8CallRenderModel *model = [self getMemberWithID:identify];
     [model onUserActionBegin];
     
-    model.userActionEndAutom = ^{
+    WCWeakSelf(self);
+    model.userActionEndAutom = ^(id selfPtr) {
         
-        WCLog(@"操作时间已过");
+        if ([selfPtr isKindOfClass:[M8CallRenderModel class]])
+        {
+            [weakself updateMember:(M8CallRenderModel *)selfPtr];
+        }
     };
     
     [self updateMember:model];
@@ -170,12 +174,37 @@
     if ([actionStr isEqualToString:@"invite"])
     {
         [model onUserActionEnd];
+        //重新邀请了，状态也要设置为连接中
+        model.meetMemberStatus = MeetMemberStatus_none;
+        [self updateMember:model];
     }
     else if ([actionStr isEqualToString:@"remove"])
     {
+        [model onUserActionEnd];
         
+        if (model)
+        {
+            [self.inviteArray removeObject:model];
+            
+            M8InviteModelManger *inviteModelManger = [M8InviteModelManger shareInstance];
+            [inviteModelManger updateInviteM8CallRenderModelArray:self.inviteArray];
+            /*
+            NSMutableArray *tempInviteArr = [NSMutableArray arrayWithCapacity:0];
+            for (M8CallRenderModel *model in self.inviteArray)
+            {
+                M8MemberInfo *info = [[M8MemberInfo alloc] init];
+                info.uid = model.identify;
+                info.nick = model.nick;
+                [tempInviteArr addObject:info];
+            }
+            
+            [inviteModelManger updateInviteMemberArray:tempInviteArr];
+             */
+            
+            [self reloadMemberModels];
+        }
     }
-    [self updateMember:model];
+    
 }
 
 
@@ -261,6 +290,24 @@
     [self respondsToDelegate];
 }
 
+#pragma mark -- on invite from user contact
+- (void)onInviteMembers
+{
+    M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
+    
+    NSMutableArray *inviteArr = [NSMutableArray arrayWithCapacity:0];
+    for (M8MemberInfo *memberInfo in modelManger.selectMemberArray)
+    {
+        M8CallRenderModel *model = [[M8CallRenderModel alloc] init];
+        model.identify  = memberInfo.uid;
+        model.nick      = memberInfo.nick;
+        
+        [inviteArr addObject:model];
+    }
+    
+    [self.inviteArray addObjectsFromArray:inviteArr];
+    [modelManger mergeSelectToInvite];
+}
 
 #pragma mark -- on get host camera statu
 - (BOOL)onGetHostCameraStatu

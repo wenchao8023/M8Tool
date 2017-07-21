@@ -12,12 +12,16 @@
 #import "MeetingLuanchViewController.h"
 
 @interface FriendListViewController ()<UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate>
-
+{
+    BOOL _isInviteBack;     //判断是不是会议中邀请好友的时候 点击返回，如果是则返回数据，跳过代理，如果不是，就是退出，应该清空数据
+}
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
 @property (nonatomic, strong) UIButton *selectButon;
+
+
 
 @end
 
@@ -244,7 +248,27 @@
             break;
         case ContactType_invite:
         {
+            M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
+            [modelManger onSelectAtMemberInfo:self.dataArray[indexPath.row]];
             
+            [self.tableView reloadData];
+            
+            NSInteger selectNum = modelManger.selectMemberArray.count;
+            
+            NSString *buttonStr = nil;
+            if (selectNum)
+            {
+                buttonStr = [NSString stringWithFormat:@"选择(%ld)人", (long)selectNum];
+            }
+            else
+            {
+                buttonStr = @"选择";
+            }
+            self.selectButon.enabled = (selectNum > 0);
+            
+            [UIView setAnimationsEnabled:NO];
+            [self.selectButon setAttributedTitle:[CommonUtil customAttString:buttonStr fontSize:kAppMiddleFontSize textColor:WCWhite charSpace:kAppKern_2] forState:UIControlStateNormal];
+            [UIView setAnimationsEnabled:YES];
         }
             break;
 
@@ -262,15 +286,26 @@
     WCLog(@"选择好友添加");
     
     NSArray *viewControllers = self.navigationController.viewControllers;
-    if (viewControllers.count > 3)
+    
+    if (self.contactType == ContactType_sel)
     {
-        UIViewController *vc = [viewControllers objectAtIndex:viewControllers.count - 3];
-        if ([vc isKindOfClass:[MeetingLuanchViewController class]])
+        if (viewControllers.count > 3)
         {
-            MeetingLuanchViewController *luanchVC = (MeetingLuanchViewController *)vc;
-            luanchVC.isBackFromSelectContact = YES;
-            [self.navigationController popToViewController:luanchVC animated:YES];
+            UIViewController *vc = [viewControllers objectAtIndex:viewControllers.count - 3];
+            if ([vc isKindOfClass:[MeetingLuanchViewController class]])
+            {
+                MeetingLuanchViewController *luanchVC = (MeetingLuanchViewController *)vc;
+                luanchVC.isBackFromSelectContact = YES;
+                [self.navigationController popToViewController:luanchVC animated:YES];
+            }
         }
+    }
+    else if (self.contactType == ContactType_invite)    //如果是邀请的则只需 popself 就ok了，然后弹出会议界面
+    {
+        _isInviteBack = YES;
+        
+        [WCNotificationCenter postNotificationName:kInviteMembers_Notifycation object:nil];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
@@ -281,26 +316,35 @@
 {
     WCLog(@"didShowViewController : %@", [viewController class]);
     
-    //选人之后退出界面需要清空 selectArray 中的数据
-    if ([NSStringFromClass([viewController class]) isEqualToString:@"UserContactViewController"])
+    //选人之后退出界面需要清空 selectArray 中的数据，邀请的时候不需要
+    if (self.contactType == ContactType_sel)
     {
-        M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
-        [modelManger removeSelectMembers];
+        if ([NSStringFromClass([viewController class]) isEqualToString:@"UserContactViewController"])
+        {
+            M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
+            [modelManger removeSelectMembers];
+        }
     }
+    
+    if (self.contactType == ContactType_invite)
+    {
+        if (_isInviteBack)
+        {
+            return ;
+        }
+        else
+        {
+            M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
+            [modelManger removeSelectMembers];
+        }
+    }
+    
 }
 
 
-
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)dealloc
+{
+    [WCNotificationCenter removeObserver:self name:kInviteMembers_Notifycation object:nil];
 }
-*/
 
 @end

@@ -63,26 +63,6 @@
     callVC.invitation = invitation;
     callVC.curMid     = [[tipArr firstObject] intValue];
     [M8MeetWindow M8_addMeetSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
-
-    
-    
-//    TCShowLiveListItem *item = [[TCShowLiveListItem alloc] init];
-//    item.uid        = [M8UserDefault getLoginId];
-//    item.members    = invitation.memberArray;
-//    item.callType   = invitation.callType;
-//    
-//    item.info = [[ShowRoomInfo alloc] init];
-//    item.info.title     = invitation.custom;
-//    item.info.type      = (invitation.callType == TILCALL_TYPE_VIDEO ? @"call_video" : @"call_audio");
-//    item.info.roomnum   = invitation.callId;
-//    item.info.groupid   = [NSString stringWithFormat:@"%d", invitation.callId];
-//    item.info.appid     = [ShowAppId intValue];
-//    item.info.host      = invitation.sponsorId;
-//    
-//    M8CallViewController *callVC = [[M8CallViewController alloc] initWithItem:item isHost:NO];
-//    callVC.invitation = invitation;
-//    callVC.curMid     = [invitation.callTip intValue];
-//    [M8MeetWindow M8_addMeetSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
 }
 
 @end

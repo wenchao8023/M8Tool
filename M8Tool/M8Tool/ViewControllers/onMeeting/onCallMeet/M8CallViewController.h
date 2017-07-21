@@ -66,7 +66,12 @@
 - (void)hangup;
 
 /**
- 邀请当个成员
+ 邀请多个成员
+ */
+- (void)inviteMembers:(NSArray *_Nullable)membersArr;
+
+/**
+ 邀请单个成员
  */
 - (void)inviteMember:(NSString *_Nullable)memberId;
 

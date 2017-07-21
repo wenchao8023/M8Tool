@@ -193,6 +193,7 @@
 		9473BB401F0CDFCE0074F6A3 /* M8CallViewController+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = 9473BB3F1F0CDFCE0074F6A3 /* M8CallViewController+UI.m */; };
 		9473BB491F0CED820074F6A3 /* M8MeetDeviceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9473BB481F0CED820074F6A3 /* M8MeetDeviceView.m */; };
 		9473BB4B1F0CED900074F6A3 /* M8MeetDeviceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9473BB4A1F0CED900074F6A3 /* M8MeetDeviceView.xib */; };
+		9475FF471F21DCA100E1B745 /* M8CallViewController+AsyncListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 9475FF461F21DCA100E1B745 /* M8CallViewController+AsyncListener.m */; };
 		947DB4571EF79DDC0019AE2B /* record_callType_audio.png in Resources */ = {isa = PBXBuildFile; fileRef = 947DB44C1EF79DDC0019AE2B /* record_callType_audio.png */; };
 		947DB4581EF79DDC0019AE2B /* record_callType_audio@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 947DB44D1EF79DDC0019AE2B /* record_callType_audio@2x.png */; };
 		947DB4591EF79DDC0019AE2B /* record_callType_audio@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 947DB44E1EF79DDC0019AE2B /* record_callType_audio@3x.png */; };
@@ -757,6 +758,8 @@
 		9473BB471F0CED820074F6A3 /* M8MeetDeviceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8MeetDeviceView.h; sourceTree = "<group>"; };
 		9473BB481F0CED820074F6A3 /* M8MeetDeviceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8MeetDeviceView.m; sourceTree = "<group>"; };
 		9473BB4A1F0CED900074F6A3 /* M8MeetDeviceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M8MeetDeviceView.xib; sourceTree = "<group>"; };
+		9475FF451F21DCA100E1B745 /* M8CallViewController+AsyncListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "M8CallViewController+AsyncListener.h"; sourceTree = "<group>"; };
+		9475FF461F21DCA100E1B745 /* M8CallViewController+AsyncListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "M8CallViewController+AsyncListener.m"; sourceTree = "<group>"; };
 		947DB44C1EF79DDC0019AE2B /* record_callType_audio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_callType_audio.png; sourceTree = "<group>"; };
 		947DB44D1EF79DDC0019AE2B /* record_callType_audio@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_callType_audio@2x.png"; sourceTree = "<group>"; };
 		947DB44E1EF79DDC0019AE2B /* record_callType_audio@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_callType_audio@3x.png"; sourceTree = "<group>"; };
@@ -2532,6 +2535,8 @@
 				94252FD71F0CF761005D9604 /* M8CallViewController+CallListener.m */,
 				94AFAAEF1F177F6F0025FB0B /* M8CallViewController+IMListener.h */,
 				94AFAAF01F177F6F0025FB0B /* M8CallViewController+IMListener.m */,
+				9475FF451F21DCA100E1B745 /* M8CallViewController+AsyncListener.h */,
+				9475FF461F21DCA100E1B745 /* M8CallViewController+AsyncListener.m */,
 				946F7ECE1EF29D4F005E757A /* M8CallComingListener.h */,
 				946F7ECF1EF29D4F005E757A /* M8CallComingListener.m */,
 				94FFF7A81F0F2F2400F0CE96 /* M8RecvChildViewController.h */,
@@ -3173,6 +3178,7 @@
 				945D274F1F14F2FA001D1D24 /* MJRefreshFooter.m in Sources */,
 				94AFAAC51F173ED50025FB0B /* NSString+Common.m in Sources */,
 				94FFF7B81F0F37A800F0CE96 /* M8LiveModels.m in Sources */,
+				9475FF471F21DCA100E1B745 /* M8CallViewController+AsyncListener.m in Sources */,
 				948BFCED1F0E550300FC87A7 /* M8LiveViewController.m in Sources */,
 				949522721F18EB6A0095647D /* MobContactViewController.m in Sources */,
 				943A086D1EDEBADE003CEA27 /* ReportRoomRequest.m in Sources */,

@@ -21,7 +21,7 @@
 //返回当前的self.height
 - (void)MeetingMembersCollectionContentHeight:(CGFloat)contentHeight;
 //返回当前的成员
-- (void)MeetingMembersCollectionCurrentMembers:(NSArray *)currenMembers;
+- (void)MeetingMembersCollectionCurrentMembers:(NSArray *_Nullable)currenMembers;
 
 @end
 
@@ -32,13 +32,13 @@
 
 @property (nonatomic, assign) NSInteger totalNumbers;
 
-@property (nonatomic, weak) id WCDelegate;
+@property (nonatomic, weak) id<MeetingMembersCollectionDelegate> WCDelegate;
 
 
-- (void)shouldReloadDataFromSelectContact:(TCIVoidBlock)succHandle;
+- (void)shouldReloadDataFromSelectContact:(TCIVoidBlock _Nullable )succHandle;
 
 
-- (void)syncDataMembersArrayWithDic:(NSDictionary *)memberInfo ;
+- (void)syncDataMembersArrayWithDic:(NSDictionary *_Nullable)memberInfo ;
 
 - (NSArray *_Nullable)getMembersArray;
 

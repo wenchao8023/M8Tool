@@ -20,7 +20,7 @@
 #pragma mark - views delegate
 #pragma mark -- MeetHeaderDelegate
 - (void)MeetHeaderActionInfo:(NSDictionary *)actionInfo
-{
+{   
     
 }
 
@@ -111,10 +111,18 @@
         if ([infoValue isKindOfClass:[NSDictionary class]])
         {
             NSString *subKey = [[infoValue allKeys] firstObject];
+            //添加
             if ([subKey isEqualToString:@"invite"])
             {
                 NSString *inviteId = [infoValue objectForKey:@"invite"];
                 [self inviteMember:inviteId];
+                
+                [self.renderModelManger memberUserAction:inviteId onAction:subKey];
+            }
+            //移除
+            if ([subKey isEqualToString:@"remove"])
+            {
+                NSString *inviteId = [infoValue objectForKey:@"remove"];
                 
                 [self.renderModelManger memberUserAction:inviteId onAction:subKey];
             }
@@ -152,7 +160,7 @@
     
     UserContactViewController *contactVC = [[UserContactViewController alloc] init];
     contactVC.isExitLeftItem = YES;
-    contactVC.contactType = ContactType_sel;
+    contactVC.contactType = ContactType_invite;
     [[AppDelegate sharedAppDelegate] pushViewController:contactVC];
 }
 
@@ -199,6 +207,10 @@
     ILiveRenderView *hostRV = [self.call getRenderFor:self.liveItem.info.host];
     hostRV.frame = curFrame;
 }
+
+
+
+
 
 #pragma mark - UI相关
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -249,10 +261,11 @@
     } completion:^(BOOL finished) {
         
         // 3. 应该要通知 通话界面 重新刷新位置
-//        [self.modelManager onBackFromFloatView];
         [self.renderModelManger onBackFromFloatView];
     }];
 }
+
+
 
 
 

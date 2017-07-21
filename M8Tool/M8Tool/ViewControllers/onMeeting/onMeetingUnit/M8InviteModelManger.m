@@ -8,6 +8,8 @@
 
 #import "M8InviteModelManger.h"
 
+#import "M8CallRenderModel.h"
+
 
 static M8InviteModelManger *shareInstance = nil;
 
@@ -64,6 +66,29 @@ static M8InviteModelManger *shareInstance = nil;
 }
 
 
+- (void)mergeSelectToInvite
+{
+    [self.inviteMemberArray addObjectsFromArray:self.selectMemberArray];
+    [self removeSelectMembers];
+}
+
+
+- (void)updateInviteM8CallRenderModelArray:(NSArray *)callRenderModelArr
+{
+    NSMutableArray *tempInviteArr = [NSMutableArray arrayWithCapacity:0];
+    
+    for (M8CallRenderModel *model in callRenderModelArr)
+    {
+        M8MemberInfo *info = [[M8MemberInfo alloc] init];
+        info.uid = model.identify;
+        info.nick = model.nick;
+        [tempInviteArr addObject:info];
+    }
+    
+    [self updateInviteMemberArray:tempInviteArr];
+}
+
+
 - (void)updateInviteMemberArray:(NSArray *)currentArray
 {
     [self.inviteMemberArray removeAllObjects];
@@ -81,6 +106,8 @@ static M8InviteModelManger *shareInstance = nil;
         [self.selectMemberArray addObject:member];
     }
 }
+
+
 
 - (void)removeAllMembers
 {

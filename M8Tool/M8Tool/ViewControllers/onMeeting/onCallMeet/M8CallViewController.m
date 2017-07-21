@@ -11,6 +11,7 @@
 #import "M8CallViewController+Net.h"
 #import "M8CallViewController+CallListener.h"
 #import "M8CallViewController+IMListener.h"
+#import "M8CallViewController+AsyncListener.h"
 
 
 @interface M8CallViewController ()
@@ -18,6 +19,7 @@
 @end
 
 @implementation M8CallViewController
+
 
 - (void)viewDidLoad
 {
@@ -29,6 +31,7 @@
     [self initCall];
     
     [WCNotificationCenter addObserver:self selector:@selector(onHiddeMenuView) name:kHiddenMenuView_Notifycation object:nil];
+    [WCNotificationCenter addObserver:self selector:@selector(onReceiveInviteMembers) name:kInviteMembers_Notifycation object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -387,6 +390,7 @@
 - (void)dealloc
 {
     [WCNotificationCenter removeObserver:self name:kHiddenMenuView_Notifycation object:nil];
+    [WCNotificationCenter removeObserver:self name:kInviteMembers_Notifycation object:nil];
 }
 
 @end

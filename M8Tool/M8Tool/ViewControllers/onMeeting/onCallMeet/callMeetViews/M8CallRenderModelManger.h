@@ -145,4 +145,10 @@
  */
 - (BOOL)onGetHostCameraStatu;
 
+/**
+ 添加从通讯录获取成员
+ */
+
+- (void)onInviteMembers;
+
 @end

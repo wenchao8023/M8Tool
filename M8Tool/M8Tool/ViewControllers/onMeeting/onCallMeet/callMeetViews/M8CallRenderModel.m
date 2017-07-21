@@ -35,26 +35,34 @@
 
 - (void)countCancelTimer
 {
-    self.userActionDuration -= 1;
-    if (self.userActionDuration == 0 ||
-        self.isInUserAction == NO)
+    WCLog(@"剩余操作时间 : %ld", (long)self.userActionDuration);
+    
+    if (self.isInUserAction == YES)
     {
-        if ([self.userActionTimer isValid])
+        if (self.userActionDuration == 0)
         {
-            [self.userActionTimer invalidate];
-            self.userActionTimer = nil;
+            [self onUserActionEnd];
+            
+            if (self.userActionEndAutom)
+            {
+                self.userActionEndAutom(self);
+            }
         }
-        
-        if (self.userActionEndAutom)
+        else
         {
-            self.userActionEndAutom();
+            self.userActionDuration -= 1;
         }
+    }
+    else
+    {
+        [self onUserActionEnd];
     }
 }
 
 - (void)onUserActionEnd
 {
     self.isInUserAction = NO;
+    self.userActionDuration = 0;
     if ([self.userActionTimer isValid])
     {
         [self.userActionTimer invalidate];

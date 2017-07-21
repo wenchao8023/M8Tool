@@ -52,6 +52,13 @@
 }
 
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
 - (void)setIsBackFromSelectContact:(BOOL)isBackFromSelectContact
 {
     _isBackFromSelectContact = isBackFromSelectContact;
@@ -402,7 +409,7 @@
     
 }
 
-
+#pragma mark -- UINavigationControllerDelegate
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     WCLog(@"didShowViewController : %@", [viewController class]);
@@ -422,12 +429,6 @@
 }
 
 
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 
 

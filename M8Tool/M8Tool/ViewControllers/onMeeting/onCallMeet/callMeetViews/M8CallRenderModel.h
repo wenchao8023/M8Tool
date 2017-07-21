@@ -72,7 +72,8 @@ typedef NS_ENUM(NSInteger, onMeetMemberStatus)
 
 - (void)onUserActionBegin;
 - (void)onUserActionEnd;
-@property (nonatomic, copy, nullable) TCIVoidBlock userActionEndAutom;
+
+@property (nonatomic, copy, nullable) TCIBlock userActionEndAutom;
 
 
 

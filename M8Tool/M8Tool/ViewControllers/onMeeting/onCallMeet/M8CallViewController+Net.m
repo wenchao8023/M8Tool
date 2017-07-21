@@ -34,7 +34,6 @@
     reportReq.room.groupid = self.liveItem.info.groupid;
     reportReq.room.appid = [ShowAppId intValue];
     
-//    [[WebServiceEngine sharedEngine] asyncRequest:reportReq];
     [[WebServiceEngine sharedEngine] AFAsynRequest:reportReq];
 }
 
