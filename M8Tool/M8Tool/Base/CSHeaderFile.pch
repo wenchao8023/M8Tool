@@ -1,0 +1,82 @@
+//
+//  CSHeaderFile.pch
+//  M8Tool
+//
+//  Created by chao on 2017/4/5.
+//  Copyright © 2017年 ibuildtek. All rights reserved.
+//
+
+
+
+
+#ifndef CSHeaderFile_pch
+#define CSHeaderFile_pch
+
+#import <ImSDK/ImSDK.h>
+#import <QAVSDK/QAVSDK.h>
+#import <QALSDK/QalSDKProxy.h>
+#import <TLSSDK/TLSHelper.h>
+#import <IMSDKBugly/IMSDKBugly.h>
+
+#import <ILiveSDK/ILiveCoreHeader.h>
+#import <TILLiveSDK/TILLiveSDK.h>
+#import <ILiveSDK/ILiveQualityData.h>
+#import <ILiveSDK/ILiveSpeedTestManager.h>
+
+#import <TILCallSDK/TILCallSDK.h>
+
+//美颜滤镜sdk
+#import <TILFilterSDK/TILFilter.h>
+
+//引入ShareSDK相关头文件
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKConnector/ShareSDKConnector.h>
+
+//腾讯开放平台SDK头文件（对应QQ和QQ空间）
+#import <TencentOpenAPI/TencentOAuth.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+
+//微信开放平台SDK头文件
+#import "WXApi.h"
+
+//新浪微博SDK头文件
+#import "WeiboSDK.h"
+
+#import "ConstHeader.h"
+
+
+
+#import "AppDelegate.h"
+
+#import "CategoryHeader.h"
+
+//#import "UserViewManager.h"
+
+//#import "LiveCallView.h"
+
+//#import "UserProtocolViewController.h"
+
+
+#import "AFNetworking.h"
+#import "KVNProgress.h"
+#import "MJRefresh.h"
+
+#import "CustomUIHeader.h"
+
+#import "WebServiceHeader.h"
+
+#import "CommonUtil.h"
+
+
+#import "BaseViewController.h"
+#import "ModifyViewController.h"
+
+#import "THLabel.h"
+#import "M8LiveLabel.h"
+
+#import "M8InviteModelManger.h"
+
+
+
+
+#endif /* CSHeaderFile_pch */

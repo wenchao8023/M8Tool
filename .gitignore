@@ -22,7 +22,6 @@ DerivedData
 
 # 忽略指定文件夹
 /M8Tool/frameworks
-/M8Tool/M8Tool/Base
 /M8Tool/M8Tool/3RD
 
 # CocoaPods
