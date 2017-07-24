@@ -11,6 +11,9 @@
 
 @implementation UsrContactView (UI)
 
+
+
+
 - (void)loadDataInMainThread
 {
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -61,21 +64,6 @@
     
 }
 
-/**
- 常用群组
- */
-- (void)onCommonGroupAction
-{
-    
-}
-
-/**
- 常用联系人
- */
-- (void)onCommonContactAction
-{
-    
-}
 
 /**
  头部分组事件
@@ -107,6 +95,17 @@
         mangerVC.isExitLeftItem = YES;
         mangerVC.cInfo = self.sectionArray[section];
         [[AppDelegate sharedAppDelegate] pushViewController:mangerVC];
+        
+        
+        WCWeakSelf(self);
+        mangerVC.delCompanySucc = ^{
+            
+            [weakself onNetGetCompanyList:^{
+                
+                [weakself loadDataInMainThread];
+            }];
+        };
+        
     }
     else if ([mangerBtn.titleLabel.text isEqualToString:@"邀请"])
     {

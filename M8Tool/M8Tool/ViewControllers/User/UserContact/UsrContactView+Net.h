@@ -14,18 +14,23 @@
 /**
  本地加载第一个分组里面的数据
  */
-- (void)onNetLoadLocalList:(TCIVoidBlock _Nullable )succHandle;
+- (void)onNetLoadLocalList:(M8VoidBlock _Nullable )succHandle;
 
 
 /**
  获取公司列表
  */
-- (void)onNetGetCompanyList:(TCIVoidBlock _Nullable )succHandle;
+- (void)onNetGetCompanyList:(M8VoidBlock _Nullable )succHandle;
 
 
 /**
  创建公司
  */
-- (void)onNetCreateTeam:(NSString *_Nullable)teamName  succ:(TCIVoidBlock _Nullable )succHandle;
+- (void)onNetCreateTeam:(NSString *_Nullable)teamName  succ:(M8VoidBlock _Nullable )succHandle;
+
+/**
+ 删除部门
+ */
+- (void)onNetDeleteDepartmentForIndexPath:(NSIndexPath *_Nullable)indexPath succ:(M8VoidBlock _Nullable)succHandle;
 
 @end

@@ -12,8 +12,8 @@
 
 @interface MeetingLuanchCell : UITableViewCell
 
-@property (nonatomic, copy, nullable) TCIVoidBlock onCollectMeetBlock;  //收藏会议
-@property (nonatomic, copy, nullable) TCIVoidBlock onCancelMeetBlock;   //取消收藏会议
+@property (nonatomic, copy, nullable) M8VoidBlock onCollectMeetBlock;  //收藏会议
+@property (nonatomic, copy, nullable) M8VoidBlock onCancelMeetBlock;   //取消收藏会议
 
 - (void)configWithItem:(NSString *_Nullable)item content:(NSString *_Nullable)content;
 

@@ -13,6 +13,9 @@
 
 - (void)onNetloadData
 {
+    [self.sectionArray  removeAllObjects];
+    [self.itemArray     removeAllObjects];
+    
     if (self.teamType == MangerTeamType_Partment)
     {
         [self onNetGetPartInfoWithDid:self.dInfo.did];
@@ -60,6 +63,109 @@
     [self onReloadDataInMainThread];
 }
 
+- (void)onNetDeleteCompany
+{
+    WCWeakSelf(self);
+    DeleteCompanyReuqest *delCompanyReq = [[DeleteCompanyReuqest alloc] initWithHandler:^(BaseRequest *request) {
+        
+        if (weakself.delCompanySucc)
+        {
+            weakself.delCompanySucc();
+        }
+        
+        [weakself.navigationController popViewControllerAnimated:YES];
+        
+    } failHandler:^(BaseRequest *request) {
+        
+    }];
+    
+    delCompanyReq.token = [AppDelegate sharedAppDelegate].token;
+    delCompanyReq.uid   = [M8UserDefault getLoginId];
+    delCompanyReq.cid   = [self.cInfo.cid intValue];
+    
+    [[WebServiceEngine sharedEngine] AFAsynRequest:delCompanyReq];
+}
+
+
+- (void)onNetCreateDepartment:(NSString *)partName
+{
+    WCWeakSelf(self);
+    CreatePartRequest *partReq = [[CreatePartRequest alloc] initWithHandler:^(BaseRequest *request) {
+        
+        [weakself onNetGetCompanyDetail];
+        
+    } failHandler:^(BaseRequest *request) {
+        
+    }];
+    
+    partReq.token = [AppDelegate sharedAppDelegate].token;
+    partReq.uid   = [M8UserDefault getLoginId];
+    partReq.cid   = [self.cInfo.cid intValue];
+    partReq.name  = partName;
+    
+    [[WebServiceEngine sharedEngine] AFAsynRequest:partReq];
+}
+
+
+
+- (void)onNetGetCompanyDetail
+{
+    WCWeakSelf(self);
+    CompanyDetailRequest *detailReq = [[CompanyDetailRequest alloc] initWithHandler:^(BaseRequest *request) {
+        
+        CompanyDetailResponseData *detailResponseData = (CompanyDetailResponseData *)request.response.data;
+        
+        M8CompanyInfo *cInfo = [[M8CompanyInfo alloc] init];
+        [cInfo setValuesForKeysWithDictionary:detailResponseData.companyinfo];
+        
+        if (detailResponseData)
+        {
+            weakself.cInfo = cInfo;
+            
+            [weakself onNetloadData];
+        }
+        
+        
+    } failHandler:^(BaseRequest *request) {
+        
+    }];
+    detailReq.token = [AppDelegate sharedAppDelegate].token;
+    detailReq.cId   = [self.cInfo.cid intValue];
+    
+    [[WebServiceEngine sharedEngine] AFAsynRequest:detailReq];
+}
+
+
+
+//添加单个成员进部门
+- (void)onNetJoinMember:(NSString *)memberId toPart:(NSString *)did succ:(M8VoidBlock)succHandle
+{
+    WCWeakSelf(self);
+    
+    JoinPartRequest *joinPartReq = [[JoinPartRequest alloc] initWithHandler:^(BaseRequest *request) {
+        
+        if (succHandle)
+        {
+            succHandle();
+        }
+        
+         [self onNetloadData];
+        
+    } failHandler:^(BaseRequest *request) {
+        
+        //加入失败，再次加入
+        if (!(request.response.errorCode == 0 ||
+              request.response.errorCode == 10086))
+        {
+            [weakself onNetJoinMember:memberId toPart:did succ:succHandle];
+        }
+    }];
+    
+    joinPartReq.token = [AppDelegate sharedAppDelegate].token;
+    joinPartReq.uid   = @[memberId];
+    joinPartReq.did   = [did intValue];
+    [[WebServiceEngine sharedEngine] AFAsynRequest:joinPartReq];
+}
 
 
 @end

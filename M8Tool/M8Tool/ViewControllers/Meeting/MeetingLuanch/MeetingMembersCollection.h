@@ -35,7 +35,7 @@
 @property (nonatomic, weak) id<MeetingMembersCollectionDelegate> WCDelegate;
 
 
-- (void)shouldReloadDataFromSelectContact:(TCIVoidBlock _Nullable )succHandle;
+- (void)shouldReloadDataFromSelectContact:(M8VoidBlock _Nullable )succHandle;
 
 
 - (void)syncDataMembersArrayWithDic:(NSDictionary *_Nullable)memberInfo ;

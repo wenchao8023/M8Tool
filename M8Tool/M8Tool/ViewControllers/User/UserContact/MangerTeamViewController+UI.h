@@ -12,6 +12,8 @@
 
 - (void)onReloadDataInMainThread;
 
+- (void)onDeleteCompanyAction;
+
 - (void)onDidSelectAtIndex:(NSIndexPath *_Nonnull)indexPath;
 
 - (void)onHeaderViewAction:(UITapGestureRecognizer *_Nullable)tap;

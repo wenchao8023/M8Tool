@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
-
 @protocol UsrContactDelegate <NSObject>
 
 - (void)usrContactDidSelectContacts:(NSArray *_Nonnull)contacts;
@@ -40,12 +38,12 @@
 
 @property (nonatomic, strong, nullable) NSMutableArray *statuArray;
 
+@property (nonatomic, strong, nonnull) UIAlertAction *saveAction;
+
 
 - (void)configStatuArray;
 
-
-@property (nonatomic, strong, nonnull) UIAlertAction *saveAction;
-
+- (void)onSubviewAddAction;
 
 
 

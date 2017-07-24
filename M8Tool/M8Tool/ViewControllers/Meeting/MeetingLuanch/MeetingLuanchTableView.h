@@ -50,7 +50,7 @@
 @property (nonatomic, weak) id _Nullable WCDelegate;
 
 
-- (void)shouldReloadDataFromSelectContact:(TCIVoidBlock _Nullable )succHandle;
+- (void)shouldReloadDataFromSelectContact:(M8VoidBlock _Nullable )succHandle;
 
 - (void)loadDataWithLuanchCall;
 

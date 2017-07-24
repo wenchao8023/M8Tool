@@ -130,7 +130,8 @@ static const CGFloat kItemHeight = 60;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.sectionArray.count + 1;
+    return self.sectionArray.count;
+//    return self.sectionArray.count + 1;
 }
 
 
@@ -138,12 +139,12 @@ static const CGFloat kItemHeight = 60;
 {
     if (section)
     {
-        if (section == self.sectionArray.count) //最后一分组
-        {
-            return 0;
-        }
-        else    //中间的公司信息
-        {
+//        if (section == self.sectionArray.count) //最后一分组
+//        {
+//            return 0;
+//        }
+//        else    //中间的公司信息
+//        {
             if ([self.statuArray[section] isEqualToString:@"0"])
             {
                 if (self.dataArray.count > section)
@@ -155,7 +156,7 @@ static const CGFloat kItemHeight = 60;
             {
                 return 0;
             }
-        }
+//        }
     }
     
     if (self.dataArray.count > section)    //第一分组信息
@@ -172,15 +173,15 @@ static const CGFloat kItemHeight = 60;
     
     if (section)
     {
-        if (section == self.sectionArray.count)
-        {
-            UIButton *createTeamBtn = [WCUIKitControl createButtonWithFrame:CGRectMake(0, 10, self.width, 40) Target:self Action:@selector(onCreateTeamAction) Title:@"+创建公司"];
-            createTeamBtn.titleLabel.font = [UIFont systemFontOfSize:kAppMiddleFontSize];
-            [createTeamBtn setTitleColor:WCBlack forState:UIControlStateNormal];
-            [headView addSubview:createTeamBtn];
-        }
-        else
-        {
+//        if (section == self.sectionArray.count)
+//        {
+//            UIButton *createTeamBtn = [WCUIKitControl createButtonWithFrame:CGRectMake(0, 10, self.width, 40) Target:self Action:@selector(onCreateTeamAction) Title:@"+创建公司"];
+//            createTeamBtn.titleLabel.font = [UIFont systemFontOfSize:kAppMiddleFontSize];
+//            [createTeamBtn setTitleColor:WCBlack forState:UIControlStateNormal];
+//            [headView addSubview:createTeamBtn];
+//        }
+//        else
+//        {
             M8CompanyInfo *cInfo = self.sectionArray[section];
             
             headView.frame = CGRectMake(0, 0, self.width, kItemHeight);
@@ -212,7 +213,7 @@ static const CGFloat kItemHeight = 60;
             
             UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onHeaderAction:)];
             [headView addGestureRecognizer:tap];
-        }
+//        }
     }
     
     return headView;
@@ -248,8 +249,6 @@ static const CGFloat kItemHeight = 60;
     return friendCell;
 }
 
-
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return kItemHeight;
@@ -267,20 +266,59 @@ static const CGFloat kItemHeight = 60;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == self.sectionArray.count)
-    {
-        return 0.01;
-    }
     return 10;
 }
 
+#pragma mark -- 点击cell
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self onDidSelectAtIndex:indexPath];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+#pragma mark -- 滑动删除cell
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.contactType == ContactType_sel ||
+        self.contactType == ContactType_invite)
+    {
+        return NO;
+    }
+    
+    if (indexPath.row == 0)
+    {
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        WCWeakSelf(self);
+        [self onNetDeleteDepartmentForIndexPath:indexPath succ:^{
+            
+            [weakself onNetGetCompanyList:^{
+                
+                [weakself loadDataInMainThread];
+            }];
+        }];
+    }
+}
 
 
+
+#pragma mark - onSubviewAddAction
+- (void)onSubviewAddAction
+{
+    [self onCreateTeamAction];
+}
 
 @end

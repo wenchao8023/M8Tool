@@ -59,6 +59,11 @@
                                                       Target:self
                                                       Action:@selector(addAction)
                                                        Title:@"添加"];
+    [addBtn setAttributedTitle:[CommonUtil customAttString:@"添加"
+                                                  fontSize:kAppMiddleFontSize
+                                                 textColor:WCWhite
+                                                 charSpace:kAppKern_0]
+                      forState:UIControlStateNormal];
     [self.headerView addSubview:addBtn];
 }
 
@@ -88,6 +93,27 @@
 - (void)addAction
 {
     WCLog(@"add more contact");
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    UIAlertAction *addFrientdAction = [UIAlertAction actionWithTitle:@"添加好友" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    UIAlertAction *addTeamAction = [UIAlertAction actionWithTitle:@"添加团队" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        [self.contactView onSubviewAddAction];
+    }];
+    
+    [alert addAction:addFrientdAction];
+    [alert addAction:addTeamAction];
+    [alert addAction:cancelAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark -- 判断视图类型

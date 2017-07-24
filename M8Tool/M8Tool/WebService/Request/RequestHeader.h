@@ -75,7 +75,7 @@
 
 #import "MeetCancelCRequest.h"
 
-
+#import "DeleteInfoRequest.h"
 
 
 #endif /* RequestHeader_h */

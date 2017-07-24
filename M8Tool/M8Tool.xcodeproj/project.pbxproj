@@ -178,6 +178,7 @@
 		946B32CC1F050B86007530CE /* M8RegistSuccViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946B32CB1F050B86007530CE /* M8RegistSuccViewController.m */; };
 		946B32CF1F051390007530CE /* M8ForgetPsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946B32CE1F051390007530CE /* M8ForgetPsdViewController.m */; };
 		946B32D21F05293D007530CE /* AlertHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 946B32D11F05293D007530CE /* AlertHelp.m */; };
+		946BD7C21F258EBE0057D116 /* DeleteInfoRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 946BD7C11F258EBE0057D116 /* DeleteInfoRequest.m */; };
 		946F7ED31EF29D4F005E757A /* M8CallComingListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 946F7ECF1EF29D4F005E757A /* M8CallComingListener.m */; };
 		946F7F041EF29E84005E757A /* M8CallRenderNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 946F7EED1EF29E84005E757A /* M8CallRenderNote.m */; };
 		946F7F051EF29E84005E757A /* M8CallRenderNote.xib in Resources */ = {isa = PBXBuildFile; fileRef = 946F7EEE1EF29E84005E757A /* M8CallRenderNote.xib */; };
@@ -736,6 +737,8 @@
 		946B32CE1F051390007530CE /* M8ForgetPsdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8ForgetPsdViewController.m; sourceTree = "<group>"; };
 		946B32D01F05293D007530CE /* AlertHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertHelp.h; sourceTree = "<group>"; };
 		946B32D11F05293D007530CE /* AlertHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertHelp.m; sourceTree = "<group>"; };
+		946BD7C01F258EBE0057D116 /* DeleteInfoRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteInfoRequest.h; sourceTree = "<group>"; };
+		946BD7C11F258EBE0057D116 /* DeleteInfoRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteInfoRequest.m; sourceTree = "<group>"; };
 		946F7ECE1EF29D4F005E757A /* M8CallComingListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8CallComingListener.h; sourceTree = "<group>"; };
 		946F7ECF1EF29D4F005E757A /* M8CallComingListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8CallComingListener.m; sourceTree = "<group>"; };
 		946F7EEC1EF29E84005E757A /* M8CallRenderNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8CallRenderNote.h; sourceTree = "<group>"; };
@@ -2229,6 +2232,8 @@
 				94A2C3B61F19AF35005B4FCB /* CompanyListRequest.m */,
 				949F675F1F1C53C1000D8758 /* CreateCompanyRequest.h */,
 				949F67601F1C53C1000D8758 /* CreateCompanyRequest.m */,
+				946BD7C01F258EBE0057D116 /* DeleteInfoRequest.h */,
+				946BD7C11F258EBE0057D116 /* DeleteInfoRequest.m */,
 				949F67631F1C5D61000D8758 /* CreatePartRequest.h */,
 				949F67641F1C5D61000D8758 /* CreatePartRequest.m */,
 				949F67661F1C857B000D8758 /* JoinPartRequest.h */,
@@ -3215,6 +3220,7 @@
 				94BCF9831F0BA77900EFB257 /* M8BaseFloatView.m in Sources */,
 				945D274F1F14F2FA001D1D24 /* MJRefreshFooter.m in Sources */,
 				94AFAAC51F173ED50025FB0B /* NSString+Common.m in Sources */,
+				946BD7C21F258EBE0057D116 /* DeleteInfoRequest.m in Sources */,
 				94FFF7B81F0F37A800F0CE96 /* M8LiveModels.m in Sources */,
 				9475FF471F21DCA100E1B745 /* M8CallViewController+AsyncListener.m in Sources */,
 				948BFCED1F0E550300FC87A7 /* M8LiveViewController.m in Sources */,

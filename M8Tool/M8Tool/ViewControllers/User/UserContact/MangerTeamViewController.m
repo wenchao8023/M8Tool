@@ -23,7 +23,10 @@ static CGFloat kItemHeight = 60.f;
 
 @end
 
+
+
 @implementation MangerTeamViewController
+
 
 #pragma mark - inits
 - (instancetype)initWithType:(MangerTeamType)type isManager:(BOOL)isManager  contactType:(ContactType)contactType
@@ -80,9 +83,10 @@ static CGFloat kItemHeight = 60.f;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
-    
     [self onNetloadData];
+    
+    // 重新设置导航视图 >> 添加右侧按钮
+    [self resetNavi];
     
     [self tableView];
     
@@ -111,7 +115,33 @@ static CGFloat kItemHeight = 60.f;
     // Dispose of any resources that can be recreated.
 }
 
+
+
+
+
 #pragma mark - UIKit
+- (void)resetNavi
+{
+    if (self.teamType == MangerTeamType_Company &&
+        self.isManger)
+    {
+        CGFloat btnWidth = 40;
+        UIButton *addBtn = [WCUIKitControl createButtonWithFrame:CGRectMake(SCREEN_WIDTH - kContentOriginX - btnWidth,
+                                                                            kDefaultStatuHeight,
+                                                                            btnWidth,
+                                                                            kDefaultCellHeight)
+                                                          Target:self
+                                                          Action:@selector(onDeleteCompanyAction)
+                                                           Title:@"删除"];
+        [addBtn setAttributedTitle:[CommonUtil customAttString:@"删除"
+                                                      fontSize:kAppSmallFontSize
+                                                     textColor:WCRed
+                                                     charSpace:kAppKern_0]
+                          forState:UIControlStateNormal];
+        [self.headerView addSubview:addBtn];
+    }
+}
+
 - (void)createButtons
 {
     // 分享按钮
@@ -345,11 +375,27 @@ static CGFloat kItemHeight = 60.f;
 {
     WCLog(@"didShowViewController : %@", [viewController class]);
     
-    //选人之后退出界面需要清空 selectArray 中的数据
-    if ([NSStringFromClass([viewController class]) isEqualToString:@"UserContactViewController"])
+    //选人之后退出界面需要清空 selectArray 中的数据，邀请的时候不需要
+    if (self.contactType == ContactType_sel)
     {
-        M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
-        [modelManger removeSelectMembers];
+        if ([NSStringFromClass([viewController class]) isEqualToString:@"UserContactViewController"])
+        {
+            M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
+            [modelManger removeSelectMembers];
+        }
+    }
+    
+    if (self.contactType == ContactType_invite)
+    {
+        if (_isInviteBack)
+        {
+            return ;
+        }
+        else
+        {
+            M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
+            [modelManger removeSelectMembers];
+        }
     }
 }
 

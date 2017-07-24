@@ -54,8 +54,8 @@
 @property (nonatomic, weak) id<CallRenderDelegate> _Nullable WCDelegate;
 
 
-@property (nonatomic, copy, nullable) TCIVoidBlock removeBlock;
-@property (nonatomic, copy, nullable) TCIVoidBlock inviteBlock;
+@property (nonatomic, copy, nullable) M8VoidBlock removeBlock;
+@property (nonatomic, copy, nullable) M8VoidBlock inviteBlock;
 
 
 

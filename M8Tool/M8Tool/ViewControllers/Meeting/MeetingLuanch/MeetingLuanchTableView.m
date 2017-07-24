@@ -264,7 +264,7 @@
  获取到了从通讯录选人模式下返回的消息，准备重新组装数据
  应该将消息传给 参会人员 去处理
  */
-- (void)shouldReloadDataFromSelectContact:(TCIVoidBlock)succHandle
+- (void)shouldReloadDataFromSelectContact:(M8VoidBlock)succHandle
 {
     [self.membersCollection shouldReloadDataFromSelectContact:succHandle];
 }

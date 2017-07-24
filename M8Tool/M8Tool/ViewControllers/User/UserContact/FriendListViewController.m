@@ -124,6 +124,7 @@
 #pragma mark - on network
 - (void)onNetGetFriendList
 {
+    [self.dataArray removeAllObjects];
     WCWeakSelf(self);
     FriendsListRequest *friendListReq = [[FriendsListRequest alloc] initWithHandler:^(BaseRequest *request) {
         
@@ -151,6 +152,25 @@
     friendListReq.identifier = [M8UserDefault getLoginId];
     friendListReq.token = [AppDelegate sharedAppDelegate].token;
     [[WebServiceEngine sharedEngine] AFAsynRequest:friendListReq];
+}
+
+- (void)onNetDeleteFriend:(NSIndexPath *)indexPath
+{
+    M8MemberInfo *mInfo = self.dataArray[indexPath.row];
+    WCWeakSelf(self);
+    DeleteFriendReuqest *delFReq = [[DeleteFriendReuqest alloc] initWithHandler:^(BaseRequest *request) {
+        
+        [weakself onNetGetFriendList];
+        
+    } failHandler:^(BaseRequest *request) {
+        
+    }];
+    
+    delFReq.token = [AppDelegate sharedAppDelegate].token;
+    delFReq.uid   = [M8UserDefault getLoginId];
+    delFReq.fid   = mInfo.uid;
+    
+    [[WebServiceEngine sharedEngine] AFAsynRequest:delFReq];
 }
 
 
@@ -277,6 +297,31 @@
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
+#pragma mark -- 滑动删除cell
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.contactType == ContactType_sel ||
+        self.contactType == ContactType_invite)
+    {
+        return NO;
+    }
+    return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        [self onNetDeleteFriend:indexPath];
+    }
 }
 
 
