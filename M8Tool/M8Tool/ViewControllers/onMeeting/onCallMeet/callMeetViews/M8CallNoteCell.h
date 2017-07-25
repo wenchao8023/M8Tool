@@ -1,5 +1,5 @@
 //
-//  M8CallRenderNote.h
+//  M8CallNoteCell.h
 //  M8Tool
 //
 //  Created by chao on 2017/7/25.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface M8CallRenderNote : UITableView
-
-- (void)loadItemsArray:(id _Nullable)model;
+@interface M8CallNoteCell : UITableViewCell
 
 @end

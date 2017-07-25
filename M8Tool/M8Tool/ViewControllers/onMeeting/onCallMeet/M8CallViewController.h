@@ -10,9 +10,9 @@
 
 #import "M8CallHeaderView.h"
 #import "M8CallRenderView.h"
+#import "M8CallRenderNote.h"
 #import "M8MeetDeviceView.h"
 
-//#import "M8CallRenderModelManager.h"
 #import "M8CallRenderModelManger.h"
 
 #import "M8RecvChildViewController.h"
@@ -23,10 +23,11 @@
 
 @property (nonatomic, strong) TILMultiCall * _Nonnull call;
 
-@property (nonatomic, strong, nonnull) M8CallHeaderView *headerView;
-@property (nonatomic, strong, nonnull) M8CallRenderView *renderView;
-@property (nonatomic, strong, nonnull) M8MeetDeviceView *deviceView;
-@property (nonatomic, strong, nonnull) M8MenuPushView   *menuView;
+@property (nonatomic, strong, nullable) M8CallHeaderView *headerView;
+@property (nonatomic, strong, nullable) M8CallRenderView *renderView;
+@property (nonatomic, strong, nullable) M8MeetDeviceView *deviceView;
+@property (nonatomic, strong, nullable) M8CallRenderNote *noteView;
+@property (nonatomic, strong, nullable) M8MenuPushView   *menuView;
 
 
 /**
@@ -51,7 +52,6 @@
 /**
  用于处理 renderView 的数据
  */
-//@property (nonatomic, strong, nonnull) M8CallRenderModelManager *modelManager;
 @property (nonatomic, strong, nonnull) M8CallRenderModelManger *renderModelManger;
 
 /**
@@ -61,7 +61,7 @@
 @property (nonatomic, assign) BOOL shouldHangup;
 
 
-- (void)addTextToView:(id _Nullable )newText;
+//- (void)addTextToView:(id _Nullable )newText;
 
 - (void)hangup;
 
@@ -74,5 +74,11 @@
  邀请单个成员
  */
 - (void)inviteMember:(NSString *_Nullable)memberId;
+
+
+
+- (void)addTipInfoToNoteView:(NSString *_Nullable)tipInfo;
+
+- (void)addMember:(NSString *_Nullable)member withTip:(NSString *_Nullable)tip;
 
 @end

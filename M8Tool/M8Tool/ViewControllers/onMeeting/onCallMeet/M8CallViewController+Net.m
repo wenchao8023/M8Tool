@@ -17,7 +17,7 @@
                                                                   failHandler:^(BaseRequest *request) {
         
         // 上传失败
-        [weakself addTextToView:@"上报房间信息失败"];
+//        [weakself addTextToView:@"上报房间信息失败"];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             NSString *errinfo = [NSString stringWithFormat:@"code=%ld,msg=%@",(long)request.response.errorCode,request.response.errorInfo];
@@ -44,8 +44,8 @@
     [self onNetReportRoomInfo:^(BaseRequest *request) {
         reportRoomData = (ReportRoomResponseData *)request.response.data;
         weakself.curMid = reportRoomData.mid;
-        [weakself addTextToView:[NSString stringWithFormat:@"%d", reportRoomData.mid]];
-        [weakself addTextToView:@"上报房间信息成功"];
+//        [weakself addTextToView:[NSString stringWithFormat:@"%d", reportRoomData.mid]];
+//        [weakself addTextToView:@"上报房间信息成功"];
     }];
 }
 
@@ -55,11 +55,11 @@
     WCWeakSelf(self);
     ReportCallMemRequest *reportMemReq = [[ReportCallMemRequest alloc] initWithHandler:^(BaseRequest *request) {
         
-        [weakself addTextToView:[NSString stringWithFormat:@"上报成员:%@ -- 状态:%d, 成功", mem, statu]];
+//        [weakself addTextToView:[NSString stringWithFormat:@"上报成员:%@ -- 状态:%d, 成功", mem, statu]];
         
     } failHandler:^(BaseRequest *request) {
         
-        [weakself addTextToView:[NSString stringWithFormat:@"上报成员状态失败\n错误码:%ld，错误信息: %@", (long)request.response.errorCode, request.response.errorInfo]];
+//        [weakself addTextToView:[NSString stringWithFormat:@"上报成员状态失败\n错误码:%ld，错误信息: %@", (long)request.response.errorCode, request.response.errorInfo]];
     }];
     
     reportMemReq.token = [AppDelegate sharedAppDelegate].token;
@@ -77,11 +77,11 @@
     WCWeakSelf(self);
     ReportMemExitRequest *reportMemExitReq = [[ReportMemExitRequest alloc] initWithHandler:^(BaseRequest *request) {
         
-        [weakself addTextToView:[NSString stringWithFormat:@"上报成员:<--%@ : 退出房间-->成功", weakself.liveItem.uid]];
+//        [weakself addTextToView:[NSString stringWithFormat:@"上报成员:<--%@ : 退出房间-->成功", weakself.liveItem.uid]];
         
     } failHandler:^(BaseRequest *request) {
         
-        [weakself addTextToView:[NSString stringWithFormat:@"上报成员状态失败\n错误码:%ld，错误信息: %@", (long)request.response.errorCode, request.response.errorInfo]];
+//        [weakself addTextToView:[NSString stringWithFormat:@"上报成员状态失败\n错误码:%ld，错误信息: %@", (long)request.response.errorCode, request.response.errorInfo]];
     }];
     
     reportMemExitReq.token = [AppDelegate sharedAppDelegate].token;
@@ -100,12 +100,12 @@
     ExitRoomRequest *exitReq = [[ExitRoomRequest alloc] initWithHandler:^(BaseRequest *request)
                                 {
                                     NSLog(@"上报退出房间成功");
-                                    [weakself addTextToView:@"上报退出房间成功"];
+//                                    [weakself addTextToView:@"上报退出房间成功"];
                                     
                                 } failHandler:^(BaseRequest *request) {
                                     
                                     NSLog(@"上报退出房间失败");
-                                    [weakself addTextToView:@"上报退出房间成功"];
+//                                    [weakself addTextToView:@"上报退出房间成功"];
                                 }];
 
     exitReq.token   = [AppDelegate sharedAppDelegate].token;

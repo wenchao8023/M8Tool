@@ -82,7 +82,8 @@
     {
         case TILCALL_NOTIF_INVITE:
         {
-            [self addTextToView:[NSString stringWithFormat:@"%@邀请%@通话",sender,target]];
+//            [self addTextToView:[NSString stringWithFormat:@"%@邀请%@通话",sender,target]];
+            [self addTipInfoToNoteView:[NSString stringWithFormat:@"%@邀请%@通话",sender,target]];
         }
             
             break;

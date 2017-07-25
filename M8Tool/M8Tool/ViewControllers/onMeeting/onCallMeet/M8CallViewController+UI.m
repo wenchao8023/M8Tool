@@ -35,29 +35,29 @@
         switch (deviceAction) {
             case kOnDeviceActionShare:
             {
-                [self addTextToView:@"点击分享"];
+//                [self addTextToView:@"点击分享"];
             }
                 break;
             case kOnDeviceActionNote:
             {
-                [self addTextToView:@"点击发言"];
+//                [self addTextToView:@"点击发言"];
             }
                 break;
             case kOnDeviceActionCenter:
             {
-                [self addTextToView:@"点击挂断"];
+//                [self addTextToView:@"点击挂断"];
                 [self selfDismiss];
             }
                 break;
             case kOnDeviceActionMenu:
             {
-                [self addTextToView:@"点击菜单"];
+//                [self addTextToView:@"点击菜单"];
                 [self onMenuAction];
             }
                 break;
             case kOnDeviceActionSwichRender:
             {
-                [self addTextToView:@"缩小视图"];
+//                [self addTextToView:@"缩小视图"];
                 [self showFloatView];
             }
                 break;
@@ -99,7 +99,7 @@
 #pragma mark -- CallRenderDelegate
 - (void)CallRenderActionInfo:(NSDictionary *)actionInfo
 {
-    [self addTextToView:[actionInfo allValues][0]];
+//    [self addTextToView:[actionInfo allValues][0]];
 
     NSString *infoKey = [[actionInfo allKeys] firstObject];
     
@@ -134,7 +134,7 @@
 #pragma mark -- MenuPushDelegate
 - (void)MenuPushActionInfo:(NSDictionary *)info
 {
-    [self addTextToView:[info allValues][0]];
+//    [self addTextToView:[info allValues][0]];
     
     NSString *infoKey = [[info allKeys] firstObject];
     

@@ -8,9 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
-
-
 @protocol CallRenderDelegate <NSObject>
 
 - (void)CallRenderActionInfo:(NSDictionary *_Nullable)actionInfo;
@@ -59,7 +56,7 @@
 
 
 
-- (void)addTextToView:(id _Nullable)newText;
+//- (void)addTextToView:(id _Nullable)newText;
 
 /**
  重新设置 视频流 位置

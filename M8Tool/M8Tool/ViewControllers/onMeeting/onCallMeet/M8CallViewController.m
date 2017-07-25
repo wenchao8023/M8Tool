@@ -13,6 +13,8 @@
 #import "M8CallViewController+IMListener.h"
 #import "M8CallViewController+AsyncListener.h"
 
+#import "M8CallNoteModel.h"
+
 
 @interface M8CallViewController ()
 
@@ -270,19 +272,7 @@
     }
     return _renderModelManger;
 }
-//- (M8CallRenderModelManager *)modelManager
-//{
-//    if (!_modelManager)
-//    {
-//        M8CallRenderModelManager *modelManager = [[M8CallRenderModelManager  alloc] init];
-//        modelManager.WCDelegate     = self;
-//        modelManager.hostIdentify   = self.liveItem.info.host;
-//        modelManager.loginIdentify  = self.liveItem.uid;
-//        modelManager.callType       = self.liveItem.callType;
-//        _modelManager = modelManager;
-//    }
-//    return _modelManager;
-//}
+
 
 - (M8CallHeaderView *)headerView
 {
@@ -322,6 +312,16 @@
     return _renderView;
 }
 
+- (M8CallRenderNote *)noteView
+{
+    if (!_noteView)
+    {
+        M8CallRenderNote *noteView = [[M8CallRenderNote alloc] initWithFrame:CGRectMake(0, self.renderView.height - 270, self.renderView.width, 200)];
+        [self.renderView addSubview:(_noteView = noteView)];
+    }
+    return _noteView;
+}
+
 - (M8MenuPushView *)menuView
 {
     if (!_menuView)
@@ -346,15 +346,28 @@
     [self headerView];
     [self deviceView];
     [self renderView];
+    [self noteView];
     [self menuView];
 }
 
 
-
-- (void)addTextToView:(id)newText
+- (void)addTipInfoToNoteView:(NSString *)tipInfo
 {
-    [self.renderView addTextToView:newText];
+    M8CallNoteModel *model = [[M8CallNoteModel alloc] initWithTip:tipInfo];
+    [self.noteView loadItemsArray:model];
 }
+
+- (void)addMember:(NSString *)member withTip:(NSString *)tip
+{
+    M8CallNoteModel *model = [[M8CallNoteModel alloc] initWithMember:member Tip:tip];
+    [self.noteView loadItemsArray:model];
+}
+
+
+//- (void)addTextToView:(id)newText
+//{
+////    [self.renderView addTextToView:newText];
+//}
 
 - (void)selfDismiss
 {

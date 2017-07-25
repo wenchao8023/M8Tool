@@ -2,54 +2,71 @@
 //  M8CallRenderNote.m
 //  M8Tool
 //
-//  Created by chao on 2017/6/9.
+//  Created by chao on 2017/7/25.
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
 #import "M8CallRenderNote.h"
+#import "M8CallNoteCell.h"
+#import "M8CallNoteModel.h"
 
 
-@interface M8CallRenderNote ()<UITextViewDelegate>
-{
-    CGRect _myFrame;
-}
 
+@interface M8CallRenderNote()<UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, strong) NSMutableArray *itemsArray;
 
 @end
 
 
 
 @implementation M8CallRenderNote
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        self = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil] firstObject];
-        _myFrame = frame;
-        //        self.backgroundColor = WCCyan;
+
+- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style
+{
+    if (self = [super initWithFrame:frame style:style])
+    {
+        self.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 0.01)];
+        self.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 0.01)];
+        self.backgroundColor = WCClear;
+        self.scrollEnabled   = NO;
+        self.delegate        = self;
+        self.dataSource      = self;
+        self.separatorStyle  = UITableViewCellSeparatorStyleNone;
     }
     return self;
 }
 
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-    self.frame = _myFrame;
+
+#pragma mark - UITableViewDelegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.itemsArray.count;
 }
 
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BOOL ret = [M8UserDefault getPushMenuStatu];
-    if (ret)
+    M8CallNoteCell *cell = [tableView dequeueReusableCellWithIdentifier:@"M8CallNoteCellID"];
+    if (!cell)
     {
-        [WCNotificationCenter postNotificationName:kHiddenMenuView_Notifycation object:nil];
-        return NO;
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"M8CallNoteCell" owner:self options:nil] firstObject];
     }
-    return YES;
+    
+    return cell;
 }
 
-- (void)dealloc
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [WCNotificationCenter removeObserver:self name:kHiddenMenuView_Notifycation object:nil];
+    return 18;
 }
 
+
+#pragma mark - load data
+- (void)loadItemsArray:(M8CallNoteModel *)model
+{
+    [self.itemsArray addObject:model];
+    
+    [self reloadData];
+}
 
 @end
