@@ -153,8 +153,8 @@ static NSString * const kMeetingButtonsCellID = @"MeetingButtonsCellID";
 }
 
 #pragma mark - --
-- (void)pushViewControllerWithIndex:(NSInteger)index {
-    
+- (void)pushViewControllerWithIndex:(NSInteger)index
+{    
     if (index == 0 ||
         index == 1 ||
         index == 2 ||
@@ -175,19 +175,22 @@ static NSString * const kMeetingButtonsCellID = @"MeetingButtonsCellID";
         [[AppDelegate sharedAppDelegate] pushViewController:luanchVC];
     }
     else if (index == 3 ||
-             index == 7) {  //发起 手机通话，进入 联系人
+             index == 7)    //发起 手机通话，进入 联系人
+    {
         UserContactViewController *contactVC = [[UserContactViewController alloc] init];
         contactVC.isExitLeftItem = YES;
         contactVC.contactType = index == 3 ? ContactType_tel : ContactType_contact;
         [[AppDelegate sharedAppDelegate] pushViewController:contactVC];
     }
-//    else if (index == 4) {  //发起 会议预约
+//    else if (index == 4)
+//    {  //发起 会议预约
 //        MeetingOrderViewController *orderVC = [[MeetingOrderViewController alloc] init];
 //        orderVC.isExitLeftItem = YES;
 //        [[AppDelegate sharedAppDelegate] pushViewController:orderVC];
 //    }
     else if (index == 5 ||
-             index == 6) {  //进入 会议笔记、会议收藏
+             index == 6)    //进入 会议笔记、会议收藏
+    {
         M8MeetRecordViewController *recordvc = [[M8MeetRecordViewController alloc] init];
         recordvc.listViewType = index - 4;
         recordvc.isExitLeftItem = YES;

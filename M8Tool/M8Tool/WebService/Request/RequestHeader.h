@@ -77,5 +77,7 @@
 
 #import "DeleteInfoRequest.h"
 
+#import "ModifyPwdRequest.h"
+
 
 #endif /* RequestHeader_h */

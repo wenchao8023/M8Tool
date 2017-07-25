@@ -7,24 +7,18 @@
 //
 
 #import "AppDelegate.h"
-//#import "AppDelegate+XGPushConfig.h"
+#import "AppDelegate+XGPushConfig.h"
 #import "UserProtocolViewController.h"
 #import "MainTabBarController.h"
 
-#import "XGPush.h"
-#import "XGSetting.h"
-
-
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
-#import <UserNotifications/UserNotifications.h>
-@interface AppDelegate() <UNUserNotificationCenterDelegate>
-@end
-#endif
 
 
 @interface AppDelegate ()
 
 @end
+
+
+
 
 @implementation AppDelegate
 
@@ -33,30 +27,13 @@
 
     // Override point for customization after application launch.
     
-    [self loadSDK];
+    [self loadILiveSDK];
     
-    //打开debug开关
-    XGSetting *setting = [XGSetting getInstance];
-    [setting enableDebug:YES];
-    //查看debug开关是否打开
-    BOOL debugEnabled = [setting isEnableDebug];
-    NSLog(@"[XGDebug] %@", (debugEnabled ? @"打开" : @"关闭"));
+    [self loadXGSDK:launchOptions];
     
-    [XGPush startApp:2200263375 appKey:@"I266LJG3NK7V"];
-    [XGPush handleLaunching:launchOptions successCallback:^{
-        
-        NSLog(@"[XGDemo] Handle launching success");
-    } errorCallback:^{
-        
-        NSLog(@"[XGDemo] Handle launching error");
-    }];
-    [self registerAPNS];
+    [self loadIFlySDK];
     
-    
-    
-
     [M8UserDefault setMeetingStatu:NO];
-
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = WCWhite;
@@ -67,9 +44,52 @@
     return YES;
 }
 
+#pragma mark - load sdks
+- (void)loadIFlySDK
+{
+    //设置sdk的log等级，log保存在下面设置的工作路径中
+    [IFlySetting setLogFile:LVL_ALL];
+    
+    //打开输出在console的log开关
+    [IFlySetting showLogcat:YES];
+    
+    //设置sdk的工作路径
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *cachePath = [paths objectAtIndex:0];
+    [IFlySetting setLogFilePath:cachePath];
+    
+    //创建语音配置,appid必须要传入，仅执行一次则可
+    NSString *initString = [[NSString alloc] initWithFormat:@"appid=59759209"];
+    
+    //所有服务启动前，需要确保执行createUtility
+    [IFlySpeechUtility createUtility:initString];
+
+}
+
+- (void)loadXGSDK:(NSDictionary *)launchOptions
+{
+    //打开debug开关
+    XGSetting *setting = [XGSetting getInstance];
+    [setting enableDebug:YES];
+    //查看debug开关是否打开
+    BOOL debugEnabled = [setting isEnableDebug];
+    NSLog(@"[XGDebug] %@", (debugEnabled ? @"打开" : @"关闭"));
+    
+//    [XGPush startApp:2200263375 appKey:@"I266LJG3NK7V"];
+    [XGPush startApp:2200263532 appKey:@"I421M1FDFJ7U"];
+    [XGPush handleLaunching:launchOptions successCallback:^{
+        
+        NSLog(@"[XGDemo] Handle launching success");
+    } errorCallback:^{
+        
+        NSLog(@"[XGDemo] Handle launching error");
+    }];
+    [self registerAPNS];
+}
 
 
-- (void)loadSDK {
+
+- (void)loadILiveSDK {
     //注册ShareSDK
     [ShareSDK registerApp:@"1ba4e87f44fec" activePlatforms:@[@(SSDKPlatformTypeWechat)] onImport:^(SSDKPlatformType platformType){
         switch (platformType)
@@ -107,6 +127,8 @@
     [[ILiveSDK getInstance] initSdk:[ShowAppId intValue] accountType:[ShowAccountType intValue]];
 }
 
+#pragma mark -
+
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -136,154 +158,6 @@
     
     
 }
-
-
-
-#pragma mark - XGPush
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
-{
-    NSString *deviceTokenStr = [XGPush registerDevice:deviceToken
-                                              account:[M8UserDefault getLoginId]
-                                      successCallback:^{
-                                          
-                                          NSLog(@"[XGDemo] register push success");
-                                      }
-                                        errorCallback:^{
-                                            
-                                            NSLog(@"[XGDemo] register push error");
-                                        }];
-    
-    NSLog(@"[XGDemo] device token is %@", deviceTokenStr);
-}
-
-- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
-{
-    NSLog(@"[XGDemo] register APNS fail.\n[XGDemo] reason : %@", error);
-}
-
-
-/**
- 收到通知的回调
- 
- @param application  UIApplication 实例
- @param userInfo 推送时指定的参数
- */
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
-{
-    NSLog(@"[XGDemo] receive Notification");
-    [XGPush handleReceiveNotification:userInfo
-                      successCallback:^{
-                          NSLog(@"[XGDemo] Handle receive success");
-                      } errorCallback:^{
-                          NSLog(@"[XGDemo] Handle receive error");
-                      }];
-}
-
-
-/**
- 收到静默推送的回调
- 
- @param application  UIApplication 实例
- @param userInfo 推送时指定的参数
- @param completionHandler 完成回调
- */
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
-{
-    NSLog(@"[XGDemo] receive slient Notification");
-    NSLog(@"[XGDemo] userinfo %@", userInfo);
-    [XGPush handleReceiveNotification:userInfo
-                      successCallback:^{
-                          NSLog(@"[XGDemo] Handle receive success");
-                      } errorCallback:^{
-                          NSLog(@"[XGDemo] Handle receive error");
-                      }];
-    
-    completionHandler(UIBackgroundFetchResultNewData);
-}
-
-// iOS 10 新增 API
-// iOS 10 会走新 API, iOS 10 以前会走到老 API
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
-// App 用户点击通知的回调
-// 无论本地推送还是远程推送都会走这个回调
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void(^)())completionHandler {
-    NSLog(@"[XGDemo] click notification");
-    [XGPush handleReceiveNotification:response.notification.request.content.userInfo
-                      successCallback:^{
-                          NSLog(@"[XGDemo] Handle receive success");
-                      } errorCallback:^{
-                          NSLog(@"[XGDemo] Handle receive error");
-                      }];
-    
-    completionHandler();
-}
-
-
-// App 在前台弹通知需要调用这个接口
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler {
-    
-    completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert);
-}
-#endif
-
-- (void)registerAPNS {
-    float sysVer = [[[UIDevice currentDevice] systemVersion] floatValue];
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
-    if (sysVer >= 10)
-    {
-        // iOS 10
-        [self registerPush10];
-    }
-    else if (sysVer >= 8)
-    {
-        // iOS 8-9
-        [self registerPush8to9];
-    }
-    else {
-        // before iOS 8
-        [self registerPushBefore8];
-    }
-#else
-    if (sysVer < 8)
-    {
-        // before iOS 8
-        [self registerPushBefore8];
-    }
-    else
-    {
-        // iOS 8-9
-        [self registerPush8to9];
-    }
-#endif
-}
-
-- (void)registerPush10{
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
-    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-    center.delegate = self;
-    
-    
-    [center requestAuthorizationWithOptions:UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert completionHandler:^(BOOL granted, NSError * _Nullable error) {
-        if (granted) {
-        }
-    }];
-    [[UIApplication sharedApplication] registerForRemoteNotifications];
-#endif
-}
-
-- (void)registerPush8to9
-{
-    UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
-    UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
-    [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
-    [[UIApplication sharedApplication] registerForRemoteNotifications];
-}
-
-- (void)registerPushBefore8
-{
-    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound)];
-}
-
 
 
 #pragma mark - Core Data stack

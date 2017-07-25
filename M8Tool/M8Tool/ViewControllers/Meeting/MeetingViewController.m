@@ -7,8 +7,9 @@
 //
 
 #import "MeetingViewController.h"
+#import "MeetingViewController+IFlyMSC.h"
 #import "MeetingAgendaCollection.h"
-#import "MeetingButtonsCollection.h"
+//#import "MeetingButtonsCollection.h"
 #import "MeetingAgendaHeader.h"
 
 #import "M8MeetWindow.h"
@@ -24,7 +25,7 @@
 
 @property (nonatomic, strong) MeetingAgendaHeader        *agendaHeader;
 @property (nonatomic, strong) MeetingAgendaCollection    *agendaCollection;
-@property (nonatomic, strong) MeetingButtonsCollection   *buttonsCollection;
+//@property (nonatomic, strong) MeetingButtonsCollection   *buttonsCollection;
 @property (nonatomic, strong) UIPageControl              *pageControl;
 
 
@@ -53,14 +54,32 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    // 重新设置导航视图 >> 添加右侧按钮
+    [self resetNavi];
+    
     [self reloadSuperViews];
 }
 
-
+- (void)resetNavi
+{
+    CGFloat btnWidth = 40;
+    UIButton *speechBtn = [WCUIKitControl createButtonWithFrame:CGRectMake(SCREEN_WIDTH - kContentOriginX - btnWidth,
+                                                                        kDefaultStatuHeight,
+                                                                        btnWidth,
+                                                                        kDefaultCellHeight)
+                                                      Target:self
+                                                      Action:@selector(onSpeechAction)
+                                                       Title:@"听写"];
+    [speechBtn setAttributedTitle:[CommonUtil customAttString:@"听写"
+                                                  fontSize:kAppMiddleFontSize
+                                                 textColor:WCWhite
+                                                 charSpace:kAppKern_0]
+                      forState:UIControlStateNormal];
+    [self.headerView addSubview:(self.speechBtn = speechBtn)];
+}
 
 - (void)reloadSuperViews
 {
-    
     self.contentView.hidden = YES;
     
     self.view.frame = [UIScreen mainScreen].bounds;
@@ -71,6 +90,8 @@
     
     [self addSubviews];
 }
+
+
 
 //添加视图的顺序应挨个是从下往上的
 - (void)addSubviews
@@ -165,9 +186,45 @@
 {
     if (!_scrollImgArray)
     {
-        _scrollImgArray = @[@"M8", @"defaul_publishcover", @"M8", @"defaul_publishcover"];
+        if (iPhone4)
+        {
+            _scrollImgArray = @[@"M8", @"MeetingViewHeader4", @"M8", @"MeetingViewHeader4"];
+        }
+        else if (iPhone5)
+        {
+            _scrollImgArray = @[@"M8", @"MeetingViewHeader5", @"M8", @"MeetingViewHeader5"];
+        }
+        else if (iPhone6P)
+        {
+            _scrollImgArray = @[@"M8", @"MeetingViewHeader6p", @"M8", @"MeetingViewHeader6p"];
+        }
+        else    //默认是 iPhone6 的标准尺寸
+        {
+            _scrollImgArray = @[@"M8", @"MeetingViewHeader6", @"M8", @"MeetingViewHeader6"];
+        }
+        
+        WCLog(@"%@", _scrollImgArray);
     }
     return _scrollImgArray;
+}
+
+- (IFlySpeechRecognizer *)iFlySpeechRecognizer
+{
+    if (!_iFlySpeechRecognizer)
+    {
+        //创建语音识别对象
+        _iFlySpeechRecognizer = [IFlySpeechRecognizer sharedInstance]; //设置识别参数
+        
+        //设置为听写模式
+        [_iFlySpeechRecognizer setParameter: @"iat" forKey: [IFlySpeechConstant IFLY_DOMAIN]];
+        
+        //asr_audio_path 是录音文件名，设置 value 为 nil 或者为空取消保存，默认保存目录在 Library/cache 下。
+        [_iFlySpeechRecognizer setParameter:@"iat.pcm" forKey:[IFlySpeechConstant ASR_AUDIO_PATH]];
+        
+        //设置代理
+        [_iFlySpeechRecognizer setDelegate:self];
+    }
+    return _iFlySpeechRecognizer;
 }
 
 - (void)reloadScrollView
@@ -184,10 +241,21 @@
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onHeaderImgAction:)];
         [headerImg addGestureRecognizer:tap];
     }
-    
-    _scrollTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(onScrollImageTimer) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop] addTimer:_scrollTimer forMode:NSDefaultRunLoopMode];
-    [_scrollTimer fire];
+
+    [self scrollTimer];
+}
+
+- (NSTimer *)scrollTimer
+{
+    if (!_scrollTimer)
+    {
+        NSTimer *scrollTimer = [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(onScrollImageTimer) userInfo:nil repeats:YES];
+        
+        [[NSRunLoop currentRunLoop] addTimer:scrollTimer forMode:NSDefaultRunLoopMode];
+        
+        [(_scrollTimer = scrollTimer) fire];
+    }
+    return _scrollTimer;
 }
 
 
@@ -198,19 +266,12 @@
 
 - (void)onScrollImageTimer
 {
-    [UIView animateWithDuration:1.0 animations:^{
-       
-        CGPoint lastOffset = self.headerScroll.contentOffset;
-        lastOffset.x += self.headerScroll.width;
-        [self.headerScroll setContentOffset:lastOffset animated:YES];
-        
-    } completion:^(BOOL finished) {
-        
-        if (finished)
-        {
-            [self setHeaderScrollOffsetInBackground];
-        }
-    }];
+    CGPoint lastOffset = self.headerScroll.contentOffset;
+    lastOffset.x += self.headerScroll.width;
+    [self.headerScroll setContentOffset:lastOffset animated:YES];
+    
+    [self setHeaderScrollOffsetInBackground];
+
 }
 
 - (void)setHeaderScrollOffsetInBackground
@@ -242,9 +303,6 @@
         [AlertHelp tipWith:@"去购买会议系统吧，木木!!!" wait:2];
     }
 }
-
-
-
 
 
 #pragma mark - AgendaCollectionDelegate

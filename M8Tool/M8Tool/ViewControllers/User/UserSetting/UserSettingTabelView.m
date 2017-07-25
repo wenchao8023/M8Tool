@@ -8,6 +8,8 @@
 
 #import "UserSettingTabelView.h"
 
+#import "SettingPwdViewController.h"
+
 
 @interface UserSettingTabelView ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -23,8 +25,8 @@
 {
     if (self = [super initWithFrame:frame style:style])
     {
-        self.tableFooterView    = [WCUIKitControl createViewWithFrame:CGRectZero];
-        self.tableHeaderView    = [WCUIKitControl createViewWithFrame:CGRectZero];
+        self.tableFooterView    = [WCUIKitControl createViewWithFrame:CGRectMake(0, 0, self.width, 0.01)];
+        self.tableHeaderView    = [WCUIKitControl createViewWithFrame:CGRectMake(0, 0, self.width, 0.01)];
         self.dataSource         = self;
         self.delegate           = self;
         self.scrollEnabled      = NO;
@@ -113,15 +115,46 @@
 
 
 #pragma mark - actions
-- (void)onPwdSetAction {
+- (void)onPwdSetAction
+{
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:nil message:@"为保障你的数据安全，修改密码前请填写原密码。" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *okAction     = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        UITextField *pwdTF = alertC.textFields.firstObject;
+        
+        if ([pwdTF.text isEqualToString:[M8UserDefault getLoginPwd]])
+        {
+            // verify ok
+            SettingPwdViewController *spvc = [[SettingPwdViewController alloc] init];
+            spvc.isExitLeftItem = YES;
+            [[AppDelegate sharedAppDelegate] pushViewController:spvc];
+        }
+        else
+        {
+            [AlertHelp tipWith:@"输入密码错误" wait:1];
+        }
+    }];
+    
+    [alertC addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+       
+        textField.secureTextEntry = YES;
+    }];
+    
+    [alertC addAction:cancelAction];
+    [alertC addAction:okAction];
+    
+    [[[AppDelegate sharedAppDelegate] topViewController] presentViewController:alertC animated:YES completion:nil];
+}
+
+- (void)onNewMsgSetAction
+{
     
 }
 
-- (void)onNewMsgSetAction {
-    
-}
-
-- (void)onAboutAction {
+- (void)onAboutAction
+{
     
 }
 

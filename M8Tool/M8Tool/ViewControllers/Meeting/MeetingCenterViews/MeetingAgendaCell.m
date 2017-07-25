@@ -37,7 +37,7 @@
     [super awakeFromNib];
     // Initialization code
     
-    if (iPhone5SE)
+    if (iPhone5)
         _iconWidthScale.constant = 0.8;
     else
         _iconWidthScale.constant = 0.6;

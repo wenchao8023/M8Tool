@@ -10,15 +10,15 @@
 
 @interface LoginRequest : BaseRequest
 
-@property (nonatomic, copy) NSString *identifier;
-@property (nonatomic, copy) NSString *pwd;
+@property (nonatomic, copy) NSString * _Nullable identifier;
+@property (nonatomic, copy) NSString * _Nullable pwd;
 
 @end
 
 @interface LoginResponceData : BaseResponseData
 
-@property (nonatomic, copy) NSString *userSig;
-@property (nonatomic, copy) NSString *token;
+@property (nonatomic, copy) NSString * _Nullable userSig;
+@property (nonatomic, copy) NSString * _Nullable token;
 @property (nonatomic, copy, nullable) NSString *nick;
 
 @end

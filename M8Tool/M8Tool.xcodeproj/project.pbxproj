@@ -179,6 +179,11 @@
 		946B32CF1F051390007530CE /* M8ForgetPsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946B32CE1F051390007530CE /* M8ForgetPsdViewController.m */; };
 		946B32D21F05293D007530CE /* AlertHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 946B32D11F05293D007530CE /* AlertHelp.m */; };
 		946BD7C21F258EBE0057D116 /* DeleteInfoRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 946BD7C11F258EBE0057D116 /* DeleteInfoRequest.m */; };
+		946BD7C51F2629FB0057D116 /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 946BD7C41F2629FB0057D116 /* iflyMSC.framework */; };
+		946BD7C71F262A4A0057D116 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 946BD7C61F262A4A0057D116 /* CoreLocation.framework */; };
+		946BD7C91F262A730057D116 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 946BD7C81F262A730057D116 /* Contacts.framework */; };
+		946BD7CB1F262A910057D116 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 946BD7CA1F262A910057D116 /* AudioToolbox.framework */; };
+		946BD7CD1F262AA80057D116 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 946BD7CC1F262AA80057D116 /* QuartzCore.framework */; };
 		946F7ED31EF29D4F005E757A /* M8CallComingListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 946F7ECF1EF29D4F005E757A /* M8CallComingListener.m */; };
 		946F7F041EF29E84005E757A /* M8CallRenderNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 946F7EED1EF29E84005E757A /* M8CallRenderNote.m */; };
 		946F7F051EF29E84005E757A /* M8CallRenderNote.xib in Resources */ = {isa = PBXBuildFile; fileRef = 946F7EEE1EF29E84005E757A /* M8CallRenderNote.xib */; };
@@ -306,6 +311,16 @@
 		94A988041EF015030080BEF2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94A988011EF015030080BEF2 /* Info.plist */; };
 		94A988051EF015030080BEF2 /* THLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A988031EF015030080BEF2 /* THLabel.m */; };
 		94ABD2D41E976B31007C1172 /* CommonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ABD2D31E976B31007C1172 /* CommonUtil.m */; };
+		94ADDC771F26DDA7009CFCD3 /* AppDelegate+XGPushConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ADDC761F26DDA7009CFCD3 /* AppDelegate+XGPushConfig.m */; };
+		94ADDC7A1F26E8AE009CFCD3 /* MeetingViewController+IFlyMSC.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ADDC791F26E8AE009CFCD3 /* MeetingViewController+IFlyMSC.m */; };
+		94ADDC801F272B5C009CFCD3 /* MeetingViewHeader4.png in Resources */ = {isa = PBXBuildFile; fileRef = 94ADDC7C1F272B5C009CFCD3 /* MeetingViewHeader4.png */; };
+		94ADDC811F272B5C009CFCD3 /* MeetingViewHeader5.png in Resources */ = {isa = PBXBuildFile; fileRef = 94ADDC7D1F272B5C009CFCD3 /* MeetingViewHeader5.png */; };
+		94ADDC821F272B5C009CFCD3 /* MeetingViewHeader6.png in Resources */ = {isa = PBXBuildFile; fileRef = 94ADDC7E1F272B5C009CFCD3 /* MeetingViewHeader6.png */; };
+		94ADDC831F272B5C009CFCD3 /* MeetingViewHeader6p.png in Resources */ = {isa = PBXBuildFile; fileRef = 94ADDC7F1F272B5C009CFCD3 /* MeetingViewHeader6p.png */; };
+		94ADDC861F2744A0009CFCD3 /* ModifyPwdRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ADDC851F2744A0009CFCD3 /* ModifyPwdRequest.m */; };
+		94ADDC891F274CCD009CFCD3 /* SettingPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ADDC881F274CCD009CFCD3 /* SettingPwdViewController.m */; };
+		94ADDC8C1F274D2B009CFCD3 /* SettingPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ADDC8B1F274D2B009CFCD3 /* SettingPasswordView.m */; };
+		94ADDC8E1F274D39009CFCD3 /* SettingPasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94ADDC8D1F274D39009CFCD3 /* SettingPasswordView.xib */; };
 		94AF2F331F2075D800FC1B2E /* M8CallRenderModelManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 94AF2F321F2075D800FC1B2E /* M8CallRenderModelManger.m */; };
 		94AFAAA01F171D6E0025FB0B /* onMeetHangup.png in Resources */ = {isa = PBXBuildFile; fileRef = 94AFAA931F171D6E0025FB0B /* onMeetHangup.png */; };
 		94AFAAA11F171D6E0025FB0B /* onMeetHangup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94AFAA941F171D6E0025FB0B /* onMeetHangup@2x.png */; };
@@ -739,6 +754,11 @@
 		946B32D11F05293D007530CE /* AlertHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertHelp.m; sourceTree = "<group>"; };
 		946BD7C01F258EBE0057D116 /* DeleteInfoRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteInfoRequest.h; sourceTree = "<group>"; };
 		946BD7C11F258EBE0057D116 /* DeleteInfoRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteInfoRequest.m; sourceTree = "<group>"; };
+		946BD7C41F2629FB0057D116 /* iflyMSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iflyMSC.framework; sourceTree = "<group>"; };
+		946BD7C61F262A4A0057D116 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		946BD7C81F262A730057D116 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
+		946BD7CA1F262A910057D116 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		946BD7CC1F262AA80057D116 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		946F7ECE1EF29D4F005E757A /* M8CallComingListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8CallComingListener.h; sourceTree = "<group>"; };
 		946F7ECF1EF29D4F005E757A /* M8CallComingListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8CallComingListener.m; sourceTree = "<group>"; };
 		946F7EEC1EF29E84005E757A /* M8CallRenderNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8CallRenderNote.h; sourceTree = "<group>"; };
@@ -929,6 +949,21 @@
 		94A988031EF015030080BEF2 /* THLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THLabel.m; sourceTree = "<group>"; };
 		94ABD2D21E976B31007C1172 /* CommonUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtil.h; sourceTree = "<group>"; };
 		94ABD2D31E976B31007C1172 /* CommonUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonUtil.m; sourceTree = "<group>"; };
+		94ADDC751F26DDA7009CFCD3 /* AppDelegate+XGPushConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+XGPushConfig.h"; sourceTree = "<group>"; };
+		94ADDC761F26DDA7009CFCD3 /* AppDelegate+XGPushConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+XGPushConfig.m"; sourceTree = "<group>"; };
+		94ADDC781F26E8AE009CFCD3 /* MeetingViewController+IFlyMSC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MeetingViewController+IFlyMSC.h"; sourceTree = "<group>"; };
+		94ADDC791F26E8AE009CFCD3 /* MeetingViewController+IFlyMSC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MeetingViewController+IFlyMSC.m"; sourceTree = "<group>"; };
+		94ADDC7C1F272B5C009CFCD3 /* MeetingViewHeader4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MeetingViewHeader4.png; sourceTree = "<group>"; };
+		94ADDC7D1F272B5C009CFCD3 /* MeetingViewHeader5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MeetingViewHeader5.png; sourceTree = "<group>"; };
+		94ADDC7E1F272B5C009CFCD3 /* MeetingViewHeader6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MeetingViewHeader6.png; sourceTree = "<group>"; };
+		94ADDC7F1F272B5C009CFCD3 /* MeetingViewHeader6p.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MeetingViewHeader6p.png; sourceTree = "<group>"; };
+		94ADDC841F2744A0009CFCD3 /* ModifyPwdRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyPwdRequest.h; sourceTree = "<group>"; };
+		94ADDC851F2744A0009CFCD3 /* ModifyPwdRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyPwdRequest.m; sourceTree = "<group>"; };
+		94ADDC871F274CCD009CFCD3 /* SettingPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingPwdViewController.h; sourceTree = "<group>"; };
+		94ADDC881F274CCD009CFCD3 /* SettingPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingPwdViewController.m; sourceTree = "<group>"; };
+		94ADDC8A1F274D2B009CFCD3 /* SettingPasswordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingPasswordView.h; sourceTree = "<group>"; };
+		94ADDC8B1F274D2B009CFCD3 /* SettingPasswordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingPasswordView.m; sourceTree = "<group>"; };
+		94ADDC8D1F274D39009CFCD3 /* SettingPasswordView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingPasswordView.xib; sourceTree = "<group>"; };
 		94AF2F311F2075D800FC1B2E /* M8CallRenderModelManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8CallRenderModelManger.h; sourceTree = "<group>"; };
 		94AF2F321F2075D800FC1B2E /* M8CallRenderModelManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8CallRenderModelManger.m; sourceTree = "<group>"; };
 		94AFAA931F171D6E0025FB0B /* onMeetHangup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = onMeetHangup.png; sourceTree = "<group>"; };
@@ -1147,6 +1182,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				946BD7CD1F262AA80057D116 /* QuartzCore.framework in Frameworks */,
+				946BD7CB1F262A910057D116 /* AudioToolbox.framework in Frameworks */,
+				946BD7C91F262A730057D116 /* Contacts.framework in Frameworks */,
+				946BD7C71F262A4A0057D116 /* CoreLocation.framework in Frameworks */,
 				9475FF4C1F2202A100E1B745 /* UserNotifications.framework in Frameworks */,
 				949522741F18EC3C0095647D /* AddressBook.framework in Frameworks */,
 				943A08F91EDEDB07003CEA27 /* AssetsLibrary.framework in Frameworks */,
@@ -1165,6 +1204,7 @@
 				944AF29E1E9491C50044B44C /* SystemConfiguration.framework in Frameworks */,
 				944AF29C1E9491BE0044B44C /* CoreTelephony.framework in Frameworks */,
 				944AF29A1E9491B40044B44C /* CoreMedia.framework in Frameworks */,
+				946BD7C51F2629FB0057D116 /* iflyMSC.framework in Frameworks */,
 				944AF2981E9491A60044B44C /* CoreGraphics.framework in Frameworks */,
 				943A08C51EDEC133003CEA27 /* TLSSDK.framework in Frameworks */,
 				944AF2961E94919F0044B44C /* libz.tbd in Frameworks */,
@@ -1497,6 +1537,7 @@
 		944AF1DE1E948DC10044B44C /* 3RD(3方库) */ = {
 			isa = PBXGroup;
 			children = (
+				946BD7C31F2629FB0057D116 /* iflyMSC */,
 				945D271F1F14F2FA001D1D24 /* MJRefresh */,
 				94A988001EF015030080BEF2 /* THLabel */,
 				944AF2D01E9494C00044B44C /* AFNetworking */,
@@ -1615,6 +1656,10 @@
 		944AF2821E9491110044B44C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				946BD7CC1F262AA80057D116 /* QuartzCore.framework */,
+				946BD7CA1F262A910057D116 /* AudioToolbox.framework */,
+				946BD7C81F262A730057D116 /* Contacts.framework */,
+				946BD7C61F262A4A0057D116 /* CoreLocation.framework */,
 				9475FF4B1F2202A100E1B745 /* UserNotifications.framework */,
 				949522731F18EC3C0095647D /* AddressBook.framework */,
 				943A08F81EDEDB07003CEA27 /* AssetsLibrary.framework */,
@@ -1930,6 +1975,14 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		946BD7C31F2629FB0057D116 /* iflyMSC */ = {
+			isa = PBXGroup;
+			children = (
+				946BD7C41F2629FB0057D116 /* iflyMSC.framework */,
+			);
+			path = iflyMSC;
+			sourceTree = "<group>";
+		};
 		946F7EE61EF29E84005E757A /* callMeetViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -2149,6 +2202,11 @@
 				9497DF481ECA9702009C35CB /* UserSettingViewController.m */,
 				9497DF4F1ECA98EA009C35CB /* UserSettingTabelView.h */,
 				9497DF501ECA98EA009C35CB /* UserSettingTabelView.m */,
+				94ADDC871F274CCD009CFCD3 /* SettingPwdViewController.h */,
+				94ADDC881F274CCD009CFCD3 /* SettingPwdViewController.m */,
+				94ADDC8A1F274D2B009CFCD3 /* SettingPasswordView.h */,
+				94ADDC8B1F274D2B009CFCD3 /* SettingPasswordView.m */,
+				94ADDC8D1F274D39009CFCD3 /* SettingPasswordView.xib */,
 			);
 			path = UserSetting;
 			sourceTree = "<group>";
@@ -2216,6 +2274,8 @@
 				943A08451EDEBADE003CEA27 /* LoginRequest.m */,
 				943A08461EDEBADE003CEA27 /* LogoutRequest.h */,
 				943A08471EDEBADE003CEA27 /* LogoutRequest.m */,
+				94ADDC841F2744A0009CFCD3 /* ModifyPwdRequest.h */,
+				94ADDC851F2744A0009CFCD3 /* ModifyPwdRequest.m */,
 				949A07701F0745F900090E43 /* FriendsListRequest.h */,
 				949A07711F0745F900090E43 /* FriendsListRequest.m */,
 				94FFF7C51F0F8B0100F0CE96 /* MeetsListRequest.h */,
@@ -2328,6 +2388,17 @@
 				94A988031EF015030080BEF2 /* THLabel.m */,
 			);
 			path = THLabel;
+			sourceTree = "<group>";
+		};
+		94ADDC7B1F272B5C009CFCD3 /* MeetingViewHeader */ = {
+			isa = PBXGroup;
+			children = (
+				94ADDC7C1F272B5C009CFCD3 /* MeetingViewHeader4.png */,
+				94ADDC7D1F272B5C009CFCD3 /* MeetingViewHeader5.png */,
+				94ADDC7E1F272B5C009CFCD3 /* MeetingViewHeader6.png */,
+				94ADDC7F1F272B5C009CFCD3 /* MeetingViewHeader6p.png */,
+			);
+			path = MeetingViewHeader;
 			sourceTree = "<group>";
 		};
 		94AFAA891F171D6E0025FB0B /* onMeetDevice */ = {
@@ -2688,6 +2759,8 @@
 			children = (
 				94E18D121EC47C3400132FB2 /* MeetingViewController.h */,
 				94E18D131EC47C3400132FB2 /* MeetingViewController.m */,
+				94ADDC781F26E8AE009CFCD3 /* MeetingViewController+IFlyMSC.h */,
+				94ADDC791F26E8AE009CFCD3 /* MeetingViewController+IFlyMSC.m */,
 				94D055B21F1F578300B5C378 /* MeetingList */,
 				9497DF281ECA966A009C35CB /* MeetingCenterViews */,
 				94FFF7C81F0FB98600F0CE96 /* MeetingAgenda */,
@@ -2786,6 +2859,7 @@
 		94D8C9C01ECFEB020075C35D /* Pictures */ = {
 			isa = PBXGroup;
 			children = (
+				94ADDC7B1F272B5C009CFCD3 /* MeetingViewHeader */,
 				94AFAAF21F179A9C0025FB0B /* QQAVEffect7_1.png */,
 				94AFAAED1F1771090025FB0B /* multLoginBg.png */,
 				9423C6291F04EAF6002D2839 /* launchImgbg.png */,
@@ -2827,6 +2901,8 @@
 				94DE95881EAE145400A44DB1 /* UIView+ShakeAnimation.m */,
 				946753E11EBC24A900653A2C /* AppDelegate+ControlViewController.h */,
 				946753E21EBC24A900653A2C /* AppDelegate+ControlViewController.m */,
+				94ADDC751F26DDA7009CFCD3 /* AppDelegate+XGPushConfig.h */,
+				94ADDC761F26DDA7009CFCD3 /* AppDelegate+XGPushConfig.m */,
 				94AFAAC31F173ED50025FB0B /* NSString+Common.h */,
 				94AFAAC41F173ED50025FB0B /* NSString+Common.m */,
 			);
@@ -2963,9 +3039,11 @@
 				9423C62A1F04EAF6002D2839 /* launchImgbg.png in Resources */,
 				94AFAADE1F176FDC0025FB0B /* onMeetChat@3x.png in Resources */,
 				9495225C1F1866DE0095647D /* onMeetHangupCRed@3x.png in Resources */,
+				94ADDC801F272B5C009CFCD3 /* MeetingViewHeader4.png in Resources */,
 				94BACD841EEE2CB30017FFDE /* liveHangup.png in Resources */,
 				9423C6511F04F3AE002D2839 /* threeRDLoginIcon_QQ.png in Resources */,
 				94BACD911EEE2CB30017FFDE /* liveReceiver_off@2x.png in Resources */,
+				94ADDC821F272B5C009CFCD3 /* MeetingViewHeader6.png in Resources */,
 				94A987FA1EF008500080BEF2 /* liveRemove.png in Resources */,
 				94AFAAE31F1770810025FB0B /* onMeetShrink.png in Resources */,
 				943A08F61EDED9F2003CEA27 /* QAVEffectRes.bundle in Resources */,
@@ -3062,6 +3140,7 @@
 				9423C6551F04F3AE002D2839 /* threeRDLoginIcon_Wechat@2x.png in Resources */,
 				94A987F51EF008500080BEF2 /* liveEnlarge@2x.png in Resources */,
 				94A203221EF8CA87007904D2 /* collectTag_black.png in Resources */,
+				94ADDC811F272B5C009CFCD3 /* MeetingViewHeader5.png in Resources */,
 				9423C6531F04F3AE002D2839 /* threeRDLoginIcon_QQ@3x.png in Resources */,
 				94B3C2451EE793AE00244BC4 /* 灰蓝.png in Resources */,
 				947DB4971EF7E3250019AE2B /* onCallRecv_refuse.png in Resources */,
@@ -3074,6 +3153,7 @@
 				94B3C23C1EE793AE00244BC4 /* 栅格红.png in Resources */,
 				947DB4771EF7C0E50019AE2B /* M8RecordDetailCollectionHeader.xib in Resources */,
 				94AFAAF31F179A9C0025FB0B /* QQAVEffect7_1.png in Resources */,
+				94ADDC8E1F274D39009CFCD3 /* SettingPasswordView.xib in Resources */,
 				94B3C2441EE793AE00244BC4 /* 灰白@3x.png in Resources */,
 				94A127FB1EF13ECA00ED2703 /* liveAudio_off@3x.png in Resources */,
 				94A127FA1EF13ECA00ED2703 /* liveAudio_off@2x.png in Resources */,
@@ -3090,6 +3170,7 @@
 				94A851C11EE2BD8B00204B48 /* MeetingAgendaCell.xib in Resources */,
 				94A203231EF8CA87007904D2 /* collectTag_black@2X.png in Resources */,
 				946F7F0C1EF29E84005E757A /* M8CallHeaderView.xib in Resources */,
+				94ADDC831F272B5C009CFCD3 /* MeetingViewHeader6p.png in Resources */,
 				943A08F21EDED9F2003CEA27 /* DecoRes.bundle in Resources */,
 				94BACD981EEE2CB30017FFDE /* liveShare@3x.png in Resources */,
 				94AFAAD61F176F9A0025FB0B /* onMeetExit@2x.png in Resources */,
@@ -3185,6 +3266,7 @@
 				946753D21EBC174100653A2C /* M8Tool.xcdatamodeld in Sources */,
 				946B32C91F050B36007530CE /* M8MutiLoginViewController.m in Sources */,
 				94D0A1271EE6C15F009399C6 /* M8ThemeDetailViewController.m in Sources */,
+				94ADDC861F2744A0009CFCD3 /* ModifyPwdRequest.m in Sources */,
 				944AF3081E9494C00044B44C /* AFHTTPSessionManager.m in Sources */,
 				948BFCEA1F0E263F00FC87A7 /* M8MenuPushView.m in Sources */,
 				94081B511EC471290079583C /* BaseViewController.m in Sources */,
@@ -3233,6 +3315,7 @@
 				94BE45C51F0234FB00D0FB1A /* M8LiveInfoView.m in Sources */,
 				943A08621EDEBADE003CEA27 /* GetRoomPlayUrlRequest.m in Sources */,
 				94FFF7B71F0F37A800F0CE96 /* M8LiveJoinTableView.m in Sources */,
+				94ADDC771F26DDA7009CFCD3 /* AppDelegate+XGPushConfig.m in Sources */,
 				947DB4751EF7C0DB0019AE2B /* M8RecordDetailCollectionHeader.m in Sources */,
 				94D348B11EFCEE65008A1AEC /* M8NoteDetailCell.m in Sources */,
 				944AF3111E9494C00044B44C /* AFImageDownloader.m in Sources */,
@@ -3245,6 +3328,7 @@
 				948E045D1EE641C30075903B /* UserTableView.m in Sources */,
 				94BDE5351ECC599800ECC089 /* MeetingMembersCollection.m in Sources */,
 				947DB48B1EF7D6F00019AE2B /* M8CollectDetailCollection.m in Sources */,
+				94ADDC891F274CCD009CFCD3 /* SettingPwdViewController.m in Sources */,
 				9422BEEB1EE5838F00F9B56D /* M8ThemeViewController.m in Sources */,
 				94DE958B1EAE145400A44DB1 /* UIImage+TintColor.m in Sources */,
 				9495226C1F18BE680095647D /* FriendListViewController.m in Sources */,
@@ -3261,9 +3345,11 @@
 				9495225F1F188BE10095647D /* UsrContactView+Net.m in Sources */,
 				9497DF361ECA966A009C35CB /* MeetingAgendaCell.m in Sources */,
 				944AF3101E9494C00044B44C /* AFAutoPurgingImageCache.m in Sources */,
+				94ADDC7A1F26E8AE009CFCD3 /* MeetingViewController+IFlyMSC.m in Sources */,
 				943A08601EDEBADE003CEA27 /* CreateRoomRequest.m in Sources */,
 				943A086A1EDEBADE003CEA27 /* RecordReportRequest.m in Sources */,
 				945D275E1F14F2FA001D1D24 /* UIView+MJExtension.m in Sources */,
+				94ADDC8C1F274D2B009CFCD3 /* SettingPasswordView.m in Sources */,
 				943A085D1EDEBADE003CEA27 /* JSONKit.m in Sources */,
 				944AF30C1E9494C00044B44C /* AFURLResponseSerialization.m in Sources */,
 				94AF2F331F2075D800FC1B2E /* M8CallRenderModelManger.m in Sources */,
@@ -3471,6 +3557,7 @@
 					"$(PROJECT_DIR)/frameworks",
 					"$(PROJECT_DIR)/frameworks/TILFilterSDK",
 					"$(PROJECT_DIR)/frameworks/QAVEffect",
+					"$(PROJECT_DIR)/M8Tool/3RD/iflyMSC",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/M8Tool/Base/CSHeaderFile.pch";
 				INFOPLIST_FILE = M8Tool/Base/Info.plist;
@@ -3519,6 +3606,7 @@
 					"$(PROJECT_DIR)/frameworks",
 					"$(PROJECT_DIR)/frameworks/TILFilterSDK",
 					"$(PROJECT_DIR)/frameworks/QAVEffect",
+					"$(PROJECT_DIR)/M8Tool/3RD/iflyMSC",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/M8Tool/Base/CSHeaderFile.pch";
 				INFOPLIST_FILE = M8Tool/Base/Info.plist;
