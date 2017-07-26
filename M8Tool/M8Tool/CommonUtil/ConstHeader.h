@@ -51,6 +51,9 @@ static const int kDefaultStatuHeight    = 20;
 
 static const CGFloat kBottomHeight = 50.f; ///底部设备高度
 
+static const CGFloat kNoteViewHeight = 200; ///笔记视图高度
+#define kNoteViewWidth SCREEN_WIDTH * 3 / 5 ///笔记视图宽度
+
 #define kFloatWindowWidth    (SCREEN_WIDTH - 50) / 4    ///浮动窗口宽、高
 #define kFloatWindowHeight   kFloatWindowWidth * 4 / 3
 
@@ -124,6 +127,7 @@ typedef NS_ENUM(NSInteger, BeautyViewType)
 #define kThemeSwich_Notification        @"kThemeSwich_Notification"     //切换主题
 #define kHiddenMenuView_Notifycation    @"kHiddenMenuView_Notifycation" //隐藏菜单
 #define kMeetCollcet_Notification       @"kMeetCollcet_Notification"    //会议收藏状态变化
+#define kNoteViewEdit_Notification      @"kNoteViewEdit_Notification"   //会议中正在编辑文字
 #define kInviteMembers_Notifycation     @"kInviteMembers_Notifycation"  //会议中邀请成员
 
 

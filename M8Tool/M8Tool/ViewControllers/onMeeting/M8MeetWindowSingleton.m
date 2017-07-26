@@ -55,6 +55,10 @@
     [self.baseController hiddeFloatView];
 }
 
+- (id)getCallViewController
+{
+    return self.baseController;
+}
 
 
 

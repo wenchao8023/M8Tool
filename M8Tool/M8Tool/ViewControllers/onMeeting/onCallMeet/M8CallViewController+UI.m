@@ -41,23 +41,21 @@
             case kOnDeviceActionNote:
             {
 //                [self addTextToView:@"点击发言"];
+                [self onNoteAction];
             }
                 break;
             case kOnDeviceActionCenter:
             {
-//                [self addTextToView:@"点击挂断"];
                 [self selfDismiss];
             }
                 break;
             case kOnDeviceActionMenu:
             {
-//                [self addTextToView:@"点击菜单"];
                 [self onMenuAction];
             }
                 break;
             case kOnDeviceActionSwichRender:
             {
-//                [self addTextToView:@"缩小视图"];
                 [self showFloatView];
             }
                 break;
@@ -66,6 +64,11 @@
                 break;
         }
     }
+}
+
+- (void)onNoteAction
+{
+    [self.noteToolBar onBeginEditingAction];
 }
 
 //推出底部菜单之后，要通知这个界面上的所有点击事件（自身除外）
@@ -95,6 +98,38 @@
         [M8UserDefault setPushMenuStatu:NO];
     }];
 }
+
+
+/**
+ 根据键盘状态，调整 noteView 的位置
+
+ @param notification 通知
+ */
+//- (void)onChangeNoteViewPoint:(NSNotification *)notification
+//{
+//    NSDictionary *userInfo = [notification userInfo];
+//    
+//    NSValue *value = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+//    
+//    CGFloat keyBoardEndY = value.CGRectValue.origin.y;
+//    // 得到键盘弹出后的键盘视图所在y坐标
+//    NSNumber *duration = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+//    
+//    NSNumber *curve = [userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+//    
+//    // 添加移动动画，使视图跟随键盘移动
+//    [UIView animateWithDuration:duration.doubleValue animations:^{
+//        
+//        [UIView setAnimationBeginsFromCurrentState:YES];
+//        [UIView setAnimationCurve:[curve intValue]];
+//
+//        //设置 noteview 的 Y 坐标
+//        // keyBoardEndY的坐标包括了状态栏的高度，要减去
+//        self.noteView.centerY = keyBoardEndY - kDefaultStatuHeight - self.noteView.height / 2;
+//        
+//    }];
+//}
+
 
 #pragma mark -- CallRenderDelegate
 - (void)CallRenderActionInfo:(NSDictionary *)actionInfo
@@ -209,7 +244,43 @@
 }
 
 
+#pragma mark -- M8NoteToolBarDelegate
+- (void)noteToolBarOriginY:(CGFloat)originY isHidden:(BOOL)ishidden
+{
+    if (ishidden)
+    {
+        self.noteView.frame = CGRectMake(kDefaultMargin, self.view.height - kBottomHeight - kNoteViewHeight - kDefaultMargin, kNoteViewWidth, kNoteViewHeight);
+    }
+    else
+    {
+        self.noteView.frame = CGRectMake(kDefaultMargin, originY - 120, kNoteViewWidth, 120);
+    }
+}
 
+
+- (void)noteToolBarSendMsg:(NSString *)msg
+{
+    TIMTextElem *textElem = [[TIMTextElem alloc] init];
+    textElem.text = msg;
+    
+    TIMMessage *TIMMsg = [[TIMMessage alloc] init];
+    int elemCount = [TIMMsg addElem:textElem];
+    
+    M8InviteModelManger *inviteModelManger = [M8InviteModelManger shareInstance];
+    
+    for (M8MemberInfo *minfo in inviteModelManger.inviteMemberArray)
+    {
+        [self.call sendC2COnlineMessage:TIMMsg identifier:minfo.uid result:^(TILCallError *err) {
+ 
+            if (err)
+            {
+                WCLog(@"%@", [NSString stringWithFormat:@"错误sdk : %@, 错误号 : \n%d, 错误描述\n%@", err.domain, err.code, err.errMsg]);
+            }
+        }];
+    }
+    
+    
+}
 
 
 #pragma mark - UI相关
@@ -224,7 +295,6 @@
 #pragma mark - super action
 - (void)showFloatView
 {
-//    [self.floatView configCallFloatView:self.liveItem isCameraOn:[self.modelManager onGetHostCameraStatu]];
     [self.floatView configCallFloatView:self.liveItem isCameraOn:[self.renderModelManger onGetHostCameraStatu]];
     
     [super showFloatView];
@@ -264,9 +334,5 @@
         [self.renderModelManger onBackFromFloatView];
     }];
 }
-
-
-
-
 
 @end

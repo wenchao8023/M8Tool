@@ -16,4 +16,6 @@
 - (void)showFloatView;
 - (void)hiddeFloatView;
 
+
+- (id _Nullable)getCallViewController;
 @end

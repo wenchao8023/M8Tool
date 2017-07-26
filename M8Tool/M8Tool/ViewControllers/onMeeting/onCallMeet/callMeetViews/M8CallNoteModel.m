@@ -10,22 +10,25 @@
 
 @implementation M8CallNoteModel
 
-- (instancetype)initWithTip:(NSString *)tipInfo
+
+
+- (instancetype)initWithMember:(NSString *)member tip:(NSString *)tip
 {
     if (self = [super init])
     {
-        _tipInfo = tipInfo;
+        _name    = member;
+        _tipInfo = tip;
     }
     
     return self;
 }
 
-- (instancetype)initWithMember:(NSString *)member Tip:(NSString *)tipInfo
+- (instancetype)initWithMember:(NSString *)member msg:(NSString * _Nullable)msg
 {
     if (self = [super init])
     {
         _name    = member;
-        _tipInfo = tipInfo;
+        _msgInfo = msg;
     }
     
     return self;

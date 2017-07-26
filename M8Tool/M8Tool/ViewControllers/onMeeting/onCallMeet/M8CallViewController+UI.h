@@ -8,8 +8,11 @@
 
 #import "M8CallViewController.h"
 
-@interface M8CallViewController (UI)<CallRenderDelegate, MeetHeaderDelegate, M8MeetDeviceViewDelegate, RecvChildVCDelegate, MenuPushDelegate>
+@interface M8CallViewController (UI)<CallRenderDelegate, MeetHeaderDelegate, M8MeetDeviceViewDelegate, RecvChildVCDelegate, MenuPushDelegate, M8NoteToolBarDelegate>
 
 - (void)onHiddeMenuView;
+
+//- (void)onChangeNoteViewPoint:(NSNotification *_Nullable)notification;
+
 
 @end

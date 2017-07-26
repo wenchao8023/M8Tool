@@ -8,7 +8,6 @@
 
 #import "M8CallRenderView.h"
 #import "M8CallRenderCell.h"
-//#import "M8CallRenderNote.h"
 #import "M8CallRenderModelManger.h"
 #import "M8CallRenderModel.h"
 
@@ -25,7 +24,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *layoutHeight_render;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *layoutTop_render;
 
-//@property (strong, nonatomic) M8CallRenderNote *noteView;
 @property (nonatomic, strong) M8CallRenderModelManger *modelManager;
 
 @property (nonatomic, copy) NSString *bgViewIdentify;
@@ -85,9 +83,7 @@
     [self.renderCollection setDataSource:self];
     [self.renderCollection setPagingEnabled:YES];
     [self.renderCollection registerNib:[UINib nibWithNibName:@"M8CallRenderCell" bundle:nil] forCellWithReuseIdentifier:@"M8CallRenderCellID"];
-    
-    /// add noteView
-//    [self noteView];
+
 }
 
 
@@ -205,20 +201,6 @@
     _isFloatView = isFloatView;
 }
 
-
-//- (void)addTextToView:(id)newText
-//{
-//    NSString *text = self.noteView.textView.text;
-//    
-//    NSString *dicStr = [NSString stringWithFormat:@"%@", newText];
-//    dicStr = [dicStr stringByAppendingString:@"\n"];
-//    dicStr = [dicStr stringByAppendingString:text];
-//    
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        
-//        self.noteView.textView.text = dicStr;
-//    });
-//}
 
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event

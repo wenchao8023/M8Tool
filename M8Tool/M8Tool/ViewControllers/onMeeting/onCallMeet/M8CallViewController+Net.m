@@ -17,7 +17,7 @@
                                                                   failHandler:^(BaseRequest *request) {
         
         // 上传失败
-//        [weakself addTextToView:@"上报房间信息失败"];
+        [weakself addMember:nil withTip:@"上报房间信息失败"];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             NSString *errinfo = [NSString stringWithFormat:@"code=%ld,msg=%@",(long)request.response.errorCode,request.response.errorInfo];
@@ -112,7 +112,6 @@
     exitReq.type    = self.liveItem.info.type;
     exitReq.roomnum = self.liveItem.info.roomnum;
     exitReq.mid     = self.curMid;
-//    [[WebServiceEngine sharedEngine] asyncRequest:exitReq wait:NO];
     [[WebServiceEngine sharedEngine] AFAsynRequest:exitReq];
 }
 @end

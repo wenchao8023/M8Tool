@@ -17,6 +17,26 @@
  */
 - (void)onNewMessages:(NSArray*)messages
 {
-    
+    for (TIMMessage *msg in messages)
+    {
+        NSString *sender = msg.sender;
+        BOOL isSelf = msg.isSelf;
+        NSDate *curDate = msg.timestamp;
+        NSString *timeStr = [CommonUtil getDateStrWithTime:[curDate timeIntervalSince1970]];
+        
+        for (int i = 0; i < msg.elemCount; i++)
+        {
+            TIMElem *elem = [msg getElem:i];
+            
+            if ([elem isKindOfClass:[TIMTextElem class]])
+            {
+                WCLog(@"收到 **%@** 第--%d--条消息<++%@++>", sender, i, ((TIMTextElem *)elem).text);
+                
+                NSString *text = ((TIMTextElem *)elem).text;
+                
+                [self addMember:sender withMsg:text];
+            }
+        }
+    }
 }
 @end

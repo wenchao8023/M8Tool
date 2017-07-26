@@ -12,6 +12,8 @@
 
 @interface M8CallNoteCell ()
 
+@property (weak, nonatomic) IBOutlet UIVisualEffectView *effectView;
+
 @property (weak, nonatomic) IBOutlet UILabel *infoLable;
 
 @end
@@ -23,9 +25,28 @@
 @implementation M8CallNoteCell
 
 
-- (void)config
+- (void)configWithModel:(M8CallNoteModel *)model
 {
+//    WCViewBorder_Radius(self.effectView, 4);
     
+    if (model.name)
+    {
+        if (model.tipInfo)
+        {
+            self.infoLable.text = [NSString stringWithFormat:@"%@ %@", model.name, model.tipInfo];
+        }
+        else if (model.msgInfo)
+        {
+            self.infoLable.text = [NSString stringWithFormat:@"%@ %@", model.name, model.msgInfo];
+        }
+    }
+    else
+    {
+        if (model.tipInfo)
+        {
+            self.infoLable.text = [NSString stringWithFormat:@"%@", model.tipInfo];
+        }
+    }
 }
 
 

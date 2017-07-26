@@ -27,26 +27,32 @@
  提示信息
  
  可以是 "xxx进入会议室"
- 也可以是用户发送的消息
  */
 @property (nonatomic, copy, nullable) NSString *tipInfo;
 
 
 /**
- 初始化
+ 用户发送的消息
+ */
+@property (nonatomic, copy, nullable) NSString *msgInfo;
 
- @param tipInfo 提示信息
+
+/**
+ 初始化
+ 
+ @param member 成员名
+ @param tip 提示信息
  @return self
  */
-- (instancetype _Nullable)initWithTip:(NSString *_Nullable)tipInfo;
+- (instancetype _Nullable)initWithMember:(NSString *_Nullable)member tip:(NSString *_Nullable)tip;
 
 
 /**
  初始化
 
  @param member 成员名
- @param tipInfo 成员发表内容
+ @param msg 成员发送的消息
  @return self
  */
-- (instancetype _Nullable)initWithMember:(NSString *_Nullable)member Tip:(NSString *_Nullable)tipInfo;
+- (instancetype _Nullable)initWithMember:(NSString *_Nullable)member msg:(NSString *_Nullable)msg;
 @end

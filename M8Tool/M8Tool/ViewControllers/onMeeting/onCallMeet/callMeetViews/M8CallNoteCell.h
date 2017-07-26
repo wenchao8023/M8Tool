@@ -10,4 +10,6 @@
 
 @interface M8CallNoteCell : UITableViewCell
 
+- (void)configWithModel:(id _Nullable)model;
+
 @end

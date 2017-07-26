@@ -32,8 +32,11 @@
     
     [self initCall];
     
+    //隐藏菜单通知
     [WCNotificationCenter addObserver:self selector:@selector(onHiddeMenuView) name:kHiddenMenuView_Notifycation object:nil];
+    //收到邀请成员通知
     [WCNotificationCenter addObserver:self selector:@selector(onReceiveInviteMembers) name:kInviteMembers_Notifycation object:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,6 +52,7 @@
     
     TILCallBaseConfig * baseConfig  = [[TILCallBaseConfig alloc] init];
     baseConfig.heartBeatInterval    = 15;
+    baseConfig.isAutoResponseBusy   = YES;
     baseConfig.isSponsor            = self.isHost;
     baseConfig.callType             = self.liveItem.callType;
     baseConfig.memberArray          = self.liveItem.members;
@@ -126,6 +130,11 @@
 }
 
 #pragma mark -- 接收方
+- (void)respBusy
+{
+    
+}
+
 - (void)recvCall:(TILCallConfig *)config
 {
     TILCallResponderConfig *responderConfig = [[TILCallResponderConfig alloc] init];
@@ -138,6 +147,7 @@
     
     [self addRecvChildVC];
 }
+
 
 /**
  取消
@@ -316,8 +326,8 @@
 {
     if (!_noteView)
     {
-        M8CallRenderNote *noteView = [[M8CallRenderNote alloc] initWithFrame:CGRectMake(0, self.renderView.height - 270, self.renderView.width, 200)];
-        [self.renderView addSubview:(_noteView = noteView)];
+        M8CallRenderNote *noteView = [[M8CallRenderNote alloc] initWithFrame:CGRectMake(kDefaultMargin, self.view.height - kBottomHeight - kNoteViewHeight - kDefaultMargin, kNoteViewWidth, kNoteViewHeight)];
+        [self.view addSubview:(_noteView = noteView)];
     }
     return _noteView;
 }
@@ -337,6 +347,23 @@
     }
     return _menuView;
 }
+
+- (M8NoteToolBar *)noteToolBar
+{
+    if (!_noteToolBar)
+    {
+        M8NoteToolBar *noteToolBar = [[M8NoteToolBar alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - kDefaultCellHeight, SCREEN_WIDTH, kDefaultCellHeight)];
+        noteToolBar.hidden = YES;
+        noteToolBar.WCDelegate = self;
+        [self.view addSubview:noteToolBar];
+        [self.view bringSubviewToFront:noteToolBar];
+        _noteToolBar = noteToolBar;
+    }
+    return _noteToolBar;
+}
+
+
+
 #pragma mark - createUI
 - (void)createUI
 {
@@ -348,26 +375,23 @@
     [self renderView];
     [self noteView];
     [self menuView];
+    [self noteToolBar]; //初始化时是隐藏的
 }
 
-
-- (void)addTipInfoToNoteView:(NSString *)tipInfo
-{
-    M8CallNoteModel *model = [[M8CallNoteModel alloc] initWithTip:tipInfo];
-    [self.noteView loadItemsArray:model];
-}
-
+#pragma mark -- 添加 noteView 数据
 - (void)addMember:(NSString *)member withTip:(NSString *)tip
 {
-    M8CallNoteModel *model = [[M8CallNoteModel alloc] initWithMember:member Tip:tip];
+    M8CallNoteModel *model = [[M8CallNoteModel alloc] initWithMember:member tip:tip];
+    [self.noteView loadItemsArray:model];
+}
+
+- (void)addMember:(NSString *)member withMsg:(NSString *)msg
+{
+    M8CallNoteModel *model = [[M8CallNoteModel alloc] initWithMember:member msg:msg];
     [self.noteView loadItemsArray:model];
 }
 
 
-//- (void)addTextToView:(id)newText
-//{
-////    [self.renderView addTextToView:newText];
-//}
 
 - (void)selfDismiss
 {

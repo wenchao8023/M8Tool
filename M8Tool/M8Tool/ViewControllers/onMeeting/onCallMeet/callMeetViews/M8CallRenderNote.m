@@ -37,6 +37,15 @@
     return self;
 }
 
+- (NSMutableArray *)itemsArray
+{
+    if (!_itemsArray)
+    {
+        _itemsArray = [NSMutableArray arrayWithCapacity:0];
+    }
+    return _itemsArray;
+}
+
 
 #pragma mark - UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -52,13 +61,19 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"M8CallNoteCell" owner:self options:nil] firstObject];
     }
     
+    if (indexPath.row < self.itemsArray.count)
+    {
+        [cell configWithModel:self.itemsArray[indexPath.row]];
+    }
+    
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 18;
+    return 40;
 }
+
 
 
 #pragma mark - load data

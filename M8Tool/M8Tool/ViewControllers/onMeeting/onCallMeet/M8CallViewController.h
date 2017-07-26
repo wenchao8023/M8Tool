@@ -12,7 +12,7 @@
 #import "M8CallRenderView.h"
 #import "M8CallRenderNote.h"
 #import "M8MeetDeviceView.h"
-
+#import "M8NoteToolBar.h"
 #import "M8CallRenderModelManger.h"
 
 #import "M8RecvChildViewController.h"
@@ -28,6 +28,8 @@
 @property (nonatomic, strong, nullable) M8MeetDeviceView *deviceView;
 @property (nonatomic, strong, nullable) M8CallRenderNote *noteView;
 @property (nonatomic, strong, nullable) M8MenuPushView   *menuView;
+@property (nonatomic, strong, nullable) M8NoteToolBar    *noteToolBar;
+
 
 
 /**
@@ -40,14 +42,17 @@
  */
 @property (nonatomic, strong, nullable) TILCallInvitation *invitation;
 
-- (void)onReceiveCall;
-
-- (void)onRejectCall;
 
 /**
  当前的会议ID
  */
 @property (nonatomic, assign) int curMid;
+
+
+/**
+ 当前视图中成员信息（不应该在这里出现的，后面会使用 renderView 中的）
+ */
+@property (nonatomic, strong, nullable) NSArray *membersArray;
 
 /**
  用于处理 renderView 的数据
@@ -60,8 +65,9 @@
  */
 @property (nonatomic, assign) BOOL shouldHangup;
 
+- (void)onReceiveCall;
 
-//- (void)addTextToView:(id _Nullable )newText;
+- (void)onRejectCall;
 
 - (void)hangup;
 
@@ -76,9 +82,8 @@
 - (void)inviteMember:(NSString *_Nullable)memberId;
 
 
-
-- (void)addTipInfoToNoteView:(NSString *_Nullable)tipInfo;
-
 - (void)addMember:(NSString *_Nullable)member withTip:(NSString *_Nullable)tip;
+
+- (void)addMember:(NSString *_Nullable)member withMsg:(NSString *_Nullable)msg;
 
 @end
