@@ -107,11 +107,11 @@
         [_call makeCall:tipStr custom:nickStr result:^(TILCallError *err) {
             
             if(err){
-                [weakself addTextToView:[NSString stringWithFormat:@"呼叫失败:%@-%d-%@",err.domain,err.code,err.errMsg]];
+//                [weakself addTextToView:[NSString stringWithFormat:@"呼叫失败:%@-%d-%@",err.domain,err.code,err.errMsg]];
                 [weakself selfDismiss];
             }
             else{
-                [weakself addTextToView:@"呼叫成功"];
+//                [weakself addTextToView:@"呼叫成功"];
                 
                 [[ILiveRoomManager getInstance] setBeauty:2];
                 [[ILiveRoomManager getInstance] setWhite:2];
@@ -148,12 +148,12 @@
     [_call cancelAllCall:^(TILCallError *err) {
         if(err)
         {
-            [weakself addTextToView:[NSString stringWithFormat:@"取消失败:%@-%d-%@",err.domain,err.code,err.errMsg]];
+//            [weakself addTextToView:[NSString stringWithFormat:@"取消失败:%@-%d-%@",err.domain,err.code,err.errMsg]];
             [super selfDismiss];
         }
         else
         {
-            [weakself addTextToView:@"取消成功"];
+//            [weakself addTextToView:@"取消成功"];
             [super selfDismiss];
         }
     }];
@@ -169,12 +169,12 @@
      {
          if(err)
          {
-             [weakself addTextToView:[NSString stringWithFormat:@"挂断失败:%@-%d-%@",err.domain,err.code,err.errMsg]];
+//             [weakself addTextToView:[NSString stringWithFormat:@"挂断失败:%@-%d-%@",err.domain,err.code,err.errMsg]];
              [super selfDismiss];
          }
          else
          {
-             [weakself addTextToView:@"挂断成功"];
+//             [weakself addTextToView:@"挂断成功"];
              [super selfDismiss];
          }
      }];
@@ -231,13 +231,13 @@
     {
         if(err)
         {
-            [weakself addTextToView:[NSString stringWithFormat:@"接受失败:%@-%d-%@", err.domain,err.code,err.errMsg]];
+//            [weakself addTextToView:[NSString stringWithFormat:@"接受失败:%@-%d-%@", err.domain,err.code,err.errMsg]];
             [weakself selfDismiss];
         }
         else
         {
-            [weakself addTextToView:@"接受成功"];
-            
+//            [weakself addTextToView:@"接受成功"];
+//
             [[ILiveRoomManager getInstance] setBeauty:3];
             [[ILiveRoomManager getInstance] setWhite:3];
             
@@ -255,7 +255,7 @@
      {
          if(err)
          {
-             [weakself addTextToView:[NSString stringWithFormat:@"拒绝失败:%@-%d-%@", err.domain,err.code,err.errMsg]];
+//             [weakself addTextToView:[NSString stringWithFormat:@"拒绝失败:%@-%d-%@", err.domain,err.code,err.errMsg]];
          }
          [weakself selfDismiss];
      }];

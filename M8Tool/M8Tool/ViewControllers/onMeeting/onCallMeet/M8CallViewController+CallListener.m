@@ -82,7 +82,6 @@
     {
         case TILCALL_NOTIF_INVITE:
         {
-//            [self addTextToView:[NSString stringWithFormat:@"%@邀请%@通话",sender,target]];
             [self addTipInfoToNoteView:[NSString stringWithFormat:@"%@邀请%@通话",sender,target]];
         }
             
@@ -94,7 +93,7 @@
              * sender 不会是 App登录用户 的接收方
              */
             [self onNetReportCallMem:sender statu:1];
-            [self addTextToView:[NSString stringWithFormat:@"%@接受了%@的邀请",sender,target]];
+            [self addTipInfoToNoteView:[NSString stringWithFormat:@"%@接受了%@的邀请",sender,target]];
             // 只要有人接受了邀请，就应该是结束通话
             if (self.isHost)
             {
@@ -106,10 +105,10 @@
             break;
         case TILCALL_NOTIF_CANCEL:  //这里应该判断是否是发起人取消了通话
         {
-            [self addTextToView:[NSString stringWithFormat:@"%@取消了对%@的邀请",sender,target]];
+            [self addTipInfoToNoteView:[NSString stringWithFormat:@"%@接受了%@的邀请",sender,target]];
             if([notify.targets containsObject:self.liveItem.uid])
             {
-                [self addTextToView:@"通话被取消"];
+                [self addTipInfoToNoteView:@"通话被取消"];
                 [self selfDismiss];
             }
         }
@@ -119,26 +118,26 @@
             [self.renderModelManger memberTimeoutWithID:sender];
             if([sender isEqualToString:self.liveItem.uid])
             {
-                [self addTextToView:[NSString stringWithFormat:@"%@呼叫超时",sender]];
+                [self addTipInfoToNoteView:[NSString stringWithFormat:@"%@呼叫超时",sender]];
                 [self selfDismiss];
             }
             else
             {
                 [self onNetReportCallMem:sender statu:0];
-                [self addTextToView:[NSString stringWithFormat:@"%@手机可能不在身边",sender]];
+                [self addTipInfoToNoteView:[NSString stringWithFormat:@"%@手机可能不在身边",sender]];
             }
         }
             break;
         case TILCALL_NOTIF_REFUSE:
         {
             [self onNetReportCallMem:sender statu:2];
-            [self addTextToView:[NSString stringWithFormat:@"%@拒绝了%@的邀请",sender,target]];
+//            [self addTextToView:[NSString stringWithFormat:@"%@拒绝了%@的邀请",sender,target]];
             [self.renderModelManger memberRejectInviteWithID:sender];
         }
             break;
         case TILCALL_NOTIF_HANGUP:
         {
-            [self addTextToView:[NSString stringWithFormat:@"%@挂断了%@邀请的通话",sender,target]];
+//            [self addTextToView:[NSString stringWithFormat:@"%@挂断了%@邀请的通话",sender,target]];
             [self.renderModelManger memberHangupWithID:sender];
             
             if ([sender isEqualToString:self.liveItem.uid])
@@ -150,19 +149,19 @@
         case TILCALL_NOTIF_LINEBUSY:
         {
             [self onNetReportCallMem:sender statu:0];
-            [self addTextToView:[NSString stringWithFormat:@"%@占线，无法接受%@的邀请",sender,target]];
+//            [self addTextToView:[NSString stringWithFormat:@"%@占线，无法接受%@的邀请",sender,target]];
             [self.renderModelManger memberLineBusyWithID:sender];
             
         }
             break;
         case TILCALL_NOTIF_HEARTBEAT:
         {
-            [self addTextToView:[NSString stringWithFormat:@"%@发来心跳",sender]];
+//            [self addTextToView:[NSString stringWithFormat:@"%@发来心跳",sender]];
         }
             break;
         case TILCALL_NOTIF_DISCONNECT:
         {
-            [self addTextToView:[NSString stringWithFormat:@"%@失去连接",sender]];
+//            [self addTextToView:[NSString stringWithFormat:@"%@失去连接",sender]];
             if([sender isEqualToString:self.liveItem.uid])
             {
                 [self selfDismiss];
