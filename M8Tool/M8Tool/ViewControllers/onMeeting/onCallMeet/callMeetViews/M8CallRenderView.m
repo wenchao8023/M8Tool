@@ -205,8 +205,15 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    BOOL ret = [M8UserDefault getPushMenuStatu];
-    if (ret)
+    //隐藏键盘
+    if ([M8UserDefault getKeyboardShow])
+    {
+        [WCNotificationCenter postNotificationName:kHiddenKeyboard_Notifycation object:nil];
+        return ;
+    }
+    
+    //隐藏菜单
+    if ([M8UserDefault getPushMenuStatu])
     {
         [WCNotificationCenter postNotificationName:kHiddenMenuView_Notifycation object:nil];
         return ;
@@ -216,6 +223,7 @@
 
 - (void)dealloc
 {
+    [WCNotificationCenter removeObserver:self name:kHiddenKeyboard_Notifycation object:nil];
     [WCNotificationCenter removeObserver:self name:kHiddenMenuView_Notifycation object:nil];
 }
 

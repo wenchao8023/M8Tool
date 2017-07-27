@@ -12,7 +12,5 @@
 
 - (void)onHiddeMenuView;
 
-//- (void)onChangeNoteViewPoint:(NSNotification *_Nullable)notification;
-
 
 @end

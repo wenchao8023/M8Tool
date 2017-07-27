@@ -27,6 +27,8 @@
 
     // Override point for customization after application launch.
     
+    [self loadShareSDK];
+    
     [self loadILiveSDK];
     
     [self loadXGSDK:launchOptions];
@@ -45,6 +47,48 @@
 }
 
 #pragma mark - load sdks
+-(void)loadShareSDK
+{
+    //注册ShareSDK
+//    [ShareSDK registerActivePlatforms:@[ @(SSDKPlatformTypeWechat),
+//                                         @(SSDKPlatformTypeQQ),
+//                                         @(SSDKPlatformTypeSMS),
+//                                         @(SSDKPlatformTypeDingTalk)] onImport:^(SSDKPlatformType platformType) {
+//                                             switch (platformType) {
+//                                                 case SSDKPlatformTypeWechat:
+//                                                     [ShareSDKConnector connectWeChat:[WXApi class]];
+//                                                     break;
+//                                                 case SSDKPlatformTypeQQ:
+//                                                     [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
+//                                                     break;
+//                                                     //                                                     case SSDKPlatformTypeDingTalk:
+//                                                     //                                                     [ShareSDKConnector connectDingTalk:];
+//                                                     //                                                     break;
+//                                                 default:
+//                                                     break;
+//                                             }
+//                                             
+//                                         } onConfiguration:^(SSDKPlatformType platformType, NSMutableDictionary *appInfo) {
+//                                             switch (platformType)
+//                                             {
+//                                                 case SSDKPlatformTypeWechat:
+//                                                     [appInfo SSDKSetupWeChatByAppId:@"wx48ed50d97c4271ba"
+//                                                                           appSecret:@"518b4f6340745b0d57367d179525f630"];
+//                                                     break;
+//                                                 case SSDKPlatformTypeQQ:
+//                                                     [appInfo SSDKSetupQQByAppId:@"1106206371"
+//                                                                          appKey:@"C2Ds3I0iXQtV3rNV"
+//                                                                        authType:SSDKAuthTypeBoth];
+//                                                     break;
+//                                                     
+//                                                     
+//                                                     
+//                                                 default:
+//                                                     break;
+//                                             }
+//                                         }];
+}
+
 - (void)loadIFlySDK
 {
     //设置sdk的log等级，log保存在下面设置的工作路径中

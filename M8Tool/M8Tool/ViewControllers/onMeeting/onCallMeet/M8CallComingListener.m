@@ -28,45 +28,6 @@
  */
 - (void)onMultiCallInvitation:(TILCallInvitation *)invitation
 {
-//    if ([M8UserDefault getIsInMeeting])
-//    {
-//        M8MeetWindowSingleton *singleWindow = [M8MeetWindowSingleton shareInstance];
-//        
-//        id obj = [singleWindow getCallViewController];
-//        
-//        if ([obj isKindOfClass:[M8CallViewController class]])
-//        {
-//            M8CallViewController *callVC = obj;
-//            
-//            [callVC.call responseLineBusy:^(TILCallError *err) {
-//                
-//                WCLog(@"回复自己忙成功");
-//            }];
-//        }
-//        
-//        return ;
-////        TILCallConfig *config = [[TILCallConfig alloc] init];
-////        
-////        TILCallBaseConfig *baseConfig = [[TILCallBaseConfig alloc] init];
-////        baseConfig.callType = invitation.callType;
-////        baseConfig.memberArray = invitation.memberArray;
-////        baseConfig.isSponsor = NO;
-////        
-////        TILCallResponderConfig *respConfig = [[TILCallResponderConfig alloc] init];
-////        respConfig.callInvitation = invitation;
-////        
-////        config.baseConfig = baseConfig;
-////        config.responderConfig = respConfig;
-////        
-////        TILMultiCall *call = [[TILMultiCall alloc] initWithConfig:config];
-////        [call responseLineBusy:^(TILCallError *err) {
-////            
-////            WCLog(@"回复自己忙成功");
-////        }];
-////        
-////        return ;
-//    }
-    
     if ([M8UserDefault getIsInMeeting])
     {
         return ;

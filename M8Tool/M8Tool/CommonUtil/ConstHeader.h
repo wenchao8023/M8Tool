@@ -126,6 +126,7 @@ typedef NS_ENUM(NSInteger, BeautyViewType)
 #define kEnterBackGround_Notification   @"kEnterBackGround_Notification"
 #define kThemeSwich_Notification        @"kThemeSwich_Notification"     //切换主题
 #define kHiddenMenuView_Notifycation    @"kHiddenMenuView_Notifycation" //隐藏菜单
+#define kHiddenKeyboard_Notifycation    @"kHiddenKeyboard_Notifycation" //隐藏键盘
 #define kMeetCollcet_Notification       @"kMeetCollcet_Notification"    //会议收藏状态变化
 #define kNoteViewEdit_Notification      @"kNoteViewEdit_Notification"   //会议中正在编辑文字
 #define kInviteMembers_Notifycation     @"kInviteMembers_Notifycation"  //会议中邀请成员
@@ -147,6 +148,7 @@ typedef NS_ENUM(NSInteger, BeautyViewType)
 #define kThemeImage         @"kThemeImage"
 #define kIsInMeeting        @"kIsInMeeting"     //判断用户是否在会议中，如果是则推出视图的时候隐藏tabBar
 #define kPushMenuStatus     @"kPushMenuStatus"  //会话中推出菜单状态
+#define kKeyboardShow       @"kKeyboardShow"    //会话中推出键盘
 #define kMeetList           @"kMeetList"        //保存本地用户列表
 
 /******************** appstore **********************/

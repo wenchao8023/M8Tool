@@ -10,6 +10,6 @@
 
 @interface M8CallNoteCell : UITableViewCell
 
-- (void)configWithModel:(id _Nullable)model;
+- (void)configWithModel:(id _Nullable)model width:(CGFloat)selfWidth;
 
 @end

@@ -40,6 +40,7 @@ static int const kTextViewHeight = 28;
     
     if (self = [super initWithFrame:frame])
     {
+        [WCNotificationCenter addObserver:self selector:@selector(onEndEditingAction) name:kHiddenKeyboard_Notifycation object:nil];
         
         self.barTintColor = [UIColor colorWithRed:0.96 green:0.96 blue:0.97 alpha:1];
         
@@ -63,37 +64,36 @@ static int const kTextViewHeight = 28;
 - (void)registerForKeyboardNotifycations {
     
     // 键盘出现时的通知
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWasShown:)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:nil];
+    [WCNotificationCenter addObserver:self
+                             selector:@selector(keyboardWillShow:)
+                                 name:UIKeyboardWillShowNotification
+                               object:nil];
     
     // 键盘隐藏时的通知
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHidden:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
+    [WCNotificationCenter addObserver:self
+                             selector:@selector(keyboardWillHidden:)
+                                 name:UIKeyboardWillHideNotification
+                               object:nil];
 }
 
 // 实现键盘出现的时候 计算键盘的高度 显示输入框位置
-- (void)keyboardWasShown:(NSNotification *)notity {
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    [M8UserDefault setKeyboardShow:YES];
     
-    NSDictionary *info = [notity userInfo];
+    self.hidden = NO;
     
-    // 获取键盘的 size
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
-    
-    NSLog(@"kb_height = %f", kbSize.height);
-    
-    [self beginMoveUpAnimation:kbSize.height];
+    [self keyboardAnimationWithKeyboardNotification:notification];
 }
 
 // 键盘隐藏时
-- (void)keyboardWillHidden:(NSNotification *)notify {
+- (void)keyboardWillHidden:(NSNotification *)notification
+{
+    [M8UserDefault setKeyboardShow:NO];
     
-    NSLog(@"键盘隐藏");
+    self.hidden = YES;
     
-    [self endAnimation];
+    [self keyboardAnimationWithKeyboardNotification:notification];
 }
 
 - (void)dealloc {
@@ -103,59 +103,51 @@ static int const kTextViewHeight = 28;
 
 - (void)releaseNotify
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [WCNotificationCenter removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    [WCNotificationCenter removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    
+    [WCNotificationCenter removeObserver:self name:kHiddenKeyboard_Notifycation object:nil];
 }
 
 #pragma mark -- 处理键盘动画
-- (void)beginMoveUpAnimation:(CGFloat)kbHeight
+- (void)keyboardAnimationWithKeyboardNotification:(NSNotification *)notification
 {
-    self.hidden = NO;
+    // 获取通知的信息字典
+    NSDictionary *userInfo = [notification userInfo];
     
-    CGRect frame = self.frame;
+    // 获取键盘弹出后的rect
+    NSValue* aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
     
-    frame.origin.y = SCREEN_HEIGHT - kbHeight - self.height /* - kDefaultNaviHeight */;
+    // 获取键盘弹出动画时间
+    NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSTimeInterval animationDuration;
+    [animationDurationValue getValue:&animationDuration];
     
-    [UIView animateWithDuration:0.5 animations:^{
-        
-        self.frame = frame;
-        
-    } completion:^(BOOL finished) {
-        
-        if (finished) {
-
-            if ([self.WCDelegate respondsToSelector:@selector(noteToolBarOriginY:isHidden:)])
-            {
-                [self.WCDelegate noteToolBarOriginY:frame.origin.y isHidden:self.isHidden];
-            }
-        }
-    }];
+    NSValue *animationCurveValue = [userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+    UIViewAnimationCurve animationCurve;
+    [animationCurveValue getValue:&animationCurve];
+    
+    [self selfAnimation:keyboardRect.size.height duration:animationDuration curve:animationCurve];
 }
 
-- (void)endAnimation
+- (void)selfAnimation:(CGFloat)kbHeight duration:(NSTimeInterval)duration curve:(UIViewAnimationCurve)curve
 {
-    self.hidden = YES;
+    CGFloat originY = SCREEN_HEIGHT - kbHeight - self.height;    
+//    //首尾式动画
+//    [UIView beginAnimations:nil context:nil];
+//    [UIView setAnimationCurve:curve];
+//    [UIView setAnimationDuration:duration];
+//    self.y = originY;
+//    [UIView commitAnimations];
     
-    CGRect frame = self.frame;
-    
-    frame.origin.y = SCREEN_HEIGHT - self.height /* - kDefaultNaviHeight */;
-    
-    [UIView animateWithDuration:1 animations:^{
-        
-        self.frame = frame;
-        
-    } completion:^(BOOL finished) {
-        
-        if (finished)
-        {
-            if ([self.WCDelegate respondsToSelector:@selector(noteToolBarOriginY:isHidden:)])
-            {
-                [self.WCDelegate noteToolBarOriginY:frame.origin.y isHidden:self.isHidden];
-            }
-        }
-    }];
+    if ([self.WCDelegate respondsToSelector:@selector(noteToolBarOriginY:isHidden:animationDuration:animationCurve:)])
+    {
+        [self.WCDelegate noteToolBarOriginY:originY isHidden:self.isHidden animationDuration:duration animationCurve:curve];
+    }
 }
+
 
 #pragma mark - -- 创建UI
 - (void)createUI
@@ -199,6 +191,8 @@ static int const kTextViewHeight = 28;
         
         textView.backgroundColor = [UIColor whiteColor];
         
+        textView.showsVerticalScrollIndicator = NO;
+        
         [self addSubview:(_textView = textView)];
     }
     
@@ -211,7 +205,14 @@ static int const kTextViewHeight = 28;
 
     if ([self.WCDelegate respondsToSelector:@selector(noteToolBarSendMsg:)])
     {
+        if (!self.textView.text.length)
+        {
+            return ;
+        }
+        
         [self.WCDelegate noteToolBarSendMsg:self.textView.text];
+        
+        self.textView.text = nil;
     }
 }
 

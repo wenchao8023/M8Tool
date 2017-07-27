@@ -69,6 +69,16 @@
 }
 
 
+#pragma mark -- kKeyboardShow (会议中推出键盘)
++ (BOOL)getKeyboardShow
+{
+    return [self returnBoolWithKey:kKeyboardShow];
+}
+
++ (void)setKeyboardShow:(BOOL)show
+{
+    [self setBoolValue:show key:kKeyboardShow];
+}
 
 #pragma mark - 全局设置
 #pragma mark -- kThemeImage（主题图片）

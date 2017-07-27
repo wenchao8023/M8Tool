@@ -55,15 +55,20 @@
  判断是否在会议中
  */
 + (BOOL)getIsInMeeting;
-
-/**
- 设置是否在会议中
- */
 + (void)setMeetingStatu:(BOOL)isInMeeting;
 
+/**
+ 判断会议中推出菜单状态
+ */
 + (BOOL)getPushMenuStatu;
-
 + (void)setPushMenuStatu:(BOOL)statu;
 
+
+
+/**
+ 会议中推出键盘状态
+ */
++ (BOOL)getKeyboardShow;
++ (void)setKeyboardShow:(BOOL)show;
 
 @end

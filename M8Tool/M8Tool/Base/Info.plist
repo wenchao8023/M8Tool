@@ -24,8 +24,22 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>CFBundleURLName</key>
 			<string></string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>tencent1106206371</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>wx48ed50d97c4271ba</string>
+			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
@@ -34,9 +48,18 @@
 	<array>
 		<string>wechat</string>
 		<string>weixin</string>
+		<string>mqq</string>
+		<string>mqqapi</string>
+		<string>wtloginmqq2</string>
+		<string>mqqOpensdkSSoLogin</string>
+		<string>mqqopensdkapiV2</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>MOBAppKey</key>
+	<string>1f5574f121c6c</string>
+	<key>MOBAppSecret</key>
+	<string>cc8860c6594477b78d9cd44304cb1e9a</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

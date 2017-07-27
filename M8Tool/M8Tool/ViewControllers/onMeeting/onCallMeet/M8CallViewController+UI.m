@@ -100,36 +100,6 @@
 }
 
 
-/**
- 根据键盘状态，调整 noteView 的位置
-
- @param notification 通知
- */
-//- (void)onChangeNoteViewPoint:(NSNotification *)notification
-//{
-//    NSDictionary *userInfo = [notification userInfo];
-//    
-//    NSValue *value = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-//    
-//    CGFloat keyBoardEndY = value.CGRectValue.origin.y;
-//    // 得到键盘弹出后的键盘视图所在y坐标
-//    NSNumber *duration = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-//    
-//    NSNumber *curve = [userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
-//    
-//    // 添加移动动画，使视图跟随键盘移动
-//    [UIView animateWithDuration:duration.doubleValue animations:^{
-//        
-//        [UIView setAnimationBeginsFromCurrentState:YES];
-//        [UIView setAnimationCurve:[curve intValue]];
-//
-//        //设置 noteview 的 Y 坐标
-//        // keyBoardEndY的坐标包括了状态栏的高度，要减去
-//        self.noteView.centerY = keyBoardEndY - kDefaultStatuHeight - self.noteView.height / 2;
-//        
-//    }];
-//}
-
 
 #pragma mark -- CallRenderDelegate
 - (void)CallRenderActionInfo:(NSDictionary *)actionInfo
@@ -245,47 +215,93 @@
 
 
 #pragma mark -- M8NoteToolBarDelegate
-- (void)noteToolBarOriginY:(CGFloat)originY isHidden:(BOOL)ishidden
+- (void)noteToolBarOriginY:(CGFloat)originY isHidden:(BOOL)ishidden animationDuration:(NSTimeInterval)duration animationCurve:(UIViewAnimationCurve)curve
 {
+    CGRect noteFrame;
     if (ishidden)
     {
-        self.noteView.frame = CGRectMake(kDefaultMargin, self.view.height - kBottomHeight - kNoteViewHeight - kDefaultMargin, kNoteViewWidth, kNoteViewHeight);
+        noteFrame = CGRectMake(kDefaultMargin, self.view.height - kBottomHeight - kNoteViewHeight - kDefaultMargin, kNoteViewWidth, kNoteViewHeight);
     }
     else
     {
-        self.noteView.frame = CGRectMake(kDefaultMargin, originY - 120, kNoteViewWidth, 120);
+        CGFloat itemWidth  = (SCREEN_WIDTH - 50) / 4;
+        CGFloat itemHeight = itemWidth * 5 / 3;
+        
+        CGFloat noteHeight = originY - (70 + itemHeight);
+
+        if (noteHeight > 120)
+        {
+            noteHeight = 120;
+        }
+        else if (noteHeight < 0)
+        {
+            noteHeight = 40;
+        }
+        
+        noteFrame = CGRectMake(kDefaultMargin, originY - noteHeight, kNoteViewWidth, noteHeight);
     }
+    
+    //首尾式动画
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationCurve:curve];
+    [UIView setAnimationDuration:duration];
+    [UIView setAnimationDelegate:self];
+    self.noteView.frame = noteFrame;
+    self.noteToolBar.y  = originY;
+    [UIView commitAnimations];
+    
+    [self.noteView reloadData];
 }
 
 
 - (void)noteToolBarSendMsg:(NSString *)msg
 {
+    [self sendOnlineMsg:msg];
+}
+
+- (void)sendOnlineMsg:(NSString *)msg
+{
     TIMTextElem *textElem = [[TIMTextElem alloc] init];
     textElem.text = msg;
     
     TIMMessage *TIMMsg = [[TIMMessage alloc] init];
+    [TIMMsg setPriority:TIM_MSG_PRIORITY_NORMAL];
+    
     int elemCount = [TIMMsg addElem:textElem];
     
-    M8InviteModelManger *inviteModelManger = [M8InviteModelManger shareInstance];
-    
-    for (M8MemberInfo *minfo in inviteModelManger.inviteMemberArray)
+    if (elemCount == 1)
     {
-        [self.call sendC2COnlineMessage:TIMMsg identifier:minfo.uid result:^(TILCallError *err) {
- 
-            if (err)
-            {
-                WCLog(@"%@", [NSString stringWithFormat:@"错误sdk : %@, 错误号 : \n%d, 错误描述\n%@", err.domain, err.code, err.errMsg]);
-            }
-        }];
+        [AlertHelp tipWith:@"消息错误，核对后输入" wait:1];
+        return ;
     }
     
+    NSString *groupId = self.liveItem.info.groupid;
     
+    TIMManager *imManger = [TIMManager sharedInstance];
+    
+    TIMConversation *imConv = [imManger getConversation:TIM_GROUP receiver:groupId];
+    
+    WCWeakSelf(self);
+    [imConv sendOnlineMessage:TIMMsg succ:^{
+    
+        [weakself addMember:@"我" withMsg:msg];
+    } fail:^(int code, NSString *msg) {
+        
+        [weakself sendOnlineMsg:msg];
+    }];
 }
 
 
 #pragma mark - UI相关
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
+    //隐藏键盘
+    if ([M8UserDefault getKeyboardShow])
+    {
+        [WCNotificationCenter postNotificationName:kHiddenKeyboard_Notifycation object:nil];
+        return ;
+    }
+    
     if (self.menuView.y == SCREEN_HEIGHT - kBottomHeight)
     {
         [self onHiddeMenuView];

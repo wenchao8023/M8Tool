@@ -130,11 +130,6 @@
 }
 
 #pragma mark -- 接收方
-- (void)respBusy
-{
-    
-}
-
 - (void)recvCall:(TILCallConfig *)config
 {
     TILCallResponderConfig *responderConfig = [[TILCallResponderConfig alloc] init];
@@ -392,16 +387,8 @@
 }
 
 
-
 - (void)selfDismiss
 {
-    BOOL ret = [M8UserDefault getPushMenuStatu];
-    if (ret)
-    {
-        [self onHiddeMenuView];
-        return ;
-    }
-    
     if (self.isHost)
     {
         [self onNetReportExitRoom];
