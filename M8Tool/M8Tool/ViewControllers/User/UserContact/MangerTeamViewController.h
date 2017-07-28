@@ -15,7 +15,7 @@ typedef NS_ENUM(NSInteger, MangerTeamType)
     MangerTeamType_Partment //管理部门
 };
 
-
+typedef void(^UpdateCInfoSucc)(M8CompanyInfo * _Nullable cInfo);
 
 @interface MangerTeamViewController : BaseViewController
 
@@ -67,5 +67,7 @@ typedef NS_ENUM(NSInteger, MangerTeamType)
 
 @property (nonatomic, copy, nullable) M8VoidBlock delCompanySucc;
 
+@property (nonatomic, copy, nullable) UpdateCInfoSucc updateCInfoSucc;
 
 @end
+

@@ -1,20 +1,55 @@
 //
-//  FriendsListRequest.h
+//  FriendsRequest.h
 //  M8Tool
 //
-//  Created by chao on 2017/7/1.
+//  Created by chao on 2017/7/28.
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import "BaseRequest.h"
+#import <Foundation/Foundation.h>
 
+@interface FriendsRequest : NSObject
+
+@end
+//====================================
+
+
+/**************************************
+ ****            添加好友           ****
+ **************************************/
+@interface M8AddFriendRequest : BaseRequest
+
+@property (nonatomic, copy, nullable) NSString *uid;
+@property (nonatomic, copy, nullable) NSString *frd_id;
+
+@end
+
+
+/**************************************
+ ****            删除好友           ****
+ **************************************/
+@interface M8DeleteFriendRequest : BaseRequest
+
+@property (nonatomic, copy, nullable) NSString *uid;
+@property (nonatomic, copy, nullable) NSString *frd_id;
+
+@end
+
+
+
+
+
+
+
+/**************************************
+ ****          获取好友列表          ****
+ **************************************/
 @interface FriendsListRequest : BaseRequest
 
 @property (nonatomic, copy, nullable) NSString *identifier;
 @property (nonatomic, copy, nullable) NSString *token;
 
 @end
-
 
 
 

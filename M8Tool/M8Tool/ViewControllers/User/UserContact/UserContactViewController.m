@@ -35,7 +35,15 @@
     // Do any additional setup after loading the view.
     
     [self createUI];
+    
+    [WCNotificationCenter addObserver:self selector:@selector(shouldReloadFirstItemData) name:kNewFriendStatu_Notification object:nil];
 }
+
+- (void)shouldReloadFirstItemData
+{
+    [self.contactView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
 
 - (void)createUI
 {
@@ -102,6 +110,7 @@
     
     UIAlertAction *addFrientdAction = [UIAlertAction actionWithTitle:@"添加好友" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
+        [self onAddFriendAction];
     }];
     
     UIAlertAction *addTeamAction = [UIAlertAction actionWithTitle:@"添加团队" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -115,6 +124,73 @@
     
     [self presentViewController:alert animated:YES completion:nil];
 }
+
+- (void)onAddFriendAction
+{
+    UIAlertController *createTeamAlert = [UIAlertController alertControllerWithTitle:@"添加好友" message:@"确认即发送邀请" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *saveAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        UITextField *nameTF  = createTeamAlert.textFields.firstObject;
+        
+//        if ([nameTF.text validateMobile])
+//        {
+//            [AlertHelp tipWith:@"请输入正确的手机号" wait:1];
+//            
+//            return ;
+//        }
+        
+        NSMutableArray * users = [[NSMutableArray alloc] init];
+        
+        TIMAddFriendRequest* req = [[TIMAddFriendRequest alloc] init];
+        
+        // 添加好友
+        req.identifier = nameTF.text;
+        // 添加备注 002Remark
+//        req.remark = [NSString stringWithFormat:@"我是 %@", [M8UserDefault getLoginNick]];
+        // 添加理由
+//        req.addWording = [NSString stringWithFormat:@"我是 %@", [M8UserDefault getLoginId]];
+        
+        [users addObject:req];
+        
+        [[TIMFriendshipManager sharedInstance] AddFriend:users succ:^(NSArray *friends) {
+            
+            for (TIMFriendResult * res in friends)
+            {
+                if (res.status != TIM_FRIEND_STATUS_SUCC)
+                {
+                    NSLog(@"AddFriend failed: user=%@ status=%ld", res.identifier, (long)res.status);
+                }
+                else
+                {
+                    NSLog(@"AddFriend succ: user=%@ status=%ld", res.identifier, (long)res.status);
+                }
+            }
+            
+        } fail:^(int code, NSString *msg) {
+            
+            NSLog(@"add friend fail: code=%d err=%@", code, msg);
+            if (code == 6011)
+            {
+                [AlertHelp tipWith:@"用户不存在" wait:1];
+            }
+        }];
+    }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    
+    [createTeamAlert addAction:saveAction];
+    [createTeamAlert addAction:cancelAction];
+    
+    [createTeamAlert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        
+        textField.placeholder = @"好友手机号";
+    }];
+    
+    [[AppDelegate sharedAppDelegate].topViewController presentViewController:createTeamAlert animated:YES completion:nil];
+}
+
+
 
 #pragma mark -- 判断视图类型
 - (NSString *)getTitle
@@ -150,14 +226,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)dealloc
+{
+    [WCNotificationCenter removeObserver:self name:kNewFriendStatu_Notification object:nil];
 }
-*/
-
 @end

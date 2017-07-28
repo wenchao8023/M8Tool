@@ -45,7 +45,8 @@
 
 
 
-#import "FriendsListRequest.h"
+
+#import "FriendsRequest.h"
 
 #import "VerifyCodeRequest.h"
 

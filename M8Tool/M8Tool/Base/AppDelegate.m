@@ -11,6 +11,8 @@
 #import "UserProtocolViewController.h"
 #import "MainTabBarController.h"
 
+#import "M8IMListener.h"
+
 
 
 @interface AppDelegate ()
@@ -119,7 +121,6 @@
     BOOL debugEnabled = [setting isEnableDebug];
     NSLog(@"[XGDebug] %@", (debugEnabled ? @"打开" : @"关闭"));
     
-//    [XGPush startApp:2200263375 appKey:@"I266LJG3NK7V"];
     [XGPush startApp:2200263532 appKey:@"I421M1FDFJ7U"];
     [XGPush handleLaunching:launchOptions successCallback:^{
         
@@ -140,13 +141,39 @@
     //设置环境
     NSNumber *evn = [[NSUserDefaults standardUserDefaults] objectForKey:kEnvParam];
     [manager setEnv:[evn intValue]];
-
+    
     //设置日志回调的log等级
     NSNumber *logLevel = [[NSUserDefaults standardUserDefaults] objectForKey:kLogLevel];
     [manager initLogSettings:YES logPath:[manager getLogPath]];
     [manager setLogLevel:(TIMLogLevel)[logLevel integerValue]];
     
     [[ILiveSDK getInstance] initSdk:[ShowAppId intValue] accountType:[ShowAccountType intValue]];
+    
+    [[ILiveSDK getInstance] setConnListener:[[M8IMListener alloc] init]];
+    [[ILiveSDK getInstance] setUserStatusListener:[[M8IMListener alloc] init]];
+    [manager setMessageListener:[[M8IMListener alloc] init]];
+    
+    
+    
+    
+//    TIMFriendProfileOption *fileOption = [[TIMFriendProfileOption alloc] init];
+//    fileOption.friendFlags = 0xffff;
+//    TIMUserProfile * profile = [[TIMUserProfile alloc] init];
+//    profile.nickname = @"my nick";
+//    profile.allowType = TIM_FRIEND_ALLOW_ANY;
+//    profile.faceURL = @"https://my face url";
+//    profile.selfSignature = [NSData dataWithBytes:"1234" length:4];
+//    profile.gender = TIM_GENDER_MALE;
+//    profile.birthday = 12345;
+//    profile.location = [NSData dataWithBytes:"location" length:8];
+//    profile.language = 1;
+//    
+//    [[TIMFriendshipManager sharedInstance] modifySelfProfile:option profile:profile succ:^() {
+//        NSLog(@"Set Profile Succ");
+//    } fail:^(int code, NSString * err) {
+//        NSLog(@"Set Profile fail: code=%d err=%@", code, err);
+//    }];
+    
 }
 
 #pragma mark -

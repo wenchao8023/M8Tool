@@ -64,6 +64,18 @@
 + (void)setPushMenuStatu:(BOOL)statu;
 
 
+/**
+ 判断是否有新的朋友添加
+ */
++ (BOOL)getNewFriendNotify;
++ (void)setNewFriendNotify:(BOOL)notify;
+
+
+/**
+ 获取新的好友ID
+ */
++ (NSArray *_Nullable)getNewFriendIdentify;
++ (void)setNewFriendIdentify:(NSArray *_Nullable)idArr;
 
 /**
  会议中推出键盘状态

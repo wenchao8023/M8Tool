@@ -34,10 +34,8 @@
 }
 
 
-- (void)onLoginSucc:(NSString *)identifier password:(NSString *)password {
-    
-    TIMManager *manager = [[ILiveSDK getInstance] getTIMManager];
-    
+- (void)onLoginSucc:(NSString *)identifier password:(NSString *)password
+{
     // 保存用户信息到本地
     [M8UserDefault setLoginId:identifier];
     [M8UserDefault setLoginPwd:password];

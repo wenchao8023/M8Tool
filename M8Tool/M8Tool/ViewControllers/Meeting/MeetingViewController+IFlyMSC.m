@@ -12,26 +12,25 @@
 
 - (void)onSpeechAction
 {
-    NSString *speechStr = nil;
     if ([self.speechBtn.titleLabel.text isEqualToString:@"听写"])
     {
-        // begin speech recognize
-        speechStr = @"停止";
-        
-        [self.iFlySpeechRecognizer startListening];
+
     }
     else if ([self.speechBtn.titleLabel.text isEqualToString:@"停止"])
     {
-        // end speech recognize
-        speechStr = @"听写";
-        [self.iFlySpeechRecognizer stopListening];
+
     }
-    
-    [self.speechBtn setAttributedTitle:[CommonUtil customAttString:speechStr
-                                                     fontSize:kAppMiddleFontSize
-                                                    textColor:WCWhite
-                                                    charSpace:kAppKern_0]
-                         forState:UIControlStateNormal];
+}
+
+
+- (void)onIFlyStartListeneing
+{
+    [self.iFlySpeechRecognizer startListening];
+}
+
+- (void)onIFlyStopListeneing
+{
+    [self.iFlySpeechRecognizer stopListening];
 }
 
 

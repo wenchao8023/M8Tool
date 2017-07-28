@@ -68,7 +68,7 @@
         {
             if (self.isManger)
             {
-                [AlertHelp tipWith:@"你点啥, 再点一个试试" wait:1];
+//                [AlertHelp tipWith:@"你点啥, 再点一个试试" wait:1];
             }
         }
             break;
@@ -109,23 +109,36 @@
  */
 - (void)onHeaderViewAction:(UITapGestureRecognizer *)tap
 {
-//    UIView *headView = tap.view;
-//    
-//    self.clickSection = headView.tag - 10;
-//    
-//    [self configStatuArray];
-//    
-//    [self loadDataInMainThread];
+    
 }
 
-- (void)onAddMemberAction
+- (void)onAddMemberAction:(UIButton *)btn
 {
-    [self onAddMemberActionInMangerCompany];
+    //点击分组的下标
+    NSInteger index = btn.tag - 210;
+    
+    [self onAddMemberActionInMangerCompany:index];
 }
 
+//底部按钮
 - (void)onShareAction
 {
     
+    
+    UIImage *testImg = [UIImage imageNamed:@"jinshenku"];
+    
+    NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+    [shareParams SSDKSetupShareParamsByText:@"分享内容"
+                                     images:testImg
+                                        url:[NSURL URLWithString:@"http://ibuildtek.com"]
+                                      title:@"木木是傻嗨"
+                                       type:SSDKContentTypeAuto];
+    //有的平台要客户端分享需要加此方法，例如微博
+    [shareParams SSDKEnableUseClientShare];
+    //2、分享（可以弹出我们的分享菜单和编辑界面）
+    [ShareSDK share:SSDKPlatformTypeWechat parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+        
+    }];
 }
 
 - (void)onAddAction
@@ -167,7 +180,7 @@
             else if (self.teamType == MangerTeamType_Partment)
             {
                 WCLog(@"添加员工");
-                [self onAddMemberActionInMangerCompany];
+                [self onAddMemberActionInMangerDepartmemt];
             }
         }
     }
@@ -203,14 +216,55 @@
     [[AppDelegate sharedAppDelegate].topViewController presentViewController:addPartAlert animated:YES completion:nil];
 }
 
-- (void)onAddMemberActionInMangerCompany
+
+/**
+ 点击底部的添加成员按钮进行添加
+ */
+- (void)onAddMemberActionInMangerDepartmemt
 {
     UIAlertController *addPartAlert = [UIAlertController alertControllerWithTitle:@"添加成员" message:nil preferredStyle:UIAlertControllerStyleAlert];
     
     WCWeakSelf(self);
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
+        
+        UITextField *phoneTF  = addPartAlert.textFields.lastObject;
+        //        if ([phoneTF.text validateMobile])
+        //        {
+        //            [AlertHelp tipWith:@"请输入正确的手机号" wait:1];
+        //
+        //            return ;
+        //        }
+        
+                [weakself onNetJoinMember:phoneTF.text toPart:weakself.dInfo.did succ:nil];
+        
+        
+    }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    
+    [addPartAlert addAction:okAction];
+    [addPartAlert addAction:cancelAction];
+    
+    [addPartAlert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        
+        textField.placeholder = @"手机号";
+    }];
+    
+    [[AppDelegate sharedAppDelegate].topViewController presentViewController:addPartAlert animated:YES completion:nil];
+}
 
+
+/**
+ 点击头部分组视图添加成员进行添加
+ */
+- (void)onAddMemberActionInMangerCompany:(NSInteger)index
+{
+    UIAlertController *addPartAlert = [UIAlertController alertControllerWithTitle:@"添加成员" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
         UITextField *phoneTF  = addPartAlert.textFields.lastObject;
 //        if ([phoneTF.text validateMobile])
 //        {
@@ -219,8 +273,14 @@
 //            return ;
 //        }
         
-        [weakself onNetJoinMember:phoneTF.text toPart:self.dInfo.did succ:nil];
+        NSArray *partArr = self.cInfo.departments;
         
+        if (index < partArr.count)
+        {
+            NSDictionary *partDic = partArr[index];
+            NSString *partid = [partDic objectForKey:@"did"];
+            [self onNetJoinMember:phoneTF.text toPart:partid succ:nil];
+        }
     }];
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
