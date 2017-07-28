@@ -18,6 +18,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *subTitleLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *friendTipLabel;
+
 
 /**
  用于记录 cell 状态的图片
@@ -74,7 +76,7 @@
     
     [self hiddeXibViews:YES];
     
-    self.iconImg.image = [UIImage imageWithColor:WCLightGray];
+    self.iconImg.image = [UIImage imageNamed:@"user_department"];
     
     self.itemTitleLabel.text = dInfo.dname;
 }
@@ -106,6 +108,20 @@
     self.iconLabel.text = [memberInfo.nick getSimpleName];
     self.titleLabel.text = memberInfo.nick;
     self.subTitleLabel.text = memberInfo.uid;
+    
+    self.friendTipLabel.hidden = YES;
+    if ([M8UserDefault getNewFriendNotify])
+    {
+        NSArray *newFriendArr = [M8UserDefault getNewFriendIdentify];
+        if (newFriendArr)
+        {
+            if ([newFriendArr containsObject:memberInfo.uid])
+            {
+                self.friendTipLabel.hidden = NO;
+            }
+            
+        }
+    }
     
     self.statuImg.hidden = YES; //默认会设置成 隐藏，如果需要显示请自行设置
 }

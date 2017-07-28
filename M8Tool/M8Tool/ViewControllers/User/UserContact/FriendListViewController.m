@@ -101,6 +101,17 @@
     [self onNetGetFriendList];
     
     [self createUI];
+    
+    [WCNotificationCenter addObserver:self.tableView selector:@selector(reloadData) name:kNewFriendStatu_Notification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [M8UserDefault setNewFriendNotify:NO];
+    [M8UserDefault setNewFriendIdentify:[NSArray array]];
+    [WCNotificationCenter postNotificationName:kNewFriendStatu_Notification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -390,6 +401,8 @@
 - (void)dealloc
 {
     [WCNotificationCenter removeObserver:self name:kInviteMembers_Notifycation object:nil];
+    [WCNotificationCenter removeObserver:self.tableView name:kNewFriendStatu_Notification object:nil];
+    [WCNotificationCenter removeObserver:self name:kNewFriendStatu_Notification object:nil];
 }
 
 @end

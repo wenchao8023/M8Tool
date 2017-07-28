@@ -130,6 +130,7 @@ typedef NS_ENUM(NSInteger, BeautyViewType)
 #define kMeetCollcet_Notification       @"kMeetCollcet_Notification"    //会议收藏状态变化
 #define kNoteViewEdit_Notification      @"kNoteViewEdit_Notification"   //会议中正在编辑文字
 #define kInviteMembers_Notifycation     @"kInviteMembers_Notifycation"  //会议中邀请成员
+#define kNewFriendStatu_Notification    @"kNewFriendStatu_Notification" //新好友存在或没有的状态变化通知
 
 
 /******************** role string **********************/
@@ -150,6 +151,8 @@ typedef NS_ENUM(NSInteger, BeautyViewType)
 #define kPushMenuStatus     @"kPushMenuStatus"  //会话中推出菜单状态
 #define kKeyboardShow       @"kKeyboardShow"    //会话中推出键盘
 #define kMeetList           @"kMeetList"        //保存本地用户列表
+#define kNewFriendNotify    @"kNewFriendNotify" //判断是否有新的朋友
+#define kNewFriendIdentify  @"kNewFriendIdentify"  //保存新的好友id
 
 /******************** appstore **********************/
 #define kIsAppstoreVersion 0

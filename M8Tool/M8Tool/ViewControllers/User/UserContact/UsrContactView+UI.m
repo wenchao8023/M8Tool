@@ -106,6 +106,27 @@
             }];
         };
         
+        mangerVC.updateCInfoSucc = ^(M8CompanyInfo * _Nullable cInfo) {
+          
+            //添加公司信息（头部分组数据）
+            [weakself.sectionArray replaceObjectAtIndex:section withObject:cInfo];
+            
+            //添加公司部门信息（部门数组）
+            NSMutableArray *tempDepartArr = [NSMutableArray arrayWithCapacity:0];
+            for (NSDictionary *departDic in cInfo.departments)
+            {
+                M8DepartmentInfo *departInfo = [[M8DepartmentInfo alloc] init];
+                [departInfo setValuesForKeysWithDictionary:departDic];
+                [tempDepartArr addObject:departInfo];
+            }
+            
+            [weakself.dataArray replaceObjectAtIndex:section withObject:tempDepartArr];
+            
+            
+            
+            [weakself loadDataInMainThread];
+        };
+        
     }
     else if ([mangerBtn.titleLabel.text isEqualToString:@"邀请"])
     {
@@ -120,11 +141,11 @@
 }
 
 /**
- 最后一个头部分组创建公司
+ 创建公司
  */
 - (void)onCreateTeamAction
 {
-    UIAlertController *createTeamAlert = [UIAlertController alertControllerWithTitle:@"添加成员" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *createTeamAlert = [UIAlertController alertControllerWithTitle:@"添加团队" message:nil preferredStyle:UIAlertControllerStyleAlert];
     WCWeakSelf(self);
     self.saveAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
@@ -150,6 +171,8 @@
     
     [[AppDelegate sharedAppDelegate].topViewController presentViewController:createTeamAlert animated:YES completion:nil];
 }
+
+
 
 
 - (void)alertTextFieldDidChange:(NSNotification *)notification

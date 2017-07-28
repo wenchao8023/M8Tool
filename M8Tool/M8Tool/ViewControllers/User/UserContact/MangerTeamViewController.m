@@ -274,13 +274,14 @@ static CGFloat kItemHeight = 60.f;
         {
             // 添加成员按钮
             UIButton *addMemButton = [WCUIKitControl createButtonWithFrame:CGRectMake(self.tableView.width - 80, 10, 70, 40)
-                                                                 Target:self
-                                                                 Action:@selector(onAddMemberAction)
-                                                                  Title:@"+成员"
-                                   ];
+                                                                    Target:self
+                                                                    Action:@selector(onAddMemberAction:)
+                                                                     Title:@"+成员"
+                                      ];
             addMemButton.titleLabel.font = [UIFont systemFontOfSize:kAppMiddleFontSize];
             [addMemButton setTitleColor:WCBlack forState:UIControlStateNormal];
             [addMemButton setBorder_left_color:WCLightGray width:1];
+            [addMemButton setTag:210 + section];
             [headView addSubview:addMemButton];
         }
         
@@ -367,6 +368,7 @@ static CGFloat kItemHeight = 60.f;
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
 
 
 #pragma mark - UINavigationControllerDelegate

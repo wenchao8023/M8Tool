@@ -9,6 +9,8 @@
 #import "MangerTeamViewController+Net.h"
 #import "MangerTeamViewController+UI.h"
 
+//获取部门详情接口需要修改
+//返回信息携带部门名或者是部门ID
 @implementation MangerTeamViewController (Net)
 
 - (void)onNetloadData
@@ -25,6 +27,7 @@
         for (NSDictionary *dic in self.cInfo.departments)
         {
             [self.sectionArray addObject:[dic objectForKey:@"dname"]];
+            [self.itemArray    addObject:@[]];
             
             [self onNetGetPartInfoWithDid:[dic objectForKey:@"did"]];
         }
@@ -38,7 +41,7 @@
      
         PartDetailResponseData *respData = (PartDetailResponseData *)request.response.data;
         
-        [weakself loadMembersArray:respData.members];
+        [weakself loadMembersArray:respData];
         
     } failHandler:^(BaseRequest *request) {
         
@@ -49,8 +52,10 @@
     [[WebServiceEngine sharedEngine] AFAsynRequest:partReq];
 }
 
-- (void)loadMembersArray:(NSArray *)membersArr
+- (void)loadMembersArray:(PartDetailResponseData *)respData
 {
+    NSArray *membersArr = respData.members;
+    
     NSMutableArray *tempMemArr = [NSMutableArray arrayWithCapacity:0];
     for (NSDictionary *dic in membersArr)
     {
@@ -58,7 +63,22 @@
         [info setValuesForKeysWithDictionary:dic];
         [tempMemArr addObject:info];
     }
-    [self.itemArray addObject:tempMemArr];
+    
+    if (self.teamType == MangerTeamType_Partment)
+    {
+        [self.itemArray addObject:tempMemArr];
+    }
+    else
+    {
+        NSDictionary *dInfo = respData.department;
+        NSString *dname = [dInfo objectForKey:@"dname"];
+
+        if ([self.sectionArray containsObject:dname])
+        {
+            NSInteger index = [self.sectionArray indexOfObject:dname];
+            [self.itemArray replaceObjectAtIndex:index withObject:tempMemArr];
+        }
+    }
     
     [self onReloadDataInMainThread];
 }
@@ -121,6 +141,11 @@
         if (detailResponseData)
         {
             weakself.cInfo = cInfo;
+            
+            if (weakself.updateCInfoSucc)
+            {
+                weakself.updateCInfoSucc(cInfo);
+            }
             
             [weakself onNetloadData];
         }

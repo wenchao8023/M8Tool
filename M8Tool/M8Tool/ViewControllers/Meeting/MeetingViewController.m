@@ -9,7 +9,6 @@
 #import "MeetingViewController.h"
 #import "MeetingViewController+IFlyMSC.h"
 #import "MeetingAgendaCollection.h"
-//#import "MeetingButtonsCollection.h"
 #import "MeetingAgendaHeader.h"
 
 #import "M8MeetWindow.h"
@@ -25,7 +24,6 @@
 
 @property (nonatomic, strong) MeetingAgendaHeader        *agendaHeader;
 @property (nonatomic, strong) MeetingAgendaCollection    *agendaCollection;
-//@property (nonatomic, strong) MeetingButtonsCollection   *buttonsCollection;
 @property (nonatomic, strong) UIPageControl              *pageControl;
 
 

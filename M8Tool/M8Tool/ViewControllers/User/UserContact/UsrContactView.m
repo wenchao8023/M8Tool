@@ -37,6 +37,7 @@ static const CGFloat kItemHeight = 60;
         self.backgroundColor = WCClear;
         self.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 0.01)];   // 不能使用CGRectZero，不起作用
         self.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 0.01)];
+        self.showsVerticalScrollIndicator = NO;
         
         self.clickSection = -1;
         [self sectionArray];
@@ -151,24 +152,17 @@ static const CGFloat kItemHeight = 60;
 {
     if (section)
     {
-//        if (section == self.sectionArray.count) //最后一分组
-//        {
-//            return 0;
-//        }
-//        else    //中间的公司信息
-//        {
-            if ([self.statuArray[section] isEqualToString:@"0"])
+        if ([self.statuArray[section] isEqualToString:@"0"])
+        {
+            if (self.dataArray.count > section)
             {
-                if (self.dataArray.count > section)
-                {
-                    return [self.dataArray[section] count];
-                }
+                return [self.dataArray[section] count];
             }
-            else
-            {
-                return 0;
-            }
-//        }
+        }
+        else
+        {
+            return 0;
+        }
     }
     
     if (self.dataArray.count > section)    //第一分组信息
@@ -185,47 +179,46 @@ static const CGFloat kItemHeight = 60;
     
     if (section)
     {
-//        if (section == self.sectionArray.count)
-//        {
-//            UIButton *createTeamBtn = [WCUIKitControl createButtonWithFrame:CGRectMake(0, 10, self.width, 40) Target:self Action:@selector(onCreateTeamAction) Title:@"+创建公司"];
-//            createTeamBtn.titleLabel.font = [UIFont systemFontOfSize:kAppMiddleFontSize];
-//            [createTeamBtn setTitleColor:WCBlack forState:UIControlStateNormal];
-//            [headView addSubview:createTeamBtn];
-//        }
-//        else
-//        {
-            M8CompanyInfo *cInfo = self.sectionArray[section];
-            
-            headView.frame = CGRectMake(0, 0, self.width, kItemHeight);
-            headView.tag = section + 10;
-            [headView setBackgroundColor:WCWhite];
-            
-            UIImageView *iconImg = [WCUIKitControl createImageViewWithFrame:CGRectMake(10, 10, 40, 40) ImageName:@"user_company" BgColor:WCClear];
-            [headView addSubview:iconImg];
-            
-            UILabel *titleLabel = [WCUIKitControl createLabelWithFrame:CGRectMake(60, 10, self.width - 70 - 60, 40) Text:cInfo.cname];
-            titleLabel.font = [UIFont systemFontOfSize:kAppLargeFontSize];
-            titleLabel.numberOfLines = 1;
-            [headView addSubview:titleLabel];
-            
-            
-            NSString *btnStr = nil;
-            
-            if ([cInfo.uid isEqualToString:[M8UserDefault getLoginId]])
-                btnStr = @"管理";
-            else
-                btnStr = @"邀请";
-            
-            UIButton *mangerBtn = [WCUIKitControl createButtonWithFrame:CGRectMake(self.width - 60, 10, 50, 40) Target:self Action:@selector(onMangerComAction:) Title:btnStr];
-            mangerBtn.titleLabel.font = [UIFont systemFontOfSize:kAppMiddleFontSize];
-            mangerBtn.tag = 50 + section;
-            [mangerBtn setTitleColor:WCBlack forState:UIControlStateNormal];
-            [mangerBtn setBorder_left_color:WCLightGray width:1];
-            [headView addSubview:mangerBtn];
-            
-            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onHeaderAction:)];
-            [headView addGestureRecognizer:tap];
-//        }
+        M8CompanyInfo *cInfo = self.sectionArray[section];
+        
+        headView.frame = CGRectMake(0, 0, self.width, kItemHeight);
+        headView.tag = section + 10;
+        [headView setBackgroundColor:WCWhite];
+        
+        UIImageView *iconImg = [WCUIKitControl createImageViewWithFrame:CGRectMake(10, 15, 30, 30) ImageName:nil BgColor:WCClear];
+        [headView addSubview:iconImg];
+        
+        if ([self.statuArray[section] isEqualToString:@"0"])
+        {
+            [iconImg setImage:[UIImage imageNamed:@"user_unFolder"]];
+        }
+        else
+        {
+            [iconImg setImage:[UIImage imageNamed:@"user_folder"]];
+        }
+        
+        UILabel *titleLabel = [WCUIKitControl createLabelWithFrame:CGRectMake(60, 10, self.width - 70 - 60, 40) Text:cInfo.cname];
+        titleLabel.font = [UIFont systemFontOfSize:kAppLargeFontSize];
+        titleLabel.numberOfLines = 1;
+        [headView addSubview:titleLabel];
+        
+        
+        NSString *btnStr = nil;
+        
+        if ([cInfo.uid isEqualToString:[M8UserDefault getLoginId]])
+            btnStr = @"管理";
+        else
+            btnStr = @"邀请";
+        
+        UIButton *mangerBtn = [WCUIKitControl createButtonWithFrame:CGRectMake(self.width - 60, 10, 50, 40) Target:self Action:@selector(onMangerComAction:) Title:btnStr];
+        mangerBtn.titleLabel.font = [UIFont systemFontOfSize:kAppMiddleFontSize];
+        mangerBtn.tag = 50 + section;
+        [mangerBtn setTitleColor:WCBlack forState:UIControlStateNormal];
+        [mangerBtn setBorder_left_color:WCLightGray width:1];
+        [headView addSubview:mangerBtn];
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onHeaderAction:)];
+        [headView addGestureRecognizer:tap];
     }
     
     return headView;
@@ -246,7 +239,21 @@ static const CGFloat kItemHeight = 60;
         if (self.dataArray.count &&
            self.dataArray[indexPath.section])
         {
-            [friendCell configWithItem:self.headSectionImgArray[indexPath.row] itemText:self.dataArray[indexPath.section][indexPath.row]];
+            if (indexPath.row == 0)
+            {
+                if ([M8UserDefault getNewFriendNotify])
+                {
+                    [friendCell configWithItem:@"user_friendIconNotify" itemText:self.dataArray[indexPath.section][indexPath.row]];
+                }
+                else
+                {
+                    [friendCell configWithItem:@"user_friendIcon" itemText:self.dataArray[indexPath.section][indexPath.row]];
+                }
+            }
+            else
+            {
+                [friendCell configWithItem:@"user_mobContactIcon" itemText:self.dataArray[indexPath.section][indexPath.row]];
+            }
         }
     }
     else if (indexPath.section == self.sectionArray.count)
@@ -291,6 +298,18 @@ static const CGFloat kItemHeight = 60;
 #pragma mark -- 滑动删除cell
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section &&
+        indexPath.section < self.sectionArray.count)
+    {
+        //如果不是公司创建者，则不会让用户有删除的权利
+        M8CompanyInfo *cInfo = self.sectionArray[indexPath.section];
+        if (![cInfo.uid isEqualToString:[M8UserDefault getLoginId]])
+        {
+            return NO;
+        }
+    }
+    
+    
     if (self.contactType == ContactType_sel ||
         self.contactType == ContactType_invite)
     {

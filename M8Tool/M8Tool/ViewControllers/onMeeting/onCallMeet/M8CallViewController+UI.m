@@ -331,7 +331,7 @@
     
     NSString *groupId = self.liveItem.info.groupid;
     
-    TIMManager *imManger = [TIMManager sharedInstance];
+    TIMManager *imManger = [[ILiveSDK getInstance] getTIMManager];
     
     TIMConversation *imConv = [imManger getConversation:TIM_GROUP receiver:groupId];
     

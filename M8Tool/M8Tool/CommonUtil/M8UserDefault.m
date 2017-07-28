@@ -80,6 +80,28 @@
     [self setBoolValue:show key:kKeyboardShow];
 }
 
+#pragma mark -- kNewFriendNotify (判断是否有新的朋友)
++ (BOOL)getNewFriendNotify
+{
+    return [self returnBoolWithKey:kNewFriendNotify];
+}
++ (void)setNewFriendNotify:(BOOL)notify
+{
+    [self setBoolValue:notify key:kNewFriendNotify];
+}
+
+#pragma mark -- kNewFriendIdentify (新的好友IDs)
++ (NSArray *)getNewFriendIdentify
+{
+    return [self returnStringWithKey:kNewFriendIdentify];
+}
+
++ (void)setNewFriendIdentify:(NSArray *)idArr
+{
+    [self setObject:idArr key:kNewFriendIdentify];
+}
+
+
 #pragma mark - 全局设置
 #pragma mark -- kThemeImage（主题图片）
 + (NSString *)getThemeImageString
