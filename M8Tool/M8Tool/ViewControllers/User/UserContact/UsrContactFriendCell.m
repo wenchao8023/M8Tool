@@ -58,7 +58,7 @@
 {
     [self hiddeXibViews:YES];
     
-    self.iconImg.image = [UIImage imageWithColor:WCRed];
+    self.iconImg.image = [UIImage imageNamed:itemImg];
     
     self.itemTitleLabel.text = itemText;
 }

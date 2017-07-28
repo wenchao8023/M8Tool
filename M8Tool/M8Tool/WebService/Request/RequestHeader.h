@@ -41,6 +41,8 @@
 
 #import "LinkRoomSigRequest.h"
 
+#import "LiveListRequest.h"
+
 
 
 #import "FriendsListRequest.h"
@@ -78,6 +80,8 @@
 #import "DeleteInfoRequest.h"
 
 #import "ModifyPwdRequest.h"
+
+
 
 
 #endif /* RequestHeader_h */

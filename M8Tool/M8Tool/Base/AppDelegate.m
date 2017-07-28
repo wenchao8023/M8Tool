@@ -50,43 +50,43 @@
 -(void)loadShareSDK
 {
     //注册ShareSDK
-//    [ShareSDK registerActivePlatforms:@[ @(SSDKPlatformTypeWechat),
-//                                         @(SSDKPlatformTypeQQ),
-//                                         @(SSDKPlatformTypeSMS),
-//                                         @(SSDKPlatformTypeDingTalk)] onImport:^(SSDKPlatformType platformType) {
-//                                             switch (platformType) {
-//                                                 case SSDKPlatformTypeWechat:
-//                                                     [ShareSDKConnector connectWeChat:[WXApi class]];
-//                                                     break;
-//                                                 case SSDKPlatformTypeQQ:
-//                                                     [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
-//                                                     break;
-//                                                     //                                                     case SSDKPlatformTypeDingTalk:
-//                                                     //                                                     [ShareSDKConnector connectDingTalk:];
-//                                                     //                                                     break;
-//                                                 default:
-//                                                     break;
-//                                             }
-//                                             
-//                                         } onConfiguration:^(SSDKPlatformType platformType, NSMutableDictionary *appInfo) {
-//                                             switch (platformType)
-//                                             {
-//                                                 case SSDKPlatformTypeWechat:
-//                                                     [appInfo SSDKSetupWeChatByAppId:@"wx48ed50d97c4271ba"
-//                                                                           appSecret:@"518b4f6340745b0d57367d179525f630"];
-//                                                     break;
-//                                                 case SSDKPlatformTypeQQ:
-//                                                     [appInfo SSDKSetupQQByAppId:@"1106206371"
-//                                                                          appKey:@"C2Ds3I0iXQtV3rNV"
-//                                                                        authType:SSDKAuthTypeBoth];
-//                                                     break;
-//                                                     
-//                                                     
-//                                                     
-//                                                 default:
-//                                                     break;
-//                                             }
-//                                         }];
+    [ShareSDK registerActivePlatforms:@[ @(SSDKPlatformTypeWechat),
+                                         @(SSDKPlatformTypeQQ),
+                                         @(SSDKPlatformTypeSMS),
+                                         @(SSDKPlatformTypeDingTalk)] onImport:^(SSDKPlatformType platformType) {
+                                             switch (platformType) {
+                                                 case SSDKPlatformTypeWechat:
+                                                     [ShareSDKConnector connectWeChat:[WXApi class]];
+                                                     break;
+                                                 case SSDKPlatformTypeQQ:
+                                                     [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
+                                                     break;
+                                                     //                                                     case SSDKPlatformTypeDingTalk:
+                                                     //                                                     [ShareSDKConnector connectDingTalk:];
+                                                     //                                                     break;
+                                                 default:
+                                                     break;
+                                             }
+                                             
+                                         } onConfiguration:^(SSDKPlatformType platformType, NSMutableDictionary *appInfo) {
+                                             switch (platformType)
+                                             {
+                                                 case SSDKPlatformTypeWechat:
+                                                     [appInfo SSDKSetupWeChatByAppId:@"wx48ed50d97c4271ba"
+                                                                           appSecret:@"518b4f6340745b0d57367d179525f630"];
+                                                     break;
+                                                 case SSDKPlatformTypeQQ:
+                                                     [appInfo SSDKSetupQQByAppId:@"1106206371"
+                                                                          appKey:@"C2Ds3I0iXQtV3rNV"
+                                                                        authType:SSDKAuthTypeBoth];
+                                                     break;
+                                                     
+                                                     
+                                                     
+                                                 default:
+                                                     break;
+                                             }
+                                         }];
 }
 
 - (void)loadIFlySDK
@@ -133,28 +133,8 @@
 
 
 
-- (void)loadILiveSDK {
-    //注册ShareSDK
-    [ShareSDK registerApp:@"1ba4e87f44fec" activePlatforms:@[@(SSDKPlatformTypeWechat)] onImport:^(SSDKPlatformType platformType){
-        switch (platformType)
-        {
-            case SSDKPlatformTypeWechat:
-                [ShareSDKConnector connectWeChat:[WXApi class]];
-                break;
-            default:
-                break;
-        }
-    }onConfiguration:^(SSDKPlatformType platformType, NSMutableDictionary *appInfo){
-        switch (platformType)
-        {
-            case SSDKPlatformTypeWechat:
-                [appInfo SSDKSetupWeChatByAppId:@"wx588cac36c5d302f2" appSecret:@"f1c9fed7bd2745050bc05991d4b812e1"];
-                break;
-            default:
-                break;
-        }
-    }];
-
+- (void)loadILiveSDK
+{
     TIMManager *manager = [[ILiveSDK getInstance] getTIMManager];
 
     //设置环境
@@ -166,8 +146,6 @@
     [manager initLogSettings:YES logPath:[manager getLogPath]];
     [manager setLogLevel:(TIMLogLevel)[logLevel integerValue]];
     
-    
-
     [[ILiveSDK getInstance] initSdk:[ShowAppId intValue] accountType:[ShowAccountType intValue]];
 }
 

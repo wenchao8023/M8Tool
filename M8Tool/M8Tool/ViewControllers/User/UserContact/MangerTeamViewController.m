@@ -65,7 +65,6 @@ static CGFloat kItemHeight = 60.f;
         CGRect frame = self.contentView.bounds;
         frame.size.height -= (kDefaultMargin + kDefaultCellHeight);     // 减去 底部按钮所占的高度
         UITableView *tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStyleGrouped];
-        tableView.height -= (kDefaultMargin + kDefaultCellHeight);
         tableView.delegate = self;
         tableView.dataSource = self;
         tableView.backgroundColor = WCClear;

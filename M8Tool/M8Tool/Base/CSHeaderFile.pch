@@ -40,18 +40,17 @@
 #import "WXApi.h"
 
 
-#import "ConstHeader.h"
+
 
 //科大讯飞语音识别
 #import <iflyMSC/iflyMSC.h>
-
-
 
 
 #import "AppDelegate.h"
 
 #import "CategoryHeader.h"
 
+#import "ConstHeader.h"
 
 #import "AFNetworking.h"
 #import "KVNProgress.h"

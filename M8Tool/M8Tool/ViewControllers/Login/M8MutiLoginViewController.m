@@ -35,7 +35,8 @@
     
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
@@ -65,7 +66,8 @@
 
 
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -85,7 +87,8 @@
 
  @param sender sender
  */
-- (IBAction)onExperAction:(id)sender {
+- (IBAction)onExperAction:(id)sender
+{
     WCLog(@"onExperAction");
 }
 
@@ -95,8 +98,21 @@
  
  @param sender sender
  */
-- (IBAction)onWechatAction:(id)sender {
+- (IBAction)onWechatAction:(id)sender
+{
     WCLog(@"onWechatAction");
+    
+    [ShareSDK getUserInfo:SSDKPlatformTypeWechat onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error) {
+        
+        if (state == SSDKResponseStateSuccess)
+        {
+            WCLog(@"success!");
+        }
+        else
+        {
+            WCLog(@"wrong");
+        }
+    }];
 }
 
 
@@ -105,7 +121,8 @@
  
  @param sender sender
  */
-- (IBAction)onCWechatAction:(id)sender {
+- (IBAction)onCWechatAction:(id)sender
+{
     WCLog(@"onCWechatAction");
 }
 
@@ -115,8 +132,31 @@
  
  @param sender sender
  */
-- (IBAction)onQQAction:(id)sender {
+- (IBAction)onQQAction:(id)sender
+{
     WCLog(@"onQQAction");
+    
+    // 拉取授权前，先取消上一次授权，否则不会跳转第三方————》没用☹
+    [ShareSDK cancelAuthorize:SSDKPlatformTypeAny];
+    //例如QQ的登录
+    [ShareSDK getUserInfo:SSDKPlatformTypeQQ
+           onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error)
+     {
+         if (state == SSDKResponseStateSuccess)
+         {
+             NSLog(@"uid=%@",user.uid);
+             NSLog(@"%@",user.credential);
+             NSLog(@"token=%@",user.credential.token);
+             NSLog(@"nickname=%@",user.nickname);
+         }
+         
+         else
+         {
+             NSLog(@"%@",error);
+         }
+         
+     }];
+
 }
 
 

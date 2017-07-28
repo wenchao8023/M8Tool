@@ -18,6 +18,8 @@ static const CGFloat kItemHeight = 60;
 
 @interface UsrContactView ()<UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, strong) NSArray *headSectionImgArray;
+
 
 @end
 
@@ -126,6 +128,16 @@ static const CGFloat kItemHeight = 60;
     return _actionArray;
 }
 
+- (NSArray *)headSectionImgArray
+{
+    if (!_headSectionImgArray)
+    {
+        _headSectionImgArray = @[@"user_friendIcon", @"user_mobContactIcon"];
+    }
+    
+    return _headSectionImgArray;
+}
+
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -188,7 +200,7 @@ static const CGFloat kItemHeight = 60;
             headView.tag = section + 10;
             [headView setBackgroundColor:WCWhite];
             
-            UIImageView *iconImg = [WCUIKitControl createImageViewWithFrame:CGRectMake(10, 10, 40, 40) ImageName:nil BgColor:WCBlue];
+            UIImageView *iconImg = [WCUIKitControl createImageViewWithFrame:CGRectMake(10, 10, 40, 40) ImageName:@"user_company" BgColor:WCClear];
             [headView addSubview:iconImg];
             
             UILabel *titleLabel = [WCUIKitControl createLabelWithFrame:CGRectMake(60, 10, self.width - 70 - 60, 40) Text:cInfo.cname];
@@ -234,7 +246,7 @@ static const CGFloat kItemHeight = 60;
         if (self.dataArray.count &&
            self.dataArray[indexPath.section])
         {
-            [friendCell configWithItem:nil itemText:self.dataArray[indexPath.section][indexPath.row]];
+            [friendCell configWithItem:self.headSectionImgArray[indexPath.row] itemText:self.dataArray[indexPath.section][indexPath.row]];
         }
     }
     else if (indexPath.section == self.sectionArray.count)

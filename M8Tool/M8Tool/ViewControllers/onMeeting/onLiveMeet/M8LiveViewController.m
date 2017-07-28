@@ -310,9 +310,9 @@
     TILLiveManager *manager = [TILLiveManager getInstance];
 //    __weak typeof(self) ws = self;
     [manager quitRoom:^{
-//        [ws.livingInfoView addTextToView:@"退出房间成功"];
+
     } failed:^(NSString *moudle, int errId, NSString *errMsg) {
-//        [ws.livingInfoView addTextToView:[NSString stringWithFormat:@"退出房间失败,moldle=%@;errid=%d;errmsg=%@",moudle,errId,errMsg]];
+
     }];
     
     [super selfDismiss];

@@ -8,7 +8,7 @@
 
 #import "MeetingAgendaCollection.h"
 #import "MeetingAgendaCell.h"
-
+#import "M8MeetAgendaViewController.h"
 
 
 
@@ -109,7 +109,9 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    M8MeetAgendaViewController *agendaVC = [[M8MeetAgendaViewController alloc] init];
+    agendaVC.isExitLeftItem = YES;
+    [[AppDelegate sharedAppDelegate] pushViewController:agendaVC];
     WCLog(@"点击第 %ld 个按钮", (long)indexPath.row);
 }
 
