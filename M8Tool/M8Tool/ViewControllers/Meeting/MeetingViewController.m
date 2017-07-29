@@ -222,7 +222,7 @@
 
 - (void)reloadScrollView
 {
-    self.headerScroll.contentSize   = CGSizeMake(self.view.width * 4, self.headerScroll.height);
+    self.headerScroll.contentSize   = CGSizeMake(self.view.width * self.scrollImgArray.count, self.headerScroll.height);
     self.headerScroll.contentOffset = CGPointMake(self.view.width, 0);
     
     for (int i = 0; i < self.scrollImgArray.count; i++)
@@ -242,15 +242,23 @@
 {
     if (!_scrollTimer)
     {
-        NSTimer *scrollTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(onScrollImageTimer) userInfo:nil repeats:YES];
+        //鱼只有 7s 的记忆，7s 之后就不记得上一个图片了
+        NSTimer *scrollTimer = [NSTimer timerWithTimeInterval:7.0 target:self selector:@selector(onScrollImageTimer) userInfo:nil repeats:YES];
+        
+        [[NSRunLoop currentRunLoop] addTimer:scrollTimer forMode:NSRunLoopCommonModes];
         
         _scrollTimer = scrollTimer;
     }
     return _scrollTimer;
 }
 
-
+//手动滑动之后调用的方法
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self setHeaderScrollOffsetInBackground];
+}
+//调用 setContentOffset/scrollRectVisible:animated: 之后触发的方法
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
 {
     [self setHeaderScrollOffsetInBackground];
 }
@@ -259,10 +267,8 @@
 {
     CGPoint lastOffset = self.headerScroll.contentOffset;
     lastOffset.x += self.headerScroll.width;
-    [self.headerScroll setContentOffset:lastOffset animated:YES];
     
-    [self setHeaderScrollOffsetInBackground];
-
+    [self.headerScroll setContentOffset:lastOffset animated:YES];
 }
 
 - (void)setHeaderScrollOffsetInBackground
@@ -312,12 +318,11 @@
 
 
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 
 
 @end

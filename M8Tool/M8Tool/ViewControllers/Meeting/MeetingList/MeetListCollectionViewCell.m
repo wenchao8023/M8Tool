@@ -30,7 +30,8 @@
     self.host.text = model.uid;
     
     M8LiveRoomInfo *rInfo = model.info;
-    self.coverImg.image = kGetImage(rInfo.cover);
+//    self.coverImg.image = kGetImage(rInfo.cover);
+    self.coverImg.image = kGetImage(@"liveDefalutCover.jpeg");
     self.liveTitle.text = rInfo.title;
     self.membersLabel.text = [NSString stringWithFormat:@"%@人", rInfo.memsize];
 }
