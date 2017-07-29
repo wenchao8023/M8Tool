@@ -158,13 +158,11 @@
     self.statuImg.hidden = NO;
     if (selected)
     {
-        self.statuImg.backgroundColor = WCGreen;
-        WCViewBorder_Radius(self.statuImg, 10);
+        self.statuImg.image = kGetImage(@"user_selected");
     }
     else
     {
-        self.statuImg.backgroundColor = WCClear; 
-        WCViewBorder_Radius_Width_Color(self.statuImg, 10, 2, WCGreen);
+        self.statuImg.image = kGetImage(@"user_unSelect");
     }
 }
 
@@ -176,9 +174,8 @@
     [self configWithMemberItem:info];
     
     self.statuImg.hidden = NO;
-    
-    self.statuImg.backgroundColor = WCGray;
-    WCViewBorder_Radius(self.statuImg, 10);
+
+    self.statuImg.image = kGetImage(@"user_unableSelect");
     
     self.userInteractionEnabled = NO;
 }

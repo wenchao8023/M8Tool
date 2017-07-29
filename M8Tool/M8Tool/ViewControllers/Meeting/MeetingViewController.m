@@ -61,19 +61,8 @@
 - (void)resetNavi
 {
     CGFloat btnWidth = 40;
-    UIButton *speechBtn = [WCUIKitControl createButtonWithFrame:CGRectMake(SCREEN_WIDTH - kContentOriginX - btnWidth,
-                                                                        kDefaultStatuHeight,
-                                                                        btnWidth,
-                                                                        kDefaultCellHeight)
-                                                      Target:self
-                                                      Action:@selector(onSpeechAction)
-                                                       Title:@"听写"];
-    [speechBtn setAttributedTitle:[CommonUtil customAttString:@"听写"
-                                                  fontSize:kAppMiddleFontSize
-                                                 textColor:WCWhite
-                                                 charSpace:kAppKern_0]
-                      forState:UIControlStateNormal];
-    [self.headerView addSubview:(self.speechBtn = speechBtn)];
+    UIImageView *speechIV = [WCUIKitControl createImageViewWithFrame:CGRectMake(SCREEN_WIDTH - 10 - btnWidth, kDefaultStatuHeight + 2, btnWidth, btnWidth) ImageName:@"speechOff" Target:self Action:@selector(onSpeechAction)];
+    [self.headerView addSubview:(self.speechIV = speechIV)];
 }
 
 - (void)reloadSuperViews
@@ -100,6 +89,12 @@
     [self agendaHeader];
     [self headerScroll];
     [self reloadScrollView];
+    
+    WCWeakSelf(self);
+    self.agendaHeader.onMoreAgendaActionBlock = ^{
+      
+        [weakself.agendaCollection onPushAgendaVC];
+    };
 }
 
 - (MeetingButtonsCollection *)buttonsCollection
@@ -240,18 +235,16 @@
         [headerImg addGestureRecognizer:tap];
     }
 
-    [self scrollTimer];
+    [self.scrollTimer fire];
 }
 
 - (NSTimer *)scrollTimer
 {
     if (!_scrollTimer)
     {
-        NSTimer *scrollTimer = [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(onScrollImageTimer) userInfo:nil repeats:YES];
+        NSTimer *scrollTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(onScrollImageTimer) userInfo:nil repeats:YES];
         
-        [[NSRunLoop currentRunLoop] addTimer:scrollTimer forMode:NSDefaultRunLoopMode];
-        
-        [(_scrollTimer = scrollTimer) fire];
+        _scrollTimer = scrollTimer;
     }
     return _scrollTimer;
 }
@@ -298,7 +291,7 @@
     }
     else if (tag == 2)
     {
-        [AlertHelp tipWith:@"去购买会议系统吧，木木!!!" wait:2];
+//        [AlertHelp tipWith:@"去购买会议系统吧，木木!!!" wait:2];
     }
 }
 

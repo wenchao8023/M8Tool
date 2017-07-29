@@ -9,15 +9,31 @@
 #import "MeetListCollectionViewCell.h"
 
 
+@interface MeetListCollectionViewCell ()
+
+@property (weak, nonatomic) IBOutlet UIImageView *coverImg;
+@property (weak, nonatomic) IBOutlet UILabel *host;
+@property (weak, nonatomic) IBOutlet UILabel *liveTitle;
+@property (weak, nonatomic) IBOutlet UILabel *membersLabel;
+
+
+
+@end
+
 
 @implementation MeetListCollectionViewCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    self.greenIdol.layer.cornerRadius = 1;
-    self.onAirBtn.layer.cornerRadius = 5;
-    
 
+
+- (void)config:(M8LiveRoomModel *)model
+{
+    self.host.text = model.uid;
+    
+    M8LiveRoomInfo *rInfo = model.info;
+    self.coverImg.image = kGetImage(rInfo.cover);
+    self.liveTitle.text = rInfo.title;
+    self.membersLabel.text = [NSString stringWithFormat:@"%@人", rInfo.memsize];
 }
+
 
 @end
