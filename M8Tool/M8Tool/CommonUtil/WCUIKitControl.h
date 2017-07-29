@@ -110,6 +110,10 @@
 +(UIImageView*)createImageViewWithFrame:(CGRect)frame
                               ImageName:(NSString*)imageName
                                 BgColor:(UIColor *)bgColor;
++(UIImageView *)createImageViewWithFrame:(CGRect)frame
+                               ImageName:(NSString *)imageName
+                                  Target:(id)target
+                                  Action:(SEL)action;
 
 #pragma mark -- 创建 UITableView
 +(UITableView *)createTableViewWithFrame:(CGRect)frame

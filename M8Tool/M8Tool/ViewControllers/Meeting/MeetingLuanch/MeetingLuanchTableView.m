@@ -192,7 +192,7 @@
     if (!_dataContentArray)
     {
         _dataContentArray = [NSMutableArray arrayWithCapacity:0];
-        [_dataContentArray addObjectsFromArray:@[@"木木的会议", @"600分钟"]];
+        [_dataContentArray addObjectsFromArray:@[@"会议主题", @"600分钟"]];
     }
     return _dataContentArray;
 }
@@ -218,10 +218,19 @@
     [self.dataItemArray addObjectsFromArray:@[@"会议类型", @"会议主题", @"会议室预订",
                                               @"会议时间", @"预估时长", @"剩余分钟数"]];
     [self.dataContentArray removeAllObjects];
-    [self.dataContentArray addObjectsFromArray:@[@"视频会议", @"林瑞的会议", @"深圳-轩辕会议室",
-                                                 @"2017年5月7号 15:07", @"30分钟", @"600分钟"]];
+    
+    
+    [self.dataContentArray addObjectsFromArray:@[@"视频会议", @"会议主题", @"会议室",
+                                                 [self getCurrentTime], @"30分钟", @"600分钟"]];
     
     [self reloadData];
+}
+
+-(NSString *)getCurrentTime
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yy-MM-dd HH:mm:ss"];
+    return [formatter stringFromDate:[NSDate  date]];
 }
 
 

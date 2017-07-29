@@ -9,8 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MeetListCollectionViewCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *imgView;
-@property (weak, nonatomic) IBOutlet UIView *greenIdol;
-@property (weak, nonatomic) IBOutlet UIButton *onAirBtn;
+
+- (void)config:(id _Nullable)model;
 
 @end

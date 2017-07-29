@@ -46,3 +46,20 @@
 @implementation LiveListResponseData
 
 @end
+
+
+
+
+@implementation M8LiveRoomModel
+
+
+@end
+
+@implementation M8LiveRoomInfo
+
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key
+{
+    
+}
+
+@end

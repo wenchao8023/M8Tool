@@ -18,7 +18,8 @@
 {
     [super viewWillAppear:animated];
     
-    [self setHeaderTitle:@"会议日程"];
+//    [self setHeaderTitle:@"会议日程"];
+    self.headerView.hidden = YES;
 }
 
 - (void)viewDidLoad {
@@ -27,7 +28,26 @@
     
     [self.contentView setHidden:YES];
     
-    self.bgImageView.image = [UIImage imageNamed:@"meetAgent"];
+    NSString *imgStr = nil;
+    
+    if (iPhone4)
+    {
+        imgStr = @"meetAgent4";
+    }
+    else if (iPhone5)
+    {
+        imgStr = @"meetAgent5";
+    }
+    else if (iPhone6P)
+    {
+        imgStr = @"meetAgent6p";
+    }
+    else
+    {
+        imgStr = @"meetAgent6";
+    }
+    
+    self.bgImageView.image = kGetImage(imgStr);
 }
 
 - (void)didReceiveMemoryWarning {

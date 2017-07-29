@@ -328,6 +328,15 @@
     return imageView;
 }
 
++(UIImageView *)createImageViewWithFrame:(CGRect)frame ImageName:(NSString *)imageName Target:(id)target Action:(SEL)action
+{
+    UIImageView *imageView = [self createImageViewWithFrame:frame ImageName:imageName];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:target action:action];
+    [imageView addGestureRecognizer:tap];
+    
+    return imageView;
+}
 
 #pragma mark -- 创建UITableView
 +(UITableView *)createTableViewWithFrame:(CGRect)frame

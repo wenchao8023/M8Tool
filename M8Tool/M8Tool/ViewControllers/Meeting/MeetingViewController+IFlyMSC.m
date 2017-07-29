@@ -12,13 +12,13 @@
 
 - (void)onSpeechAction
 {
-    if ([self.speechBtn.titleLabel.text isEqualToString:@"听写"])
+    if (self.iFlySpeechRecognizer.isListening)
     {
-
+        [self onIFlyStopListeneing];
     }
-    else if ([self.speechBtn.titleLabel.text isEqualToString:@"停止"])
+    else
     {
-
+        [self onIFlyStartListeneing];
     }
 }
 
@@ -26,11 +26,26 @@
 - (void)onIFlyStartListeneing
 {
     [self.iFlySpeechRecognizer startListening];
+
+    NSArray * imgsArr = @[[UIImage imageNamed:@"speechOff"],[UIImage imageNamed:@"speechOn1"],[UIImage imageNamed:@"speechOn2"]];
+    // 设置动画图片数组
+    [self.speechIV setAnimationImages:imgsArr];
+    // 设置动画持续时间
+    [self.speechIV setAnimationDuration:0.5];
+    // 设置动画重复次数  (当值为0时，表示无限次)
+    self.speechIV.animationRepeatCount = 0;
+    // 开始动画
+    [self.speechIV startAnimating];
+    
 }
 
 - (void)onIFlyStopListeneing
 {
+    [self.speechIV stopAnimating];
+    
     [self.iFlySpeechRecognizer stopListening];
+    
+    self.speechIV.image = kGetImage(@"speechOff");
 }
 
 
@@ -94,7 +109,7 @@
 - (void)onPush:(NSInteger)index
 {
     [self.buttonsCollection pushViewControllerWithIndex:index];
-    [self.iFlySpeechRecognizer stopListening];
+    [self onIFlyStopListeneing];
 }
 
 //识别会话结束返回代理
@@ -103,7 +118,7 @@
     WCLog(@"onError : %@", [error errorDesc]);
     if (self.iFlySpeechRecognizer.isListening)
     {
-        [self.iFlySpeechRecognizer stopListening];
+        [self onIFlyStopListeneing];
     }
 }
 
@@ -113,7 +128,7 @@
     WCLog(@"onEndOfSpeech");
     if (self.iFlySpeechRecognizer.isListening)
     {
-        [self.iFlySpeechRecognizer stopListening];
+        [self onIFlyStopListeneing];
     }
 }
 
@@ -126,7 +141,7 @@
 //音量回调函数
 - (void) onVolumeChanged: (int)volume
 {
-    WCLog(@"onVolumeChanged : %d", volume);
+    
 }
 
 //会话取消回调
@@ -135,7 +150,7 @@
     WCLog(@"onCancel");
     if (self.iFlySpeechRecognizer.isListening)
     {
-        [self.iFlySpeechRecognizer stopListening];
+        [self onIFlyStopListeneing];
     }
 }
 

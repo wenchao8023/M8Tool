@@ -13,9 +13,7 @@
 
 
 @interface MeetingAgendaCollection ()<UICollectionViewDelegate, UICollectionViewDataSource>
-{
-    CGRect _myFrame;
-}
+
 @property (nonatomic, strong) NSArray *titleArray;
 
 @end
@@ -51,36 +49,14 @@
     return _titleArray;
 }
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    
-//    WCCollectionViewHorizontalLayout *layout = [[WCCollectionViewHorizontalLayout alloc] initWithRowCount:1 itemCountPerRow:5];
-//    layout.itemSize = CGSizeMake(SCREEN_WIDTH / 5, SCREEN_WIDTH / 5);
-//    layout.scrollDirection          = UICollectionViewScrollDirectionHorizontal;
-//    layout.minimumLineSpacing       = 0;
-//    layout.minimumInteritemSpacing  = 0;
-//
-//    
-//    
-//    self.collectionViewLayout   = layout;
-//    self.delegate               = self;
-//    self.dataSource             = self;
-//    self.pagingEnabled          = YES;
-//    self.showsHorizontalScrollIndicator = NO;
-//
-//    [self registerNib:[UINib nibWithNibName:NSStringFromClass([MeetingAgendaCell class]) bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"MeetingAgendaCellID"];
-    
-//#warning 需要将数据处理部分放到 viewModel 里面处理
-//    if ([_agendaDelegate respondsToSelector:@selector(AgendaCollectionNumberPage:)]) {
-//        [_agendaDelegate AgendaCollectionNumberPage:[self getTotalPage:self.titleArray.count]];
-//    }
-}
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
     return self.titleArray.count;
 }
 
-- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
     MeetingAgendaCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MeetingAgendaCellID" forIndexPath:indexPath];
     
     [cell configWithTitle:self.titleArray[indexPath.row] imageStr:@""];
@@ -109,10 +85,14 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self onPushAgendaVC];
+}
+
+- (void)onPushAgendaVC
+{
     M8MeetAgendaViewController *agendaVC = [[M8MeetAgendaViewController alloc] init];
     agendaVC.isExitLeftItem = YES;
-    [[AppDelegate sharedAppDelegate] pushViewController:agendaVC];
-    WCLog(@"点击第 %ld 个按钮", (long)indexPath.row);
+    [[AppDelegate sharedAppDelegate] pushViewControllerWithBottomBarHidden:agendaVC];
 }
 
 - (int)getTotalPage:(NSInteger)count
