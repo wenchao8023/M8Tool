@@ -12,12 +12,20 @@
 
 @implementation M8LoginWebService
 
-- (void)M8LoginWithIdentifier:(NSString *)identifier password:(NSString *)password cancelPVN:(M8LoginHandle _Nullable)cancelHandle
+- (void)M8LoginWithIdentifier:(NSString *)identifier
+                     password:(NSString *)password
+                    cancelPVN:(M8LoginHandle _Nullable)cancelHandle
 {
-    [self M8LoginWithIdentifier:identifier password:password succ:cancelHandle fail:cancelHandle];
+    [self M8LoginWithIdentifier:identifier
+                       password:password
+                           succ:cancelHandle
+                           fail:cancelHandle];
 }
 
-- (void)M8LoginWithIdentifier:(NSString *)identifier password:(NSString *)password succ:(M8LoginHandle _Nullable)succHandle fail:(M8LoginHandle _Nullable)failHandle
+- (void)M8LoginWithIdentifier:(NSString *)identifier
+                     password:(NSString *)password
+                         succ:(M8LoginHandle _Nullable)succHandle
+                         fail:(M8LoginHandle _Nullable)failHandle
 {
     // 这里不能用 weakSelf, 到里面的时候是空的
     //    __block __weak typeof(self) ws = self;
@@ -67,11 +75,18 @@
     [[WebServiceEngine sharedEngine] AFAsynRequest:sigReq];
 }
 
-- (void)M8GetVerifyCode:(NSString *)phoneNumber succHandle:(M8LoginHandle)succHandle
+- (void)M8GetVerifyCode:(NSString *)phoneNumber
+             succHandle:(M8LoginHandle)succHandle
 {
     if (!(phoneNumber && phoneNumber.length))
     {
         [self onVerifyCodeFailAlertInfo:@"请输入手机号"];
+        return ;
+    }
+    
+    if (![phoneNumber validateMobile])
+    {
+        [self onVerifyCodeFailAlertInfo:@"请输入正确的手机号"];
         return ;
     }
     
@@ -80,7 +95,11 @@
             succHandle();
         }
     } failHandler:^(BaseRequest *request) {
-        if (request.response.errorCode == 10003) {  // 手机号错误
+        
+        [self onVerifyCodeFailAlertInfo:@"获取验证码失败"];
+        
+        if (request.response.errorCode == 10003)
+        {  // 手机号错误
             [self onVerifyCodeFailAlertInfo:@"请输入正确的手机号"];
         }
     }];
@@ -89,7 +108,10 @@
 }
 
 
-- (void)M8VerifyVerifyCode:(NSString *)phoneNum verifyCode:(NSString *)verifyCode succHandle:(M8LoginHandle)succHandle failHandle:(M8LoginHandle)failHandle
+- (void)M8VerifyVerifyCode:(NSString *)phoneNum
+                verifyCode:(NSString *)verifyCode
+                succHandle:(M8LoginHandle)succHandle
+                failHandle:(M8LoginHandle)failHandle
 {
     VerifyVerifyCodeRequest *verifyRequest = [[VerifyVerifyCodeRequest alloc] initWithHandler:^(BaseRequest *request) {
         
@@ -104,26 +126,57 @@
     }];
     verifyRequest.phoneNumber = phoneNum;
     verifyRequest.messageCode = verifyCode;
-//    [[WebServiceEngine sharedEngine] asyncRequest:verifyRequest];
     [[WebServiceEngine sharedEngine] AFAsynRequest:verifyRequest];
 }
 
-- (void)M8RegistWithIdentifier:(NSString *)identifier nick:(NSString *)nick pwd:(NSString *)pwd cancelHandle:(M8LoginHandle)cancelHandle {
+- (void)M8RegistWithIdentifier:(NSString *)identifier
+                          nick:(NSString *)nick
+                           pwd:(NSString *)pwd
+                        veriCode:(NSString *_Nonnull)veriCode
+                  cancelHandle:(M8LoginHandle)cancelHandle
+{
+    WCWeakSelf(self);
     RegistRequest *registReq = [[RegistRequest alloc] initWithHandler:^(BaseRequest *request) {
         
         // 注册成功 -- 直接登录
-        [self M8LoginWithIdentifier:identifier password:pwd cancelPVN:cancelHandle];
+        [weakself M8LoginWithIdentifier:identifier password:pwd cancelPVN:cancelHandle];
         
     } failHandler:^(BaseRequest *request) {
         
         NSString *errinfo = [NSString stringWithFormat:@"errid=%ld,errmsg=%@",(long)request.response.errorCode,request.response.errorInfo];
-        [self onRegistFailAlertInfo:errinfo];
+        [weakself onRegistFailAlertInfo:errinfo];
     }];
-    registReq.nick = nick;
-    registReq.identifier = identifier;
-    registReq.pwd = pwd;
-//    [[WebServiceEngine sharedEngine] asyncRequest:registReq];
+    
+    registReq.nick          = nick;
+    registReq.identifier    = identifier;
+    registReq.pwd           = pwd;
+    registReq.messageCode   = veriCode;
+    
     [[WebServiceEngine sharedEngine] AFAsynRequest:registReq];
 }
 
+- (void)m8ResetPwdWithPhoneNumber:(NSString *)phoneNumber
+                              pwd:(NSString *)pwd
+                         veriCode:(NSString *)veriCode
+                     cancelHandle:(M8LoginHandle)cancelHandle
+{
+    WCWeakSelf(self);
+    ModifyPwdWithPhoneRequest *resetPwdReq = [[ModifyPwdWithPhoneRequest alloc] initWithHandler:^(BaseRequest *request) {
+    
+        // 修改密码成功 -- 直接登录
+        [weakself M8LoginWithIdentifier:phoneNumber password:pwd cancelPVN:cancelHandle];
+        
+        
+    } failHandler:^(BaseRequest *request) {
+        
+        NSString *errinfo = [NSString stringWithFormat:@"errid=%ld,errmsg=%@",(long)request.response.errorCode,request.response.errorInfo];
+        [self onResetPwdAlertInfo:errinfo];
+    }];
+    
+    resetPwdReq.phoneNumber = phoneNumber;
+    resetPwdReq.pwd         = pwd;
+    resetPwdReq.messageCode = veriCode;
+    
+    [[WebServiceEngine sharedEngine] AFAsynRequest:resetPwdReq];
+}
 @end

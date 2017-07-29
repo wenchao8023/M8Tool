@@ -43,6 +43,7 @@ static WebServiceEngine *_sharedEngine = nil;
         [manger.requestSerializer setValue:@"application/json; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
         [manger.requestSerializer setValue:@"text/html; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
         [manger.requestSerializer setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+
         
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         

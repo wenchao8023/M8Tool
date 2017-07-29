@@ -19,14 +19,6 @@
 
 @implementation M8RegistSuccViewController
 
-//- (void)viewWillAppear:(BOOL)animated {
-//    [super viewWillAppear:animated];
-//    
-//    self.navigationController.navigationBarHidden = NO;
-//    WCLog(@"%ld", (long)self.setPwdType);
-//}
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -54,10 +46,6 @@
 }
 
 #pragma mark - 确认注册
-- (IBAction)onBackAction:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 - (IBAction)onVerifyAction:(id)sender {
     
     if (!_psdFirstTF || _psdSecondTF.text.length < 1)
@@ -77,31 +65,54 @@
     }
     
     
-    if (_setPwdType == SetPwdTypeForgetPwd) {
+    if (_setPwdType == SetPwdTypeForgetPwd)
+    {
         [self resetPassWord];
     }
-    else {
+    else
+    {
         [self regist];
     }
+}
+
+- (IBAction)onBackAction:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
 /**
  重设密码
  */
-- (void)resetPassWord {
+- (void)resetPassWord
+{
+    LoadView *regWaitView = [LoadView loadViewWith:@"重置密码"];
+    [self.view addSubview:regWaitView];
     
+    M8LoginWebService *webService = [[M8LoginWebService alloc] init];
+    [webService m8ResetPwdWithPhoneNumber:_phoneNum
+                                      pwd:_psdSecondTF.text
+                                 veriCode:_veriCode
+                             cancelHandle:^{
+        
+        [regWaitView removeFromSuperview];
+    }];
 }
 
 /**
  注册
  */
-- (void)regist {
+- (void)regist
+{
     LoadView *regWaitView = [LoadView loadViewWith:@"正在注册"];
     [self.view addSubview:regWaitView];
 
     M8LoginWebService *webService = [[M8LoginWebService alloc] init];
-    [webService M8RegistWithIdentifier:_phoneNum nick:_userName pwd:_psdSecondTF.text cancelHandle:^{
+    [webService M8RegistWithIdentifier:_phoneNum
+                                  nick:_nickName
+                                   pwd:_psdSecondTF.text
+                              veriCode:_veriCode cancelHandle:^{
+                                  
         [regWaitView removeFromSuperview];
     }];
 }

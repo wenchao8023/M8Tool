@@ -37,14 +37,15 @@
 
 - (NSString *)url
 {
-    return [NSString stringWithFormat:@"%@svc=account&cmd=verifyupdatepwd", [self hostUrl]];
+    return [NSString stringWithFormat:@"%@svc=account&cmd=updatepwd", [self hostUrl]];
 }
 
 - (NSDictionary *)packageParams
 {
     return @{
-             @"id"    : _uid,
-             @"pwd"   : _pwd
+             @"phoneNumber" : _phoneNumber,
+             @"messageCode" : _messageCode,
+             @"pwd"         : _pwd
              };
 }
 

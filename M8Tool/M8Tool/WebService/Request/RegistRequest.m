@@ -21,18 +21,14 @@
 
 - (NSDictionary *)packageParams
 {
-    NSDictionary *paramDic = @{@"id"  : _identifier,
-                               @"pwd" : _pwd,
-                               @"nick": _nick
+    NSDictionary *paramDic = @{@"id"  :         _identifier,
+                               @"pwd" :         _pwd,
+                               @"nick":         _nick,
+                               @"messageCode" : _messageCode
                                };
     return paramDic;
 }
 
-//- (void)setIdPropertyValue:(id)idkeyValue
-//{
-//    NSNumber *value =  (NSNumber *)idkeyValue;
-//    _identifier = [value integerValue];
-//}
 
 
 @end

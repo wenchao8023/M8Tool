@@ -59,11 +59,13 @@
     [self.view addGestureRecognizer:pan];
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
     [self.view endEditing:YES];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -74,14 +76,17 @@
 {
     UIViewController *registSuccVC = [segue destinationViewController];
     [registSuccVC setValue:@(1) forKey:@"setPwdType"];
-    [registSuccVC setValue:_userNameTF.text forKey:@"userName"];
+    [registSuccVC setValue:_userNameTF.text forKey:@"nickName"];
     [registSuccVC setValue:_phoneNumTF.text forKey:@"phoneNum"];
+    [registSuccVC setValue:_veriCodeTF.text forKey:@"veriCode"];
+    
 }
 
 
 
 #pragma mark - actions
-- (IBAction)onBackAction:(id)sender {
+- (IBAction)onBackAction:(id)sender
+{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -90,9 +95,14 @@
  
  @param sender sender description
  */
-- (IBAction)onGetVerificationCodeAction:(id)sender {
-    
+- (IBAction)onGetVerificationCodeAction:(id)sender
+{
+    _veriCodeTF.text = nil;
     _nextBtn.enabled = NO;
+    
+    
+    [_phoneNumTF resignFirstResponder];
+    [_veriCodeTF becomeFirstResponder];
     
     M8LoginWebService *webService = [[M8LoginWebService alloc] init];
     WCWeakSelf(self);
@@ -131,7 +141,8 @@
 
  @param sender sender description
  */
-- (IBAction)onServiceProtocolAction:(id)sender {
+- (IBAction)onServiceProtocolAction:(id)sender
+{
     
 }
 
@@ -141,7 +152,8 @@
  
  @param sender sender description
  */
-- (IBAction)onPrivacyPolicyAction:(id)sender {
+- (IBAction)onPrivacyPolicyAction:(id)sender
+{
     
 }
 
@@ -150,6 +162,7 @@
     if ([textField isEqual:_veriCodeTF] &&
         textField.text.length == 6)
     {
+
         LoadView *loadView = [LoadView loadViewWith:@"正在验证"];
         [self.view addSubview:loadView];
         
@@ -168,6 +181,7 @@
          ];
     }
 }
+
 
 
 @end
