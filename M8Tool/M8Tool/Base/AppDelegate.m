@@ -11,7 +11,6 @@
 #import "UserProtocolViewController.h"
 #import "MainTabBarController.h"
 
-#import "M8IMListener.h"
 
 
 
@@ -149,9 +148,9 @@
     
     [[ILiveSDK getInstance] initSdk:[ShowAppId intValue] accountType:[ShowAccountType intValue]];
     
-    [[ILiveSDK getInstance] setConnListener:[[M8IMListener alloc] init]];
-    [[ILiveSDK getInstance] setUserStatusListener:[[M8IMListener alloc] init]];
-    [manager setMessageListener:[[M8IMListener alloc] init]];
+    [[ILiveSDK getInstance] setConnListener:[[M8GlobalListener alloc] init]];
+    [[ILiveSDK getInstance] setUserStatusListener:[[M8GlobalListener alloc] init]];
+    [manager setMessageListener:[[M8GlobalListener alloc] init]];
     
     
     

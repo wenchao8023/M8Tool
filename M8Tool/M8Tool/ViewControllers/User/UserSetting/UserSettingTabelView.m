@@ -195,14 +195,18 @@
     }];
     
     logoutReq.token = [AppDelegate sharedAppDelegate].token;
-//    [[WebServiceEngine sharedEngine] asyncRequest:logoutReq];
     [[WebServiceEngine sharedEngine] AFAsynRequest:logoutReq];
 }
 
 - (void)enterLoginUI
 {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
     UINavigationController *navi = kM8LoginNaViewController(kM8MutiLoginViewController);
+    UIViewController *bottomVC   = kM8LoginSBViewController(kM8MutiLoginViewController);
+    UIViewController *topVC      = kM8LoginSBViewController(kM8LoginViewController);
+    navi.viewControllers = @[bottomVC, topVC];
+    
     appDelegate.window.rootViewController = navi;
     [appDelegate.window makeKeyWindow];
 }

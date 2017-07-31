@@ -143,8 +143,18 @@
         
     } failHandler:^(BaseRequest *request) {
         
+        if (cancelHandle)
+        {
+            cancelHandle();
+        }
+        
         NSString *errinfo = [NSString stringWithFormat:@"errid=%ld,errmsg=%@",(long)request.response.errorCode,request.response.errorInfo];
         [weakself onRegistFailAlertInfo:errinfo];
+        
+        if (request.response.errorCode == 10004)
+        {
+            [weakself onRegistFailAlertInfo:@"该用户已存在"];
+        }
     }];
     
     registReq.nick          = nick;

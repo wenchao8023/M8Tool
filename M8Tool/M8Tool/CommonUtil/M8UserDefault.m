@@ -34,11 +34,13 @@
 #pragma mark -- kLoginPassward（用户密码）
 + (NSString *)getLoginPwd
 {
-    return [self returnStringWithKey:kLoginPassward];
+//    return [self returnStringWithKey:kLoginPassward];
+    return [PasswordTool readPassWord];
 }
 + (void)setLoginPwd:(NSString *)loginPwd
 {
-    [self setObject:loginPwd key:kLoginPassward];
+//    [self setObject:loginPwd key:kLoginPassward];
+    [PasswordTool savePassWord:loginPwd];
 }
 
 

@@ -1,16 +1,14 @@
 //
-//  M8IMListener.m
+//  M8GlobalListener+IM.m
 //  M8Tool
 //
-//  Created by chao on 2017/7/28.
+//  Created by chao on 2017/7/31.
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import "M8IMListener.h"
+#import "M8GlobalListener+IM.h"
 
-@implementation M8IMListener
-
-
+@implementation M8GlobalListener (IM)
 
 #pragma mark - -- TIMUserStatusListener 用户在线状态通知
 /**
@@ -136,8 +134,6 @@
 }
 
 
-- (void)dealloc
-{
-    [WCNotificationCenter removeObserver:self name:kNewFriendStatu_Notification object:nil];
-}
+
+
 @end
