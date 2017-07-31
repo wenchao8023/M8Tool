@@ -13,14 +13,15 @@
 
 - (NSString *)url
 {
-    
     NSString *host = [self hostUrl];
     return [NSString stringWithFormat:@"%@svc=account&cmd=sendMessage",host];
 }
 
 - (NSDictionary *)packageParams
 {
-    return @{@"phoneNumber"  : _phoneNumber};
+    return @{
+             @"phoneNumber"  : _phoneNumber
+             };
 }
 
 

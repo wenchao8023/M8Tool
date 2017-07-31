@@ -16,7 +16,7 @@
 
  @param errorInfo 错误信息
  */
-- (void)onVerifyCodeFailAlertInfo:(NSString *)errorInfo;
+- (void)onVerifyCodeFailAlertInfo:(NSString *_Nullable)errorInfo;
 
 
 /**
@@ -24,7 +24,7 @@
  
  @param errorInfo 错误信息
  */
-- (void)onLoginFailAlertInfo:(NSString *)errorInfo;
+- (void)onLoginFailAlertInfo:(NSString *_Nullable)errorInfo;
 
 
 /**
@@ -32,8 +32,14 @@
  
  @param errorInfo 错误信息
  */
-- (void)onRegistFailAlertInfo:(NSString *)errorInfo;
+- (void)onRegistFailAlertInfo:(NSString *_Nullable)errorInfo;
 
+/**
+ 修改密码失败
+
+ @param errorInfo 错误信息
+ */
+- (void)onResetPwdAlertInfo:(NSString *_Nullable)errorInfo;
 
 /**
  登录成功
@@ -41,7 +47,7 @@
  @param identifier 用户ID
  @param password 密码
  */
-- (void)onLoginSucc:(NSString *)identifier password:(NSString *)password;
+- (void)onLoginSucc:(NSString *_Nullable)identifier password:(NSString *_Nullable)password;
 
 
 /**
@@ -49,6 +55,6 @@
 
  @param msg 信息
  */
-+ (void)onLoginAelrt:(NSString *)msg;
++ (void)onLoginAelrt:(NSString *_Nullable)msg;
 
 @end

@@ -32,7 +32,8 @@
  */
 @interface ModifyPwdWithPhoneRequest : BaseRequest
 
-@property (nonatomic, copy, nullable) NSString *uid;
-@property (nonatomic, copy, nullable) NSString *pwd;
+@property (nonatomic, copy, nullable) NSString *phoneNumber;    //手机号
+@property (nonatomic, copy, nullable) NSString *pwd;            //密码
+@property (nonatomic, copy, nullable) NSString *messageCode;    //验证码
 
 @end

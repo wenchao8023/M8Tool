@@ -50,14 +50,30 @@ typedef void (^M8LoginHandle)();
 /**
  注册
  
- @param identifier 用户ID
- @param nick 昵称
- @param pwd 密码
+ @param identifier  用户ID
+ @param nick        昵称
+ @param pwd         密码
+ @param veriCode    验证码
  @param cancelHandle 取消加载视图
  */
 - (void)M8RegistWithIdentifier:(NSString *_Nonnull)identifier
                           nick:(NSString *_Nonnull)nick
                            pwd:(NSString *_Nonnull)pwd
+                      veriCode:(NSString *_Nonnull)veriCode
                   cancelHandle:(M8LoginHandle _Nullable)cancelHandle;
+
+
+/**
+ 修改密码
+
+ @param phoneNumber 手机号
+ @param pwd         新密码
+ @param veriCode    验证码
+ @param cancelHandle 取消加载视图
+ */
+- (void)m8ResetPwdWithPhoneNumber:(NSString *_Nonnull)phoneNumber
+                              pwd:(NSString *_Nonnull)pwd
+                         veriCode:(NSString *_Nonnull)veriCode
+                     cancelHandle:(M8LoginHandle _Nullable)cancelHandle;
 
 @end

@@ -28,6 +28,11 @@
     [self onLoginAlert:@"注册失败" message:errorInfo];
 }
 
+- (void)onResetPwdAlertInfo:(NSString *)errorInfo
+{
+    [self onLoginAlert:@"修改密码失败" message:errorInfo];
+}
+
 - (void)onLoginAlert:(NSString *)title message:(NSString *)msg
 {
     [AlertHelp alertWith:title message:msg cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
