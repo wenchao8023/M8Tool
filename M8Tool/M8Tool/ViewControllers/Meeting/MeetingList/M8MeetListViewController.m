@@ -117,7 +117,7 @@
     listReq.type  = @"live";
     listReq.index = offset;
     listReq.size  = self.pageNums;
-    listReq.appid = [ShowAppId integerValue];
+    listReq.appid = [ILiveAppId integerValue];
     [[WebServiceEngine sharedEngine] AFAsynRequest:listReq];
 }
 
@@ -212,7 +212,7 @@
         item.info.groupid = info.groupid;
 //        item.info.cover = coverUrl ? coverUrl : @"";
         
-        item.info.appid = [ShowAppId intValue];
+        item.info.appid = [ILiveAppId intValue];
         item.info.host = model.uid;
         
         M8LiveViewController *liveVC = [[M8LiveViewController alloc] initWithItem:item isHost:NO];

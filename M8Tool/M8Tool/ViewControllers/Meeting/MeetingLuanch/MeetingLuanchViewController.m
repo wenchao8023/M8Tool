@@ -242,7 +242,7 @@
     item.info.roomnum = roomId;
     item.info.groupid = [NSString stringWithFormat:@"%d", roomId];
     item.info.cover = coverUrl ? coverUrl : @"";
-    item.info.appid = [ShowAppId intValue];
+    item.info.appid = [ILiveAppId intValue];
     item.info.host = [M8UserDefault getLoginId];
     
     M8CallViewController *callVC = [[M8CallViewController alloc] initWithItem:item isHost:YES];
@@ -311,7 +311,7 @@
     item.info.roomnum = roomId;
     item.info.groupid = groupid;
     item.info.cover = coverUrl ? coverUrl : @"";
-    item.info.appid = [ShowAppId intValue];
+    item.info.appid = [ILiveAppId intValue];
     item.info.host = [M8UserDefault getLoginId];
     
     M8LiveViewController *liveVC = [[M8LiveViewController alloc] initWithItem:item isHost:YES];

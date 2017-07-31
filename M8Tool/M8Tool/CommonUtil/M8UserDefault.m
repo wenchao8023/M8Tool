@@ -34,14 +34,34 @@
 #pragma mark -- kLoginPassward（用户密码）
 + (NSString *)getLoginPwd
 {
-    return [self returnStringWithKey:kLoginPassward];
+    return [PasswordTool readPassWord];
 }
 + (void)setLoginPwd:(NSString *)loginPwd
 {
-    [self setObject:loginPwd key:kLoginPassward];
+    [PasswordTool savePassWord:loginPwd];
 }
 
+#pragma mark - -- kUserLogout（用户主动登出）
++ (BOOL)getIsUserLogout
+{
+    return [self returnBoolWithKey:kUserLogout];
+}
 
++ (void)setUserLogout:(BOOL)userLogout
+{
+    [self setBoolValue:userLogout key:kUserLogout];
+}
+
+#pragma mark - -- kAppLaunching (App是否在启动中)
++ (BOOL)getAppIsLaunching
+{
+    return [self returnBoolWithKey:kAppLaunching];
+}
+
++ (void)setAppLaunching:(BOOL)launching
+{
+    [self setBoolValue:launching key:kAppLaunching];
+}
 
 
 #pragma mark - 会议信息

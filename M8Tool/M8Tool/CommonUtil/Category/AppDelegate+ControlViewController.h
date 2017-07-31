@@ -11,9 +11,6 @@
 
 @interface AppDelegate (ControlViewController)
 
-
-
-@property (nonatomic, copy) NSString *token;
 + (instancetype)sharedAppDelegate;
 
 - (UINavigationController *)navigationViewController;
@@ -39,10 +36,9 @@
  */
 - (void)presentNavigationController:(UIViewController *)naviController ;
 
-/**
- 用于获取测试用的房间号
 
- @return 房间号
- */
-- (int)getRoomID;
+- (void)enterLoginUI;
+
+- (void)enterLoginMutiUI;
+
 @end

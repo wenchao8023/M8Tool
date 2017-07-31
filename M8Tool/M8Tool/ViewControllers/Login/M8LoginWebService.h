@@ -24,6 +24,37 @@ typedef void (^M8LoginHandle)();
                      password:(NSString *_Nonnull)password
                     cancelPVN:(M8LoginHandle _Nullable)cancelHandle;
 
+/**
+ 重新登录
+ 
+ @param identifier 用户
+ @param password 密码
+ @param cancelHandle 取消加载视图
+ */
+- (void)M8ReLoginWithIdentifier:(NSString *_Nonnull)identifier
+                     password:(NSString *_Nonnull)password
+                    cancelPVN:(M8LoginHandle _Nullable)cancelHandle;
+
+/**
+ sig过期，重新登录获取新的sig (暂时没用到)
+ 
+ @param identifier 用户
+ @param password 密码
+ */
+- (void)M8LoginToGetSigWithIdentifier:(NSString * _Nullable)identifier
+                             password:(NSString * _Nullable)password;
+
+
+/**
+ App自动登录
+ 
+ @param identifier 用户
+ @param password 密码
+ */
+- (void)M8AutoLoginWithIdentifier:(NSString * _Nullable)identifier
+                         password:(NSString * _Nullable)password
+                       failHandle:(M8LoginHandle _Nullable)failHandle;
+
 
 /**
  获取验证码

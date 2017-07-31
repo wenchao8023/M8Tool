@@ -30,10 +30,29 @@
 /**
  获取登录的用户密码
  
- @return 用户密码）
+ @return 用户密码
  */
 + (NSString *_Nullable)getLoginPwd;
 + (void)setLoginPwd:(NSString *_Nullable)loginPwd;
+
+
+/**
+ 用户主动登出
+
+ @return 是否是用户主动登出，默认为NO，登录之后为NO，登出之后为YES
+ */
++ (BOOL)getIsUserLogout;
++ (void)setUserLogout:(BOOL)userLogout;
+
+
+/**
+ App是否在启动中
+
+ @return app启动状态
+ */
++ (BOOL)getAppIsLaunching;
++ (void)setAppLaunching:(BOOL)launching;
+
 
 /**
  获取手机主题图片
@@ -44,7 +63,7 @@
 + (void)setThemeImageString:(NSString *_Nullable)imgStr;
 
 /**
- 获取用户协议是否阅读
+ 获取用户协议是否阅读，也可以作为App首次启动的判断
  
  @return 用户协议阅读状态
  */

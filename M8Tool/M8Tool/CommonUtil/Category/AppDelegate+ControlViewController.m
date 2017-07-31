@@ -114,8 +114,25 @@
 }
 
 
-- (int)getRoomID {
+- (void)enterLoginUI
+{
+    UINavigationController *navi = kM8LoginNaViewController(kM8MutiLoginViewController);
+    UIViewController *bottomVC   = kM8LoginSBViewController(kM8MutiLoginViewController);
+    UIViewController *topVC      = kM8LoginSBViewController(kM8LoginViewController);
+    navi.viewControllers = @[bottomVC, topVC];
     
-    return (int)([[NSDate date] timeIntervalSince1970]) % 1000 * 1000 + arc4random() % 1000;
+    self.window.rootViewController = navi;
+    [self.window makeKeyWindow];
 }
+
+- (void)enterLoginMutiUI
+{
+    UINavigationController *navi = kM8LoginNaViewController(kM8MutiLoginViewController);
+    
+    self.window.rootViewController = navi;
+    [self.window makeKeyWindow];
+}
+
+
+
 @end

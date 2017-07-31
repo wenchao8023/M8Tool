@@ -1,16 +1,17 @@
 //
-//  M8IMListener.m
+//  M8GlobalListener+IM.m
 //  M8Tool
 //
-//  Created by chao on 2017/7/28.
+//  Created by chao on 2017/7/31.
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import "M8IMListener.h"
+#import "M8GlobalListener+IM.h"
 
-@implementation M8IMListener
+#import "M8GlobalWindow.h"
+#import "M8LoginWebService.h"
 
-
+@implementation M8GlobalListener (IM)
 
 #pragma mark - -- TIMUserStatusListener 用户在线状态通知
 /**
@@ -19,6 +20,7 @@
 - (void)onForceOffline
 {
     WCLog(@"踢下线通知");
+    [M8GlobalWindow M8_addAlertInfo:@"你的账号在其他地方登录。如果本人操作，则密码可能已泄露。建议修改密码或联系客服人员。" alertType:GlobalAlertType_forceOffline];
 }
 
 /**
@@ -35,6 +37,8 @@
 - (void)onUserSigExpired
 {
     WCLog(@"用户登录的userSig过期（用户需要重新获取userSig后登录）");
+    
+    [[AppDelegate sharedAppDelegate] enterLoginUI];
 }
 
 
@@ -136,8 +140,4 @@
 }
 
 
-- (void)dealloc
-{
-    [WCNotificationCenter removeObserver:self name:kNewFriendStatu_Notification object:nil];
-}
 @end

@@ -28,8 +28,21 @@
 
 @implementation M8LoginViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBarHidden = YES;
+    
+    [[UINavigationBar appearance] setBarTintColor:WCClear];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:WCWhite,
+                                                           NSFontAttributeName:[UIFont systemFontOfSize:kAppNaviFontSize]
+                                                           }];
+}
 
-- (void)viewDidLoad {
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     

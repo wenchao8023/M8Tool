@@ -273,11 +273,11 @@
 
 - (void)setHeaderScrollOffsetInBackground
 {
-    if (self.headerScroll.contentOffset.x == self.headerScroll.width * 3)
+    if (self.headerScroll.contentOffset.x >= self.headerScroll.width * 3)
     {
         [self.headerScroll setContentOffset:CGPointMake(self.headerScroll.width, 0) animated:NO];
     }
-    else if (self.headerScroll.contentOffset.x == 0)
+    else if (self.headerScroll.contentOffset.x <= 0)
     {
         [self.headerScroll setContentOffset:CGPointMake(self.headerScroll.width * 2, 0) animated:NO];
     }
