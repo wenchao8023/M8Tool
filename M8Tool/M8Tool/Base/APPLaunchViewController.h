@@ -1,15 +1,13 @@
 //
-//  M8GlobalListener.h
+//  APPLaunchViewController.h
 //  M8Tool
 //
 //  Created by chao on 2017/7/31.
 //  Copyright © 2017年 ibuildtek. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface M8GlobalListener : NSObject
-
-
+@interface APPLaunchViewController : UIViewController
 
 @end

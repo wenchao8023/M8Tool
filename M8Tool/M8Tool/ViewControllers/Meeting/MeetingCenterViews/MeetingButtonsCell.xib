@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -25,36 +25,29 @@
                 <rect key="frame" x="0.0" y="0.0" width="186" height="186"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btnImg_meetingOrder.png" translatesAutoresizingMaskIntoConstraints="NO" id="w5i-dV-g6Z">
-                        <rect key="frame" x="46.5" y="14" width="93" height="98"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btnImg_videoMeeting.png" translatesAutoresizingMaskIntoConstraints="NO" id="w5i-dV-g6Z">
+                        <rect key="frame" x="46.5" y="21" width="93" height="93"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="w5i-dV-g6Z" secondAttribute="height" multiplier="256:270" id="iKt-UI-Vn2"/>
+                            <constraint firstAttribute="width" secondItem="w5i-dV-g6Z" secondAttribute="height" id="iKt-UI-Vn2"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycG-xI-rLC">
-                        <rect key="frame" x="0.0" y="0.0" width="186" height="14"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gGK-Zo-z3U">
-                        <rect key="frame" x="0.0" y="112" width="186" height="13.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="186" height="21"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vQ1-pj-XFJ">
-                        <rect key="frame" x="0.0" y="172" width="186" height="14"/>
+                        <rect key="frame" x="0.0" y="165.5" width="186" height="20.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="电话会议" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffn-hO-lAV" customClass="THLabel">
-                        <rect key="frame" x="0.0" y="125.5" width="186" height="46.5"/>
+                        <rect key="frame" x="0.0" y="119" width="186" height="46.5"/>
                         <fontDescription key="fontDescription" name="DroidSansFallback" family="Droid Sans Fallback" pointSize="15"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -64,9 +57,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="vQ1-pj-XFJ" firstAttribute="width" secondItem="ycG-xI-rLC" secondAttribute="width" id="1Y0-A1-TOz"/>
-                <constraint firstItem="ffn-hO-lAV" firstAttribute="top" secondItem="gGK-Zo-z3U" secondAttribute="bottom" id="40H-NP-5Zi"/>
-                <constraint firstItem="gGK-Zo-z3U" firstAttribute="height" secondItem="ycG-xI-rLC" secondAttribute="height" id="GID-WV-TNt"/>
-                <constraint firstItem="gGK-Zo-z3U" firstAttribute="width" secondItem="ycG-xI-rLC" secondAttribute="width" id="Gv3-xI-ke6"/>
+                <constraint firstItem="ffn-hO-lAV" firstAttribute="top" secondItem="w5i-dV-g6Z" secondAttribute="bottom" constant="5" id="4mN-yh-nsF"/>
                 <constraint firstItem="ffn-hO-lAV" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" id="J6a-6E-8ql"/>
                 <constraint firstItem="vQ1-pj-XFJ" firstAttribute="centerX" secondItem="ycG-xI-rLC" secondAttribute="centerX" id="P51-LE-hlm"/>
                 <constraint firstItem="w5i-dV-g6Z" firstAttribute="top" secondItem="ycG-xI-rLC" secondAttribute="bottom" id="Qx7-30-efI"/>
@@ -76,9 +67,7 @@
                 <constraint firstItem="ycG-xI-rLC" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ca6-P9-heE"/>
                 <constraint firstItem="ffn-hO-lAV" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="1:4" id="eGy-mM-0qh"/>
                 <constraint firstAttribute="bottom" secondItem="vQ1-pj-XFJ" secondAttribute="bottom" id="fMs-lI-Va7"/>
-                <constraint firstItem="gGK-Zo-z3U" firstAttribute="top" secondItem="w5i-dV-g6Z" secondAttribute="bottom" id="fob-RP-A9j"/>
                 <constraint firstItem="ffn-hO-lAV" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="hnR-yU-EZs"/>
-                <constraint firstItem="gGK-Zo-z3U" firstAttribute="centerX" secondItem="ycG-xI-rLC" secondAttribute="centerX" id="j06-j2-9vd"/>
                 <constraint firstItem="w5i-dV-g6Z" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="jXM-65-NhO"/>
                 <constraint firstItem="vQ1-pj-XFJ" firstAttribute="top" secondItem="ffn-hO-lAV" secondAttribute="bottom" id="r8w-cb-WXq"/>
                 <constraint firstItem="ycG-xI-rLC" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="yPn-ff-Zq6"/>
@@ -92,6 +81,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="btnImg_meetingOrder.png" width="256" height="272"/>
+        <image name="btnImg_videoMeeting.png" width="256" height="256"/>
     </resources>
 </document>

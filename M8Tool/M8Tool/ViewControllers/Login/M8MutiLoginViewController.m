@@ -20,12 +20,16 @@
 
 @implementation M8MutiLoginViewController
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     
     self.navigationController.navigationBarHidden = YES;
     
-    
+    [[UINavigationBar appearance] setBarTintColor:WCClear];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:WCWhite,
+                                                           NSFontAttributeName:[UIFont systemFontOfSize:kAppNaviFontSize]
+                                                           }];
 }
 
 - (void)awakeFromNib
@@ -40,10 +44,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [[UINavigationBar appearance] setBarTintColor:WCClear];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:WCWhite,
-                                                           NSFontAttributeName:[UIFont systemFontOfSize:kAppNaviFontSize]
-                                                           }];
+    
     
     WCViewBorder_Radius_Width_Color(_loginButton, 30, 2, WCWhite);
     WCViewBorder_Radius_Width_Color(_registButton, 30, 2, WCWhite);

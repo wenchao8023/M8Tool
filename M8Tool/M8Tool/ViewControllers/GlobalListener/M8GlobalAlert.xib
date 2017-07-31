@@ -31,6 +31,9 @@
                     <state key="normal" title="Button">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <connections>
+                        <action selector="onLeftButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="Vbc-7t-gjp"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PqR-DQ-xZn">
                     <rect key="frame" x="187.5" y="205" width="187.5" height="40"/>
@@ -38,6 +41,9 @@
                     <state key="normal" title="Button">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <connections>
+                        <action selector="onRightButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="bf5-sC-6xM"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下线通知" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hhw-Le-V9F">
                     <rect key="frame" x="20" y="28" width="335" height="20"/>
@@ -76,8 +82,8 @@
                 <constraint firstItem="ciy-Er-3OO" firstAttribute="top" secondItem="Hhw-Le-V9F" secondAttribute="bottom" constant="20" id="xOU-D4-AY2"/>
             </constraints>
             <connections>
-                <outlet property="alertInfo" destination="ciy-Er-3OO" id="7Mv-jd-5r4"/>
-                <outlet property="alertTitle" destination="Hhw-Le-V9F" id="dmJ-CY-oep"/>
+                <outlet property="alertInfoLabel" destination="ciy-Er-3OO" id="VX5-0o-LN7"/>
+                <outlet property="alertTitleLabel" destination="Hhw-Le-V9F" id="Fv4-6q-LrK"/>
                 <outlet property="leftButton" destination="iiz-ql-IeI" id="ScN-Wj-f0n"/>
                 <outlet property="rightButton" destination="PqR-DQ-xZn" id="tOQ-X0-wRb"/>
             </connections>

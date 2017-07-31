@@ -11,7 +11,7 @@
 
 @implementation M8GlobalListener (Net)
 
-- (void)netMonitoring
+- (void)startnetMonitoring
 {
     AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
     [manager startMonitoring];
@@ -45,24 +45,32 @@
 //未知网络
 - (void)onAFNetworkReachabilityStatusUnknown
 {
+    if ([M8UserDefault getAppIsLaunching])
+    {
+        [WCNotificationCenter postNotificationName:kAppLaunchingNet_Notification object:nil userInfo:nil];
+    }
     NSLog(@"未知网络");
+    [AppDelegate sharedAppDelegate].netEnable = NO;
 }
 
 //无法联网
 - (void)onAFNetworkReachabilityStatusNotReachable
 {
     NSLog(@"无法联网");
+    [AppDelegate sharedAppDelegate].netEnable = NO;
 }
 
 //手机自带网络
 - (void)onAFNetworkReachabilityStatusReachableViaWWAN
 {
     NSLog(@"当前使用的是2g/3g/4g网络");
+    [AppDelegate sharedAppDelegate].netEnable = YES;
 }
 
 //WIFI
 - (void)onAFNetworkReachabilityStatusReachableViaWiFi
 {
     NSLog(@"当前在WIFI网络下");
+    [AppDelegate sharedAppDelegate].netEnable = YES;
 }
 @end

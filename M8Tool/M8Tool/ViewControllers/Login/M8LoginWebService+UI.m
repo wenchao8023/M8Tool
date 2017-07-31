@@ -59,7 +59,8 @@
     appDelegate.window.rootViewController = tabBarVC;
 }
 
-+ (void)onLoginAelrt:(NSString *)msg {
++ (void)onLoginAelrt:(NSString *)msg
+{
     [AlertHelp alertWith:nil message:msg cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
 }
 

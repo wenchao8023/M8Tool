@@ -14,14 +14,15 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, strong, nullable) UIWindow *window;
 
-@property (nonatomic, copy) NSString *token;
+@property (nonatomic, copy, nullable) NSString *token;
 
-@property (readonly, strong) NSPersistentContainer *persistentContainer;
+@property (nonatomic, assign) BOOL netEnable;   //判断网络是否可用
+
+@property (nonatomic, readonly, strong, nullable) NSPersistentContainer *persistentContainer;
 
 - (void)saveContext;
-
 
 @end
 

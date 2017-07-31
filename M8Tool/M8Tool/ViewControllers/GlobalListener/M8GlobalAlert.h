@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol GlobalAlertDelegate <NSObject>
+
+@optional
+- (void)onGlobalAlertLeftButtonAction;
+- (void)onGlobalAlertRightButtonAction;
+
+@end
+
+
+
 @interface M8GlobalAlert : UIView
+
+@property (nonatomic, weak) id<GlobalAlertDelegate> _Nullable WCDelegate;
+
+- (instancetype _Nullable)initWithFrame:(CGRect)frame alertInfo:(NSString *_Nullable)alertInfo alertType:(GlobalAlertType)alertType;
 
 @end

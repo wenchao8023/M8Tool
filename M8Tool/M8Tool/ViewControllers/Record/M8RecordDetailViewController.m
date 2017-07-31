@@ -169,7 +169,7 @@
     item.info.type = (callType == TILCALL_TYPE_VIDEO ? @"call_video" : @"call_audio");
     item.info.roomnum = roomId;
     item.info.groupid = [NSString stringWithFormat:@"%d", roomId];
-    item.info.appid = [ShowAppId intValue];
+    item.info.appid = [ILiveAppId intValue];
     item.info.host = loginId;
     
     M8CallViewController *callVC = [[M8CallViewController alloc] initWithItem:item isHost:YES];

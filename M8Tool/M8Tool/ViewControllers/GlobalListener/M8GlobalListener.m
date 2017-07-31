@@ -10,11 +10,10 @@
 
 @implementation M8GlobalListener
 
-
-
 - (void)dealloc
 {
     [WCNotificationCenter removeObserver:self name:kNewFriendStatu_Notification object:nil];
+    [WCNotificationCenter removeObserver:self name:kAppLaunchingNet_Notification object:nil];
 }
 
 

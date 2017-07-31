@@ -87,22 +87,22 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 0.1;
+    return 0.01;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 0.1;
+    return 0.01;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    return [WCUIKitControl createViewWithFrame:CGRectZero];
+    return [WCUIKitControl createViewWithFrame:CGRectMake(0, 0, self.width, 0.01)];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    return [WCUIKitControl createViewWithFrame:CGRectZero];
+    return [WCUIKitControl createViewWithFrame:CGRectMake(0, 0, self.width, 0.01)];
 }
 
 
@@ -168,7 +168,6 @@
     LoadView *logoutWaitView = [LoadView loadViewWith:@"正在退出"];
     [self addSubview:logoutWaitView];
     
-    __weak typeof(self) ws = self;
     //通知业务服务器登出
     LogoutRequest *logoutReq = [[LogoutRequest alloc] initWithHandler:^(BaseRequest *request) {
         
@@ -176,7 +175,9 @@
             
             [logoutWaitView removeFromSuperview];
 
-            [ws enterLoginUI];
+            [M8UserDefault setUserLogout:YES];
+            
+            [[AppDelegate sharedAppDelegate] enterLoginUI];
             
         } failed:^(NSString *module, int errId, NSString *errMsg) {
             
@@ -197,20 +198,6 @@
     logoutReq.token = [AppDelegate sharedAppDelegate].token;
     [[WebServiceEngine sharedEngine] AFAsynRequest:logoutReq];
 }
-
-- (void)enterLoginUI
-{
-    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    
-    UINavigationController *navi = kM8LoginNaViewController(kM8MutiLoginViewController);
-    UIViewController *bottomVC   = kM8LoginSBViewController(kM8MutiLoginViewController);
-    UIViewController *topVC      = kM8LoginSBViewController(kM8LoginViewController);
-    navi.viewControllers = @[bottomVC, topVC];
-    
-    appDelegate.window.rootViewController = navi;
-    [appDelegate.window makeKeyWindow];
-}
-
 
 
 @end

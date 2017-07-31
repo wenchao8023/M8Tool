@@ -2,16 +2,21 @@
 #define ConstHeader_h
 
 
-//#define ShowAppId       @"1400025495"
-//#define ShowAccountType @"11456"
+#pragma mark - appid and appkey
 
-//ibuild - 独立模式
-#define ShowAppId       @"1400034304"
-#define ShowAccountType @"11456"
+#define ILiveAppId          @"1400034304"
+#define ILiveAccountType    @"11456"
 
-//Tdemo  - 托管模式
-//#define ShowAppId @"1400026919"
-//#define ShowAccountType @"11372"
+#define XGAppId             @"2200263532"
+#define XGAppKey            @"I421M1FDFJ7U"
+
+#define IFlyAppId           @"59759209"
+
+#define wechatAppId         @"wx48ed50d97c4271ba"
+#define wechatAppkey        @"518b4f6340745b0d57367d179525f630"
+
+#define QQAppId             @"1106206371"
+#define QQAppKey            @"C2Ds3I0iXQtV3rNV"
 
 
 /******************** font ********************************/
@@ -110,6 +115,15 @@ typedef NS_ENUM(NSInteger, BeautyViewType)
     BeautyViewType_Beauty = 0,
     BeautyViewType_White,
 };
+
+
+typedef NS_ENUM(NSInteger, GlobalAlertType)
+{
+    GlobalAlertType_forceOffline        //踢下线通知提醒
+};
+
+
+
 /******************** notification **********************/
 #define kUserParise_Notification        @"kUserParise_Notification"
 //#define kUserJoinRoom_Notification      @"kUserJoinRoom_Notification"
@@ -131,6 +145,7 @@ typedef NS_ENUM(NSInteger, BeautyViewType)
 #define kNoteViewEdit_Notification      @"kNoteViewEdit_Notification"   //会议中正在编辑文字
 #define kInviteMembers_Notifycation     @"kInviteMembers_Notifycation"  //会议中邀请成员
 #define kNewFriendStatu_Notification    @"kNewFriendStatu_Notification" //新好友存在或没有的状态变化通知
+#define kAppLaunchingNet_Notification   @"kAppLaunchingNet_Notification"//App启动中网络状态未连接通知
 
 
 /******************** role string **********************/
@@ -145,7 +160,9 @@ typedef NS_ENUM(NSInteger, BeautyViewType)
 #define kEnvParam           @"kEnvParam"
 #define kLogLevel           @"kLogLevel"
 #define kUserProtocol       @"kUserProtocol"
-#define kHasLogin           @"kHasLogin"
+#define kUserLogout         @"kUserLogout"      //用户主动登出，App启东时需要再次登录
+#define kAppLaunching       @"kAppLaunching"    //判断App是否在启动中
+#define kHasLogin           @"kHasLogin"        //判断用户登录过，则不需要阅读协议
 #define kThemeImage         @"kThemeImage"
 #define kIsInMeeting        @"kIsInMeeting"     //判断用户是否在会议中，如果是则推出视图的时候隐藏tabBar
 #define kPushMenuStatus     @"kPushMenuStatus"  //会话中推出菜单状态

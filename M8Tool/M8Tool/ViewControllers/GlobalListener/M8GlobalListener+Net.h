@@ -10,6 +10,6 @@
 
 @interface M8GlobalListener (Net)
 
-- (void)netMonitoring;
+- (void)startnetMonitoring;
 
 @end

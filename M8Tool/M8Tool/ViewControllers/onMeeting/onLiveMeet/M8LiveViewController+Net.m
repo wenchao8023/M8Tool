@@ -34,7 +34,7 @@
     reportReq.room.roomnum  = self.liveItem.info.roomnum;
     reportReq.room.groupid  = self.liveItem.info.groupid;
     reportReq.room.cover    = self.liveItem.info.cover.length > 0 ? self.liveItem.info.cover : @"";
-    reportReq.room.appid    = [ShowAppId intValue];
+    reportReq.room.appid    = [ILiveAppId intValue];
     
     [[WebServiceEngine sharedEngine] AFAsynRequest:reportReq];
 }

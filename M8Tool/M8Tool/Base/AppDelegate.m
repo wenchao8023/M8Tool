@@ -8,10 +8,7 @@
 
 #import "AppDelegate.h"
 #import "AppDelegate+XGPushConfig.h"
-#import "UserProtocolViewController.h"
-#import "MainTabBarController.h"
-
-
+#import "APPLaunchViewController.h"
 
 
 @interface AppDelegate ()
@@ -36,16 +33,23 @@
     
     [self loadIFlySDK];
     
+    self.netEnable = YES;
+    
     [M8UserDefault setMeetingStatu:NO];
+    
+    [M8UserDefault setAppLaunching:YES];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = WCWhite;
     [self.window makeKeyAndVisible];
     
-    self.window.rootViewController = kM8LoginNaViewController(kM8MutiLoginViewController);
+    self.window.rootViewController = [[APPLaunchViewController alloc] init];
+    
     
     return YES;
 }
+
+
 
 #pragma mark - load sdks
 -(void)loadShareSDK
@@ -73,12 +77,12 @@
                                              switch (platformType)
                                              {
                                                  case SSDKPlatformTypeWechat:
-                                                     [appInfo SSDKSetupWeChatByAppId:@"wx48ed50d97c4271ba"
-                                                                           appSecret:@"518b4f6340745b0d57367d179525f630"];
+                                                     [appInfo SSDKSetupWeChatByAppId:wechatAppId
+                                                                           appSecret:wechatAppkey];
                                                      break;
                                                  case SSDKPlatformTypeQQ:
-                                                     [appInfo SSDKSetupQQByAppId:@"1106206371"
-                                                                          appKey:@"C2Ds3I0iXQtV3rNV"
+                                                     [appInfo SSDKSetupQQByAppId:QQAppId
+                                                                          appKey:QQAppKey
                                                                         authType:SSDKAuthTypeBoth];
                                                      break;
                                                      
@@ -104,7 +108,7 @@
     [IFlySetting setLogFilePath:cachePath];
     
     //创建语音配置,appid必须要传入，仅执行一次则可
-    NSString *initString = [[NSString alloc] initWithFormat:@"appid=59759209"];
+    NSString *initString = [[NSString alloc] initWithFormat:@"appid=%@", IFlyAppId];
     
     //所有服务启动前，需要确保执行createUtility
     [IFlySpeechUtility createUtility:initString];
@@ -114,19 +118,13 @@
 - (void)loadXGSDK:(NSDictionary *)launchOptions
 {
     //打开debug开关
-    XGSetting *setting = [XGSetting getInstance];
-    [setting enableDebug:YES];
-    //查看debug开关是否打开
-    BOOL debugEnabled = [setting isEnableDebug];
-    NSLog(@"[XGDebug] %@", (debugEnabled ? @"打开" : @"关闭"));
+    [[XGSetting getInstance] enableDebug:YES];
     
-    [XGPush startApp:2200263532 appKey:@"I421M1FDFJ7U"];
+    [XGPush startApp:[XGAppId intValue] appKey:XGAppKey];
     [XGPush handleLaunching:launchOptions successCallback:^{
         
-        NSLog(@"[XGDemo] Handle launching success");
     } errorCallback:^{
         
-        NSLog(@"[XGDemo] Handle launching error");
     }];
     [self registerAPNS];
 }
@@ -146,32 +144,17 @@
     [manager initLogSettings:YES logPath:[manager getLogPath]];
     [manager setLogLevel:(TIMLogLevel)[logLevel integerValue]];
     
-    [[ILiveSDK getInstance] initSdk:[ShowAppId intValue] accountType:[ShowAccountType intValue]];
-    
-    [[ILiveSDK getInstance] setConnListener:[[M8GlobalListener alloc] init]];
-    [[ILiveSDK getInstance] setUserStatusListener:[[M8GlobalListener alloc] init]];
-    [manager setMessageListener:[[M8GlobalListener alloc] init]];
+    [[ILiveSDK getInstance] initSdk:[ILiveAppId intValue] accountType:[ILiveAccountType intValue]];
     
     
+    M8GlobalListener *globalListener = [[M8GlobalListener alloc] init];
     
+    [[ILiveSDK getInstance] setConnListener:globalListener];
+    [[ILiveSDK getInstance] setUserStatusListener:globalListener];
+    [manager setMessageListener:globalListener];
     
-//    TIMFriendProfileOption *fileOption = [[TIMFriendProfileOption alloc] init];
-//    fileOption.friendFlags = 0xffff;
-//    TIMUserProfile * profile = [[TIMUserProfile alloc] init];
-//    profile.nickname = @"my nick";
-//    profile.allowType = TIM_FRIEND_ALLOW_ANY;
-//    profile.faceURL = @"https://my face url";
-//    profile.selfSignature = [NSData dataWithBytes:"1234" length:4];
-//    profile.gender = TIM_GENDER_MALE;
-//    profile.birthday = 12345;
-//    profile.location = [NSData dataWithBytes:"location" length:8];
-//    profile.language = 1;
-//    
-//    [[TIMFriendshipManager sharedInstance] modifySelfProfile:option profile:profile succ:^() {
-//        NSLog(@"Set Profile Succ");
-//    } fail:^(int code, NSString * err) {
-//        NSLog(@"Set Profile fail: code=%d err=%@", code, err);
-//    }];
+    //开启网络状态监听
+    [globalListener startnetMonitoring];
     
 }
 
