@@ -14,6 +14,7 @@
 {
     [WCNotificationCenter removeObserver:self name:kNewFriendStatu_Notification object:nil];
     [WCNotificationCenter removeObserver:self name:kAppLaunchingNet_Notification object:nil];
+    [WCNotificationCenter removeObserver:self name:kAppNetStatus_Notification object:nil];
 }
 
 

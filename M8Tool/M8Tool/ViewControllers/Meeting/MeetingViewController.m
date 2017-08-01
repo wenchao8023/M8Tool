@@ -13,8 +13,8 @@
 
 #import "M8MeetWindow.h"
 #import "M8LiveViewController.h"
-
 #import "M8MeetListViewController.h"
+#import "M8GlobalNetTipView.h"
 
 @interface MeetingViewController ()<AgendaCollectionDelegate, UIScrollViewDelegate>
 
@@ -34,11 +34,13 @@
 @property (nonatomic, strong) NSArray *scrollImgArray;
 @property (nonatomic, strong) NSTimer *scrollTimer;
 
+@property (nonatomic, strong) M8GlobalNetTipView *netTipView;
+
 @end
 
 @implementation MeetingViewController
 
-
+#pragma mark - -- views life
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -56,8 +58,17 @@
     [self resetNavi];
     
     [self reloadSuperViews];
+    
+    [WCNotificationCenter addObserver:self selector:@selector(onNetStatusNotifi:) name:kAppNetStatus_Notification object:nil];
 }
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - -- UI
 - (void)resetNavi
 {
     CGFloat btnWidth = 40;
@@ -78,7 +89,23 @@
     [self addSubviews];
 }
 
-
+- (void)reloadScrollView
+{
+    self.headerScroll.contentSize   = CGSizeMake(self.view.width * self.scrollImgArray.count, self.headerScroll.height);
+    self.headerScroll.contentOffset = CGPointMake(self.view.width, 0);
+    
+    for (int i = 0; i < self.scrollImgArray.count; i++)
+    {
+        UIImageView *headerImg = [WCUIKitControl createImageViewWithFrame:CGRectMake(self.headerScroll.width * i, 0, self.headerScroll.width, self.headerScroll.height) ImageName:self.scrollImgArray[i]];
+        headerImg.tag = 120 + i;
+        [self.headerScroll addSubview:headerImg];
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onHeaderImgAction:)];
+        [headerImg addGestureRecognizer:tap];
+    }
+    
+    [self.scrollTimer fire];
+}
 
 //添加视图的顺序应挨个是从下往上的
 - (void)addSubviews
@@ -97,6 +124,8 @@
     };
 }
 
+
+#pragma mark - -- inits
 - (MeetingButtonsCollection *)buttonsCollection
 {
     if (!_buttonsCollection)
@@ -220,23 +249,7 @@
     return _iFlySpeechRecognizer;
 }
 
-- (void)reloadScrollView
-{
-    self.headerScroll.contentSize   = CGSizeMake(self.view.width * self.scrollImgArray.count, self.headerScroll.height);
-    self.headerScroll.contentOffset = CGPointMake(self.view.width, 0);
-    
-    for (int i = 0; i < self.scrollImgArray.count; i++)
-    {
-        UIImageView *headerImg = [WCUIKitControl createImageViewWithFrame:CGRectMake(self.headerScroll.width * i, 0, self.headerScroll.width, self.headerScroll.height) ImageName:self.scrollImgArray[i]];
-        headerImg.tag = 120 + i;
-        [self.headerScroll addSubview:headerImg];
-        
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onHeaderImgAction:)];
-        [headerImg addGestureRecognizer:tap];
-    }
 
-    [self.scrollTimer fire];
-}
 
 - (NSTimer *)scrollTimer
 {
@@ -252,6 +265,17 @@
     return _scrollTimer;
 }
 
+- (M8GlobalNetTipView *)netTipView
+{
+    if (!_netTipView)
+    {
+        M8GlobalNetTipView *netTipView = [[M8GlobalNetTipView alloc] initWithFrame:CGRectMake(0, kDefaultNaviHeight, self.view.width, kDefaultCellHeight)];
+        _netTipView = netTipView;
+    }
+    return _netTipView;
+}
+
+#pragma mark - -- UIScrollViewDelegate
 //手动滑动之后调用的方法
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
@@ -263,6 +287,7 @@
     [self setHeaderScrollOffsetInBackground];
 }
 
+#pragma mark - -- 轮播图
 - (void)onScrollImageTimer
 {
     CGPoint lastOffset = self.headerScroll.contentOffset;
@@ -284,7 +309,7 @@
 }
 
 
-
+#pragma mark - -- actions
 - (void)onHeaderImgAction:(UITapGestureRecognizer *)tap
 {
     UIView *headImg = tap.view;
@@ -316,13 +341,35 @@
     self.pageControl.currentPage = pageIndex;
 }
 
-
-
-- (void)didReceiveMemoryWarning
+#pragma mark - -- notifications
+- (void)onNetStatusNotifi:(NSNotification *)notification
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    id obj = notification.object;
+    
+    AFNetworkReachabilityStatus netStatu;
+    [obj getValue:&netStatu];
+    
+    if (netStatu == AFNetworkReachabilityStatusUnknown ||
+        netStatu == AFNetworkReachabilityStatusNotReachable)
+    {
+        [self.view addSubview:self.netTipView];
+        [self.view bringSubviewToFront:self.netTipView];
+    }
+    else
+    {
+        if (_netTipView)
+        {
+            [self.netTipView removeFromSuperview];
+            self.netTipView = nil;
+        }
+    }
 }
+
+- (void)dealloc
+{
+    [WCNotificationCenter removeObserver:self name:kAppNetStatus_Notification object:nil];
+}
+
 
 
 @end

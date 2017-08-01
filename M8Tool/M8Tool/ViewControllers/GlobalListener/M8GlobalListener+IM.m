@@ -29,6 +29,7 @@
 - (void)onReConnFailed:(int)code err:(NSString*)err
 {
     WCLog(@"断线重连失败");
+    [M8GlobalWindow M8_addAlertInfo:@"你的账号在其他地方登录。如果本人操作，则密码可能已泄露。建议修改密码或联系客服人员。" alertType:GlobalAlertType_forceOffline];
 }
 
 /**

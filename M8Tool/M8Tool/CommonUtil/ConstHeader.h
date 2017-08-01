@@ -146,6 +146,7 @@ typedef NS_ENUM(NSInteger, GlobalAlertType)
 #define kInviteMembers_Notifycation     @"kInviteMembers_Notifycation"  //会议中邀请成员
 #define kNewFriendStatu_Notification    @"kNewFriendStatu_Notification" //新好友存在或没有的状态变化通知
 #define kAppLaunchingNet_Notification   @"kAppLaunchingNet_Notification"//App启动中网络状态未连接通知
+#define kAppNetStatus_Notification      @"kAppNetStatus_Notification"   //App网络状态通知
 
 
 /******************** role string **********************/
