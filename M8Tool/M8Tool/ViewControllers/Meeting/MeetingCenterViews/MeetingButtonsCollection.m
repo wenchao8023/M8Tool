@@ -40,6 +40,8 @@ static NSString * const kMeetingButtonsCellID = @"MeetingButtonsCellID";
         self.delaysContentTouches   = NO;   // 此时当点击的时候会立刻调用点击事件的begin方法，率先变成高亮状态。
         
         [self registerNib:[UINib nibWithNibName:NSStringFromClass([MeetingButtonsCell class]) bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:kMeetingButtonsCellID];
+        
+        [WCNotificationCenter addObserver:self selector:@selector(reloadData) name:kThemeSwich_Notification object:nil];
     }
     return self;
 }
@@ -73,8 +75,7 @@ static NSString * const kMeetingButtonsCellID = @"MeetingButtonsCellID";
 }
 
 
-#pragma mark -
-#pragma mark - UICollectionViewDelegate
+#pragma mark - -- UICollectionViewDelegate
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return self.titleArray.count;
@@ -86,18 +87,50 @@ static NSString * const kMeetingButtonsCellID = @"MeetingButtonsCellID";
     
     [cell configWithTitle:self.titleArray[indexPath.row] imageStr:self.imageArray[indexPath.row]];
     
+    NSMutableArray *tempSublayers = [cell.layer.sublayers mutableCopy];
+    
+    //清除 cell 之前的 设置的边框 layer
+    CALayer *topLayer = [tempSublayers lastObject];
+    if (topLayer.frame.size.width == 0.5 ||
+        topLayer.frame.size.height == 0.5)
+    {
+        WCLog(@"---------------------------------------layer");
+        [tempSublayers removeLastObject];
+    }
+    
+    cell.layer.sublayers = tempSublayers;
+    
+    UIColor *borderColor = nil;
+    
+    NSString *themeStr = [M8UserDefault getThemeImageString];
+
+    if ([themeStr isEqualToString:@"木纹"])
+    {
+        borderColor = WCRGBColor(195, 136, 9);
+    }
+    else if ([themeStr isEqualToString:@"淡青"])
+    {
+        borderColor = WCRGBColor(59, 166, 163);
+    }
+    else
+    {
+        borderColor = WCBlack;
+    }
+    
+    CGFloat borderWidth = 0.5;
     
     // 设置 cell 底部边框
-    [cell setBorder_bottom_color:[UIColor colorWithRed:0.09 green:0.09 blue:0.09 alpha:1] width:1];
+    [cell setBorder_bottom_color:borderColor width:borderWidth];
+    
     // 设置 cell 侧边边框
     if ((indexPath.row + 1) % 4)
     {
-        [cell setBorder_right_color:[UIColor colorWithRed:0.09 green:0.09 blue:0.09 alpha:1] width:1];
+        [cell setBorder_right_color:borderColor width:borderWidth];
     }
     // 设置 cell 顶部边框
     if (indexPath.row < 4)
     {
-        [cell setBorder_top_color:[UIColor colorWithRed:0.09 green:0.09 blue:0.09 alpha:1] width:1];
+        [cell setBorder_top_color:borderColor width:borderWidth];
     }
     
     return cell;
@@ -138,14 +171,14 @@ static NSString * const kMeetingButtonsCellID = @"MeetingButtonsCellID";
     [self pushViewControllerWithIndex:indexPath.row];
 }
 
-#pragma mark - --
+#pragma mark -- push
 - (void)pushViewControllerWithIndex:(NSInteger)index
 {    
     if (index == 0 ||
         index == 1 ||
         index == 2 ||
-        index == 4) {       //发起 手机会议、视频会议、直播会议、会议预约
-        
+        index == 4)     //发起 手机会议、视频会议、直播会议、会议预约
+    {
         if (index != 4)
         {
             if ([CommonUtil alertTipInMeeting])
@@ -182,6 +215,12 @@ static NSString * const kMeetingButtonsCellID = @"MeetingButtonsCellID";
         recordvc.isExitLeftItem = YES;
         [[AppDelegate sharedAppDelegate] pushViewController:recordvc];
     }
+}
+
+
+- (void)dealloc
+{
+    [WCNotificationCenter removeObserver:self name:kThemeSwich_Notification object:nil];
 }
 
 
