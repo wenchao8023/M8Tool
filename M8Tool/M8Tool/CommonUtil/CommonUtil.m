@@ -92,9 +92,7 @@
         NSDateComponents *compts = [[NSDateComponents alloc] init];
         compts.month = currentMonth;
         compts.day   = i;
-        [fifthDaysArr insertObject:compts atIndex:i];
-        
-//        [fifthDaysArr insertObject:@(i) atIndex:0]; //保存日期
+        [fifthDaysArr insertObject:compts atIndex:0];   //保存日期
     }
     
     if (fifthDaysArr.count < lastWeekdays)  //如果循环到了 1 号还没有满 5 天，则需要遍历上一个月
@@ -116,8 +114,7 @@
             NSDateComponents *compts = [[NSDateComponents alloc] init];
             compts.month = lastMonth;
             compts.day   = i;
-            [fifthDaysArr insertObject:compts atIndex:i];
-//            [fifthDaysArr insertObject:@(i) atIndex:0]; //保存日期
+            [fifthDaysArr insertObject:compts atIndex:0];   //保存日期
         }
     }
     
@@ -143,9 +140,7 @@
         NSDateComponents *compts = [[NSDateComponents alloc] init];
         compts.month = currentMonth;
         compts.day   = i;
-        [fifthDaysArr insertObject:compts atIndex:i];
-        
-//        [fifthDaysArr addObject:@(i)];  //保存日期
+        [fifthDaysArr addObject:compts];    //保存日期
     }
     
     if (fifthDaysArr.count < 15)    //当月已遍历完，还不满15天，则去下一个月循环
@@ -167,9 +162,7 @@
             NSDateComponents *compts = [[NSDateComponents alloc] init];
             compts.month = nextMonth;
             compts.day   = i;
-            [fifthDaysArr insertObject:compts atIndex:i];
-            
-//            [fifthDaysArr addObject:@(i)];  //保存日期
+            [fifthDaysArr addObject:compts];    //保存日期
         }
     }
 
