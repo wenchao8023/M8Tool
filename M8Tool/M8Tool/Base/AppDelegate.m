@@ -186,6 +186,9 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
+    
+    
+    //如果是会议中非正常退出App，则向视频中的发送下线消息
 }
 
 

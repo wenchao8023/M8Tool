@@ -87,15 +87,15 @@ static NSString * const kMeetingButtonsCellID = @"MeetingButtonsCellID";
     
     [cell configWithTitle:self.titleArray[indexPath.row] imageStr:self.imageArray[indexPath.row]];
     
-    NSMutableArray *tempSublayers = [cell.layer.sublayers mutableCopy];
+    NSMutableArray *tempSublayers = [NSMutableArray arrayWithCapacity:0];
     
     //清除 cell 之前的 设置的边框 layer
-    CALayer *topLayer = [tempSublayers lastObject];
-    if (topLayer.frame.size.width == 0.5 ||
-        topLayer.frame.size.height == 0.5)
+    for (CALayer *subLayer in cell.layer.sublayers)
     {
-        WCLog(@"---------------------------------------layer");
-        [tempSublayers removeLastObject];
+        if (![subLayer isKindOfClass:[BorderLayer class]])
+        {
+            [tempSublayers addObject:subLayer];
+        }
     }
     
     cell.layer.sublayers = tempSublayers;

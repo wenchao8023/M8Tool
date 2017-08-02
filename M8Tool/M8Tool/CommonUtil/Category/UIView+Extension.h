@@ -35,3 +35,9 @@
           borderColor:(UIColor *)color borderWidth:(CGFloat)width ;
 
 @end
+
+
+
+@interface BorderLayer : CALayer
+
+@end
