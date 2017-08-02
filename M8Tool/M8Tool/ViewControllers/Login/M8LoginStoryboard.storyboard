@@ -127,7 +127,7 @@
                                     <action selector="onMoreAction:" destination="38h-on-xE2" eventType="touchUpInside" id="Eoq-pe-b17"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号/邮箱" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="v2F-GB-2a5">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="v2F-GB-2a5">
                                 <rect key="frame" x="20" y="148" width="335" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -279,7 +279,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="M8" translatesAutoresizingMaskIntoConstraints="NO" id="KFX-9c-q0k">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="M8_6.png" translatesAutoresizingMaskIntoConstraints="NO" id="KFX-9c-q0k">
                                 <rect key="frame" x="47.5" y="467" width="280" height="200"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -949,7 +949,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DBw-Qt-45g" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="JH4-4u-fY0">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JH4-4u-fY0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -964,7 +964,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="M8" width="1200" height="900"/>
+        <image name="M8_6.png" width="375" height="222"/>
         <image name="multLoginBg.png" width="1080" height="1920"/>
         <image name="naviBackIcon" width="10" height="20"/>
         <image name="threeRDLoginIcon_CWeChat.png" width="60" height="60"/>

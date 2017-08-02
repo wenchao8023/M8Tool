@@ -49,27 +49,42 @@
         return ;
     }
     
+    LastLoginType loginType = [M8UserDefault getLastLoginType];
+    M8LoginWebService *loginWeb = [[M8LoginWebService alloc] init];
+    
     //用户主动登出
     if ([M8UserDefault getIsUserLogout])
     {
-        [[AppDelegate sharedAppDelegate] enterLoginUI];
+        if (loginType == LastLoginType_phone)
+        {
+            [[AppDelegate sharedAppDelegate] enterLoginUI];
+        }
+        else if (loginType == LastLoginType_QQ)
+        {
+            [[AppDelegate sharedAppDelegate] enterLoginMutiUI];
+        }
         
         return ;
     }
     
-    LastLoginType loginType = [M8UserDefault getLastLoginType];
-    M8LoginWebService *loginWeb = [[M8LoginWebService alloc] init];
-    
     if (loginType == LastLoginType_QQ)
     {
-        NSString *openid = [M8UserDefault getLoginId];
-        NSString *nick   = [M8UserDefault getLoginNick];
-        
-        [loginWeb M8QQAutoLoginWithOpenId:openid nick:nick failHandle:^{
+        if ([ShareSDK hasAuthorized:SSDKPlatformTypeQQ])
+        {
+            NSString *openid = [M8UserDefault getLoginId];
+            NSString *nick   = [M8UserDefault getLoginNick];
             
-            [[AppDelegate sharedAppDelegate] enterLoginUI];
-        }];
+            [loginWeb M8QQAutoLoginWithOpenId:openid nick:nick failHandle:^{
+                
+                [[AppDelegate sharedAppDelegate] enterLoginUI];
+            }];
+        }
+        else
+        {
+            [[AppDelegate sharedAppDelegate] enterLoginMutiUI];
+        }
         
+        return ;
     }
     else if (loginType == LastLoginType_phone)
     {
@@ -80,8 +95,6 @@
               loginPwd && loginPwd.length))
         {
             [[AppDelegate sharedAppDelegate] enterLoginUI];
-            
-            return ;
         }
         else
         {
@@ -93,6 +106,8 @@
                                          [[AppDelegate sharedAppDelegate] enterLoginUI];
                                      }];
         }
+        
+        return ;
     }
     else
     {

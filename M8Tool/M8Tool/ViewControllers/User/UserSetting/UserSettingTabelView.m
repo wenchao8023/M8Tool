@@ -177,7 +177,17 @@
 
             [M8UserDefault setUserLogout:YES];
             
-            [[AppDelegate sharedAppDelegate] enterLoginUI];
+            LastLoginType loginType = [M8UserDefault getLastLoginType];
+            if (loginType == LastLoginType_phone)
+            {
+                [[AppDelegate sharedAppDelegate] enterLoginUI];
+            }
+            else if (loginType == LastLoginType_QQ)
+            {
+                [[AppDelegate sharedAppDelegate] enterLoginMutiUI];
+            }
+            
+            
             
         } failed:^(NSString *module, int errId, NSString *errMsg) {
             

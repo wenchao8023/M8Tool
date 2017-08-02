@@ -51,6 +51,8 @@
     [[AppDelegate sharedAppDelegate] enterMainUI];
 }
 
+
+
 - (void)onQQLoginSucc:(NSString *)openId
 {
     [M8UserDefault setUserLogout:NO];

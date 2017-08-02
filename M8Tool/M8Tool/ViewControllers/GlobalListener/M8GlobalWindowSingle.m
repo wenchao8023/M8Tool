@@ -78,12 +78,55 @@
     WCLog(@"退出");
     
     [self.alertView removeFromSuperview];
-    self.alertView   = nil;
-    self.alertWindow = nil;
+    self.alertView = nil;
+    LoadView *logoutWaitView = [LoadView loadViewWith:@"正在退出"];
+    [self.alertWindow addSubview:logoutWaitView];
     
-    [M8UserDefault setUserLogout:YES];
+    //通知业务服务器登出
+    WCWeakSelf(self);
+    LogoutRequest *logoutReq = [[LogoutRequest alloc] initWithHandler:^(BaseRequest *request) {
+        
+        [[ILiveLoginManager getInstance] iLiveLogout:^{
+            
+            [logoutWaitView removeFromSuperview];
+            for (UIView *subView in weakself.alertWindow.subviews)
+            {
+                [subView removeFromSuperview];
+            }
+            weakself.alertWindow = nil;
+            
+            [M8UserDefault setUserLogout:YES];
+            
+            LastLoginType loginType = [M8UserDefault getLastLoginType];
+            if (loginType == LastLoginType_phone)
+            {
+                [[AppDelegate sharedAppDelegate] enterLoginUI];
+            }
+            else if (loginType == LastLoginType_QQ)
+            {
+                [[AppDelegate sharedAppDelegate] enterLoginMutiUI];
+            }
+            
+            
+            
+        } failed:^(NSString *module, int errId, NSString *errMsg) {
+            
+            [logoutWaitView removeFromSuperview];
+            NSString *errinfo = [NSString stringWithFormat:@"module=%@,errid=%ld,errmsg=%@",module,(long)request.response.errorCode,request.response.errorInfo];
+            NSLog(@"regist fail.%@",errinfo);
+            [AlertHelp alertWith:@"退出失败" message:errinfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
+        }];
+        
+    } failHandler:^(BaseRequest *request) {
+        
+        NSString *errinfo = [NSString stringWithFormat:@"errid=%ld,errmsg=%@",(long)request.response.errorCode,request.response.errorInfo];
+        NSLog(@"regist fail.%@",errinfo);
+        [logoutWaitView removeFromSuperview];
+        [AlertHelp alertWith:@"退出失败" message:errinfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
+    }];
     
-    [[AppDelegate sharedAppDelegate] enterLoginUI];
+    logoutReq.token = [AppDelegate sharedAppDelegate].token;
+    [[WebServiceEngine sharedEngine] AFAsynRequest:logoutReq];
 }
 
 

@@ -110,13 +110,12 @@
         WCWeakSelf(self);
         [_call makeCall:tipStr custom:nickStr result:^(TILCallError *err) {
             
-            if(err){
-//                [weakself addTextToView:[NSString stringWithFormat:@"呼叫失败:%@-%d-%@",err.domain,err.code,err.errMsg]];
+            if(err)
+            {
                 [weakself selfDismiss];
             }
-            else{
-//                [weakself addTextToView:@"呼叫成功"];
-                
+            else
+            {
                 [[ILiveRoomManager getInstance] setBeauty:2];
                 [[ILiveRoomManager getInstance] setWhite:2];
                 

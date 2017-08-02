@@ -192,7 +192,8 @@
     if (!_dataContentArray)
     {
         _dataContentArray = [NSMutableArray arrayWithCapacity:0];
-        [_dataContentArray addObjectsFromArray:@[@"会议主题", @"600分钟"]];
+        NSString *topic = [NSString stringWithFormat:@"%@的会议", [M8UserDefault getLoginNick]];
+        [_dataContentArray addObjectsFromArray:@[topic, @"600分钟"]];
     }
     return _dataContentArray;
 }

@@ -653,8 +653,6 @@
 		943A08B31EDEC133003CEA27 /* TLSSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TLSSDK.framework; sourceTree = "<group>"; };
 		943A08B81EDEC133003CEA27 /* TILLiveSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TILLiveSDK.framework; sourceTree = "<group>"; };
 		943A08D81EDEC461003CEA27 /* QAVSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QAVSDK.framework; sourceTree = "<group>"; };
-		943A08DB1EDEC461003CEA27 /* Shaderf.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Shaderf.glsl; sourceTree = "<group>"; };
-		943A08DC1EDEC461003CEA27 /* Shaderv.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Shaderv.glsl; sourceTree = "<group>"; };
 		943A08DD1EDEC461003CEA27 /* xplatform.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = xplatform.framework; sourceTree = "<group>"; };
 		943A08E41EDEC52B003CEA27 /* TILCallSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TILCallSDK.framework; sourceTree = "<group>"; };
 		943A08E71EDEC76B003CEA27 /* TILFilterResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TILFilterResource.bundle; sourceTree = "<group>"; };
@@ -1657,8 +1655,6 @@
 			isa = PBXGroup;
 			children = (
 				943A08D81EDEC461003CEA27 /* QAVSDK.framework */,
-				943A08DB1EDEC461003CEA27 /* Shaderf.glsl */,
-				943A08DC1EDEC461003CEA27 /* Shaderv.glsl */,
 				943A08DD1EDEC461003CEA27 /* xplatform.framework */,
 			);
 			path = AVSDK;
