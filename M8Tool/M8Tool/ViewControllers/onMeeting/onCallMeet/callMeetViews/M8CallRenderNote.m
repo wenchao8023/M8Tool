@@ -113,7 +113,7 @@
     {
         if (model.tipInfo)
         {
-            NSAttributedString *tipAttStr = [self msgAttString:model.msgInfo];
+            NSAttributedString *tipAttStr = [self msgAttString:model.tipInfo];
             [textAttStr appendAttributedString:tipAttStr];
         }
     }

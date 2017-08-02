@@ -26,8 +26,9 @@
     self.membersArray = renderViewArray;
     
     [self.renderView updateWithRenderModelManager:renderModelManger
-                          bgViewIdentify:bgViewIdentify
-                               renderViewArray:renderViewArray];
+                                   bgViewIdentify:bgViewIdentify
+                                  renderViewArray:renderViewArray
+     ];
 }
 
 - (void)renderModelManger:(id)renderModelManger inviteMember:(NSString *)inviteMemberId

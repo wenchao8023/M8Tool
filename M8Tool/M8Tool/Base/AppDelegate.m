@@ -146,7 +146,6 @@
     
     [[ILiveSDK getInstance] initSdk:[ILiveAppId intValue] accountType:[ILiveAccountType intValue]];
     
-    
     M8GlobalListener *globalListener = [[M8GlobalListener alloc] init];
     
     [[ILiveSDK getInstance] setConnListener:globalListener];
@@ -189,8 +188,16 @@
     
     
     //如果是会议中非正常退出App，则向视频中的发送下线消息
+    if ([M8UserDefault getIsInMeeting])
+    {
+        [WCNotificationCenter postNotificationName:kAppWillTerminate_Notification object:nil];
+    }
 }
 
+- (void)dealloc
+{
+    [WCNotificationCenter removeObserver:self name:kAppWillTerminate_Notification object:nil];
+}
 
 #pragma mark - Core Data stack
 

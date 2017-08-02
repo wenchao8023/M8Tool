@@ -36,6 +36,8 @@
     [WCNotificationCenter addObserver:self selector:@selector(onHiddeMenuView) name:kHiddenMenuView_Notifycation object:nil];
     //收到邀请成员通知
     [WCNotificationCenter addObserver:self selector:@selector(onReceiveInviteMembers) name:kInviteMembers_Notifycation object:nil];
+    //收到App异常退出通知
+    [WCNotificationCenter addObserver:self selector:@selector(selfDismiss) name:kAppWillTerminate_Notification object:nil];
     
 }
 
@@ -414,6 +416,7 @@
 {
     [WCNotificationCenter removeObserver:self name:kHiddenMenuView_Notifycation object:nil];
     [WCNotificationCenter removeObserver:self name:kInviteMembers_Notifycation object:nil];
+    [WCNotificationCenter removeObserver:self name:kAppWillTerminate_Notification object:nil];
 }
 
 @end

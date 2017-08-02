@@ -149,6 +149,7 @@ typedef NS_ENUM(NSInteger, LastLoginType)   //上一次登录的类型
 #define kNewFriendStatu_Notification    @"kNewFriendStatu_Notification" //新好友存在或没有的状态变化通知
 #define kAppLaunchingNet_Notification   @"kAppLaunchingNet_Notification"//App启动中网络状态未连接通知
 #define kAppNetStatus_Notification      @"kAppNetStatus_Notification"   //App网络状态通知
+#define kAppWillTerminate_Notification  @"kAppWillTerminate_Notification"   //会议中App退出通知
 
 
 /******************** role string **********************/
