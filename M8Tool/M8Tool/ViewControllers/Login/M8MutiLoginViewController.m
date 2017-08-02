@@ -7,6 +7,7 @@
 //
 
 #import "M8MutiLoginViewController.h"
+#import "M8LoginWebService.h"
 
 @interface M8MutiLoginViewController ()
 
@@ -137,6 +138,9 @@
 {
     WCLog(@"onQQAction");
     
+    __block NSString *openid = nil;
+    __block NSString *nick = nil;
+    
     // 拉取授权前，先取消上一次授权，否则不会跳转第三方————》没用☹
     [ShareSDK cancelAuthorize:SSDKPlatformTypeAny];
     //例如QQ的登录
@@ -145,18 +149,31 @@
      {
          if (state == SSDKResponseStateSuccess)
          {
-             NSLog(@"uid=%@",user.uid);
-             NSLog(@"%@",user.credential);
-             NSLog(@"token=%@",user.credential.token);
-             NSLog(@"nickname=%@",user.nickname);
+             openid = user.uid;
+             nick = user.nickname;
+//             NSLog(@"uid=%@",user.uid);
+//             NSLog(@"%@",user.credential);
+//             NSLog(@"token=%@",user.credential.token);
+//             NSLog(@"nickname=%@",user.nickname);
+             
+             LoadView *loginWaitView = [LoadView loadViewWith:@"正在登录"];
+             [self.view addSubview:loginWaitView];
+             
+             M8LoginWebService *webService = [[M8LoginWebService alloc] init];
+             [webService M8QQLoginWithOpenId:openid nick:nick cancelPVN:^{
+                 
+                 [loginWaitView removeFromSuperview];
+             }];
          }
          
          else
          {
              NSLog(@"%@",error);
          }
-         
      }];
+    
+    
+    
 
 }
 

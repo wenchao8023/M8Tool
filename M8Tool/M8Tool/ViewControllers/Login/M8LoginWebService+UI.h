@@ -51,6 +51,14 @@
 
 
 /**
+ QQ登录成功
+
+ @param openId qqopenid
+ */
+- (void)onQQLoginSucc:(NSString *_Nullable)openId;
+
+
+/**
  登录模块alert
 
  @param msg 信息

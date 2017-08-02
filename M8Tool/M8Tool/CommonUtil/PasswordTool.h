@@ -30,4 +30,25 @@
 +(void)deletePassWord;
 
 
+
+/**
+ *    @brief    存储QQ openId
+ *
+ *    @param     openId openId
+ */
++(void)saveQQOpenId:(NSString *)openId;
+
+/**
+ *    @brief    读取QQ openId
+ *
+ *    @return    密码内容
+ */
++(id)readQQOpenId;
+
+/**
+ *    @brief    删除密码数据
+ */
++(void)deleteQQOpenId;
+
+
 @end

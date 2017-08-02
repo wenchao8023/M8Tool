@@ -210,19 +210,19 @@
     {
         if (iPhone4)
         {
-            _scrollImgArray = @[@"M8", @"MeetingViewHeader4", @"M8", @"MeetingViewHeader4"];
+            _scrollImgArray = @[@"M8_4", @"MeetingViewHeader4", @"M8_4", @"MeetingViewHeader4"];
         }
         else if (iPhone5)
         {
-            _scrollImgArray = @[@"M8", @"MeetingViewHeader5", @"M8", @"MeetingViewHeader5"];
+            _scrollImgArray = @[@"M8_5", @"MeetingViewHeader5", @"M8_5", @"MeetingViewHeader5"];
         }
         else if (iPhone6P)
         {
-            _scrollImgArray = @[@"M8", @"MeetingViewHeader6p", @"M8", @"MeetingViewHeader6p"];
+            _scrollImgArray = @[@"M8_6p", @"MeetingViewHeader6p", @"M8_6p", @"MeetingViewHeader6p"];
         }
         else    //默认是 iPhone6 的标准尺寸
         {
-            _scrollImgArray = @[@"M8", @"MeetingViewHeader6", @"M8", @"MeetingViewHeader6"];
+            _scrollImgArray = @[@"M8_6", @"MeetingViewHeader6", @"M8_6", @"MeetingViewHeader6"];
         }
         
         WCLog(@"%@", _scrollImgArray);
@@ -276,6 +276,18 @@
 }
 
 #pragma mark - -- UIScrollViewDelegate
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    //停止定时器
+    [self.scrollTimer invalidate];
+    self.scrollTimer = nil;
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    [self scrollTimer];
+}
+
 //手动滑动之后调用的方法
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {

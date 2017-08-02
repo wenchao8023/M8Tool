@@ -36,10 +36,10 @@
                                         <rect key="frame" x="20" y="0.0" width="44" height="44"/>
                                         <subviews>
                                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="naviBackIcon" translatesAutoresizingMaskIntoConstraints="NO" id="tPs-aJ-eAS">
-                                                <rect key="frame" x="0.0" y="14" width="12" height="16"/>
+                                                <rect key="frame" x="0.0" y="12" width="12" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="12" id="V6D-qj-7Av"/>
-                                                    <constraint firstAttribute="height" constant="16" id="cdd-dg-JwN"/>
+                                                    <constraint firstAttribute="height" constant="20" id="cdd-dg-JwN"/>
                                                 </constraints>
                                             </imageView>
                                         </subviews>
@@ -97,16 +97,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号/邮箱" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="v2F-GB-2a5">
-                                <rect key="frame" x="20" y="148" width="335" height="40"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="hSi-Fq-87O"/>
-                                </constraints>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ff7-MO-Agy">
                                 <rect key="frame" x="20" y="192" width="335" height="1"/>
                                 <color key="backgroundColor" red="0.3992497921" green="0.42335069180000001" blue="0.44004637000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -137,6 +127,16 @@
                                     <action selector="onMoreAction:" destination="38h-on-xE2" eventType="touchUpInside" id="Eoq-pe-b17"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号/邮箱" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="v2F-GB-2a5">
+                                <rect key="frame" x="20" y="148" width="335" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="hSi-Fq-87O"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.34420636296272278" green="0.37222510576248169" blue="0.39724573493003845" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -440,9 +440,9 @@
                                         <rect key="frame" x="20" y="0.0" width="44" height="44"/>
                                         <subviews>
                                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="naviBackIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Dye-Nr-qDH">
-                                                <rect key="frame" x="0.0" y="14.5" width="12" height="16"/>
+                                                <rect key="frame" x="0.0" y="12.5" width="12" height="20"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="16" id="WDA-9o-IwL"/>
+                                                    <constraint firstAttribute="height" constant="20" id="WDA-9o-IwL"/>
                                                     <constraint firstAttribute="width" constant="12" id="Zml-lK-rE1"/>
                                                 </constraints>
                                             </imageView>
@@ -652,7 +652,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iTC-Xk-7K2">
                                 <rect key="frame" x="0.0" y="64" width="375" height="44"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="忘记密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vAO-gE-iIx">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设置密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vAO-gE-iIx">
                                         <rect key="frame" x="152.5" y="0.0" width="69.5" height="44"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -662,10 +662,10 @@
                                         <rect key="frame" x="20" y="0.0" width="44" height="44"/>
                                         <subviews>
                                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="naviBackIcon" translatesAutoresizingMaskIntoConstraints="NO" id="4Xj-tF-ZMo">
-                                                <rect key="frame" x="0.0" y="14.5" width="12" height="16"/>
+                                                <rect key="frame" x="0.0" y="12.5" width="12" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="12" id="HAY-3m-TX5"/>
-                                                    <constraint firstAttribute="height" constant="16" id="qj1-6a-QJs"/>
+                                                    <constraint firstAttribute="height" constant="20" id="qj1-6a-QJs"/>
                                                 </constraints>
                                             </imageView>
                                         </subviews>
@@ -807,9 +807,9 @@
                                         <rect key="frame" x="20" y="0.0" width="44" height="44"/>
                                         <subviews>
                                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="naviBackIcon" translatesAutoresizingMaskIntoConstraints="NO" id="DNz-Ph-CgK">
-                                                <rect key="frame" x="0.0" y="14.5" width="12" height="16"/>
+                                                <rect key="frame" x="0.0" y="12.5" width="12" height="20"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="16" id="A6w-gX-8Pt"/>
+                                                    <constraint firstAttribute="height" constant="20" id="A6w-gX-8Pt"/>
                                                     <constraint firstAttribute="width" constant="12" id="OSZ-9N-QXt"/>
                                                 </constraints>
                                             </imageView>
@@ -949,7 +949,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DBw-Qt-45g" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JH4-4u-fY0">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="JH4-4u-fY0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -972,6 +972,6 @@
         <image name="threeRDLoginIcon_Wechat.png" width="60" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="81F-GK-BJI"/>
+        <segue reference="GR3-kb-wIc"/>
     </inferredMetricsTieBreakers>
 </document>

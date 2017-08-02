@@ -99,26 +99,40 @@
     [self.alertView removeFromSuperview];
     self.alertView = nil;
     
-    NSString *name  = [M8UserDefault getLoginId];
-    NSString *pwd   = [M8UserDefault getLoginPwd];
-    
     LoadView *loginWaitView = [LoadView loadViewWith:@"正在登录"];
     [self.alertWindow addSubview:loginWaitView];
+    M8LoginWebService *webService = [[M8LoginWebService alloc] init];
+    LastLoginType loginType = [M8UserDefault getLastLoginType];
     
     WCWeakSelf(self);
-    M8LoginWebService *webService = [[M8LoginWebService alloc] init];
-    [webService M8ReLoginWithIdentifier:name password:pwd cancelPVN:^{
+    if (loginType == LastLoginType_phone)
+    {
+        NSString *name  = [M8UserDefault getLoginId];
+        NSString *pwd   = [M8UserDefault getLoginPwd];
         
-        [loginWaitView removeFromSuperview];
+        [webService M8ReLoginWithIdentifier:name password:pwd cancelPVN:^{
+            
+            [loginWaitView removeFromSuperview];
+            
+            for (UIView *subView in weakself.alertWindow.subviews)
+            {
+                [subView removeFromSuperview];
+            }
+            
+            weakself.alertWindow = nil;
+        }];
+    }
+    else if (loginType == LastLoginType_QQ)
+    {
+        NSString *openid  = [M8UserDefault getLoginId];
+        NSString *nick   = [M8UserDefault getLoginNick];
         
-        for (UIView *subView in weakself.alertWindow.subviews)
-        {
-            [subView removeFromSuperview];
-        }
-        
-        weakself.alertWindow = nil;
-    }];
-
+        [webService M8QQReLoginWithOpenId:openid nick:nick cancelPVN:^{
+            
+            [loginWaitView removeFromSuperview];
+        }];
+    }
+    
 }
 
 

@@ -12,6 +12,14 @@
 
 @interface CommonUtil : NSObject
 
+
+/**
+ 获取最近15天的日期
+
+ @return 日期数组
+ */
++ (NSArray *_Nullable)getCalendarData;
+
 + (void)makePhone:(NSString *)phoneStr;
 
 +(NSString *)getIconLabelStr:(NSString *)str ;

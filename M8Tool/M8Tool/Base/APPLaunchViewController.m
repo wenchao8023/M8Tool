@@ -33,7 +33,7 @@
     {
         [[AppDelegate sharedAppDelegate] enterLoginUI];
         
-        [AlertHelp tipWith:@"网络异常" wait:1];
+        [AlertHelp tipWith:@"网络连接异常" wait:1];
         
         return ;
     }
@@ -57,35 +57,46 @@
         return ;
     }
     
-//    //网络异常
-//    if (![AppDelegate sharedAppDelegate].netEnable)
-//    {
-//        [[AppDelegate sharedAppDelegate] enterLoginUI];
-//        
-//        [AlertHelp tipWith:@"网络异常" wait:1];
-//        
-//        return ;
-//    }
+    LastLoginType loginType = [M8UserDefault getLastLoginType];
+    M8LoginWebService *loginWeb = [[M8LoginWebService alloc] init];
     
-    NSString *loginId   = [M8UserDefault getLoginId];
-    NSString *loginPwd  = [M8UserDefault getLoginPwd];
-    
-    if (!(loginId && loginId.length &&
-          loginPwd && loginPwd.length))
+    if (loginType == LastLoginType_QQ)
     {
-        [[AppDelegate sharedAppDelegate] enterLoginUI];
+        NSString *openid = [M8UserDefault getLoginId];
+        NSString *nick   = [M8UserDefault getLoginNick];
         
-        return ;
+        [loginWeb M8QQAutoLoginWithOpenId:openid nick:nick failHandle:^{
+            
+            [[AppDelegate sharedAppDelegate] enterLoginUI];
+        }];
+        
+    }
+    else if (loginType == LastLoginType_phone)
+    {
+        NSString *loginId   = [M8UserDefault getLoginId];
+        NSString *loginPwd  = [M8UserDefault getLoginPwd];
+        
+        if (!(loginId && loginId.length &&
+              loginPwd && loginPwd.length))
+        {
+            [[AppDelegate sharedAppDelegate] enterLoginUI];
+            
+            return ;
+        }
+        else
+        {
+            
+            [loginWeb M8AutoLoginWithIdentifier:loginId
+                                       password:loginPwd
+                                     failHandle:^{
+                                         
+                                         [[AppDelegate sharedAppDelegate] enterLoginUI];
+                                     }];
+        }
     }
     else
     {
-        M8LoginWebService *loginWeb = [[M8LoginWebService alloc] init];
-        [loginWeb M8AutoLoginWithIdentifier:loginId
-                                   password:loginPwd
-                                 failHandle:^{
-                                     
-                                     [[AppDelegate sharedAppDelegate] enterLoginUI];
-                                 }];
+        [[AppDelegate sharedAppDelegate] enterLoginUI];
     }
 }
 

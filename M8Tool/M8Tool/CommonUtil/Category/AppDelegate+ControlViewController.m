@@ -7,6 +7,11 @@
 //
 
 #import "AppDelegate+ControlViewController.h"
+#import "MainTabBarController.h"
+#import "UserProtocolViewController.h"
+
+
+
 
 @implementation AppDelegate (ControlViewController)
 
@@ -131,6 +136,21 @@
     
     self.window.rootViewController = navi;
     [self.window makeKeyWindow];
+}
+
+- (void)enterMainUI
+{
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    if (![M8UserDefault getUserProtocolStatu])
+    {
+        UserProtocolViewController *vc = [[UserProtocolViewController alloc] init];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+        appDelegate.window.rootViewController = nav;
+        return;
+    }
+    MainTabBarController *tabBarVC = [[MainTabBarController alloc] init];
+    appDelegate.window.rootViewController = tabBarVC;
 }
 
 

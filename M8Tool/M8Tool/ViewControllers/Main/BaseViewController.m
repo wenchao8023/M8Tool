@@ -86,8 +86,9 @@
         
         // 返回视图
         UIView *backView = [[UIView alloc] init];
-        if (self.isExitLeftItem) {
-            backView.frame = CGRectMake(kContentOriginX, kDefaultStatuHeight, 60, kDefaultCellHeight);
+        if (self.isExitLeftItem)
+        {
+            backView.frame = CGRectMake(kContentOriginX - kDefaultMargin, kDefaultStatuHeight, 60, kDefaultCellHeight);
             UIImageView *imageV = [WCUIKitControl createImageViewWithFrame:CGRectMake(0, 14, 8, 16) ImageName:@"naviBackIcon"];
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(18, 0, 40, kDefaultCellHeight)];
             label.userInteractionEnabled = YES;
@@ -171,7 +172,7 @@
         [rightBtn setAttributedTitle:[CommonUtil customAttString:title
                                                         fontSize:kAppMiddleFontSize
                                                        textColor:WCWhite
-                                                       charSpace:kAppKern_2]
+                                                       charSpace:kAppKern_0]
                             forState:UIControlStateNormal];
     }
     
@@ -193,16 +194,6 @@
 {
     if (!_contentView)
     {
-//        CGFloat baseHeight = 667 - kDefaultStatuHeight - kDefaultTabbarHeight;
-//        CGFloat deviceHeight = SCREEN_HEIGHT - kDefaultTabbarHeight - kDefaultStatuHeight;
-//        
-//        CGFloat contentX = kContentOriginX;
-//        CGFloat contentY =  4 / baseHeight * deviceHeight + kDefaultNaviHeight;
-//        CGRect cFrame = CGRectMake(contentX,
-//                                   contentY,
-//                                   SCREEN_WIDTH - 2 * contentX,
-//                                   SCREEN_HEIGHT - contentY - kDefaultTabbarHeight - 49 / baseHeight * deviceHeight);
-        
         // 将宽度缩窄一点，对应的高度会增加一点
         CGFloat baseHeight = 667 - kDefaultStatuHeight - kDefaultTabbarHeight;
         CGFloat deviceHeight = SCREEN_HEIGHT - kDefaultTabbarHeight - kDefaultStatuHeight;

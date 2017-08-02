@@ -8,8 +8,7 @@
 
 #import "M8LoginWebService+UI.h"
 
-#import "MainTabBarController.h"
-#import "UserProtocolViewController.h"
+
 
 @implementation M8LoginWebService (UI)
 
@@ -41,22 +40,26 @@
 
 - (void)onLoginSucc:(NSString *)identifier password:(NSString *)password
 {
+    [M8UserDefault setUserLogout:NO];
+    [M8UserDefault setLastLoginType:LastLoginType_phone];
+    
     // 保存用户信息到本地
     [M8UserDefault setLoginId:identifier];
     [M8UserDefault setLoginPwd:password];
     
     // 进入主界面
-    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [[AppDelegate sharedAppDelegate] enterMainUI];
+}
+
+- (void)onQQLoginSucc:(NSString *)openId
+{
+    [M8UserDefault setUserLogout:NO];
+    [M8UserDefault setLastLoginType:LastLoginType_QQ];
     
-    if (![M8UserDefault getUserProtocolStatu])
-    {
-        UserProtocolViewController *vc = [[UserProtocolViewController alloc] init];
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-        appDelegate.window.rootViewController = nav;
-        return;
-    }
-    MainTabBarController *tabBarVC = [[MainTabBarController alloc] init];
-    appDelegate.window.rootViewController = tabBarVC;
+    [M8UserDefault setLoginId:openId];
+    
+    // 进入主界面
+    [[AppDelegate sharedAppDelegate] enterMainUI];
 }
 
 + (void)onLoginAelrt:(NSString *)msg
