@@ -72,7 +72,12 @@
                                                  textColor:WCWhite
                                                  charSpace:kAppKern_0]
                       forState:UIControlStateNormal];
+    
+    addBtn.hidden = !(self.contactType == ContactType_contact);
+    
     [self.headerView addSubview:addBtn];
+    
+    
 }
 
 

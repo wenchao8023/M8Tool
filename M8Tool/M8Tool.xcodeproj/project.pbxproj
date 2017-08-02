@@ -223,6 +223,9 @@
 		9473BB4B1F0CED900074F6A3 /* M8MeetDeviceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9473BB4A1F0CED900074F6A3 /* M8MeetDeviceView.xib */; };
 		9475FF471F21DCA100E1B745 /* M8CallViewController+AsyncListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 9475FF461F21DCA100E1B745 /* M8CallViewController+AsyncListener.m */; };
 		9475FF4C1F2202A100E1B745 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9475FF4B1F2202A100E1B745 /* UserNotifications.framework */; };
+		947664DF1F31BCFF00A78390 /* luanchUnSelect.png in Resources */ = {isa = PBXBuildFile; fileRef = 947664DC1F31BCFF00A78390 /* luanchUnSelect.png */; };
+		947664E01F31BCFF00A78390 /* luanchUnSelect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 947664DD1F31BCFF00A78390 /* luanchUnSelect@2x.png */; };
+		947664E11F31BCFF00A78390 /* luanchUnSelect@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 947664DE1F31BCFF00A78390 /* luanchUnSelect@3x.png */; };
 		947DB4571EF79DDC0019AE2B /* record_callType_audio.png in Resources */ = {isa = PBXBuildFile; fileRef = 947DB44C1EF79DDC0019AE2B /* record_callType_audio.png */; };
 		947DB4581EF79DDC0019AE2B /* record_callType_audio@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 947DB44D1EF79DDC0019AE2B /* record_callType_audio@2x.png */; };
 		947DB4591EF79DDC0019AE2B /* record_callType_audio@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 947DB44E1EF79DDC0019AE2B /* record_callType_audio@3x.png */; };
@@ -894,6 +897,9 @@
 		9475FF461F21DCA100E1B745 /* M8CallViewController+AsyncListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "M8CallViewController+AsyncListener.m"; sourceTree = "<group>"; };
 		9475FF4B1F2202A100E1B745 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		9475FF4D1F2202FE00E1B745 /* M8Tool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = M8Tool.entitlements; sourceTree = "<group>"; };
+		947664DC1F31BCFF00A78390 /* luanchUnSelect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = luanchUnSelect.png; sourceTree = "<group>"; };
+		947664DD1F31BCFF00A78390 /* luanchUnSelect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "luanchUnSelect@2x.png"; sourceTree = "<group>"; };
+		947664DE1F31BCFF00A78390 /* luanchUnSelect@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "luanchUnSelect@3x.png"; sourceTree = "<group>"; };
 		947DB44C1EF79DDC0019AE2B /* record_callType_audio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_callType_audio.png; sourceTree = "<group>"; };
 		947DB44D1EF79DDC0019AE2B /* record_callType_audio@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_callType_audio@2x.png"; sourceTree = "<group>"; };
 		947DB44E1EF79DDC0019AE2B /* record_callType_audio@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_callType_audio@3x.png"; sourceTree = "<group>"; };
@@ -2261,6 +2267,16 @@
 			path = onMeetingUnit;
 			sourceTree = "<group>";
 		};
+		947664DB1F31BCFF00A78390 /* luanchUnSelect */ = {
+			isa = PBXGroup;
+			children = (
+				947664DC1F31BCFF00A78390 /* luanchUnSelect.png */,
+				947664DD1F31BCFF00A78390 /* luanchUnSelect@2x.png */,
+				947664DE1F31BCFF00A78390 /* luanchUnSelect@3x.png */,
+			);
+			path = luanchUnSelect;
+			sourceTree = "<group>";
+		};
 		947DB44A1EF79DDC0019AE2B /* recordTypeImg */ = {
 			isa = PBXGroup;
 			children = (
@@ -3211,6 +3227,7 @@
 				94AFAAF21F179A9C0025FB0B /* QQAVEffect7_1.png */,
 				94AFAAED1F1771090025FB0B /* multLoginBg.png */,
 				9423C6291F04EAF6002D2839 /* launchImgbg.png */,
+				947664DB1F31BCFF00A78390 /* luanchUnSelect */,
 				94F1D95A1F30B81D00A1488A /* monthImg */,
 				94F1D94B1F30B6FE00A1488A /* M8 */,
 				94ABF4E41F302AE800995C07 /* destructiionTip */,
@@ -3428,6 +3445,7 @@
 				94A026881F1CE1BF00F112D5 /* MeetingAgendaHeader.xib in Resources */,
 				943A09051EDEDF92003CEA27 /* btnImg_meetingCollect.png in Resources */,
 				94A128011EF13ECA00ED2703 /* liveCloseMic@3x.png in Resources */,
+				947664E11F31BCFF00A78390 /* luanchUnSelect@3x.png in Resources */,
 				94D348C11EFD043A008A1AEC /* M8LiveHeaderView.xib in Resources */,
 				949522641F188F0B0095647D /* UsrContactFriendCell.xib in Resources */,
 				943A09061EDEDF92003CEA27 /* btnImg_meetingNote.png in Resources */,
@@ -3472,6 +3490,7 @@
 				94D0A1111EE6AC67009399C6 /* userSetting.png in Resources */,
 				949362B01F2A153500B5F432 /* user_friendIcon@3x.png in Resources */,
 				94642B571F2B6B0C00FC380C /* speechOn2@2x.png in Resources */,
+				947664E01F31BCFF00A78390 /* luanchUnSelect@2x.png in Resources */,
 				947DB45F1EF79DDC0019AE2B /* record_callType_video@3x.png in Resources */,
 				9422BEF81EE5844B00F9B56D /* M8ThemeCell.xib in Resources */,
 				94A987F71EF008500080BEF2 /* liveInvite.png in Resources */,
@@ -3538,6 +3557,7 @@
 				94AFAAD01F176F1A0025FB0B /* onMeetNote.png in Resources */,
 				94C9B8381ECD688400F42654 /* MeetingLuanchCell.xib in Resources */,
 				94A127F91EF13ECA00ED2703 /* liveAudio_off.png in Resources */,
+				947664DF1F31BCFF00A78390 /* luanchUnSelect.png in Resources */,
 				94BACD941EEE2CB30017FFDE /* liveReceiver_on@2x.png in Resources */,
 				947DB4591EF79DDC0019AE2B /* record_callType_audio@3x.png in Resources */,
 				94642B521F2B6B0C00FC380C /* speechOff@3x.png in Resources */,
