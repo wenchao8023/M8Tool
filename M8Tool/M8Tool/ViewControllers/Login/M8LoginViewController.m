@@ -50,10 +50,6 @@
     [self addSwipeBack];
     
     [self getUserDefault];
-    
-    if (!_isLogout) {
-//        [self autoLogin];
-    }
 }
 
 - (void)addSwipeBack
@@ -65,10 +61,7 @@
     [self.view addGestureRecognizer:pan];
 }
 
-- (void)autoLogin {
-    [self loginName:_userNameTF.text pwd:_passwordTF.text];
-}
-    
+
 
 
 - (void)didReceiveMemoryWarning {
@@ -110,6 +103,13 @@
 
 - (void)loginName:(NSString *)identifier pwd:(NSString *)pwd
 {
+    if (![AppDelegate sharedAppDelegate].netEnable)
+    {
+        [AlertHelp tipWith:@"网络连接异常" wait:1];
+        
+        return ;
+    }
+    
     LoadView *loginWaitView = [LoadView loadViewWith:@"正在登录"];
     [self.view addSubview:loginWaitView];
     
@@ -122,10 +122,13 @@
 
 - (void)getUserDefault
 {
-    NSString *name  = [M8UserDefault getLoginId];
-    NSString *pwd   = [M8UserDefault getLoginPwd];
-    self.userNameTF.text = name;
-    self.passwordTF.text = pwd;
+    if ([M8UserDefault getLastLoginType] == LastLoginType_phone)
+    {
+        NSString *name  = [M8UserDefault getLoginId];
+        NSString *pwd   = [M8UserDefault getLoginPwd];
+        self.userNameTF.text = name;
+        self.passwordTF.text = pwd;
+    }
 }
 
 

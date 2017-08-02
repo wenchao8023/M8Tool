@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,8 +15,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="研发部的视频会议" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdc-DG-BV6" customClass="M8LiveLabel">
-                    <rect key="frame" x="10" y="20" width="131" height="19.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdc-DG-BV6" customClass="M8LiveLabel">
+                    <rect key="frame" x="10" y="20" width="0.0" height="19.5"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="9lB-8T-XC6"/>
                     </constraints>
@@ -23,8 +24,8 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" text="会议发起人" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQc-mF-f4Y" customClass="M8LiveLabel">
-                    <rect key="frame" x="30" y="39.5" width="71.5" height="20"/>
+                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" text="" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQc-mF-f4Y" customClass="M8LiveLabel">
+                    <rect key="frame" x="70" y="39.5" width="0.0" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="9m8-jU-cul"/>
                     </constraints>
@@ -32,8 +33,11 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" text="会议时间" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfX-vU-ssG" customClass="M8LiveLabel">
-                    <rect key="frame" x="121.5" y="39.5" width="57.5" height="20"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" text="" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfX-vU-ssG" customClass="M8LiveLabel">
+                    <rect key="frame" x="10" y="39.5" width="40" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="6zA-mK-dYv"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -43,11 +47,11 @@
             <constraints>
                 <constraint firstItem="mfX-vU-ssG" firstAttribute="height" secondItem="aQc-mF-f4Y" secondAttribute="height" id="D8i-WY-nCK"/>
                 <constraint firstItem="mfX-vU-ssG" firstAttribute="centerY" secondItem="aQc-mF-f4Y" secondAttribute="centerY" id="HHP-AI-GGk"/>
-                <constraint firstItem="mfX-vU-ssG" firstAttribute="leading" secondItem="aQc-mF-f4Y" secondAttribute="trailing" constant="20" id="U63-eg-tgC"/>
+                <constraint firstItem="aQc-mF-f4Y" firstAttribute="leading" secondItem="mfX-vU-ssG" secondAttribute="trailing" constant="20" id="dvx-xa-Fwz"/>
                 <constraint firstItem="aQc-mF-f4Y" firstAttribute="top" secondItem="pdc-DG-BV6" secondAttribute="bottom" id="fK6-Rm-d4G"/>
                 <constraint firstItem="pdc-DG-BV6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="h8k-Ot-cfo"/>
+                <constraint firstItem="mfX-vU-ssG" firstAttribute="leading" secondItem="pdc-DG-BV6" secondAttribute="leading" id="hvK-0L-ite"/>
                 <constraint firstItem="pdc-DG-BV6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="kkY-Ie-hhr"/>
-                <constraint firstItem="aQc-mF-f4Y" firstAttribute="leading" secondItem="pdc-DG-BV6" secondAttribute="leading" constant="20" id="xs1-2y-u1j"/>
             </constraints>
             <connections>
                 <outlet property="durationLabel" destination="mfX-vU-ssG" id="DlC-5m-CZF"/>

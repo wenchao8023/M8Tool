@@ -22,3 +22,15 @@
 @property (nonatomic, copy, nullable) NSString *nick;
 
 @end
+
+@interface QQLoginRequest : BaseRequest
+
+@property (nonatomic, copy, nullable) NSString *openId;
+@property (nonatomic, copy, nullable) NSString *nick;
+@property (nonatomic, copy, nullable) NSString *appId;
+
+@end
+
+
+
+

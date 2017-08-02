@@ -122,13 +122,15 @@ typedef NS_ENUM(NSInteger, GlobalAlertType)
     GlobalAlertType_forceOffline        //踢下线通知提醒
 };
 
-
+typedef NS_ENUM(NSInteger, LastLoginType)   //上一次登录的类型
+{
+    LastLoginType_phone,    //手机号登录
+    LastLoginType_QQ        //QQ登录
+};
 
 /******************** notification **********************/
 #define kUserParise_Notification        @"kUserParise_Notification"
-//#define kUserJoinRoom_Notification      @"kUserJoinRoom_Notification"
-//#define kUserExitRoom_Notification      @"kUserExitRoom_Notification"
-#define kUserMemChange_Notification      @"kUserMemChange_Notification"
+#define kUserMemChange_Notification     @"kUserMemChange_Notification"
 #define kUserUpVideo_Notification       @"kUserUpVideo_Notification"
 #define kUserDownVideo_Notification     @"kUserDownVideo_Notification"
 #define kUserSwitchRoom_Notification    @"kUserSwitchRoom_Notification"
@@ -146,6 +148,7 @@ typedef NS_ENUM(NSInteger, GlobalAlertType)
 #define kInviteMembers_Notifycation     @"kInviteMembers_Notifycation"  //会议中邀请成员
 #define kNewFriendStatu_Notification    @"kNewFriendStatu_Notification" //新好友存在或没有的状态变化通知
 #define kAppLaunchingNet_Notification   @"kAppLaunchingNet_Notification"//App启动中网络状态未连接通知
+#define kAppNetStatus_Notification      @"kAppNetStatus_Notification"   //App网络状态通知
 
 
 /******************** role string **********************/
@@ -170,6 +173,7 @@ typedef NS_ENUM(NSInteger, GlobalAlertType)
 #define kMeetList           @"kMeetList"        //保存本地用户列表
 #define kNewFriendNotify    @"kNewFriendNotify" //判断是否有新的朋友
 #define kNewFriendIdentify  @"kNewFriendIdentify"  //保存新的好友id
+#define kLastLoginType      @"kLastLoginType"   //记录用户上一次登录的方式
 
 /******************** appstore **********************/
 #define kIsAppstoreVersion 0

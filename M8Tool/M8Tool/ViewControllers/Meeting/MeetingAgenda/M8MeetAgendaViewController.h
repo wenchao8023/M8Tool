@@ -8,6 +8,7 @@
 
 #import "BaseViewController.h"
 
+//wait to charge img
 @interface M8MeetAgendaViewController : BaseViewController
 
 @end

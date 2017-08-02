@@ -63,7 +63,7 @@
     CGFloat contentHeight = (SCREEN_HEIGHT - CGRectGetMaxY(triangleLabel.frame) - 60);
     
     
-    UIImageView *imageV = [WCUIKitControl createImageViewWithFrame:CGRectMake(0, 0, kImageWidth, kImageHeight) ImageName:@"M8"];
+    UIImageView *imageV = [WCUIKitControl createImageViewWithFrame:CGRectMake(0, 0, kImageWidth, kImageHeight) ImageName:@"M8_6"];
     [imageV setCenterX:triangleLabel.centerX];
     [imageV setCenterY:CGRectGetMaxY(triangleLabel.frame) + contentHeight / 2];
     [self.view addSubview:imageV];

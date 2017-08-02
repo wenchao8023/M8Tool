@@ -13,6 +13,13 @@
 
 - (void)loadNetData
 {
+    if (![AppDelegate sharedAppDelegate].netEnable)
+    {
+        [AlertHelp tipWith:@"网络连接异常" wait:1];
+        [self endAllRefresh:NO];
+        return ;
+    }
+    
     self.pageNums   = 20;
     self.pageOffset = 0;
     [self.dataArray removeAllObjects];
@@ -26,6 +33,13 @@
 
 - (void)loadMoreData
 {
+    if (![AppDelegate sharedAppDelegate].netEnable)
+    {
+        [AlertHelp tipWith:@"网络连接异常" wait:1];
+        [self endAllRefresh:NO];
+        return ;
+    }
+    
     self.pageOffset = (int)self.dataArray.count;
     
     [self loadDataWithOffset:self.pageOffset];

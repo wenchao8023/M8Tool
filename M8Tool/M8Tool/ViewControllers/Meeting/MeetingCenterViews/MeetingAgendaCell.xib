@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -32,7 +33,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5月7号" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgy-gh-18f">
-                        <rect key="frame" x="127" y="140.5" width="47" height="20"/>
+                        <rect key="frame" x="126.5" y="170" width="47" height="20"/>
                         <fontDescription key="fontDescription" name="DroidSansFallback" family="Droid Sans Fallback" pointSize="15"/>
                         <color key="textColor" red="1" green="0.47669748179999999" blue="0.52964088669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -44,7 +45,7 @@
                 <constraint firstItem="y9f-Pz-jFk" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="0D4-Pe-nEv"/>
                 <constraint firstAttribute="bottom" secondItem="y9f-Pz-jFk" secondAttribute="bottom" constant="8" id="QHh-Gv-XPZ"/>
                 <constraint firstItem="y9f-Pz-jFk" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="ROh-M9-geg"/>
-                <constraint firstItem="fgy-gh-18f" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="rqT-PD-EHu"/>
+                <constraint firstItem="fgy-gh-18f" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" multiplier="1.2" id="rqT-PD-EHu"/>
                 <constraint firstItem="fgy-gh-18f" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="xnh-89-x1b"/>
             </constraints>
             <size key="customSize" width="297" height="284"/>
@@ -56,6 +57,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="calendar" width="192" height="192"/>
+        <image name="calendar" width="40" height="40"/>
     </resources>
 </document>

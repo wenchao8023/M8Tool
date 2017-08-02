@@ -45,12 +45,14 @@
 //未知网络
 - (void)onAFNetworkReachabilityStatusUnknown
 {
+    NSLog(@"未知网络");
+    [AppDelegate sharedAppDelegate].netEnable = NO;
     if ([M8UserDefault getAppIsLaunching])
     {
         [WCNotificationCenter postNotificationName:kAppLaunchingNet_Notification object:nil userInfo:nil];
     }
-    NSLog(@"未知网络");
-    [AppDelegate sharedAppDelegate].netEnable = NO;
+    
+    [WCNotificationCenter postNotificationName:kAppNetStatus_Notification object:@(AFNetworkReachabilityStatusUnknown)];
 }
 
 //无法联网
@@ -58,6 +60,11 @@
 {
     NSLog(@"无法联网");
     [AppDelegate sharedAppDelegate].netEnable = NO;
+    if ([M8UserDefault getAppIsLaunching])
+    {
+        [WCNotificationCenter postNotificationName:kAppLaunchingNet_Notification object:nil userInfo:nil];
+    }
+    [WCNotificationCenter postNotificationName:kAppNetStatus_Notification object:@(AFNetworkReachabilityStatusNotReachable)];
 }
 
 //手机自带网络
@@ -65,6 +72,7 @@
 {
     NSLog(@"当前使用的是2g/3g/4g网络");
     [AppDelegate sharedAppDelegate].netEnable = YES;
+    [WCNotificationCenter postNotificationName:kAppNetStatus_Notification object:@(AFNetworkReachabilityStatusReachableViaWWAN)];
 }
 
 //WIFI
@@ -72,5 +80,6 @@
 {
     NSLog(@"当前在WIFI网络下");
     [AppDelegate sharedAppDelegate].netEnable = YES;
+    [WCNotificationCenter postNotificationName:kAppNetStatus_Notification object:@(AFNetworkReachabilityStatusReachableViaWiFi)];
 }
 @end

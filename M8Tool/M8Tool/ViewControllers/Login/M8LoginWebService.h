@@ -55,6 +55,24 @@ typedef void (^M8LoginHandle)();
                          password:(NSString * _Nullable)password
                        failHandle:(M8LoginHandle _Nullable)failHandle;
 
+//QQ登录
+- (void)M8QQLoginWithOpenId:(NSString *_Nullable)openId
+                       nick:(NSString *_Nullable)nick
+                  cancelPVN:(M8LoginHandle _Nullable)cancelHandle;
+
+//被踢下线重新登录
+- (void)M8QQReLoginWithOpenId:(NSString *_Nullable)openId
+                         nick:(NSString *_Nullable)nick
+                    cancelPVN:(M8LoginHandle _Nullable)cancelHandle;
+
+//启动App 自动登录
+- (void)M8QQAutoLoginWithOpenId:(NSString *_Nullable)openId
+                           nick:(NSString *_Nullable)nick
+                     failHandle:(M8LoginHandle _Nullable)failHandle;
+
+
+
+
 
 /**
  获取验证码

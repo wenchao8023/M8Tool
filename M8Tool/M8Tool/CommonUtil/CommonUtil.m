@@ -10,6 +10,171 @@
 
 @implementation CommonUtil
 
++ (NSArray *)getCalendarData
+{
+    NSMutableArray *fifthDaysArr = [NSMutableArray arrayWithCapacity:0];
+    
+    NSDate *todayDate = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSDateComponents *comps = [DAYUtils dateComponentsFromDate:todayDate];
+
+    NSUInteger currentYear  = comps.year;
+    NSUInteger currentMonth = comps.month;
+    NSUInteger currentDay   = comps.day;
+    NSUInteger currentTotalDays = [DAYUtils daysInMonth:currentMonth ofYear:currentYear];
+    NSUInteger currentWeekday = [DAYUtils weekdataInMonth:currentMonth ofDay:currentDay ofYear:currentYear] - 1;
+    
+    NSUInteger lastMonth;
+    NSUInteger lastYear;    //上一个月份所对应的年份，可能是上一年，也可能是当前年
+    NSUInteger lastTotalDay;
+    
+    NSUInteger nextMonth;
+    NSUInteger nextYear;    //下一个月份所对应的年份，可能是下一年，也可能是当前年
+    NSUInteger nextTotalDay;
+    
+    
+    if (currentMonth == 1)
+    {
+        lastMonth = 12; //上一年12月
+        nextMonth = 2;
+        
+        lastYear  = currentYear - 1;
+        nextYear  = currentYear;
+    }
+    else if (currentMonth == 12)
+    {
+        lastMonth = 11;
+        nextMonth = 1;   //下一年1月
+        
+        lastYear  = currentYear;
+        nextYear  = currentYear + 1;
+    }
+    else
+    {
+        lastMonth = currentMonth - 1;
+        nextMonth = currentMonth + 1;
+        
+        lastYear  = currentYear;
+        nextYear  = currentYear;
+    }
+    
+    lastTotalDay = [DAYUtils daysInMonth:lastMonth ofYear:lastYear];
+    nextTotalDay = [DAYUtils daysInMonth:nextMonth ofYear:nextYear];
+    
+    //保存上周(属于工作日的)的日期
+    NSUInteger lastWeekdays;
+    
+    
+    if (currentWeekday == 0 ||
+        currentWeekday == 6)    //这周已经到双休了，应该先保存这周工作日的会议
+    {
+        lastWeekdays = 5;
+    }
+    else    //这周还在工作日
+    {
+        lastWeekdays = currentWeekday - 1;
+    }
+    
+    /////////////////往前遍历
+    for (NSUInteger i = currentDay - 1; i >= 1; i--)  //从今天往前循环，直到 1 号，不包括今天
+    {
+        NSUInteger weekday = [DAYUtils weekdataInMonth:currentMonth ofDay:i ofYear:currentYear] - 1;
+        if (weekday == 6 ||
+            weekday == 0)
+        {
+            continue ;
+        }
+        
+        if (fifthDaysArr.count == lastWeekdays)   //达到上月属于本周工作日的天数，则停止循环
+        {
+            break;
+        }
+        
+        NSDateComponents *compts = [[NSDateComponents alloc] init];
+        compts.month = currentMonth;
+        compts.day   = i;
+        [fifthDaysArr insertObject:compts atIndex:0];   //保存日期
+    }
+    
+    if (fifthDaysArr.count < lastWeekdays)  //如果循环到了 1 号还没有满 5 天，则需要遍历上一个月
+    {
+        for (NSUInteger i = lastTotalDay; i >= 1; i--)  //上月的从月底开始循环
+        {
+            NSUInteger weekday = [DAYUtils weekdataInMonth:lastMonth ofDay:i ofYear:lastYear] - 1;
+            if (weekday == 6 ||
+                weekday == 0)
+            {
+                continue ;
+            }
+            
+            if (fifthDaysArr.count == lastWeekdays)   //达到上月属于本周工作日的天数，则停止循环
+            {
+                break;
+            }
+            
+            NSDateComponents *compts = [[NSDateComponents alloc] init];
+            compts.month = lastMonth;
+            compts.day   = i;
+            [fifthDaysArr insertObject:compts atIndex:0];   //保存日期
+        }
+    }
+    
+    NSString *des = [NSString stringWithFormat:@"逻辑错误，这里应该存满%ld天", lastWeekdays];
+    BOOL condition = (fifthDaysArr.count == lastWeekdays);
+    NSAssert(condition, des);
+    
+    /////////////////往后遍历
+    for (NSUInteger i = currentDay; i <= currentTotalDays; i++) //从今天开始往后循环，直到 本月最后一天
+    {
+        NSUInteger weekday = [DAYUtils weekdataInMonth:currentMonth ofDay:i ofYear:currentYear] - 1;
+        if (weekday == 6 ||
+            weekday == 0)   //跳过周六和周日
+        {
+            continue ;
+        }
+        
+        if (fifthDaysArr.count == 15)   //达到15天则跳出循环
+        {
+            break;
+        }
+        
+        NSDateComponents *compts = [[NSDateComponents alloc] init];
+        compts.month = currentMonth;
+        compts.day   = i;
+        [fifthDaysArr addObject:compts];    //保存日期
+    }
+    
+    if (fifthDaysArr.count < 15)    //当月已遍历完，还不满15天，则去下一个月循环
+    {
+        for (NSUInteger i = 1; i <= nextTotalDay; i++)
+        {
+            NSUInteger weekday = [DAYUtils weekdataInMonth:nextMonth ofDay:i ofYear:nextYear] - 1;
+            if (weekday == 6 ||
+                weekday == 0)
+            {
+                continue ;
+            }
+            
+            if (fifthDaysArr.count == 15)   //达到15天则跳出循环
+            {
+                break;
+            }
+            
+            NSDateComponents *compts = [[NSDateComponents alloc] init];
+            compts.month = nextMonth;
+            compts.day   = i;
+            [fifthDaysArr addObject:compts];    //保存日期
+        }
+    }
+
+    NSAssert(fifthDaysArr.count == 15, @"逻辑错误，这里应该存满15天");
+
+    return (NSArray *)fifthDaysArr;
+}
+
+
+
+
+
 + (void)makePhone:(NSString *)phoneStr
 {
     UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];

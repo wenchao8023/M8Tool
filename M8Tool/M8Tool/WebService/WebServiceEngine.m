@@ -18,6 +18,13 @@ static WebServiceEngine *_sharedEngine = nil;
 
 - (void)AFAsynRequest:(BaseRequest *)req
 {
+    if (![AppDelegate sharedAppDelegate].netEnable)
+    {
+        [AlertHelp tipWith:@"网络连接异常" wait:1];
+        
+        return ;
+    }
+    
     if (!req)
     {
         return ;

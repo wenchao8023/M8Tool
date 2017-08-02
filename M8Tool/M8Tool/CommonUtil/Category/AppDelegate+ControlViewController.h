@@ -41,4 +41,5 @@
 
 - (void)enterLoginMutiUI;
 
+- (void)enterMainUI;
 @end

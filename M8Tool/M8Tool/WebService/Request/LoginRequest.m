@@ -34,3 +34,31 @@
 @implementation LoginResponceData
 
 @end
+
+
+
+@implementation QQLoginRequest
+
+- (NSString *)url
+{
+    NSString *host = [self hostUrl];
+    return [NSString stringWithFormat:@"%@svc=account&cmd=qqlogin",host];
+}
+
+- (NSDictionary *)packageParams
+{
+    NSDictionary *paramDic = @{
+                               @"id"    : _openId,
+                               @"nick"  : _nick,
+                               @"appid" : _appId
+                               };
+    return paramDic;
+}
+
+- (Class)responseDataClass
+{
+    return [LoginResponceData class];
+}
+
+
+@end

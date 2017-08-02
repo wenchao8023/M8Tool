@@ -14,7 +14,7 @@
 #pragma mark -- kLoginIdentifier（用户ID）
 + (NSString *)getLoginId
 {
-    return [self returnStringWithKey:kLoginIdentifier];
+    return [self returnObjectWithKey:kLoginIdentifier];
 }
 + (void)setLoginId:(NSString *)loginId
 {
@@ -24,7 +24,7 @@
 #pragma mark -- kLoginNick（用户昵称）
 + (NSString *)getLoginNick
 {
-    return [self returnStringWithKey:kLoginNick];
+    return [self returnObjectWithKey:kLoginNick];
 }
 + (void)setLoginNick:(NSString *)loginNick
 {
@@ -40,6 +40,32 @@
 {
     [PasswordTool savePassWord:loginPwd];
 }
+
+#pragma mark -- kLastLoginType（用户上一次登录类型）
++ (LastLoginType)getLastLoginType
+{
+    LastLoginType loginType;
+    id obj = [self returnObjectWithKey:kLastLoginType];
+    [obj getValue:&loginType];
+    
+    return loginType;
+}
++ (void)setLastLoginType:(LastLoginType)loginType
+{
+    [self setObject:@(loginType) key:kLastLoginType];
+}
+
+
+#pragma mark - QQ登录
++ (NSString *)getQQOpenId
+{
+    return [PasswordTool readQQOpenId];
+}
++ (void)setQQOpenId:(NSString *)openId
+{
+    [PasswordTool saveQQOpenId:openId];
+}
+
 
 #pragma mark - -- kUserLogout（用户主动登出）
 + (BOOL)getIsUserLogout
@@ -113,7 +139,7 @@
 #pragma mark -- kNewFriendIdentify (新的好友IDs)
 + (NSArray *)getNewFriendIdentify
 {
-    return [self returnStringWithKey:kNewFriendIdentify];
+    return [self returnObjectWithKey:kNewFriendIdentify];
 }
 
 + (void)setNewFriendIdentify:(NSArray *)idArr
@@ -126,7 +152,7 @@
 #pragma mark -- kThemeImage（主题图片）
 + (NSString *)getThemeImageString
 {
-    return [self returnStringWithKey:kThemeImage];
+    return [self returnObjectWithKey:kThemeImage];
 }
 + (void)setThemeImageString:(NSString *)imgStr
 {
@@ -154,7 +180,7 @@
     [userD synchronize];
 }
 
-+ (id)returnStringWithKey:(NSString *)key
++ (id)returnObjectWithKey:(NSString *)key
 {
     return [[NSUserDefaults standardUserDefaults] objectForKey:key];
 }

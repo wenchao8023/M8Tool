@@ -35,6 +35,13 @@
 + (NSString *_Nullable)getLoginPwd;
 + (void)setLoginPwd:(NSString *_Nullable)loginPwd;
 
+/**
+ QQ登陆的openID
+ 
+ @return openID
+ */
+//+ (NSString *_Nullable)getQQOpenId;
+//+ (void)setQQOpenId:(NSString *_Nullable)openId;
 
 /**
  用户主动登出
@@ -53,6 +60,13 @@
 + (BOOL)getAppIsLaunching;
 + (void)setAppLaunching:(BOOL)launching;
 
+/**
+ 用户退出App前登录类型
+ 
+ @return 用户登录类型
+ */
++ (LastLoginType)getLastLoginType;
++ (void)setLastLoginType:(LastLoginType)loginType;
 
 /**
  获取手机主题图片

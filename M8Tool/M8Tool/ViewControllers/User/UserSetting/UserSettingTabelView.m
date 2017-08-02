@@ -87,7 +87,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 0.01;
+    return 10.0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -177,7 +177,17 @@
 
             [M8UserDefault setUserLogout:YES];
             
-            [[AppDelegate sharedAppDelegate] enterLoginUI];
+            LastLoginType loginType = [M8UserDefault getLastLoginType];
+            if (loginType == LastLoginType_phone)
+            {
+                [[AppDelegate sharedAppDelegate] enterLoginUI];
+            }
+            else if (loginType == LastLoginType_QQ)
+            {
+                [[AppDelegate sharedAppDelegate] enterLoginMutiUI];
+            }
+            
+            
             
         } failed:^(NSString *module, int errId, NSString *errMsg) {
             

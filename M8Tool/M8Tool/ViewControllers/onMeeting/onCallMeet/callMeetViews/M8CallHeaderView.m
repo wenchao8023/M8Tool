@@ -55,6 +55,10 @@
 
 - (void)configHeaderView:(TCShowLiveListItem *)item
 {
+    M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
+    
+    
+    
     self.topicLabel.text = item.info.title;
     self.luancherLabel.text = item.info.host;
     [self beginCountTime];
@@ -76,7 +80,7 @@
 - (NSString *)getTimeStr:(int)time {
     NSString *str;
     if (time < 60) {
-        str = [NSString stringWithFormat:@"%d", time];
+        str = [NSString stringWithFormat:@"00:%02d", time];
     }
     else if (time < 60*60) {
         str = [NSString stringWithFormat:@"%02d:%02d", time / 60, time % 60];
