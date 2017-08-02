@@ -61,7 +61,7 @@
  */
 - (void)onMobContactAction
 {
-    
+    [AlertHelp alertWith:@"温馨提示" message:@"暂不支持查看手机联系人" cancelBtn:@"取消" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
 }
 
 

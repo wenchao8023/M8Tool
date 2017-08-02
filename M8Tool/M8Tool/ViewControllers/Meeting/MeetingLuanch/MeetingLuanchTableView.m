@@ -61,6 +61,8 @@
     {
         self.image = [UIImage imageNamed:image];
         self.userInteractionEnabled = YES;
+        
+        
     }
     return self;
 }
@@ -125,8 +127,8 @@
     if (!_tbHeaderView)
     {
         CGRect frame = self.bounds;
-        frame.size.height /= 2;
-        _tbHeaderView = [[M8LuanchTableViewHeader alloc] initWithFrame:frame image:@"defaul_publishcover"];
+        frame.size.height = frame.size.width * 222 / 375;
+        _tbHeaderView = [[M8LuanchTableViewHeader alloc] initWithFrame:frame image:@"M8_6"];
     }
     return _tbHeaderView;
 }
