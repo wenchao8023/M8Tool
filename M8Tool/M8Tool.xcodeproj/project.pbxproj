@@ -226,6 +226,7 @@
 		947664DF1F31BCFF00A78390 /* luanchUnSelect.png in Resources */ = {isa = PBXBuildFile; fileRef = 947664DC1F31BCFF00A78390 /* luanchUnSelect.png */; };
 		947664E01F31BCFF00A78390 /* luanchUnSelect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 947664DD1F31BCFF00A78390 /* luanchUnSelect@2x.png */; };
 		947664E11F31BCFF00A78390 /* luanchUnSelect@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 947664DE1F31BCFF00A78390 /* luanchUnSelect@3x.png */; };
+		947664E31F31C59C00A78390 /* M8LiveLuanchHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = 947664E21F31C59C00A78390 /* M8LiveLuanchHeader.png */; };
 		947DB4571EF79DDC0019AE2B /* record_callType_audio.png in Resources */ = {isa = PBXBuildFile; fileRef = 947DB44C1EF79DDC0019AE2B /* record_callType_audio.png */; };
 		947DB4581EF79DDC0019AE2B /* record_callType_audio@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 947DB44D1EF79DDC0019AE2B /* record_callType_audio@2x.png */; };
 		947DB4591EF79DDC0019AE2B /* record_callType_audio@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 947DB44E1EF79DDC0019AE2B /* record_callType_audio@3x.png */; };
@@ -900,6 +901,7 @@
 		947664DC1F31BCFF00A78390 /* luanchUnSelect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = luanchUnSelect.png; sourceTree = "<group>"; };
 		947664DD1F31BCFF00A78390 /* luanchUnSelect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "luanchUnSelect@2x.png"; sourceTree = "<group>"; };
 		947664DE1F31BCFF00A78390 /* luanchUnSelect@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "luanchUnSelect@3x.png"; sourceTree = "<group>"; };
+		947664E21F31C59C00A78390 /* M8LiveLuanchHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = M8LiveLuanchHeader.png; sourceTree = "<group>"; };
 		947DB44C1EF79DDC0019AE2B /* record_callType_audio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_callType_audio.png; sourceTree = "<group>"; };
 		947DB44D1EF79DDC0019AE2B /* record_callType_audio@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_callType_audio@2x.png"; sourceTree = "<group>"; };
 		947DB44E1EF79DDC0019AE2B /* record_callType_audio@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_callType_audio@3x.png"; sourceTree = "<group>"; };
@@ -3306,6 +3308,7 @@
 		94F1D94B1F30B6FE00A1488A /* M8 */ = {
 			isa = PBXGroup;
 			children = (
+				947664E21F31C59C00A78390 /* M8LiveLuanchHeader.png */,
 				94F1D94C1F30B6FE00A1488A /* M8_4.png */,
 				94F1D94D1F30B6FE00A1488A /* M8_5.png */,
 				94F1D94E1F30B6FE00A1488A /* M8_6.png */,
@@ -3471,6 +3474,7 @@
 				94642B3E1F2B691E00FC380C /* user_selected@2x.png in Resources */,
 				94ABA6511F287C0600E731F4 /* MeetingViewHeader6p.png in Resources */,
 				942BCB201EC1C4A0000F9911 /* DroidSansFallback.ttf in Resources */,
+				947664E31F31C59C00A78390 /* M8LiveLuanchHeader.png in Resources */,
 				94A127FC1EF13ECA00ED2703 /* liveAudio_on.png in Resources */,
 				94D0A10E1EE6AC67009399C6 /* userCard.png in Resources */,
 				94642B551F2B6B0C00FC380C /* speechOn1@3x.png in Resources */,
