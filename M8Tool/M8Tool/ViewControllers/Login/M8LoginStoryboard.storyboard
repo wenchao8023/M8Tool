@@ -87,7 +87,7 @@
                                     <color key="titleColor" red="0.68224054570000003" green="0.68217527870000005" blue="0.69451206919999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="bTR-BQ-jAg" kind="push" id="ilj-Jd-b1U"/>
+                                    <segue destination="bTR-BQ-jAg" kind="show" id="ilj-Jd-b1U"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cY1-JD-SB3">
@@ -230,7 +230,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="38h-on-xE2" kind="push" identifier="" id="CEI-fv-0Ej"/>
+                                    <segue destination="38h-on-xE2" kind="show" identifier="" id="CEI-fv-0Ej"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZIP-2s-bBm">
@@ -252,7 +252,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="55p-Hw-E1N" kind="push" id="G9z-CF-k9G"/>
+                                    <segue destination="55p-Hw-E1N" kind="show" id="G9z-CF-k9G"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y1N-Zc-B6Q">
@@ -535,7 +535,7 @@
                                     <color key="titleColor" red="0.68224054570000003" green="0.68217527870000005" blue="0.69451206919999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="hBa-TU-tgi" kind="push" id="GR3-kb-wIc"/>
+                                    <segue destination="hBa-TU-tgi" kind="show" id="GR3-kb-wIc"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击上面的按钮“下一步”即表示您同意" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDb-lz-sLt">
@@ -896,7 +896,7 @@
                                     <color key="titleColor" red="0.68224054570000003" green="0.68217527870000005" blue="0.69451206919999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="hBa-TU-tgi" kind="push" id="81F-GK-BJI"/>
+                                    <segue destination="hBa-TU-tgi" kind="show" id="81F-GK-BJI"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -949,7 +949,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DBw-Qt-45g" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JH4-4u-fY0">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="JH4-4u-fY0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -972,6 +972,6 @@
         <image name="threeRDLoginIcon_Wechat.png" width="60" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GR3-kb-wIc"/>
+        <segue reference="81F-GK-BJI"/>
     </inferredMetricsTieBreakers>
 </document>
