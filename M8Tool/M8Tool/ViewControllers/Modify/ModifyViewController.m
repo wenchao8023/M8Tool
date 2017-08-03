@@ -271,11 +271,13 @@ typedef void(^SaveBlock)();
             break;
     }
     
-    if ([self.WCDelegate respondsToSelector:@selector(modifyViewMofifyInfo:)]) {
+    if ([self.WCDelegate respondsToSelector:@selector(modifyViewMofifyInfo:)])
+    {
         [self.WCDelegate modifyViewMofifyInfo:modifyInfo];
     }
     
-    if ([self.WCDelegate respondsToSelector:@selector(modifyViewMofifyInfo:indexPath:)]) {
+    if ([self.WCDelegate respondsToSelector:@selector(modifyViewMofifyInfo:indexPath:)])
+    {
         [self.WCDelegate modifyViewMofifyInfo:modifyInfo indexPath:self.indexPath];
     }
     

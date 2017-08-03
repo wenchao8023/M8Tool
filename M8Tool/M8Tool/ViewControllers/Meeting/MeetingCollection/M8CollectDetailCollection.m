@@ -68,7 +68,8 @@ static CGFloat kSectionHeight = 40.f;
     return cell;
 }
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader])
+    {
         UICollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:CollectionHeaderID forIndexPath:indexPath];
         
         UILabel *titleLable = [WCUIKitControl createLabelWithFrame:CGRectMake(10, 0, self.width - 20, kSectionHeight) Text:[NSString stringWithFormat:@"互动直播人员: %ld人", self.dataArray.count]];
@@ -76,7 +77,10 @@ static CGFloat kSectionHeight = 40.f;
         
         return header;
     }
-    return nil;
+    else
+    {
+        return [[UICollectionReusableView alloc] initWithFrame:CGRectZero];
+    }
 }
 
 

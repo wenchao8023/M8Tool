@@ -29,7 +29,7 @@ typedef enum : NSUInteger {
  
  @param modifyInfo 修改的信息
  */
-- (void)modifyViewMofifyInfo:(NSDictionary *_Nonnull)modifyInfo ;
+- (void)modifyViewMofifyInfo:(NSDictionary *_Nullable)modifyInfo ;
 
 /**
  修改信息代理方法
@@ -37,7 +37,7 @@ typedef enum : NSUInteger {
  @param modifyInfo 修改的信息
  @param indexPath 对应 tableView 的下标
  */
-- (void)modifyViewMofifyInfo:(NSDictionary *_Nonnull)modifyInfo indexPath:(NSIndexPath *_Nonnull)indexPath;
+- (void)modifyViewMofifyInfo:(NSDictionary *_Nullable)modifyInfo indexPath:(NSIndexPath *_Nullable)indexPath;
 
 @end
 

@@ -177,7 +177,10 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
                                 totalNumbers:self.totalNumbers];
         return header;
     }
-    return nil;
+    else
+    {
+        return [[UICollectionReusableView alloc] initWithFrame:CGRectZero];
+    }
 }
 
 

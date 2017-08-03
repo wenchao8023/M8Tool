@@ -98,8 +98,8 @@
     //设置字体颜色
     [attDict setValue:WCBlack forKey:NSForegroundColorAttributeName];
     
-    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    
+//    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    NSMutableParagraphStyle *paragraphStyle;
     paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     paragraphStyle.lineSpacing = 0.0;//增加行高
     paragraphStyle.headIndent = 0;//头部缩进，相当于左padding

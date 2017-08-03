@@ -135,19 +135,16 @@
 {
     M8CallRenderCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"M8CallRenderCellID" forIndexPath:indexPath];
     
-    if (cell)
-    {
-        WCWeakSelf(self);
-        cell.removeBlock = ^(NSString * _Nullable info) {
+    WCWeakSelf(self);
+    cell.removeBlock = ^(NSString * _Nullable info) {
         
-            [weakself callRenderActionInfoValue:@{@"remove" : info} key:kCallAction];
-        };
+        [weakself callRenderActionInfoValue:@{@"remove" : info} key:kCallAction];
+    };
+    
+    cell.inviteBlock = ^(NSString * _Nullable info) {
         
-        cell.inviteBlock = ^(NSString * _Nullable info) {
-          
-            [weakself callRenderActionInfoValue:@{@"invite" : info} key:kCallAction];    
-        };
-    }
+        [weakself callRenderActionInfoValue:@{@"invite" : info} key:kCallAction];
+    };
     
     if (indexPath.row < self.membersArray.count)
     {
