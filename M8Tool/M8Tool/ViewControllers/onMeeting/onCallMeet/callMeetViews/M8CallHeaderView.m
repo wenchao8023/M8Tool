@@ -53,12 +53,15 @@
     [self.luancherLabel configLiveText];
 }
 
+- (void)configHeaderView:(NSString *)title hostNick:(NSString *)nick
+{
+    self.topicLabel.text = title;
+    self.luancherLabel.text = nick;
+    [self beginCountTime];
+}
+
 - (void)configHeaderView:(TCShowLiveListItem *)item
 {
-    M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
-    
-    
-    
     self.topicLabel.text = item.info.title;
     self.luancherLabel.text = item.info.host;
     [self beginCountTime];

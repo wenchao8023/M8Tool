@@ -151,4 +151,7 @@
 
 - (void)onInviteMembers;
 
+
+- (NSString *_Nullable)toNickWithUid:(NSString *_Nullable)uid;
+
 @end

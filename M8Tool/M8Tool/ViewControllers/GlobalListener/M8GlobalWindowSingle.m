@@ -89,29 +89,13 @@
         [[ILiveLoginManager getInstance] iLiveLogout:^{
             
             [logoutWaitView removeFromSuperview];
-            for (UIView *subView in weakself.alertWindow.subviews)
-            {
-                [subView removeFromSuperview];
-            }
-            weakself.alertWindow = nil;
             
-            [M8UserDefault setUserLogout:YES];
-            
-            LastLoginType loginType = [M8UserDefault getLastLoginType];
-            if (loginType == LastLoginType_phone)
-            {
-                [[AppDelegate sharedAppDelegate] enterLoginUI];
-            }
-            else if (loginType == LastLoginType_QQ)
-            {
-                [[AppDelegate sharedAppDelegate] enterLoginMutiUI];
-            }
-            
-            
+            [weakself onLogoutSucc];
             
         } failed:^(NSString *module, int errId, NSString *errMsg) {
             
             [logoutWaitView removeFromSuperview];
+            
             NSString *errinfo = [NSString stringWithFormat:@"module=%@,errid=%ld,errmsg=%@",module,(long)request.response.errorCode,request.response.errorInfo];
             NSLog(@"regist fail.%@",errinfo);
             [AlertHelp alertWith:@"退出失败" message:errinfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
@@ -119,14 +103,44 @@
         
     } failHandler:^(BaseRequest *request) {
         
-        NSString *errinfo = [NSString stringWithFormat:@"errid=%ld,errmsg=%@",(long)request.response.errorCode,request.response.errorInfo];
-        NSLog(@"regist fail.%@",errinfo);
-        [logoutWaitView removeFromSuperview];
-        [AlertHelp alertWith:@"退出失败" message:errinfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
+        if (request.response.errorCode == 10008)
+        {
+            [logoutWaitView removeFromSuperview];
+            
+            [weakself onLogoutSucc];
+        }
+        else
+        {
+            NSString *errinfo = [NSString stringWithFormat:@"errid=%ld,errmsg=%@",(long)request.response.errorCode,request.response.errorInfo];
+            NSLog(@"regist fail.%@",errinfo);
+            [logoutWaitView removeFromSuperview];
+            [AlertHelp alertWith:@"退出失败" message:errinfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
+        }
     }];
     
     logoutReq.token = [AppDelegate sharedAppDelegate].token;
     [[WebServiceEngine sharedEngine] AFAsynRequest:logoutReq];
+}
+
+- (void)onLogoutSucc
+{
+    for (UIView *subView in self.alertWindow.subviews)
+    {
+        [subView removeFromSuperview];
+    }
+    self.alertWindow = nil;
+    
+    [M8UserDefault setUserLogout:YES];
+    
+    LastLoginType loginType = [M8UserDefault getLastLoginType];
+    if (loginType == LastLoginType_phone)
+    {
+        [[AppDelegate sharedAppDelegate] enterLoginUI];
+    }
+    else if (loginType == LastLoginType_QQ)
+    {
+        [[AppDelegate sharedAppDelegate] enterLoginMutiUI];
+    }
 }
 
 

@@ -34,6 +34,14 @@
 
  @param item item
  */
-- (void)configHeaderView:(TCShowLiveListItem *_Nonnull)item;
+//- (void)configHeaderView:(TCShowLiveListItem *_Nonnull)item;
+
+/**
+ 配置头部视图信息
+
+ @param title 会议主题
+ @param nick 发起人昵称
+ */
+- (void)configHeaderView:(NSString *_Nullable)title hostNick:(NSString *_Nullable)nick;
 
 @end

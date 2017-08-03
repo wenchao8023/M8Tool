@@ -200,20 +200,8 @@
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
     
-    
-    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-
-
-//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-//{
-//    if ([M8UserDefault getPushMenuStatu] &&
-//        ![M8UserDefault getKeyboardShow])
-//    {
-//        [WCNotificationCenter postNotificationName:kHiddenMenuView_Notifycation object:nil];
-//    }
-//}
 
 
 
