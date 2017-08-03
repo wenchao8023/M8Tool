@@ -72,7 +72,7 @@ static CGFloat kSectionHeight = 40.f;
     {
         UICollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:CollectionHeaderID forIndexPath:indexPath];
         
-        UILabel *titleLable = [WCUIKitControl createLabelWithFrame:CGRectMake(10, 0, self.width - 20, kSectionHeight) Text:[NSString stringWithFormat:@"互动直播人员: %ld人", self.dataArray.count]];
+        UILabel *titleLable = [WCUIKitControl createLabelWithFrame:CGRectMake(10, 0, self.width - 20, kSectionHeight) Text:[NSString stringWithFormat:@"互动直播人员: %ld人", (unsigned long)self.dataArray.count]];
         [header addSubview:titleLable];
         
         return header;
