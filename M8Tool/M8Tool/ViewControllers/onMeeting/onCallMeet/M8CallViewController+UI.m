@@ -335,10 +335,12 @@
     
     TIMConversation *imConv = [imManger getConversation:TIM_GROUP receiver:groupId];
     
+    [self addMember:@"我" withMsg:msg];
+    
     WCWeakSelf(self);
     [imConv sendOnlineMessage:TIMMsg succ:^{
     
-        [weakself addMember:@"我" withMsg:msg];
+        
     } fail:^(int code, NSString *msg) {
         
         [weakself sendOnlineMsg:msg];

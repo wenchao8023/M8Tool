@@ -478,6 +478,17 @@
 }
 
 
+- (NSString *)toNickWithUid:(NSString *)uid
+{
+    M8CallRenderModel *model = [self getMemberWithID:uid];
+    
+    if (model)
+    {
+        return model.nick;
+    }
+    
+    return uid;
+}
 
 
 @end

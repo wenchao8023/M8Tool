@@ -28,7 +28,10 @@
     
     [self initCall];
     
+    //隐藏菜单通知
     [WCNotificationCenter addObserver:self selector:@selector(onHiddeMenuView) name:kHiddenMenuView_Notifycation object:nil];
+    //收到App异常退出通知
+    [WCNotificationCenter addObserver:self selector:@selector(selfDismiss) name:kAppWillTerminate_Notification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -296,7 +299,6 @@
 
 - (void)selfDismiss
 {
-    
     BOOL ret = [M8UserDefault getPushMenuStatu];
     if (ret)
     {
@@ -308,7 +310,6 @@
     [self onNetReportExitRoom];
     
     TILLiveManager *manager = [TILLiveManager getInstance];
-//    __weak typeof(self) ws = self;
     [manager quitRoom:^{
 
     } failed:^(NSString *moudle, int errId, NSString *errMsg) {
@@ -412,6 +413,7 @@
 - (void)dealloc
 {
     [WCNotificationCenter removeObserver:self name:kHiddenMenuView_Notifycation object:nil];
+    [WCNotificationCenter removeObserver:self name:kAppWillTerminate_Notification object:nil];
 }
 
 @end

@@ -128,7 +128,7 @@
     {
         CGRect frame = self.bounds;
         frame.size.height = frame.size.width * 222 / 375;
-        _tbHeaderView = [[M8LuanchTableViewHeader alloc] initWithFrame:frame image:@"M8_6"];
+        _tbHeaderView = [[M8LuanchTableViewHeader alloc] initWithFrame:frame image:@"M8LiveLuanchHeader"];
     }
     return _tbHeaderView;
 }

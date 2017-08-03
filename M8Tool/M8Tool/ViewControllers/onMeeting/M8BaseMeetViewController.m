@@ -200,25 +200,41 @@
     // invite单例数据要清空
     M8InviteModelManger *inviteModelManger = [M8InviteModelManger shareInstance];
     [inviteModelManger removeAllMembers];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+
+    // 1. 将 通话界面 移到视图底部，（造成退出界面的动画）
+    [UIView animateWithDuration:0.3 animations:^{
         
-        // 1. 将 通话界面 移到视图底部，（造成退出界面的动画）
-        [UIView animateWithDuration:0.3 animations:^{
-            
-            CGRect frame = self.view.frame;
-            frame.origin.y = [UIScreen mainScreen].bounds.size.height;
-            self.view.frame = frame;
-            
-        } completion:^(BOOL finished) {
-            
-            // 2. 将 self 移除父视图
-            [self.view removeFromSuperview];
-            [self removeFromParentViewController];
-            // 3. 将 属性 置为空
-            self.floatView = nil;
-        }];
-    });
+        CGRect frame = self.view.frame;
+        frame.origin.y = [UIScreen mainScreen].bounds.size.height;
+        self.view.frame = frame;
+        
+    } completion:^(BOOL finished) {
+        
+        // 2. 将 self 移除父视图
+        [self.view removeFromSuperview];
+        [self removeFromParentViewController];
+        // 3. 将 属性 置为空
+        self.floatView = nil;
+    }];
+    
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        
+//        // 1. 将 通话界面 移到视图底部，（造成退出界面的动画）
+//        [UIView animateWithDuration:0.3 animations:^{
+//            
+//            CGRect frame = self.view.frame;
+//            frame.origin.y = [UIScreen mainScreen].bounds.size.height;
+//            self.view.frame = frame;
+//            
+//        } completion:^(BOOL finished) {
+//            
+//            // 2. 将 self 移除父视图
+//            [self.view removeFromSuperview];
+//            [self removeFromParentViewController];
+//            // 3. 将 属性 置为空
+//            self.floatView = nil;
+//        }];
+//    });
 }
 
 

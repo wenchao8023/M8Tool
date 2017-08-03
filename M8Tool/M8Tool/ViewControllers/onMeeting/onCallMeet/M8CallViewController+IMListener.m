@@ -34,7 +34,8 @@
                 
                 NSString *text = ((TIMTextElem *)elem).text;
                 
-                [self addMember:sender withMsg:text];
+                [self addMember:[self.renderModelManger toNickWithUid:sender] withMsg:text];
+//                [self addMember:sender withMsg:text];
             }
         }
     }

@@ -82,19 +82,26 @@
     
     [WCNotificationCenter addObserver:self selector:@selector(themeSwichAction) name:kThemeSwich_Notification object:nil];
     
+    
+    M8InviteModelManger *inviteModelManger = [M8InviteModelManger shareInstance];
+    M8MemberInfo *hostInfo = [inviteModelManger.inviteMemberArray firstObject];
+    
     NSString *inviteInfo;
     if (_invitation.callType == TILCALL_TYPE_VIDEO)
     {
-        inviteInfo = [NSString stringWithFormat:@"%@邀请你视频通话", _invitation.sponsorId];
+//        inviteInfo = [NSString stringWithFormat:@"%@邀请你视频通话", _invitation.sponsorId];
+        inviteInfo = [NSString stringWithFormat:@"%@邀请你视频通话", hostInfo.nick];
     }
     else if (_invitation.callType == TILCALL_TYPE_AUDIO)
     {
-        inviteInfo = [NSString stringWithFormat:@"%@邀请你音频通话", _invitation.sponsorId];
+        inviteInfo = [NSString stringWithFormat:@"%@邀请你音频通话", hostInfo.nick];
     }
     self.infoLabel.text = inviteInfo;
-    
-    self.sponsorLabel.text = _invitation.sponsorId;
-    self.inviteLabel.text  = [M8UserDefault getLoginId];
+
+    self.sponsorLabel.text = [hostInfo.nick getSimpleName];
+    self.inviteLabel.text  = [[M8UserDefault getLoginNick] getSimpleName];
+//    self.sponsorLabel.text = _invitation.sponsorId;
+//    self.inviteLabel.text  = [M8UserDefault getLoginId];
     
     [self.view sendSubviewToBack:self.bgImageView];
     

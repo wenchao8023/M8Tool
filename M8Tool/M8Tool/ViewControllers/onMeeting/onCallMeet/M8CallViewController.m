@@ -36,6 +36,8 @@
     [WCNotificationCenter addObserver:self selector:@selector(onHiddeMenuView) name:kHiddenMenuView_Notifycation object:nil];
     //收到邀请成员通知
     [WCNotificationCenter addObserver:self selector:@selector(onReceiveInviteMembers) name:kInviteMembers_Notifycation object:nil];
+    //收到App异常退出通知
+    [WCNotificationCenter addObserver:self selector:@selector(selfDismiss) name:kAppWillTerminate_Notification object:nil];
     
 }
 
@@ -119,7 +121,7 @@
                 [[ILiveRoomManager getInstance] setBeauty:2];
                 [[ILiveRoomManager getInstance] setWhite:2];
                 
-                [weakself.headerView configHeaderView:self.liveItem];
+                [weakself.headerView configHeaderView:self.liveItem.info.title hostNick:[self.renderModelManger toNickWithUid:self.liveItem.info.host]];
                 
                 //开始推流
                 [self onLivePushStart];
@@ -148,16 +150,13 @@
  */
 - (void)cancelAllCall
 {
-    WCWeakSelf(self);
     [_call cancelAllCall:^(TILCallError *err) {
         if(err)
         {
-//            [weakself addTextToView:[NSString stringWithFormat:@"取消失败:%@-%d-%@",err.domain,err.code,err.errMsg]];
             [super selfDismiss];
         }
         else
         {
-//            [weakself addTextToView:@"取消成功"];
             [super selfDismiss];
         }
     }];
@@ -168,17 +167,14 @@
  */
 - (void)hangup
 {
-    WCWeakSelf(self);
     [_call hangup:^(TILCallError *err)
      {
          if(err)
          {
-//             [weakself addTextToView:[NSString stringWithFormat:@"挂断失败:%@-%d-%@",err.domain,err.code,err.errMsg]];
              [super selfDismiss];
          }
          else
          {
-//             [weakself addTextToView:@"挂断成功"];
              [super selfDismiss];
          }
      }];
@@ -235,19 +231,16 @@
     {
         if(err)
         {
-//            [weakself addTextToView:[NSString stringWithFormat:@"接受失败:%@-%d-%@", err.domain,err.code,err.errMsg]];
             [weakself selfDismiss];
         }
         else
         {
-//            [weakself addTextToView:@"接受成功"];
-//
             [[ILiveRoomManager getInstance] setBeauty:3];
             [[ILiveRoomManager getInstance] setWhite:3];
             
             [self removeRecvChildVC];
             
-            [weakself.headerView configHeaderView:self.liveItem];
+            [weakself.headerView configHeaderView:self.liveItem.info.title hostNick:[self.renderModelManger toNickWithUid:self.liveItem.info.host]];
         }
     }];
 }
@@ -414,6 +407,7 @@
 {
     [WCNotificationCenter removeObserver:self name:kHiddenMenuView_Notifycation object:nil];
     [WCNotificationCenter removeObserver:self name:kInviteMembers_Notifycation object:nil];
+    [WCNotificationCenter removeObserver:self name:kAppWillTerminate_Notification object:nil];
 }
 
 @end
