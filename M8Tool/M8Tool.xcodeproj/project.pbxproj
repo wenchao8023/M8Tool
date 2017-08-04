@@ -108,7 +108,6 @@
 		944AF2861E94911D0044B44C /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 944AF2851E94911D0044B44C /* JavaScriptCore.framework */; };
 		944AF2881E9491280044B44C /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 944AF2871E9491280044B44C /* libicucore.tbd */; };
 		944AF28A1E94912E0044B44C /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 944AF2891E94912E0044B44C /* AVKit.framework */; };
-		944AF28C1E9491530044B44C /* libprotobuf.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 944AF28B1E9491530044B44C /* libprotobuf.tbd */; };
 		944AF28E1E94915D0044B44C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 944AF28D1E94915D0044B44C /* libsqlite3.tbd */; };
 		944AF2901E9491640044B44C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 944AF28F1E9491640044B44C /* Foundation.framework */; };
 		944AF2921E94918D0044B44C /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 944AF2911E94918D0044B44C /* CoreVideo.framework */; };
@@ -1413,7 +1412,6 @@
 				949362891F29E52B00B5F432 /* ShareSDKUI.framework in Frameworks */,
 				944AF28E1E94915D0044B44C /* libsqlite3.tbd in Frameworks */,
 				943A08DE1EDEC461003CEA27 /* QAVSDK.framework in Frameworks */,
-				944AF28C1E9491530044B44C /* libprotobuf.tbd in Frameworks */,
 				944AF28A1E94912E0044B44C /* AVKit.framework in Frameworks */,
 				949362841F29E52B00B5F432 /* ShareSDK.framework in Frameworks */,
 				944AF2881E9491280044B44C /* libicucore.tbd in Frameworks */,
@@ -3375,7 +3373,7 @@
 					9419FE981E891C6700B48D89 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = RS5VVQU2Q4;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -3954,8 +3952,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lu WANG (RS5VVQU2Q4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lu WANG (RS5VVQU2Q4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lu WANG (VD2QKLE6LB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lu WANG (VD2QKLE6LB)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = RS5VVQU2Q4;
@@ -3980,7 +3978,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = " $(inherited)";
-				PROVISIONING_PROFILE = "19f307e3-e09c-4332-96bd-2578d59b870e";
+				PROVISIONING_PROFILE = "913c1363-eb3d-4951-9a76-9446de80b503";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -4007,8 +4005,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lu WANG (RS5VVQU2Q4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lu WANG (RS5VVQU2Q4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lu WANG (VD2QKLE6LB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lu WANG (VD2QKLE6LB)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = RS5VVQU2Q4;
@@ -4026,7 +4024,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = " $(inherited)";
-				PROVISIONING_PROFILE = "19f307e3-e09c-4332-96bd-2578d59b870e";
+				PROVISIONING_PROFILE = "913c1363-eb3d-4951-9a76-9446de80b503";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -4039,8 +4037,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = M8Tool/M8Tool.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lu WANG (RS5VVQU2Q4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lu WANG (VD2QKLE6LB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = RS5VVQU2Q4;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4078,8 +4076,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibuildtek.M8Tool;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "19f307e3-e09c-4332-96bd-2578d59b870e";
-				PROVISIONING_PROFILE_SPECIFIER = M8ToolDisPro;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
@@ -4091,8 +4089,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = M8Tool/M8Tool.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lu WANG (RS5VVQU2Q4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lu WANG (VD2QKLE6LB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = RS5VVQU2Q4;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4130,8 +4128,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibuildtek.M8Tool;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "19f307e3-e09c-4332-96bd-2578d59b870e";
-				PROVISIONING_PROFILE_SPECIFIER = M8ToolDisPro;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};

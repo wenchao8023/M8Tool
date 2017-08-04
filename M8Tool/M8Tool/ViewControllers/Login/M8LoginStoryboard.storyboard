@@ -947,9 +947,10 @@
         <!--Navigation Controller-->
         <scene sceneID="Jp3-pP-290">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8y1-Na-m5j" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DBw-Qt-45g" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="JH4-4u-fY0">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JH4-4u-fY0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -958,7 +959,6 @@
                         <segue destination="odT-g6-Nig" kind="relationship" relationship="rootViewController" id="z6L-f6-yml"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8y1-Na-m5j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2041" y="143"/>
         </scene>
@@ -972,6 +972,6 @@
         <image name="threeRDLoginIcon_Wechat.png" width="60" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="81F-GK-BJI"/>
+        <segue reference="GR3-kb-wIc"/>
     </inferredMetricsTieBreakers>
 </document>

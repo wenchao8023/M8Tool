@@ -142,7 +142,7 @@
     
     // 因JSON返回的字段中有id
     // 所以对此数据作特处理
-#warning 在获取好友列表时 crash
+
     id idTagValue = [dict objectForKey:kServiceTag_ID];
     if (idTagValue) {
         [aClassInstance setIdPropertyValue:idTagValue];
@@ -236,7 +236,7 @@
     
 }
 
-
+#warning caonidaye de jsonkit
 // 通过返回的Json字典valueDict的keys,过滤出需要设置的属性名名称及对应的类型
 // 返回：过滤后需要设置的（）
 

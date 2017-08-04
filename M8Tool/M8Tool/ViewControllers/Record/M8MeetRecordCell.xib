@@ -41,22 +41,22 @@
                             <constraint firstAttribute="width" constant="12" id="Qsw-o2-5FN"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11111111" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdQ-Pi-Ly2">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdQ-Pi-Ly2">
                         <rect key="frame" x="44" y="139" width="663" height="20"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" name="DroidSansFallback" family="Droid Sans Fallback" pointSize="13"/>
                         <color key="textColor" red="0.73727768660000004" green="0.7333641648" blue="0.73319798709999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017.5.7 15:07" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6m-X8-hdw">
-                        <rect key="frame" x="373.5" y="117" width="395.5" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6m-X8-hdw">
+                        <rect key="frame" x="323" y="117" width="446" height="20"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" name="DroidSansFallback" family="Droid Sans Fallback" pointSize="13"/>
                         <color key="textColor" red="0.73727768659591675" green="0.73336416482925415" blue="0.73319798707962036" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="木木的会议（3人）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="crs-5a-uIx">
-                        <rect key="frame" x="44" y="117" width="329.5" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="crs-5a-uIx">
+                        <rect key="frame" x="44" y="117" width="279" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="1ul-SY-Z66"/>
                         </constraints>
@@ -64,7 +64,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已收藏" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="01X-lP-tV3">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="01X-lP-tV3">
                         <rect key="frame" x="727" y="141.5" width="42" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="42" id="16b-M4-geq"/>
@@ -81,7 +81,7 @@
                     <constraint firstItem="01X-lP-tV3" firstAttribute="trailing" secondItem="H6m-X8-hdw" secondAttribute="trailing" id="93t-p1-2p2"/>
                     <constraint firstItem="H6m-X8-hdw" firstAttribute="top" secondItem="crs-5a-uIx" secondAttribute="top" id="Apd-yF-kCI"/>
                     <constraint firstItem="H6m-X8-hdw" firstAttribute="height" secondItem="crs-5a-uIx" secondAttribute="height" id="AxD-wn-hyx"/>
-                    <constraint firstItem="H6m-X8-hdw" firstAttribute="width" secondItem="crs-5a-uIx" secondAttribute="width" multiplier="1.2" id="BZJ-sq-eF4"/>
+                    <constraint firstItem="H6m-X8-hdw" firstAttribute="width" secondItem="crs-5a-uIx" secondAttribute="width" multiplier="1.6" id="BZJ-sq-eF4"/>
                     <constraint firstItem="XHi-mX-gAa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="O1I-bC-9eA"/>
                     <constraint firstItem="01X-lP-tV3" firstAttribute="centerY" secondItem="qdQ-Pi-Ly2" secondAttribute="centerY" id="Pn5-cm-pS2"/>
                     <constraint firstAttribute="trailing" secondItem="XmJ-rf-6oa" secondAttribute="trailing" constant="10" id="RrR-s0-eBV"/>

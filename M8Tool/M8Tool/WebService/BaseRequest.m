@@ -131,14 +131,12 @@
                 {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         
-//                        [[HUDHelper sharedInstance] tipMessage:@"返回数据格式有误" delay:2 completion:^{
                         TCILDebugLog(@"返回数据格式有误--> %@",respJsonObject);
                             // 说明返回内容有问题
                             if (_failHandler)
                             {
                                 _failHandler(self);
                             }
-//                        }];
                         NSLog(@"==========[%@]开始解析响应完成>>>>>>>>>", self);
                     });
                 }
@@ -154,7 +152,6 @@
                     }
                     else
                     {
-//                        [[HUDHelper sharedInstance] tipMessage:[_response message] delay:2 completion:^{
                         TCILDebugLog(@"返回的数据有业务错误--> %@",[_response message]);
                             // 返回的数据有业务错误
                             if (_failHandler)
@@ -166,10 +163,6 @@
                     NSLog(@"==========[%@]开始解析响应完成>>>>>>>>>", self);
                 });
             }
-//            else
-//            {
-//                DebugLog(@"_succHandler 为空, 不解析");
-//            }
         });
     }
     else

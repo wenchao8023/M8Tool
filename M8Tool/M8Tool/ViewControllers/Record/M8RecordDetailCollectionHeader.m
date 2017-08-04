@@ -52,6 +52,6 @@
 
 - (NSString *)numString:(NSInteger)num
 {
-    return [NSString stringWithFormat:@"%ld人", num];
+    return [NSString stringWithFormat:@"%ld人", (long)num];
 }
 @end

@@ -20,9 +20,9 @@
  */
 + (NSArray *_Nullable)getCalendarData;
 
-+ (void)makePhone:(NSString *)phoneStr;
++ (void)makePhone:(NSString *_Nullable)phoneStr;
 
-+(NSString *)getIconLabelStr:(NSString *)str ;
++(NSString *_Nullable)getIconLabelStr:(NSString *_Nullable)str ;
 
 +(BOOL)alertTipInMeeting;
 
@@ -33,20 +33,20 @@
  @param time 时间戳
  @return 日期字符串
  */
-+(NSString *)getDateStrWithTime:(NSTimeInterval)time;
++(NSString *_Nullable)getDateStrWithTime:(NSTimeInterval)time;
 
 // 文字模糊背景
 // 默认：白色文字、黑色模糊
 // 文字默认 16
-+(NSMutableAttributedString *)getShadowStr:(NSString *)str ;
++(NSMutableAttributedString *_Nullable)getShadowStr:(NSString *_Nullable)str ;
 
-+(NSMutableAttributedString *)getShadowStr:(NSString *)str
++(NSMutableAttributedString *_Nullable)getShadowStr:(NSString *_Nullable)str
                                       font:(CGFloat)font ;
 
-+(NSMutableAttributedString *)getShadowStr:(NSString *)str
++(NSMutableAttributedString *_Nullable)getShadowStr:(NSString *_Nullable)str
                                       font:(CGFloat)font
-                                 textColor:(UIColor *)textColor
-                               shadowColor:(UIColor *)shadowColor ;
+                                 textColor:(UIColor *_Nullable)textColor
+                               shadowColor:(UIColor *_Nullable)shadowColor ;
 
 /**
  富文本
@@ -55,7 +55,7 @@
  @param fontSize    文字大小
  @return            富文本
  */
-+(NSMutableAttributedString *)customAttString:(NSString *)string
++(NSMutableAttributedString *_Nullable)customAttString:(NSString *_Nullable)string
                                      fontSize:(CGFloat)fontSize;
 
 /**
@@ -67,9 +67,9 @@
  @param charSpace   文字间距
  @return            富文本
  */
-+(NSMutableAttributedString *)customAttString:(NSString *)string
++(NSMutableAttributedString *_Nullable)customAttString:(NSString *_Nullable)string
                                      fontSize:(CGFloat)fontSize
-                                    textColor:(UIColor *)textColor
+                                    textColor:(UIColor *_Nullable)textColor
                                     charSpace:(int)charSpace;
 
 
@@ -83,11 +83,11 @@
  @param fontName    文字字体
  @return            富文本
  */
-+(NSMutableAttributedString *)customAttString:(NSString *)string
++(NSMutableAttributedString *_Nullable)customAttString:(NSString *_Nullable)string
                                      fontSize:(CGFloat)fontSize
-                                    textColor:(UIColor *)textColor
+                                    textColor:(UIColor *_Nullable)textColor
                                     charSpace:(int)charSpace
-                                     fontName:(NSString *)fontName;
+                                     fontName:(NSString *_Nullable)fontName;
 
 
 /**
@@ -97,8 +97,8 @@
  @param textColor   粗字体颜色
  @return            粗文本属性
  */
-+(NSMutableDictionary *)customAttsWithBodyFontSize:(CGFloat)fontSize
-                                         textColor:(UIColor *)textColor;
++(NSMutableDictionary *_Nullable)customAttsWithBodyFontSize:(CGFloat)fontSize
+                                         textColor:(UIColor *_Nullable)textColor;
 
 /**
  文本属性
@@ -108,8 +108,8 @@
  @param charSpace   文字间距
  @return            文本属性
  */
-+(NSMutableDictionary *)customAttsWithFontSize:(CGFloat)fontSize
-                                     textColor:(UIColor *)textColor
++(NSMutableDictionary *_Nullable)customAttsWithFontSize:(CGFloat)fontSize
+                                     textColor:(UIColor *_Nullable)textColor
                                      charSpace:(int)charSpace;
 
 /**
@@ -121,8 +121,8 @@
  @param fontName    文字字体
  @return            文本属性
  */
-+(NSMutableDictionary *)customAttsWithFontSize:(CGFloat)fontSize
-                                     textColor:(UIColor *)textColor
++(NSMutableDictionary *_Nullable)customAttsWithFontSize:(CGFloat)fontSize
+                                     textColor:(UIColor *_Nullable)textColor
                                      charSpace:(int)charSpace
-                                      fontName:(NSString *)fontName;
+                                      fontName:(NSString *_Nullable)fontName;
 @end

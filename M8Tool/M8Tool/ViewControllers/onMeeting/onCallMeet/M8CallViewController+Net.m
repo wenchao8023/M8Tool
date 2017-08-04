@@ -52,7 +52,7 @@
 #pragma mark - 上报成员信息
 - (void)onNetReportCallMem:(NSString *)mem statu:(int)statu
 {
-    WCWeakSelf(self);
+//    WCWeakSelf(self);
     ReportCallMemRequest *reportMemReq = [[ReportCallMemRequest alloc] initWithHandler:^(BaseRequest *request) {
         
 //        [weakself addTextToView:[NSString stringWithFormat:@"上报成员:%@ -- 状态:%d, 成功", mem, statu]];
@@ -74,7 +74,7 @@
 #pragma mark - 上报成员退出房间
 - (void)onNetReportMemExitRoom
 {
-    WCWeakSelf(self);
+//    WCWeakSelf(self);
     ReportMemExitRequest *reportMemExitReq = [[ReportMemExitRequest alloc] initWithHandler:^(BaseRequest *request) {
         
 //        [weakself addTextToView:[NSString stringWithFormat:@"上报成员:<--%@ : 退出房间-->成功", weakself.liveItem.uid]];
@@ -95,7 +95,7 @@
 #pragma mark - 上报服务器，会议结束
 - (void)onNetReportExitRoom
 {
-    WCWeakSelf(self);
+//    WCWeakSelf(self);
     //通知业务服务器，退房
     ExitRoomRequest *exitReq = [[ExitRoomRequest alloc] initWithHandler:^(BaseRequest *request)
                                 {

@@ -118,7 +118,7 @@
         }
     }
     
-    NSString *des = [NSString stringWithFormat:@"逻辑错误，这里应该存满%ld天", lastWeekdays];
+    NSString *des = [NSString stringWithFormat:@"逻辑错误，这里应该存满%ld天", (unsigned long)lastWeekdays];
     BOOL condition = (fifthDaysArr.count == lastWeekdays);
     NSAssert(condition, des);
     

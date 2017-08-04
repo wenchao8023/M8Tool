@@ -33,9 +33,6 @@
         
         if (meetType == M8MeetTypeCall)
         {
-            
-            
-            
             if (itemCount == 3)
             {
                 _btnImgsArray = @[@"liveMic_on", @"liveReceiver_on", @"liveInvite"];
@@ -172,7 +169,6 @@
 
 - (void)onSwitchReceiverAction:(UIButton *)btn
 {
-
     ILiveRoomManager *manager = [ILiveRoomManager getInstance];
     QAVOutputMode mode = [manager getCurAudioMode];
     
@@ -193,7 +189,6 @@
 
 - (void)onCloseCameraAction:(UIButton *)btn
 {
-    
     ILiveRoomManager *manager = [ILiveRoomManager getInstance];
     BOOL isOn = [manager getCurCameraState];
     cameraPos pos = [manager getCurCameraPos];
@@ -211,13 +206,12 @@
 
 - (void)onSwitchCameraAction:(UIButton *)btn
 {
-
     ILiveRoomManager *manager = [ILiveRoomManager getInstance];
     int pos = [manager getCurCameraPos];
     
     if (pos == -1)
     {
-
+        
     }
     else
     {
