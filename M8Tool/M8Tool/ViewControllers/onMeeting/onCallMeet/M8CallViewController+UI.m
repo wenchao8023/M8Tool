@@ -367,7 +367,7 @@
 #pragma mark - super action
 - (void)showFloatView
 {
-    [self.floatView configCallFloatView:self.liveItem isCameraOn:[self.renderModelManger onGetHostCameraStatu]];
+    [self.floatView configCallFloatView:[self.renderModelManger toNickWithUid:self.liveItem.info.host] callType:self.liveItem.callType cameraOn:[self.renderModelManger onGetHostCameraStatu]];
     
     [super showFloatView];
     
