@@ -20,7 +20,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.01</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -76,6 +76,8 @@
 			<dict/>
 		</dict>
 	</dict>
+	<key>NSCalendarsUsageDescription</key>
+	<string>是否允许此App使用你的日历？</string>
 	<key>NSCameraUsageDescription</key>
 	<string>是否允许此App使用你的相机？</string>
 	<key>NSContactsUsageDescription</key>
@@ -88,8 +90,6 @@
 	<string>是否允许此App使用你的麦克风？</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>是否允许此App使用你的相册？</string>
-	<key>NSCalendarsUsageDescription</key>
-	<string>是否允许此App使用你的日历？</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>DroidSansFallback.ttf</string>
