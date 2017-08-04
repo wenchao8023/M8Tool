@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,14 +19,26 @@
                 <rect key="frame" x="0.0" y="0.0" width="445" height="152.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mt5-93-SLC">
+                    <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zti-9i-otR">
                         <rect key="frame" x="8" y="8" width="429" height="136.5"/>
-                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="WFa-xN-fXX">
-                            <rect key="frame" x="0.0" y="0.0" width="429" height="136.5"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        </view>
-                        <blurEffect style="dark"/>
-                    </visualEffectView>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mt5-93-SLC">
+                                <rect key="frame" x="0.0" y="0.0" width="429" height="136.5"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="WFa-xN-fXX">
+                                    <rect key="frame" x="0.0" y="0.0" width="429" height="136.5"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="mt5-93-SLC" secondAttribute="bottom" id="Lgr-W7-nEc"/>
+                            <constraint firstAttribute="trailing" secondItem="mt5-93-SLC" secondAttribute="trailing" id="eA2-PP-ovF"/>
+                            <constraint firstItem="mt5-93-SLC" firstAttribute="top" secondItem="zti-9i-otR" secondAttribute="top" id="gt1-zW-eww"/>
+                            <constraint firstItem="mt5-93-SLC" firstAttribute="leading" secondItem="zti-9i-otR" secondAttribute="leading" id="pWo-IX-nrx"/>
+                        </constraints>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EP2-rw-NVa">
                         <rect key="frame" x="12" y="12" width="421" height="128.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -36,14 +49,14 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="mt5-93-SLC" secondAttribute="bottom" constant="8" id="21U-Yh-1Aa"/>
-                    <constraint firstItem="EP2-rw-NVa" firstAttribute="height" secondItem="mt5-93-SLC" secondAttribute="height" constant="-8" id="2iD-c3-qko"/>
-                    <constraint firstItem="mt5-93-SLC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="7EY-cL-aoX"/>
-                    <constraint firstItem="EP2-rw-NVa" firstAttribute="centerY" secondItem="mt5-93-SLC" secondAttribute="centerY" id="D6o-Wb-pMq"/>
-                    <constraint firstItem="EP2-rw-NVa" firstAttribute="width" secondItem="mt5-93-SLC" secondAttribute="width" constant="-8" id="IRR-ee-pcL"/>
-                    <constraint firstItem="EP2-rw-NVa" firstAttribute="centerX" secondItem="mt5-93-SLC" secondAttribute="centerX" id="Q5J-tR-lAx"/>
-                    <constraint firstAttribute="trailing" secondItem="mt5-93-SLC" secondAttribute="trailing" constant="8" id="lr3-2P-2xh"/>
-                    <constraint firstItem="mt5-93-SLC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="sTe-Pe-Tqx"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="zti-9i-otR" secondAttribute="trailing" id="8K8-iC-ZCX"/>
+                    <constraint firstItem="zti-9i-otR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="AAM-7q-YfR"/>
+                    <constraint firstItem="EP2-rw-NVa" firstAttribute="width" secondItem="zti-9i-otR" secondAttribute="width" constant="-8" id="UJT-Z3-bRK"/>
+                    <constraint firstItem="EP2-rw-NVa" firstAttribute="height" secondItem="zti-9i-otR" secondAttribute="height" constant="-8" id="UXn-Eb-Bkx"/>
+                    <constraint firstItem="zti-9i-otR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="lx3-Za-lbj"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="zti-9i-otR" secondAttribute="bottom" id="p5y-RK-rej"/>
+                    <constraint firstItem="EP2-rw-NVa" firstAttribute="centerX" secondItem="zti-9i-otR" secondAttribute="centerX" id="rSR-2j-xsp"/>
+                    <constraint firstItem="EP2-rw-NVa" firstAttribute="centerY" secondItem="zti-9i-otR" secondAttribute="centerY" id="s94-Xk-hmh"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

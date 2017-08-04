@@ -10,13 +10,20 @@
 
 @implementation M8BaseFloatView (Call)
 
-- (void)configCallFloatView:(TCShowLiveListItem *)item isCameraOn:(BOOL)isCameraOn
+- (void)configCallFloatView:(NSString *)hostNick callType:(TILCallType)callType cameraOn:(BOOL)isCameraOn
 {
-    self.hostLabel.text = item.info.host;
-    self.meetTypeLabel.text = (item.callType == TILCALL_TYPE_VIDEO) ? @"·视频" : @"·语音";
-    
+    self.hostLabel.text = hostNick;
+    self.meetTypeLabel.text = (callType == TILCALL_TYPE_VIDEO) ? @"·视频" : @"·语音";
     self.effectView.hidden = isCameraOn;
 }
+
+//- (void)configCallFloatView:(TCShowLiveListItem *)item isCameraOn:(BOOL)isCameraOn
+//{
+//    self.hostLabel.text = item.info.host;
+//    self.meetTypeLabel.text = (item.callType == TILCALL_TYPE_VIDEO) ? @"·视频" : @"·语音";
+//    
+//    self.effectView.hidden = isCameraOn;
+//}
 
 - (void)onCallVideoListener:(BOOL)isOn
 {

@@ -10,8 +10,8 @@
 
 @interface M8BaseFloatView (Call)
 
-- (void)configCallFloatView:(TCShowLiveListItem *_Nonnull)item isCameraOn:(BOOL)isCameraOn;
-
+//- (void)configCallFloatView:(TCShowLiveListItem *_Nonnull)item isCameraOn:(BOOL)isCameraOn;
+- (void)configCallFloatView:(NSString *_Nullable)hostNick callType:(TILCallType)callType cameraOn:(BOOL)isCameraOn;
 
 /**
  接收端在观看浮动视图的时候

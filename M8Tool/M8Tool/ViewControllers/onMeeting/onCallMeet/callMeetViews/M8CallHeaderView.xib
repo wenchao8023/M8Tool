@@ -34,9 +34,9 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" text="" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfX-vU-ssG" customClass="M8LiveLabel">
-                    <rect key="frame" x="10" y="39.5" width="40" height="20"/>
+                    <rect key="frame" x="10" y="39.5" width="50" height="20"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="40" id="6zA-mK-dYv"/>
+                        <constraint firstAttribute="width" constant="50" id="6zA-mK-dYv"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -47,7 +47,7 @@
             <constraints>
                 <constraint firstItem="mfX-vU-ssG" firstAttribute="height" secondItem="aQc-mF-f4Y" secondAttribute="height" id="D8i-WY-nCK"/>
                 <constraint firstItem="mfX-vU-ssG" firstAttribute="centerY" secondItem="aQc-mF-f4Y" secondAttribute="centerY" id="HHP-AI-GGk"/>
-                <constraint firstItem="aQc-mF-f4Y" firstAttribute="leading" secondItem="mfX-vU-ssG" secondAttribute="trailing" constant="20" id="dvx-xa-Fwz"/>
+                <constraint firstItem="aQc-mF-f4Y" firstAttribute="leading" secondItem="mfX-vU-ssG" secondAttribute="trailing" constant="10" id="dvx-xa-Fwz"/>
                 <constraint firstItem="aQc-mF-f4Y" firstAttribute="top" secondItem="pdc-DG-BV6" secondAttribute="bottom" id="fK6-Rm-d4G"/>
                 <constraint firstItem="pdc-DG-BV6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="h8k-Ot-cfo"/>
                 <constraint firstItem="mfX-vU-ssG" firstAttribute="leading" secondItem="pdc-DG-BV6" secondAttribute="leading" id="hvK-0L-ite"/>
@@ -58,7 +58,7 @@
                 <outlet property="luancherLabel" destination="aQc-mF-f4Y" id="1hI-re-HVw"/>
                 <outlet property="topicLabel" destination="pdc-DG-BV6" id="fcv-fe-rBU"/>
             </connections>
-            <point key="canvasLocation" x="23.5" y="64.5"/>
+            <point key="canvasLocation" x="21" y="67"/>
         </view>
     </objects>
 </document>
