@@ -195,7 +195,9 @@
     _response.errorInfo = bodyDic[@"errorInfo"];
     
     NSDictionary *data = bodyDic[@"data"];
+    
     _response.data = [self parseResponseData:data];
+    
 }
 
 - (BaseResponseData *)parseResponseData:(NSDictionary *)dataDic
