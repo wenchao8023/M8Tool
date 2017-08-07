@@ -91,6 +91,7 @@ static WebServiceEngine *_sharedEngine = nil;
                     if (responseObject)
                     {
                         TCILDebugLog(@"sxbparse --> %@",responseObject);
+
                         [req parseResponse:responseObject];
                     }
                 }

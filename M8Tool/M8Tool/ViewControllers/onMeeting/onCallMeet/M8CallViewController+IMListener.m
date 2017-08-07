@@ -21,7 +21,7 @@
     {
         NSString *sender = msg.sender;
 //        BOOL isSelf = msg.isSelf;
-        NSDate *curDate = msg.timestamp;
+//        NSDate *curDate = msg.timestamp;
 //        NSString *timeStr = [CommonUtil getDateStrWithTime:[curDate timeIntervalSince1970]];
         
         for (int i = 0; i < msg.elemCount; i++)

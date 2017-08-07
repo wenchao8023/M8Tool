@@ -108,7 +108,6 @@
 		944AF2861E94911D0044B44C /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 944AF2851E94911D0044B44C /* JavaScriptCore.framework */; };
 		944AF2881E9491280044B44C /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 944AF2871E9491280044B44C /* libicucore.tbd */; };
 		944AF28A1E94912E0044B44C /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 944AF2891E94912E0044B44C /* AVKit.framework */; };
-		944AF28C1E9491530044B44C /* libprotobuf.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 944AF28B1E9491530044B44C /* libprotobuf.tbd */; };
 		944AF28E1E94915D0044B44C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 944AF28D1E94915D0044B44C /* libsqlite3.tbd */; };
 		944AF2901E9491640044B44C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 944AF28F1E9491640044B44C /* Foundation.framework */; };
 		944AF2921E94918D0044B44C /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 944AF2911E94918D0044B44C /* CoreVideo.framework */; };
@@ -343,7 +342,6 @@
 		94A203271EF8CA87007904D2 /* collectTag_blue@3X.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A203211EF8CA87007904D2 /* collectTag_blue@3X.png */; };
 		94A2C3B71F19AF35005B4FCB /* CompanyListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A2C3B61F19AF35005B4FCB /* CompanyListRequest.m */; };
 		94A2C3C01F1A02EE005B4FCB /* M8UserDefault.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A2C3BF1F1A02EE005B4FCB /* M8UserDefault.m */; };
-		94A502871E95F12400F675B2 /* libCOSClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A502861E95F12400F675B2 /* libCOSClient.a */; };
 		94A6421D1F035C4C0051CA6D /* M8LiveNoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A6421C1F035C4C0051CA6D /* M8LiveNoteView.m */; };
 		94A6421F1F035C550051CA6D /* M8LiveNoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94A6421E1F035C550051CA6D /* M8LiveNoteView.xib */; };
 		94A642261F0390360051CA6D /* M8LivePlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A642251F0390360051CA6D /* M8LivePlayView.m */; };
@@ -1069,9 +1067,6 @@
 		94A2C3BE1F1A02EE005B4FCB /* M8UserDefault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8UserDefault.h; sourceTree = "<group>"; };
 		94A2C3BF1F1A02EE005B4FCB /* M8UserDefault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8UserDefault.m; sourceTree = "<group>"; };
 		94A5027A1E95EB9C00F675B2 /* ConstHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstHeader.h; sourceTree = "<group>"; };
-		94A502841E95F12400F675B2 /* COSClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COSClient.h; sourceTree = "<group>"; };
-		94A502851E95F12400F675B2 /* COSTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COSTask.h; sourceTree = "<group>"; };
-		94A502861E95F12400F675B2 /* libCOSClient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCOSClient.a; sourceTree = "<group>"; };
 		94A6421B1F035C4C0051CA6D /* M8LiveNoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LiveNoteView.h; sourceTree = "<group>"; };
 		94A6421C1F035C4C0051CA6D /* M8LiveNoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LiveNoteView.m; sourceTree = "<group>"; };
 		94A6421E1F035C550051CA6D /* M8LiveNoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M8LiveNoteView.xib; sourceTree = "<group>"; };
@@ -1413,7 +1408,6 @@
 				949362891F29E52B00B5F432 /* ShareSDKUI.framework in Frameworks */,
 				944AF28E1E94915D0044B44C /* libsqlite3.tbd in Frameworks */,
 				943A08DE1EDEC461003CEA27 /* QAVSDK.framework in Frameworks */,
-				944AF28C1E9491530044B44C /* libprotobuf.tbd in Frameworks */,
 				944AF28A1E94912E0044B44C /* AVKit.framework in Frameworks */,
 				949362841F29E52B00B5F432 /* ShareSDK.framework in Frameworks */,
 				944AF2881E9491280044B44C /* libicucore.tbd in Frameworks */,
@@ -1424,7 +1418,6 @@
 				943A08E31EDEC461003CEA27 /* xplatform.framework in Frameworks */,
 				943A08EA1EDEC76B003CEA27 /* TILFilterSDK.framework in Frameworks */,
 				943A08F41EDED9F2003CEA27 /* opencv2.framework in Frameworks */,
-				94A502871E95F12400F675B2 /* libCOSClient.a in Frameworks */,
 				183E2944082280F7A406E918 /* libXG-SDK.a in Frameworks */,
 				46644693F125D10CCC64C591 /* CFNetwork.framework in Frameworks */,
 				6148BA4D458405074DDA4277 /* Security.framework in Frameworks */,
@@ -1789,7 +1782,6 @@
 				94A988001EF015030080BEF2 /* THLabel */,
 				944AF2D01E9494C00044B44C /* AFNetworking */,
 				944AF2F61E9494C00044B44C /* KVNProgress */,
-				94A502831E95F12400F675B2 /* COS_SDK */,
 			);
 			name = "3RD(3方库)";
 			path = 3RD;
@@ -2679,16 +2671,6 @@
 			path = collectTags;
 			sourceTree = "<group>";
 		};
-		94A502831E95F12400F675B2 /* COS_SDK */ = {
-			isa = PBXGroup;
-			children = (
-				94A502841E95F12400F675B2 /* COSClient.h */,
-				94A502851E95F12400F675B2 /* COSTask.h */,
-				94A502861E95F12400F675B2 /* libCOSClient.a */,
-			);
-			path = COS_SDK;
-			sourceTree = "<group>";
-		};
 		94A71D521F2C416400FBA4A0 /* meetAgent */ = {
 			isa = PBXGroup;
 			children = (
@@ -3375,7 +3357,7 @@
 					9419FE981E891C6700B48D89 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = RS5VVQU2Q4;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -3954,8 +3936,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lu WANG (RS5VVQU2Q4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lu WANG (RS5VVQU2Q4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lu WANG (VD2QKLE6LB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lu WANG (VD2QKLE6LB)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = RS5VVQU2Q4;
@@ -3980,7 +3962,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = " $(inherited)";
-				PROVISIONING_PROFILE = "19f307e3-e09c-4332-96bd-2578d59b870e";
+				PROVISIONING_PROFILE = "913c1363-eb3d-4951-9a76-9446de80b503";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -4007,8 +3989,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lu WANG (RS5VVQU2Q4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lu WANG (RS5VVQU2Q4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lu WANG (VD2QKLE6LB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lu WANG (VD2QKLE6LB)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = RS5VVQU2Q4;
@@ -4026,7 +4008,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = " $(inherited)";
-				PROVISIONING_PROFILE = "19f307e3-e09c-4332-96bd-2578d59b870e";
+				PROVISIONING_PROFILE = "913c1363-eb3d-4951-9a76-9446de80b503";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -4039,8 +4021,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = M8Tool/M8Tool.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lu WANG (RS5VVQU2Q4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lu WANG (VD2QKLE6LB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = RS5VVQU2Q4;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4078,8 +4060,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibuildtek.M8Tool;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "19f307e3-e09c-4332-96bd-2578d59b870e";
-				PROVISIONING_PROFILE_SPECIFIER = M8ToolDisPro;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
@@ -4091,8 +4073,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = M8Tool/M8Tool.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lu WANG (RS5VVQU2Q4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lu WANG (VD2QKLE6LB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = RS5VVQU2Q4;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4130,8 +4112,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibuildtek.M8Tool;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "19f307e3-e09c-4332-96bd-2578d59b870e";
-				PROVISIONING_PROFILE_SPECIFIER = M8ToolDisPro;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};

@@ -9,7 +9,7 @@
 #import "MeetingLuanchViewController.h"
 #import "MeetingLuanchTableView.h"
 
-#import "M8UploadImageHelper.h"
+//#import "M8UploadImageHelper.h"
 
 #import "M8MeetWindow.h"
 #import "M8CallViewController.h"
@@ -258,7 +258,7 @@
     LoadView *reqIdWaitView = [LoadView loadViewWith:@"正在请求房间ID"];
     [self.view addSubview:reqIdWaitView];
     __block CreateRoomResponceData *roomData = nil;
-    __block NSString *imageUrl = nil;
+//    __block NSString *imageUrl = nil;
     
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
@@ -279,25 +279,25 @@
         [[WebServiceEngine sharedEngine] AFAsynRequest:createRoomReq];
         
         //上传图片
-        [[M8UploadImageHelper shareInstance] upload:_coverImg completion:^(NSString *imageSaveUrl) {
-            
-            imageUrl = imageSaveUrl;
-            dispatch_semaphore_signal(semaphore);
-            
-        } failed:^(NSString *failTip) {
-            
-            dispatch_semaphore_signal(semaphore);
-        }];
-        
-        dispatch_time_t timeoutTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0 * NSEC_PER_SEC));
-        dispatch_semaphore_wait(semaphore, timeoutTime);
-        dispatch_semaphore_wait(semaphore, timeoutTime);
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            [reqIdWaitView removeFromSuperview];
-            [self enterLive:(int)roomData.roomnum groupId:roomData.groupid imageUrl:imageUrl];
-        });
+//        [[M8UploadImageHelper shareInstance] upload:_coverImg completion:^(NSString *imageSaveUrl) {
+//            
+//            imageUrl = imageSaveUrl;
+//            dispatch_semaphore_signal(semaphore);
+//            
+//        } failed:^(NSString *failTip) {
+//            
+//            dispatch_semaphore_signal(semaphore);
+//        }];
+//        
+//        dispatch_time_t timeoutTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0 * NSEC_PER_SEC));
+//        dispatch_semaphore_wait(semaphore, timeoutTime);
+//        dispatch_semaphore_wait(semaphore, timeoutTime);
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            
+//            [reqIdWaitView removeFromSuperview];
+//            [self enterLive:(int)roomData.roomnum groupId:roomData.groupid imageUrl:imageUrl];
+//        });
     });
 }
 

@@ -100,8 +100,8 @@
     {
         NSDateComponents *compts = self.itemsArray[indexPath.row];
         
-        NSString *dayStr = [NSString stringWithFormat:@"%ld", compts.day];
-        NSString *monthImg = [NSString stringWithFormat:@"month%ld", compts.month];
+        NSString *dayStr = [NSString stringWithFormat:@"%ld", (long)compts.day];
+        NSString *monthImg = [NSString stringWithFormat:@"month%ld", (long)compts.month];
         
         if (indexPath.row < _currentDay)
         {
