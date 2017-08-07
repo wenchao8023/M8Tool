@@ -342,7 +342,6 @@
 		94A203271EF8CA87007904D2 /* collectTag_blue@3X.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A203211EF8CA87007904D2 /* collectTag_blue@3X.png */; };
 		94A2C3B71F19AF35005B4FCB /* CompanyListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A2C3B61F19AF35005B4FCB /* CompanyListRequest.m */; };
 		94A2C3C01F1A02EE005B4FCB /* M8UserDefault.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A2C3BF1F1A02EE005B4FCB /* M8UserDefault.m */; };
-		94A502871E95F12400F675B2 /* libCOSClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A502861E95F12400F675B2 /* libCOSClient.a */; };
 		94A6421D1F035C4C0051CA6D /* M8LiveNoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A6421C1F035C4C0051CA6D /* M8LiveNoteView.m */; };
 		94A6421F1F035C550051CA6D /* M8LiveNoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94A6421E1F035C550051CA6D /* M8LiveNoteView.xib */; };
 		94A642261F0390360051CA6D /* M8LivePlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A642251F0390360051CA6D /* M8LivePlayView.m */; };
@@ -1068,9 +1067,6 @@
 		94A2C3BE1F1A02EE005B4FCB /* M8UserDefault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8UserDefault.h; sourceTree = "<group>"; };
 		94A2C3BF1F1A02EE005B4FCB /* M8UserDefault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8UserDefault.m; sourceTree = "<group>"; };
 		94A5027A1E95EB9C00F675B2 /* ConstHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstHeader.h; sourceTree = "<group>"; };
-		94A502841E95F12400F675B2 /* COSClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COSClient.h; sourceTree = "<group>"; };
-		94A502851E95F12400F675B2 /* COSTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COSTask.h; sourceTree = "<group>"; };
-		94A502861E95F12400F675B2 /* libCOSClient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCOSClient.a; sourceTree = "<group>"; };
 		94A6421B1F035C4C0051CA6D /* M8LiveNoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8LiveNoteView.h; sourceTree = "<group>"; };
 		94A6421C1F035C4C0051CA6D /* M8LiveNoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8LiveNoteView.m; sourceTree = "<group>"; };
 		94A6421E1F035C550051CA6D /* M8LiveNoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M8LiveNoteView.xib; sourceTree = "<group>"; };
@@ -1422,7 +1418,6 @@
 				943A08E31EDEC461003CEA27 /* xplatform.framework in Frameworks */,
 				943A08EA1EDEC76B003CEA27 /* TILFilterSDK.framework in Frameworks */,
 				943A08F41EDED9F2003CEA27 /* opencv2.framework in Frameworks */,
-				94A502871E95F12400F675B2 /* libCOSClient.a in Frameworks */,
 				183E2944082280F7A406E918 /* libXG-SDK.a in Frameworks */,
 				46644693F125D10CCC64C591 /* CFNetwork.framework in Frameworks */,
 				6148BA4D458405074DDA4277 /* Security.framework in Frameworks */,
@@ -1787,7 +1782,6 @@
 				94A988001EF015030080BEF2 /* THLabel */,
 				944AF2D01E9494C00044B44C /* AFNetworking */,
 				944AF2F61E9494C00044B44C /* KVNProgress */,
-				94A502831E95F12400F675B2 /* COS_SDK */,
 			);
 			name = "3RD(3方库)";
 			path = 3RD;
@@ -2675,16 +2669,6 @@
 				94A203211EF8CA87007904D2 /* collectTag_blue@3X.png */,
 			);
 			path = collectTags;
-			sourceTree = "<group>";
-		};
-		94A502831E95F12400F675B2 /* COS_SDK */ = {
-			isa = PBXGroup;
-			children = (
-				94A502841E95F12400F675B2 /* COSClient.h */,
-				94A502851E95F12400F675B2 /* COSTask.h */,
-				94A502861E95F12400F675B2 /* libCOSClient.a */,
-			);
-			path = COS_SDK;
 			sourceTree = "<group>";
 		};
 		94A71D521F2C416400FBA4A0 /* meetAgent */ = {

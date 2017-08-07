@@ -8,12 +8,12 @@
 
 #import "M8UploadImageHelper.h"
 
-#import "COSClient.h"
+//#import "COSClient.h"
 
 @interface M8UploadImageHelper ()
-{
-    COSClient *_cosClient;
-}
+//{
+//    COSClient *_cosClient;
+//}
 @end
 
 @implementation M8UploadImageHelper
@@ -27,10 +27,11 @@ static M8UploadImageHelper *_shareInstance = nil;
     return _shareInstance;
 }
 
-- (instancetype)init {
+- (instancetype)init
+{
     if (self = [super init])
     {
-        _cosClient = [[COSClient alloc] initWithAppId:@"1251659802" withRegion:@"tj"];
+//        _cosClient = [[COSClient alloc] initWithAppId:@"1251659802" withRegion:@"tj"];
     }
     return self;
 }
@@ -38,13 +39,16 @@ static M8UploadImageHelper *_shareInstance = nil;
 - (void)upload:(UIImage *)image completion:(void (^)(NSString *))completion failed:(void (^)(NSString *))failure {
     LiveImageSignRequest *req = [[LiveImageSignRequest alloc] initWithHandler:^(BaseRequest *request) {
         LiveImageSignResponseData *respData = (LiveImageSignResponseData *)request.response.data;
-        if (!respData.sign.length) {
-            if (failure) {
+        if (!respData.sign.length)
+        {
+            if (failure)
+            {
                 failure(@"上传图片SIG为空，无法上传");
             }
             return ;
         }
-        if (!image) {
+        if (!image)
+        {
             if (failure) {
                 failure(@"图片为空，不能上传");
             }
@@ -63,36 +67,35 @@ static M8UploadImageHelper *_shareInstance = nil;
                 return ;
             }
             //1.保存文件成功 构造上传任务
-            COSObjectPutTask *task = [COSObjectPutTask new];
-            task.filePath = pathSave;
-            task.fileName = photoName;
-            task.bucket = @"sxbbucket";
-            task.attrs = @".png";
-            task.directory = @"/";
-            task.insertOnly = YES;
-            task.sign = respData.sign;
-            _cosClient.completionHandler = ^(COSTaskRsp *resp, NSDictionary *context) {
-                if (resp.retCode == 0) {
-                    if (completion) {
-                        COSObjectUploadTaskRsp *uploadResp = (COSObjectUploadTaskRsp *)resp;
-                        completion(uploadResp.sourceURL);
-                    }
-                }
-                else {
-                    if (failure) {
-                        failure(@"上传图片失败");
-                    }
-                }
-            };
-            _cosClient.progressHandler = ^(int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
-                NSLog(@"Image upload %lld / %lld", totalBytesWritten, totalBytesExpectedToWrite);
-            };
-            [_cosClient putObject:task];
+//            COSObjectPutTask *task = [COSObjectPutTask new];
+//            task.filePath = pathSave;
+//            task.fileName = photoName;
+//            task.bucket = @"sxbbucket";
+//            task.attrs = @".png";
+//            task.directory = @"/";
+//            task.insertOnly = YES;
+//            task.sign = respData.sign;
+//            _cosClient.completionHandler = ^(COSTaskRsp *resp, NSDictionary *context) {
+//                if (resp.retCode == 0) {
+//                    if (completion) {
+//                        COSObjectUploadTaskRsp *uploadResp = (COSObjectUploadTaskRsp *)resp;
+//                        completion(uploadResp.sourceURL);
+//                    }
+//                }
+//                else {
+//                    if (failure) {
+//                        failure(@"上传图片失败");
+//                    }
+//                }
+//            };
+//            _cosClient.progressHandler = ^(int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
+//                NSLog(@"Image upload %lld / %lld", totalBytesWritten, totalBytesExpectedToWrite);
+//            };
+//            [_cosClient putObject:task];
         });
     } failHandler:^(BaseRequest *request) {
         
     }];
-//    [[WebServiceEngine sharedEngine] asyncRequest:req];
     [[WebServiceEngine sharedEngine] AFAsynRequest:req];
 }
 
