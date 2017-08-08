@@ -172,7 +172,6 @@
     ILiveRoomManager *manager = [ILiveRoomManager getInstance];
     QAVOutputMode mode = [manager getCurAudioMode];
     
-    
     if(mode == QAVOUTPUTMODE_EARPHONE)
     {
         [manager setAudioMode:QAVOUTPUTMODE_SPEAKER];

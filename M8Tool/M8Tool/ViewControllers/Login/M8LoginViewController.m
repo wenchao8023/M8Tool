@@ -59,7 +59,38 @@
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:target action:@selector(handleNavigationTransition:)];
     pan.delegate = self;
     [self.view addGestureRecognizer:pan];
+    
 }
+
+//获取侧滑返回手势
+//- (UIScreenEdgePanGestureRecognizer *)screenEdgePanGestureRecognizer
+//{
+//    UIScreenEdgePanGestureRecognizer *screenEdgePanGestureRecognizer = nil;
+//    if (self.view.gestureRecognizers.count > 0)
+//    {
+//        for (UIGestureRecognizer *recognizer in self.view.gestureRecognizers)
+//        {
+//            if ([recognizer isKindOfClass:[UIScreenEdgePanGestureRecognizer class]])
+//            {
+//                screenEdgePanGestureRecognizer = (UIScreenEdgePanGestureRecognizer *)recognizer;
+//                break;
+//            }
+//        }
+//    }
+//    return screenEdgePanGestureRecognizer;
+//}
+//
+//
+//- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+//{
+//    UIScreenEdgePanGestureRecognizer *edgePan = [self screenEdgePanGestureRecognizer];
+//    
+//    UIRectEdge edge = edgePan.edges;
+//    
+//    WCLog(@"edge is %lu", (unsigned long)edge);
+//    
+//    return YES;
+//}
 
 
 
