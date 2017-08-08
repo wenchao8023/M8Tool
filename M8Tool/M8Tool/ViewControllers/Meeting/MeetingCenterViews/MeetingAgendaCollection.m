@@ -36,6 +36,9 @@
         [self registerNib:[UINib nibWithNibName:NSStringFromClass([MeetingAgendaCell class]) bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"MeetingAgendaCellID"];
         
         [self loadCalendarData];
+        
+        //如果手机在后台的时候日期发生了变化，则需要重新加载数据
+        [WCNotificationCenter addObserver:self selector:@selector(loadCalendarData) name:NSCalendarDayChangedNotification object:nil];
     }
     return self;
 }
@@ -177,4 +180,14 @@
 {
     return (int)(count % 5 == 0 ? count / 5 : count / 5 + 1);
 }
+
+
+
+
+- (void)dealloc
+{
+    [WCNotificationCenter removeObserver:self name:NSCalendarDayChangedNotification object:nil];
+}
+
+
 @end

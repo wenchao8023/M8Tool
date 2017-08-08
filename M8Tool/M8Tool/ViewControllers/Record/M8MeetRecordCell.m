@@ -43,7 +43,7 @@
     //通话发起人+人数
     if ([model.mainuser isEqualToString:[M8UserDefault getLoginId]])
     {
-        self.luancherLaber.text = [NSString stringWithFormat:@"我(%u人)", model.members.count];
+        self.luancherLaber.text = [NSString stringWithFormat:@"我(%lu人)", model.members.count];
     }
     else
     {
@@ -51,7 +51,7 @@
         {
             if ([info.user isEqualToString:model.mainuser])
             {
-                self.luancherLaber.text = [NSString stringWithFormat:@"%@(%u人)", info.nick, model.members.count];
+                self.luancherLaber.text = [NSString stringWithFormat:@"%@(%lu人)", info.nick, model.members.count];
                 break;
             }
         }

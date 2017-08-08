@@ -247,8 +247,10 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
                   alertStyle:UIAlertControllerStyleAlert
                 cancelAction:nil];
     }
-    
 }
+
+
+
 
 
 #pragma mark - KVO
@@ -314,17 +316,31 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
 {
     M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
     
-    for (M8MemberInfo *info in modelManger.selectMemberArray)
-    {
-        [[self mutableArrayValueForKey:@"dataMembersArray"] addObject:info];
-    }
-    //操作成功，将信息回传给上一级去还原设置
-    if (succHandle)
-    {
-        succHandle();
-    }
+    // inviteMemberArray 中会把自己带过去，所以要 -1
+    NSInteger currentInviteCount = modelManger.inviteMemberArray.count - 1 + modelManger.selectMemberArray.count;
     
-    [self reloadData];
+    if (currentInviteCount <= self.totalNumbers)
+    {
+        for (M8MemberInfo *info in modelManger.selectMemberArray)
+        {
+            [[self mutableArrayValueForKey:@"dataMembersArray"] addObject:info];
+        }
+        //操作成功，将信息回传给上一级去还原设置
+        if (succHandle)
+        {
+            succHandle();
+        }
+        
+        [self reloadData];
+    }
+    else    //人数超过了限制，不做任何数据操作
+    {
+        [AlertHelp alertWith:@"温馨提示"
+                     message:[NSString stringWithFormat:@"最多只能邀请: %ld 人\n当前邀请人数: %ld人", (long)self.totalNumbers, (long)currentInviteCount]
+                   cancelBtn:@"确定"
+                  alertStyle:UIAlertControllerStyleAlert
+                cancelAction:nil];
+    }
 }
 
 - (NSArray *)getMembersArray

@@ -16,6 +16,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         Instance = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
+        
+        //添加通知，日历中的 day 变化了
+        [WCNotificationCenter postNotificationName:NSCalendarDayChangedNotification object:nil];
     });
     return Instance;
 }
@@ -91,6 +94,12 @@
     NSDateComponents *todayComps = [self dateComponentsFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
     
     return todayComps.year == dateComponents.year && todayComps.month == dateComponents.month && todayComps.day == dateComponents.day;
+}
+
+
+- (void)dealloc
+{
+    [WCNotificationCenter removeObserver:self name:NSCalendarDayChangedNotification object:nil];
 }
 
 
