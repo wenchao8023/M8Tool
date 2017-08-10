@@ -17,7 +17,7 @@
 
 @interface M8MenuPushView : UIScrollView
 
-- (instancetype _Nullable )initWithFrame:(CGRect)frame itemCount:(int)itemCount meetType:(M8MeetType)meetType;
+- (instancetype _Nullable )initWithFrame:(CGRect)frame itemCount:(int)itemCount meetType:(M8MeetType)meetType call:(TILMultiCall *_Nullable)call;
 
 @property (nonatomic, weak) id<MenuPushDelegate> _Nullable WCDelegate;
 

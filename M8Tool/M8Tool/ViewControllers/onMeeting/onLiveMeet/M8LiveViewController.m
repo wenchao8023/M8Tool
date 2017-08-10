@@ -233,6 +233,7 @@
         M8MenuPushView *menuView = [[M8MenuPushView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, kBottomHeight)
                                                                itemCount:0
                                                                 meetType:M8MeetTypeLive
+                                                                    call:nil
                                     ];
         [self.view addSubview:menuView];
         [self.view bringSubviewToFront:menuView];
