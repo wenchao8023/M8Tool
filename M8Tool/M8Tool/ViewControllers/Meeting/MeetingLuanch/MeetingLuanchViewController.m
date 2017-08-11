@@ -54,6 +54,17 @@
     [self configTabelViewArgu];
 }
 
+//视图消失之后，如果是在会议中，则需要显示tabBar
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    if ([M8UserDefault getIsInMeeting])
+    {
+        UINavigationController *curNavi = [[AppDelegate sharedAppDelegate] navigationViewController];
+        curNavi.tabBarController.tabBar.hidden = NO;
+    }
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -253,7 +264,15 @@
     item.info.host = [M8UserDefault getLoginId];
     
     M8CallViewController *callVC = [[M8CallViewController alloc] initWithItem:item isHost:YES];
-    [M8MeetWindow M8_addMeetSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
+    [M8MeetWindow M8_addMeetSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController] succHandle:^{
+        
+        UINavigationController *curNavi = self.navigationController;
+        if ([self respondsToSelector:@selector(configBottomTipView)])
+        {
+            [self performSelector:@selector(configBottomTipView)];
+            curNavi.tabBarController.tabBar.hidden = YES;
+        }
+    }];
 }
 
 
@@ -268,17 +287,23 @@
 //    __block NSString *imageUrl = nil;
     
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+//        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
         
         // 请求房间号
         CreateRoomRequest *createRoomReq = [[CreateRoomRequest alloc] initWithHandler:^(BaseRequest *request) {
             
             roomData = (CreateRoomResponceData *)request.response.data;
-            dispatch_semaphore_signal(semaphore);
+//            dispatch_semaphore_signal(semaphore);
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [reqIdWaitView removeFromSuperview];
+                [self enterLive:(int)roomData.roomnum groupId:roomData.groupid imageUrl:@""];
+            });
             
         } failHandler:^(BaseRequest *request) {
             
-            dispatch_semaphore_signal(semaphore);
+//            dispatch_semaphore_signal(semaphore);
         }];
         
         createRoomReq.token = [AppDelegate sharedAppDelegate].token;
@@ -299,12 +324,12 @@
 //        dispatch_time_t timeoutTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0 * NSEC_PER_SEC));
 //        dispatch_semaphore_wait(semaphore, timeoutTime);
 //        dispatch_semaphore_wait(semaphore, timeoutTime);
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            [reqIdWaitView removeFromSuperview];
-            [self enterLive:(int)roomData.roomnum groupId:roomData.groupid imageUrl:@""];
-        });
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            
+//            [reqIdWaitView removeFromSuperview];
+//            [self enterLive:(int)roomData.roomnum groupId:roomData.groupid imageUrl:@""];
+//        });
     });
 }
 
@@ -322,7 +347,19 @@
     item.info.host = [M8UserDefault getLoginId];
     
     M8LiveViewController *liveVC = [[M8LiveViewController alloc] initWithItem:item isHost:YES];
-    [M8MeetWindow M8_addMeetSource:liveVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
+    [M8MeetWindow M8_addMeetSource:liveVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController] succHandle:^{
+        
+        UINavigationController *curNavi = self.navigationController;
+        if ([self respondsToSelector:@selector(configBottomTipView)])
+        {
+            //视图推出的动画是 0.3s 所以 0.3s 之后执行这段代码
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+                [self performSelector:@selector(configBottomTipView)];
+                curNavi.tabBarController.tabBar.hidden = YES;
+            });
+        }
+    }];
 }
 
 

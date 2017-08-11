@@ -34,7 +34,7 @@
     }
     
     
-    NSArray *tipArr = [invitation.callTip componentsSeparatedByString:@","];
+    NSArray *tipArr  = [invitation.callTip componentsSeparatedByString:@","];
     NSArray *nickArr = [invitation.custom componentsSeparatedByString:@","];
     NSArray *uidArr  = invitation.memberArray;
     

@@ -36,7 +36,6 @@
  */
 - (void)presentNavigationController:(UIViewController *)naviController ;
 
-
 - (void)enterLoginUI;
 
 - (void)enterLoginMutiUI;

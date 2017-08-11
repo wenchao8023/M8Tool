@@ -32,6 +32,7 @@
     
     [self initCall];
     
+    
     //隐藏菜单通知
     [WCNotificationCenter addObserver:self selector:@selector(onHiddeMenuView) name:kHiddenMenuView_Notifycation object:nil];
     //收到邀请成员通知
@@ -53,11 +54,15 @@
     TILCallConfig * config = [[TILCallConfig alloc] init];
     
     TILCallBaseConfig * baseConfig  = [[TILCallBaseConfig alloc] init];
+    baseConfig.callType             = self.liveItem.callType;
+    baseConfig.isSponsor            = self.isHost;
+    baseConfig.memberArray          = self.liveItem.members;
     baseConfig.heartBeatInterval    = 15;
     baseConfig.isAutoResponseBusy   = YES;
-    baseConfig.isSponsor            = self.isHost;
-    baseConfig.callType             = self.liveItem.callType;
-    baseConfig.memberArray          = self.liveItem.members;
+    
+    BOOL isVideo = (self.liveItem.callType == TILCALL_TYPE_VIDEO);  //如果是视频通话就自动打开相机
+    baseConfig.autoCamera           = isVideo;
+    
     config.baseConfig = baseConfig;
     
     TILCallListener * listener      = [[TILCallListener alloc] init];
@@ -118,6 +123,8 @@
             }
             else
             {
+                [self menuView];
+                
                 [[ILiveRoomManager getInstance] setBeauty:2];
                 [[ILiveRoomManager getInstance] setWhite:2];
                 
@@ -235,6 +242,8 @@
         }
         else
         {
+            [self menuView];
+            
             [[ILiveRoomManager getInstance] setBeauty:3];
             [[ILiveRoomManager getInstance] setWhite:3];
             
@@ -326,6 +335,7 @@
         M8MenuPushView *menuView = [[M8MenuPushView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, kBottomHeight)
                                                                itemCount:self.liveItem.callType == TILCALL_TYPE_VIDEO ? 5 : 3
                                                                 meetType:M8MeetTypeCall
+                                                                    call:self.call
                                     ];
         menuView.WCDelegate = self;
         [self.view addSubview:menuView];
@@ -361,7 +371,7 @@
     [self deviceView];
     [self renderView];
     [self noteView];
-    [self menuView];
+//    [self menuView];
     [self noteToolBar]; //初始化时是隐藏的
 }
 

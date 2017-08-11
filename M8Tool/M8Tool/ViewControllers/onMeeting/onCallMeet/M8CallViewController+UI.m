@@ -196,13 +196,20 @@
 //    [self addTextToView:[info allValues][0]];
     
     NSString *infoKey = [[info allKeys] firstObject];
+    NSString *infoValue = [info objectForKey:infoKey];
     
     if ([infoKey isEqualToString:kMenuPushAction])
     {
-        NSString *infoValue = [info objectForKey:infoKey];
         if ([infoValue isEqualToString:@"onInviteAction"])
         {
             [self onInviteAction];// 邀请更多成员
+        }
+    }
+    if ([infoKey isEqualToString:kMenuPushText])
+    {
+        if ([infoValue isKindOfClass:[NSString class]])
+        {
+            [self addMember:nil withTip:infoValue];
         }
     }
 }

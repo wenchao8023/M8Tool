@@ -34,8 +34,18 @@
     return sharedInstance;
 }
 
-
 - (void)addMeetSource:(id)source WindowOnTarget:(UIViewController *)target
+{
+    [self addMeetSource:source WindowOnTarget:target succHandle:nil];
+//    self.baseController = source;
+//    [target addChildViewController:self.baseController];
+//    [target.view addSubview:self.baseController.view];
+//    [self.baseController setRootView];
+//    
+//    [self hiddeFloatView];
+}
+
+- (void)addMeetSource:(id)source WindowOnTarget:(UIViewController *)target succHandle:(M8VoidBlock)succ
 {
     self.baseController = source;
     [target addChildViewController:self.baseController];
@@ -43,6 +53,11 @@
     [self.baseController setRootView];
     
     [self hiddeFloatView];
+    
+    if (succ)
+    {
+        succ();
+    }
 }
 
 - (void)showFloatView

@@ -21,6 +21,13 @@
 {
     [super viewWillAppear:animated];
 
+    [self configBottomTipView];
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+}
+
+- (void)configBottomTipView
+{
     BOOL isMeeting = [M8UserDefault getIsInMeeting];
     
     UINavigationController *curNavi = [[AppDelegate sharedAppDelegate] navigationViewController];
@@ -46,10 +53,9 @@
             _bottomTipView = nil;
         }
     }
-    
-    
-    self.automaticallyAdjustsScrollViewInsets = NO;
 }
+
+
 
 - (void)viewDidLoad
 {
