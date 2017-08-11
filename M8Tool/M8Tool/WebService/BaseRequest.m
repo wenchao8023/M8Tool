@@ -131,7 +131,7 @@
                 {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         
-                        TCILDebugLog(@"返回数据格式有误--> %@",respJsonObject);
+//                        TCILDebugLog(@"返回数据格式有误--> %@",respJsonObject);
                             // 说明返回内容有问题
                             if (_failHandler)
                             {
@@ -152,7 +152,7 @@
                     }
                     else
                     {
-                        TCILDebugLog(@"返回的数据有业务错误--> %@",[_response message]);
+//                        TCILDebugLog(@"返回的数据有业务错误--> %@",[_response message]);
                             // 返回的数据有业务错误
                             if (_failHandler)
                             {
@@ -167,7 +167,7 @@
     }
     else
     {
-        TCILDebugLog(@"返回数据为空--> %@",[self class]);
+//        TCILDebugLog(@"返回数据为空--> %@",[self class]);
         dispatch_async(dispatch_get_main_queue(), ^{
             // 说明返回内容有问题
             if (_failHandler)

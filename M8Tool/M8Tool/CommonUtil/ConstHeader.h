@@ -153,9 +153,9 @@ typedef NS_ENUM(NSInteger, LastLoginType)   //上一次登录的类型
 
 
 /******************** role string **********************/
-#define kSxbRole_Host       @"LiveMaster"
-#define kSxbRole_Guest      @"Guest"
-#define kSxbRole_Interact   @"LiveGuest"
+#define kM8Role_Host       @"M8LiveMaster"
+#define kM8Role_Guest      @"M8Guest"
+#define kM8Role_Interact   @"M8LiveGuest"
 
 /******************** local param **********************/
 #define kLoginIdentifier    @"kLoginIdentifier"

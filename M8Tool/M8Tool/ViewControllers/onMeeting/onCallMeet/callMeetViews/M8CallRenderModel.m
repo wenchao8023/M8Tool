@@ -29,7 +29,8 @@
     self.isInUserAction = YES;
     self.userActionDuration = 10;
     self.userActionTimer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(countCancelTimer) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop] addTimer:self.userActionTimer forMode:NSDefaultRunLoopMode];
+//    self.userActionTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countCancelTimer) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:self.userActionTimer forMode:NSRunLoopCommonModes];
     [self.userActionTimer fire];
 }
 
@@ -61,6 +62,11 @@
 
 - (void)onUserActionEnd
 {
+    if (!self.userActionTimer)
+    {
+        //防止在主线程里面执行该方法
+        [[NSRunLoop currentRunLoop] cancelPerformSelector:@selector(countCancelTimer) target:self argument:nil];
+    }
     self.isInUserAction = NO;
     self.userActionDuration = 0;
     if ([self.userActionTimer isValid])

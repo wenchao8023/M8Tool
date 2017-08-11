@@ -54,11 +54,15 @@
     TILCallConfig * config = [[TILCallConfig alloc] init];
     
     TILCallBaseConfig * baseConfig  = [[TILCallBaseConfig alloc] init];
+    baseConfig.callType             = self.liveItem.callType;
+    baseConfig.isSponsor            = self.isHost;
+    baseConfig.memberArray          = self.liveItem.members;
     baseConfig.heartBeatInterval    = 15;
     baseConfig.isAutoResponseBusy   = YES;
-    baseConfig.isSponsor            = self.isHost;
-    baseConfig.callType             = self.liveItem.callType;
-    baseConfig.memberArray          = self.liveItem.members;
+    
+    BOOL isVideo = (self.liveItem.callType == TILCALL_TYPE_VIDEO);  //如果是视频通话就自动打开相机
+    baseConfig.autoCamera           = isVideo;
+    
     config.baseConfig = baseConfig;
     
     TILCallListener * listener      = [[TILCallListener alloc] init];

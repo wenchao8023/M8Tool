@@ -42,13 +42,6 @@
  */
 @property (nonatomic, strong, nullable) TILCallInvitation *invitation;
 
-
-/**
- 当前的会议ID
- */
-@property (nonatomic, assign) int curMid;
-
-
 /**
  当前视图中成员信息（不应该在这里出现的，后面会使用 renderView 中的）
  */

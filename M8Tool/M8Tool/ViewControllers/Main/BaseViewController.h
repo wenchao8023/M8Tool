@@ -81,5 +81,6 @@ static const float kRadiusView              = 10;
  点击导航栏返回
  */
 //- (void)backClick;
-
+// 设置底部提示框
+- (void)configBottomTipView;
 @end

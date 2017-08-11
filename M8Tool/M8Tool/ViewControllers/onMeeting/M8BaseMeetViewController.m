@@ -196,6 +196,7 @@
 {
     //退出视图的时候需要将 菜单的推出状态记为NO
     [M8UserDefault setPushMenuStatu:NO];
+    [M8UserDefault setMeetingStatu:NO];
     
     // invite单例数据要清空
     M8InviteModelManger *inviteModelManger = [M8InviteModelManger shareInstance];
@@ -215,26 +216,24 @@
         [self removeFromParentViewController];
         // 3. 将 属性 置为空
         self.floatView = nil;
+        
+        
+        //4. 如果退出之后显示的视图中有红色的提示框，需要重新刷新视图
+        //判断方式
+        //a. navigation 中的 VC 个数
+        UINavigationController *curNavi = [[AppDelegate sharedAppDelegate] navigationViewController];
+        if (curNavi.viewControllers.count > 1)
+        {
+            UIViewController *topVC  = [curNavi topViewController];
+
+            if ([topVC respondsToSelector:@selector(configBottomTipView)])
+            {
+                [topVC performSelector:@selector(configBottomTipView)];
+                curNavi.tabBarController.tabBar.hidden = NO;
+            }
+        }
+        
     }];
-    
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        
-//        // 1. 将 通话界面 移到视图底部，（造成退出界面的动画）
-//        [UIView animateWithDuration:0.3 animations:^{
-//            
-//            CGRect frame = self.view.frame;
-//            frame.origin.y = [UIScreen mainScreen].bounds.size.height;
-//            self.view.frame = frame;
-//            
-//        } completion:^(BOOL finished) {
-//            
-//            // 2. 将 self 移除父视图
-//            [self.view removeFromSuperview];
-//            [self removeFromParentViewController];
-//            // 3. 将 属性 置为空
-//            self.floatView = nil;
-//        }];
-//    });
 }
 
 
@@ -284,8 +283,6 @@
 #pragma mark -- dealloc
 - (void)dealloc
 {
-    [M8UserDefault setMeetingStatu:NO];
-    
     [WCNotificationCenter removeObserver:self name:kThemeSwich_Notification object:nil];
     [WCNotificationCenter removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
     

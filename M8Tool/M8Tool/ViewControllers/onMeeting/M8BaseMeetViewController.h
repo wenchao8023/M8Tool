@@ -36,6 +36,12 @@
 
 
 /**
+ 当前的会议ID
+ */
+@property (nonatomic, assign) int curMid;
+
+
+/**
   *  通话中 - 发起端
   *  直播中 - 主播端
   */
