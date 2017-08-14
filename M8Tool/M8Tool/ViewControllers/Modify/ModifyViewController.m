@@ -38,8 +38,7 @@ typedef void(^SaveBlock)();
         label.attributedText = [CommonUtil customAttString:@"返回"
                                                   fontSize:kAppMiddleFontSize
                                                  textColor:WCWhite
-                                                 charSpace:kAppKern_4
-                                                  fontName:kFontNameDroidSansFallback];
+                                                 charSpace:kAppKern_4];
         [backView addSubview:imageV];
         [backView addSubview:label];
         UITapGestureRecognizer *backClick = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backAction)];
@@ -85,7 +84,7 @@ typedef void(^SaveBlock)();
         [_saveButton setAttributedTitle:[CommonUtil customAttString:@"保存"
                                                           fontSize:kAppMiddleFontSize
                                                          textColor:WCWhite
-                                                         charSpace:kAppKern_4]
+                                                         charSpace:kAppKern_2]
                               forState:UIControlStateNormal];
         
     }
@@ -94,7 +93,7 @@ typedef void(^SaveBlock)();
         [_saveButton setAttributedTitle:[CommonUtil customAttString:@"保存"
                                                            fontSize:kAppMiddleFontSize
                                                           textColor:WCLightGray
-                                                          charSpace:kAppKern_4]
+                                                          charSpace:kAppKern_2]
                                forState:UIControlStateNormal];
         
     }

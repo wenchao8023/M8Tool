@@ -220,66 +220,128 @@
 
 +(NSString *)getDateStrWithTime:(NSTimeInterval)time
 {
+    return [self getDateStrWithTime:time formatter:@"yyyy-MM-dd HH:mm:ss"];
+}
+
+
++ (NSString *)getRecordDateStr:(NSTimeInterval)time
+{
+    NSString *recordDateStr;
+    
+    NSDate *todayDate = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSDateComponents *curComps = [DAYUtils dateComponentsFromDate:todayDate];
+    
+    NSUInteger curYear  = curComps.year;
+    NSUInteger curMonth = curComps.month;
+    NSUInteger curDay   = curComps.day;
+    NSUInteger curWeek  = [DAYUtils curWeekdayComponents:curComps];     // 1 ~ 7
+    
+    
+    NSDate *recordDate = [NSDate dateWithTimeIntervalSince1970:time];
+    NSDateComponents *recComps = [DAYUtils dateComponentsFromDate:recordDate];
+    
+    NSUInteger recYear  = recComps.year;
+    NSUInteger recMonth = recComps.month;
+    NSUInteger recDay   = recComps.day;
+    NSUInteger recWeek  = [DAYUtils curWeekdayComponents:recComps];     // 1 ~ 7
+    NSUInteger recTotalDaysInMonth = [DAYUtils daysInMonth:recMonth ofYear:recYear];
+    
+    /// 计算昨天和今天
+    if (curYear  == recYear)    //年
+    {
+        if (curMonth == recMonth)   //月
+        {
+            if (curDay == recDay)   //日
+            {
+                recordDateStr = [self getDateStrWithTime:time formatter:kTimeformatterDay];     //今天
+            }
+            else if (curDay == recDay + 1)
+            {
+                recordDateStr = [self getDateStrWithTime:time formatter:kTimeformatterLday];    //昨天
+                return [@"昨天 " stringByAppendingString:recordDateStr];
+            }
+            else if ((curWeek - recWeek) == (curMonth - recMonth))  //判断是不是当前星期
+            {
+                recordDateStr = [self getDateStrWithTime:time formatter:kTimeformatterWeak];    //本周
+                return [[DAYUtils stringOfWeekdayInChinese:recWeek - 1] stringByAppendingString:recordDateStr];
+            }
+            else
+            {
+                recordDateStr = [self getDateStrWithTime:time formatter:kTimeformatterMonth];
+            }
+        }
+        else if (curMonth == recMonth + 1)  //上月的信息
+        {
+            if (curDay == 1)    //判断今天是不是月初
+            {
+                if (recDay == recTotalDaysInMonth)  //判断记录时间是不是上月月底
+                {
+                    recordDateStr = [self getDateStrWithTime:time formatter:kTimeformatterLday];    //昨天
+                    return [@"昨天 " stringByAppendingString:recordDateStr];
+                }
+                else if ((curWeek - recWeek) == (curMonth - recMonth + recTotalDaysInMonth))  //判断是不是本周
+                {
+                    recordDateStr = [self getDateStrWithTime:time formatter:kTimeformatterWeak];    //本周
+                    return [[DAYUtils stringOfWeekdayInChinese:recWeek - 1] stringByAppendingString:recordDateStr];
+                }
+                else
+                {
+                    recordDateStr = [self getDateStrWithTime:time formatter:kTimeformatterMonth];
+                }
+            }
+            else if ((curWeek - recWeek) == (curMonth - recMonth + recTotalDaysInMonth))  //判断是不是当前星期 (上月不是1号，上月的记录就不可能是昨天的了)
+            {
+                recordDateStr = [self getDateStrWithTime:time formatter:kTimeformatterWeak];    //本周
+                return [[DAYUtils stringOfWeekdayInChinese:recWeek - 1] stringByAppendingString:recordDateStr];
+            }
+            else
+            {
+                recordDateStr = [self getDateStrWithTime:time formatter:kTimeformatterMonth];
+            }
+        }
+        else    //其他月份
+        {
+            recordDateStr = [self getDateStrWithTime:time formatter:kTimeformatterMonth];
+        }
+    }
+    else    //其他年份
+    {
+        recordDateStr = [self getDateStrWithTime:time formatter:kTimeformatterYear];
+    }
+    
+    
+    return recordDateStr;
+}
+
+/**
+ 设置时间格式
+
+ @param time 时间戳
+ @param formatterStr 格式字符串
+ @return 对应的时间格式字符串
+ */
++ (NSString *)getDateStrWithTime:(NSTimeInterval)time formatter:(NSString *)formatterStr
+{
     NSString *timeStr;
     NSDate *startDate = [NSDate dateWithTimeIntervalSince1970:time];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [formatter setDateFormat:formatterStr];
     timeStr = [formatter stringFromDate:startDate];
     return timeStr;
-}
-
-
-+ (BOOL)AVAuthorizationStatusAudio {
-    AVAuthorizationStatus audioStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio];
-    if(audioStatus == AVAuthorizationStatusRestricted || audioStatus == AVAuthorizationStatusDenied)
-    {
-        [AlertHelp alertWith:nil message:@"您没有麦克风使用权限,请到 设置->隐私->麦克风 中开启权限" cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
-        return NO;
-    }
-    return YES;
-}
-
-+ (BOOL)AVAuthorizationStatusVideo {
-    AVAuthorizationStatus videoStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
-    if(videoStatus == AVAuthorizationStatusRestricted || videoStatus == AVAuthorizationStatusDenied)
-    {
-        [AlertHelp alertWith:nil message:@"您没有相机使用权限,请到 设置->隐私->相机 中开启权限" cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
-        return NO;
-    }
-    return YES;
 }
 
 // 文字模糊背景
 // 默认：白色文字、黑色模糊
 // 文字大小 16
-+(NSMutableAttributedString *)getShadowStr:(NSString *)str {
-    
++(NSMutableAttributedString *)getShadowStr:(NSString *)str
+{
     return [self getShadowStr:str
                          font:[UIFont systemFontSize]
             ];
-//    NSRange range = NSMakeRange(0, str.length);
-//    
-//    NSShadow *shadow = [[NSShadow alloc] init];
-//    
-//    shadow.shadowBlurRadius = 5;    //模糊度
-//    
-//    shadow.shadowColor = [UIColor blackColor];
-//    
-//    shadow.shadowOffset = CGSizeMake(1, 3);
-//    
-//    NSDictionary *dict = @{NSFontAttributeName : [UIFont systemFontOfSize:16],
-//                           NSForegroundColorAttributeName : [UIColor whiteColor],
-//                           NSShadowAttributeName : shadow};
-//    
-//    NSMutableAttributedString *attText = [[NSMutableAttributedString alloc] initWithString:str];
-//    
-//    [attText setAttributes:dict range:range];
-//    
-//    return attText;
 }
 
-+(NSMutableAttributedString *)getShadowStr:(NSString *)str font:(CGFloat)font {
-
++(NSMutableAttributedString *)getShadowStr:(NSString *)str font:(CGFloat)font
+{
     return [self getShadowStr:str
                          font:font
                     textColor:[UIColor whiteColor]
@@ -289,8 +351,8 @@
 +(NSMutableAttributedString *)getShadowStr:(NSString *)str
                                       font:(CGFloat)font
                                  textColor:(UIColor *)textColor
-                               shadowColor:(UIColor *)shadowColor {
-    
+                               shadowColor:(UIColor *)shadowColor
+{
     NSRange range = NSMakeRange(0, str.length);
     
     NSShadow *shadow = [[NSShadow alloc] init];
@@ -312,6 +374,12 @@
     return attText;
 }
 #pragma mark - 文本属性
++(NSMutableAttributedString *)customAttString:(NSString *)string
+{
+    return [self customAttString:string
+                        fontSize:0
+            ];
+}
 
 
 /**
@@ -344,30 +412,44 @@
                                     textColor:(UIColor *)textColor
                                     charSpace:(int)charSpace
 {
-    return [self customAttString:string
-                        fontSize:fontSize
-                       textColor:textColor
-                       charSpace:charSpace
-                        fontName:nil];
-}
-+(NSMutableAttributedString *)customAttString:(NSString *)string
-                                     fontSize:(CGFloat)fontSize
-                                    textColor:(UIColor *)textColor
-                                    charSpace:(int)charSpace
-                                     fontName:(NSString *)fontName
-{
     if (string &&
         [string isKindOfClass:[NSString class]])
         return [[NSMutableAttributedString alloc] initWithString:string
                                                       attributes:[self customAttsWithFontSize:fontSize
                                                                                     textColor:textColor
                                                                                     charSpace:charSpace
-                                                                                     fontName:fontName]];
+                                                                  ]
+                ];
     return nil;
+//    return [self customAttString:string
+//                        fontSize:fontSize
+//                       textColor:textColor
+//                       charSpace:charSpace
+//                        fontName:nil];
 }
 
+
+//+(NSMutableAttributedString *)customAttString:(NSString *)string
+//                                     fontSize:(CGFloat)fontSize
+//                                    textColor:(UIColor *)textColor
+//                                    charSpace:(int)charSpace
+//                                     fontName:(NSString *)fontName
+//{
+//    if (string &&
+//        [string isKindOfClass:[NSString class]])
+//        return [[NSMutableAttributedString alloc] initWithString:string
+//                                                      attributes:[self customAttsWithFontSize:fontSize
+//                                                                                    textColor:textColor
+//                                                                                    charSpace:charSpace
+//                                                                                     fontName:fontName]];
+//    return nil;
+//}
+
+#pragma mark - 文本属性
+#pragma mark -- 粗文本属性
 +(NSMutableDictionary *)customAttsWithBodyFontSize:(CGFloat)fontSize
-                                     textColor:(UIColor *)textColor {
+                                     textColor:(UIColor *)textColor
+{
     NSMutableDictionary *attDict = [NSMutableDictionary dictionaryWithCapacity:0];
     //设置字体-粗体、大小
     [attDict setValue:[UIFont boldSystemFontOfSize:fontSize] forKey:NSFontAttributeName];
@@ -376,31 +458,59 @@
         [attDict setValue:textColor forKey:NSForegroundColorAttributeName];
     return attDict;
 }
-+(NSMutableDictionary *)customAttsWithFontSize:(CGFloat)fontSize
-                                     textColor:(UIColor *)textColor
-                                     charSpace:(int)charSpace {
-    return [self customAttsWithFontSize:fontSize
-                              textColor:textColor
-                              charSpace:charSpace
-                               fontName:kFontNameHeiti_SC];
-}
+#pragma mark --
 +(NSMutableDictionary *)customAttsWithFontSize:(CGFloat)fontSize
                                      textColor:(UIColor *)textColor
                                      charSpace:(int)charSpace
-                                      fontName:(NSString *)fontName
 {
     NSMutableDictionary *attDict = [NSMutableDictionary dictionaryWithCapacity:0];
-    //设置字体、大小
-    if (fontName && fontSize)
-        [attDict setValue:[UIFont fontWithName:fontName size:fontSize] forKey:NSFontAttributeName];
-    //设置字体颜色
-    if (textColor)
+    
+    CGFloat curFontSize;
+    if (fontSize)   //设置字体、大小
+        curFontSize = fontSize;
+    else
+        curFontSize = kAppMiddleFontSize;
+    
+    [attDict setValue:[UIFont fontWithName:kFontNameSTHeiti_Light size:curFontSize] forKey:NSFontAttributeName];
+    
+    if (textColor)  //设置字体颜色
         [attDict setValue:textColor forKey:NSForegroundColorAttributeName];
-    //设置字符间距
-    if (charSpace)
+    
+    if (charSpace)  //设置字符间距
         [attDict setValue:@(charSpace) forKey:NSKernAttributeName];
+    
     return attDict;
 }
+
+
+
+//+(NSMutableDictionary *)customAttsWithFontSize:(CGFloat)fontSize
+//                                     textColor:(UIColor *)textColor
+//                                     charSpace:(int)charSpace
+//{
+//    return [self customAttsWithFontSize:fontSize
+//                              textColor:textColor
+//                              charSpace:charSpace
+//                               fontName:kFontNameSTHeiti_Light
+//            ];
+//}
+//+(NSMutableDictionary *)customAttsWithFontSize:(CGFloat)fontSize
+//                                     textColor:(UIColor *)textColor
+//                                     charSpace:(int)charSpace
+//                                      fontName:(NSString *)fontName
+//{
+//    NSMutableDictionary *attDict = [NSMutableDictionary dictionaryWithCapacity:0];
+//    //设置字体、大小
+//    if (fontName && fontSize)
+//        [attDict setValue:[UIFont fontWithName:fontName size:fontSize] forKey:NSFontAttributeName];
+//    //设置字体颜色
+//    if (textColor)
+//        [attDict setValue:textColor forKey:NSForegroundColorAttributeName];
+//    //设置字符间距
+//    if (charSpace)
+//        [attDict setValue:@(charSpace) forKey:NSKernAttributeName];
+//    return attDict;
+//}
 
 
 +(NSMutableAttributedString *)nonusecustomAttString:(NSString *)string {

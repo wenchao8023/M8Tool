@@ -54,7 +54,12 @@
             self.addButton.enabled = (selectNum > 0);
             
             [UIView setAnimationsEnabled:NO];
-            [self.addButton setAttributedTitle:[CommonUtil customAttString:buttonStr fontSize:kAppMiddleFontSize textColor:WCWhite charSpace:kAppKern_2] forState:UIControlStateNormal];
+            [self.addButton setAttributedTitle:[CommonUtil
+                                                customAttString:buttonStr
+                                                fontSize:kAppMiddleFontSize
+                                                textColor:WCWhite
+                                                charSpace:kAppKern_2]
+                                      forState:UIControlStateNormal];
             [UIView setAnimationsEnabled:YES];
         }
             break;
@@ -93,7 +98,11 @@
             self.addButton.enabled = (selectNum > 0);
             
             [UIView setAnimationsEnabled:NO];
-            [self.addButton setAttributedTitle:[CommonUtil customAttString:buttonStr fontSize:kAppMiddleFontSize textColor:WCWhite charSpace:kAppKern_2] forState:UIControlStateNormal];
+            [self.addButton setAttributedTitle:[CommonUtil
+                                                customAttString:buttonStr
+                                                fontSize:kAppMiddleFontSize
+                                                textColor:WCWhite charSpace:kAppKern_2]
+                                      forState:UIControlStateNormal];
             [UIView setAnimationsEnabled:YES];
         }
             break;

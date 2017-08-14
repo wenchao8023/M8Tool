@@ -84,24 +84,24 @@
     
     
     M8InviteModelManger *inviteModelManger = [M8InviteModelManger shareInstance];
-    M8MemberInfo *hostInfo = [inviteModelManger.inviteMemberArray firstObject];
+//    M8MemberInfo *hostInfo = [inviteModelManger.inviteMemberArray firstObject];
+    
+    NSString *inviter = _invitation.inviterId;
     
     NSString *inviteInfo;
     if (_invitation.callType == TILCALL_TYPE_VIDEO)
     {
 //        inviteInfo = [NSString stringWithFormat:@"%@邀请你视频通话", _invitation.sponsorId];
-        inviteInfo = [NSString stringWithFormat:@"%@邀请你视频通话", hostInfo.nick];
+        inviteInfo = [NSString stringWithFormat:@"%@邀请你视频通话", [inviteModelManger nickInInviteArrayWithUid:inviter]];
     }
     else if (_invitation.callType == TILCALL_TYPE_AUDIO)
     {
-        inviteInfo = [NSString stringWithFormat:@"%@邀请你音频通话", hostInfo.nick];
+        inviteInfo = [NSString stringWithFormat:@"%@邀请你音频通话", [inviteModelManger nickInInviteArrayWithUid:inviter]];
     }
     self.infoLabel.text = inviteInfo;
 
-    self.sponsorLabel.text = [hostInfo.nick getSimpleName];
+    self.sponsorLabel.text = [inviter getSimpleName];
     self.inviteLabel.text  = [[M8UserDefault getLoginNick] getSimpleName];
-//    self.sponsorLabel.text = _invitation.sponsorId;
-//    self.inviteLabel.text  = [M8UserDefault getLoginId];
     
     [self.view sendSubviewToBack:self.bgImageView];
     

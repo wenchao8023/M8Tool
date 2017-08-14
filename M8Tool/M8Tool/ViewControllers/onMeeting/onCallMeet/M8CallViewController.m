@@ -57,7 +57,7 @@
     baseConfig.callType             = self.liveItem.callType;
     baseConfig.isSponsor            = self.isHost;
     baseConfig.memberArray          = self.liveItem.members;
-    baseConfig.heartBeatInterval    = 15;
+    baseConfig.heartBeatInterval    = 5;
     baseConfig.isAutoResponseBusy   = YES;
     
     BOOL isVideo = (self.liveItem.callType == TILCALL_TYPE_VIDEO);  //如果是视频通话就自动打开相机
@@ -73,7 +73,14 @@
     
     if (self.isHost)
     {
-        [self makeCall:config]; //创建会议需要在获取到会议ID之后创建，获取到会议ID只需要将成员信息上报给服务器之后才能返回，然后在tip中将会议ID传给接收端
+        if (self.isJoinSelf)
+        {
+            [self joinSelfCall:config];
+        }
+        else
+        {
+            [self makeCall:config]; //创建会议需要在获取到会议ID之后创建，获取到会议ID只需要将成员信息上报给服务器之后才能返回，然后在tip中将会议ID传给接收端
+        }
     }
     else
     {
@@ -135,6 +142,11 @@
             }
         }];
     }];
+}
+
+- (void)joinSelfCall:(TILCallConfig *)config
+{
+    [self recvCall:config];
 }
 
 #pragma mark -- 接收方
@@ -391,23 +403,16 @@
 
 - (void)selfDismiss
 {
-    if (self.isHost)
+    [self onNetReportExitRoom];
+    
+    if (self.isHost &&
+        !self.shouldHangup &&
+        !self.isJoinSelf)
     {
-        [self onNetReportExitRoom];
-        
-        if (self.shouldHangup)
-        {
-            [self hangup];
-        }
-        else
-        {
-            [self cancelAllCall];
-        }
+        [self cancelAllCall];
     }
     else
     {
-        [self onNetReportMemExitRoom];
-        
         [self hangup];
     }
 }

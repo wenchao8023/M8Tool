@@ -48,7 +48,11 @@ static NSString *const kUserSettingVC   = @"UserSettingViewController";
                                                        BgColor:WCClear
                            ];
 
-    [titleLabel setAttributedText:[CommonUtil customAttString:identifier fontSize:kAppNaviFontSize textColor:WCBlack charSpace:kAppKern_2 fontName:kFontNameSTHeiti]];
+    [titleLabel setAttributedText:[CommonUtil customAttString:identifier
+                                                     fontSize:kAppNaviFontSize
+                                                    textColor:WCBlack
+                                                    charSpace:kAppKern_2]
+     ];
     [self addSubview:titleLabel];
     
     UILabel *LineLabel = [WCUIKitControl createLabelWithFrame:CGRectMake(0, self.height - 0.5, self.width, 0.5) Text:nil BgColor:[UIColor colorWithRed:0.86 green:0.84 blue:0.82 alpha:1]];

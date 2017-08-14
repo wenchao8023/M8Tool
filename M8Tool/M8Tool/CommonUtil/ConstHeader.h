@@ -37,6 +37,7 @@
 #define kFontNameDroidSansFallback      @"DroidSansFallback"
 #define kFontNameSTHeiti                @"STHeiti"
 #define kFontNameHeiti_SC               @"Heiti SC"
+#define kFontNameSTHeiti_Light          @"STHeiti Light"
 
 //text kern defalut is 0
 static const int kAppKern_0 = 0;

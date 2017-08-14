@@ -19,15 +19,6 @@
 
 @property (nonatomic, strong) NSMutableArray *inviteArray;     //记录会议开始前邀请的成员
 
-/**
- 记录当前处在背景视图的成员
- 
- * 音频模式下 currentModel 一直为空
- * 视频模式下 根据用户操作进行设置
- * 在最后回调的时候将数据重新分离并回传
- */
-//@property (nonatomic, strong, nullable) M8CallRenderModel *currentModel;
-
 @end
 
 
@@ -315,6 +306,22 @@
     return hostModel.isCameraOn;
 }
 
+//#pragma mark -- on get current members in room (using to send notification)
+//- (NSArray *)onGetOnLineMembers
+//{
+//    NSMutableArray *curMembers = [NSMutableArray arrayWithCapacity:0];
+//    
+//    for (M8CallRenderModel *model in self.inviteArray)
+//    {
+//        if (model.meetMemberStatus == MeetMemberStatus_receive)
+//        {
+//            [curMembers addObject:model.identify];
+//        }
+//    }
+//    
+//    return (NSArray *)curMembers;
+//}
+
 #pragma mark - private actions
 #pragma mark -- get member model
 - (M8CallRenderModel *)getMemberWithID:(NSString *)identify
@@ -327,7 +334,7 @@
         }
     }
     
-    NSAssert(0, @"此时房间没成员");
+    NSAssert(1, @"此时房间没成员");
     return nil;
 }
 

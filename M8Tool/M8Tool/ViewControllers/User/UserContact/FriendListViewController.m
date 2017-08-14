@@ -135,6 +135,24 @@
 #pragma mark - on network
 - (void)onNetGetFriendList
 {
+//    [self.dataArray removeAllObjects];
+//    
+//    WCWeakSelf(self);
+//    
+//    TIMFriendshipManager *frdManger = [TIMFriendshipManager sharedInstance];
+//    
+//    [frdManger GetFriendList:^(NSArray *friends) {
+//    
+//        [self.dataArray addObjectsFromArray:friends];
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//        
+//            [weakself.tableView reloadData];
+//        });
+//        
+//    } fail:^(int code, NSString *msg) {
+//        
+//    }];
     [self.dataArray removeAllObjects];
     WCWeakSelf(self);
     FriendsListRequest *friendListReq = [[FriendsListRequest alloc] initWithHandler:^(BaseRequest *request) {
@@ -261,7 +279,11 @@
             self.selectButon.enabled = (selectNum > 0);
             
             [UIView setAnimationsEnabled:NO];
-            [self.selectButon setAttributedTitle:[CommonUtil customAttString:buttonStr fontSize:kAppMiddleFontSize textColor:WCWhite charSpace:kAppKern_2] forState:UIControlStateNormal];
+            [self.selectButon setAttributedTitle:[CommonUtil customAttString:buttonStr
+                                                                    fontSize:kAppMiddleFontSize
+                                                                   textColor:WCWhite
+                                                                   charSpace:kAppKern_2]
+                                        forState:UIControlStateNormal];
             [UIView setAnimationsEnabled:YES];
             
         }
@@ -298,7 +320,12 @@
             self.selectButon.enabled = (selectNum > 0);
             
             [UIView setAnimationsEnabled:NO];
-            [self.selectButon setAttributedTitle:[CommonUtil customAttString:buttonStr fontSize:kAppMiddleFontSize textColor:WCWhite charSpace:kAppKern_2] forState:UIControlStateNormal];
+            [self.selectButon setAttributedTitle:[CommonUtil
+                                                  customAttString:buttonStr
+                                                  fontSize:kAppMiddleFontSize
+                                                  textColor:WCWhite
+                                                  charSpace:kAppKern_2]
+                                        forState:UIControlStateNormal];
             [UIView setAnimationsEnabled:YES];
         }
             break;

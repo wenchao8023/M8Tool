@@ -21,8 +21,8 @@ static NSString * _Nonnull const kMemberStatu_lineBusy      = @"占线";
 static NSString * _Nonnull const kMemberStatu_reject        = @"拒绝";
 static NSString * _Nonnull const kMemberStatu_timeout       = @"超时";
 static NSString * _Nonnull const kMemberStatu_hangup        = @"挂断";
-static NSString * _Nonnull const kMemberStatu_disconnect    = @"断开";
-static NSString * _Nonnull const kMemberStatu_waiting       = @"连接中...";   // 需考虑是否添加此状态
+static NSString * _Nonnull const kMemberStatu_disconnect    = @"失去连接";
+static NSString * _Nonnull const kMemberStatu_waiting       = @"连接中...";
 
 /// M8MeetDeviceView
 //  key
@@ -63,8 +63,16 @@ static NSString * _Nonnull const kMenuPushText              = @"kMenuPushText";
 /// M8LiveDeviceView
 static NSString  * _Nonnull const kLiveDeviceAction         = @"kLiveDeviceAction";
 static NSString  * _Nonnull const kLiveDeviceText           = @"kLiveDeviceText";
-// actions
 
+
+
+#pragma mark - strings in timeformatter
+/// 表示会议记录中的的时间格式，从上往下优先级依次增加
+static NSString  * _Nonnull const kTimeformatterYear        = @"yy-MM-dd";  // 上年
+static NSString  * _Nonnull const kTimeformatterMonth       = @"MM-dd";     // 本年其他月份
+static NSString  * _Nonnull const kTimeformatterWeak        = @"HH";        // 本周其他天
+static NSString  * _Nonnull const kTimeformatterLday        = @"HH";        // 昨天
+static NSString  * _Nonnull const kTimeformatterDay         = @"HH:mm";     // 今天
 
 
 

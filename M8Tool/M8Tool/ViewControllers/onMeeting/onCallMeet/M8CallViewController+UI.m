@@ -35,7 +35,12 @@
         switch (deviceAction) {
             case kOnDeviceActionShare:
             {
-//                [self addTextToView:@"点击分享"];
+//                TILCallNotification *disNotify = [[TILCallNotification alloc] init];
+//                disNotify.callId = [self.call getCallId];
+//                disNotify.notifId = TILCALL_NOTIF_DISCONNECT;
+//                disNotify.sender = self.liveItem.uid;
+//                disNotify.targets = [self.renderModelManger onGetOnLineMembers];
+//                [self.call postNotification:disNotify result:nil];
             }
                 break;
             case kOnDeviceActionNote:
@@ -158,10 +163,7 @@
 #pragma mark -- CallRenderDelegate
 - (void)CallRenderActionInfo:(NSDictionary *)actionInfo
 {
-//    [self addTextToView:[actionInfo allValues][0]];
-
     NSString *infoKey = [[actionInfo allKeys] firstObject];
-    
 
     if ([infoKey isEqualToString:kCallAction])
     {
@@ -192,9 +194,7 @@
 
 #pragma mark -- MenuPushDelegate
 - (void)MenuPushActionInfo:(NSDictionary *)info
-{
-//    [self addTextToView:[info allValues][0]];
-    
+{    
     NSString *infoKey = [[info allKeys] firstObject];
     NSString *infoValue = [info objectForKey:infoKey];
     

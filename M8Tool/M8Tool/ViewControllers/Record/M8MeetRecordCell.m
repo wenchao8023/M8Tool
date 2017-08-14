@@ -40,10 +40,12 @@
         [self.callTypeImg setImage:kGetImage(@"record_callType_video")];
     }
     
+    NSAttributedString *luancherAttText = nil;
     //通话发起人+人数
     if ([model.mainuser isEqualToString:[M8UserDefault getLoginId]])
     {
-        self.luancherLaber.text = [NSString stringWithFormat:@"我(%lu人)", model.members.count];
+        luancherAttText = [CommonUtil customAttString:[NSString stringWithFormat:@"我(%lu人)", model.members.count]];
+//        self.luancherLaber.text = [NSString stringWithFormat:@"我(%lu人)", model.members.count];
     }
     else
     {
@@ -51,14 +53,20 @@
         {
             if ([info.user isEqualToString:model.mainuser])
             {
-                self.luancherLaber.text = [NSString stringWithFormat:@"%@(%lu人)", info.nick, model.members.count];
+                luancherAttText = [CommonUtil customAttString:[NSString stringWithFormat:@"%@(%lu人)", info.nick, model.members.count]];
+//                self.luancherLaber.text = [NSString stringWithFormat:@"%@(%lu人)", info.nick, model.members.count];
                 break;
             }
         }
     }
     
+    [self.luancherLaber setAttributedText:luancherAttText];
+    
+    
+    
     //通话时间
-    self.timeLabel.text = [CommonUtil getDateStrWithTime:[model.starttime doubleValue]];
+//    self.timeLabel.text = [CommonUtil getRecordDateStr:[model.starttime doubleValue]];
+    [self.timeLabel setAttributedText:[CommonUtil customAttString:[CommonUtil getRecordDateStr:[model.starttime doubleValue]]]];
     
     //通话成员
     NSMutableString *membersStr = [[NSMutableString alloc] initWithCapacity:0];
@@ -73,7 +81,8 @@
             [membersStr appendString:[NSString stringWithFormat:@"%@,", info.nick]];
         }
     }
-    self.membersLabel.text = membersStr;
+//    self.membersLabel.text = membersStr;
+    [self.membersLabel setAttributedText:[CommonUtil customAttString:membersStr]];
     
     //是否有收藏
     self.isCollectLabel.hidden = !model.collect;

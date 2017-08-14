@@ -35,6 +35,18 @@
  */
 +(NSString *_Nullable)getDateStrWithTime:(NSTimeInterval)time;
 
+
+
+
+
+/**
+ 获取会议记录时间戳格式
+
+ @param time 时间戳
+ @return 格式字符串
+ */
++ (NSString *_Nullable)getRecordDateStr:(NSTimeInterval)time;
+
 // 文字模糊背景
 // 默认：白色文字、黑色模糊
 // 文字默认 16
@@ -48,6 +60,13 @@
                                  textColor:(UIColor *_Nullable)textColor
                                shadowColor:(UIColor *_Nullable)shadowColor ;
 
+/**
+ 富文本
+ 
+ @param string      原始文本
+ @return            富文本
+ */
++(NSMutableAttributedString *_Nullable)customAttString:(NSString *_Nullable)string;
 /**
  富文本
  
@@ -83,11 +102,11 @@
  @param fontName    文字字体
  @return            富文本
  */
-+(NSMutableAttributedString *_Nullable)customAttString:(NSString *_Nullable)string
-                                     fontSize:(CGFloat)fontSize
-                                    textColor:(UIColor *_Nullable)textColor
-                                    charSpace:(int)charSpace
-                                     fontName:(NSString *_Nullable)fontName;
+//+(NSMutableAttributedString *_Nullable)customAttString:(NSString *_Nullable)string
+//                                     fontSize:(CGFloat)fontSize
+//                                    textColor:(UIColor *_Nullable)textColor
+//                                    charSpace:(int)charSpace
+//                                     fontName:(NSString *_Nullable)fontName;
 
 
 /**
@@ -121,8 +140,8 @@
  @param fontName    文字字体
  @return            文本属性
  */
-+(NSMutableDictionary *_Nullable)customAttsWithFontSize:(CGFloat)fontSize
-                                     textColor:(UIColor *_Nullable)textColor
-                                     charSpace:(int)charSpace
-                                      fontName:(NSString *_Nullable)fontName;
+//+(NSMutableDictionary *_Nullable)customAttsWithFontSize:(CGFloat)fontSize
+//                                     textColor:(UIColor *_Nullable)textColor
+//                                     charSpace:(int)charSpace
+//                                      fontName:(NSString *_Nullable)fontName;
 @end

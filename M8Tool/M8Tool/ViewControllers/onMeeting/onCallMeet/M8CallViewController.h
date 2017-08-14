@@ -43,6 +43,11 @@
 @property (nonatomic, strong, nullable) TILCallInvitation *invitation;
 
 /**
+ 判断是否是加入自己创建的会议 (发起人退出会议之后被邀请)
+ */
+@property (nonatomic, assign) BOOL isJoinSelf;
+
+/**
  当前视图中成员信息（不应该在这里出现的，后面会使用 renderView 中的）
  */
 @property (nonatomic, strong, nullable) NSArray *membersArray;

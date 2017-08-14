@@ -11,11 +11,12 @@
 
 #import "UIImage+Common.h"
 #import "UIImage+TintColor.h"
-#import "UIView+CustomAutoLayout.h"
-#import "UIView+ShakeAnimation.h"
 #import "UIColor+MLPFlatColors.h"
 #import "AppDelegate+ControlViewController.h"
+
 #import "UIView+Extension.h"
+#import "UIView+CustomAutoLayout.h"
+#import "UIView+ShakeAnimation.h"
 
 #import "NSString+Common.h"
 
