@@ -146,9 +146,13 @@
 - (BOOL)onGetHostCameraStatu;
 
 /**
+ 获取当前房间中的在线成员
+ */
+//- (NSArray *_Nullable)onGetOnLineMembers;
+
+/**
  添加从通讯录获取成员
  */
-
 - (void)onInviteMembers;
 
 

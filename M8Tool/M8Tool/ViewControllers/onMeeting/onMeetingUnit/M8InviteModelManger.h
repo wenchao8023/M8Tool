@@ -60,6 +60,8 @@
 - (BOOL)isExistSelectArray:(NSString *_Nullable)uid;
 
 
+- (NSString *_Nullable)nickInInviteArrayWithUid:(NSString *_Nullable)uid;
+
 
 /**
  点击 cell 进行选择和反选
@@ -68,20 +70,24 @@
  */
 - (void)onSelectAtMemberInfo:(M8MemberInfo *_Nullable)member;
 
+
 /**
  合并 selectArray 和 inviteArray 中的成员，并将 selectArray 置空
  */
 - (void)mergeSelectToInvite;
+
 
 /**
  移除所有数组中的所有成员
  */
 - (void)removeAllMembers;
 
+
 /**
  移除 inviteArray 中的所有成员
  */
 - (void)removeInviteMembers;
+
 
 /**
  移除 selectArray 中的所有成员

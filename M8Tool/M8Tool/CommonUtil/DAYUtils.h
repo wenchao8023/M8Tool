@@ -28,6 +28,8 @@
 
 + (NSString *)stringOfWeekdayInEnglish:(NSUInteger)weekday;
 
++ (NSString *)stringOfWeekdayInChinese:(NSUInteger)weekday;
+
 + (NSString *)stringOfMonthInEnglish:(NSUInteger)month;
 
 + (NSDateComponents *)dateComponentsFromDate:(NSDate *)date;

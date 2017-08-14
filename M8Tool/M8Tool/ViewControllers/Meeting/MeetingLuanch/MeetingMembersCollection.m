@@ -58,7 +58,8 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
 {
     UILabel *numbersLabel = [self viewWithTag:64];
     NSString *textStr = [NSString stringWithFormat:@"%ld/%ld（最多可邀请%ld人）", (long)currenNumbers, (long)totalNumbers, (long)totalNumbers];
-    [numbersLabel setAttributedText:[CommonUtil customAttString:textStr fontSize:kAppMiddleFontSize]];
+    [numbersLabel setAttributedText:[CommonUtil customAttString:textStr
+                                                       fontSize:kAppMiddleFontSize]];
 }
 
 @end

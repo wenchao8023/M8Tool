@@ -33,20 +33,36 @@
         return ;
     }
     
+    NSString *sponsor = invitation.sponsorId;
+    NSString *inviter = invitation.inviterId;
+    
+    TIMFriendshipManager *frdManger = [TIMFriendshipManager sharedInstance];
+    
+    
+    
     
     NSArray *tipArr  = [invitation.callTip componentsSeparatedByString:@","];
     NSArray *nickArr = [invitation.custom componentsSeparatedByString:@","];
-    NSArray *uidArr  = invitation.memberArray;
+    NSMutableArray *uidArr = [NSMutableArray arrayWithArray:invitation.memberArray];
+    
     
     //配置初始参会成员
     M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
     
     NSMutableArray *tempArr = [NSMutableArray arrayWithCapacity:0];
+    
+    if (![sponsor isEqualToString:inviter] &&
+        [uidArr containsObject:sponsor])
+    {
+        [uidArr exchangeObjectAtIndex:[uidArr indexOfObject:inviter] withObjectAtIndex:[uidArr indexOfObject:sponsor]];
+    }
+
     for (int i = 0; i < uidArr.count; i++)
     {
         M8MemberInfo *info = [[M8MemberInfo alloc] init];
         info.uid    = uidArr[i];
         info.nick   = nickArr[i];
+        
         [tempArr addObject:info];
     }
     
@@ -55,7 +71,7 @@
     
     TCShowLiveListItem *item = [[TCShowLiveListItem alloc] init];
     item.uid        = [M8UserDefault getLoginId];
-    item.members    = invitation.memberArray;
+    item.members    = uidArr;
     item.callType   = invitation.callType;
     
     item.info = [[ShowRoomInfo alloc] init];
@@ -64,9 +80,10 @@
     item.info.roomnum   = invitation.callId;
     item.info.groupid   = [NSString stringWithFormat:@"%d", invitation.callId];
     item.info.appid     = [ILiveAppId intValue];
-    item.info.host      = invitation.sponsorId;
+    item.info.host      = sponsor;
     
-    M8CallViewController *callVC = [[M8CallViewController alloc] initWithItem:item isHost:NO];
+    M8CallViewController *callVC = [[M8CallViewController alloc] initWithItem:item isHost:[sponsor isEqualToString:[M8UserDefault getLoginId]]];
+    callVC.isJoinSelf = (![sponsor isEqualToString:inviter] && [sponsor isEqualToString:[M8UserDefault getLoginId]]);
     callVC.invitation = invitation;
     callVC.curMid     = [[tipArr firstObject] intValue];
     [M8MeetWindow M8_addMeetSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];

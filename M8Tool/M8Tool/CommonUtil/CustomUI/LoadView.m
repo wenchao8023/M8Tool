@@ -84,7 +84,7 @@
     if (msg && msg.length > 0)
     {
         [_label setFrame:CGRectMake(0, activityY+activitySide, alertViewSide, labelH)];
-        _label.text = msg;
+        [_label setAttributedText:[CommonUtil customAttString:msg]];
     }
     else
     {

@@ -34,9 +34,10 @@
 - (void)renderModelManger:(id)renderModelManger inviteMember:(NSString *)inviteMemberId
 {
     [self inviteMember:inviteMemberId];
+    
 }
 
-#pragma mark -- 音视频事件回调
+#pragma mark -- TILCallMemberEventListener
 - (void)onMemberAudioOn:(BOOL)isOn members:(NSArray *)members
 {
     for (TILCallMember *member in members)
@@ -74,7 +75,7 @@
 
 
 
-#pragma mark -- 通知回调
+#pragma mark -- TILCallNotificationListener
 - (void)onRecvNotification:(TILCallNotification *)notify
 {
     NSInteger notifId = notify.notifId;
@@ -88,7 +89,6 @@
         {
             [self addMember:[self.renderModelManger toNickWithUid:sender] withTip:[NSString stringWithFormat:@"邀请%@通话", [self.renderModelManger toNickWithUid:target]]];
         }
-            
             break;
         case TILCALL_NOTIF_ACCEPTED:
         {
@@ -177,6 +177,13 @@
             [self addMember:[self.renderModelManger toNickWithUid:sender] withTip:@"失去连接"];
             if([sender isEqualToString:self.liveItem.uid])
             {
+                TILCallNotification *disNotify = [[TILCallNotification alloc] init];
+                disNotify.callId = [self.call getCallId];
+                disNotify.notifId = TILCALL_NOTIF_DISCONNECT;
+                disNotify.sender = sender;
+                disNotify.targets = [self.renderModelManger onGetOnLineMembers];
+                [self.call postNotification:disNotify result:nil];
+                
                 [self selfDismiss];
             }
             else

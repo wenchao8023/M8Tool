@@ -59,12 +59,8 @@
     layer.backgroundColor = WCButtonColor.CGColor;
     [self.leftButton.layer addSublayer:layer];
     
-    
     self.layer.shadowRadius = 3.0;
     self.layer.shadowOffset  = CGSizeMake(1, 1);// 阴影的范围
-
-    
-    
 }
 
 - (void)configUI
@@ -73,13 +69,13 @@
     {
         case GlobalAlertType_forceOffline:
         {
-            self.alertTitleLabel.text = @"下线通知";
-            [self.leftButton setTitle:@"退出" forState:UIControlStateNormal];
-            [self.rightButton setTitle:@"重新登录" forState:UIControlStateNormal];
+            [self.leftButton setAttributedTitle:[CommonUtil customAttString:@"退出"] forState:UIControlStateNormal];
+            [self.rightButton setAttributedTitle:[CommonUtil customAttString:@"重新登录"] forState:UIControlStateNormal];
             
+            [self.alertTitleLabel setAttributedText:[CommonUtil customAttString:@"下线通知" fontSize:kAppLargeFontSize + 1]];
             [self.alertInfoLabel setAttributedText:[self alertInfoAttStr]];
-            CGSize infoLabelSize = [self sizeWithAttString:[self alertInfoAttStr]];
             
+            CGSize infoLabelSize = [self sizeWithAttString:[self alertInfoAttStr]];
             _curFrame.size.height = infoLabelSize.height + 128;
         }
             break;
@@ -94,7 +90,7 @@
     NSMutableDictionary *attDict = [NSMutableDictionary dictionaryWithCapacity:0];
     
     //设置字体属性
-    [attDict setValue:[UIFont fontWithName:@"DroidSansFallback" size:kAppMiddleFontSize] forKey:NSFontAttributeName];
+    [attDict setValue:[UIFont fontWithName:kFontNameSTHeiti_Light size:kAppMiddleFontSize] forKey:NSFontAttributeName];
     //设置字体颜色
     [attDict setValue:WCBlack forKey:NSForegroundColorAttributeName];
     
