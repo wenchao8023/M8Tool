@@ -51,6 +51,12 @@
  */
 //- (void)memberNotifyWithID:(NSString * _Nonnull)identify;
 
+/**
+ 发起人退出房间之后被邀请
+ 
+ @param identify 成员ID
+ */
+- (void)memberJoinSelfWithID:(NSString *_Nonnull)identify;
 
 /**
  有成员忙、占线

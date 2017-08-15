@@ -23,8 +23,7 @@
 
  @param invitation 邀请信息,
  
- callTip    : curMid + title @"curMid,title"
- 成员nick数组 : custom @"nick1,nick2,nick3,..."
+ custom    : curMid + title @"curMid,title"
  */
 - (void)onMultiCallInvitation:(TILCallInvitation *)invitation
 {
@@ -36,57 +35,47 @@
     NSString *sponsor = invitation.sponsorId;
     NSString *inviter = invitation.inviterId;
     
-    TIMFriendshipManager *frdManger = [TIMFriendshipManager sharedInstance];
+    NSArray *tipArr  = [invitation.custom componentsSeparatedByString:@","];
     
-    
-    
-    
-    NSArray *tipArr  = [invitation.callTip componentsSeparatedByString:@","];
-    NSArray *nickArr = [invitation.custom componentsSeparatedByString:@","];
-    NSMutableArray *uidArr = [NSMutableArray arrayWithArray:invitation.memberArray];
-    
-    
-    //配置初始参会成员
-    M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
-    
-    NSMutableArray *tempArr = [NSMutableArray arrayWithCapacity:0];
-    
-    if (![sponsor isEqualToString:inviter] &&
-        [uidArr containsObject:sponsor])
-    {
-        [uidArr exchangeObjectAtIndex:[uidArr indexOfObject:inviter] withObjectAtIndex:[uidArr indexOfObject:sponsor]];
-    }
+    NSMutableArray *tempMembersArr = [NSMutableArray arrayWithCapacity:0];
 
-    for (int i = 0; i < uidArr.count; i++)
-    {
-        M8MemberInfo *info = [[M8MemberInfo alloc] init];
-        info.uid    = uidArr[i];
-        info.nick   = nickArr[i];
+    TIMFriendshipManager *frdManger = [TIMFriendshipManager sharedInstance];
+    [frdManger GetUsersProfile:invitation.memberArray succ:^(NSArray *friends) {
         
-        [tempArr addObject:info];
-    }
-    
-    [modelManger updateInviteMemberArray:tempArr];
-    
-    
-    TCShowLiveListItem *item = [[TCShowLiveListItem alloc] init];
-    item.uid        = [M8UserDefault getLoginId];
-    item.members    = uidArr;
-    item.callType   = invitation.callType;
-    
-    item.info = [[ShowRoomInfo alloc] init];
-    item.info.title     = [tipArr lastObject];
-    item.info.type      = (invitation.callType == TILCALL_TYPE_VIDEO ? @"call_video" : @"call_audio");
-    item.info.roomnum   = invitation.callId;
-    item.info.groupid   = [NSString stringWithFormat:@"%d", invitation.callId];
-    item.info.appid     = [ILiveAppId intValue];
-    item.info.host      = sponsor;
-    
-    M8CallViewController *callVC = [[M8CallViewController alloc] initWithItem:item isHost:[sponsor isEqualToString:[M8UserDefault getLoginId]]];
-    callVC.isJoinSelf = (![sponsor isEqualToString:inviter] && [sponsor isEqualToString:[M8UserDefault getLoginId]]);
-    callVC.invitation = invitation;
-    callVC.curMid     = [[tipArr firstObject] intValue];
-    [M8MeetWindow M8_addMeetSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
+        for (TIMUserProfile *profile in friends)
+        {
+            M8MemberInfo *mInfo = [[M8MemberInfo alloc] initWithTIMUserProfile:profile];
+            [tempMembersArr addObject:mInfo];
+        }
+        
+        //配置初始参会成员
+        M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
+        [modelManger updateInviteMemberArray:tempMembersArr];
+        
+        TCShowLiveListItem *item = [[TCShowLiveListItem alloc] init];
+        item.uid        = [M8UserDefault getLoginId];
+        item.members    = invitation.memberArray;
+        item.callType   = invitation.callType;
+        
+        item.info = [[ShowRoomInfo alloc] init];
+        item.info.title     = [tipArr lastObject];
+        item.info.type      = (invitation.callType == TILCALL_TYPE_VIDEO ? @"call_video" : @"call_audio");
+        item.info.roomnum   = invitation.callId;
+        item.info.groupid   = [NSString stringWithFormat:@"%d", invitation.callId];
+        item.info.appid     = [ILiveAppId intValue];
+        item.info.host      = sponsor;
+        
+        M8CallViewController *callVC = [[M8CallViewController alloc] initWithItem:item isHost:[sponsor isEqualToString:[M8UserDefault getLoginId]]];
+        callVC.isJoinSelf = (![sponsor isEqualToString:inviter] && [sponsor isEqualToString:[M8UserDefault getLoginId]]);
+        callVC.invitation = invitation;
+        callVC.curMid     = [[tipArr firstObject] intValue];
+        [M8MeetWindow M8_addMeetSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
+        
+    } fail:^(int code, NSString *msg) {
+        
+        NSString *errInfo = [NSString stringWithFormat:@"errDomain: TIMSDK, errCode: %d\nerrInfo: %@", code, msg];
+        [AlertHelp alertWith:nil message:errInfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
+    }];
 }
 
 @end

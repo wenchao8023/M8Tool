@@ -77,6 +77,15 @@
 
 
 #pragma mark - onRecvNotification
+#pragma mark -- onJoinSelf
+- (void)memberJoinSelfWithID:(NSString *)identify
+{
+    M8CallRenderModel *model = [self getMemberWithID:identify];
+    model.meetMemberStatus = MeetMemberStatus_receive;
+    [self updateMember:model];
+}
+
+
 #pragma mark -- onLineBusy
 - (void)memberLineBusyWithID:(NSString *)identify
 {

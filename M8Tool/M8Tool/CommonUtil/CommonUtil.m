@@ -258,12 +258,12 @@
             else if (curDay == recDay + 1)
             {
                 recordDateStr = [self getDateStrWithTime:time formatter:kTimeformatterLday];    //昨天
-                return [@"昨天 " stringByAppendingString:recordDateStr];
+                return [@"昨天" stringByAppendingString:[NSString stringWithFormat:@"-%@", recordDateStr]];
             }
-            else if ((curWeek - recWeek) == (curMonth - recMonth))  //判断是不是当前星期
+            else if ((curWeek - recWeek) == (curDay - recDay))  //判断是不是当前星期
             {
                 recordDateStr = [self getDateStrWithTime:time formatter:kTimeformatterWeak];    //本周
-                return [[DAYUtils stringOfWeekdayInChinese:recWeek - 1] stringByAppendingString:recordDateStr];
+                return [[DAYUtils stringOfWeekdayInChinese:recWeek - 1] stringByAppendingString:[NSString stringWithFormat:@"-%@", recordDateStr]];
             }
             else
             {
@@ -277,22 +277,22 @@
                 if (recDay == recTotalDaysInMonth)  //判断记录时间是不是上月月底
                 {
                     recordDateStr = [self getDateStrWithTime:time formatter:kTimeformatterLday];    //昨天
-                    return [@"昨天 " stringByAppendingString:recordDateStr];
+                    return [@"昨天 " stringByAppendingString:[NSString stringWithFormat:@"-%@", recordDateStr]];
                 }
-                else if ((curWeek - recWeek) == (curMonth - recMonth + recTotalDaysInMonth))  //判断是不是本周
+                else if ((curWeek - recWeek) == (curDay - recDay + recTotalDaysInMonth))  //判断是不是本周
                 {
                     recordDateStr = [self getDateStrWithTime:time formatter:kTimeformatterWeak];    //本周
-                    return [[DAYUtils stringOfWeekdayInChinese:recWeek - 1] stringByAppendingString:recordDateStr];
+                    return [[DAYUtils stringOfWeekdayInChinese:recWeek - 1] stringByAppendingString:[NSString stringWithFormat:@"-%@", recordDateStr]];
                 }
                 else
                 {
                     recordDateStr = [self getDateStrWithTime:time formatter:kTimeformatterMonth];
                 }
             }
-            else if ((curWeek - recWeek) == (curMonth - recMonth + recTotalDaysInMonth))  //判断是不是当前星期 (上月不是1号，上月的记录就不可能是昨天的了)
+            else if ((curWeek - recWeek) == (curDay - recDay + recTotalDaysInMonth))  //判断是不是当前星期 (上月不是1号，上月的记录就不可能是昨天的了)
             {
                 recordDateStr = [self getDateStrWithTime:time formatter:kTimeformatterWeak];    //本周
-                return [[DAYUtils stringOfWeekdayInChinese:recWeek - 1] stringByAppendingString:recordDateStr];
+                return [[DAYUtils stringOfWeekdayInChinese:recWeek - 1] stringByAppendingString:[NSString stringWithFormat:@"-%@", recordDateStr]];
             }
             else
             {

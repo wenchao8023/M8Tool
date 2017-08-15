@@ -170,6 +170,7 @@
         case TILCALL_NOTIF_HEARTBEAT:
         {
 //            [self addTextToView:[NSString stringWithFormat:@"%@发来心跳",sender]];
+            
         }
             break;
         case TILCALL_NOTIF_DISCONNECT:
@@ -181,7 +182,7 @@
                 disNotify.callId = [self.call getCallId];
                 disNotify.notifId = TILCALL_NOTIF_DISCONNECT;
                 disNotify.sender = sender;
-                disNotify.targets = [self.renderModelManger onGetOnLineMembers];
+//                disNotify.targets = [self.renderModelManger onGetOnLineMembers];
                 [self.call postNotification:disNotify result:nil];
                 
                 [self selfDismiss];

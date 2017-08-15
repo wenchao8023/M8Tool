@@ -55,9 +55,9 @@
     
     TILCallBaseConfig * baseConfig  = [[TILCallBaseConfig alloc] init];
     baseConfig.callType             = self.liveItem.callType;
-    baseConfig.isSponsor            = self.isHost;
+    baseConfig.isSponsor            = self.isHost && !self.isJoinSelf;
     baseConfig.memberArray          = self.liveItem.members;
-    baseConfig.heartBeatInterval    = 5;
+    baseConfig.heartBeatInterval    = 15;
     baseConfig.isAutoResponseBusy   = YES;
     
     BOOL isVideo = (self.liveItem.callType == TILCALL_TYPE_VIDEO);  //如果是视频通话就自动打开相机
@@ -70,6 +70,10 @@
     [listener setNotifListener:self];
     [listener setMsgListener:self];
     config.callListener = listener;
+    
+    TIMGroupManager *groupManger = [TIMGroupManager sharedInstance];
+    
+    
     
     if (self.isHost)
     {
@@ -107,22 +111,11 @@
         [self.call createRenderViewIn:self.renderView];
         self.renderView.call = self.call;
         
-        // 配置 callTip
-        NSString *tipStr = [NSString stringWithFormat:@"%@,%@", kGetStringFMInt(self.curMid), self.liveItem.info.title];
-        
-        //在发起 call 的时候，配置成员信息，通过 custom 传递给接收端
-        M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance]; //这时已经有完整成员信息
-        
-        NSMutableArray *nickArr = [NSMutableArray arrayWithCapacity:0];
-        for (M8MemberInfo *info in modelManger.inviteMemberArray)
-        {
-            [nickArr addObject:info.nick];
-        }
-        //配置 custom
-        NSString *nickStr = [nickArr componentsJoinedByString:@","];
+        // 配置 customStr
+        NSString *customStr = [NSString stringWithFormat:@"%@,%@", kGetStringFMInt(self.curMid), self.liveItem.info.title];
         
         WCWeakSelf(self);
-        [_call makeCall:tipStr custom:nickStr result:^(TILCallError *err) {
+        [_call makeCall:nil custom:customStr result:^(TILCallError *err) {
             
             if(err)
             {
@@ -139,6 +132,22 @@
                 
                 //开始推流
                 [self onLivePushStart];
+                
+                
+                TIMGroupManager *groupManger = [TIMGroupManager sharedInstance];
+                
+                [groupManger GetGroupInfo:@[self.liveItem.info.groupid] succ:^(NSArray *arr) {
+                    
+                    for (TIMGroupInfo * info in arr)
+                    {
+                        NSLog(@"get group succ, infos=%@", info);
+                    }
+                    
+                } fail:^(int code, NSString *msg) {
+                    
+                     NSLog(@"failed code: %d %@", code, err);
+                }];
+                
             }
         }];
     }];
@@ -146,6 +155,8 @@
 
 - (void)joinSelfCall:(TILCallConfig *)config
 {
+    [self.renderModelManger memberJoinSelfWithID:self.liveItem.info.host];
+    
     [self recvCall:config];
 }
 
@@ -202,21 +213,21 @@
 
 - (void)inviteMembers:(NSArray *)membersArr
 {
-    // 配置 callTip
-    NSString *tipStr = [NSString stringWithFormat:@"%@,%@", kGetStringFMInt(self.curMid), self.liveItem.info.title];
+//    //在发起 call 的时候，配置成员信息，通过 custom 传递给接收端
+//    M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance]; //这时已经有完整成员信息
+//    
+//    NSMutableArray *nickArr = [NSMutableArray arrayWithCapacity:0];
+//    for (M8MemberInfo *info in modelManger.inviteMemberArray)
+//    {
+//        [nickArr addObject:info.nick];
+//    }
+//    //配置 custom
+//    NSString *nickStr = [nickArr componentsJoinedByString:@","];
     
-    //在发起 call 的时候，配置成员信息，通过 custom 传递给接收端
-    M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance]; //这时已经有完整成员信息
+    // 配置 customStr
+    NSString *customStr = [NSString stringWithFormat:@"%@,%@", kGetStringFMInt(self.curMid), self.liveItem.info.title];
     
-    NSMutableArray *nickArr = [NSMutableArray arrayWithCapacity:0];
-    for (M8MemberInfo *info in modelManger.inviteMemberArray)
-    {
-        [nickArr addObject:info.nick];
-    }
-    //配置 custom
-    NSString *nickStr = [nickArr componentsJoinedByString:@","];
-    
-    [self.call inviteCall:membersArr callTip:tipStr custom:nickStr result:nil];
+    [self.call inviteCall:membersArr callTip:nil custom:customStr result:nil];
 }
 
 - (void)inviteMember:(NSString *)memberId
@@ -262,6 +273,20 @@
             [self removeRecvChildVC];
             
             [weakself.headerView configHeaderView:self.liveItem.info.title hostNick:[self.renderModelManger toNickWithUid:self.liveItem.info.host]];
+            
+            TIMGroupManager *groupManger = [TIMGroupManager sharedInstance];
+            
+            [groupManger GetGroupInfo:@[self.liveItem.info.groupid] succ:^(NSArray *arr) {
+                
+                for (TIMGroupInfo * info in arr)
+                {
+                    NSLog(@"get group succ, infos=%@", info);
+                }
+                
+            } fail:^(int code, NSString *msg) {
+                
+                NSLog(@"failed code: %d %@", code, err);
+            }];
         }
     }];
 }

@@ -327,7 +327,7 @@ static CGFloat kItemHeight = 60.f;
         }
         else
         {
-            [friendCell configWithMemberItem:self.itemArray[indexPath.section][indexPath.row]];
+            [friendCell configWithFriendItem:self.itemArray[indexPath.section][indexPath.row]];
         }
     }
     

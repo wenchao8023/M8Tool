@@ -81,60 +81,6 @@
     self.itemTitleLabel.text = dInfo.dname;
 }
 
-/**
- 配置好友列表
- */
-- (void)configWithFriendItem:(M8FriendInfo *)friendInfo
-{
-    NSDictionary *dic = [friendInfo.SnsProfileItem firstObject];
-
-    M8MemberInfo *info = [M8MemberInfo new];
-    info.uid    = friendInfo.Info_Account;
-    info.nick   = [dic objectForKey:@"Value"];
-    [self configWithMemberItem:info];
-}
-
-
-/**
- 配置默认状态下的样式
- */
-- (void)configWithMemberItem:(M8MemberInfo *)memberInfo
-{
-    self.backgroundColor = WCClear;
-    self.contentView.backgroundColor = WCClear;
-    
-    [self hiddeXibViews:NO];
-    
-    self.iconLabel.text = [memberInfo.nick getSimpleName];
-    self.titleLabel.text = memberInfo.nick;
-    self.subTitleLabel.text = memberInfo.uid;
-    
-    self.friendTipLabel.hidden = YES;
-    if ([M8UserDefault getNewFriendNotify])
-    {
-        NSArray *newFriendArr = [M8UserDefault getNewFriendIdentify];
-        if (newFriendArr)
-        {
-            if ([newFriendArr containsObject:memberInfo.uid])
-            {
-                self.friendTipLabel.hidden = NO;
-            }
-            
-        }
-    }
-    
-    self.statuImg.hidden = YES; //默认会设置成 隐藏，如果需要显示请自行设置
-}
-
-- (void)hiddeXibViews:(BOOL)hidden
-{
-    self.iconLabel.hidden = hidden;
-    self.titleLabel.hidden = hidden;
-    self.subTitleLabel.hidden = hidden;
-    
-    self.iconImg.hidden = !hidden;
-    self.itemTitleLabel.hidden = !hidden;
-}
 
 
 /**
@@ -142,7 +88,7 @@
  */
 - (void)configMemberItemEditing:(M8MemberInfo *)memberInfo
 {
-    [self configWithMemberItem:memberInfo];
+    [self configWithDefalutItem:memberInfo];
     
     self.statuImg.hidden = NO;
 }
@@ -153,7 +99,7 @@
  */
 - (void)configMemberItem:(id)memberInfo isSelected:(BOOL)selected
 {
-    [self configWithMemberItem:memberInfo];
+    [self configWithDefalutItem:memberInfo];
     
     self.statuImg.hidden = NO;
     if (selected)
@@ -171,7 +117,7 @@
  */
 - (void)configMemberitemUnableUnselect:(M8MemberInfo *)info
 {
-    [self configWithMemberItem:info];
+    [self configWithDefalutItem:info];
     
     self.statuImg.hidden = NO;
 
@@ -179,6 +125,68 @@
     
     self.userInteractionEnabled = NO;
 }
+
+
+/**
+ 配置好友列表
+ */
+- (void)configWithFriendItem:(M8MemberInfo *)info
+{
+    [self configWithDefalutItem:info];
+}
+
+/**
+ 配置默认状态下的样式
+ */
+- (void)configWithDefalutItem:(M8MemberInfo *)info
+{
+    self.backgroundColor = WCClear;
+    self.contentView.backgroundColor = WCClear;
+    
+    [self hiddeXibViews:NO];
+    
+    [self.iconLabel setAttributedText:[[NSAttributedString alloc] initWithString:[info.nick getSimpleName]
+                                                                      attributes:[CommonUtil customAttsWithBodyFontSize:kAppMiddleFontSize
+                                                                                                              textColor:WCWhite]]];
+    [self.titleLabel setAttributedText:[CommonUtil customAttString:info.nick]];
+    [self.subTitleLabel setAttributedText:[CommonUtil customAttString:info.uid fontSize:kAppSmallFontSize]];
+    
+    self.friendTipLabel.hidden = YES;
+    if ([M8UserDefault getNewFriendNotify])
+    {
+        NSArray *newFriendArr = [M8UserDefault getNewFriendIdentify];
+        if (newFriendArr)
+        {
+            if ([newFriendArr containsObject:info.uid])
+            {
+                self.friendTipLabel.hidden = NO;
+            }
+        }
+    }
+    
+    self.statuImg.hidden = YES; //默认会设置成 隐藏，如果需要显示请自行设置
+}
+
+
+/**
+ 隐藏xib中的views
+ */
+- (void)hiddeXibViews:(BOOL)hidden
+{
+    self.iconLabel.hidden = hidden;
+    self.titleLabel.hidden = hidden;
+    self.subTitleLabel.hidden = hidden;
+    
+    self.iconImg.hidden = !hidden;
+    self.itemTitleLabel.hidden = !hidden;
+}
+
+
+
+
+
+
+
 
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

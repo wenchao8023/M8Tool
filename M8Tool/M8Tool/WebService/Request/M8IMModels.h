@@ -55,6 +55,8 @@ typedef NS_ENUM(NSInteger, ContactType)
  */
 @interface M8MemberInfo : NSObject
 
+- (instancetype _Nullable)initWithTIMUserProfile:(TIMUserProfile *_Nullable)userProfile;
+
 @property (nonatomic, copy, nullable) NSString *uid;
 @property (nonatomic, copy, nullable) NSString *nick;
 
