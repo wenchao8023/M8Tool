@@ -260,21 +260,6 @@
         {
             [self.invitedArray removeObject:model];
             
-            M8InviteModelManger *inviteModelManger = [M8InviteModelManger shareInstance];
-            [inviteModelManger updateInviteM8CallRenderModelArray:self.invitedArray];
-            /*
-            NSMutableArray *tempInviteArr = [NSMutableArray arrayWithCapacity:0];
-            for (M8CallRenderModel *model in self.invitedArray)
-            {
-                M8MemberInfo *info = [[M8MemberInfo alloc] init];
-                info.uid = model.identify;
-                info.nick = model.nick;
-                [tempInviteArr addObject:info];
-            }
-            
-            [inviteModelManger updateInviteMemberArray:tempInviteArr];
-             */
-            
             [self reloadMemberModels];
         }
     }

@@ -66,24 +66,24 @@
 
 + (NSString *)stringOfWeekdayInEnglish:(NSUInteger)weekday {
     NSAssert(weekday >= 1 && weekday <= 7, @"Invalid weekday: %lu", (unsigned long) weekday);
-    static NSArray *Strings;
+    static NSArray *ENStrings;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        Strings = @[@"Sun", @"Mon", @"Tues", @"Wed", @"Thur", @"Fri", @"Sat"];
+        ENStrings = @[@"Sun", @"Mon", @"Tues", @"Wed", @"Thur", @"Fri", @"Sat"];
     });
     
-    return Strings[weekday - 1];
+    return ENStrings[weekday - 1];
 }
 
 + (NSString *)stringOfWeekdayInChinese:(NSUInteger)weekday {
     NSAssert(weekday >= 1 && weekday <= 7, @"Invalid weekday: %lu", (unsigned long) weekday);
-    static NSArray *Strings;
+    static NSArray *CHStrings;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        Strings = @[@"周日", @"周一", @"周二", @"周三", @"周四", @"周五", @"周六"];
+        CHStrings = @[@"周日", @"周一", @"周二", @"周三", @"周四", @"周五", @"周六"];
     });
     
-    return Strings[weekday - 1];
+    return CHStrings[weekday - 1];
 }
 
 + (NSString *)stringOfMonthInEnglish:(NSUInteger)month {

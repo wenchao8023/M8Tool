@@ -195,17 +195,6 @@
 
 - (void)inviteMembers:(NSArray *)membersArr
 {
-//    //在发起 call 的时候，配置成员信息，通过 custom 传递给接收端
-//    M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance]; //这时已经有完整成员信息
-//    
-//    NSMutableArray *nickArr = [NSMutableArray arrayWithCapacity:0];
-//    for (M8MemberInfo *info in modelManger.inviteMemberArray)
-//    {
-//        [nickArr addObject:info.nick];
-//    }
-//    //配置 custom
-//    NSString *nickStr = [nickArr componentsJoinedByString:@","];
-    
     // 配置 customStr
     NSString *customStr = [NSString stringWithFormat:@"%@,%@", kGetStringFMInt(self.curMid), self.liveItem.info.title];
     
