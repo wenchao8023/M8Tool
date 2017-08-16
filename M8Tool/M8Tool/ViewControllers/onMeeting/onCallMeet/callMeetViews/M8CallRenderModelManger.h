@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 
 
+@class M8CallRenderModel;
+
+
 @protocol RenderModelMangerDelegate <NSObject>
 
 @optional
@@ -35,131 +38,93 @@
 
 @property (nonatomic, weak) id<RenderModelMangerDelegate> _Nullable WCDelegate;
 
-
+/**
+ *  初始化
+ *
+ *  @param item 会议中的信息
+ *
+ *  @return ModelManger
+ */
 - (instancetype _Nullable)initWithItem:(TCShowLiveListItem *_Nullable)item;
 
 
+/**
+ *  加载邀请的信息
+ *
+ *  @param members call 中邀请的信息
+ */
 - (void)loadInvitedArray:(NSArray *_Nullable)members;
 
 
 /**
- 有成员发送通知消息
- 
- @param identify 成员ID
- */
-//- (void)memberNotifyWithID:(NSString * _Nonnull)identify;
-
-/**
- 发起人退出房间之后被邀请
- 
- @param identify 成员ID
- */
-- (void)memberJoinSelfWithID:(NSString *_Nonnull)identify;
-
-/**
- 有成员忙、占线
- 
- @param identify 成员ID
- */
-- (void)memberLineBusyWithID:(NSString * _Nonnull)identify;
-
-
-/**
- 有成员拒绝邀请
- 
- @param identify 成员ID
- */
-- (void)memberRejectInviteWithID:(NSString * _Nonnull)identify;
-
-
-/**
- 有成员呼叫超时
- 
- @param identify 成员ID
- */
-- (void)memberTimeoutWithID:(NSString * _Nonnull)identify;
-
-
-/**
- 有成员接受邀请
- 
- @param identify 成员ID
- */
-- (void)memberReceiveWithID:(NSString * _Nonnull)identify;
-
-
-/**
- 有成员失去连接
- 
- @param identify 成员ID
- */
-- (void)memberDisconnetWithID:(NSString * _Nonnull)identify;
-
-
-/**
- 有成员离开房间
- 
- @param identify 成员ID
- */
-- (void)memberHangupWithID:(NSString * _Nonnull)identify;
-
-
-/**
- 有音频事件发生
- 
- @param isOn 成员是否开启音频
- @param identify 成员ID
- */
-- (void)onMemberAudioOn:(BOOL)isOn WithID:(NSString * _Nonnull)identify;
-
-
-/**
- 有视频事件发生
- 
- @param isOn 成员是否开启视频
- @param identify 成员ID
- */
-- (void)onMemberCameraVideoOn:(BOOL)isOn WithID:(NSString * _Nonnull)identify;
-
-
-/**
- 用户手动切换视图
- 
- @param indexPath 点击下标
+ *  用户手动切换视图
+ *
+ *  @param indexPath 点击下标
+ *
+ *  @return 房间中是否有视频流
  */
 - (BOOL)onSelectItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 
 
+/**
+ *  用户对不在房间中的成员的操作
+ *
+ *  @param identify  被操作的成员
+ *  @param actionStr 方法名
+ */
 - (void)memberUserAction:(NSString *_Nonnull)identify onAction:(NSString *_Nonnull)actionStr;
 
-/**
- 用户点击cell
 
- @param selectedModel 将用户选中的 Model 传给 ModelManger
+/**
+ *  用户操作不在房间的成员
+ *
+ *  @param selectedModel 将用户选中的 Model 传给 ModelManger
  */
 - (void)onCollectionDidSelectModel:(id _Nullable)selectedModel;
 
+
 /**
- 从浮动视图返回到主视图
+ *  从浮动视图返回到主视图
  */
 - (void)onBackFromFloatView;
 
+
 /**
- 获取 host 的摄像头状态
+ *  获取 host 的摄像头状态
+ *
+ *  @return host 的摄像头是否打开
  */
 - (BOOL)onGetHostCameraStatu;
 
-/**
- 获取当前房间中的在线成员
- */
-//- (NSArray *_Nullable)onGetOnLineMembers;
 
 /**
- 添加从通讯录获取成员
+ *  返回在界面中的成员
+ *
+ *  @return 界面中的成员 M8CallRenderModel
+ */
+- (NSArray *_Nullable)membersInRoom;
+
+
+/**
+ *  添加从通讯录获取成员
  */
 - (void)onInviteMembers;
 
 
+/**
+ *  将成员id转成昵称
+ *
+ *  @param uid 成员ID
+ *
+ *  @return 对应成员id的昵称
+ */
 - (NSString *_Nullable)toNickWithUid:(NSString *_Nullable)uid;
 
+
+/**
+ *  类别中使用的方法
+ */
+- (M8CallRenderModel *_Nullable)getMemberWithID:(NSString *_Nullable)identify;
+
+- (void)updateMember:(M8CallRenderModel *_Nullable)newModel;
 @end

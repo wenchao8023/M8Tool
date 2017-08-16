@@ -137,7 +137,7 @@
 
 - (void)joinSelfCall:(TILCallConfig *)config
 {
-    [self.renderModelManger memberJoinSelfWithID:self.liveItem.info.host];
+//    [self.renderModelManger memberJoinSelfWithID:self.liveItem.info.host];
     
     [self recvCall:config];
 }

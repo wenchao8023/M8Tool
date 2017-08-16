@@ -18,7 +18,6 @@
 @property (nonatomic, copy, nullable) NSString *hostIdentify;
 @property (nonatomic, copy, nullable) NSString *loginIdentify;
 
-
 @property (nonatomic, strong) NSMutableArray *invitedArray;     //记录会议历史邀请的成员
 
 @end
@@ -27,7 +26,6 @@
 
 
 @implementation M8CallRenderModelManger
-
 
 - (instancetype)initWithItem:(TCShowLiveListItem *)item
 {
@@ -57,7 +55,7 @@
     NSMutableArray *idArray = [NSMutableArray arrayWithCapacity:0];
     for (TILCallMember *member in members)
     {
-        if (![self getMemberExitInRoomWithID:member.identifier])
+        if (![self getMemberExistInRoomWithID:member.identifier])
         {
             M8CallRenderModel *model = [[M8CallRenderModel alloc] initWithTILCallMember:member];
             [self.invitedArray addObject:model];
@@ -93,12 +91,30 @@
             
         }];
         
-        
-        
     } fail:^(int code, NSString *msg) {
         
     }];
 }
+
+/**
+ *  返回在界面中的成员
+ *
+ *  @return 界面中的成员
+ */
+- (NSArray *)membersInRoom
+{
+    NSMutableArray *tempArr = [NSMutableArray arrayWithCapacity:0];
+    for (M8CallRenderModel *model in self.invitedArray)
+    {
+        if (!model.isRemoved)
+        {
+            [tempArr addObject:model];
+        }
+    }
+    
+    return (NSArray *)tempArr;
+}
+
 
 - (void)reloadInvitedArray
 {
@@ -110,13 +126,17 @@
             if (model.isMicOn ||
                 model.isCameraOn)
             {
-                [self memberReceiveWithID:model.identify];
+                model.meetMemberStatus = MeetMemberStatus_receive;
+                model.isInRoom = YES;
+                model.isRemoved = NO;
             }
             else
             {
-                [self memberWaitingWithID:model.identify];
+                model.meetMemberStatus = MeetMemberStatus_none;
             }
         }
+        
+        [self updateMember:model];
     }
     
     [self reloadMemberModels];
@@ -141,92 +161,12 @@
 }
 
 
-#pragma mark - onRecvNotification
-//#pragma mark -- onLeave
-//- (void)memberLeaveWithID:(NSString *)identify
-//{
-//    M8CallRenderModel *model = [self getMemberWithID:identify];
-//    model.meetMemberStatus = MeetMemberStatus_leave;
-//    [self updateMember:model];
-//}
-
-#pragma mark -- onJoinSelf
-- (void)memberJoinSelfWithID:(NSString *)identify
-{
-    M8CallRenderModel *model = [self getMemberWithID:identify];
-    model.meetMemberStatus = MeetMemberStatus_receive;
-    [self updateMember:model];
-}
-
-
-#pragma mark -- onLineBusy
-- (void)memberLineBusyWithID:(NSString *)identify
-{
-    M8CallRenderModel *model = [self getMemberWithID:identify];
-    model.meetMemberStatus = MeetMemberStatus_linebusy;
-    [self updateMember:model];
-}
-
-
-#pragma mark -- onReject
-- (void)memberRejectInviteWithID:(NSString *)identify
-{
-    M8CallRenderModel *model = [self getMemberWithID:identify];
-    model.meetMemberStatus = MeetMemberStatus_reject;
-    [self updateMember:model];
-}
-
-
-#pragma mark -- onTimeout
-- (void)memberTimeoutWithID:(NSString *)identify
-{
-    M8CallRenderModel *model = [self getMemberWithID:identify];
-    model.meetMemberStatus = MeetMemberStatus_timeout;
-    [self updateMember:model];
-}
-
-
-#pragma mark -- onWaiting (private)
-- (void)memberWaitingWithID:(NSString *)identify
-{
-    M8CallRenderModel *model = [self getMemberWithID:identify];
-    model.meetMemberStatus = MeetMemberStatus_none;
-    [self updateMember:model];
-}
 
 
 
-#pragma mark -- onReceive
-- (void)memberReceiveWithID:(NSString *)identify
-{
-    //只要是为接受状态的肯定是在房间，且显示在视图上
-    M8CallRenderModel *model = [self getMemberWithID:identify];
-    model.meetMemberStatus = MeetMemberStatus_receive;
-    model.isInRoom = YES;
-    model.isRemoved = NO;
-    [self updateMember:model];
-}
 
-
-#pragma mark -- onDisconnet
-- (void)memberDisconnetWithID:(NSString *)identify
-{
-    M8CallRenderModel *model = [self getMemberWithID:identify];
-    model.meetMemberStatus = MeetMemberStatus_disconnect;
-    [self updateMember:model];
-}
-
-
-#pragma mark -- onHangup
-- (void)memberHangupWithID:(NSString *)identify
-{
-    M8CallRenderModel *model = [self getMemberWithID:identify];
-    model.meetMemberStatus = MeetMemberStatus_hangup;
-    [self updateMember:model];
-}
-
-
-#pragma mark -- onUserAction
+#pragma mark - on action
+#pragma mark -- onUserAction (handle members without in room)
 - (void)memberUserAction:(NSString *)identify
 {
     M8CallRenderModel *model = [self getMemberWithID:identify];
@@ -267,29 +207,6 @@
     }
 }
 
-
-#pragma mark - onCallMemberEventListener
-- (void)onMemberAudioOn:(BOOL)isOn WithID:(NSString *)identify
-{
-    M8CallRenderModel *model = [self getMemberWithID:identify];
-    model.isMicOn = isOn;
-    [self updateMember:model];
- 
-    [self memberReceiveWithID:identify];
-}
-
-- (void)onMemberCameraVideoOn:(BOOL)isOn WithID:(NSString *)identify
-{
-    M8CallRenderModel *model = [self getMemberWithID:identify];
-    model.isCameraOn = isOn;
-    [self updateMember:model];
-    
-    [self memberReceiveWithID:identify];
-}
-
-
-
-#pragma mark - on action
 - (BOOL)onSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
 //    if ([self isExitVideoCaption])
@@ -370,7 +287,9 @@
     }
     
     [self.invitedArray addObjectsFromArray:inviteArr];
-    [modelManger mergeSelectToInvite];
+    [modelManger removeAllMembers];
+    
+    [self reloadMemberModels];
 }
 
 #pragma mark -- on get host camera statu
@@ -380,23 +299,8 @@
     return hostModel.isCameraOn;
 }
 
-//#pragma mark -- on get current members in room (using to send notification)
-//- (NSArray *)onGetOnLineMembers
-//{
-//    NSMutableArray *curMembers = [NSMutableArray arrayWithCapacity:0];
-//    
-//    for (M8CallRenderModel *model in self.invitedArray)
-//    {
-//        if (model.meetMemberStatus == MeetMemberStatus_receive)
-//        {
-//            [curMembers addObject:model.identify];
-//        }
-//    }
-//    
-//    return (NSArray *)curMembers;
-//}
 
-#pragma mark - private actions
+#pragma mark - used in self protocol
 #pragma mark -- get member model
 - (M8CallRenderModel *)getMemberWithID:(NSString *)identify
 {
@@ -416,8 +320,21 @@
     return model;
 }
 
-//判断房间中是否存在该成员
-- (BOOL)getMemberExitInRoomWithID:(NSString *)identify
+#pragma mark -- update member model in container
+- (void)updateMember:(M8CallRenderModel *)newModel
+{
+    if (self.invitedArray.count && newModel)
+    {
+        [self.invitedArray replaceObjectAtIndex:[self getMemberIndexInArray:newModel.identify] withObject:newModel];
+    }
+    
+    [self reloadMemberModels];
+}
+
+#pragma mark - private actions
+
+#pragma mark -- get member is in room
+- (BOOL)getMemberExistInRoomWithID:(NSString *)identify
 {
     for (M8CallRenderModel *model in self.invitedArray)
     {
@@ -431,16 +348,6 @@
 }
 
 
-#pragma mark -- update member model in container
-- (void)updateMember:(M8CallRenderModel *)newModel
-{
-    if (self.invitedArray.count && newModel)
-    {
-        [self.invitedArray replaceObjectAtIndex:[self getMemberIndexInArray:newModel.identify] withObject:newModel];
-    }
-    
-    [self reloadMemberModels];
-}
 
 
 #pragma mark -- get member index in member array
@@ -450,8 +357,8 @@
 }
 
 
-#pragma mark -- 房间内是否存在视频流
-- (BOOL)isExitVideoCaption
+#pragma mark -- is exist video caption in room
+- (BOOL)isExistVideoCaption
 {
     for (M8CallRenderModel *model in self.invitedArray)
     {
@@ -503,7 +410,7 @@
                 [hangupArr addObject:model];
             }
                 break;
-            case MeetMemberStatus_none: //无意义
+            case MeetMemberStatus_none:
             {
                 [callingArr addObject:model];
             }

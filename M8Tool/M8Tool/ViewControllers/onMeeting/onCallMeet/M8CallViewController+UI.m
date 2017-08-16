@@ -228,11 +228,13 @@
 
 
 /**
- 在会议中推出联系人界面的时候需要将会议界面换成小视图
+ *  在会议中推出联系人界面的时候需要将会议界面换成小视图
  */
 - (void)onInviteAction
 {
     [self showFloatView];
+    
+    [[M8InviteModelManger shareInstance] updateInviteM8CallRenderModelArray:[self.renderModelManger membersInRoom]];
     
     UserContactViewController *contactVC = [[UserContactViewController alloc] init];
     contactVC.isExitLeftItem = YES;

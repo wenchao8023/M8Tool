@@ -30,11 +30,6 @@
 
 @implementation M8RecvChildViewController
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    
-    
-}
 
 - (IBAction)onRejectAction:(id)sender
 {
@@ -53,19 +48,16 @@
         [self.WCDelegate RecvChildVCAction:actionStr];
     }
 }
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    self.bgImageView.frame = self.view.bounds;
-    [self.view sendSubviewToBack:self.bgImageView];
-}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
     self.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    
+    self.bgImageView.frame = self.view.bounds;
+    [self.view sendSubviewToBack:self.bgImageView];
     
     [self.sponsorLabel configLiveRenderText];
     [self.infoLabel configLiveText];
@@ -109,7 +101,7 @@
                     [self.infoLabel setAttributedText:[CommonUtil customAttString:inviteInfo]];
                     [self.sponsorLabel setAttributedText:[[NSAttributedString alloc] initWithString:[userProfile.nickname getSimpleName]
                                                                                          attributes:[CommonUtil customAttsWithBodyFontSize:kAppMiddleFontSize textColor:WCButtonColor]]];
-                    [self.inviteLabel setAttributedText:[[NSAttributedString alloc] initWithString:[[M8UserDefault getLoginId] getSimpleName]
+                    [self.inviteLabel setAttributedText:[[NSAttributedString alloc] initWithString:[[M8UserDefault getLoginNick] getSimpleName]
                                                                                          attributes:[CommonUtil customAttsWithBodyFontSize:kAppMiddleFontSize textColor:WCButtonColor]]];
                 });
             }
