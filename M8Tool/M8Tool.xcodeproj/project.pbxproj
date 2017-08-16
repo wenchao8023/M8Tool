@@ -246,6 +246,7 @@
 		948E045D1EE641C30075903B /* UserTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 948E045C1EE641C30075903B /* UserTableView.m */; };
 		948E04611EE6421B0075903B /* UserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 948E045F1EE6421B0075903B /* UserTableViewCell.m */; };
 		948E04621EE6421B0075903B /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 948E04601EE6421B0075903B /* UserTableViewCell.xib */; };
+		948EAA381F4424310069605D /* M8CallRenderModelManger+CallStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 948EAA371F4424310069605D /* M8CallRenderModelManger+CallStatus.m */; };
 		949008291F3C4CF3003FB655 /* QAVSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 949008141F3C4CF3003FB655 /* QAVSDK.framework */; };
 		9490082A1F3C4CF3003FB655 /* xplatform.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 949008151F3C4CF3003FB655 /* xplatform.framework */; };
 		9490082B1F3C4CF3003FB655 /* ILiveSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 949008171F3C4CF3003FB655 /* ILiveSDK.framework */; };
@@ -937,6 +938,8 @@
 		948E045E1EE6421B0075903B /* UserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTableViewCell.h; sourceTree = "<group>"; };
 		948E045F1EE6421B0075903B /* UserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTableViewCell.m; sourceTree = "<group>"; };
 		948E04601EE6421B0075903B /* UserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
+		948EAA361F4424310069605D /* M8CallRenderModelManger+CallStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "M8CallRenderModelManger+CallStatus.h"; sourceTree = "<group>"; };
+		948EAA371F4424310069605D /* M8CallRenderModelManger+CallStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "M8CallRenderModelManger+CallStatus.m"; sourceTree = "<group>"; };
 		949008141F3C4CF3003FB655 /* QAVSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QAVSDK.framework; sourceTree = "<group>"; };
 		949008151F3C4CF3003FB655 /* xplatform.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = xplatform.framework; sourceTree = "<group>"; };
 		949008171F3C4CF3003FB655 /* ILiveSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ILiveSDK.framework; sourceTree = "<group>"; };
@@ -2133,6 +2136,8 @@
 				946F7EFE1EF29E84005E757A /* M8CallRenderModel.m */,
 				94AF2F311F2075D800FC1B2E /* M8CallRenderModelManger.h */,
 				94AF2F321F2075D800FC1B2E /* M8CallRenderModelManger.m */,
+				948EAA361F4424310069605D /* M8CallRenderModelManger+CallStatus.h */,
+				948EAA371F4424310069605D /* M8CallRenderModelManger+CallStatus.m */,
 				94ADDC8F1F2767F5009CFCD3 /* M8CallRenderNote.h */,
 				94ADDC901F2767F5009CFCD3 /* M8CallRenderNote.m */,
 				94ADDC971F276890009CFCD3 /* M8CallNoteCell.h */,
@@ -3827,6 +3832,7 @@
 				94ABF4F91F303B3B00995C07 /* M8GlobalNetDesViewController.m in Sources */,
 				944AF30D1E9494C00044B44C /* AFURLSessionManager.m in Sources */,
 				944AF31A1E9494C00044B44C /* UIImage+KVNEmpty.m in Sources */,
+				948EAA381F4424310069605D /* M8CallRenderModelManger+CallStatus.m in Sources */,
 				94C9B83B1ECDA52100F42654 /* LatestMembersCollection.m in Sources */,
 				9495225F1F188BE10095647D /* UsrContactView+Net.m in Sources */,
 				9497DF361ECA966A009C35CB /* MeetingAgendaCell.m in Sources */,
