@@ -39,10 +39,8 @@
 - (instancetype _Nullable)initWithItem:(TCShowLiveListItem *_Nullable)item;
 
 
-/**
- 如果 单例中 的inviteArray变化了，就需要调用这个接口重新
- */
-- (void)initInviteArray;
+- (void)loadInvitedArray:(NSArray *_Nullable)members;
+
 
 /**
  有成员发送通知消息

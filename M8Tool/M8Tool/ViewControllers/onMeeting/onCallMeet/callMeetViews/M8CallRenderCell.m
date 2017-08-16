@@ -216,7 +216,6 @@
             self.infoLabel.text = kMemberStatu_disconnect;
         }
             break;
-            
         default:
             break;
     }

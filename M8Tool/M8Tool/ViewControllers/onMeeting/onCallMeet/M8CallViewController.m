@@ -71,10 +71,6 @@
     [listener setMsgListener:self];
     config.callListener = listener;
     
-    TIMGroupManager *groupManger = [TIMGroupManager sharedInstance];
-    
-    
-    
     if (self.isHost)
     {
         if (self.isJoinSelf)
@@ -104,7 +100,7 @@
         TILCallSponsorConfig *sponsorConfig = [[TILCallSponsorConfig alloc] init];
         sponsorConfig.waitLimit             = 30;
         sponsorConfig.callId                = (int)self.liveItem.info.roomnum;
-        sponsorConfig.onlineInvite          = YES;
+        sponsorConfig.onlineInvite          = NO;
         config.sponsorConfig                = sponsorConfig;
         
         self.call = [[TILMultiCall alloc] initWithConfig:config];
@@ -128,26 +124,12 @@
                 [[ILiveRoomManager getInstance] setBeauty:2];
                 [[ILiveRoomManager getInstance] setWhite:2];
                 
-                [weakself.headerView configHeaderView:self.liveItem.info.title hostNick:[self.renderModelManger toNickWithUid:self.liveItem.info.host]];
+                [weakself loadInvitedMembers];
+                
+                [weakself.headerView configHeaderView:self.liveItem.info.title host:self.liveItem.info.host];
                 
                 //开始推流
                 [self onLivePushStart];
-                
-                
-                TIMGroupManager *groupManger = [TIMGroupManager sharedInstance];
-                
-                [groupManger GetGroupInfo:@[self.liveItem.info.groupid] succ:^(NSArray *arr) {
-                    
-                    for (TIMGroupInfo * info in arr)
-                    {
-                        NSLog(@"get group succ, infos=%@", info);
-                    }
-                    
-                } fail:^(int code, NSString *msg) {
-                    
-                     NSLog(@"failed code: %d %@", code, err);
-                }];
-                
             }
         }];
     }];
@@ -270,23 +252,11 @@
             [[ILiveRoomManager getInstance] setBeauty:3];
             [[ILiveRoomManager getInstance] setWhite:3];
             
+            [weakself loadInvitedMembers];
+            
             [self removeRecvChildVC];
             
-            [weakself.headerView configHeaderView:self.liveItem.info.title hostNick:[self.renderModelManger toNickWithUid:self.liveItem.info.host]];
-            
-            TIMGroupManager *groupManger = [TIMGroupManager sharedInstance];
-            
-            [groupManger GetGroupInfo:@[self.liveItem.info.groupid] succ:^(NSArray *arr) {
-                
-                for (TIMGroupInfo * info in arr)
-                {
-                    NSLog(@"get group succ, infos=%@", info);
-                }
-                
-            } fail:^(int code, NSString *msg) {
-                
-                NSLog(@"failed code: %d %@", code, err);
-            }];
+            [weakself.headerView configHeaderView:self.liveItem.info.title host:self.liveItem.info.host];
         }
     }];
 }
@@ -302,6 +272,11 @@
          }
          [weakself selfDismiss];
      }];
+}
+
+- (void)loadInvitedMembers
+{
+    [self.renderModelManger loadInvitedArray:[self.call getMembers]];
 }
 
 #pragma mark - 初始化容器

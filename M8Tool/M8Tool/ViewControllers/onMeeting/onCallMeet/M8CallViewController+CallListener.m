@@ -152,6 +152,12 @@
             {
                 [self selfDismiss];
             }
+            
+            if ([sender isEqualToString:self.liveItem.info.host])
+            {
+                [self addMember:nil withTip:@"通话结束"];
+                [self selfDismiss];
+            }
         }
             break;
         case TILCALL_NOTIF_LINEBUSY:
@@ -178,13 +184,6 @@
             [self addMember:[self.renderModelManger toNickWithUid:sender] withTip:@"失去连接"];
             if([sender isEqualToString:self.liveItem.uid])
             {
-                TILCallNotification *disNotify = [[TILCallNotification alloc] init];
-                disNotify.callId = [self.call getCallId];
-                disNotify.notifId = TILCALL_NOTIF_DISCONNECT;
-                disNotify.sender = sender;
-//                disNotify.targets = [self.renderModelManger onGetOnLineMembers];
-                [self.call postNotification:disNotify result:nil];
-                
                 [self selfDismiss];
             }
             else

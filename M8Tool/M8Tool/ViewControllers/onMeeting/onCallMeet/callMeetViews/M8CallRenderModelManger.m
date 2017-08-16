@@ -13,11 +13,13 @@
 
 @interface M8CallRenderModelManger()
 
+@property (nonatomic, assign) TILCallType callType;
+@property (nonatomic, copy, nullable) NSString *groupId;
 @property (nonatomic, copy, nullable) NSString *hostIdentify;
 @property (nonatomic, copy, nullable) NSString *loginIdentify;
-@property (nonatomic, assign) TILCallType callType;
 
-@property (nonatomic, strong) NSMutableArray *inviteArray;     //记录会议开始前邀请的成员
+
+@property (nonatomic, strong) NSMutableArray *invitedArray;     //记录会议历史邀请的成员
 
 @end
 
@@ -30,53 +32,122 @@
 {
     if (self = [super init])
     {
-        self.hostIdentify   = item.info.host;
         self.loginIdentify  = item.uid;
         self.callType       = item.callType;
-        
-        [self initInviteArray];
+        self.hostIdentify   = item.info.host;
+        self.groupId        = item.info.groupid;
     }
     return self;
 }
 
-/**
- 初始化成员数组，这里的成员来自单例中保存的邀请的人的信息，self在初始值是在最前面
- */
-- (void)initInviteArray
+- (NSMutableArray *)invitedArray
 {
-    M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
-    
-    NSMutableArray *inviteArr = [NSMutableArray arrayWithCapacity:0];
-    for (M8MemberInfo *memberInfo in modelManger.inviteMemberArray)
+    if (!_invitedArray)
     {
-        M8CallRenderModel *model = [[M8CallRenderModel alloc] init];
-        model.identify = memberInfo.uid;
-        model.nick = memberInfo.nick;
-        
-        if ([model.identify isEqualToString:self.loginIdentify] ||
-            [model.identify isEqualToString:self.hostIdentify])
-        {
-            model.meetMemberStatus = MeetMemberStatus_receive;
-        }
-        
-        [inviteArr addObject:model];
+        _invitedArray = [NSMutableArray arrayWithCapacity:0];
     }
-    
-    [self.inviteArray removeAllObjects];
-    [self.inviteArray addObjectsFromArray:inviteArr];
+    return _invitedArray;
 }
 
-- (NSMutableArray *)inviteArray
+
+- (void)loadInvitedArray:(NSArray *)members
 {
-    if (!_inviteArray)
+    // 只添加不再房间中的成员 - 音视频通知发生在了这里之前
+    NSMutableArray *idArray = [NSMutableArray arrayWithCapacity:0];
+    for (TILCallMember *member in members)
     {
-        _inviteArray = [NSMutableArray arrayWithCapacity:0];
+        if (![self getMemberExitInRoomWithID:member.identifier])
+        {
+            M8CallRenderModel *model = [[M8CallRenderModel alloc] initWithTILCallMember:member];
+            [self.invitedArray addObject:model];
+        }
+        else if (!((M8CallRenderModel *)[self getMemberWithID:member.identifier].nick)) //昵称为空的成员需要去获取昵称
+        {
+            [idArray addObject:member.identifier];
+        }
     }
-    return _inviteArray;
+    
+    WCWeakSelf(self);
+    // 获取成员昵称
+    [[TIMFriendshipManager sharedInstance] GetUsersProfile:idArray succ:^(NSArray *friends) {
+        
+        for (TIMUserProfile *userProfile in friends)
+        {
+            [weakself memberNick:userProfile.nickname WithID:userProfile.identifier];
+        }
+        
+        // 获取在房间内的成员
+        [[TIMGroupManager sharedInstance] GetGroupMembers:self.groupId succ:^(NSArray *members) {
+            
+            for (TIMGroupMemberInfo *mInfo in members)
+            {
+                [weakself memberIsInRoom:YES WithID:mInfo.member];
+            }
+            
+            [weakself reloadInvitedArray];
+            
+        } fail:^(int code, NSString *msg) {
+            
+        }];
+        
+        
+        
+    } fail:^(int code, NSString *msg) {
+        
+    }];
+}
+
+
+- (void)reloadInvitedArray
+{
+    NSArray *tempInvitedArr = [NSArray arrayWithArray:self.invitedArray];
+    for (M8CallRenderModel *model in tempInvitedArr)
+    {
+        if (model.isInRoom)
+        {
+            if (model.isMicOn ||
+                model.isCameraOn)
+            {
+                [self memberReceiveWithID:model.identify];
+            }
+            else
+            {
+                [self memberWaitingWithID:model.identify];
+            }
+        }
+    }
+    
+    [self reloadMemberModels];
+}
+
+
+- (void)memberNick:(NSString *)nick WithID:(NSString *)identify
+{
+    M8CallRenderModel *model = [self getMemberWithID:identify];
+    if (!model.nick)
+    {
+        model.nick = nick;
+        [self updateMember:model];
+    }
+}
+
+- (void)memberIsInRoom:(BOOL)isInRoom WithID:(NSString *)identify
+{
+    M8CallRenderModel *model = [self getMemberWithID:identify];
+    model.isInRoom = isInRoom;
+    [self updateMember:model];
 }
 
 
 #pragma mark - onRecvNotification
+//#pragma mark -- onLeave
+//- (void)memberLeaveWithID:(NSString *)identify
+//{
+//    M8CallRenderModel *model = [self getMemberWithID:identify];
+//    model.meetMemberStatus = MeetMemberStatus_leave;
+//    [self updateMember:model];
+//}
+
 #pragma mark -- onJoinSelf
 - (void)memberJoinSelfWithID:(NSString *)identify
 {
@@ -126,8 +197,11 @@
 #pragma mark -- onReceive
 - (void)memberReceiveWithID:(NSString *)identify
 {
+    //只要是为接受状态的肯定是在房间，且显示在视图上
     M8CallRenderModel *model = [self getMemberWithID:identify];
     model.meetMemberStatus = MeetMemberStatus_receive;
+    model.isInRoom = YES;
+    model.isRemoved = NO;
     [self updateMember:model];
 }
 
@@ -184,13 +258,13 @@
         
         if (model)
         {
-            [self.inviteArray removeObject:model];
+            [self.invitedArray removeObject:model];
             
             M8InviteModelManger *inviteModelManger = [M8InviteModelManger shareInstance];
-            [inviteModelManger updateInviteM8CallRenderModelArray:self.inviteArray];
+            [inviteModelManger updateInviteM8CallRenderModelArray:self.invitedArray];
             /*
             NSMutableArray *tempInviteArr = [NSMutableArray arrayWithCapacity:0];
-            for (M8CallRenderModel *model in self.inviteArray)
+            for (M8CallRenderModel *model in self.invitedArray)
             {
                 M8MemberInfo *info = [[M8MemberInfo alloc] init];
                 info.uid = model.identify;
@@ -213,6 +287,8 @@
     M8CallRenderModel *model = [self getMemberWithID:identify];
     model.isMicOn = isOn;
     [self updateMember:model];
+    
+    [self memberReceiveWithID:identify];
 }
 
 - (void)onMemberCameraVideoOn:(BOOL)isOn WithID:(NSString *)identify
@@ -220,6 +296,8 @@
     M8CallRenderModel *model = [self getMemberWithID:identify];
     model.isCameraOn = isOn;
     [self updateMember:model];
+    
+    [self memberReceiveWithID:identify];
 }
 
 
@@ -274,7 +352,7 @@
             }
             else
             {
-                [self.inviteArray exchangeObjectAtIndex:index withObjectAtIndex:0];
+                [self.invitedArray exchangeObjectAtIndex:index withObjectAtIndex:0];
             }
         }
         
@@ -304,7 +382,7 @@
         [inviteArr addObject:model];
     }
     
-    [self.inviteArray addObjectsFromArray:inviteArr];
+    [self.invitedArray addObjectsFromArray:inviteArr];
     [modelManger mergeSelectToInvite];
 }
 
@@ -320,7 +398,7 @@
 //{
 //    NSMutableArray *curMembers = [NSMutableArray arrayWithCapacity:0];
 //    
-//    for (M8CallRenderModel *model in self.inviteArray)
+//    for (M8CallRenderModel *model in self.invitedArray)
 //    {
 //        if (model.meetMemberStatus == MeetMemberStatus_receive)
 //        {
@@ -335,7 +413,7 @@
 #pragma mark -- get member model
 - (M8CallRenderModel *)getMemberWithID:(NSString *)identify
 {
-    for (M8CallRenderModel *model in self.inviteArray)
+    for (M8CallRenderModel *model in self.invitedArray)
     {
         if ([model.identify isEqualToString:identify])
         {
@@ -343,17 +421,35 @@
         }
     }
     
-    NSAssert(1, @"此时房间没成员");
-    return nil;
+    // 如果房间中没有改成员，则添加该成员
+    M8CallRenderModel *model = [[M8CallRenderModel alloc] init];
+    model.identify = identify;
+    [self.invitedArray addObject:model];
+    
+    return model;
+}
+
+//判断房间中是否存在该成员
+- (BOOL)getMemberExitInRoomWithID:(NSString *)identify
+{
+    for (M8CallRenderModel *model in self.invitedArray)
+    {
+        if ([model.identify isEqualToString:identify])
+        {
+            return YES;
+        }
+    }
+    
+    return NO;
 }
 
 
 #pragma mark -- update member model in container
 - (void)updateMember:(M8CallRenderModel *)newModel
 {
-    if (self.inviteArray.count && newModel)
+    if (self.invitedArray.count && newModel)
     {
-        [self.inviteArray replaceObjectAtIndex:[self getMemberIndexInArray:newModel.identify] withObject:newModel];
+        [self.invitedArray replaceObjectAtIndex:[self getMemberIndexInArray:newModel.identify] withObject:newModel];
     }
     
     [self reloadMemberModels];
@@ -363,14 +459,14 @@
 #pragma mark -- get member index in member array
 - (NSInteger)getMemberIndexInArray:(NSString *)identify
 {
-    return [self.inviteArray indexOfObject:[self getMemberWithID:identify]];
+    return [self.invitedArray indexOfObject:[self getMemberWithID:identify]];
 }
 
 
 #pragma mark -- 房间内是否存在视频流
 - (BOOL)isExitVideoCaption
 {
-    for (M8CallRenderModel *model in self.inviteArray)
+    for (M8CallRenderModel *model in self.invitedArray)
     {
         if (model.isCameraOn)
         {
@@ -380,6 +476,9 @@
 
     return NO;
 }
+
+
+
 
 #pragma mark -- reload member models in array and currentModel
 - (void)reloadMemberModels
@@ -396,7 +495,7 @@
     NSMutableArray *busyArr     = [NSMutableArray arrayWithCapacity:0];
     NSMutableArray *rejectArr   = [NSMutableArray arrayWithCapacity:0];
     
-    for (M8CallRenderModel *model in self.inviteArray)
+    for (M8CallRenderModel *model in self.invitedArray)
     {
         switch (model.meetMemberStatus)
         {
@@ -417,7 +516,7 @@
                 [hangupArr addObject:model];
             }
                 break;
-            case MeetMemberStatus_none:
+            case MeetMemberStatus_none: //无意义
             {
                 [callingArr addObject:model];
             }
@@ -443,14 +542,14 @@
         }
     }
     
-    [self.inviteArray removeAllObjects];
-    [self.inviteArray addObjectsFromArray:videoArr];
-    [self.inviteArray addObjectsFromArray:audioArr];
-    [self.inviteArray addObjectsFromArray:hangupArr];
-    [self.inviteArray addObjectsFromArray:callingArr];
-    [self.inviteArray addObjectsFromArray:timeoutArr];
-    [self.inviteArray addObjectsFromArray:busyArr];
-    [self.inviteArray addObjectsFromArray:rejectArr];
+    [self.invitedArray removeAllObjects];
+    [self.invitedArray addObjectsFromArray:videoArr];
+    [self.invitedArray addObjectsFromArray:audioArr];
+    [self.invitedArray addObjectsFromArray:hangupArr];
+    [self.invitedArray addObjectsFromArray:callingArr];
+    [self.invitedArray addObjectsFromArray:timeoutArr];
+    [self.invitedArray addObjectsFromArray:busyArr];
+    [self.invitedArray addObjectsFromArray:rejectArr];
     
     [self respondsToDelegate];
 }
@@ -458,14 +557,14 @@
 #pragma mark - respondsToDelegate
 - (void)respondsToDelegate
 {
-    //分离 inviteArray
+    //分离 invitedArray
     //  bgViewModel     : 如果有视频流，则将最前面有视频流的成员保存
     //  renderViewArr   : 保存其他处在 renderView 中的成员
     
     M8CallRenderModel *bgViewModel = nil;
     
     NSMutableArray *renderViewArr = [NSMutableArray arrayWithCapacity:0];
-    for (M8CallRenderModel *model in self.inviteArray)
+    for (M8CallRenderModel *model in self.invitedArray)
     {
         if (model.isCameraOn &&
             !bgViewModel)

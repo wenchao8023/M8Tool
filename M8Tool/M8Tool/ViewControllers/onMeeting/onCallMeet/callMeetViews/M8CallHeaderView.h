@@ -40,8 +40,8 @@
  配置头部视图信息
 
  @param title 会议主题
- @param nick 发起人昵称
+ @param host 发起人id
  */
-- (void)configHeaderView:(NSString *_Nullable)title hostNick:(NSString *_Nullable)nick;
+- (void)configHeaderView:(NSString *_Nullable)title host:(NSString *_Nullable)host;
 
 @end

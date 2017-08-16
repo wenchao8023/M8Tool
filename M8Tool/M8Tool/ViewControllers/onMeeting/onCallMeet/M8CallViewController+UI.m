@@ -35,12 +35,22 @@
         switch (deviceAction) {
             case kOnDeviceActionShare:
             {
-//                TILCallNotification *disNotify = [[TILCallNotification alloc] init];
-//                disNotify.callId = [self.call getCallId];
-//                disNotify.notifId = TILCALL_NOTIF_DISCONNECT;
-//                disNotify.sender = self.liveItem.uid;
-//                disNotify.targets = [self.renderModelManger onGetOnLineMembers];
-//                [self.call postNotification:disNotify result:nil];
+                NSArray *invitedArray = [self.call getMembers];
+                
+                NSLog(@"\n邀请过的成员 ======================");
+                for (TILCallMember *member in invitedArray)
+                {
+                    NSLog(@"成员 : %@, 上行音频 : %@, 上行视频 : %@", member.identifier, (member.isAudio ? @"开启" : @"关闭"), (member.isCameraVideo ? @"开启" : @"关闭"));
+                }
+                NSLog(@"======================\n");
+                
+                [[TIMGroupManager sharedInstance] GetGroupMembers:self.liveItem.info.groupid succ:^(NSArray *members) {
+                   
+                    NSLog(@"\n群组中的成员 ====================== %@ \n======================", members);
+                    
+                } fail:^(int code, NSString *msg) {
+                    
+                }];
             }
                 break;
             case kOnDeviceActionNote:

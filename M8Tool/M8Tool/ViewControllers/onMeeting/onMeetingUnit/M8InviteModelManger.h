@@ -10,6 +10,7 @@
 
 /**
  用于管理邀请的成员信息 统一用 <--M8MemberInfo--> 类记录
+ 只在邀请人的时候容器中有数据，其他时候一率为空
  */
 @interface M8InviteModelManger : NSObject
 
