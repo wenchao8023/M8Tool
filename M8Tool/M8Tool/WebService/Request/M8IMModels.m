@@ -30,6 +30,17 @@
 
 @implementation M8MemberInfo
 
+- (instancetype)initWithTIMUserProfile:(TIMUserProfile *)userProfile
+{
+    if (self = [super init])
+    {
+        self.uid  = userProfile.identifier;
+        self.nick = userProfile.nickname;
+    }
+    
+    return self;
+}
+
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key
 {
     

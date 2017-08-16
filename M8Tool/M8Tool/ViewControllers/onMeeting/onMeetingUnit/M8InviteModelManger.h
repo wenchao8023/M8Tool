@@ -10,6 +10,7 @@
 
 /**
  用于管理邀请的成员信息 统一用 <--M8MemberInfo--> 类记录
+ 只在邀请人的时候容器中有数据，其他时候一率为空
  */
 @interface M8InviteModelManger : NSObject
 
@@ -35,12 +36,14 @@
  */
 - (void)updateInviteMemberArray:(NSArray *_Nullable)currentArray;
 
+
 /**
  将会议中的数组转成self数组中的数据
  
  @param callRenderModelArr 发起界面选中的成员 M8CallRenderModel
  */
 - (void)updateInviteM8CallRenderModelArray:(NSArray *_Nullable)callRenderModelArr;
+
 
 /**
  判断用户是否在初始数组中

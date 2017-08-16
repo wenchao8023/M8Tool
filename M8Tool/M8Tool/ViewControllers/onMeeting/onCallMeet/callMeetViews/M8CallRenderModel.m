@@ -10,18 +10,41 @@
 
 @implementation M8CallRenderModel
 
+- (void)initOriginData
+{
+    _isMicOn        = NO;
+    _isInRoom       = NO;
+    _isRemoved      = NO;
+    _isCameraOn     = NO;
+    _isInUserAction = NO;
+    
+    _videoScrType       = QAVVIDEO_SRC_TYPE_CAMERA;
+    _meetMemberStatus   = MeetMemberStatus_none;
+    _userActionDuration = 0;
+}
+
 - (instancetype)init
 {
     if (self = [super init])
     {
-        _meetMemberStatus = MeetMemberStatus_none;
-        _isCameraOn     = NO;
-        _isMicOn        = NO;
-        _videoScrType   = QAVVIDEO_SRC_TYPE_CAMERA;
-        _userActionDuration  = 0;
+        [self initOriginData];
     }
     return self;
 }
+
+- (instancetype)initWithTILCallMember:(TILCallMember *)member
+{
+    if (self = [super init])
+    {
+        [self initOriginData];
+        
+        self.identify   = member.identifier;
+        self.isMicOn    = member.isAudio;
+        self.isCameraOn = member.isCameraVideo;
+    }
+    return self;
+}
+
 
 
 - (void)onUserActionBegin
@@ -29,7 +52,6 @@
     self.isInUserAction = YES;
     self.userActionDuration = 10;
     self.userActionTimer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(countCancelTimer) userInfo:nil repeats:YES];
-//    self.userActionTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countCancelTimer) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:self.userActionTimer forMode:NSRunLoopCommonModes];
     [self.userActionTimer fire];
 }

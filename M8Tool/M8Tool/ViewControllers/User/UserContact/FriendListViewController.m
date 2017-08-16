@@ -135,71 +135,49 @@
 #pragma mark - on network
 - (void)onNetGetFriendList
 {
-//    [self.dataArray removeAllObjects];
-//    
-//    WCWeakSelf(self);
-//    
-//    TIMFriendshipManager *frdManger = [TIMFriendshipManager sharedInstance];
-//    
-//    [frdManger GetFriendList:^(NSArray *friends) {
-//    
-//        [self.dataArray addObjectsFromArray:friends];
-//        
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//        
-//            [weakself.tableView reloadData];
-//        });
-//        
-//    } fail:^(int code, NSString *msg) {
-//        
-//    }];
     [self.dataArray removeAllObjects];
+    
     WCWeakSelf(self);
-    FriendsListRequest *friendListReq = [[FriendsListRequest alloc] initWithHandler:^(BaseRequest *request) {
-        
-        FriendsListRequest *wreq = (FriendsListRequest *)request;
-        FriendsListResponceData *respData = (FriendsListResponceData *)wreq.response.data;
-        
-        for (NSDictionary *dic in respData.InfoItem)
-        {   
-            M8MemberInfo *info = [M8MemberInfo new];
-            info.uid    = [dic objectForKey:@"Info_Account"];
-            info.nick   = [[[dic objectForKey:@"SnsProfileItem"] firstObject] objectForKey:@"Value"];
-            [weakself.dataArray addObject:info];
+    
+    TIMFriendshipManager *frdManger = [TIMFriendshipManager sharedInstance];
+    
+    [frdManger GetFriendList:^(NSArray *friends) {
+    
+        for (TIMUserProfile *profile in friends)
+        {
+            M8MemberInfo *mInfo = [[M8MemberInfo alloc] initWithTIMUserProfile:profile];
+            [self.dataArray addObject:mInfo];
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-           
+        
             [weakself.tableView reloadData];
         });
         
+    } fail:^(int code, NSString *msg) {
         
-    } failHandler:^(BaseRequest *request) {
-        
+        NSString *errInfo = [NSString stringWithFormat:@"errDomain: TIMSDK, errCode: %d\nerrInfo: %@", code, msg];
+        [AlertHelp alertWith:nil message:errInfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
     }];
-    
-    friendListReq.identifier = [M8UserDefault getLoginId];
-    friendListReq.token = [AppDelegate sharedAppDelegate].token;
-    [[WebServiceEngine sharedEngine] AFAsynRequest:friendListReq];
 }
 
 - (void)onNetDeleteFriend:(NSIndexPath *)indexPath
 {
     M8MemberInfo *mInfo = self.dataArray[indexPath.row];
+    
+    TIMFriendshipManager *frdManger = [TIMFriendshipManager sharedInstance];
+    
     WCWeakSelf(self);
-    DeleteFriendReuqest *delFReq = [[DeleteFriendReuqest alloc] initWithHandler:^(BaseRequest *request) {
+    
+    [frdManger DelFriend:TIM_FRIEND_DEL_BOTH users:@[mInfo.uid] succ:^(NSArray *friends) {
         
         [weakself onNetGetFriendList];
         
-    } failHandler:^(BaseRequest *request) {
+    } fail:^(int code, NSString *msg) {
         
+        NSString *errInfo = [NSString stringWithFormat:@"errDomain: TIMSDK, errCode: %d\nerrInfo: %@", code, msg];
+        [AlertHelp alertWith:nil message:errInfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
     }];
-    
-    delFReq.token = [AppDelegate sharedAppDelegate].token;
-    delFReq.uid   = [M8UserDefault getLoginId];
-    delFReq.fid   = mInfo.uid;
-    
-    [[WebServiceEngine sharedEngine] AFAsynRequest:delFReq];
 }
 
 
@@ -242,7 +220,7 @@
         }
         else
         {
-            [friendCell configWithMemberItem:self.dataArray[indexPath.row]];
+            [friendCell configWithFriendItem:self.dataArray[indexPath.row]];
         }
     }
     

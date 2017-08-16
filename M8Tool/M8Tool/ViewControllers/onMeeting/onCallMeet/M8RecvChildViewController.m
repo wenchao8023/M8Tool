@@ -83,30 +83,44 @@
     [WCNotificationCenter addObserver:self selector:@selector(themeSwichAction) name:kThemeSwich_Notification object:nil];
     
     
-    M8InviteModelManger *inviteModelManger = [M8InviteModelManger shareInstance];
-//    M8MemberInfo *hostInfo = [inviteModelManger.inviteMemberArray firstObject];
-    
+    //邀请人的会议
     NSString *inviter = _invitation.inviterId;
     
-    NSString *inviteInfo;
-    if (_invitation.callType == TILCALL_TYPE_VIDEO)
-    {
-//        inviteInfo = [NSString stringWithFormat:@"%@邀请你视频通话", _invitation.sponsorId];
-        inviteInfo = [NSString stringWithFormat:@"%@邀请你视频通话", [inviteModelManger nickInInviteArrayWithUid:inviter]];
-    }
-    else if (_invitation.callType == TILCALL_TYPE_AUDIO)
-    {
-        inviteInfo = [NSString stringWithFormat:@"%@邀请你音频通话", [inviteModelManger nickInInviteArrayWithUid:inviter]];
-    }
-    self.infoLabel.text = inviteInfo;
-
-    self.sponsorLabel.text = [inviter getSimpleName];
-    self.inviteLabel.text  = [[M8UserDefault getLoginNick] getSimpleName];
+    NSArray *tipArr = [_invitation.custom componentsSeparatedByString:@","];
+    NSString *topic = [tipArr lastObject];
     
-    [self.view sendSubviewToBack:self.bgImageView];
-    
-    WCLog(@"Recv call child frame is : %@", NSStringFromCGRect(self.view.frame));
+    [[TIMFriendshipManager sharedInstance] GetUsersProfile:@[inviter] succ:^(NSArray *friends) {
+       
+        for (TIMUserProfile *userProfile in friends)
+        {
+            if ([userProfile.identifier isEqualToString:inviter])
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                   
+                    NSString *inviteInfo;
+                    if (_invitation.callType == TILCALL_TYPE_VIDEO)
+                    {
+                        inviteInfo = [NSString stringWithFormat:@"%@邀请你加入 %@", userProfile.nickname, topic];
+                    }
+                    else if (_invitation.callType == TILCALL_TYPE_AUDIO)
+                    {
+                        inviteInfo = [NSString stringWithFormat:@"%@邀请你加入 %@", userProfile.nickname, topic];
+                    }
+                    [self.infoLabel setAttributedText:[CommonUtil customAttString:inviteInfo]];
+                    [self.sponsorLabel setAttributedText:[[NSAttributedString alloc] initWithString:[userProfile.nickname getSimpleName]
+                                                                                         attributes:[CommonUtil customAttsWithBodyFontSize:kAppMiddleFontSize textColor:WCButtonColor]]];
+                    [self.inviteLabel setAttributedText:[[NSAttributedString alloc] initWithString:[[M8UserDefault getLoginId] getSimpleName]
+                                                                                         attributes:[CommonUtil customAttsWithBodyFontSize:kAppMiddleFontSize textColor:WCButtonColor]]];
+                });
+            }
+        }
+        
+    } fail:^(int code, NSString *msg) {
+        
+    }];
 }
+
+
 - (UIImageView *)bgImageView
 {
     if (!_bgImageView)

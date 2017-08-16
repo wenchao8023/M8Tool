@@ -53,10 +53,25 @@
     [self.luancherLabel configLiveText];
 }
 
-- (void)configHeaderView:(NSString *)title hostNick:(NSString *)nick
+- (void)configHeaderView:(NSString *)title host:(NSString *)host
 {
+    [[TIMFriendshipManager sharedInstance] GetUsersProfile:@[host] succ:^(NSArray *friends) {
+        
+        for (TIMUserProfile *userProfile in friends)
+        {
+            if ([userProfile.identifier isEqualToString:host])
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                
+                    self.luancherLabel.text = userProfile.nickname;
+                });
+            }
+        }
+        
+    } fail:^(int code, NSString *msg) {
+        
+    }];
     self.topicLabel.text = title;
-    self.luancherLabel.text = nick;
     [self beginCountTime];
 }
 
