@@ -28,6 +28,7 @@
 
 @implementation M8CallRenderModelManger
 
+
 - (instancetype)initWithItem:(TCShowLiveListItem *)item
 {
     if (self = [super init])
@@ -60,6 +61,8 @@
         {
             M8CallRenderModel *model = [[M8CallRenderModel alloc] initWithTILCallMember:member];
             [self.invitedArray addObject:model];
+            
+            [idArray addObject:member.identifier];
         }
         else if (!((M8CallRenderModel *)[self getMemberWithID:member.identifier].nick)) //昵称为空的成员需要去获取昵称
         {
@@ -96,7 +99,6 @@
         
     }];
 }
-
 
 - (void)reloadInvitedArray
 {
@@ -272,7 +274,7 @@
     M8CallRenderModel *model = [self getMemberWithID:identify];
     model.isMicOn = isOn;
     [self updateMember:model];
-    
+ 
     [self memberReceiveWithID:identify];
 }
 

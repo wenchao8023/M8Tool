@@ -44,7 +44,9 @@
  */
 @property (nonatomic, assign) BOOL shouldHangup;
 
-
+/**
+ *  是否是在floatView浮动视图中
+ */
 @property (nonatomic, assign) BOOL isFloatView;
 
 
