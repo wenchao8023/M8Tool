@@ -25,7 +25,6 @@ static const float kRadiusView              = 10;
 
 
 #define kContentOriginX         (30.5 / 375 * SCREEN_WIDTH)
-//#define kContentOriginX         (30.5 / 375 * SCREEN_WIDTH)
 #define kContentHeight_bottom30 (SCREEN_HEIGHT - 153)
 #define kContentHeight_bottom60 (SCREEN_HEIGHT - 183)
 #define kContentHeight_bottom90 (SCREEN_HEIGHT - 213)
@@ -82,5 +81,6 @@ static const float kRadiusView              = 10;
  点击导航栏返回
  */
 //- (void)backClick;
-
+// 设置底部提示框
+- (void)configBottomTipView;
 @end

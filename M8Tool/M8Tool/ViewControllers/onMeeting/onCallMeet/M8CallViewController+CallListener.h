@@ -10,6 +10,9 @@
 
 @interface M8CallViewController (CallListener)<TILCallMemberEventListener, TILCallNotificationListener, RenderModelMangerDelegate>
 
-
+/**
+ 可以开始处理从通讯录中邀请的成员
+ */
+- (void)onReceiveInviteMembers;
 
 @end

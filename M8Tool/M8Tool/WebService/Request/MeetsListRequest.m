@@ -33,12 +33,6 @@
 {
     return [MeetsListResponseData class];
 }
-
-- (BaseResponseData *)parseResponseData:(NSDictionary *)dataDic
-{
-    return [NSObject parse:[self responseDataClass] dictionary:dataDic];
-}
-
 @end
 
 

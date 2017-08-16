@@ -28,16 +28,29 @@
     [self.timeLabel setAttributedText: attString];
 
     
-    
-
 //    self.iconImage.image = [UIImage imageNamed:imageStr];
 }
+
+
+- (void)configWithDay:(NSString *)day monthImg:(NSString *)monthImg dayColor:(UIColor *)dayColor
+{
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:day attributes:[CommonUtil customAttsWithBodyFontSize:kAppLargeFontSize textColor:dayColor]];
+    
+    [self.timeLabel setAttributedText:attString];
+    
+    if (monthImg)
+    {
+        self.iconImage.image = [UIImage imageNamed:monthImg];
+    }
+}
+
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
     
-    if (iPhone5SE)
+    if (iPhone5)
         _iconWidthScale.constant = 0.8;
     else
         _iconWidthScale.constant = 0.6;

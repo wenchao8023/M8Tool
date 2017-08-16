@@ -174,10 +174,11 @@
 
 - (instancetype)init
 {
-    if ([super init])
+    if (self = [super init])
     {
         _isUpVideo = NO;
     }
+    
     return self;
 }
 - (void)setIdPropertyValue:(id)idkeyValue

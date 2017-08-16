@@ -10,6 +10,6 @@
 
 @interface M8LoginViewController : UIViewController
 
-@property (nonatomic, assign) BOOL isLogout;
+
 
 @end

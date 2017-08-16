@@ -8,6 +8,10 @@
 
 #import "CompanyListRequest.h"
 
+
+/**
+ 创建公司
+ */
 @implementation CompanyListRequest
 
 
@@ -40,4 +44,43 @@
 
 @implementation CompanyListResponseData
 
+@end
+
+
+
+/**
+ 获取公司详情
+ */
+@implementation CompanyDetailRequest
+
+- (NSString *)url
+{
+    return [NSString stringWithFormat:@"%@svc=company&cmd=getcompanyinfo", self.hostUrl];
+}
+
+- (NSDictionary *)packageParams
+{
+    return @{
+             @"token"   : _token,
+             @"cid"     : @(_cId)
+             };
+}
+
+
+
+- (Class)responseDataClass
+{
+    return [CompanyDetailResponseData class];
+}
+
+- (BaseResponseData *)parseResponseData:(NSDictionary *)dataDic
+{
+    return [NSObject parse:[self responseDataClass] dictionary:dataDic];
+}
+
+
+
+@end
+
+@implementation CompanyDetailResponseData
 @end

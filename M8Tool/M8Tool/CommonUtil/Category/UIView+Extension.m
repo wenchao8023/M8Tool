@@ -10,6 +10,7 @@
 
 @implementation UIView (Extension)
 
+#pragma mark - -- frame extension
 - (void)setX:(CGFloat)x
 {
     CGRect frame = self.frame;
@@ -106,6 +107,8 @@
     return self.frame.origin;
 }
 
+
+#pragma mark - -- border extension
 - (void)setBorder_top_color:(UIColor *)color width:(CGFloat)width
 {
     [self setBorder_top:YES
@@ -146,29 +149,38 @@
           borderColor:(UIColor *)color borderWidth:(CGFloat)width
 {
     if (top) {
-        CALayer *layer = [CALayer layer];
+        BorderLayer *layer = [BorderLayer layer];
         layer.frame = CGRectMake(0, 0, self.width, width);
         layer.backgroundColor = color.CGColor;
         [self.layer addSublayer:layer];
     }
     if (left) {
-        CALayer *layer = [CALayer layer];
+        BorderLayer *layer = [BorderLayer layer];
         layer.frame = CGRectMake(0, 0, width, self.height);
         layer.backgroundColor = color.CGColor;
         [self.layer addSublayer:layer];
     }
     if (bottom) {
-        CALayer *layer = [CALayer layer];
+        BorderLayer *layer = [BorderLayer layer];
         layer.frame = CGRectMake(0, self.height - width, self.width, width);
         layer.backgroundColor = color.CGColor;
         [self.layer addSublayer:layer];
     }
     if (right) {
-        CALayer *layer = [CALayer layer];
+        BorderLayer *layer = [BorderLayer layer];
         layer.frame = CGRectMake(self.width - width, 0, width, self.height);
         layer.backgroundColor = color.CGColor;
         [self.layer addSublayer:layer];
     }
 }
 
+
 @end
+
+
+
+
+@implementation BorderLayer
+
+@end
+

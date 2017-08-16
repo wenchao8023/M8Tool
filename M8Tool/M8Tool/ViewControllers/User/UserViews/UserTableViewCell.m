@@ -23,7 +23,10 @@
 - (void)config:(UserTableViewModel *)model {
     
     self.iconImage.image = [UIImage imageNamed:model.imgStr];
-    [self.titleLabel setAttributedText:[CommonUtil customAttString:model.titleStr fontSize:kAppMiddleFontSize textColor:WCBlack charSpace:kAppKern_2]];
+    [self.titleLabel setAttributedText:[CommonUtil customAttString:model.titleStr
+                                                          fontSize:kAppMiddleFontSize
+                                                         textColor:WCBlack
+                                                         charSpace:kAppKern_2]];
 }
 
 - (void)awakeFromNib {

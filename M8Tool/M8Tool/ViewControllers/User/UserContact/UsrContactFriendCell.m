@@ -18,6 +18,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *subTitleLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *friendTipLabel;
+
 
 /**
  用于记录 cell 状态的图片
@@ -58,7 +60,7 @@
 {
     [self hiddeXibViews:YES];
     
-    self.iconImg.image = [UIImage imageWithColor:WCRed];
+    self.iconImg.image = [UIImage imageNamed:itemImg];
     
     self.itemTitleLabel.text = itemText;
 }
@@ -74,42 +76,101 @@
     
     [self hiddeXibViews:YES];
     
-    self.iconImg.image = [UIImage imageWithColor:WCLightGray];
+    self.iconImg.image = [UIImage imageNamed:@"user_department"];
     
     self.itemTitleLabel.text = dInfo.dname;
 }
 
-/**
- 配置好友列表
- */
-- (void)configWithFriendItem:(M8FriendInfo *)friendInfo
-{
-    NSDictionary *dic = [friendInfo.SnsProfileItem firstObject];
 
-    M8MemberInfo *info = [M8MemberInfo new];
-    info.uid    = friendInfo.Info_Account;
-    info.nick   = [dic objectForKey:@"Value"];
-    [self configWithMemberItem:info];
+
+/**
+ 管理员进入，显示编辑图片
+ */
+- (void)configMemberItemEditing:(M8MemberInfo *)memberInfo
+{
+    [self configWithDefalutItem:memberInfo];
+    
+    self.statuImg.hidden = NO;
 }
 
 
 /**
+ 配置选人的状态
+ */
+- (void)configMemberItem:(id)memberInfo isSelected:(BOOL)selected
+{
+    [self configWithDefalutItem:memberInfo];
+    
+    self.statuImg.hidden = NO;
+    if (selected)
+    {
+        self.statuImg.image = kGetImage(@"user_selected");
+    }
+    else
+    {
+        self.statuImg.image = kGetImage(@"user_unSelect");
+    }
+}
+
+/**
+ 配置管理者进入，- 不可反选样式
+ */
+- (void)configMemberitemUnableUnselect:(M8MemberInfo *)info
+{
+    [self configWithDefalutItem:info];
+    
+    self.statuImg.hidden = NO;
+
+    self.statuImg.image = kGetImage(@"user_unableSelect");
+    
+    self.userInteractionEnabled = NO;
+}
+
+
+/**
+ 配置好友列表
+ */
+- (void)configWithFriendItem:(M8MemberInfo *)info
+{
+    [self configWithDefalutItem:info];
+}
+
+/**
  配置默认状态下的样式
  */
-- (void)configWithMemberItem:(M8MemberInfo *)memberInfo
+- (void)configWithDefalutItem:(M8MemberInfo *)info
 {
     self.backgroundColor = WCClear;
     self.contentView.backgroundColor = WCClear;
     
     [self hiddeXibViews:NO];
     
-    self.iconLabel.text = [memberInfo.nick getSimpleName];
-    self.titleLabel.text = memberInfo.nick;
-    self.subTitleLabel.text = memberInfo.uid;
+    [self.iconLabel setAttributedText:[[NSAttributedString alloc] initWithString:[info.nick getSimpleName]
+                                                                      attributes:[CommonUtil customAttsWithBodyFontSize:kAppMiddleFontSize
+                                                                                                              textColor:WCWhite]]];
+    [self.titleLabel setAttributedText:[CommonUtil customAttString:info.nick]];
+    [self.subTitleLabel setAttributedText:[CommonUtil customAttString:info.uid fontSize:kAppSmallFontSize]];
+    
+    self.friendTipLabel.hidden = YES;
+    if ([M8UserDefault getNewFriendNotify])
+    {
+        NSArray *newFriendArr = [M8UserDefault getNewFriendIdentify];
+        if (newFriendArr)
+        {
+            if ([newFriendArr containsObject:info.uid])
+            {
+                self.friendTipLabel.hidden = NO;
+            }
+        }
+    }
     
     self.statuImg.hidden = YES; //默认会设置成 隐藏，如果需要显示请自行设置
 }
 
+
+/**
+ 隐藏xib中的views
+ */
 - (void)hiddeXibViews:(BOOL)hidden
 {
     self.iconLabel.hidden = hidden;
@@ -121,51 +182,11 @@
 }
 
 
-/**
- 管理员进入，显示编辑图片
- */
-- (void)configMemberItemEditing:(M8MemberInfo *)memberInfo
-{
-    [self configWithMemberItem:memberInfo];
-    
-    self.statuImg.hidden = NO;
-}
 
 
-/**
- 配置选人的状态
- */
-- (void)configMemberItem:(id)memberInfo isSelected:(BOOL)selected
-{
-    [self configWithMemberItem:memberInfo];
-    
-    self.statuImg.hidden = NO;
-    if (selected)
-    {
-        self.statuImg.backgroundColor = WCGreen;
-        WCViewBorder_Radius(self.statuImg, 10);
-    }
-    else
-    {
-        self.statuImg.backgroundColor = WCClear; 
-        WCViewBorder_Radius_Width_Color(self.statuImg, 10, 2, WCGreen);
-    }
-}
 
-/**
- 配置管理者进入，- 不可反选样式
- */
-- (void)configMemberitemUnableUnselect:(M8MemberInfo *)info
-{
-    [self configWithMemberItem:info];
-    
-    self.statuImg.hidden = NO;
-    
-    self.statuImg.backgroundColor = WCGray;
-    WCViewBorder_Radius(self.statuImg, 10);
-    
-    self.userInteractionEnabled = NO;
-}
+
+
 
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

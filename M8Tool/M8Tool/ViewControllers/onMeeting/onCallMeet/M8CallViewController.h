@@ -10,10 +10,12 @@
 
 #import "M8CallHeaderView.h"
 #import "M8CallRenderView.h"
+#import "M8CallRenderNote.h"
 #import "M8MeetDeviceView.h"
+#import "M8NoteToolBar.h"
 
-//#import "M8CallRenderModelManager.h"
 #import "M8CallRenderModelManger.h"
+#import "M8CallRenderModelManger+CallStatus.h"
 
 #import "M8RecvChildViewController.h"
 
@@ -23,10 +25,13 @@
 
 @property (nonatomic, strong) TILMultiCall * _Nonnull call;
 
-@property (nonatomic, strong, nonnull) M8CallHeaderView *headerView;
-@property (nonatomic, strong, nonnull) M8CallRenderView *renderView;
-@property (nonatomic, strong, nonnull) M8MeetDeviceView *deviceView;
-@property (nonatomic, strong, nonnull) M8MenuPushView   *menuView;
+@property (nonatomic, strong, nullable) M8CallHeaderView *headerView;
+@property (nonatomic, strong, nullable) M8CallRenderView *renderView;
+@property (nonatomic, strong, nullable) M8MeetDeviceView *deviceView;
+@property (nonatomic, strong, nullable) M8CallRenderNote *noteView;
+@property (nonatomic, strong, nullable) M8MenuPushView   *menuView;
+@property (nonatomic, strong, nullable) M8NoteToolBar    *noteToolBar;
+
 
 
 /**
@@ -39,19 +44,19 @@
  */
 @property (nonatomic, strong, nullable) TILCallInvitation *invitation;
 
-- (void)onReceiveCall;
-
-- (void)onRejectCall;
+/**
+ 判断是否是加入自己创建的会议 (发起人退出会议之后被邀请)
+ */
+@property (nonatomic, assign) BOOL isJoinSelf;
 
 /**
- 当前的会议ID
+ 当前视图中成员信息（不应该在这里出现的，后面会使用 renderView 中的）
  */
-@property (nonatomic, assign) int curMid;
+@property (nonatomic, strong, nullable) NSArray *membersArray;
 
 /**
  用于处理 renderView 的数据
  */
-//@property (nonatomic, strong, nonnull) M8CallRenderModelManager *modelManager;
 @property (nonatomic, strong, nonnull) M8CallRenderModelManger *renderModelManger;
 
 /**
@@ -60,14 +65,25 @@
  */
 @property (nonatomic, assign) BOOL shouldHangup;
 
+- (void)onReceiveCall;
 
-- (void)addTextToView:(id _Nullable )newText;
+- (void)onRejectCall;
 
 - (void)hangup;
 
 /**
- 邀请当个成员
+ 邀请多个成员
+ */
+- (void)inviteMembers:(NSArray *_Nullable)membersArr;
+
+/**
+ 邀请单个成员
  */
 - (void)inviteMember:(NSString *_Nullable)memberId;
+
+
+- (void)addMember:(NSString *_Nullable)member withTip:(NSString *_Nullable)tip;
+
+- (void)addMember:(NSString *_Nullable)member withMsg:(NSString *_Nullable)msg;
 
 @end

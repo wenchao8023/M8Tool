@@ -11,6 +11,9 @@
 
 @implementation UsrContactView (UI)
 
+
+
+
 - (void)loadDataInMainThread
 {
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -58,24 +61,9 @@
  */
 - (void)onMobContactAction
 {
-    
+    [AlertHelp alertWith:@"温馨提示" message:@"暂不支持查看手机联系人" cancelBtn:@"取消" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
 }
 
-/**
- 常用群组
- */
-- (void)onCommonGroupAction
-{
-    
-}
-
-/**
- 常用联系人
- */
-- (void)onCommonContactAction
-{
-    
-}
 
 /**
  头部分组事件
@@ -107,6 +95,38 @@
         mangerVC.isExitLeftItem = YES;
         mangerVC.cInfo = self.sectionArray[section];
         [[AppDelegate sharedAppDelegate] pushViewController:mangerVC];
+        
+        
+        WCWeakSelf(self);
+        mangerVC.delCompanySucc = ^{
+            
+            [weakself onNetGetCompanyList:^{
+                
+                [weakself loadDataInMainThread];
+            }];
+        };
+        
+        mangerVC.updateCInfoSucc = ^(M8CompanyInfo * _Nullable cInfo) {
+          
+            //添加公司信息（头部分组数据）
+            [weakself.sectionArray replaceObjectAtIndex:section withObject:cInfo];
+            
+            //添加公司部门信息（部门数组）
+            NSMutableArray *tempDepartArr = [NSMutableArray arrayWithCapacity:0];
+            for (NSDictionary *departDic in cInfo.departments)
+            {
+                M8DepartmentInfo *departInfo = [[M8DepartmentInfo alloc] init];
+                [departInfo setValuesForKeysWithDictionary:departDic];
+                [tempDepartArr addObject:departInfo];
+            }
+            
+            [weakself.dataArray replaceObjectAtIndex:section withObject:tempDepartArr];
+            
+            
+            
+            [weakself loadDataInMainThread];
+        };
+        
     }
     else if ([mangerBtn.titleLabel.text isEqualToString:@"邀请"])
     {
@@ -121,11 +141,11 @@
 }
 
 /**
- 最后一个头部分组创建公司
+ 创建公司
  */
 - (void)onCreateTeamAction
 {
-    UIAlertController *createTeamAlert = [UIAlertController alertControllerWithTitle:@"添加成员" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *createTeamAlert = [UIAlertController alertControllerWithTitle:@"添加团队" message:nil preferredStyle:UIAlertControllerStyleAlert];
     WCWeakSelf(self);
     self.saveAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
@@ -151,6 +171,8 @@
     
     [[AppDelegate sharedAppDelegate].topViewController presentViewController:createTeamAlert animated:YES completion:nil];
 }
+
+
 
 
 - (void)alertTextFieldDidChange:(NSNotification *)notification

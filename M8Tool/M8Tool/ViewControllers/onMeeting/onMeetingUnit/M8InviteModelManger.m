@@ -8,6 +8,8 @@
 
 #import "M8InviteModelManger.h"
 
+#import "M8CallRenderModel.h"
+
 
 static M8InviteModelManger *shareInstance = nil;
 
@@ -63,6 +65,37 @@ static M8InviteModelManger *shareInstance = nil;
     return [self user:uid isExistInArray:self.selectMemberArray];
 }
 
+- (NSString *)nickInInviteArray:(NSString *)uid
+{
+    if ([self isExistInviteArray:uid])
+    {
+        return [self nickInInviteArrayWithUid:uid];
+    }
+    return nil;
+}
+
+- (void)mergeSelectToInvite
+{
+    [self.inviteMemberArray addObjectsFromArray:self.selectMemberArray];
+    [self removeSelectMembers];
+}
+
+
+- (void)updateInviteM8CallRenderModelArray:(NSArray *)callRenderModelArr
+{
+    NSMutableArray *tempInviteArr = [NSMutableArray arrayWithCapacity:0];
+    
+    for (M8CallRenderModel *model in callRenderModelArr)
+    {
+        M8MemberInfo *info = [[M8MemberInfo alloc] init];
+        info.uid = model.identify;
+        info.nick = model.nick;
+        [tempInviteArr addObject:info];
+    }
+    
+    [self updateInviteMemberArray:tempInviteArr];
+}
+
 
 - (void)updateInviteMemberArray:(NSArray *)currentArray
 {
@@ -81,6 +114,8 @@ static M8InviteModelManger *shareInstance = nil;
         [self.selectMemberArray addObject:member];
     }
 }
+
+
 
 - (void)removeAllMembers
 {
@@ -127,6 +162,23 @@ static M8InviteModelManger *shareInstance = nil;
     }
     
     return NO;
+}
+
+//调用此方法之前要先判断用户是否存在 inviteArray
+- (NSString *)nickInInviteArrayWithUid:(NSString *)uid
+{
+    for (M8MemberInfo *mInfo in self.inviteMemberArray)
+    {
+        if ([mInfo.uid isEqualToString:uid])
+        {
+            return mInfo.nick;
+            break;
+        }
+    }
+    
+    NSAssert(1, @"数组中一定要有成员");
+    
+    return nil;
 }
 
 

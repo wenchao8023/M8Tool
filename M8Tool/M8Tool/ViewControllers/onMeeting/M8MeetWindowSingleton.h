@@ -11,9 +11,11 @@
 @interface M8MeetWindowSingleton : NSObject
 
 + (instancetype _Nonnull )shareInstance;
-
 - (void)addMeetSource:(id _Nonnull)source WindowOnTarget:(UIViewController *_Nonnull)target;
+- (void)addMeetSource:(id _Nonnull)source WindowOnTarget:(UIViewController *_Nonnull)target succHandle:(M8VoidBlock _Nullable)succ;
 - (void)showFloatView;
 - (void)hiddeFloatView;
 
+
+- (id _Nullable)getCallViewController;
 @end

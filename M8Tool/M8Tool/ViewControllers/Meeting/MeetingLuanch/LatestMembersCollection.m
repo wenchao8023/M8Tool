@@ -169,7 +169,10 @@ static NSString *CollectionHeaderID = @"LatestMembersCollectionHeaderID";
                                                                                     forIndexPath:indexPath];
         return header;
     }
-    return nil;
+    else
+    {
+        return [[UICollectionReusableView alloc] initWithFrame:CGRectZero];
+    }
 }
 
 

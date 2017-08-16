@@ -106,13 +106,11 @@
     [tabBarItem setTitle:title];
     [tabBarItem setTitleTextAttributes:[CommonUtil customAttsWithFontSize:0
                                                                 textColor:WCTabbarNormalColor
-                                                                charSpace:kAppKern_2
-                                                                 fontName:kFontNameDroidSansFallback]
+                                                                charSpace:kAppKern_2]
                               forState:UIControlStateNormal];
     [tabBarItem setTitleTextAttributes:[CommonUtil customAttsWithFontSize:0
                                                                 textColor:WCTabbarSelectedColor
-                                                                charSpace:kAppKern_2
-                                                                 fontName:kFontNameDroidSansFallback]
+                                                                charSpace:kAppKern_2]
                               forState:UIControlStateSelected];
     
 }

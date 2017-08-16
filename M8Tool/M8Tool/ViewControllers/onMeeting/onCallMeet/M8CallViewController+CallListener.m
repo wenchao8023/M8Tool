@@ -14,7 +14,6 @@
 @implementation M8CallViewController (CallListener)
 
 #pragma mark -- RenderModelMangerDelegate
-
 - (void)renderModelManager:(id)renderModelManger
             bgViewIdentify:(NSString *)bgViewIdentify
            renderViewArray:(NSArray *)renderViewArray
@@ -23,17 +22,22 @@
     {
         return ;
     }
+    
+    self.membersArray = renderViewArray;
+    
     [self.renderView updateWithRenderModelManager:renderModelManger
-                          bgViewIdentify:bgViewIdentify
-                               renderViewArray:renderViewArray];
+                                   bgViewIdentify:bgViewIdentify
+                                  renderViewArray:renderViewArray
+     ];
 }
 
 - (void)renderModelManger:(id)renderModelManger inviteMember:(NSString *)inviteMemberId
 {
     [self inviteMember:inviteMemberId];
+    
 }
 
-#pragma mark -- 音视频事件回调
+#pragma mark -- TILCallMemberEventListener
 - (void)onMemberAudioOn:(BOOL)isOn members:(NSArray *)members
 {
     for (TILCallMember *member in members)
@@ -71,7 +75,7 @@
 
 
 
-#pragma mark -- 通知回调
+#pragma mark -- TILCallNotificationListener
 - (void)onRecvNotification:(TILCallNotification *)notify
 {
     NSInteger notifId = notify.notifId;
@@ -83,9 +87,8 @@
     {
         case TILCALL_NOTIF_INVITE:
         {
-            [self addTextToView:[NSString stringWithFormat:@"%@邀请%@通话",sender,target]];
+            [self addMember:[self.renderModelManger toNickWithUid:sender] withTip:[NSString stringWithFormat:@"邀请%@通话", [self.renderModelManger toNickWithUid:target]]];
         }
-            
             break;
         case TILCALL_NOTIF_ACCEPTED:
         {
@@ -94,7 +97,7 @@
              * sender 不会是 App登录用户 的接收方
              */
             [self onNetReportCallMem:sender statu:1];
-            [self addTextToView:[NSString stringWithFormat:@"%@接受了%@的邀请",sender,target]];
+            [self addMember:[self.renderModelManger toNickWithUid:sender] withTip:[NSString stringWithFormat:@"接受了%@的邀请", [self.renderModelManger toNickWithUid:target]]];
             // 只要有人接受了邀请，就应该是结束通话
             if (self.isHost)
             {
@@ -106,11 +109,14 @@
             break;
         case TILCALL_NOTIF_CANCEL:  //这里应该判断是否是发起人取消了通话
         {
-            [self addTextToView:[NSString stringWithFormat:@"%@取消了对%@的邀请",sender,target]];
-            if([notify.targets containsObject:self.liveItem.uid])
+            [self addMember:[self.renderModelManger toNickWithUid:sender] withTip:[NSString stringWithFormat:@"取消了对%@的邀请", [self.renderModelManger toNickWithUid:target]]];
+            if([notify.targets containsObject:self.liveItem.uid])   //判断自己是不是取消对象
             {
-                [self addTextToView:@"通话被取消"];
-                [self selfDismiss];
+                if ([sender isEqualToString:self.liveItem.info.host])
+                {
+                    [self addMember:nil withTip:@"通话被取消"];
+                    [self selfDismiss];
+                }
             }
         }
             break;
@@ -119,50 +125,63 @@
             [self.renderModelManger memberTimeoutWithID:sender];
             if([sender isEqualToString:self.liveItem.uid])
             {
-                [self addTextToView:[NSString stringWithFormat:@"%@呼叫超时",sender]];
+                
+                [self addMember:[self.renderModelManger toNickWithUid:sender] withTip:@"呼叫超时"];
                 [self selfDismiss];
             }
             else
             {
                 [self onNetReportCallMem:sender statu:0];
-                [self addTextToView:[NSString stringWithFormat:@"%@手机可能不在身边",sender]];
+                [self addMember:[self.renderModelManger toNickWithUid:sender] withTip:@"手机可能不在身边"];
             }
         }
             break;
         case TILCALL_NOTIF_REFUSE:
         {
             [self onNetReportCallMem:sender statu:2];
-            [self addTextToView:[NSString stringWithFormat:@"%@拒绝了%@的邀请",sender,target]];
+            [self addMember:[self.renderModelManger toNickWithUid:sender] withTip:@"拒绝了邀请"];
             [self.renderModelManger memberRejectInviteWithID:sender];
         }
             break;
         case TILCALL_NOTIF_HANGUP:
         {
-            [self addTextToView:[NSString stringWithFormat:@"%@挂断了%@邀请的通话",sender,target]];
+            [self addMember:[self.renderModelManger toNickWithUid:sender] withTip:@"挂断"];
             [self.renderModelManger memberHangupWithID:sender];
             
             if ([sender isEqualToString:self.liveItem.uid])
             {
                 [self selfDismiss];
             }
+            
+            if ([sender isEqualToString:self.liveItem.info.host])
+            {
+                [self addMember:nil withTip:@"通话结束"];
+                [self selfDismiss];
+            }
         }
             break;
         case TILCALL_NOTIF_LINEBUSY:
         {
+            [self addMember:[self.renderModelManger toNickWithUid:sender] withTip:@"用户忙"];
+            
+            if (self.isHost)
+            {
+                self.shouldHangup = YES;
+            }
             [self onNetReportCallMem:sender statu:0];
-            [self addTextToView:[NSString stringWithFormat:@"%@占线，无法接受%@的邀请",sender,target]];
             [self.renderModelManger memberLineBusyWithID:sender];
             
         }
             break;
         case TILCALL_NOTIF_HEARTBEAT:
         {
-            [self addTextToView:[NSString stringWithFormat:@"%@发来心跳",sender]];
+//            [self addTextToView:[NSString stringWithFormat:@"%@发来心跳",sender]];
+            
         }
             break;
         case TILCALL_NOTIF_DISCONNECT:
         {
-            [self addTextToView:[NSString stringWithFormat:@"%@失去连接",sender]];
+            [self addMember:[self.renderModelManger toNickWithUid:sender] withTip:@"失去连接"];
             if([sender isEqualToString:self.liveItem.uid])
             {
                 [self selfDismiss];
@@ -176,6 +195,26 @@
         default:
             break;
     }
+}
+
+#pragma mark - 接到邀请成员加入会议的通知
+- (void)onReceiveInviteMembers
+{
+    [self hiddeFloatView];
+    
+    M8InviteModelManger *inviteModelManger = [M8InviteModelManger shareInstance];
+    
+    //保存选中的成员
+    NSMutableArray *nickArr = [NSMutableArray arrayWithCapacity:0];
+    for (M8MemberInfo *info in inviteModelManger.selectMemberArray)
+    {
+        [nickArr addObject:info.uid];
+    }
+    
+    [self.renderModelManger onInviteMembers];   //这里去加载数据
+    
+    // 发起邀请 + 配置成员信息（这一步由 ModelManger 完成）
+    [self inviteMembers:nickArr];
 }
 
 @end

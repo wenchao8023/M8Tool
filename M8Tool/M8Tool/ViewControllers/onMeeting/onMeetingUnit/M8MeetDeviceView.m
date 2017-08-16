@@ -15,6 +15,7 @@
 }
 @property (weak, nonatomic) IBOutlet UIButton *shareBtn;    //分享
 @property (weak, nonatomic) IBOutlet UIButton *noteBtn;     //发言
+@property (weak, nonatomic) IBOutlet UITextField *noteTF;   //发言
 @property (weak, nonatomic) IBOutlet UIButton *centerBtn;   //中间的按钮
 @property (weak, nonatomic) IBOutlet UIButton *menuBtn;     //菜单
 @property (weak, nonatomic) IBOutlet UIButton *switchBtn;   //切换到浮动视图
@@ -24,15 +25,20 @@
 
 @implementation M8MeetDeviceView
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame])
+    {
         self = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil] firstObject];
         _myFrame = frame;
+        
+        
     }
     return self;
 }
 
-- (void)drawRect:(CGRect)rect {
+- (void)drawRect:(CGRect)rect
+{
     // Drawing code
     self.frame = _myFrame;
 }
@@ -58,6 +64,10 @@
 - (IBAction)onNoteAction:(id)sender
 {
     [self deviceActionInfoValue:@(kOnDeviceActionNote) key:kDeviceAction];
+}
+- (IBAction)onNoteTFAction:(id)sender
+{
+//    [self deviceActionInfoValue:@(kOnDeviceActionNote) key:kDeviceAction];
 }
 
 /**

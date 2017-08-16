@@ -2,25 +2,29 @@
 #define ConstHeader_h
 
 
-//#define ShowAppId       @"1400025495"
-//#define ShowAccountType @"11456"
+#pragma mark - appid and appkey
 
-//ibuild - 独立模式
-#define ShowAppId       @"1400034304"
-#define ShowAccountType @"11456"
+#define ILiveAppId          @"1400034304"
+#define ILiveAccountType    @"11456"
 
-//Tdemo  - 托管模式
-//#define ShowAppId @"1400026919"
-//#define ShowAccountType @"11372"
+#define XGAppId             @"2200263532"
+#define XGAppKey            @"I421M1FDFJ7U"
+
+#define IFlyAppId           @"59759209"
+
+#define wechatAppId         @"wx48ed50d97c4271ba"
+#define wechatAppkey        @"518b4f6340745b0d57367d179525f630"
+
+#define QQAppId             @"1106206371"
+#define QQAppKey            @"C2Ds3I0iXQtV3rNV"
 
 
 /******************** font ********************************/
 //font size
 #define kAppNaviFontSize    20
-//#define kAppNaviFontSize    (iPhone5SE ? 18 : (iPhone6_6s ? 19 : 20))
-#define kAppLargeFontSize   (iPhone5SE ? 15 : (iPhone6_6s ? 16 : 17))
-#define kAppMiddleFontSize  (iPhone5SE ? 13 : (iPhone6_6s ? 14 : 15))
-#define kAppSmallFontSize   (iPhone5SE ? 11 : (iPhone6_6s ? 12 : 13))
+#define kAppLargeFontSize   (iPhone5 ? 15 : (iPhone6 ? 16 : 17))
+#define kAppMiddleFontSize  (iPhone5 ? 13 : (iPhone6 ? 14 : 15))
+#define kAppSmallFontSize   (iPhone5 ? 11 : (iPhone6 ? 12 : 13))
 
 
 // font styles argu
@@ -33,6 +37,7 @@
 #define kFontNameDroidSansFallback      @"DroidSansFallback"
 #define kFontNameSTHeiti                @"STHeiti"
 #define kFontNameHeiti_SC               @"Heiti SC"
+#define kFontNameSTHeiti_Light          @"STHeiti Light"
 
 //text kern defalut is 0
 static const int kAppKern_0 = 0;
@@ -51,6 +56,9 @@ static const int kDefaultTabbarHeight   = 49;
 static const int kDefaultStatuHeight    = 20;
 
 static const CGFloat kBottomHeight = 50.f; ///底部设备高度
+
+static const CGFloat kNoteViewHeight = 200; ///笔记视图高度
+#define kNoteViewWidth SCREEN_WIDTH * 3 / 5 ///笔记视图宽度
 
 #define kFloatWindowWidth    (SCREEN_WIDTH - 50) / 4    ///浮动窗口宽、高
 #define kFloatWindowHeight   kFloatWindowWidth * 4 / 3
@@ -108,11 +116,22 @@ typedef NS_ENUM(NSInteger, BeautyViewType)
     BeautyViewType_Beauty = 0,
     BeautyViewType_White,
 };
+
+
+typedef NS_ENUM(NSInteger, GlobalAlertType)
+{
+    GlobalAlertType_forceOffline        //踢下线通知提醒
+};
+
+typedef NS_ENUM(NSInteger, LastLoginType)   //上一次登录的类型
+{
+    LastLoginType_phone,    //手机号登录
+    LastLoginType_QQ        //QQ登录
+};
+
 /******************** notification **********************/
 #define kUserParise_Notification        @"kUserParise_Notification"
-//#define kUserJoinRoom_Notification      @"kUserJoinRoom_Notification"
-//#define kUserExitRoom_Notification      @"kUserExitRoom_Notification"
-#define kUserMemChange_Notification      @"kUserMemChange_Notification"
+#define kUserMemChange_Notification     @"kUserMemChange_Notification"
 #define kUserUpVideo_Notification       @"kUserUpVideo_Notification"
 #define kUserDownVideo_Notification     @"kUserDownVideo_Notification"
 #define kUserSwitchRoom_Notification    @"kUserSwitchRoom_Notification"
@@ -124,13 +143,20 @@ typedef NS_ENUM(NSInteger, BeautyViewType)
 #define kEnterBackGround_Notification   @"kEnterBackGround_Notification"
 #define kThemeSwich_Notification        @"kThemeSwich_Notification"     //切换主题
 #define kHiddenMenuView_Notifycation    @"kHiddenMenuView_Notifycation" //隐藏菜单
+#define kHiddenKeyboard_Notifycation    @"kHiddenKeyboard_Notifycation" //隐藏键盘
 #define kMeetCollcet_Notification       @"kMeetCollcet_Notification"    //会议收藏状态变化
+#define kNoteViewEdit_Notification      @"kNoteViewEdit_Notification"   //会议中正在编辑文字
+#define kInviteMembers_Notifycation     @"kInviteMembers_Notifycation"  //会议中邀请成员
+#define kNewFriendStatu_Notification    @"kNewFriendStatu_Notification" //新好友存在或没有的状态变化通知
+#define kAppLaunchingNet_Notification   @"kAppLaunchingNet_Notification"//App启动中网络状态未连接通知
+#define kAppNetStatus_Notification      @"kAppNetStatus_Notification"   //App网络状态通知
+#define kAppWillTerminate_Notification  @"kAppWillTerminate_Notification"   //会议中App退出通知
 
 
 /******************** role string **********************/
-#define kSxbRole_Host       @"LiveMaster"
-#define kSxbRole_Guest      @"Guest"
-#define kSxbRole_Interact   @"LiveGuest"
+#define kM8Role_Host       @"M8LiveMaster"
+#define kM8Role_Guest      @"M8Guest"
+#define kM8Role_Interact   @"M8LiveGuest"
 
 /******************** local param **********************/
 #define kLoginIdentifier    @"kLoginIdentifier"
@@ -139,11 +165,17 @@ typedef NS_ENUM(NSInteger, BeautyViewType)
 #define kEnvParam           @"kEnvParam"
 #define kLogLevel           @"kLogLevel"
 #define kUserProtocol       @"kUserProtocol"
-#define kHasLogin           @"kHasLogin"
+#define kUserLogout         @"kUserLogout"      //用户主动登出，App启东时需要再次登录
+#define kAppLaunching       @"kAppLaunching"    //判断App是否在启动中
+#define kHasLogin           @"kHasLogin"        //判断用户登录过，则不需要阅读协议
 #define kThemeImage         @"kThemeImage"
 #define kIsInMeeting        @"kIsInMeeting"     //判断用户是否在会议中，如果是则推出视图的时候隐藏tabBar
 #define kPushMenuStatus     @"kPushMenuStatus"  //会话中推出菜单状态
+#define kKeyboardShow       @"kKeyboardShow"    //会话中推出键盘
 #define kMeetList           @"kMeetList"        //保存本地用户列表
+#define kNewFriendNotify    @"kNewFriendNotify" //判断是否有新的朋友
+#define kNewFriendIdentify  @"kNewFriendIdentify"  //保存新的好友id
+#define kLastLoginType      @"kLastLoginType"   //记录用户上一次登录的方式
 
 /******************** appstore **********************/
 #define kIsAppstoreVersion 0

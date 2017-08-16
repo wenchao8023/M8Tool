@@ -67,7 +67,10 @@ static const CGFloat kHeadHeight = 88;
 
 - (void)loadData {
     NSArray *itemsArr = @[@"头像", @"昵称", @"电话", @"性别", @"生日", @"地区", @"我的二维码"];
-    NSArray *contentArr = @[@"", @"木木", @"13012345678", @"不详", @"2001.03.08", @"八国混血", @"太丑"];
+//    NSArray *contentArr = @[@"", @"木木", @"13012345678", @"不详", @"2001.03.08", @"八国混血", @"太丑"];
+    NSString *loginId = [M8UserDefault getLoginId];
+    NSString *loginNick = [M8UserDefault getLoginNick];
+    NSArray *contentArr = @[@"", loginNick, loginId, @"", @"", @"", @""];
     for (int i = 0; i < itemsArr.count; i++) {
         UserCardModel *model = [UserCardModel new];
         model.itemStr = itemsArr[i];
@@ -111,7 +114,7 @@ static const CGFloat kHeadHeight = 88;
     UserHeadIconViewController *headVC = [[UserHeadIconViewController alloc] init];
     headVC.isExitLeftItem = YES;
     headVC.headerTitle    = @"头像";
-    headVC.imgStr         = @"jinshenku";
+    headVC.imgStr         = @"icon-m8-180x180";
     [[AppDelegate sharedAppDelegate] pushViewController:headVC];
 }
 
@@ -164,9 +167,6 @@ static const CGFloat kHeadHeight = 88;
         
         [self reloadData];
     }
-    
-    
-    
 }
 
 @end

@@ -8,6 +8,20 @@
 
 #import "BaseViewController.h"
 
+#import "MeetingButtonsCollection.h"
+
 @interface MeetingViewController : BaseViewController
+
+@property (nonatomic, strong, nullable) MeetingButtonsCollection   *buttonsCollection;
+
+/**
+ 语音听写按钮
+ */
+@property (nonatomic, strong, nullable) UIButton *speechBtn;
+@property (nonatomic, strong, nullable) UIImageView *speechIV;
+
+
+//不带界面的识别对象
+@property (nonatomic, strong, nullable) IFlySpeechRecognizer *iFlySpeechRecognizer;
 
 @end

@@ -9,10 +9,12 @@
 #import "M8MeetRecordViewController.h"
 #import "M8MeetRecordTableView.h"
 
+#import "M8GlobalNetTipView.h"
 
 @interface M8MeetRecordViewController ()<UITextFieldDelegate>
 
 @property (nonatomic, strong) M8MeetRecordTableView *tableView;
+@property (nonatomic, strong) M8GlobalNetTipView *netTipView;
 
 @end
 
@@ -43,6 +45,8 @@
     }
     
     [self.contentView addSubview:self.tableView];
+    
+    [WCNotificationCenter addObserver:self selector:@selector(onNetStatusNotifi:) name:kAppNetStatus_Notification object:nil];
 }
 
 - (M8MeetRecordTableView *)tableView
@@ -74,6 +78,16 @@
     self.contentView.height = self.contentView.height - originY + kDefaultNaviHeight;
 }
 
+- (M8GlobalNetTipView *)netTipView
+{
+    if (!_netTipView)
+    {
+        M8GlobalNetTipView *netTipView = [[M8GlobalNetTipView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.width, kDefaultCellHeight)];
+        _netTipView = netTipView;
+    }
+    return _netTipView;
+}
+
 #pragma mark - 判断视图类型
 - (NSString *)getTitle {
     switch (self.listViewType) {
@@ -98,6 +112,36 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - -- notifications
+- (void)onNetStatusNotifi:(NSNotification *)notification
+{
+    id obj = notification.object;
+    
+    AFNetworkReachabilityStatus netStatu;
+    [obj getValue:&netStatu];
+    
+    if (netStatu == AFNetworkReachabilityStatusUnknown ||
+        netStatu == AFNetworkReachabilityStatusNotReachable)
+    {
+        self.tableView.y = kDefaultCellHeight;
+        [self.contentView addSubview:self.netTipView];
+        [self.contentView bringSubviewToFront:self.netTipView];
+    }
+    else
+    {
+        if (_netTipView)
+        {
+            self.tableView.y = 0;
+            [self.netTipView removeFromSuperview];
+            self.netTipView = nil;
+        }
+    }
+}
+
+- (void)dealloc
+{
+    [WCNotificationCenter removeObserver:self name:kAppNetStatus_Notification object:nil];
+}
 /*
 #pragma mark - Navigation
 

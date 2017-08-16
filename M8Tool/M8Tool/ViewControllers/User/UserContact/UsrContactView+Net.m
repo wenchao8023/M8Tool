@@ -11,9 +11,9 @@
 @implementation UsrContactView (Net)
 
 
-- (void)onNetLoadLocalList:(TCIVoidBlock)succHandle
+- (void)onNetLoadLocalList:(M8VoidBlock)succHandle
 {
-    NSArray *selfInfoArr = @[@"我的好友", @"手机通讯录", @"常用群组", @"常用联系人"];
+    NSArray *selfInfoArr = @[@"我的好友", @"手机通讯录"];
     [self.dataArray addObject:selfInfoArr];
     
     if (succHandle)
@@ -23,7 +23,7 @@
 }
 
 
-- (void)onNetGetCompanyList:(TCIVoidBlock)succHandle
+- (void)onNetGetCompanyList:(M8VoidBlock)succHandle
 {
     WCWeakSelf(self);
     CompanyListRequest *cListReq = [[CompanyListRequest alloc] initWithHandler:^(BaseRequest *request) {
@@ -74,7 +74,7 @@
 }
 
 // 创建公司
-- (void)onNetCreateTeam:(NSString *)teamName succ:(TCIVoidBlock)succHandle
+- (void)onNetCreateTeam:(NSString *)teamName succ:(M8VoidBlock)succHandle
 {
     WCWeakSelf(self);
     CreateCompanyRequest *createTeamReq = [[CreateCompanyRequest alloc] initWithHandler:^(BaseRequest *request) {
@@ -97,7 +97,7 @@
 }
 
 //创建默认分组
-- (void)onNetCreateDefaultPart:(NSString *)cid succ:(TCIVoidBlock)succHandle
+- (void)onNetCreateDefaultPart:(NSString *)cid succ:(M8VoidBlock)succHandle
 {
     WCWeakSelf(self);
     int myCid = [cid intValue];
@@ -123,7 +123,7 @@
 }
 
 //将自己加入默认分组
-- (void)onNetJoinSelfToDefaultPart:(NSString *)did succ:(TCIVoidBlock)succHandle
+- (void)onNetJoinSelfToDefaultPart:(NSString *)did succ:(M8VoidBlock)succHandle
 {
     WCWeakSelf(self);
     int myDid = [did intValue];
@@ -144,9 +144,31 @@
     }];
     
     joinPartReq.token = [AppDelegate sharedAppDelegate].token;
-    joinPartReq.uid   = [M8UserDefault getLoginId];
+    joinPartReq.uid   = @[[M8UserDefault getLoginId]];
     joinPartReq.did   = myDid;
     [[WebServiceEngine sharedEngine] AFAsynRequest:joinPartReq];
+}
+
+
+- (void)onNetDeleteDepartmentForIndexPath:(NSIndexPath *)indexPath succ:(M8VoidBlock _Nullable)succHandle
+{
+    M8DepartmentInfo *dInfo = self.dataArray[indexPath.section][indexPath.row];
+    DeleteDepartmentReuqest *delDReq = [[DeleteDepartmentReuqest alloc] initWithHandler:^(BaseRequest *request) {
+        
+        if (succHandle)
+        {
+            succHandle();
+        }
+        
+    } failHandler:^(BaseRequest *request) {
+        
+    }];
+    
+    delDReq.token = [AppDelegate sharedAppDelegate].token;
+    delDReq.uid   = [M8UserDefault getLoginId];
+    delDReq.did   = [dInfo.did intValue];
+    
+    [[WebServiceEngine sharedEngine] AFAsynRequest:delDReq];
 }
 
 @end

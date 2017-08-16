@@ -10,4 +10,6 @@
 
 @interface MeetingButtonsCollection : UICollectionView
 
+- (void)pushViewControllerWithIndex:(NSInteger)index;
+
 @end

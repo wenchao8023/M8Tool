@@ -24,20 +24,23 @@
 
 @implementation UserSettingViewController
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     
     [self setHeaderTitle:@"设置"];
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     [self createUI];
 }
 
-- (void)createUI {
+- (void)createUI
+{
     // 重新设置 contentView 的高度
 //    [self.contentView setHeight:kContentHeight_setting];
     [self.contentView setHeight:250];
@@ -49,7 +52,8 @@
     
 }
 
-- (void)drawViews {
+- (void)drawViews
+{
     UILabel *triangleLabel = [WCUIKitControl createLabelWithFrame:CGRectMake(0, 0, 32, 32) BgColor:WCBgColor];
     [triangleLabel setCenterX:self.contentView.centerX];
     [triangleLabel setCenterY:CGRectGetMaxY(self.contentView.frame)];
@@ -59,16 +63,17 @@
     CGFloat contentHeight = (SCREEN_HEIGHT - CGRectGetMaxY(triangleLabel.frame) - 60);
     
     
-    UIImageView *imageV = [WCUIKitControl createImageViewWithFrame:CGRectMake(0, 0, kImageWidth, kImageHeight) ImageName:@"M8"];
+    UIImageView *imageV = [WCUIKitControl createImageViewWithFrame:CGRectMake(0, 0, kImageWidth, kImageHeight) ImageName:@"M8_6"];
     [imageV setCenterX:triangleLabel.centerX];
     [imageV setCenterY:CGRectGetMaxY(triangleLabel.frame) + contentHeight / 2];
     [self.view addSubview:imageV];
     
 }
 
-
-- (UserSettingTabelView *)tableView {
-    if (!_tableView) {
+- (UserSettingTabelView *)tableView
+{
+    if (!_tableView)
+    {
         UserSettingTabelView *tableView = [[UserSettingTabelView alloc] initWithFrame:self.contentView.bounds style:UITableViewStyleGrouped];
         [self.contentView addSubview:(_tableView = tableView)];
     }

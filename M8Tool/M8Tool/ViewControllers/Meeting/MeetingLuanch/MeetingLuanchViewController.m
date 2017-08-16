@@ -9,7 +9,7 @@
 #import "MeetingLuanchViewController.h"
 #import "MeetingLuanchTableView.h"
 
-#import "M8UploadImageHelper.h"
+//#import "M8UploadImageHelper.h"
 
 #import "M8MeetWindow.h"
 #import "M8CallViewController.h"
@@ -20,9 +20,12 @@
 {
     UIImage *_coverImg;
     NSString *_topic;
+    NSInteger _limitMembersByType;  //根据类型添加成员人数限制
 }
 
 @property (nonatomic, strong) MeetingLuanchTableView *tableView;
+
+@property (nonatomic, strong) UIButton *luanchButton;
 
 @property (nonatomic, strong) NSMutableArray *selectedArray;
 
@@ -49,6 +52,24 @@
     [self createUI];
     
     [self configTabelViewArgu];
+}
+
+//视图消失之后，如果是在会议中，则需要显示tabBar
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    if ([M8UserDefault getIsInMeeting])
+    {
+        UINavigationController *curNavi = [[AppDelegate sharedAppDelegate] navigationViewController];
+        curNavi.tabBarController.tabBar.hidden = NO;
+    }
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 
@@ -100,29 +121,33 @@
     return _selectedArray;
 }
 
-- (void)luanchButton
+- (UIButton *)luanchButton
 {
-    UIButton *luanchButton = [WCUIKitControl createButtonWithFrame:CGRectMake(kDefaultMargin,
-                                                                              self.contentView.height - kDefaultMargin - kDefaultCellHeight,
-                                                                              self.contentView.width - 2 * kDefaultMargin,
-                                                                              kDefaultCellHeight)
-                                                            Target:self
-                                                            Action:@selector(luanchMeetingAction)
-                                                             Title:@"立即发起"];
-    [luanchButton setAttributedTitle:[CommonUtil customAttString:luanchButton.titleLabel.text
-                                                        fontSize:kAppNaviFontSize
-                                                       textColor:WCWhite
-                                                       charSpace:kAppKern_2]
-                            forState:UIControlStateNormal];
-    WCViewBorder_Radius(luanchButton, kDefaultCellHeight / 2);
-    [luanchButton setBackgroundColor:WCButtonColor];
-    [self.contentView addSubview:luanchButton];
+    if (!_luanchButton)
+    {
+        UIButton *luanchButton = [WCUIKitControl createButtonWithFrame:CGRectMake(kDefaultMargin,
+                                                                                  self.contentView.height - kDefaultMargin - kDefaultCellHeight,
+                                                                                  self.contentView.width - 2 * kDefaultMargin,
+                                                                                  kDefaultCellHeight)
+                                                                Target:self
+                                                                Action:@selector(luanchMeetingAction)
+                                                                 Title:@"立即发起"];
+        [luanchButton setAttributedTitle:[CommonUtil customAttString:luanchButton.titleLabel.text
+                                                            fontSize:kAppNaviFontSize
+                                                           textColor:WCWhite
+                                                           charSpace:kAppKern_2]
+                                forState:UIControlStateNormal];
+        WCViewBorder_Radius(luanchButton, kDefaultCellHeight / 2);
+        luanchButton.enabled = NO;
+        [luanchButton setBackgroundColor:WCButtonColor];
+        [self.contentView addSubview:(_luanchButton = luanchButton)];
+
+    }
+    return _luanchButton;
 }
 
 - (void)luanchMeetingAction
 {
-    WCLog(@"立即发起<!--%@--!>", [[self getTitle] substringFromIndex:2]);
-    
     if ([CommonUtil alertTipInMeeting])
     {
         return ;
@@ -235,11 +260,19 @@
     item.info.roomnum = roomId;
     item.info.groupid = [NSString stringWithFormat:@"%d", roomId];
     item.info.cover = coverUrl ? coverUrl : @"";
-    item.info.appid = [ShowAppId intValue];
+    item.info.appid = [ILiveAppId intValue];
     item.info.host = [M8UserDefault getLoginId];
     
     M8CallViewController *callVC = [[M8CallViewController alloc] initWithItem:item isHost:YES];
-    [M8MeetWindow M8_addMeetSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
+    [M8MeetWindow M8_addMeetSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController] succHandle:^{
+        
+        UINavigationController *curNavi = self.navigationController;
+        if ([self respondsToSelector:@selector(configBottomTipView)])
+        {
+            [self performSelector:@selector(configBottomTipView)];
+            curNavi.tabBarController.tabBar.hidden = YES;
+        }
+    }];
 }
 
 
@@ -251,20 +284,26 @@
     LoadView *reqIdWaitView = [LoadView loadViewWith:@"正在请求房间ID"];
     [self.view addSubview:reqIdWaitView];
     __block CreateRoomResponceData *roomData = nil;
-    __block NSString *imageUrl = nil;
+//    __block NSString *imageUrl = nil;
     
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+//        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
         
         // 请求房间号
         CreateRoomRequest *createRoomReq = [[CreateRoomRequest alloc] initWithHandler:^(BaseRequest *request) {
             
             roomData = (CreateRoomResponceData *)request.response.data;
-            dispatch_semaphore_signal(semaphore);
+//            dispatch_semaphore_signal(semaphore);
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [reqIdWaitView removeFromSuperview];
+                [self enterLive:(int)roomData.roomnum groupId:roomData.groupid imageUrl:@""];
+            });
             
         } failHandler:^(BaseRequest *request) {
             
-            dispatch_semaphore_signal(semaphore);
+//            dispatch_semaphore_signal(semaphore);
         }];
         
         createRoomReq.token = [AppDelegate sharedAppDelegate].token;
@@ -272,25 +311,25 @@
         [[WebServiceEngine sharedEngine] AFAsynRequest:createRoomReq];
         
         //上传图片
-        [[M8UploadImageHelper shareInstance] upload:_coverImg completion:^(NSString *imageSaveUrl) {
-            
-            imageUrl = imageSaveUrl;
-            dispatch_semaphore_signal(semaphore);
-            
-        } failed:^(NSString *failTip) {
-            
-            dispatch_semaphore_signal(semaphore);
-        }];
-        
-        dispatch_time_t timeoutTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0 * NSEC_PER_SEC));
-        dispatch_semaphore_wait(semaphore, timeoutTime);
-        dispatch_semaphore_wait(semaphore, timeoutTime);
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            [reqIdWaitView removeFromSuperview];
-            [self enterLive:(int)roomData.roomnum groupId:roomData.groupid imageUrl:imageUrl];
-        });
+//        [[M8UploadImageHelper shareInstance] upload:_coverImg completion:^(NSString *imageSaveUrl) {
+//            
+//            imageUrl = imageSaveUrl;
+//            dispatch_semaphore_signal(semaphore);
+//            
+//        } failed:^(NSString *failTip) {
+//            
+//            dispatch_semaphore_signal(semaphore);
+//        }];
+//        
+//        dispatch_time_t timeoutTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0 * NSEC_PER_SEC));
+//        dispatch_semaphore_wait(semaphore, timeoutTime);
+//        dispatch_semaphore_wait(semaphore, timeoutTime);
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            
+//            [reqIdWaitView removeFromSuperview];
+//            [self enterLive:(int)roomData.roomnum groupId:roomData.groupid imageUrl:@""];
+//        });
     });
 }
 
@@ -304,11 +343,23 @@
     item.info.roomnum = roomId;
     item.info.groupid = groupid;
     item.info.cover = coverUrl ? coverUrl : @"";
-    item.info.appid = [ShowAppId intValue];
+    item.info.appid = [ILiveAppId intValue];
     item.info.host = [M8UserDefault getLoginId];
     
     M8LiveViewController *liveVC = [[M8LiveViewController alloc] initWithItem:item isHost:YES];
-    [M8MeetWindow M8_addMeetSource:liveVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
+    [M8MeetWindow M8_addMeetSource:liveVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController] succHandle:^{
+        
+        UINavigationController *curNavi = self.navigationController;
+        if ([self respondsToSelector:@selector(configBottomTipView)])
+        {
+            //视图推出的动画是 0.3s 所以 0.3s 之后执行这段代码
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+                [self performSelector:@selector(configBottomTipView)];
+                curNavi.tabBarController.tabBar.hidden = YES;
+            });
+        }
+    }];
 }
 
 
@@ -360,24 +411,26 @@
     switch (self.luanchMeetingType)
     {
         case LuanchMeetingType_phone:
-            self.tableView.isHiddenFooter = NO;
-            self.tableView.MaxMembers = 5;
+            _limitMembersByType = 5;
             break;
         case LuanchMeetingType_video:
-            self.tableView.isHiddenFooter = NO;
-            self.tableView.MaxMembers = 3;
+            _limitMembersByType = 3;
+
             break;
         case LuanchMeetingType_live:
-            self.tableView.isHiddenFooter = YES;
-            self.tableView.MaxMembers = 0;
+            _limitMembersByType = 0;
+            self.luanchButton.enabled = YES;
             break;
         case LuanchMeetingType_order:
-            self.tableView.isHiddenFooter = NO;
-            self.tableView.MaxMembers = 100;
+            _limitMembersByType = 100;
+
             break;
         default:
             break;
     }
+    
+    self.tableView.isHiddenFooter = (self.luanchMeetingType == LuanchMeetingType_live);
+    self.tableView.MaxMembers = _limitMembersByType;
 }
 
     
@@ -394,15 +447,17 @@
 
 - (void)luanchTableViewMeetingCurrentMembers:(NSArray *)currentMembers
 {
+    self.luanchButton.enabled = (currentMembers.count > 0 && currentMembers.count <= self.tableView.MaxMembers);
+    
     [self.selectedArray removeAllObjects];
     // 添加自己
     [self.selectedArray addObject:[M8UserDefault getLoginId]];
     // 添加选中用户
-    [self.selectedArray addObjectsFromArray:currentMembers];
-    
+    [self.selectedArray addObjectsFromArray:currentMembers]
+;
 }
 
-
+#pragma mark -- UINavigationControllerDelegate
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     WCLog(@"didShowViewController : %@", [viewController class]);
@@ -420,15 +475,5 @@
         [modelManger removeAllMembers];
     }
 }
-
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
 
 @end

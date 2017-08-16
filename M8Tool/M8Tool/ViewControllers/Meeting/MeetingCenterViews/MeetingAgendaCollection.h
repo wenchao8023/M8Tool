@@ -23,4 +23,6 @@
 
 @property (nonatomic, weak) id<AgendaCollectionDelegate> agendaDelegate;
 
+- (void)onPushAgendaVC;
+
 @end

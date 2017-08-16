@@ -30,7 +30,8 @@
 
 @implementation M8RecvChildViewController
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
     
     
@@ -53,19 +54,15 @@
         [self.WCDelegate RecvChildVCAction:actionStr];
     }
 }
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    self.bgImageView.frame = self.view.bounds;
-    [self.view sendSubviewToBack:self.bgImageView];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
     self.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    
+    self.bgImageView.frame = self.view.bounds;
+    [self.view sendSubviewToBack:self.bgImageView];
     
     [self.sponsorLabel configLiveRenderText];
     [self.infoLabel configLiveText];
@@ -82,24 +79,45 @@
     
     [WCNotificationCenter addObserver:self selector:@selector(themeSwichAction) name:kThemeSwich_Notification object:nil];
     
-    NSString *inviteInfo;
-    if (_invitation.callType == TILCALL_TYPE_VIDEO)
-    {
-        inviteInfo = [NSString stringWithFormat:@"%@邀请你视频通话", _invitation.sponsorId];
-    }
-    else if (_invitation.callType == TILCALL_TYPE_AUDIO)
-    {
-        inviteInfo = [NSString stringWithFormat:@"%@邀请你音频通话", _invitation.sponsorId];
-    }
-    self.infoLabel.text = inviteInfo;
     
-    self.sponsorLabel.text = _invitation.sponsorId;
-    self.inviteLabel.text  = [M8UserDefault getLoginId];
+    //邀请人的会议
+    NSString *inviter = _invitation.inviterId;
     
-    [self.view sendSubviewToBack:self.bgImageView];
+    NSArray *tipArr = [_invitation.custom componentsSeparatedByString:@","];
+    NSString *topic = [tipArr lastObject];
     
-    WCLog(@"Recv call child frame is : %@", NSStringFromCGRect(self.view.frame));
+    [[TIMFriendshipManager sharedInstance] GetUsersProfile:@[inviter] succ:^(NSArray *friends) {
+       
+        for (TIMUserProfile *userProfile in friends)
+        {
+            if ([userProfile.identifier isEqualToString:inviter])
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                   
+                    NSString *inviteInfo;
+                    if (_invitation.callType == TILCALL_TYPE_VIDEO)
+                    {
+                        inviteInfo = [NSString stringWithFormat:@"%@邀请你加入 %@", userProfile.nickname, topic];
+                    }
+                    else if (_invitation.callType == TILCALL_TYPE_AUDIO)
+                    {
+                        inviteInfo = [NSString stringWithFormat:@"%@邀请你加入 %@", userProfile.nickname, topic];
+                    }
+                    [self.infoLabel setAttributedText:[CommonUtil customAttString:inviteInfo]];
+                    [self.sponsorLabel setAttributedText:[[NSAttributedString alloc] initWithString:[userProfile.nickname getSimpleName]
+                                                                                         attributes:[CommonUtil customAttsWithBodyFontSize:kAppMiddleFontSize textColor:WCButtonColor]]];
+                    [self.inviteLabel setAttributedText:[[NSAttributedString alloc] initWithString:[[M8UserDefault getLoginNick] getSimpleName]
+                                                                                         attributes:[CommonUtil customAttsWithBodyFontSize:kAppMiddleFontSize textColor:WCButtonColor]]];
+                });
+            }
+        }
+        
+    } fail:^(int code, NSString *msg) {
+        
+    }];
 }
+
+
 - (UIImageView *)bgImageView
 {
     if (!_bgImageView)

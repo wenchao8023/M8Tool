@@ -28,7 +28,10 @@
     
     [self initCall];
     
+    //隐藏菜单通知
     [WCNotificationCenter addObserver:self selector:@selector(onHiddeMenuView) name:kHiddenMenuView_Notifycation object:nil];
+    //收到App异常退出通知
+    [WCNotificationCenter addObserver:self selector:@selector(selfDismiss) name:kAppWillTerminate_Notification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,7 +59,7 @@
 - (void)makeLive
 {
     TILLiveRoomOption *option = [TILLiveRoomOption defaultHostLiveOption];
-    option.controlRole = kSxbRole_Host;
+    option.controlRole = kM8Role_Host;
     option.avOption.autoHdAudio = YES;//使用高音质模式，可以传背景音乐
     option.imOption.imSupport = YES;
     
@@ -80,8 +83,8 @@
         
 //        [weakself.livingInfoView addTextToView:@"创建房间成功"];
         
-        [[ILiveRoomManager getInstance] setBeauty:2];
-        [[ILiveRoomManager getInstance] setWhite:2];
+        [[ILiveRoomManager getInstance] setBeauty:1];
+        [[ILiveRoomManager getInstance] setWhite:1];
         //        [_bottomView setMicState:YES];//重新设置麦克风的状态
         
         //将房间参数保存到本地，如果异常退出，下次进入app时，可提示返回这次的房间
@@ -108,7 +111,7 @@
 - (void)joinLive
 {
     TILLiveRoomOption *option = [TILLiveRoomOption defaultGuestLiveOption];
-    option.controlRole = kSxbRole_Guest;
+    option.controlRole = kM8Role_Guest;
     
     TILLiveManager *manager = [TILLiveManager getInstance];
     //设置消息监听
@@ -230,6 +233,7 @@
         M8MenuPushView *menuView = [[M8MenuPushView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, kBottomHeight)
                                                                itemCount:0
                                                                 meetType:M8MeetTypeLive
+                                                                    call:nil
                                     ];
         [self.view addSubview:menuView];
         [self.view bringSubviewToFront:menuView];
@@ -296,7 +300,6 @@
 
 - (void)selfDismiss
 {
-    
     BOOL ret = [M8UserDefault getPushMenuStatu];
     if (ret)
     {
@@ -308,11 +311,10 @@
     [self onNetReportExitRoom];
     
     TILLiveManager *manager = [TILLiveManager getInstance];
-//    __weak typeof(self) ws = self;
     [manager quitRoom:^{
-//        [ws.livingInfoView addTextToView:@"退出房间成功"];
+
     } failed:^(NSString *moudle, int errId, NSString *errMsg) {
-//        [ws.livingInfoView addTextToView:[NSString stringWithFormat:@"退出房间失败,moldle=%@;errid=%d;errmsg=%@",moudle,errId,errMsg]];
+
     }];
     
     [super selfDismiss];
@@ -412,6 +414,7 @@
 - (void)dealloc
 {
     [WCNotificationCenter removeObserver:self name:kHiddenMenuView_Notifycation object:nil];
+    [WCNotificationCenter removeObserver:self name:kAppWillTerminate_Notification object:nil];
 }
 
 @end

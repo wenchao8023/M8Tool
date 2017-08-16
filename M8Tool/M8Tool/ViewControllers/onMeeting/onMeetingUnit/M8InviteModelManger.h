@@ -10,6 +10,7 @@
 
 /**
  用于管理邀请的成员信息 统一用 <--M8MemberInfo--> 类记录
+ 只在邀请人的时候容器中有数据，其他时候一率为空
  */
 @interface M8InviteModelManger : NSObject
 
@@ -37,6 +38,14 @@
 
 
 /**
+ 将会议中的数组转成self数组中的数据
+ 
+ @param callRenderModelArr 发起界面选中的成员 M8CallRenderModel
+ */
+- (void)updateInviteM8CallRenderModelArray:(NSArray *_Nullable)callRenderModelArr;
+
+
+/**
  判断用户是否在初始数组中
 
  @param uid 用户ID
@@ -54,6 +63,8 @@
 - (BOOL)isExistSelectArray:(NSString *_Nullable)uid;
 
 
+- (NSString *_Nullable)nickInInviteArrayWithUid:(NSString *_Nullable)uid;
+
 
 /**
  点击 cell 进行选择和反选
@@ -64,14 +75,22 @@
 
 
 /**
+ 合并 selectArray 和 inviteArray 中的成员，并将 selectArray 置空
+ */
+- (void)mergeSelectToInvite;
+
+
+/**
  移除所有数组中的所有成员
  */
 - (void)removeAllMembers;
+
 
 /**
  移除 inviteArray 中的所有成员
  */
 - (void)removeInviteMembers;
+
 
 /**
  移除 selectArray 中的所有成员

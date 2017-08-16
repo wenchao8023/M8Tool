@@ -95,7 +95,7 @@
         [dataContentArray addObject:_dataModel.title];
         [dataContentArray addObject:_dataModel.mainuser];
         [dataContentArray addObject:[CommonUtil getDateStrWithTime:[_dataModel.starttime doubleValue]]];
-        [dataContentArray addObject:[NSString stringWithFormat:@"%lu人", _dataModel.members.count]];
+        [dataContentArray addObject:[NSString stringWithFormat:@"%u人", _dataModel.members.count]];
         _dataContentArray = dataContentArray;
         
         [self reloadData];
