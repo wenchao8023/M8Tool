@@ -112,4 +112,10 @@
     });
 }
 
+
++(BOOL)tipInMeeting
+{
+    return YES;
+}
+
 @end

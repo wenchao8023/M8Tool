@@ -111,12 +111,13 @@
 - (void)onInviteMembers;
 
 
+
 /**
- *  将成员id转成昵称
+ *  获取用户昵称
  *
- *  @param uid 成员ID
+ *  @param uid 用户ID
  *
- *  @return 对应成员id的昵称
+ *  @return 用户昵称
  */
 - (NSString *_Nullable)toNickWithUid:(NSString *_Nullable)uid;
 

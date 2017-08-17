@@ -184,21 +184,6 @@
 }
 
 
-+(NSString *)getIconLabelStr:(NSString *)str {
-    
-    if (str.length <= 2) {
-        return str;
-        
-    } else if (str.length <=3) {
-        return [str substringFromIndex:1];
-        
-    } else if (str.length <= 4) {
-        return [str substringFromIndex:2];
-        
-    } else {
-        return [str substringToIndex:2];
-    }
-}
 
 +(BOOL)alertTipInMeeting
 {

@@ -13,16 +13,21 @@
 @interface CommonUtil : NSObject
 
 
-/**
- 获取最近15天的日期
 
- @return 日期数组
+/**
+ *  获取最近15天的日期
+ *
+ *  @return 日期数组
  */
 + (NSArray *_Nullable)getCalendarData;
 
+/**
+ *  打电话
+ *
+ *  @param phoneStr 电话号码字符串
+ */
 + (void)makePhone:(NSString *_Nullable)phoneStr;
 
-+(NSString *_Nullable)getIconLabelStr:(NSString *_Nullable)str ;
 
 +(BOOL)alertTipInMeeting;
 
@@ -60,22 +65,31 @@
                                  textColor:(UIColor *_Nullable)textColor
                                shadowColor:(UIColor *_Nullable)shadowColor ;
 
+
 /**
  富文本
  
  @param string      原始文本
+ @param fontSize    文字大小
+ @param textColor   文字颜色
+ @param charSpace   文字间距
+ @return            富文本
+ */
++(NSMutableAttributedString *_Nullable)customAttString:(NSString *_Nullable)string
+                                              fontSize:(CGFloat)fontSize
+                                             textColor:(UIColor *_Nullable)textColor
+                                             charSpace:(int)charSpace;
+
+/**
+ 富文本
+ 
+ @param string      原始文本
+ @param fontSize    文字大小
+ @param textColor   文字颜色
+ @param charSpace   文字间距
  @return            富文本
  */
 +(NSMutableAttributedString *_Nullable)customAttString:(NSString *_Nullable)string;
-/**
- 富文本
- 
- @param string      原始文本
- @param fontSize    文字大小
- @return            富文本
- */
-+(NSMutableAttributedString *_Nullable)customAttString:(NSString *_Nullable)string
-                                     fontSize:(CGFloat)fontSize;
 
 /**
  富文本
@@ -87,26 +101,30 @@
  @return            富文本
  */
 +(NSMutableAttributedString *_Nullable)customAttString:(NSString *_Nullable)string
-                                     fontSize:(CGFloat)fontSize
-                                    textColor:(UIColor *_Nullable)textColor
-                                    charSpace:(int)charSpace;
-
+                                              fontSize:(CGFloat)fontSize;
 
 /**
  富文本
+ 
+ @param string      原始文本
+ @param textColor   文字颜色
+ @return            富文本
+ */
++(NSMutableAttributedString *_Nullable)customAttString:(NSString *_Nullable)string
+                                             textColor:(UIColor *_Nullable)textColor;
 
+/**
+ 富文本
+ 
  @param string      原始文本
  @param fontSize    文字大小
  @param textColor   文字颜色
  @param charSpace   文字间距
- @param fontName    文字字体
  @return            富文本
  */
-//+(NSMutableAttributedString *_Nullable)customAttString:(NSString *_Nullable)string
-//                                     fontSize:(CGFloat)fontSize
-//                                    textColor:(UIColor *_Nullable)textColor
-//                                    charSpace:(int)charSpace
-//                                     fontName:(NSString *_Nullable)fontName;
++(NSMutableAttributedString *_Nullable)customAttString:(NSString *_Nullable)string
+                                              fontSize:(CGFloat)fontSize
+                                             textColor:(UIColor *_Nullable)textColor;
 
 
 /**
@@ -130,18 +148,4 @@
 +(NSMutableDictionary *_Nullable)customAttsWithFontSize:(CGFloat)fontSize
                                      textColor:(UIColor *_Nullable)textColor
                                      charSpace:(int)charSpace;
-
-/**
- 文本属性
- 
- @param fontSize    文字大小
- @param textColor   文字颜色
- @param charSpace   文字间距
- @param fontName    文字字体
- @return            文本属性
- */
-//+(NSMutableDictionary *_Nullable)customAttsWithFontSize:(CGFloat)fontSize
-//                                     textColor:(UIColor *_Nullable)textColor
-//                                     charSpace:(int)charSpace
-//                                      fontName:(NSString *_Nullable)fontName;
 @end

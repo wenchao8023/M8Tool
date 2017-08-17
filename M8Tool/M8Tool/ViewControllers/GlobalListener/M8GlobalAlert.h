@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ *  全局提示代理
+ */
 @protocol GlobalAlertDelegate <NSObject>
 
 @optional

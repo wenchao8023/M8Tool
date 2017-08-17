@@ -76,7 +76,7 @@
             [self.alertInfoLabel setAttributedText:[self alertInfoAttStr]];
             
             CGSize infoLabelSize = [self sizeWithAttString:[self alertInfoAttStr]];
-            _curFrame.size.height = infoLabelSize.height + 128;
+            _curFrame.size.height = infoLabelSize.height * 1.2 + 128;
         }
             break;
             

@@ -486,7 +486,13 @@
     }
 }
 
-
+/**
+ *  获取用户昵称
+ *
+ *  @param uid 用户ID
+ *
+ *  @return 用户昵称
+ */
 - (NSString *)toNickWithUid:(NSString *)uid
 {
     M8CallRenderModel *model = [self getMemberWithID:uid];
