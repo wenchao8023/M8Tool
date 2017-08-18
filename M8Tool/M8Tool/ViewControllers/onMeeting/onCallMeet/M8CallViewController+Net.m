@@ -33,7 +33,7 @@
     notifyReq.token   = [AppDelegate sharedAppDelegate].token;
     notifyReq.inviter = [M8UserDefault getLoginNick];
     notifyReq.topic   = (int)(self.liveItem.callType == TILCALL_TYPE_AUDIO);
-    notifyReq.type    = 11;
+    notifyReq.type    = 12;
     notifyReq.toUser  = (NSArray *)tempArr;
     [[WebServiceEngine sharedEngine] AFAsynRequest:notifyReq];
 }

@@ -109,13 +109,12 @@
     UIApplicationState appState = application.applicationState;
     if (appState != UIApplicationStateActive)
     {
-        NSDate *curDate = [NSDate dateWithTimeIntervalSinceNow:0];
-        
+        NSDate *curDate   = [NSDate dateWithTimeIntervalSinceNow:0];
+        NSString *curBody = [userInfo objectForKey:@"body"];
         
         UILocalNotification *localNotify = [[UILocalNotification alloc] init];
         localNotify.fireDate             = curDate;
-        localNotify.alertBody            = @"testLocalNofity";
-        //        localNotify.category             = kAppLocalNofity_callcoming;
+        localNotify.alertBody            = curBody;
         [[UIApplication sharedApplication] scheduleLocalNotification:localNotify];
     }
 }

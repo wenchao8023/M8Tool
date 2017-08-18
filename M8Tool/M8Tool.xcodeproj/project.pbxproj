@@ -177,6 +177,7 @@
 		946753D21EBC174100653A2C /* M8Tool.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 946753D01EBC174100653A2C /* M8Tool.xcdatamodeld */; };
 		946753E01EBC237F00653A2C /* WCUIKitControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 946753DF1EBC237F00653A2C /* WCUIKitControl.m */; };
 		946AC0F21F46ED620073A84C /* SendNotifyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 946AC0F11F46ED620073A84C /* SendNotifyRequest.m */; };
+		946AC0F81F46FE0E0073A84C /* callTipSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 946AC0F71F46FE0E0073A84C /* callTipSound.wav */; };
 		946B32C91F050B36007530CE /* M8MutiLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946B32C81F050B36007530CE /* M8MutiLoginViewController.m */; };
 		946B32CC1F050B86007530CE /* M8RegistSuccViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946B32CB1F050B86007530CE /* M8RegistSuccViewController.m */; };
 		946B32CF1F051390007530CE /* M8ForgetPsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946B32CE1F051390007530CE /* M8ForgetPsdViewController.m */; };
@@ -839,6 +840,7 @@
 		946753DF1EBC237F00653A2C /* WCUIKitControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WCUIKitControl.m; path = ../WCUIKitControl.m; sourceTree = "<group>"; };
 		946AC0F01F46ED620073A84C /* SendNotifyRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendNotifyRequest.h; sourceTree = "<group>"; };
 		946AC0F11F46ED620073A84C /* SendNotifyRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendNotifyRequest.m; sourceTree = "<group>"; };
+		946AC0F71F46FE0E0073A84C /* callTipSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = callTipSound.wav; sourceTree = "<group>"; };
 		946B32C71F050B36007530CE /* M8MutiLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8MutiLoginViewController.h; sourceTree = "<group>"; };
 		946B32C81F050B36007530CE /* M8MutiLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8MutiLoginViewController.m; sourceTree = "<group>"; };
 		946B32CA1F050B86007530CE /* M8RegistSuccViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8RegistSuccViewController.h; sourceTree = "<group>"; };
@@ -2071,6 +2073,7 @@
 		946753CD1EBC170200653A2C /* Resources(图片、字体) */ = {
 			isa = PBXGroup;
 			children = (
+				946AC0F71F46FE0E0073A84C /* callTipSound.wav */,
 				94D8C9C01ECFEB020075C35D /* Pictures */,
 				942BCB1E1EC1C4A0000F9911 /* font */,
 				946753CE1EBC170200653A2C /* Assets.xcassets */,
@@ -3529,6 +3532,7 @@
 				94BACD881EEE2CB30017FFDE /* liveMic_off@2x.png in Resources */,
 				94A987F61EF008500080BEF2 /* liveEnlarge@3x.png in Resources */,
 				9495225A1F1866DE0095647D /* onMeetHangupCRed.png in Resources */,
+				946AC0F81F46FE0E0073A84C /* callTipSound.wav in Resources */,
 				94A851C31EE2C18600204B48 /* UsrCardViewCell.xib in Resources */,
 				94BACD8D1EEE2CB30017FFDE /* liveNote.png in Resources */,
 				947DB45A1EF79DDC0019AE2B /* record_callType_live.png in Resources */,

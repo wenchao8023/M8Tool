@@ -7,8 +7,12 @@
 //
 
 #import "M8RecvChildViewController.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface M8RecvChildViewController ()
+{
+    SystemSoundID _soundID;
+}
 
 @property (weak, nonatomic) IBOutlet M8LiveLabel *sponsorLabel;
 
@@ -33,11 +37,13 @@
 
 - (IBAction)onRejectAction:(id)sender
 {
+    AudioServicesDisposeSystemSoundID(_soundID);
     [self respondsToDelegate:@"reject"];
 }
 
 - (IBAction)onReceiveAction:(id)sender
 {
+    AudioServicesDisposeSystemSoundID(_soundID);
     [self respondsToDelegate:@"receive"];
 }
 
@@ -49,10 +55,19 @@
     }
 }
 
+- (void)mySound
+{
+    NSString *soundFile = [[NSBundle mainBundle] pathForResource:@"callTipSound" ofType:@"wav"];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:soundFile], &_soundID);
+    AudioServicesPlayAlertSound(_soundID);
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    [self mySound];
     
     self.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     
@@ -66,10 +81,10 @@
     [self.receiveLabel configLiveText];
     
     self.sponsorLabel.font = [UIFont systemFontOfSize:kAppMiddleFontSize];
-    self.infoLabel.font = [UIFont systemFontOfSize:kAppMiddleFontSize];
-    self.inviteLabel.font = [UIFont systemFontOfSize:kAppMiddleFontSize];
+    self.infoLabel.font    = [UIFont systemFontOfSize:kAppMiddleFontSize];
+    self.inviteLabel.font  = [UIFont systemFontOfSize:kAppMiddleFontSize];
     
-    self.rejectLabel.font = [UIFont systemFontOfSize:kAppSmallFontSize];
+    self.rejectLabel.font  = [UIFont systemFontOfSize:kAppSmallFontSize];
     self.receiveLabel.font = [UIFont systemFontOfSize:kAppSmallFontSize];
     
     [WCNotificationCenter addObserver:self selector:@selector(themeSwichAction) name:kThemeSwich_Notification object:nil];
@@ -82,13 +97,13 @@
     NSString *topic = [tipArr lastObject];
     
     [[TIMFriendshipManager sharedInstance] GetUsersProfile:@[inviter] succ:^(NSArray *friends) {
-       
+        
         for (TIMUserProfile *userProfile in friends)
         {
             if ([userProfile.identifier isEqualToString:inviter])
             {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                   
+                    
                     NSString *inviteInfo;
                     if (_invitation.callType == TILCALL_TYPE_VIDEO)
                     {
@@ -102,7 +117,7 @@
                     [self.sponsorLabel setAttributedText:[[NSAttributedString alloc] initWithString:[userProfile.nickname getSimpleName]
                                                                                          attributes:[CommonUtil customAttsWithBodyFontSize:kAppMiddleFontSize textColor:WCButtonColor]]];
                     [self.inviteLabel setAttributedText:[[NSAttributedString alloc] initWithString:[[M8UserDefault getLoginNick] getSimpleName]
-                                                                                         attributes:[CommonUtil customAttsWithBodyFontSize:kAppMiddleFontSize textColor:WCButtonColor]]];
+                                                                                        attributes:[CommonUtil customAttsWithBodyFontSize:kAppMiddleFontSize textColor:WCButtonColor]]];
                 });
             }
         }
@@ -117,8 +132,8 @@
 {
     if (!_bgImageView)
     {
-        NSString *imgStr = [M8UserDefault getThemeImageString];
-        UIImageView *bgImageV = [WCUIKitControl createImageViewWithFrame:self.view.bounds ImageName:imgStr ? imgStr : kDefaultThemeImage];
+        NSString *imgStr                    = [M8UserDefault getThemeImageString];
+        UIImageView *bgImageV               = [WCUIKitControl createImageViewWithFrame:self.view.bounds ImageName:imgStr ? imgStr : kDefaultThemeImage];
         [self.view addSubview:(_bgImageView = bgImageV)];
     }
     return _bgImageView;
@@ -143,13 +158,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
