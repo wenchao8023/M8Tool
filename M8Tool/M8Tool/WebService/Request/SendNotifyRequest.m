@@ -16,7 +16,7 @@
 
 - (NSString *)url
 {
-    return [NSString stringWithFormat:@"%@svc = xinge&cmd=pushAccountIos", [self hostUrl]];
+    return [NSString stringWithFormat:@"%@svc=xinge&cmd=pushAccountIos", [self hostUrl]];
 }
 
 - (NSDictionary *)packageParams
