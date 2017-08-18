@@ -194,6 +194,9 @@
 		946F7F0D1EF29E84005E757A /* M8CallRenderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 946F7EFB1EF29E84005E757A /* M8CallRenderCell.m */; };
 		946F7F0E1EF29E84005E757A /* M8CallRenderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 946F7EFC1EF29E84005E757A /* M8CallRenderCell.xib */; };
 		946F7F0F1EF29E84005E757A /* M8CallRenderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 946F7EFE1EF29E84005E757A /* M8CallRenderModel.m */; };
+		9470CB071F45986F00E1D180 /* AppCallKitManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9470CB041F45986F00E1D180 /* AppCallKitManager.m */; };
+		9470CB081F45986F00E1D180 /* callkitIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9470CB051F45986F00E1D180 /* callkitIcon.png */; };
+		9470CB091F45986F00E1D180 /* callkitIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9470CB061F45986F00E1D180 /* callkitIcon@2x.png */; };
 		9473BB291F0C87BE0074F6A3 /* ReportCallMemRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9473BB281F0C87BE0074F6A3 /* ReportCallMemRequest.m */; };
 		9473BB2D1F0CCD590074F6A3 /* M8BaseFloatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9473BB2C1F0CCD590074F6A3 /* M8BaseFloatView.xib */; };
 		9473BB391F0CDB6E0074F6A3 /* M8LiveLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9473BB361F0CDB6E0074F6A3 /* M8LiveLabel.m */; };
@@ -861,6 +864,10 @@
 		946F7EFC1EF29E84005E757A /* M8CallRenderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M8CallRenderCell.xib; sourceTree = "<group>"; };
 		946F7EFD1EF29E84005E757A /* M8CallRenderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8CallRenderModel.h; sourceTree = "<group>"; };
 		946F7EFE1EF29E84005E757A /* M8CallRenderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8CallRenderModel.m; sourceTree = "<group>"; };
+		9470CB031F45986F00E1D180 /* AppCallKitManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppCallKitManager.h; sourceTree = "<group>"; };
+		9470CB041F45986F00E1D180 /* AppCallKitManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppCallKitManager.m; sourceTree = "<group>"; };
+		9470CB051F45986F00E1D180 /* callkitIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = callkitIcon.png; sourceTree = "<group>"; };
+		9470CB061F45986F00E1D180 /* callkitIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "callkitIcon@2x.png"; sourceTree = "<group>"; };
 		9473BB271F0C87BE0074F6A3 /* ReportCallMemRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportCallMemRequest.h; sourceTree = "<group>"; };
 		9473BB281F0C87BE0074F6A3 /* ReportCallMemRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportCallMemRequest.m; sourceTree = "<group>"; };
 		9473BB2C1F0CCD590074F6A3 /* M8BaseFloatView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = M8BaseFloatView.xib; sourceTree = "<group>"; };
@@ -1729,6 +1736,7 @@
 		944AF1DE1E948DC10044B44C /* 3RD(3方库) */ = {
 			isa = PBXGroup;
 			children = (
+				9470CB021F45986F00E1D180 /* callkit */,
 				949362621F29E52B00B5F432 /* ShareSDK */,
 				946BD7C31F2629FB0057D116 /* iflyMSC */,
 				945D271F1F14F2FA001D1D24 /* MJRefresh */,
@@ -2147,6 +2155,17 @@
 				94ADDC9D1F2774DC009CFCD3 /* M8CallNoteModel.m */,
 			);
 			path = callMeetViews;
+			sourceTree = "<group>";
+		};
+		9470CB021F45986F00E1D180 /* callkit */ = {
+			isa = PBXGroup;
+			children = (
+				9470CB031F45986F00E1D180 /* AppCallKitManager.h */,
+				9470CB041F45986F00E1D180 /* AppCallKitManager.m */,
+				9470CB051F45986F00E1D180 /* callkitIcon.png */,
+				9470CB061F45986F00E1D180 /* callkitIcon@2x.png */,
+			);
+			path = callkit;
 			sourceTree = "<group>";
 		};
 		9473BB2A1F0C89C60074F6A3 /* Call */ = {
@@ -3559,6 +3578,7 @@
 				9497DF3A1ECA966A009C35CB /* MeetingButtonsCell.xib in Resources */,
 				943A09081EDEDF92003CEA27 /* btnImg_phoneMeeting.png in Resources */,
 				94BACD891EEE2CB30017FFDE /* liveMic_off@3x.png in Resources */,
+				9470CB081F45986F00E1D180 /* callkitIcon.png in Resources */,
 				94642B561F2B6B0C00FC380C /* speechOn2.png in Resources */,
 				94BACD991EEE2CB30017FFDE /* liveSwitchCamera.png in Resources */,
 				947DB45E1EF79DDC0019AE2B /* record_callType_video@2x.png in Resources */,
@@ -3603,6 +3623,7 @@
 				947DB4971EF7E3250019AE2B /* onCallRecv_refuse.png in Resources */,
 				94642B321F2B5DCD00FC380C /* user_friendIconNotify@3x.png in Resources */,
 				949362A51F29EB2700B5F432 /* MeetListCollectionViewCell.xib in Resources */,
+				9470CB091F45986F00E1D180 /* callkitIcon@2x.png in Resources */,
 				94BACD901EEE2CB30017FFDE /* liveReceiver_off.png in Resources */,
 				947DB47F1EF7CE9D0019AE2B /* recordreluanch.png in Resources */,
 				949362881F29E52B00B5F432 /* ShareSDKUI.bundle in Resources */,
@@ -3904,6 +3925,7 @@
 				946753CC1EBC16D500653A2C /* main.m in Sources */,
 				9473BB3A1F0CDB6E0074F6A3 /* M8UploadImageHelper.m in Sources */,
 				94C9B83F1ECDA59000F42654 /* MeetingMembersCell.m in Sources */,
+				9470CB071F45986F00E1D180 /* AppCallKitManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4037,7 +4059,7 @@
 				CODE_SIGN_ENTITLEMENTS = M8Tool/M8Tool.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Lu WANG (RS5VVQU2Q4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = RS5VVQU2Q4;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4089,7 +4111,7 @@
 				CODE_SIGN_ENTITLEMENTS = M8Tool/M8Tool.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Lu WANG (RS5VVQU2Q4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = RS5VVQU2Q4;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

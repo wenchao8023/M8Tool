@@ -121,10 +121,24 @@
 
 - (void)enterLoginUI
 {
+    /**
+     *  解绑推送账号
+     */
+    if (![XGPush isUnRegisterStatus])
+    {
+        [XGPush delAccount:^{
+            WCLog(@"解绑推送账号成功");
+        } errorCallback:^{
+            WCLog(@"解绑推送账号失败");
+        }];
+    }
+    
+    
+    
     UINavigationController *navi = kM8LoginNaViewController(kM8MutiLoginViewController);
     UIViewController *bottomVC   = kM8LoginSBViewController(kM8MutiLoginViewController);
     UIViewController *topVC      = kM8LoginSBViewController(kM8LoginViewController);
-    navi.viewControllers = @[bottomVC, topVC];
+    navi.viewControllers         = @[bottomVC, topVC];
     
     self.window.rootViewController = navi;
     [self.window makeKeyWindow];
@@ -132,6 +146,20 @@
 
 - (void)enterLoginMutiUI
 {
+    /**
+     *  解绑推送账号
+     */
+    if (![XGPush isUnRegisterStatus])
+    {
+        [XGPush delAccount:^{
+            WCLog(@"解绑推送账号成功");
+        } errorCallback:^{
+            WCLog(@"解绑推送账号失败");
+        }];
+    }
+    
+    
+    
     UINavigationController *navi = kM8LoginNaViewController(kM8MutiLoginViewController);
     
     self.window.rootViewController = navi;
@@ -140,16 +168,71 @@
 
 - (void)enterMainUI
 {
+    /**
+     *  绑定账号之前需要重新绑定设备
+     */
+    //    [XGPush registerDevice:self.deviceToken successCallback:^{
+    //
+    //        /**
+    //         *  绑定推送账号
+    //         */
+    //        [XGPush setAccount:[M8UserDefault getLoginId] successCallback:^{
+    //            WCLog(@"绑定推送账号成功");
+    //        } errorCallback:^{
+    //            WCLog(@"绑定推送账号失败");
+    //        }];
+    //
+    //
+    //    } errorCallback:^{
+    //
+    //        WCLog(@"绑定账号之前需要重新绑定设备");
+    //    }];
+    
+    //    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+    //
+    //        [XGPush registerDeviceStr:self.deviceTokenStr account:[M8UserDefault getLoginId] successCallback:^{
+    //            WCLog(@"绑定账号之前需要重新绑定设备成功");
+    //            /**
+    //             *  绑定推送账号
+    //             */
+    //            [XGPush setAccount:[M8UserDefault getLoginId] successCallback:^{
+    //                WCLog(@"绑定推送账号成功");
+    //            } errorCallback:^{
+    //                WCLog(@"绑定推送账号失败");
+    //            }];
+    //        } errorCallback:^{
+    //            WCLog(@"绑定账号之前需要重新绑定设备失败");
+    //        }];
+    //
+    //    });
+    
+    //    [XGPush registerDeviceStr:self.deviceTokenStr account:[M8UserDefault getLoginId] successCallback:^{
+    //
+    //    } errorCallback:^{
+    //
+    //    }];
+    
+    /**
+     *  绑定推送账号
+     */
+    [XGPush setAccount:[M8UserDefault getLoginId] successCallback:^{
+        WCLog(@"绑定推送账号成功");
+    } errorCallback:^{
+        WCLog(@"绑定推送账号失败");
+    }];
+    
+    
+    
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     if (![M8UserDefault getUserProtocolStatu])
     {
-        UserProtocolViewController *vc = [[UserProtocolViewController alloc] init];
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+        UserProtocolViewController *vc        = [[UserProtocolViewController alloc] init];
+        UINavigationController *nav           = [[UINavigationController alloc] initWithRootViewController:vc];
         appDelegate.window.rootViewController = nav;
         return;
     }
-    MainTabBarController *tabBarVC = [[MainTabBarController alloc] init];
+    MainTabBarController *tabBarVC        = [[MainTabBarController alloc] init];
     appDelegate.window.rootViewController = tabBarVC;
 }
 

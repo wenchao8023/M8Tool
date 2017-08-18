@@ -11,6 +11,8 @@
 #import "APPLaunchViewController.h"
 
 
+
+
 @interface AppDelegate ()
 
 @end
@@ -22,7 +24,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
+    
     // Override point for customization after application launch.
     
     [self loadShareSDK];
@@ -39,7 +41,7 @@
     
     [M8UserDefault setAppLaunching:YES];
     
-    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window                 = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = WCWhite;
     [self.window makeKeyAndVisible];
     
@@ -103,7 +105,7 @@
     [IFlySetting showLogcat:YES];
     
     //设置sdk的工作路径
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSArray *paths      = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *cachePath = [paths objectAtIndex:0];
     [IFlySetting setLogFilePath:cachePath];
     
@@ -112,45 +114,69 @@
     
     //所有服务启动前，需要确保执行createUtility
     [IFlySpeechUtility createUtility:initString];
-
+    
 }
 
 - (void)loadXGSDK:(NSDictionary *)launchOptions
 {
     //打开debug开关
     [[XGSetting getInstance] enableDebug:YES];
-    
-    [XGPush startApp:[XGAppId intValue] appKey:XGAppKey];
-    [XGPush handleLaunching:launchOptions successCallback:^{
-        
-    } errorCallback:^{
-        
+    [XGPush startApp:2200263532 appKey:@"I421M1FDFJ7U"];
+    //    [XGPush startApp:[XGAppId intValue] appKey:XGAppKey];
+    [XGPush isPushOn:^(BOOL isOn) {
+        NSLog(@"[XGDemo] Push Is %@", isOn ? @"ON" : @"OFF");
     }];
+    
     [self registerAPNS];
+    
+    [XGPush handleLaunching:launchOptions successCallback:^{
+        NSLog(@"[XGDemo] Handle launching success");
+    } errorCallback:^{
+        NSLog(@"[XGDemo] Handle launching error");
+    }];
 }
 
 
 
 - (void)loadILiveSDK
 {
-    TIMManager *manager = [[ILiveSDK getInstance] getTIMManager];
-
-    //设置环境
+    TIMManager *IMManger = [[ILiveSDK getInstance] getTIMManager];
+    
+    /**
+     *  设置环境
+     */
     NSNumber *evn = [[NSUserDefaults standardUserDefaults] objectForKey:kEnvParam];
-    [manager setEnv:[evn intValue]];
+    [IMManger setEnv:[evn intValue]];
     
-    //设置日志回调的log等级
+    /**
+     *  设置 APNS
+     */
+    TIMAPNSConfig *apnsConfig = [TIMAPNSConfig new];
+    apnsConfig.openPush       = 1;
+    [IMManger setAPNS:apnsConfig succ:nil fail:nil];
+    
+    /**
+     *  设置日志回调的log等级
+     */
     NSNumber *logLevel = [[NSUserDefaults standardUserDefaults] objectForKey:kLogLevel];
-    [manager initLogSettings:YES logPath:[manager getLogPath]];
-    [manager setLogLevel:(TIMLogLevel)[logLevel integerValue]];
+    [IMManger initLogSettings:YES logPath:[IMManger getLogPath]];
+    [IMManger setLogLevel:(TIMLogLevel)[logLevel integerValue]];
     
+    /**
+     *  初始化sdk
+     */
     [[ILiveSDK getInstance] initSdk:[ILiveAppId intValue] accountType:[ILiveAccountType intValue]];
     
+    /**
+     *  设置全局监听事件
+     */
     M8GlobalListener *globalListener = [[M8GlobalListener alloc] init];
     
     [[ILiveSDK getInstance] setConnListener:globalListener];
     [[ILiveSDK getInstance] setUserStatusListener:globalListener];
-    [manager setMessageListener:globalListener];
+    [IMManger setMessageListener:globalListener];
+    
+    
     
     //开启网络状态监听
     [globalListener startnetMonitoring];
@@ -220,7 +246,7 @@
                      * The device is out of space.
                      * The store could not be migrated to the current model version.
                      Check the error message to determine what the actual problem was.
-                    */
+                     */
                     NSLog(@"Unresolved error %@, %@", error, error.userInfo);
                     abort();
                 }
@@ -235,7 +261,7 @@
 
 - (void)saveContext {
     NSManagedObjectContext *context = self.persistentContainer.viewContext;
-    NSError *error = nil;
+    NSError *error                  = nil;
     if ([context hasChanges] && ![context save:&error]) {
         // Replace this implementation with code to handle the error appropriately.
         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.

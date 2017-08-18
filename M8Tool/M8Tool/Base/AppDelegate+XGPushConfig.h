@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 
-#import "XGPush.h"
+
 #import "XGSetting.h"
 
 @interface AppDelegate (XGPushConfig)

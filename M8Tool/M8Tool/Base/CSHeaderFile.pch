@@ -23,7 +23,11 @@
 #import <ILiveSDK/ILiveQualityData.h>
 #import <ILiveSDK/ILiveSpeedTestManager.h>
 
+
 #import <TILCallSDK/TILCallSDK.h>
+
+
+//#import <ImSDK/TIMCallbackExt.h>
 
 //美颜滤镜sdk
 #import <TILFilterSDK/TILFilter.h>
@@ -45,6 +49,7 @@
 //科大讯飞语音识别
 #import <iflyMSC/iflyMSC.h>
 
+#import "XGPush.h"
 
 #import "AppDelegate.h"
 

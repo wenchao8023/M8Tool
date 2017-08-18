@@ -20,8 +20,18 @@
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
+    //    NSString *deviceTokenStr = [XGPush registerDevice:deviceToken
+    //                                              account:[M8UserDefault getLoginId]
+    //                                      successCallback:^{
+    //
+    //                                          NSLog(@"[XGDemo] register push success");
+    //                                      }
+    //                                        errorCallback:^{
+    //
+    //                                            NSLog(@"[XGDemo] register push error");
+    //                                        }];
+    
     NSString *deviceTokenStr = [XGPush registerDevice:deviceToken
-                                              account:[M8UserDefault getLoginId]
                                       successCallback:^{
                                           
                                           NSLog(@"[XGDemo] register push success");
@@ -31,6 +41,8 @@
                                             NSLog(@"[XGDemo] register push error");
                                         }];
     
+    self.deviceToken    = deviceToken;
+    self.deviceTokenStr = deviceTokenStr;
     NSLog(@"[XGDemo] device token is %@", deviceTokenStr);
 }
 
@@ -138,7 +150,7 @@
 - (void)registerPush10{
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-    center.delegate = self;
+    center.delegate                  = self;
     
     
     [center requestAuthorizationWithOptions:UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert completionHandler:^(BOOL granted, NSError * _Nullable error) {
@@ -151,7 +163,7 @@
 
 - (void)registerPush8to9
 {
-    UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+    UIUserNotificationType types           = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
     UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
     [[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];
     [[UIApplication sharedApplication] registerForRemoteNotifications];

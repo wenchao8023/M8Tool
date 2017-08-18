@@ -13,6 +13,12 @@
 
 @implementation M8GlobalListener (IM)
 
+#pragma mark - -- TIMAVInvitationListener 音视频来电通知
+- (void)onReceiveInvitation:(id<AVMultiInvitationReqAble>)req
+{
+    
+}
+
 #pragma mark - -- TIMUserStatusListener 用户在线状态通知
 /**
  *  踢下线通知
