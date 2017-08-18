@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate+XGPushConfig.h"
-
+#import "AppCallKitManager.h"
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 #import <UserNotifications/UserNotifications.h>
@@ -89,6 +89,35 @@
                       }];
     
     completionHandler(UIBackgroundFetchResultNewData);
+    
+    
+    //TODO...
+    /**
+     *  如果App的状态不是活跃的就发送通知，这里可以做本地通知，通知用户来电
+     *  如果是活跃的就忽略，程序会自动打开通知界面
+     *  这里不能直接使用 callManger (系统支持在iOS10以上)，后期迭代会做
+     */
+    
+    /**
+     typedef enum UIApplicationState : NSInteger {
+     UIApplicationStateActive,       前台
+     UIApplicationStateInactive,     前后台过度状态
+     UIApplicationStateBackground    后台
+     } UIApplicationState;
+     */
+    
+    UIApplicationState appState = application.applicationState;
+    if (appState != UIApplicationStateActive)
+    {
+        NSDate *curDate = [NSDate dateWithTimeIntervalSinceNow:0];
+        
+        
+        UILocalNotification *localNotify = [[UILocalNotification alloc] init];
+        localNotify.fireDate             = curDate;
+        localNotify.alertBody            = @"testLocalNofity";
+        //        localNotify.category             = kAppLocalNofity_callcoming;
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotify];
+    }
 }
 
 // iOS 10 新增 API
@@ -106,12 +135,22 @@
                       }];
     
     completionHandler();
+    
+    
+    
+    //TODO...   handle notification with type
+    //    NSString *category = response.notification.request.content.categoryIdentifier;
+    //
+    //    if ([category isEqualToString:kAppLocalNofity_callcoming])
+    //    {
+    //
+    //    }
 }
 
 
 // App 在前台弹通知需要调用这个接口
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler {
-    
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler
+{
     completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert);
 }
 #endif

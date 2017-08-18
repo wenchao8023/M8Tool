@@ -176,6 +176,7 @@
 		946753CF1EBC170200653A2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 946753CE1EBC170200653A2C /* Assets.xcassets */; };
 		946753D21EBC174100653A2C /* M8Tool.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 946753D01EBC174100653A2C /* M8Tool.xcdatamodeld */; };
 		946753E01EBC237F00653A2C /* WCUIKitControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 946753DF1EBC237F00653A2C /* WCUIKitControl.m */; };
+		946AC0F21F46ED620073A84C /* SendNotifyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 946AC0F11F46ED620073A84C /* SendNotifyRequest.m */; };
 		946B32C91F050B36007530CE /* M8MutiLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946B32C81F050B36007530CE /* M8MutiLoginViewController.m */; };
 		946B32CC1F050B86007530CE /* M8RegistSuccViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946B32CB1F050B86007530CE /* M8RegistSuccViewController.m */; };
 		946B32CF1F051390007530CE /* M8ForgetPsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946B32CE1F051390007530CE /* M8ForgetPsdViewController.m */; };
@@ -836,6 +837,8 @@
 		946753DD1EBC237F00653A2C /* WCMacroDefinitionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCMacroDefinitionHeader.h; sourceTree = "<group>"; };
 		946753DE1EBC237F00653A2C /* WCUIKitControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WCUIKitControl.h; path = ../WCUIKitControl.h; sourceTree = "<group>"; };
 		946753DF1EBC237F00653A2C /* WCUIKitControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WCUIKitControl.m; path = ../WCUIKitControl.m; sourceTree = "<group>"; };
+		946AC0F01F46ED620073A84C /* SendNotifyRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendNotifyRequest.h; sourceTree = "<group>"; };
+		946AC0F11F46ED620073A84C /* SendNotifyRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendNotifyRequest.m; sourceTree = "<group>"; };
 		946B32C71F050B36007530CE /* M8MutiLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8MutiLoginViewController.h; sourceTree = "<group>"; };
 		946B32C81F050B36007530CE /* M8MutiLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M8MutiLoginViewController.m; sourceTree = "<group>"; };
 		946B32CA1F050B86007530CE /* M8RegistSuccViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M8RegistSuccViewController.h; sourceTree = "<group>"; };
@@ -1632,6 +1635,7 @@
 			isa = PBXGroup;
 			children = (
 				943A08521EDEBADE003CEA27 /* RequestHeader.h */,
+				943A203B1F46CB580098C238 /* notify */,
 				9473BB2B1F0C89CD0074F6A3 /* Live */,
 				9473BB2A1F0C89C60074F6A3 /* Call */,
 				949A076C1F0745A800090E43 /* IM */,
@@ -1652,6 +1656,15 @@
 				943A09021EDEDF92003CEA27 /* btnImg_voiceMeeting.png */,
 			);
 			path = buttonsImg;
+			sourceTree = "<group>";
+		};
+		943A203B1F46CB580098C238 /* notify */ = {
+			isa = PBXGroup;
+			children = (
+				946AC0F01F46ED620073A84C /* SendNotifyRequest.h */,
+				946AC0F11F46ED620073A84C /* SendNotifyRequest.m */,
+			);
+			name = notify;
 			sourceTree = "<group>";
 		};
 		943A603F1F2AD4DB0092BCF6 /* user_department */ = {
@@ -3713,6 +3726,7 @@
 				949F676E1F1C9BBC000D8758 /* MangerTeamViewController.m in Sources */,
 				948BFCDF1F0DE7A500FC87A7 /* ReportMemExitRequest.m in Sources */,
 				943A08681EDEBADE003CEA27 /* LogoutRequest.m in Sources */,
+				946AC0F21F46ED620073A84C /* SendNotifyRequest.m in Sources */,
 				94C06F451EBC5D1500336E5F /* LoadView.m in Sources */,
 				945D27521F14F2FA001D1D24 /* MJRefreshAutoNormalFooter.m in Sources */,
 				94BDE52C1ECC4D2200ECC089 /* MeetingLuanchTableView.m in Sources */,

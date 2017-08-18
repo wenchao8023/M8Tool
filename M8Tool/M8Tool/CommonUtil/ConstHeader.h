@@ -11,8 +11,8 @@
 //#define XGAppId  @"2200263532"
 //#define XGAppKey @"I421M1FDFJ7U"
 //云会议AI会议系统
-#define XGAppId  @"2200265279"
-#define XGAppKey @"I7Z48Y9P4LRF"
+//#define XGAppId  @"2200265279"
+//#define XGAppKey @"I7Z48Y9P4LRF"
 
 #define IFlyAppId @"59759209"
 
@@ -132,6 +132,11 @@ typedef NS_ENUM(NSInteger, LastLoginType)   //上一次登录的类型
     LastLoginType_phone,    //手机号登录
     LastLoginType_QQ        //QQ登录
 };
+
+/**
+ *  本地通知
+ */
+#define kAppLocalNofity_callcoming @"kAppLocalNofity_callcoming"//本地通知，通知来电
 
 /******************** notification **********************/
 #define kUserParise_Notification       @"kUserParise_Notification"

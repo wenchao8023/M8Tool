@@ -53,19 +53,19 @@
 {
     TILCallConfig * config = [[TILCallConfig alloc] init];
     
-    TILCallBaseConfig * baseConfig  = [[TILCallBaseConfig alloc] init];
-    baseConfig.callType             = self.liveItem.callType;
-    baseConfig.isSponsor            = self.isHost && !self.isJoinSelf;
-    baseConfig.memberArray          = self.liveItem.members;
-    baseConfig.heartBeatInterval    = 15;
-    baseConfig.isAutoResponseBusy   = YES;
+    TILCallBaseConfig * baseConfig = [[TILCallBaseConfig alloc] init];
+    baseConfig.callType            = self.liveItem.callType;
+    baseConfig.isSponsor           = self.isHost && !self.isJoinSelf;
+    baseConfig.memberArray         = self.liveItem.members;
+    baseConfig.heartBeatInterval   = 15;
+    baseConfig.isAutoResponseBusy  = YES;
     
-    BOOL isVideo = (self.liveItem.callType == TILCALL_TYPE_VIDEO);  //如果是视频通话就自动打开相机
-    baseConfig.autoCamera           = isVideo;
+    BOOL isVideo          = (self.liveItem.callType == TILCALL_TYPE_VIDEO);//如果是视频通话就自动打开相机
+    baseConfig.autoCamera = isVideo;
     
     config.baseConfig = baseConfig;
     
-    TILCallListener * listener      = [[TILCallListener alloc] init];
+    TILCallListener * listener = [[TILCallListener alloc] init];
     [listener setMemberEventListener:self];
     [listener setNotifListener:self];
     [listener setMsgListener:self];
@@ -93,9 +93,9 @@
 {
     __block ReportRoomResponseData *reportRoomData = nil;
     [self onNetReportRoomInfo:^(BaseRequest *request) {
-    
+        
         reportRoomData = (ReportRoomResponseData *)request.response.data;
-        self.curMid = reportRoomData.mid;
+        self.curMid    = reportRoomData.mid;
         
         TILCallSponsorConfig *sponsorConfig = [[TILCallSponsorConfig alloc] init];
         sponsorConfig.waitLimit             = 30;
@@ -119,7 +119,9 @@
             }
             else
             {
-                [self menuView];
+                [weakself onNetSendCallNotify];
+                
+                [weakself menuView];
                 
                 [[ILiveRoomManager getInstance] setBeauty:2];
                 [[ILiveRoomManager getInstance] setWhite:2];
@@ -129,7 +131,7 @@
                 [weakself.headerView configHeaderView:self.liveItem.info.title host:self.liveItem.info.host];
                 
                 //开始推流
-                [self onLivePushStart];
+                [weakself onLivePushStart];
             }
         }];
     }];
@@ -137,7 +139,7 @@
 
 - (void)joinSelfCall:(TILCallConfig *)config
 {
-//    [self.renderModelManger memberJoinSelfWithID:self.liveItem.info.host];
+    //    [self.renderModelManger memberJoinSelfWithID:self.liveItem.info.host];
     
     [self recvCall:config];
 }
@@ -211,7 +213,7 @@
 //添加接受子视图
 - (void)addRecvChildVC
 {
-    _childVC = [[M8RecvChildViewController alloc] init];
+    _childVC            = [[M8RecvChildViewController alloc] init];
     _childVC.invitation = self.invitation;
     _childVC.WCDelegate = self;
     [self addChildViewController:_childVC];
@@ -229,25 +231,25 @@
 {
     WCWeakSelf(self);
     [_call accept:^(TILCallError *err)
-    {
-        if(err)
-        {
-            [weakself selfDismiss];
-        }
-        else
-        {
-            [self menuView];
-            
-            [[ILiveRoomManager getInstance] setBeauty:3];
-            [[ILiveRoomManager getInstance] setWhite:3];
-            
-            [weakself loadInvitedMembers];
-            
-            [self removeRecvChildVC];
-            
-            [weakself.headerView configHeaderView:self.liveItem.info.title host:self.liveItem.info.host];
-        }
-    }];
+     {
+         if(err)
+         {
+             [weakself selfDismiss];
+         }
+         else
+         {
+             [self menuView];
+             
+             [[ILiveRoomManager getInstance] setBeauty:3];
+             [[ILiveRoomManager getInstance] setWhite:3];
+             
+             [weakself loadInvitedMembers];
+             
+             [self removeRecvChildVC];
+             
+             [weakself.headerView configHeaderView:self.liveItem.info.title host:self.liveItem.info.host];
+         }
+     }];
 }
 // 拒绝邀请
 - (void)onRejectCall
@@ -257,7 +259,7 @@
      {
          if(err)
          {
-//             [weakself addTextToView:[NSString stringWithFormat:@"拒绝失败:%@-%d-%@", err.domain,err.code,err.errMsg]];
+             //             [weakself addTextToView:[NSString stringWithFormat:@"拒绝失败:%@-%d-%@", err.domain,err.code,err.errMsg]];
          }
          [weakself selfDismiss];
      }];
@@ -274,8 +276,8 @@
     if (!_renderModelManger)
     {
         M8CallRenderModelManger *renderModelManger = [[M8CallRenderModelManger alloc] initWithItem:self.liveItem];
-        renderModelManger.WCDelegate = self;
-        _renderModelManger = renderModelManger;
+        renderModelManger.WCDelegate               = self;
+        _renderModelManger                         = renderModelManger;
     }
     return _renderModelManger;
 }
@@ -285,8 +287,8 @@
 {
     if (!_headerView)
     {
-        M8CallHeaderView *headerView = [[M8CallHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, kDefaultNaviHeight)];
-        headerView.WCDelegate = self;
+        M8CallHeaderView *headerView          = [[M8CallHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, kDefaultNaviHeight)];
+        headerView.WCDelegate                 = self;
         [self.view insertSubview:(_headerView = headerView) aboveSubview:self.renderView];
     }
     return _headerView;
@@ -297,10 +299,10 @@
     if (!_deviceView)
     {
         M8MeetDeviceView *deviceView = [[M8MeetDeviceView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - kBottomHeight, SCREEN_WIDTH, kBottomHeight)];
-        deviceView.WCDelegate = self;
+        deviceView.WCDelegate        = self;
         [deviceView setCenterBtnImg:@"onMeetHangupCRed"];   //白底红按钮
-//        [deviceView setCenterBtnImg:@"onMeetHangupRed"];    //红底白按钮
-//        [deviceView setCenterBtnImg:@"onMeetHangup"];     //白底白按钮
+        //        [deviceView setCenterBtnImg:@"onMeetHangupRed"];    //红底白按钮
+        //        [deviceView setCenterBtnImg:@"onMeetHangup"];     //白底白按钮
         [self.view insertSubview:(_deviceView = deviceView) aboveSubview:self.renderView];
         
         
@@ -312,8 +314,8 @@
 {
     if (!_renderView)
     {
-        M8CallRenderView *renderView = [[M8CallRenderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) item:self.liveItem isHost:self.isHost];
-        renderView.WCDelegate = self;
+        M8CallRenderView *renderView          = [[M8CallRenderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) item:self.liveItem isHost:self.isHost];
+        renderView.WCDelegate                 = self;
         [self.view insertSubview:(_renderView = renderView) aboveSubview:self.bgImageView];
     }
     return _renderView;
@@ -323,7 +325,7 @@
 {
     if (!_noteView)
     {
-        M8CallRenderNote *noteView = [[M8CallRenderNote alloc] initWithFrame:CGRectMake(kDefaultMargin, self.view.height - kBottomHeight - kNoteViewHeight - kDefaultMargin, kNoteViewWidth, kNoteViewHeight)];
+        M8CallRenderNote *noteView       = [[M8CallRenderNote alloc] initWithFrame:CGRectMake(kDefaultMargin, self.view.height - kBottomHeight - kNoteViewHeight - kDefaultMargin, kNoteViewWidth, kNoteViewHeight)];
         [self.view addSubview:(_noteView = noteView)];
     }
     return _noteView;
@@ -351,8 +353,8 @@
     if (!_noteToolBar)
     {
         M8NoteToolBar *noteToolBar = [[M8NoteToolBar alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - kDefaultCellHeight, SCREEN_WIDTH, kDefaultCellHeight)];
-        noteToolBar.hidden = YES;
-        noteToolBar.WCDelegate = self;
+        noteToolBar.hidden         = YES;
+        noteToolBar.WCDelegate     = self;
         [self.view addSubview:noteToolBar];
         [self.view bringSubviewToFront:noteToolBar];
         _noteToolBar = noteToolBar;
@@ -372,7 +374,7 @@
     [self deviceView];
     [self renderView];
     [self noteView];
-//    [self menuView];
+    //    [self menuView];
     [self noteToolBar]; //初始化时是隐藏的
 }
 

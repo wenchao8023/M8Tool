@@ -119,10 +119,17 @@
 
 - (void)loadXGSDK:(NSDictionary *)launchOptions
 {
-    //打开debug开关
+    /**
+     *  打开debug开关
+     */
     [[XGSetting getInstance] enableDebug:YES];
+    
+    /**
+     *  初始化推送sdk
+     */
     [XGPush startApp:2200263532 appKey:@"I421M1FDFJ7U"];
-    //    [XGPush startApp:[XGAppId intValue] appKey:XGAppKey];
+    
+    
     [XGPush isPushOn:^(BOOL isOn) {
         NSLog(@"[XGDemo] Push Is %@", isOn ? @"ON" : @"OFF");
     }];
