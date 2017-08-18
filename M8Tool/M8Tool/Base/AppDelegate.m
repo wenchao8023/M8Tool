@@ -41,6 +41,8 @@
     
     [M8UserDefault setAppLaunching:YES];
     
+    [M8UserDefault setAppIsTerminate:NO];
+    
     self.window                 = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = WCWhite;
     [self.window makeKeyAndVisible];
@@ -225,6 +227,8 @@
     {
         [WCNotificationCenter postNotificationName:kAppWillTerminate_Notification object:nil];
     }
+    
+    [M8UserDefault setAppIsTerminate:YES];
 }
 
 - (void)dealloc

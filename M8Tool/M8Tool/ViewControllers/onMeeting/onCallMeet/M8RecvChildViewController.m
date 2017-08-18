@@ -37,13 +37,11 @@
 
 - (IBAction)onRejectAction:(id)sender
 {
-    AudioServicesDisposeSystemSoundID(_soundID);
     [self respondsToDelegate:@"reject"];
 }
 
 - (IBAction)onReceiveAction:(id)sender
 {
-    AudioServicesDisposeSystemSoundID(_soundID);
     [self respondsToDelegate:@"receive"];
 }
 
@@ -147,7 +145,15 @@
 
 - (void)dealloc
 {
+    /**
+     *  移除通知
+     */
     [WCNotificationCenter removeObserver:self name:kThemeSwich_Notification object:nil];
+    
+    /**
+     *  关闭铃声
+     */
+    AudioServicesDisposeSystemSoundID(_soundID);
 }
 
 

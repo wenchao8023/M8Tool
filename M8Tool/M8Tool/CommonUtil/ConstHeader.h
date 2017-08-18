@@ -160,7 +160,7 @@ typedef NS_ENUM(NSInteger, LastLoginType)   //上一次登录的类型
 #define kAppLaunchingNet_Notification  @"kAppLaunchingNet_Notification" //App启动中网络状态未连接通知
 #define kAppNetStatus_Notification     @"kAppNetStatus_Notification"    //App网络状态通知
 #define kAppWillTerminate_Notification @"kAppWillTerminate_Notification"//会议中App退出通知
-
+#define kAppIsTerminate_Notifycatioin  @"kAppIsTerminate_Notifycatioin" //App是否被杀死
 
 /******************** role string **********************/
 #define kM8Role_Host     @"M8LiveMaster"
@@ -185,6 +185,7 @@ typedef NS_ENUM(NSInteger, LastLoginType)   //上一次登录的类型
 #define kNewFriendNotify   @"kNewFriendNotify"  //判断是否有新的朋友
 #define kNewFriendIdentify @"kNewFriendIdentify"//保存新的好友id
 #define kLastLoginType     @"kLastLoginType"    //记录用户上一次登录的方式
+
 
 /******************** appstore **********************/
 #define kIsAppstoreVersion 0

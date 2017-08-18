@@ -171,6 +171,16 @@
 }
 
 
+#pragma mark -- kAppIsTerminate_Notifycatioin
++ (BOOL)getAppIsTerminate
+{
+    return [self returnBoolWithKey:kAppIsTerminate_Notifycatioin];
+}
++ (void)setAppIsTerminate:(BOOL)isTerminate
+{
+    [self setBoolValue:isTerminate key:kAppIsTerminate_Notifycatioin];
+}
+
 #pragma mark - private
 #pragma mark -- object value
 + (void)setObject:(id)obj key:(NSString *)key
