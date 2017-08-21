@@ -360,6 +360,7 @@
 		94A851C31EE2C18600204B48 /* UsrCardViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 940DE9B41ED854D3006F061A /* UsrCardViewCell.xib */; };
 		94A851C41EE2C18600204B48 /* M8MeetRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94B3C2381EC585C5003ADF5F /* M8MeetRecordCell.xib */; };
 		94A851C81EE2C18700204B48 /* UsrCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 940DE9AB1ED84D67006F061A /* UsrCardView.m */; };
+		94A8FE3F1F4ABC4800DE0FE7 /* AppDelegate+PushKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A8FE3E1F4ABC4800DE0FE7 /* AppDelegate+PushKit.m */; };
 		94A987F41EF008500080BEF2 /* liveEnlarge.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A987E91EF008500080BEF2 /* liveEnlarge.png */; };
 		94A987F51EF008500080BEF2 /* liveEnlarge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A987EA1EF008500080BEF2 /* liveEnlarge@2x.png */; };
 		94A987F61EF008500080BEF2 /* liveEnlarge@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A987EB1EF008500080BEF2 /* liveEnlarge@3x.png */; };
@@ -1094,6 +1095,8 @@
 		94A71D561F2C416400FBA4A0 /* meetAgent6p.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meetAgent6p.png; sourceTree = "<group>"; };
 		94A810541F3E991400670CB6 /* STHeiti Light.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "STHeiti Light.ttc"; sourceTree = "<group>"; };
 		94A851C01EE2BD8B00204B48 /* MeetingAgendaCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeetingAgendaCell.xib; sourceTree = "<group>"; };
+		94A8FE3D1F4ABC4800DE0FE7 /* AppDelegate+PushKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+PushKit.h"; sourceTree = "<group>"; };
+		94A8FE3E1F4ABC4800DE0FE7 /* AppDelegate+PushKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+PushKit.m"; sourceTree = "<group>"; };
 		94A987E91EF008500080BEF2 /* liveEnlarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = liveEnlarge.png; sourceTree = "<group>"; };
 		94A987EA1EF008500080BEF2 /* liveEnlarge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liveEnlarge@2x.png"; sourceTree = "<group>"; };
 		94A987EB1EF008500080BEF2 /* liveEnlarge@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liveEnlarge@3x.png"; sourceTree = "<group>"; };
@@ -2056,6 +2059,8 @@
 				947664E51F31DDE900A78390 /* AppDelegate+ControlViewController.m */,
 				947664E61F31DDE900A78390 /* AppDelegate+XGPushConfig.h */,
 				947664E71F31DDE900A78390 /* AppDelegate+XGPushConfig.m */,
+				94A8FE3D1F4ABC4800DE0FE7 /* AppDelegate+PushKit.h */,
+				94A8FE3E1F4ABC4800DE0FE7 /* AppDelegate+PushKit.m */,
 				94404C6F1F2F48DB00CC113F /* APPLaunchViewController.h */,
 				94404C701F2F48DB00CC113F /* APPLaunchViewController.m */,
 				94404C711F2F48DB00CC113F /* APPLaunchViewController.xib */,
@@ -3748,6 +3753,7 @@
 				9473BB391F0CDB6E0074F6A3 /* M8LiveLabel.m in Sources */,
 				94E5DE2D1ED6775B008632D7 /* UsrContactView.m in Sources */,
 				94C06F3C1EBC50C900336E5F /* UserProtocolViewController.m in Sources */,
+				94A8FE3F1F4ABC4800DE0FE7 /* AppDelegate+PushKit.m in Sources */,
 				94404C4A1F2ED39A00CC113F /* M8GlobalListener.m in Sources */,
 				94112EC41ECADE1D00263F7F /* WCCollectionViewHorizontalLayout.m in Sources */,
 				945D27591F14F2FA001D1D24 /* MJRefreshStateHeader.m in Sources */,
@@ -4075,7 +4081,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = M8Tool/M8Tool.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lu WANG (RS5VVQU2Q4)";
+				CODE_SIGN_IDENTITY = "VoIP Services: com.ibuildtek.M8Tool";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = RS5VVQU2Q4;
 				ENABLE_BITCODE = NO;
@@ -4127,7 +4133,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = M8Tool/M8Tool.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lu WANG (RS5VVQU2Q4)";
+				CODE_SIGN_IDENTITY = "VoIP Services: com.ibuildtek.M8Tool";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = RS5VVQU2Q4;
 				ENABLE_BITCODE = NO;

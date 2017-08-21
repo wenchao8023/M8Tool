@@ -116,9 +116,4 @@
 + (BOOL)getKeyboardShow;
 + (void)setKeyboardShow:(BOOL)show;
 
-/**
- *  判断App是否被杀死
- */
-+ (BOOL)getAppIsTerminate;
-+ (void)setAppIsTerminate:(BOOL)isTerminate;
 @end

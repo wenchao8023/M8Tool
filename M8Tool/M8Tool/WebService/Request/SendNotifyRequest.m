@@ -12,21 +12,25 @@
 
 @end
 
-@implementation SendCallNotifyRequest
+
+
+
+@implementation MakeCallNotifyRequest
 
 - (NSString *)url
 {
-    return [NSString stringWithFormat:@"%@svc=xinge&cmd=pushAccountIos", [self hostUrl]];
+    return [NSString stringWithFormat:@"%@svc=xinge&cmd=makeCallPush", [self hostUrl]];
 }
 
 - (NSDictionary *)packageParams
 {
     return @{
-             @"token" :     _token,
-             @"inviter" :   _inviter,
-             @"type" :      @(_type),
-             @"topic" :     @(_topic),
-             @"toUser" :    _toUser
+             @"notifyType" :  @(_notifyType),
+             @"callType" :    @(_callType),
+             @"token" :       _token,
+             @"inviter" :     _inviter,
+             @"toUser" :      _toUser
              };
 }
+
 @end

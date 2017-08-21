@@ -17,20 +17,14 @@
 
 
 @implementation AppDelegate (XGPushConfig)
-
+/**
+ *  注册远程推送
+ *
+ *  @param application UIApplication 实例
+ *  @param deviceToken 设备唯一标识符
+ */
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
-    //    NSString *deviceTokenStr = [XGPush registerDevice:deviceToken
-    //                                              account:[M8UserDefault getLoginId]
-    //                                      successCallback:^{
-    //
-    //                                          NSLog(@"[XGDemo] register push success");
-    //                                      }
-    //                                        errorCallback:^{
-    //
-    //                                            NSLog(@"[XGDemo] register push error");
-    //                                        }];
-    
     NSString *deviceTokenStr = [XGPush registerDevice:deviceToken
                                       successCallback:^{
                                           
@@ -46,6 +40,13 @@
     NSLog(@"[XGDemo] device token is %@", deviceTokenStr);
 }
 
+
+/**
+ *  注册远程推送失败回调
+ *
+ *  @param application application description
+ *  @param error       注册远程推送失败错误信息
+ */
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
     NSLog(@"[XGDemo] register APNS fail.\n[XGDemo] reason : %@", error);
@@ -53,10 +54,10 @@
 
 
 /**
- 收到通知的回调
- 
- @param application  UIApplication 实例
- @param userInfo 推送时指定的参数
+ *  收到通知的回调
+ *
+ *  @param application UIApplication 实例
+ *  @param userInfo    推送时指定的参数
  */
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
@@ -71,11 +72,11 @@
 
 
 /**
- 收到静默推送的回调
- 
- @param application  UIApplication 实例
- @param userInfo 推送时指定的参数
- @param completionHandler 完成回调
+ *  收到静默推送的回调
+ *
+ *  @param application  UIApplication 实例
+ *  @param userInfo 推送时指定的参数
+ *  @param completionHandler 完成回调
  */
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
@@ -88,7 +89,7 @@
                           NSLog(@"[XGDemo] Handle receive error");
                       }];
     
-    completionHandler(UIBackgroundFetchResultNewData);
+    
     
     
     //TODO...
@@ -96,6 +97,7 @@
      *  如果App的状态不是活跃的就发送通知，这里可以做本地通知，通知用户来电
      *  如果是活跃的就忽略，程序会自动打开通知界面
      *  这里不能直接使用 callManger (系统支持在iOS10以上)，后期迭代会做
+     *  发起通话不能用静默通知实现
      */
     
     /**
@@ -106,17 +108,8 @@
      } UIApplicationState;
      */
     
-    UIApplicationState appState = application.applicationState;
-    if (appState != UIApplicationStateActive)
-    {
-        NSDate *curDate   = [NSDate dateWithTimeIntervalSinceNow:0];
-        NSString *curBody = [userInfo objectForKey:@"body"];
-        
-        UILocalNotification *localNotify = [[UILocalNotification alloc] init];
-        localNotify.fireDate             = curDate;
-        localNotify.alertBody            = curBody;
-        [[UIApplication sharedApplication] scheduleLocalNotification:localNotify];
-    }
+    
+    completionHandler(UIBackgroundFetchResultNewData);
 }
 
 // iOS 10 新增 API
@@ -133,27 +126,117 @@
                           NSLog(@"[XGDemo] Handle receive error");
                       }];
     
-    completionHandler();
-    
-    
     
     //TODO...   handle notification with type
-    //    NSString *category = response.notification.request.content.categoryIdentifier;
-    //
-    //    if ([category isEqualToString:kAppLocalNofity_callcoming])
-    //    {
-    //
-    //    }
+    
+    [AlertHelp tipWith:@"点击通知了" wait:1];
+    
+    NSDictionary *xgInfoDic = response.notification.request.content.userInfo;
+    
+    M8RemoteNotificationType notifyType;
+    [[xgInfoDic objectForKey:@"notifyType"] getValue:&notifyType];
+    
+    switch (notifyType)
+    {
+        case M8RemoteNotificationType_MAKECALL:
+        {
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    completionHandler();
 }
 
 
 // App 在前台弹通知需要调用这个接口
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler
 {
-    completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert);
+    NSDictionary *xgInfoDic = notification.request.content.userInfo;
+    
+    M8RemoteNotificationType notifyType;
+    [[xgInfoDic objectForKey:@"notifyType"] getValue:&notifyType];
+    
+    switch (notifyType)
+    {
+        case M8RemoteNotificationType_MAKECALL:
+        {
+            completionHandler(UNNotificationPresentationOptionSound);
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    /**
+     *  这个 completionHandle 是回传给 App 的参数
+     *
+     *  @param UNNotificationPresentationOptionAlert 传了哪个就表示哪儿生效
+     *
+     *  @return return value
+     */
+    
+    /**
+     *  如果是在前台的时候收到通话邀请，则只需要有声音即可
+     */
+    //    completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert);
 }
 #endif
 
+
+
+#pragma mark - -- 发送本地通知
+- (void)sendLocalNotify:(NSString *)alertBody
+{
+    UILocalNotification *localNotify = [[UILocalNotification alloc] init];
+    localNotify.fireDate             = [NSDate dateWithTimeIntervalSinceNow:0];
+    localNotify.alertBody            = alertBody;
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotify];
+    
+    //    float sysVer = [[[UIDevice currentDevice] systemVersion] floatValue];
+    //
+    //    if (sysVer >= 10.0)
+    //    {
+    //        UNMutableNotificationContent *content = [UNMutableNotificationContent new];
+    //        content.body                          = alertBody;
+    //
+    //        UNTimeIntervalNotificationTrigger *tragger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:0 repeats:NO];
+    //
+    //        UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"testUNNotification" content:content trigger:tragger];
+    //
+    //
+    //    }
+    //    else
+    //    {
+    //        UILocalNotification *localNotify = [[UILocalNotification alloc] init];
+    //        localNotify.fireDate             = [NSDate dateWithTimeIntervalSinceNow:0];
+    //        localNotify.alertBody            = alertBody;
+    //        [[UIApplication sharedApplication] scheduleLocalNotification:localNotify];
+    //    }
+}
+
+
+
+
+
+
+#pragma mark - -- 注册通知
 - (void)registerAPNS {
     float sysVer = [[[UIDevice currentDevice] systemVersion] floatValue];
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
@@ -189,8 +272,6 @@
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
     center.delegate                  = self;
-    
-    
     [center requestAuthorizationWithOptions:UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert completionHandler:^(BOOL granted, NSError * _Nullable error) {
         if (granted) {
         }

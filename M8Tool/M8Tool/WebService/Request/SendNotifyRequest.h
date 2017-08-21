@@ -8,25 +8,33 @@
 
 #import "BaseRequest.h"
 
+
+/**
+ *  发起通话时的通知类型
+ */
+typedef NS_ENUM(NSInteger, M8RemoteNotificationType)
+{
+    M8RemoteNotificationType_MAKECALL = 0x0001,//发起音视频的通知
+};
+
+
+
 @interface SendNotifyRequest : BaseRequest
 
 @end
 
+
+
+
 /**
- *
-	"token"  :[token],
-	"toUser":["user1","user2"],
-	"type":11,
-	"inviter":"邀请人",
-	"topic":"会议主题"
+ *  发起电话邀请时创建推送
  */
+@interface MakeCallNotifyRequest : BaseRequest
 
-@interface SendCallNotifyRequest : BaseRequest
-
-@property (nonatomic, assign          ) int      type;
-@property (nonatomic, assign          ) int      topic;
-@property (nonatomic, copy, nullable  ) NSString *token;
-@property (nonatomic, copy, nullable  ) NSString *inviter;
-@property (nonatomic, strong, nullable) NSArray  *toUser;
+@property (nonatomic, assign          ) M8RemoteNotificationType notifyType;//通知类型
+@property (nonatomic, assign          ) int                      callType;//会议类型(0-视频会议，1-音频会议)
+@property (nonatomic, copy, nullable  ) NSString                 *token;
+@property (nonatomic, copy, nullable  ) NSString                 *inviter;//会议邀请人
+@property (nonatomic, strong, nullable) NSArray                  *toUser;//被邀请的成员
 
 @end

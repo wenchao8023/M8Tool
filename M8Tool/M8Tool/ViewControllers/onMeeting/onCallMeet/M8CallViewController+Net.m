@@ -24,18 +24,18 @@
         }
     }
     
-    SendCallNotifyRequest *notifyReq = [[SendCallNotifyRequest alloc] initWithHandler:^(BaseRequest *request) {
+    MakeCallNotifyRequest *makeCallReq = [[MakeCallNotifyRequest alloc] initWithHandler:^(BaseRequest *request) {
         
     } failHandler:^(BaseRequest *request) {
         
     }];
     
-    notifyReq.token   = [AppDelegate sharedAppDelegate].token;
-    notifyReq.inviter = [M8UserDefault getLoginNick];
-    notifyReq.topic   = (int)(self.liveItem.callType == TILCALL_TYPE_AUDIO);
-    notifyReq.type    = 12;
-    notifyReq.toUser  = (NSArray *)tempArr;
-    [[WebServiceEngine sharedEngine] AFAsynRequest:notifyReq];
+    makeCallReq.token      = [AppDelegate sharedAppDelegate].token;
+    makeCallReq.inviter    = [M8UserDefault getLoginNick];
+    makeCallReq.toUser     = (NSArray *)tempArr;
+    makeCallReq.callType   = (int)(self.liveItem.callType == TILCALL_TYPE_AUDIO);
+    makeCallReq.notifyType = M8RemoteNotificationType_MAKECALL;
+    [[WebServiceEngine sharedEngine] AFAsynRequest:makeCallReq];
 }
 
 - (void)onNetReportRoomInfo:(RequestCompletionHandler)requestSucc

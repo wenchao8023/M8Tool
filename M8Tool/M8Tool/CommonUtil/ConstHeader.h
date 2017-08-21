@@ -139,28 +139,26 @@ typedef NS_ENUM(NSInteger, LastLoginType)   //上一次登录的类型
 #define kAppLocalNofity_callcoming @"kAppLocalNofity_callcoming"//本地通知，通知来电
 
 /******************** notification **********************/
-#define kUserParise_Notification       @"kUserParise_Notification"
-#define kUserMemChange_Notification    @"kUserMemChange_Notification"
-#define kUserUpVideo_Notification      @"kUserUpVideo_Notification"
-#define kUserDownVideo_Notification    @"kUserDownVideo_Notification"
-#define kUserSwitchRoom_Notification   @"kUserSwitchRoom_Notification"
-#define kGroupDelete_Notification      @"kGroupDelete_Notification"
-#define kPureDelete_Notification       @"kPureDelete_Notification"
-#define kNoPureDelete_Notification     @"kNoPureDelete_Notification"
-#define kClickConnect_Notification     @"kClickConnect_Notification"
-#define kCancelConnect_Notification    @"kCancelConnect_Notification"
-#define kEnterBackGround_Notification  @"kEnterBackGround_Notification"
-#define kThemeSwich_Notification       @"kThemeSwich_Notification"      //切换主题
-#define kHiddenMenuView_Notifycation   @"kHiddenMenuView_Notifycation"  //隐藏菜单
-#define kHiddenKeyboard_Notifycation   @"kHiddenKeyboard_Notifycation"  //隐藏键盘
-#define kMeetCollcet_Notification      @"kMeetCollcet_Notification"     //会议收藏状态变化
-#define kNoteViewEdit_Notification     @"kNoteViewEdit_Notification"    //会议中正在编辑文字
-#define kInviteMembers_Notifycation    @"kInviteMembers_Notifycation"   //会议中邀请成员
-#define kNewFriendStatu_Notification   @"kNewFriendStatu_Notification"  //新好友存在或没有的状态变化通知
-#define kAppLaunchingNet_Notification  @"kAppLaunchingNet_Notification" //App启动中网络状态未连接通知
-#define kAppNetStatus_Notification     @"kAppNetStatus_Notification"    //App网络状态通知
-#define kAppWillTerminate_Notification @"kAppWillTerminate_Notification"//会议中App退出通知
-#define kAppIsTerminate_Notifycatioin  @"kAppIsTerminate_Notifycatioin" //App是否被杀死
+#define kUserParise_Notification      @"kUserParise_Notification"
+#define kUserMemChange_Notification   @"kUserMemChange_Notification"
+#define kUserUpVideo_Notification     @"kUserUpVideo_Notification"
+#define kUserDownVideo_Notification   @"kUserDownVideo_Notification"
+#define kUserSwitchRoom_Notification  @"kUserSwitchRoom_Notification"
+#define kGroupDelete_Notification     @"kGroupDelete_Notification"
+#define kPureDelete_Notification      @"kPureDelete_Notification"
+#define kNoPureDelete_Notification    @"kNoPureDelete_Notification"
+#define kClickConnect_Notification    @"kClickConnect_Notification"
+#define kCancelConnect_Notification   @"kCancelConnect_Notification"
+#define kEnterBackGround_Notification @"kEnterBackGround_Notification"
+#define kThemeSwich_Notification      @"kThemeSwich_Notification"     //切换主题
+#define kHiddenMenuView_Notifycation  @"kHiddenMenuView_Notifycation" //隐藏菜单
+#define kHiddenKeyboard_Notifycation  @"kHiddenKeyboard_Notifycation" //隐藏键盘
+#define kMeetCollcet_Notification     @"kMeetCollcet_Notification"    //会议收藏状态变化
+#define kNoteViewEdit_Notification    @"kNoteViewEdit_Notification"   //会议中正在编辑文字
+#define kInviteMembers_Notifycation   @"kInviteMembers_Notifycation"  //会议中邀请成员
+#define kNewFriendStatu_Notification  @"kNewFriendStatu_Notification" //新好友存在或没有的状态变化通知
+#define kAppLaunchingNet_Notification @"kAppLaunchingNet_Notification"//App启动中网络状态未连接通知
+#define kAppNetStatus_Notification    @"kAppNetStatus_Notification"   //App网络状态通知
 
 /******************** role string **********************/
 #define kM8Role_Host     @"M8LiveMaster"

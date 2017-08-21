@@ -15,4 +15,6 @@
 
 - (void)registerAPNS;
 
+- (void)sendLocalNotify:(NSString *_Nullable)alertBody;
+
 @end
