@@ -14,14 +14,14 @@
 {
     NSMutableArray *fifthDaysArr = [NSMutableArray arrayWithCapacity:0];
     
-    NSDate *todayDate = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSDate *todayDate       = [NSDate dateWithTimeIntervalSinceNow:0];
     NSDateComponents *comps = [DAYUtils dateComponentsFromDate:todayDate];
-
-    NSUInteger currentYear  = comps.year;
-    NSUInteger currentMonth = comps.month;
-    NSUInteger currentDay   = comps.day;
+    
+    NSUInteger currentYear      = comps.year;
+    NSUInteger currentMonth     = comps.month;
+    NSUInteger currentDay       = comps.day;
     NSUInteger currentTotalDays = [DAYUtils daysInMonth:currentMonth ofYear:currentYear];
-    NSUInteger currentWeekday = [DAYUtils weekdataInMonth:currentMonth ofDay:currentDay ofYear:currentYear] - 1;
+    NSUInteger currentWeekday   = [DAYUtils weekdataInMonth:currentMonth ofDay:currentDay ofYear:currentYear] - 1;
     
     NSUInteger lastMonth;
     NSUInteger lastYear;    //上一个月份所对应的年份，可能是上一年，也可能是当前年
@@ -34,27 +34,27 @@
     
     if (currentMonth == 1)
     {
-        lastMonth = 12; //上一年12月
+        lastMonth = 12;//上一年12月
         nextMonth = 2;
         
-        lastYear  = currentYear - 1;
-        nextYear  = currentYear;
+        lastYear = currentYear - 1;
+        nextYear = currentYear;
     }
     else if (currentMonth == 12)
     {
         lastMonth = 11;
-        nextMonth = 1;   //下一年1月
+        nextMonth = 1;//下一年1月
         
-        lastYear  = currentYear;
-        nextYear  = currentYear + 1;
+        lastYear = currentYear;
+        nextYear = currentYear + 1;
     }
     else
     {
         lastMonth = currentMonth - 1;
         nextMonth = currentMonth + 1;
         
-        lastYear  = currentYear;
-        nextYear  = currentYear;
+        lastYear = currentYear;
+        nextYear = currentYear;
     }
     
     lastTotalDay = [DAYUtils daysInMonth:lastMonth ofYear:lastYear];
@@ -75,7 +75,7 @@
     }
     
     /////////////////往前遍历
-    for (NSUInteger i = currentDay - 1; i >= 1; i--)  //从今天往前循环，直到 1 号，不包括今天
+    for (NSUInteger i = currentDay - 1; i >= 1; i--)//从今天往前循环，直到 1 号，不包括今天
     {
         NSUInteger weekday = [DAYUtils weekdataInMonth:currentMonth ofDay:i ofYear:currentYear] - 1;
         if (weekday == 6 ||
@@ -90,14 +90,14 @@
         }
         
         NSDateComponents *compts = [[NSDateComponents alloc] init];
-        compts.month = currentMonth;
-        compts.day   = i;
+        compts.month             = currentMonth;
+        compts.day               = i;
         [fifthDaysArr insertObject:compts atIndex:0];   //保存日期
     }
     
     if (fifthDaysArr.count < lastWeekdays)  //如果循环到了 1 号还没有满 5 天，则需要遍历上一个月
     {
-        for (NSUInteger i = lastTotalDay; i >= 1; i--)  //上月的从月底开始循环
+        for (NSUInteger i = lastTotalDay; i >= 1; i--)//上月的从月底开始循环
         {
             NSUInteger weekday = [DAYUtils weekdataInMonth:lastMonth ofDay:i ofYear:lastYear] - 1;
             if (weekday == 6 ||
@@ -112,18 +112,18 @@
             }
             
             NSDateComponents *compts = [[NSDateComponents alloc] init];
-            compts.month = lastMonth;
-            compts.day   = i;
+            compts.month             = lastMonth;
+            compts.day               = i;
             [fifthDaysArr insertObject:compts atIndex:0];   //保存日期
         }
     }
     
-    NSString *des = [NSString stringWithFormat:@"逻辑错误，这里应该存满%ld天", (unsigned long)lastWeekdays];
+    NSString *des  = [NSString stringWithFormat:@"逻辑错误，这里应该存满%ld天", (unsigned long)lastWeekdays];
     BOOL condition = (fifthDaysArr.count == lastWeekdays);
     NSAssert(condition, des);
     
     /////////////////往后遍历
-    for (NSUInteger i = currentDay; i <= currentTotalDays; i++) //从今天开始往后循环，直到 本月最后一天
+    for (NSUInteger i = currentDay; i <= currentTotalDays; i++)//从今天开始往后循环，直到 本月最后一天
     {
         NSUInteger weekday = [DAYUtils weekdataInMonth:currentMonth ofDay:i ofYear:currentYear] - 1;
         if (weekday == 6 ||
@@ -138,8 +138,8 @@
         }
         
         NSDateComponents *compts = [[NSDateComponents alloc] init];
-        compts.month = currentMonth;
-        compts.day   = i;
+        compts.month             = currentMonth;
+        compts.day               = i;
         [fifthDaysArr addObject:compts];    //保存日期
     }
     
@@ -160,14 +160,14 @@
             }
             
             NSDateComponents *compts = [[NSDateComponents alloc] init];
-            compts.month = nextMonth;
-            compts.day   = i;
+            compts.month             = nextMonth;
+            compts.day               = i;
             [fifthDaysArr addObject:compts];    //保存日期
         }
     }
-
+    
     NSAssert(fifthDaysArr.count == 15, @"逻辑错误，这里应该存满15天");
-
+    
     return (NSArray *)fifthDaysArr;
 }
 
@@ -213,22 +213,22 @@
 {
     NSString *recordDateStr;
     
-    NSDate *todayDate = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSDate *todayDate          = [NSDate dateWithTimeIntervalSinceNow:0];
     NSDateComponents *curComps = [DAYUtils dateComponentsFromDate:todayDate];
     
     NSUInteger curYear  = curComps.year;
     NSUInteger curMonth = curComps.month;
     NSUInteger curDay   = curComps.day;
-    NSUInteger curWeek  = [DAYUtils curWeekdayComponents:curComps];     // 1 ~ 7
+    NSUInteger curWeek  = [DAYUtils curWeekdayComponents:curComps];// 1 ~ 7
     
     
-    NSDate *recordDate = [NSDate dateWithTimeIntervalSince1970:time];
+    NSDate *recordDate         = [NSDate dateWithTimeIntervalSince1970:time];
     NSDateComponents *recComps = [DAYUtils dateComponentsFromDate:recordDate];
     
-    NSUInteger recYear  = recComps.year;
-    NSUInteger recMonth = recComps.month;
-    NSUInteger recDay   = recComps.day;
-    NSUInteger recWeek  = [DAYUtils curWeekdayComponents:recComps];     // 1 ~ 7
+    NSUInteger recYear             = recComps.year;
+    NSUInteger recMonth            = recComps.month;
+    NSUInteger recDay              = recComps.day;
+    NSUInteger recWeek             = [DAYUtils curWeekdayComponents:recComps];// 1 ~ 7
     NSUInteger recTotalDaysInMonth = [DAYUtils daysInMonth:recMonth ofYear:recYear];
     
     /// 计算昨天和今天
@@ -238,16 +238,16 @@
         {
             if (curDay == recDay)   //日
             {
-                recordDateStr = [self getDateStrWithTime:time formatter:kTimeformatterDay];     //今天
+                recordDateStr = [self getDateStrWithTime:time formatter:kTimeformatterDay];//今天
             }
             else if (curDay == recDay + 1)
             {
-                recordDateStr = [self getDateStrWithTime:time formatter:kTimeformatterLday];    //昨天
+                recordDateStr = [self getDateStrWithTime:time formatter:kTimeformatterLday];//昨天
                 return [@"昨天" stringByAppendingString:[NSString stringWithFormat:@"-%@", recordDateStr]];
             }
             else if ((curWeek - recWeek) == (curDay - recDay))  //判断是不是当前星期
             {
-                recordDateStr = [self getDateStrWithTime:time formatter:kTimeformatterWeak];    //本周
+                recordDateStr = [self getDateStrWithTime:time formatter:kTimeformatterWeak];//本周
                 return [[DAYUtils stringOfWeekdayInChinese:recWeek] stringByAppendingString:[NSString stringWithFormat:@"-%@", recordDateStr]];
             }
             else
@@ -261,12 +261,12 @@
             {
                 if (recDay == recTotalDaysInMonth)  //判断记录时间是不是上月月底
                 {
-                    recordDateStr = [self getDateStrWithTime:time formatter:kTimeformatterLday];    //昨天
+                    recordDateStr = [self getDateStrWithTime:time formatter:kTimeformatterLday];//昨天
                     return [@"昨天 " stringByAppendingString:[NSString stringWithFormat:@"-%@", recordDateStr]];
                 }
                 else if ((curWeek - recWeek) == (curDay - recDay + recTotalDaysInMonth))  //判断是不是本周
                 {
-                    recordDateStr = [self getDateStrWithTime:time formatter:kTimeformatterWeak];    //本周
+                    recordDateStr = [self getDateStrWithTime:time formatter:kTimeformatterWeak];//本周
                     return [[DAYUtils stringOfWeekdayInChinese:recWeek] stringByAppendingString:[NSString stringWithFormat:@"-%@", recordDateStr]];
                 }
                 else
@@ -276,7 +276,7 @@
             }
             else if ((curWeek - recWeek) == (curDay - recDay + recTotalDaysInMonth))  //判断是不是当前星期 (上月不是1号，上月的记录就不可能是昨天的了)
             {
-                recordDateStr = [self getDateStrWithTime:time formatter:kTimeformatterWeak];    //本周
+                recordDateStr = [self getDateStrWithTime:time formatter:kTimeformatterWeak];//本周
                 return [[DAYUtils stringOfWeekdayInChinese:recWeek] stringByAppendingString:[NSString stringWithFormat:@"-%@", recordDateStr]];
             }
             else
@@ -300,7 +300,7 @@
 
 /**
  设置时间格式
-
+ 
  @param time 时间戳
  @param formatterStr 格式字符串
  @return 对应的时间格式字符串
@@ -308,7 +308,7 @@
 + (NSString *)getDateStrWithTime:(NSTimeInterval)time formatter:(NSString *)formatterStr
 {
     NSString *timeStr;
-    NSDate *startDate = [NSDate dateWithTimeIntervalSince1970:time];
+    NSDate *startDate          = [NSDate dateWithTimeIntervalSince1970:time];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:formatterStr];
     timeStr = [formatter stringFromDate:startDate];
@@ -342,7 +342,7 @@
     
     NSShadow *shadow = [[NSShadow alloc] init];
     
-    shadow.shadowBlurRadius = 5;    //模糊度
+    shadow.shadowBlurRadius = 5;//模糊度
     
     shadow.shadowColor = shadowColor;
     
@@ -367,12 +367,16 @@
 }
 
 
-/**
- 自定义大小，字体为 DroidSansFallback 的文本
- 
- @param string 修饰文本
- @return 返回自定义 大小 字体文本属性
- */
++(NSMutableAttributedString *)customAttString:(NSString *)string
+                                    textColor:(UIColor * _Nullable)textColor
+{
+    return [self customAttString:string
+                        fontSize:0
+                       textColor:textColor
+            ];
+}
+
+
 +(NSMutableAttributedString *)customAttString:(NSString *)string
                                      fontSize:(CGFloat)fontSize
 {
@@ -380,6 +384,7 @@
                         fontSize:fontSize
                        textColor:nil];
 }
+
 
 +(NSMutableAttributedString *)customAttString:(NSString *)string
                                      fontSize:(CGFloat)fontSize
@@ -406,34 +411,13 @@
                                                                   ]
                 ];
     return nil;
-//    return [self customAttString:string
-//                        fontSize:fontSize
-//                       textColor:textColor
-//                       charSpace:charSpace
-//                        fontName:nil];
 }
 
-
-//+(NSMutableAttributedString *)customAttString:(NSString *)string
-//                                     fontSize:(CGFloat)fontSize
-//                                    textColor:(UIColor *)textColor
-//                                    charSpace:(int)charSpace
-//                                     fontName:(NSString *)fontName
-//{
-//    if (string &&
-//        [string isKindOfClass:[NSString class]])
-//        return [[NSMutableAttributedString alloc] initWithString:string
-//                                                      attributes:[self customAttsWithFontSize:fontSize
-//                                                                                    textColor:textColor
-//                                                                                    charSpace:charSpace
-//                                                                                     fontName:fontName]];
-//    return nil;
-//}
 
 #pragma mark - 文本属性
 #pragma mark -- 粗文本属性
 +(NSMutableDictionary *)customAttsWithBodyFontSize:(CGFloat)fontSize
-                                     textColor:(UIColor *)textColor
+                                         textColor:(UIColor *)textColor
 {
     NSMutableDictionary *attDict = [NSMutableDictionary dictionaryWithCapacity:0];
     //设置字体-粗体、大小
@@ -443,6 +427,8 @@
         [attDict setValue:textColor forKey:NSForegroundColorAttributeName];
     return attDict;
 }
+
+
 #pragma mark --
 +(NSMutableDictionary *)customAttsWithFontSize:(CGFloat)fontSize
                                      textColor:(UIColor *)textColor
@@ -468,39 +454,9 @@
 }
 
 
-
-//+(NSMutableDictionary *)customAttsWithFontSize:(CGFloat)fontSize
-//                                     textColor:(UIColor *)textColor
-//                                     charSpace:(int)charSpace
-//{
-//    return [self customAttsWithFontSize:fontSize
-//                              textColor:textColor
-//                              charSpace:charSpace
-//                               fontName:kFontNameSTHeiti_Light
-//            ];
-//}
-//+(NSMutableDictionary *)customAttsWithFontSize:(CGFloat)fontSize
-//                                     textColor:(UIColor *)textColor
-//                                     charSpace:(int)charSpace
-//                                      fontName:(NSString *)fontName
-//{
-//    NSMutableDictionary *attDict = [NSMutableDictionary dictionaryWithCapacity:0];
-//    //设置字体、大小
-//    if (fontName && fontSize)
-//        [attDict setValue:[UIFont fontWithName:fontName size:fontSize] forKey:NSFontAttributeName];
-//    //设置字体颜色
-//    if (textColor)
-//        [attDict setValue:textColor forKey:NSForegroundColorAttributeName];
-//    //设置字符间距
-//    if (charSpace)
-//        [attDict setValue:@(charSpace) forKey:NSKernAttributeName];
-//    return attDict;
-//}
-
-
 +(NSMutableAttributedString *)nonusecustomAttString:(NSString *)string {
     NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:string];
-    NSMutableDictionary *attDict = [NSMutableDictionary dictionaryWithCapacity:0];
+    NSMutableDictionary *attDict         = [NSMutableDictionary dictionaryWithCapacity:0];
     //设置字体 (默认大小)
     [attDict setValue:[UIFont fontWithName:@"DroidSansFallback" size:0] forKey:NSFontAttributeName];
     //设置字体颜色

@@ -8,6 +8,6 @@
 
 #import "M8GlobalListener.h"
 
-@interface M8GlobalListener (IM)<TIMUserStatusListener, TIMConnListener, TIMMessageListener>
+@interface M8GlobalListener (IM)<TIMUserStatusListener, TIMConnListener, TIMMessageListener, TIMAVInvitationListener>
 
 @end

@@ -10,7 +10,14 @@
 
 @interface M8MeetRecordTableView (Net)
 
+/**
+ *  请求会议记录
+ */
 - (void)loadNetData;
 
+
+/**
+ *  请求更多会议记录
+ */
 - (void)loadMoreData;
 @end

@@ -57,7 +57,7 @@
     if (!_detailTableView)
     {
         M8RecordDetailTableView *detailTableView = [[M8RecordDetailTableView alloc] initWithFrame:self.contentView.bounds style:UITableViewStylePlain dataModel:_dataModel];
-        _detailTableView = detailTableView;
+        _detailTableView                         = detailTableView;
     }
     return _detailTableView;
 }
@@ -89,7 +89,7 @@
     
     if ([_dataModel.type isEqualToString:@"live"])
     {
-        
+        [AlertHelp tipWith:@"暂不支持直播会议重新发起" wait:1];
     }
     if ([_dataModel.type isEqualToString:@"call_audio"])
     {
@@ -100,81 +100,152 @@
         [self luanchCall:TILCALL_TYPE_VIDEO];
     }
 }
-
+/**
+ 发起音视频会议
+ 
+ @param callType 会议类型
+ */
 - (void)luanchCall:(TILCallType)callType
 {
     LoadView *reqIdWaitView = [LoadView loadViewWith:@"正在请求房间ID"];
     [self.view addSubview:reqIdWaitView];
     __block CallRoomResponseData *roomData = nil;
+    __block NSString *imageUrl             = nil;
     
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
         
         //请求房间号
         CallRoomRequest *callRoomReq = [[CallRoomRequest alloc] initWithHandler:^(BaseRequest *request) {
+            
             roomData = (CallRoomResponseData *)request.response.data;
             dispatch_semaphore_signal(semaphore);
             
             dispatch_async(dispatch_get_main_queue(), ^{
+                
                 [reqIdWaitView removeFromSuperview];
                 int callId = [roomData.callId intValue];
-                [self enterCall:callId callType:callType];
+                [self enterCall:callId imageUrl:imageUrl callType:callType];
             });
             
         } failHandler:^(BaseRequest *request) {
+            
             dispatch_semaphore_signal(semaphore);
         }];
+        
         callRoomReq.token = [AppDelegate sharedAppDelegate].token;
         [[WebServiceEngine sharedEngine] AFAsynRequest:callRoomReq];
     });
 }
 
-- (void)enterCall:(int)roomId callType:(TILCallType)callType
+- (void)enterCall:(int)roomId imageUrl:(NSString *)coverUrl callType:(TILCallType)callType
 {
-    NSString *loginId = [M8UserDefault getLoginId];
-    NSMutableArray *tempArr = [NSMutableArray arrayWithArray:_dataModel.members];
-    
-    //加载数据，数据格式要与会议发起的那里一致，将自己放在数组的最前面
-    for (int i = 0; i < tempArr.count; i++)
-    {
-        M8MeetMemberInfo *info = tempArr[i];
-        if ([info.user isEqualToString:loginId] &&
-            i != 0)
-        {
-            [tempArr exchangeObjectAtIndex:i withObjectAtIndex:0];
-        }
-    }
-    
-    NSMutableArray *inviteArr = [NSMutableArray arrayWithCapacity:0];
     NSMutableArray *membersArr = [NSMutableArray arrayWithCapacity:0];
-    for (M8MeetMemberInfo *info in tempArr)
+    for (M8MeetMemberInfo *info in _dataModel.members)
     {
         [membersArr addObject:info.user];
-        
-        M8MemberInfo *memInfo = [[M8MemberInfo alloc] init];
-        memInfo.uid = info.user;
-        memInfo.nick = info.nick;
-        [inviteArr addObject:memInfo];
     }
     
-    M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
-    [modelManger updateInviteMemberArray:inviteArr];
     
     TCShowLiveListItem *item = [[TCShowLiveListItem alloc] init];
-    item.uid = [M8UserDefault getLoginId];
-    item.members = membersArr;
-    item.callType = callType;
-    item.info = [[ShowRoomInfo alloc] init];
-    item.info.title = _dataModel.title;
-    item.info.type = (callType == TILCALL_TYPE_VIDEO ? @"call_video" : @"call_audio");
-    item.info.roomnum = roomId;
-    item.info.groupid = [NSString stringWithFormat:@"%d", roomId];
-    item.info.appid = [ILiveAppId intValue];
-    item.info.host = loginId;
+    item.uid                 = [M8UserDefault getLoginId];
+    item.members             = membersArr;
+    item.callType            = callType;
+    item.info                = [[ShowRoomInfo alloc] init];
+    item.info.title          = _dataModel.title;
+    item.info.type           = (callType == TILCALL_TYPE_VIDEO ? @"call_video" : @"call_audio");
+    item.info.roomnum        = roomId;
+    item.info.groupid        = [NSString stringWithFormat:@"%d", roomId];
+    item.info.cover          = coverUrl ? coverUrl : @"";
+    item.info.appid          = [ILiveAppId intValue];
+    item.info.host           = [M8UserDefault getLoginId];
     
     M8CallViewController *callVC = [[M8CallViewController alloc] initWithItem:item isHost:YES];
-    [M8MeetWindow M8_addMeetSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
+    [M8MeetWindow M8_addMeetSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController] succHandle:^{
+        
+        UINavigationController *curNavi = self.navigationController;
+        if ([self respondsToSelector:@selector(configBottomTipView)])
+        {
+            [self performSelector:@selector(configBottomTipView)];
+            curNavi.tabBarController.tabBar.hidden = YES;
+        }
+    }];
 }
+
+//- (void)luanchCall:(TILCallType)callType
+//{
+//    LoadView *reqIdWaitView = [LoadView loadViewWith:@"正在请求房间ID"];
+//    [self.view addSubview:reqIdWaitView];
+//    __block CallRoomResponseData *roomData = nil;
+//
+//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+//
+//        //请求房间号
+//        CallRoomRequest *callRoomReq = [[CallRoomRequest alloc] initWithHandler:^(BaseRequest *request) {
+//            roomData                     = (CallRoomResponseData *)request.response.data;
+//            dispatch_semaphore_signal(semaphore);
+//
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [reqIdWaitView removeFromSuperview];
+//                int callId = [roomData.callId intValue];
+//                [self enterCall:callId callType:callType];
+//            });
+//
+//        } failHandler:^(BaseRequest *request) {
+//            dispatch_semaphore_signal(semaphore);
+//        }];
+//        callRoomReq.token = [AppDelegate sharedAppDelegate].token;
+//        [[WebServiceEngine sharedEngine] AFAsynRequest:callRoomReq];
+//    });
+//}
+//
+//- (void)enterCall:(int)roomId callType:(TILCallType)callType
+//{
+//    NSString *loginId       = [M8UserDefault getLoginId];
+//    NSMutableArray *tempArr = [NSMutableArray arrayWithArray:_dataModel.members];
+//
+//    //加载数据，数据格式要与会议发起的那里一致，将自己放在数组的最前面
+//    for (int i = 0; i < tempArr.count; i++)
+//    {
+//        M8MeetMemberInfo *info = tempArr[i];
+//        if ([info.user isEqualToString:loginId] &&
+//            i != 0)
+//        {
+//            [tempArr exchangeObjectAtIndex:i withObjectAtIndex:0];
+//        }
+//    }
+//
+//    NSMutableArray *inviteArr  = [NSMutableArray arrayWithCapacity:0];
+//    NSMutableArray *membersArr = [NSMutableArray arrayWithCapacity:0];
+//    for (M8MeetMemberInfo *info in tempArr)
+//    {
+//        [membersArr addObject:info.user];
+//
+//        M8MemberInfo *memInfo = [[M8MemberInfo alloc] init];
+//        memInfo.uid           = info.user;
+//        memInfo.nick          = info.nick;
+//        [inviteArr addObject:memInfo];
+//    }
+//
+//    M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
+//    [modelManger updateInviteMemberArray:inviteArr];
+//
+//    TCShowLiveListItem *item = [[TCShowLiveListItem alloc] init];
+//    item.uid                 = [M8UserDefault getLoginId];
+//    item.members             = membersArr;
+//    item.callType            = callType;
+//    item.info                = [[ShowRoomInfo alloc] init];
+//    item.info.title          = _dataModel.title;
+//    item.info.type           = (callType == TILCALL_TYPE_VIDEO ? @"call_video" : @"call_audio");
+//    item.info.roomnum        = roomId;
+//    item.info.groupid        = [NSString stringWithFormat:@"%d", roomId];
+//    item.info.appid          = [ILiveAppId intValue];
+//    item.info.host           = loginId;
+//
+//    M8CallViewController *callVC = [[M8CallViewController alloc] initWithItem:item isHost:YES];
+//    [M8MeetWindow M8_addMeetSource:callVC WindowOnTarget:[[AppDelegate sharedAppDelegate].window rootViewController]];
+//}
 
 
 - (void)didReceiveMemoryWarning

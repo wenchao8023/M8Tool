@@ -13,7 +13,7 @@
 
 /**
  获取登录的用户名
-
+ 
  @return 用户名（用以保存手机号）
  */
 + (NSString *_Nullable)getLoginId;
@@ -45,7 +45,7 @@
 
 /**
  用户主动登出
-
+ 
  @return 是否是用户主动登出，默认为NO，登录之后为NO，登出之后为YES
  */
 + (BOOL)getIsUserLogout;
@@ -54,7 +54,7 @@
 
 /**
  App是否在启动中
-
+ 
  @return app启动状态
  */
 + (BOOL)getAppIsLaunching;

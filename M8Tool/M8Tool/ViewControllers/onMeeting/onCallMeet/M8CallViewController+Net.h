@@ -10,29 +10,38 @@
 
 @interface M8CallViewController (Net)
 
+
 /**
- 上报房间信息
+ *  发送静默通知，通知不在前台的用户
+ */
+- (void)onNetSendCallNotify;
+
+
+/**
+ *  上报房间信息
  */
 - (void)onNetReportRoomInfo;
-//
+
 - (void)onNetReportRoomInfo:(RequestCompletionHandler _Nullable)requestSucc;
 
-/**
- 上报成员信息
 
- @param mem 会议ID
- @param statu 成员状态,0:未接听（默认）, 1:接听, 2:拒绝
+/**
+ *  上报成员信息
+ *
+ *  @param mem   会议ID
+ *  @param statu 成员状态,0:未接听（默认）, 1:接听, 2:拒绝
  */
 - (void)onNetReportCallMem:(NSString * _Nonnull)mem statu:(int)statu;
 
 
 /**
- 上报成员退出房间
+ *  上报成员退出房间
  */
 - (void)onNetReportMemExitRoom;
 
+
 /**
- 上报退出房间
+ *  上报退出房间
  */
 - (void)onNetReportExitRoom;
 

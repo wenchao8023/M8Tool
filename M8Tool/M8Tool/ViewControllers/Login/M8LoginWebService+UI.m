@@ -40,12 +40,15 @@
 
 - (void)onLoginSucc:(NSString *)identifier password:(NSString *)password
 {
+    /**
+     *  保存用户信息到本地
+     */
     [M8UserDefault setUserLogout:NO];
     [M8UserDefault setLastLoginType:LastLoginType_phone];
     
-    // 保存用户信息到本地
     [M8UserDefault setLoginId:identifier];
     [M8UserDefault setLoginPwd:password];
+    
     
     // 进入主界面
     [[AppDelegate sharedAppDelegate] enterMainUI];

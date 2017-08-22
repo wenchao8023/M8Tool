@@ -11,7 +11,6 @@
 @implementation CallRoomRequest
 
 - (NSString *)url
-
 {
     return [NSString stringWithFormat:@"%@svc=live&cmd=getCallRoom", [self hostUrl]];
 }

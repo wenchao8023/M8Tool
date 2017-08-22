@@ -83,6 +83,8 @@
 #import "ModifyPwdRequest.h"
 
 
+#import "SendNotifyRequest.h"
+
 
 
 #endif /* RequestHeader_h */

@@ -8,11 +8,13 @@
 
 #import "AppDelegate.h"
 
-#import "XGPush.h"
+
 #import "XGSetting.h"
 
 @interface AppDelegate (XGPushConfig)
 
 - (void)registerAPNS;
+
+- (void)sendLocalNotify:(NSString *_Nullable)alertBody;
 
 @end

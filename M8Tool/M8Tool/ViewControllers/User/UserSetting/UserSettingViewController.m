@@ -42,7 +42,6 @@
 - (void)createUI
 {
     // 重新设置 contentView 的高度
-//    [self.contentView setHeight:kContentHeight_setting];
     [self.contentView setHeight:250];
     // 添加 tableView
     [self tableView];
@@ -74,7 +73,7 @@
 {
     if (!_tableView)
     {
-        UserSettingTabelView *tableView = [[UserSettingTabelView alloc] initWithFrame:self.contentView.bounds style:UITableViewStyleGrouped];
+        UserSettingTabelView *tableView          = [[UserSettingTabelView alloc] initWithFrame:self.contentView.bounds style:UITableViewStyleGrouped];
         [self.contentView addSubview:(_tableView = tableView)];
     }
     return _tableView;
@@ -88,13 +87,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

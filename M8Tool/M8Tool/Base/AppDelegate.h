@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-
+#import <PushKit/PushKit.h>
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -18,7 +18,12 @@
 
 @property (nonatomic, copy, nullable) NSString *token;
 
-@property (nonatomic, assign) BOOL netEnable;   //判断网络是否可用
+@property (nonatomic, strong, nullable) NSData *deviceToken;
+
+@property (nonatomic, copy, nullable) NSString *deviceTokenStr;
+
+@property (nonatomic, assign) BOOL netEnable;//判断网络是否可用
+
 
 @property (nonatomic, readonly, strong, nullable) NSPersistentContainer *persistentContainer;
 
