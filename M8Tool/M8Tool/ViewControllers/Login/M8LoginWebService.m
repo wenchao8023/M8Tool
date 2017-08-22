@@ -65,7 +65,7 @@ typedef NS_ENUM(NSInteger, ThreeRDType)
         if (errId == 1003) //不要重复登录
         {
             [[ILiveLoginManager getInstance] iLiveLogout:^{
-            
+                
                 //登出成功，再次登录
                 [self M8ILiveLoginWithIdentifier:identifier
                                         password:password
@@ -81,16 +81,16 @@ typedef NS_ENUM(NSInteger, ThreeRDType)
                 if (type == loginType_onClick ||
                     type == loginType_reLogin)
                 {
-                    NSString *errInfo = [NSString stringWithFormat:@"module=%@,errid=%d,errmsg=%@",module,errId,errMsg];
-                    [self onLoginFailAlertInfo:errInfo];
+                    //                    NSString *errInfo = [NSString stringWithFormat:@"module=%@,errid=%d,errmsg=%@",module,errId,errMsg];
+                    //                    [self onLoginFailAlertInfo:errInfo];
                 }
             }];
         }
         else if (type == loginType_onClick ||
                  type == loginType_reLogin)
         {
-            NSString *errInfo = [NSString stringWithFormat:@"module=%@,errid=%d,errmsg=%@",module,errId,errMsg];
-            [self onLoginFailAlertInfo:errInfo];
+            //            NSString *errInfo = [NSString stringWithFormat:@"module=%@,errid=%d,errmsg=%@",module,errId,errMsg];
+            //            [self onLoginFailAlertInfo:errInfo];
         }
         
         if (failHandle)
@@ -111,7 +111,7 @@ typedef NS_ENUM(NSInteger, ThreeRDType)
     //请求sig
     LoginRequest *sigReq = [[LoginRequest alloc] initWithHandler:^(BaseRequest *request) {
         
-        LoginResponceData *responseData = (LoginResponceData *)request.response.data;
+        LoginResponceData *responseData       = (LoginResponceData *)request.response.data;
         [AppDelegate sharedAppDelegate].token = responseData.token;
         [M8UserDefault setLoginNick:responseData.nick];
         
@@ -129,8 +129,8 @@ typedef NS_ENUM(NSInteger, ThreeRDType)
         if (type == loginType_onClick ||
             type == loginType_reLogin)
         {
-            NSString *errInfo = [NSString stringWithFormat:@"errid=%ld,errmsg=%@",(long)request.response.errorCode, request.response.errorInfo];
-            [self onLoginFailAlertInfo:errInfo];
+            //            NSString *errInfo = [NSString stringWithFormat:@"errid=%ld,errmsg=%@",(long)request.response.errorCode, request.response.errorInfo];
+            //            [self onLoginFailAlertInfo:errInfo];
         }
         
         
@@ -141,7 +141,7 @@ typedef NS_ENUM(NSInteger, ThreeRDType)
     }];
     
     sigReq.identifier = identifier;
-    sigReq.pwd = password;
+    sigReq.pwd        = password;
     
     [[WebServiceEngine sharedEngine] AFAsynRequest:sigReq];
 }
@@ -153,7 +153,7 @@ typedef NS_ENUM(NSInteger, ThreeRDType)
 {
     [self M8LoginWithIdentifier:identifier
                        password:password
-                      succHandle:cancelHandle
+                     succHandle:cancelHandle
                      failHandle:cancelHandle
                       loginType:loginType_onClick
      ];
@@ -161,8 +161,8 @@ typedef NS_ENUM(NSInteger, ThreeRDType)
 
 //被踢下线重新登录
 - (void)M8ReLoginWithIdentifier:(NSString *)identifier
-                     password:(NSString *)password
-                    cancelPVN:(M8LoginHandle _Nullable)cancelHandle
+                       password:(NSString *)password
+                      cancelPVN:(M8LoginHandle _Nullable)cancelHandle
 {
     [self M8LoginWithIdentifier:identifier
                        password:password
@@ -192,13 +192,13 @@ typedef NS_ENUM(NSInteger, ThreeRDType)
     //请求sig
     LoginRequest *sigReq = [[LoginRequest alloc] initWithHandler:^(BaseRequest *request) {
         
-        LoginResponceData *responseData = (LoginResponceData *)request.response.data;
+        LoginResponceData *responseData       = (LoginResponceData *)request.response.data;
         [AppDelegate sharedAppDelegate].token = responseData.token;
         [M8UserDefault setLoginNick:responseData.nick];
         
         [[ILiveLoginManager getInstance] iLiveLogin:identifier sig:responseData.userSig succ:^{
             
-
+            
         } failed:^(NSString *module, int errId, NSString *errMsg) {
             
             if (errId == 8050)//离线被踢,再次登录
@@ -208,11 +208,11 @@ typedef NS_ENUM(NSInteger, ThreeRDType)
         }];
         
     } failHandler:^(BaseRequest *request) {
-
+        
     }];
     
     sigReq.identifier = identifier;
-    sigReq.pwd = password;
+    sigReq.pwd        = password;
     
     [[WebServiceEngine sharedEngine] AFAsynRequest:sigReq];
 }
@@ -227,10 +227,10 @@ typedef NS_ENUM(NSInteger, ThreeRDType)
 {
     QQLoginRequest *qqLoginReq = [[QQLoginRequest alloc] initWithHandler:^(BaseRequest *request) {
         
-        LoginResponceData *responseData = (LoginResponceData *)request.response.data;
+        LoginResponceData *responseData       = (LoginResponceData *)request.response.data;
         [AppDelegate sharedAppDelegate].token = responseData.token;
         [M8UserDefault setLoginNick:responseData.nick];
-
+        
         
         [self M8ILiveLoginWithIdentifier:openId
                                 password:(NSString *)nil
@@ -246,8 +246,8 @@ typedef NS_ENUM(NSInteger, ThreeRDType)
         if (type == loginType_onClick ||
             type == loginType_reLogin)
         {
-            NSString *errInfo = [NSString stringWithFormat:@"errid=%ld,errmsg=%@",(long)request.response.errorCode, request.response.errorInfo];
-            [self onLoginFailAlertInfo:errInfo];
+            //            NSString *errInfo = [NSString stringWithFormat:@"errid=%ld,errmsg=%@",(long)request.response.errorCode, request.response.errorInfo];
+            //            [self onLoginFailAlertInfo:errInfo];
         }
         
         
@@ -267,7 +267,7 @@ typedef NS_ENUM(NSInteger, ThreeRDType)
 //登录界面登录
 - (void)M8QQLoginWithOpenId:(NSString *)openId
                        nick:(NSString *)nick
-                    cancelPVN:(M8LoginHandle _Nullable)cancelHandle
+                  cancelPVN:(M8LoginHandle _Nullable)cancelHandle
 {
     [self M8QQLoginWithOpenId:openId
                          nick:nick
@@ -280,7 +280,7 @@ typedef NS_ENUM(NSInteger, ThreeRDType)
 //被踢下线重新登录
 - (void)M8QQReLoginWithOpenId:(NSString *)openId
                          nick:(NSString *)nick
-                      cancelPVN:(M8LoginHandle _Nullable)cancelHandle
+                    cancelPVN:(M8LoginHandle _Nullable)cancelHandle
 {
     [self M8QQLoginWithOpenId:openId
                          nick:nick
@@ -293,7 +293,7 @@ typedef NS_ENUM(NSInteger, ThreeRDType)
 //启动App 自动登录
 - (void)M8QQAutoLoginWithOpenId:(NSString *)openId
                            nick:(NSString *)nick
-                       failHandle:(M8LoginHandle)failHandle
+                     failHandle:(M8LoginHandle)failHandle
 {
     [self M8QQLoginWithOpenId:openId
                          nick:nick
@@ -368,7 +368,7 @@ typedef NS_ENUM(NSInteger, ThreeRDType)
 - (void)M8RegistWithIdentifier:(NSString *)identifier
                           nick:(NSString *)nick
                            pwd:(NSString *)pwd
-                        veriCode:(NSString *_Nonnull)veriCode
+                      veriCode:(NSString *_Nonnull)veriCode
                   cancelHandle:(M8LoginHandle)cancelHandle
 {
     RegistRequest *registReq = [[RegistRequest alloc] initWithHandler:^(BaseRequest *request) {
@@ -383,8 +383,8 @@ typedef NS_ENUM(NSInteger, ThreeRDType)
             cancelHandle();
         }
         
-        NSString *errinfo = [NSString stringWithFormat:@"errid=%ld,errmsg=%@",(long)request.response.errorCode,request.response.errorInfo];
-        [self onRegistFailAlertInfo:errinfo];
+        //        NSString *errinfo = [NSString stringWithFormat:@"errid=%ld,errmsg=%@",(long)request.response.errorCode,request.response.errorInfo];
+        //        [self onRegistFailAlertInfo:errinfo];
         
         if (request.response.errorCode == 10004)
         {
@@ -392,10 +392,10 @@ typedef NS_ENUM(NSInteger, ThreeRDType)
         }
     }];
     
-    registReq.nick          = nick;
-    registReq.identifier    = identifier;
-    registReq.pwd           = pwd;
-    registReq.messageCode   = veriCode;
+    registReq.nick        = nick;
+    registReq.identifier  = identifier;
+    registReq.pwd         = pwd;
+    registReq.messageCode = veriCode;
     
     [[WebServiceEngine sharedEngine] AFAsynRequest:registReq];
 }
@@ -407,15 +407,15 @@ typedef NS_ENUM(NSInteger, ThreeRDType)
 {
     
     ModifyPwdWithPhoneRequest *resetPwdReq = [[ModifyPwdWithPhoneRequest alloc] initWithHandler:^(BaseRequest *request) {
-    
+        
         // 修改密码成功 -- 直接登录
         [self M8LoginWithIdentifier:phoneNumber password:pwd cancelPVN:cancelHandle];
         
         
     } failHandler:^(BaseRequest *request) {
         
-        NSString *errinfo = [NSString stringWithFormat:@"errid=%ld,errmsg=%@",(long)request.response.errorCode,request.response.errorInfo];
-        [self onResetPwdAlertInfo:errinfo];
+        //        NSString *errinfo = [NSString stringWithFormat:@"errid=%ld,errmsg=%@",(long)request.response.errorCode,request.response.errorInfo];
+        //        [self onResetPwdAlertInfo:errinfo];
     }];
     
     resetPwdReq.phoneNumber = phoneNumber;

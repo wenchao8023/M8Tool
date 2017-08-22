@@ -38,13 +38,13 @@
         {
             frame.size.height -= (kDefaultMargin + kDefaultCellHeight);
         }
-    
-        UITableView *tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
-        tableView.delegate = self;
-        tableView.dataSource = self;
-        tableView.backgroundColor = WCClear;
-        tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.width, 0.01)];   // 不能使用CGRectZero，不起作用
-        tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.width, 0.01)];
+        
+        UITableView *tableView                   = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
+        tableView.delegate                       = self;
+        tableView.dataSource                     = self;
+        tableView.backgroundColor                = WCClear;
+        tableView.tableHeaderView                = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.width, 0.01)];// 不能使用CGRectZero，不起作用
+        tableView.tableFooterView                = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.width, 0.01)];
         [self.contentView addSubview:(_tableView = tableView)];
     }
     
@@ -142,7 +142,7 @@
     TIMFriendshipManager *frdManger = [TIMFriendshipManager sharedInstance];
     
     [frdManger GetFriendList:^(NSArray *friends) {
-    
+        
         for (TIMUserProfile *profile in friends)
         {
             M8MemberInfo *mInfo = [[M8MemberInfo alloc] initWithTIMUserProfile:profile];
@@ -150,14 +150,14 @@
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-        
+            
             [weakself.tableView reloadData];
         });
         
     } fail:^(int code, NSString *msg) {
         
         NSString *errInfo = [NSString stringWithFormat:@"errDomain: TIMSDK, errCode: %d\nerrInfo: %@", code, msg];
-        [AlertHelp alertWith:nil message:errInfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
+        //        [AlertHelp alertWith:nil message:errInfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
     }];
 }
 
@@ -176,7 +176,7 @@
     } fail:^(int code, NSString *msg) {
         
         NSString *errInfo = [NSString stringWithFormat:@"errDomain: TIMSDK, errCode: %d\nerrInfo: %@", code, msg];
-        [AlertHelp alertWith:nil message:errInfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
+        //        [AlertHelp alertWith:nil message:errInfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
     }];
 }
 
@@ -307,7 +307,7 @@
             [UIView setAnimationsEnabled:YES];
         }
             break;
-
+            
         default:
             break;
     }
@@ -356,7 +356,7 @@
             if ([vc isKindOfClass:[MeetingLuanchViewController class]])
             {
                 MeetingLuanchViewController *luanchVC = (MeetingLuanchViewController *)vc;
-                luanchVC.isBackFromSelectContact = YES;
+                luanchVC.isBackFromSelectContact      = YES;
                 [self.navigationController popToViewController:luanchVC animated:YES];
             }
         }

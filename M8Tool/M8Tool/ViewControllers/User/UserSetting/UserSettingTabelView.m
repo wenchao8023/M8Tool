@@ -25,12 +25,12 @@
 {
     if (self = [super initWithFrame:frame style:style])
     {
-        self.tableFooterView    = [WCUIKitControl createViewWithFrame:CGRectMake(0, 0, self.width, 0.01)];
-        self.tableHeaderView    = [WCUIKitControl createViewWithFrame:CGRectMake(0, 0, self.width, 0.01)];
-        self.dataSource         = self;
-        self.delegate           = self;
-        self.scrollEnabled      = NO;
-        self.backgroundColor    = WCClear;
+        self.tableFooterView = [WCUIKitControl createViewWithFrame:CGRectMake(0, 0, self.width, 0.01)];
+        self.tableHeaderView = [WCUIKitControl createViewWithFrame:CGRectMake(0, 0, self.width, 0.01)];
+        self.dataSource      = self;
+        self.delegate        = self;
+        self.scrollEnabled   = NO;
+        self.backgroundColor = WCClear;
         
     }
     return self;
@@ -70,11 +70,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellID = @"UserSettingCellID";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    UITableViewCell *cell   = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell                 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell.selectionStyle  = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = WCClear;
         [cell.textLabel setAttributedText:[CommonUtil customAttString:self.dataArray[indexPath.section][indexPath.row]
                                                              fontSize:kAppLargeFontSize
@@ -128,7 +128,7 @@
         {
             // verify ok
             SettingPwdViewController *spvc = [[SettingPwdViewController alloc] init];
-            spvc.isExitLeftItem = YES;
+            spvc.isExitLeftItem            = YES;
             [[AppDelegate sharedAppDelegate] pushViewController:spvc];
         }
         else
@@ -138,7 +138,7 @@
     }];
     
     [alertC addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-       
+        
         textField.secureTextEntry = YES;
     }];
     
@@ -165,29 +165,23 @@
         return ;
     }
     
+    /**
+     *  将视图添加到 viewController.view 层 才可以完全显示
+     */
     LoadView *logoutWaitView = [LoadView loadViewWith:@"正在退出"];
-    [self addSubview:logoutWaitView];
+    UIView *selfSuperView    = self.superview;
+    UIView *superSuperView   = selfSuperView.superview;
+    [superSuperView addSubview:logoutWaitView];
     
+    WCWeakSelf(self);
     //通知业务服务器登出
     LogoutRequest *logoutReq = [[LogoutRequest alloc] initWithHandler:^(BaseRequest *request) {
         
         [[ILiveLoginManager getInstance] iLiveLogout:^{
             
             [logoutWaitView removeFromSuperview];
-
-            [M8UserDefault setUserLogout:YES];
             
-            LastLoginType loginType = [M8UserDefault getLastLoginType];
-            if (loginType == LastLoginType_phone)
-            {
-                [[AppDelegate sharedAppDelegate] enterLoginUI];
-            }
-            else if (loginType == LastLoginType_QQ)
-            {
-                [[AppDelegate sharedAppDelegate] enterLoginMutiUI];
-            }
-            
-            
+            [weakself onLogoutSucc];
             
         } failed:^(NSString *module, int errId, NSString *errMsg) {
             
@@ -198,15 +192,38 @@
         }];
         
     } failHandler:^(BaseRequest *request) {
-        
-        NSString *errinfo = [NSString stringWithFormat:@"errid=%ld,errmsg=%@",(long)request.response.errorCode,request.response.errorInfo];
-        NSLog(@"regist fail.%@",errinfo);
-        [logoutWaitView removeFromSuperview];
-        [AlertHelp alertWith:@"退出失败" message:errinfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
+        if (request.response.errorCode == 10008)
+        {
+            [logoutWaitView removeFromSuperview];
+            
+            [weakself onLogoutSucc];
+        }
+        else
+        {
+            NSString *errinfo = [NSString stringWithFormat:@"errid=%ld,errmsg=%@",(long)request.response.errorCode,request.response.errorInfo];
+            NSLog(@"regist fail.%@",errinfo);
+            [logoutWaitView removeFromSuperview];
+            [AlertHelp alertWith:@"退出失败" message:errinfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
+        }
     }];
     
     logoutReq.token = [AppDelegate sharedAppDelegate].token;
     [[WebServiceEngine sharedEngine] AFAsynRequest:logoutReq];
+}
+
+- (void)onLogoutSucc
+{
+    [M8UserDefault setUserLogout:YES];
+    
+    LastLoginType loginType = [M8UserDefault getLastLoginType];
+    if (loginType == LastLoginType_phone)
+    {
+        [[AppDelegate sharedAppDelegate] enterLoginUI];
+    }
+    else if (loginType == LastLoginType_QQ)
+    {
+        [[AppDelegate sharedAppDelegate] enterLoginMutiUI];
+    }
 }
 
 

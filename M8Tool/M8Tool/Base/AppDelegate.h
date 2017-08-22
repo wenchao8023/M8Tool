@@ -24,6 +24,7 @@
 
 @property (nonatomic, assign) BOOL netEnable;//判断网络是否可用
 
+
 @property (nonatomic, readonly, strong, nullable) NSPersistentContainer *persistentContainer;
 
 - (void)saveContext;

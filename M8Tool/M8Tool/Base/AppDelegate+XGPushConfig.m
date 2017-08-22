@@ -52,22 +52,26 @@
     NSLog(@"[XGDemo] register APNS fail.\n[XGDemo] reason : %@", error);
 }
 
+//"Use UserNotifications Framework's -[UNUserNotificationCenterDelegate willPresentNotification:withCompletionHandler:] or -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:] for user visible notifications and -[UIApplicationDelegate application:didReceiveRemoteNotification:fetchCompletionHandler:] for silent remote notifications"
+
+
 
 /**
- *  收到通知的回调
+ *  收到通知的回调(iOS10之后废弃)
  *
  *  @param application UIApplication 实例
  *  @param userInfo    推送时指定的参数
  */
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(nonnull NSDictionary *)userInfo
 {
-    NSLog(@"[XGDemo] receive Notification");
     [XGPush handleReceiveNotification:userInfo
                       successCallback:^{
                           NSLog(@"[XGDemo] Handle receive success");
                       } errorCallback:^{
                           NSLog(@"[XGDemo] Handle receive error");
                       }];
+    
+    
 }
 
 
@@ -80,7 +84,6 @@
  */
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
-    NSLog(@"[XGDemo] receive slient Notification");
     NSLog(@"[XGDemo] userinfo %@", userInfo);
     [XGPush handleReceiveNotification:userInfo
                       successCallback:^{
@@ -88,7 +91,6 @@
                       } errorCallback:^{
                           NSLog(@"[XGDemo] Handle receive error");
                       }];
-    
     
     
     
@@ -118,7 +120,6 @@
 // App 用户点击通知的回调
 // 无论本地推送还是远程推送都会走这个回调
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void(^)())completionHandler {
-    NSLog(@"[XGDemo] click notification");
     [XGPush handleReceiveNotification:response.notification.request.content.userInfo
                       successCallback:^{
                           NSLog(@"[XGDemo] Handle receive success");
@@ -128,8 +129,6 @@
     
     
     //TODO...   handle notification with type
-    
-    [AlertHelp tipWith:@"点击通知了" wait:1];
     
     NSDictionary *xgInfoDic = response.notification.request.content.userInfo;
     
@@ -147,20 +146,6 @@
         default:
             break;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    completionHandler();
 }
 
 
@@ -208,27 +193,6 @@
     localNotify.fireDate             = [NSDate dateWithTimeIntervalSinceNow:0];
     localNotify.alertBody            = alertBody;
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotify];
-    
-    //    float sysVer = [[[UIDevice currentDevice] systemVersion] floatValue];
-    //
-    //    if (sysVer >= 10.0)
-    //    {
-    //        UNMutableNotificationContent *content = [UNMutableNotificationContent new];
-    //        content.body                          = alertBody;
-    //
-    //        UNTimeIntervalNotificationTrigger *tragger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:0 repeats:NO];
-    //
-    //        UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"testUNNotification" content:content trigger:tragger];
-    //
-    //
-    //    }
-    //    else
-    //    {
-    //        UILocalNotification *localNotify = [[UILocalNotification alloc] init];
-    //        localNotify.fireDate             = [NSDate dateWithTimeIntervalSinceNow:0];
-    //        localNotify.alertBody            = alertBody;
-    //        [[UIApplication sharedApplication] scheduleLocalNotification:localNotify];
-    //    }
 }
 
 

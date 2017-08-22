@@ -49,7 +49,7 @@
                                                                       
                                                                       dispatch_async(dispatch_get_main_queue(), ^{
                                                                           NSString *errinfo = [NSString stringWithFormat:@"code=%ld,msg=%@",(long)request.response.errorCode,request.response.errorInfo];
-                                                                          [AlertHelp alertWith:@"上传RoomInfo失败" message:errinfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
+                                                                          //                                                                          [AlertHelp alertWith:@"上传RoomInfo失败" message:errinfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
                                                                       });
                                                                   }];
     

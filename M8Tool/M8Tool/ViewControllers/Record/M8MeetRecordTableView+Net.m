@@ -48,13 +48,13 @@
 
 /**
  请求网络数据
-
+ 
  @param offset 偏移位置
  */
 - (void)loadDataWithOffset:(int)offset
 {
     /**
-     * 会议记录 和 会议收藏 的数据类型基本一致
+     *  会议记录 和 会议收藏 的数据类型基本一致
      *  会议记录 比 会议收藏 返回多一个 collect 字段，用于判断是否被收藏
      *  会议收藏中的数据都是默认是收藏的
      */
@@ -103,7 +103,7 @@
 
 /**
  请求会议记录数据
-
+ 
  @param offset 偏移位置
  */
 - (void)loadRecordData:(int)offset
@@ -121,17 +121,17 @@
         [weakself endAllRefresh:(request.response.errorCode == 10086)];
     }];
     
-    listReq.token = [AppDelegate sharedAppDelegate].token;
-    listReq.uid   = [M8UserDefault getLoginId];
-    listReq.offset= offset;
-    listReq.nums  = self.pageNums;
+    listReq.token  = [AppDelegate sharedAppDelegate].token;
+    listReq.uid    = [M8UserDefault getLoginId];
+    listReq.offset = offset;
+    listReq.nums   = self.pageNums;
     [[WebServiceEngine sharedEngine] AFAsynRequest:listReq];
 }
 
 
 /**
  请求会议收藏数据
-
+ 
  @param offset 偏移位置
  */
 - (void)loadCollectData:(int)offset
@@ -149,10 +149,10 @@
         [weakself endAllRefresh:(request.response.errorCode == 10086)];
     }];
     
-    collectReq.token = [AppDelegate sharedAppDelegate].token;
-    collectReq.uid   = [M8UserDefault getLoginId];
-    collectReq.offset= offset;
-    collectReq.nums  = self.pageNums;
+    collectReq.token  = [AppDelegate sharedAppDelegate].token;
+    collectReq.uid    = [M8UserDefault getLoginId];
+    collectReq.offset = offset;
+    collectReq.nums   = self.pageNums;
     [[WebServiceEngine sharedEngine] AFAsynRequest:collectReq];
 }
 

@@ -115,7 +115,19 @@
             
             if(err)
             {
-                [weakself selfDismiss];
+                if (err.code == 1003)
+                {
+                    [AlertHelp tipWith:@"请稍后重试" wait:1];
+                    
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        
+                        [weakself selfDismiss];
+                    });
+                }
+                else
+                {
+                    [weakself selfDismiss];
+                }
             }
             else
             {
@@ -141,7 +153,7 @@
 {
     //    [self.renderModelManger memberJoinSelfWithID:self.liveItem.info.host];
     
-    [self recvCall:config];
+    //    [self recvCall:config];
 }
 
 #pragma mark -- 接收方
