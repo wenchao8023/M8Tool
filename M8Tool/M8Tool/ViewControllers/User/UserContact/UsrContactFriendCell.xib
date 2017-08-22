@@ -61,6 +61,23 @@
                             <constraint firstAttribute="width" constant="20" id="H5Y-7v-vrb"/>
                         </constraints>
                     </imageView>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新好友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1a-W9-hWX">
+                        <rect key="frame" x="376" y="90" width="40" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="2"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                <color key="value" red="0.41592639593908631" green="0.41592639593908631" blue="0.41592639593908631" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                <integer key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
@@ -69,16 +86,21 @@
                     <constraint firstItem="jhi-oD-4Y7" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="KvX-mD-BcF"/>
                     <constraint firstItem="jhi-oD-4Y7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Kwx-xf-6bx"/>
                     <constraint firstItem="Gvu-zs-ZvZ" firstAttribute="leading" secondItem="9dL-IH-oyO" secondAttribute="leading" id="L2Q-xK-sba"/>
+                    <constraint firstItem="i1a-W9-hWX" firstAttribute="centerY" secondItem="Gvu-zs-ZvZ" secondAttribute="centerY" id="Nf6-7z-sAT"/>
                     <constraint firstAttribute="trailing" secondItem="v6Q-og-GQ2" secondAttribute="trailing" constant="20" id="Vn0-Gt-tmt"/>
                     <constraint firstItem="Gvu-zs-ZvZ" firstAttribute="top" secondItem="9dL-IH-oyO" secondAttribute="bottom" id="WvJ-88-9pA"/>
+                    <constraint firstAttribute="trailing" secondItem="i1a-W9-hWX" secondAttribute="trailing" constant="10" id="dfc-iO-Fxk"/>
                     <constraint firstItem="9dL-IH-oyO" firstAttribute="top" secondItem="jhi-oD-4Y7" secondAttribute="top" id="fBA-Ux-bM4"/>
+                    <constraint firstItem="i1a-W9-hWX" firstAttribute="leading" secondItem="Gvu-zs-ZvZ" secondAttribute="trailing" constant="10" id="q7l-Ma-kXi"/>
                     <constraint firstItem="v6Q-og-GQ2" firstAttribute="leading" secondItem="9dL-IH-oyO" secondAttribute="trailing" constant="20" id="urr-b4-jp3"/>
                     <constraint firstItem="9dL-IH-oyO" firstAttribute="leading" secondItem="jhi-oD-4Y7" secondAttribute="trailing" constant="10" id="yJv-cr-yJg"/>
+                    <constraint firstItem="i1a-W9-hWX" firstAttribute="height" secondItem="Gvu-zs-ZvZ" secondAttribute="height" id="zyS-cp-Gvt"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <inset key="separatorInset" minX="60" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
+                <outlet property="friendTipLabel" destination="i1a-W9-hWX" id="bH7-Tz-7Rs"/>
                 <outlet property="iconLabel" destination="jhi-oD-4Y7" id="HLI-NU-f9Y"/>
                 <outlet property="statuImg" destination="v6Q-og-GQ2" id="HSU-CU-sc1"/>
                 <outlet property="subTitleLabel" destination="Gvu-zs-ZvZ" id="2zJ-KN-yD8"/>

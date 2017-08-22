@@ -21,6 +21,7 @@
 
 @interface PartDetailResponseData : BaseResponseData
 
-@property (nonatomic, strong, nonnull) NSArray *members;
+@property (nonatomic, strong, nullable) NSArray *members;           //部门中成员
+@property (nonatomic, strong, nullable) NSDictionary *department;   //部门信息
 
 @end

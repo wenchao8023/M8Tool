@@ -17,7 +17,8 @@ typedef NS_ENUM(NSInteger, SetPwdType){
 
 @property (nonatomic, assign) SetPwdType setPwdType;
 
-@property (nonatomic, copy) NSString *userName;
-@property (nonatomic, copy) NSString *phoneNum;
+@property (nonatomic, copy, nullable) NSString *nickName;
+@property (nonatomic, copy, nullable) NSString *phoneNum;
+@property (nonatomic, copy, nullable) NSString *veriCode;
 
 @end

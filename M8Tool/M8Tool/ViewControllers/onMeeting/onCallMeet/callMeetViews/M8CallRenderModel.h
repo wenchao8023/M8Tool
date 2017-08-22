@@ -22,6 +22,10 @@ typedef NS_ENUM(NSInteger, onMeetMemberStatus)
 
 @interface M8CallRenderModel : NSObject
 
+- (instancetype _Nullable )initWithTILCallMember:(TILCallMember *_Nullable)member;
+
+
+
 /**
  成员id  只记录一次
  成员唯一标识符
@@ -39,6 +43,11 @@ typedef NS_ENUM(NSInteger, onMeetMemberStatus)
 @property (nonatomic, assign) onMeetMemberStatus meetMemberStatus;
 
 /**
+ 视频源类型
+ */
+@property (nonatomic, assign) avVideoSrcType videoScrType;
+
+/**
  摄像头是否打开
  */
 @property (nonatomic, assign) BOOL isCameraOn;
@@ -49,15 +58,22 @@ typedef NS_ENUM(NSInteger, onMeetMemberStatus)
 @property (nonatomic, assign) BOOL isMicOn;
 
 /**
- 视频源类型
- */
-@property (nonatomic, assign) avVideoSrcType videoScrType;
-
-
-/**
  判断用户是不是在操作不在房间的成员
  */
 @property (nonatomic, assign) BOOL isInUserAction;
+
+/**
+ 判断不在房间中的成员是否被移除
+ */
+@property (nonatomic, assign) BOOL isRemoved;
+
+/**
+ 判断成员是否在房间
+ */
+@property (nonatomic, assign) BOOL isInRoom;
+
+
+
 
 /**
  用于记录用户点击不在房间中的成员之后唤起的 移除 和 邀请按钮
@@ -70,10 +86,12 @@ typedef NS_ENUM(NSInteger, onMeetMemberStatus)
  */
 @property (nonatomic, assign) NSInteger userActionDuration;
 
+
+
+
+@property (nonatomic, copy, nullable) TCIBlock userActionEndAutom;
+
 - (void)onUserActionBegin;
 - (void)onUserActionEnd;
-@property (nonatomic, copy, nullable) TCIVoidBlock userActionEndAutom;
-
-
 
 @end

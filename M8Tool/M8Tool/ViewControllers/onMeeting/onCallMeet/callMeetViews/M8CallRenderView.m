@@ -8,7 +8,6 @@
 
 #import "M8CallRenderView.h"
 #import "M8CallRenderCell.h"
-#import "M8CallRenderNote.h"
 #import "M8CallRenderModelManger.h"
 #import "M8CallRenderModel.h"
 
@@ -25,7 +24,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *layoutHeight_render;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *layoutTop_render;
 
-@property (strong, nonatomic) M8CallRenderNote *noteView;
 @property (nonatomic, strong) M8CallRenderModelManger *modelManager;
 
 @property (nonatomic, copy) NSString *bgViewIdentify;
@@ -57,15 +55,7 @@
 }
 
 
-- (M8CallRenderNote *)noteView
-{
-    if (!_noteView)
-    {
-        M8CallRenderNote *noteView = [[M8CallRenderNote alloc] initWithFrame:CGRectMake(0, self.height - 270, self.width, 200)];
-        [self addSubview:(_noteView = noteView)];
-    }
-    return _noteView;
-}
+
 
 - (void)drawRect:(CGRect)rect
 {
@@ -76,7 +66,7 @@
     
     // reset collection
     CGFloat itemWidth  = (SCREEN_WIDTH - 50) / 4;
-    CGFloat itemHeight = itemWidth * 4 / 3;
+    CGFloat itemHeight = itemWidth * 5 / 3;
     
     _layoutHeight_render.constant = itemHeight;
     
@@ -93,9 +83,7 @@
     [self.renderCollection setDataSource:self];
     [self.renderCollection setPagingEnabled:YES];
     [self.renderCollection registerNib:[UINib nibWithNibName:@"M8CallRenderCell" bundle:nil] forCellWithReuseIdentifier:@"M8CallRenderCellID"];
-    
-    /// add noteView
-    [self noteView];
+
 }
 
 
@@ -147,19 +135,16 @@
 {
     M8CallRenderCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"M8CallRenderCellID" forIndexPath:indexPath];
     
-    if (cell)
-    {
-        WCWeakSelf(self);
-        cell.removeBlock = ^(NSString * _Nullable info) {
+    WCWeakSelf(self);
+    cell.removeBlock = ^(NSString * _Nullable info) {
         
-            [weakself callRenderActionInfoValue:@{@"invite" : info} key:kCallAction];
-        };
+        [weakself callRenderActionInfoValue:@{@"remove" : info} key:kCallAction];
+    };
+    
+    cell.inviteBlock = ^(NSString * _Nullable info) {
         
-        cell.inviteBlock = ^(NSString * _Nullable info) {
-          
-            [weakself callRenderActionInfoValue:@{@"invite" : info} key:kCallAction];
-        };
-    }
+        [weakself callRenderActionInfoValue:@{@"invite" : info} key:kCallAction];
+    };
     
     if (indexPath.row < self.membersArray.count)
     {
@@ -194,7 +179,7 @@
     }
     else if ([self.call getCallType] == TILCALL_TYPE_AUDIO)
     {
-        [self addTextToView:@"此时在音频模式下，不支持背景视图观看"];
+//        [self addTextToView:@"此时在音频模式下，不支持背景视图观看"];
     }
 }
 
@@ -214,26 +199,18 @@
 }
 
 
-- (void)addTextToView:(id)newText
-{
-    NSString *text = self.noteView.textView.text;
-    
-    NSString *dicStr = [NSString stringWithFormat:@"%@", newText];
-    dicStr = [dicStr stringByAppendingString:@"\n"];
-    dicStr = [dicStr stringByAppendingString:text];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        self.noteView.textView.text = dicStr;
-    });
-    
-}
-
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    BOOL ret = [M8UserDefault getPushMenuStatu];
-    if (ret)
+    //隐藏键盘
+    if ([M8UserDefault getKeyboardShow])
+    {
+        [WCNotificationCenter postNotificationName:kHiddenKeyboard_Notifycation object:nil];
+        return ;
+    }
+    
+    //隐藏菜单
+    if ([M8UserDefault getPushMenuStatu])
     {
         [WCNotificationCenter postNotificationName:kHiddenMenuView_Notifycation object:nil];
         return ;
@@ -243,6 +220,7 @@
 
 - (void)dealloc
 {
+    [WCNotificationCenter removeObserver:self name:kHiddenKeyboard_Notifycation object:nil];
     [WCNotificationCenter removeObserver:self name:kHiddenMenuView_Notifycation object:nil];
 }
 

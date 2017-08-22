@@ -41,9 +41,12 @@
 
 #import "LinkRoomSigRequest.h"
 
+#import "LiveListRequest.h"
 
 
-#import "FriendsListRequest.h"
+
+
+#import "FriendsRequest.h"
 
 #import "VerifyCodeRequest.h"
 
@@ -75,6 +78,12 @@
 
 #import "MeetCancelCRequest.h"
 
+#import "DeleteInfoRequest.h"
+
+#import "ModifyPwdRequest.h"
+
+
+#import "SendNotifyRequest.h"
 
 
 

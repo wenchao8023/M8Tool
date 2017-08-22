@@ -61,6 +61,8 @@
     {
         self.image = [UIImage imageNamed:image];
         self.userInteractionEnabled = YES;
+        
+        
     }
     return self;
 }
@@ -125,8 +127,8 @@
     if (!_tbHeaderView)
     {
         CGRect frame = self.bounds;
-        frame.size.height /= 2;
-        _tbHeaderView = [[M8LuanchTableViewHeader alloc] initWithFrame:frame image:@"defaul_publishcover"];
+        frame.size.height = frame.size.width * 222 / 375;
+        _tbHeaderView = [[M8LuanchTableViewHeader alloc] initWithFrame:frame image:@"M8LiveLuanchHeader"];
     }
     return _tbHeaderView;
 }
@@ -192,7 +194,8 @@
     if (!_dataContentArray)
     {
         _dataContentArray = [NSMutableArray arrayWithCapacity:0];
-        [_dataContentArray addObjectsFromArray:@[@"木木的会议", @"600分钟"]];
+        NSString *topic = [NSString stringWithFormat:@"%@的会议", [M8UserDefault getLoginNick]];
+        [_dataContentArray addObjectsFromArray:@[topic, @"600分钟"]];
     }
     return _dataContentArray;
 }
@@ -218,10 +221,19 @@
     [self.dataItemArray addObjectsFromArray:@[@"会议类型", @"会议主题", @"会议室预订",
                                               @"会议时间", @"预估时长", @"剩余分钟数"]];
     [self.dataContentArray removeAllObjects];
-    [self.dataContentArray addObjectsFromArray:@[@"视频会议", @"林瑞的会议", @"深圳-轩辕会议室",
-                                                 @"2017年5月7号 15:07", @"30分钟", @"600分钟"]];
+    
+    
+    [self.dataContentArray addObjectsFromArray:@[@"视频会议", @"会议主题", @"会议室",
+                                                 [self getCurrentTime], @"30分钟", @"600分钟"]];
     
     [self reloadData];
+}
+
+-(NSString *)getCurrentTime
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yy-MM-dd HH:mm:ss"];
+    return [formatter stringFromDate:[NSDate  date]];
 }
 
 
@@ -264,7 +276,7 @@
  获取到了从通讯录选人模式下返回的消息，准备重新组装数据
  应该将消息传给 参会人员 去处理
  */
-- (void)shouldReloadDataFromSelectContact:(TCIVoidBlock)succHandle
+- (void)shouldReloadDataFromSelectContact:(M8VoidBlock)succHandle
 {
     [self.membersCollection shouldReloadDataFromSelectContact:succHandle];
 }

@@ -33,6 +33,13 @@
     
     self.frame = _myFrame;
 }
+- (IBAction)onMoreAgendaAction:(id)sender
+{
+    if (self.onMoreAgendaActionBlock)
+    {
+        self.onMoreAgendaActionBlock();
+    }
+}
 
 
 @end

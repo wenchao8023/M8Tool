@@ -92,6 +92,9 @@
 }
 
 
+
+
+
 #pragma mark -- M8FloatViewDelegate
 - (void)M8FloatView:(id)floatView centerChanged:(CGPoint)center
 {

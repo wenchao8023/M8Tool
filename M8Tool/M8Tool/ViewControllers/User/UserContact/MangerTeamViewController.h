@@ -15,7 +15,7 @@ typedef NS_ENUM(NSInteger, MangerTeamType)
     MangerTeamType_Partment //管理部门
 };
 
-
+typedef void(^UpdateCInfoSucc)(M8CompanyInfo * _Nullable cInfo);
 
 @interface MangerTeamViewController : BaseViewController
 
@@ -46,6 +46,8 @@ typedef NS_ENUM(NSInteger, MangerTeamType)
  */
 @property (nonatomic, strong, nonnull) M8DepartmentInfo *dInfo;
 
+@property (nonatomic, assign)  BOOL isInviteBack;     //判断是不是会议中邀请好友的时候 点击返回，如果是则返回数据，跳过代理，如果不是，就是退出，应该清空数据;
+
 
 @property (nonatomic, strong) UITableView * _Nullable tableView;
 
@@ -61,7 +63,11 @@ typedef NS_ENUM(NSInteger, MangerTeamType)
 @property (nonatomic, strong, nonnull) NSMutableArray *statuArray;
 
 
-@property (nonatomic, copy, nullable) TCIVoidBlock ensureAddSelectMembersBlock;
+@property (nonatomic, copy, nullable) M8VoidBlock ensureAddSelectMembersBlock;
 
+@property (nonatomic, copy, nullable) M8VoidBlock delCompanySucc;
+
+@property (nonatomic, copy, nullable) UpdateCInfoSucc updateCInfoSucc;
 
 @end
+

@@ -28,6 +28,7 @@
 
 @property (nonatomic, strong) UIButton *removeButton;
 @property (nonatomic, strong) UIButton *inviteButton;
+@property (nonatomic, strong) UIVisualEffectView *buttonEffect;
 
 @end
 
@@ -36,8 +37,21 @@
 
 - (void)setButtonsHidden:(BOOL)hidden
 {
+    self.buttonEffect.hidden = hidden;
     self.removeButton.hidden = hidden;
     self.inviteButton.hidden = hidden;
+}
+
+- (UIVisualEffectView *)buttonEffect
+{
+    if (!_buttonEffect)
+    {
+        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+        UIVisualEffectView *buttonEffect = [[UIVisualEffectView alloc] initWithEffect:blur];
+        buttonEffect.frame = self.contentView.bounds;
+        [self.contentView addSubview:(self.buttonEffect = buttonEffect)];
+    }
+    return _buttonEffect;
 }
 
 - (UIButton *)removeButton
@@ -46,16 +60,19 @@
     {
         CGFloat buttonsHeight = self.height - 15;
         
-        CGFloat buttonWidth = (buttonsHeight - 10) / 2;
+        CGFloat buttonWidth = (buttonsHeight - 15) / 2;
         CGFloat buttonX = (self.width - buttonWidth) / 2;
         
-        UIButton *removeButton = [WCUIKitControl createButtonWithFrame:CGRectMake(buttonX, 0, buttonWidth, buttonWidth)
+        UIButton *removeButton = [WCUIKitControl createButtonWithFrame:CGRectMake(buttonX, 5, buttonWidth, buttonWidth)
                                                                 Target:self
                                                                 Action:@selector(onRemoveAction)
                                                                  Title:@"移除"];
         removeButton.backgroundColor = WCButtonColor;
-        removeButton.alpha = 0.5;
-        [removeButton setTitleColor:WCWhite forState:UIControlStateNormal];
+        [removeButton setAttributedTitle:[CommonUtil customAttString:@"移除"
+                                                            fontSize:kAppSmallFontSize
+                                                           textColor:WCWhite
+                                                           charSpace:kAppKern_0]
+                                forState:UIControlStateNormal];
         WCViewBorder_Radius(removeButton, buttonWidth / 2);
         [self.contentView addSubview:(self.removeButton = removeButton)];
     }
@@ -76,8 +93,11 @@
                                                                 Action:@selector(onInviteAction)
                                                                  Title:@"邀请"];
         inviteButton.backgroundColor = WCButtonColor;
-        inviteButton.alpha = 0.5;
-        [inviteButton setTitleColor:WCWhite forState:UIControlStateNormal];
+        [inviteButton setAttributedTitle:[CommonUtil customAttString:@"邀请"
+                                                            fontSize:kAppSmallFontSize
+                                                           textColor:WCWhite
+                                                           charSpace:kAppKern_0]
+                                forState:UIControlStateNormal];
         WCViewBorder_Radius(inviteButton, buttonWidth / 2);
         [self.contentView addSubview:(self.inviteButton = inviteButton)];
     }
@@ -196,7 +216,6 @@
             self.infoLabel.text = kMemberStatu_disconnect;
         }
             break;
-            
         default:
             break;
     }

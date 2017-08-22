@@ -53,6 +53,28 @@
     [self.luancherLabel configLiveText];
 }
 
+- (void)configHeaderView:(NSString *)title host:(NSString *)host
+{
+    [[TIMFriendshipManager sharedInstance] GetUsersProfile:@[host] succ:^(NSArray *friends) {
+        
+        for (TIMUserProfile *userProfile in friends)
+        {
+            if ([userProfile.identifier isEqualToString:host])
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                
+                    self.luancherLabel.text = userProfile.nickname;
+                });
+            }
+        }
+        
+    } fail:^(int code, NSString *msg) {
+        
+    }];
+    self.topicLabel.text = title;
+    [self beginCountTime];
+}
+
 - (void)configHeaderView:(TCShowLiveListItem *)item
 {
     self.topicLabel.text = item.info.title;
@@ -76,7 +98,7 @@
 - (NSString *)getTimeStr:(int)time {
     NSString *str;
     if (time < 60) {
-        str = [NSString stringWithFormat:@"%d", time];
+        str = [NSString stringWithFormat:@"00:%02d", time];
     }
     else if (time < 60*60) {
         str = [NSString stringWithFormat:@"%02d:%02d", time / 60, time % 60];

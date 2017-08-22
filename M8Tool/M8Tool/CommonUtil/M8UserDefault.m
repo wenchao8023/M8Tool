@@ -14,7 +14,7 @@
 #pragma mark -- kLoginIdentifier（用户ID）
 + (NSString *)getLoginId
 {
-    return [self returnStringWithKey:kLoginIdentifier];
+    return [self returnObjectWithKey:kLoginIdentifier];
 }
 + (void)setLoginId:(NSString *)loginId
 {
@@ -24,7 +24,7 @@
 #pragma mark -- kLoginNick（用户昵称）
 + (NSString *)getLoginNick
 {
-    return [self returnStringWithKey:kLoginNick];
+    return [self returnObjectWithKey:kLoginNick];
 }
 + (void)setLoginNick:(NSString *)loginNick
 {
@@ -34,14 +34,60 @@
 #pragma mark -- kLoginPassward（用户密码）
 + (NSString *)getLoginPwd
 {
-    return [self returnStringWithKey:kLoginPassward];
+    return [PasswordTool readPassWord];
 }
 + (void)setLoginPwd:(NSString *)loginPwd
 {
-    [self setObject:loginPwd key:kLoginPassward];
+    [PasswordTool savePassWord:loginPwd];
+}
+
+#pragma mark -- kLastLoginType（用户上一次登录类型）
++ (LastLoginType)getLastLoginType
+{
+    LastLoginType loginType;
+    id obj = [self returnObjectWithKey:kLastLoginType];
+    [obj getValue:&loginType];
+    
+    return loginType;
+}
++ (void)setLastLoginType:(LastLoginType)loginType
+{
+    [self setObject:@(loginType) key:kLastLoginType];
 }
 
 
+#pragma mark - QQ登录
++ (NSString *)getQQOpenId
+{
+    return [PasswordTool readQQOpenId];
+}
++ (void)setQQOpenId:(NSString *)openId
+{
+    [PasswordTool saveQQOpenId:openId];
+}
+
+
+#pragma mark - -- kUserLogout（用户主动登出）
++ (BOOL)getIsUserLogout
+{
+    return [self returnBoolWithKey:kUserLogout];
+}
+
++ (void)setUserLogout:(BOOL)userLogout
+{
+    [self setBoolValue:userLogout key:kUserLogout];
+}
+
+#pragma mark - -- kAppLaunching (App是否在启动中)
++ (BOOL)getAppIsLaunching
+{
+    return [self returnBoolWithKey:kAppLaunching];
+}
+
++ (void)setAppLaunching:(BOOL)launching
+{
+    [self setBoolValue:launching key:kAppLaunching];
+}
 
 
 #pragma mark - 会议信息
@@ -69,12 +115,44 @@
 }
 
 
+#pragma mark -- kKeyboardShow (会议中推出键盘)
++ (BOOL)getKeyboardShow
+{
+    return [self returnBoolWithKey:kKeyboardShow];
+}
+
++ (void)setKeyboardShow:(BOOL)show
+{
+    [self setBoolValue:show key:kKeyboardShow];
+}
+
+#pragma mark -- kNewFriendNotify (判断是否有新的朋友)
++ (BOOL)getNewFriendNotify
+{
+    return [self returnBoolWithKey:kNewFriendNotify];
+}
++ (void)setNewFriendNotify:(BOOL)notify
+{
+    [self setBoolValue:notify key:kNewFriendNotify];
+}
+
+#pragma mark -- kNewFriendIdentify (新的好友IDs)
++ (NSArray *)getNewFriendIdentify
+{
+    return [self returnObjectWithKey:kNewFriendIdentify];
+}
+
++ (void)setNewFriendIdentify:(NSArray *)idArr
+{
+    [self setObject:idArr key:kNewFriendIdentify];
+}
+
 
 #pragma mark - 全局设置
 #pragma mark -- kThemeImage（主题图片）
 + (NSString *)getThemeImageString
 {
-    return [self returnStringWithKey:kThemeImage];
+    return [self returnObjectWithKey:kThemeImage];
 }
 + (void)setThemeImageString:(NSString *)imgStr
 {
@@ -93,6 +171,7 @@
 }
 
 
+
 #pragma mark - private
 #pragma mark -- object value
 + (void)setObject:(id)obj key:(NSString *)key
@@ -102,7 +181,7 @@
     [userD synchronize];
 }
 
-+ (id)returnStringWithKey:(NSString *)key
++ (id)returnObjectWithKey:(NSString *)key
 {
     return [[NSUserDefaults standardUserDefaults] objectForKey:key];
 }

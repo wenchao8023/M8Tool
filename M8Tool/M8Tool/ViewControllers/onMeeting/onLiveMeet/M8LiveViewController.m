@@ -28,7 +28,10 @@
     
     [self initCall];
     
+    //隐藏菜单通知
     [WCNotificationCenter addObserver:self selector:@selector(onHiddeMenuView) name:kHiddenMenuView_Notifycation object:nil];
+    
+    [WCNotificationCenter addObserver:self selector:@selector(selfDismiss) name:UIApplicationWillTerminateNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,10 +58,10 @@
 
 - (void)makeLive
 {
-    TILLiveRoomOption *option = [TILLiveRoomOption defaultHostLiveOption];
-    option.controlRole = kSxbRole_Host;
+    TILLiveRoomOption *option   = [TILLiveRoomOption defaultHostLiveOption];
+    option.controlRole          = kM8Role_Host;
     option.avOption.autoHdAudio = YES;//使用高音质模式，可以传背景音乐
-    option.imOption.imSupport = YES;
+    option.imOption.imSupport   = YES;
     
     LoadView *createRoomWaitView = [LoadView loadViewWith:@"正在创建房间"];
     [self.view addSubview:createRoomWaitView];
@@ -74,14 +77,14 @@
     //设置承载渲染的界面
     [manager setAVRootView:self.livePlayView];
     
-//    WCWeakSelf(self);
+    //    WCWeakSelf(self);
     [manager createRoom:(int)self.liveItem.info.roomnum option:option succ:^{
         [createRoomWaitView removeFromSuperview];
         
-//        [weakself.livingInfoView addTextToView:@"创建房间成功"];
+        //        [weakself.livingInfoView addTextToView:@"创建房间成功"];
         
-        [[ILiveRoomManager getInstance] setBeauty:2];
-        [[ILiveRoomManager getInstance] setWhite:2];
+        [[ILiveRoomManager getInstance] setBeauty:1];
+        [[ILiveRoomManager getInstance] setWhite:1];
         //        [_bottomView setMicState:YES];//重新设置麦克风的状态
         
         //将房间参数保存到本地，如果异常退出，下次进入app时，可提示返回这次的房间
@@ -89,18 +92,18 @@
         //        [ws setSelfInfo];
         //
         //        [ws initAudio];
-    
+        
         [self onNetReportRoomInfo];
         
-
-        [self onLivePushStart];         
+        
+        [self onLivePushStart];
         
         
     } failed:^(NSString *module, int errId, NSString *errMsg) {
         [createRoomWaitView removeFromSuperview];
         
-//        NSString *errinfo = [NSString stringWithFormat:@"module=%@,errid=%d,errmsg=%@",module,errId,errMsg];
-//        [weakself.livingInfoView addTextToView:errinfo];
+        //        NSString *errinfo = [NSString stringWithFormat:@"module=%@,errid=%d,errmsg=%@",module,errId,errMsg];
+        //        [weakself.livingInfoView addTextToView:errinfo];
     }];
     
 }
@@ -108,7 +111,7 @@
 - (void)joinLive
 {
     TILLiveRoomOption *option = [TILLiveRoomOption defaultGuestLiveOption];
-    option.controlRole = kSxbRole_Guest;
+    option.controlRole        = kM8Role_Guest;
     
     TILLiveManager *manager = [TILLiveManager getInstance];
     //设置消息监听
@@ -121,16 +124,16 @@
     __weak typeof(self) ws = self;
     [manager joinRoom:(int)self.liveItem.info.roomnum option:option succ:^{
         NSLog(@"join room succ");
-//        [ws sendJoinRoomMsg];
-//        [ws setSelfInfo];
+        //        [ws sendJoinRoomMsg];
+        //        [ws setSelfInfo];
         
     } failed:^(NSString *module, int errId, NSString *errMsg)
      {
-        NSString *errLog = [NSString stringWithFormat:@"join room fail. module=%@,errid=%d,errmsg=%@",module,errId,errMsg];
-        [AlertHelp alertWith:@"加入房间失败" message:errLog cancelBtn:@"退出" alertStyle:UIAlertControllerStyleAlert cancelAction:^(UIAlertAction * _Nonnull action) {
-            [ws selfDismiss];
-        }];
-    }];
+         NSString *errLog = [NSString stringWithFormat:@"join room fail. module=%@,errid=%d,errmsg=%@",module,errId,errMsg];
+         [AlertHelp alertWith:@"加入房间失败" message:errLog cancelBtn:@"退出" alertStyle:UIAlertControllerStyleAlert cancelAction:^(UIAlertAction * _Nonnull action) {
+             [ws selfDismiss];
+         }];
+     }];
 }
 
 
@@ -139,7 +142,7 @@
 - (M8LiveJoinTableView *)tableView {
     if (!_tableView) {
         M8LiveJoinTableView *tableView = [[M8LiveJoinTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-        _tableView = tableView;
+        _tableView                     = tableView;
     }
     return _tableView;
 }
@@ -149,7 +152,7 @@
     if (!_livePlayView)
     {
         M8LivePlayView *livePlayView = [[M8LivePlayView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
-        _livePlayView = livePlayView;
+        _livePlayView                = livePlayView;
     }
     return _livePlayView;
 }
@@ -158,12 +161,12 @@
 {
     if (!_scrollView)
     {
-        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-        scrollView.pagingEnabled = YES;
-        scrollView.contentSize = CGSizeMake(self.view.width * 2, self.view.height);
-        scrollView.contentOffset = CGPointMake(self.view.width, 0);
-        scrollView.bounces = NO;
-        scrollView.showsVerticalScrollIndicator = NO;
+        UIScrollView *scrollView                  = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+        scrollView.pagingEnabled                  = YES;
+        scrollView.contentSize                    = CGSizeMake(self.view.width * 2, self.view.height);
+        scrollView.contentOffset                  = CGPointMake(self.view.width, 0);
+        scrollView.bounces                        = NO;
+        scrollView.showsVerticalScrollIndicator   = NO;
         scrollView.showsHorizontalScrollIndicator = NO;
         
         [scrollView addSubview:self.liveInfoView];
@@ -193,7 +196,7 @@
     if (!_headerView)
     {
         M8LiveHeaderView *headerView = [[M8LiveHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, kDefaultNaviHeight)];
-        _headerView = headerView;
+        _headerView                  = headerView;
     }
     return _headerView;
 }
@@ -203,7 +206,7 @@
     if (!_noteView)
     {
         M8LiveNoteView *noteView = [[M8LiveNoteView alloc] initWithFrame:CGRectMake(0, self.view.height - kBottomHeight - 200, self.view.width, 200)];
-        _noteView = noteView;
+        _noteView                = noteView;
     }
     return _noteView;
 }
@@ -213,7 +216,7 @@
     if (!_deviceView)
     {
         M8MeetDeviceView *deviceView = [[M8MeetDeviceView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - kBottomHeight, SCREEN_WIDTH, kBottomHeight)];
-        deviceView.WCDelegate = self;
+        deviceView.WCDelegate        = self;
         [deviceView setCenterBtnImg:@"onMeetChat"];
         
         _deviceView = deviceView;
@@ -230,6 +233,7 @@
         M8MenuPushView *menuView = [[M8MenuPushView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, kBottomHeight)
                                                                itemCount:0
                                                                 meetType:M8MeetTypeLive
+                                                                    call:nil
                                     ];
         [self.view addSubview:menuView];
         [self.view bringSubviewToFront:menuView];
@@ -284,8 +288,8 @@
     NSString *text = self.noteView.textView.text;
     
     NSString *dicStr = [NSString stringWithFormat:@"%@", newText];
-    dicStr = [dicStr stringByAppendingString:@"\n"];
-    dicStr = [dicStr stringByAppendingString:text];
+    dicStr           = [dicStr stringByAppendingString:@"\n"];
+    dicStr           = [dicStr stringByAppendingString:text];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
@@ -296,7 +300,6 @@
 
 - (void)selfDismiss
 {
-    
     BOOL ret = [M8UserDefault getPushMenuStatu];
     if (ret)
     {
@@ -308,11 +311,10 @@
     [self onNetReportExitRoom];
     
     TILLiveManager *manager = [TILLiveManager getInstance];
-//    __weak typeof(self) ws = self;
     [manager quitRoom:^{
-//        [ws.livingInfoView addTextToView:@"退出房间成功"];
+        
     } failed:^(NSString *moudle, int errId, NSString *errMsg) {
-//        [ws.livingInfoView addTextToView:[NSString stringWithFormat:@"退出房间失败,moldle=%@;errid=%d;errmsg=%@",moudle,errId,errMsg]];
+        
     }];
     
     [super selfDismiss];
@@ -329,7 +331,7 @@
 - (void)pan:(UIPanGestureRecognizer *)pan
 {
     CGPoint translation = [pan translationInView:self.view];
-
+    
     [self panChanged:translation.y];
     
     if (pan.state == UIGestureRecognizerStateEnded)
@@ -342,11 +344,11 @@
 
 - (void)panChanged:(CGFloat)transY
 {
-    self.scrollView.y       += transY;
-    self.livePlayView.y     += transY;
+    self.scrollView.y   += transY;
+    self.livePlayView.y += transY;
     
-    CGPoint tableViewY      = self.tableView.contentOffset;
-    tableViewY.y            -= transY;
+    CGPoint tableViewY = self.tableView.contentOffset;
+    tableViewY.y       -= transY;
     [self.tableView setContentOffset:tableViewY];
 }
 
@@ -358,18 +360,18 @@
     {
         [UIView animateWithDuration:0.2 animations:^{
             
-            CGPoint tableViewY      = self.tableView.contentOffset;
-            tableViewY.y            -= (SCREEN_HEIGHT - offsetY);
+            CGPoint tableViewY = self.tableView.contentOffset;
+            tableViewY.y       -= (SCREEN_HEIGHT - offsetY);
             [self.tableView setContentOffset:tableViewY];
             
-            self.scrollView.y = SCREEN_HEIGHT;
+            self.scrollView.y   = SCREEN_HEIGHT;
             self.livePlayView.y = SCREEN_HEIGHT;
             
         } completion:^(BOOL finished) {
             
             if (finished)
             {
-                self.scrollView.y = 0;
+                self.scrollView.y   = 0;
                 self.livePlayView.y = 0;
             }
         }];
@@ -378,18 +380,18 @@
     {
         [UIView animateWithDuration:0.2 animations:^{
             
-            CGPoint tableViewY      = self.tableView.contentOffset;
-            tableViewY.y            += (SCREEN_HEIGHT + offsetY);
+            CGPoint tableViewY = self.tableView.contentOffset;
+            tableViewY.y       += (SCREEN_HEIGHT + offsetY);
             [self.tableView setContentOffset:tableViewY];
             
-            self.scrollView.y = -SCREEN_HEIGHT;
+            self.scrollView.y   = -SCREEN_HEIGHT;
             self.livePlayView.y = -SCREEN_HEIGHT;
             
         } completion:^(BOOL finished) {
             
             if (finished)
             {
-                self.scrollView.y = 0;
+                self.scrollView.y   = 0;
                 self.livePlayView.y = 0;
             }
         }];
@@ -398,8 +400,8 @@
     {
         [UIView animateWithDuration:0.06 animations:^{
             
-            CGPoint tableViewY      = self.tableView.contentOffset;
-            tableViewY.y            += offsetY;
+            CGPoint tableViewY = self.tableView.contentOffset;
+            tableViewY.y       += offsetY;
             [self.tableView setContentOffset:tableViewY];
             
             self.scrollView.y   -= offsetY;
@@ -412,6 +414,7 @@
 - (void)dealloc
 {
     [WCNotificationCenter removeObserver:self name:kHiddenMenuView_Notifycation object:nil];
+    [WCNotificationCenter removeObserver:self name:UIApplicationWillTerminateNotification object:nil];
 }
 
 @end

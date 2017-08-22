@@ -8,9 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
-
-
 @protocol CallRenderDelegate <NSObject>
 
 - (void)CallRenderActionInfo:(NSDictionary *_Nullable)actionInfo;
@@ -47,19 +44,19 @@
  */
 @property (nonatomic, assign) BOOL shouldHangup;
 
-
+/**
+ *  是否是在floatView浮动视图中
+ */
 @property (nonatomic, assign) BOOL isFloatView;
 
 
 @property (nonatomic, weak) id<CallRenderDelegate> _Nullable WCDelegate;
 
 
-@property (nonatomic, copy, nullable) TCIVoidBlock removeBlock;
-@property (nonatomic, copy, nullable) TCIVoidBlock inviteBlock;
+@property (nonatomic, copy, nullable) M8VoidBlock removeBlock;
+@property (nonatomic, copy, nullable) M8VoidBlock inviteBlock;
 
 
-
-- (void)addTextToView:(id _Nullable)newText;
 
 /**
  重新设置 视频流 位置

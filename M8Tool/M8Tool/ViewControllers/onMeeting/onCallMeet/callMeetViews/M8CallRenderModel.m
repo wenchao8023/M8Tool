@@ -10,18 +10,41 @@
 
 @implementation M8CallRenderModel
 
+- (void)initOriginData
+{
+    _isMicOn        = NO;
+    _isInRoom       = NO;
+    _isRemoved      = NO;
+    _isCameraOn     = NO;
+    _isInUserAction = NO;
+    
+    _videoScrType       = QAVVIDEO_SRC_TYPE_CAMERA;
+    _meetMemberStatus   = MeetMemberStatus_none;
+    _userActionDuration = 0;
+}
+
 - (instancetype)init
 {
     if (self = [super init])
     {
-        _meetMemberStatus = MeetMemberStatus_none;
-        _isCameraOn     = NO;
-        _isMicOn        = NO;
-        _videoScrType   = QAVVIDEO_SRC_TYPE_CAMERA;
-        _userActionDuration  = 0;
+        [self initOriginData];
     }
     return self;
 }
+
+- (instancetype)initWithTILCallMember:(TILCallMember *)member
+{
+    if (self = [super init])
+    {
+        [self initOriginData];
+        
+        self.identify   = member.identifier;
+        self.isMicOn    = member.isAudio;
+        self.isCameraOn = member.isCameraVideo;
+    }
+    return self;
+}
+
 
 
 - (void)onUserActionBegin
@@ -29,32 +52,45 @@
     self.isInUserAction = YES;
     self.userActionDuration = 10;
     self.userActionTimer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(countCancelTimer) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop] addTimer:self.userActionTimer forMode:NSDefaultRunLoopMode];
+    [[NSRunLoop currentRunLoop] addTimer:self.userActionTimer forMode:NSRunLoopCommonModes];
     [self.userActionTimer fire];
 }
 
 - (void)countCancelTimer
 {
-    self.userActionDuration -= 1;
-    if (self.userActionDuration == 0 ||
-        self.isInUserAction == NO)
+    WCLog(@"剩余操作时间 : %ld", (long)self.userActionDuration);
+    
+    if (self.isInUserAction == YES)
     {
-        if ([self.userActionTimer isValid])
+        if (self.userActionDuration == 0)
         {
-            [self.userActionTimer invalidate];
-            self.userActionTimer = nil;
+            [self onUserActionEnd];
+            
+            if (self.userActionEndAutom)
+            {
+                self.userActionEndAutom(self);
+            }
         }
-        
-        if (self.userActionEndAutom)
+        else
         {
-            self.userActionEndAutom();
+            self.userActionDuration -= 1;
         }
+    }
+    else
+    {
+        [self onUserActionEnd];
     }
 }
 
 - (void)onUserActionEnd
 {
+    if (!self.userActionTimer)
+    {
+        //防止在主线程里面执行该方法
+        [[NSRunLoop currentRunLoop] cancelPerformSelector:@selector(countCancelTimer) target:self argument:nil];
+    }
     self.isInUserAction = NO;
+    self.userActionDuration = 0;
     if ([self.userActionTimer isValid])
     {
         [self.userActionTimer invalidate];

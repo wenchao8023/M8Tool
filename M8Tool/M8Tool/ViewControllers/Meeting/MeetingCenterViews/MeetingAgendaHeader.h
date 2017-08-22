@@ -10,4 +10,7 @@
 
 @interface MeetingAgendaHeader : UIView
 
+@property (nonatomic, copy, nullable) M8VoidBlock onMoreAgendaActionBlock;
+
+
 @end

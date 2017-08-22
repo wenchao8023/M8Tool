@@ -1,8 +1,4 @@
 
-
-
-
-
 #import "WebServiceEngine.h"
 
 #import "BaseRequest.h"
@@ -18,6 +14,13 @@ static WebServiceEngine *_sharedEngine = nil;
 
 - (void)AFAsynRequest:(BaseRequest *)req
 {
+    if (![AppDelegate sharedAppDelegate].netEnable)
+    {
+        [AlertHelp tipWith:@"网络连接异常" wait:1];
+        
+        return ;
+    }
+    
     if (!req)
     {
         return ;
@@ -43,6 +46,7 @@ static WebServiceEngine *_sharedEngine = nil;
         [manger.requestSerializer setValue:@"application/json; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
         [manger.requestSerializer setValue:@"text/html; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
         [manger.requestSerializer setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+
         
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         
@@ -59,7 +63,7 @@ static WebServiceEngine *_sharedEngine = nil;
 
                 if (![NSJSONSerialization isValidJSONObject:responseObject])
                 {
-                    TCILDebugLog(@"sxbparse fail --> %@",responseObject);
+//                    TCILDebugLog(@"sxbparse fail --> %@",responseObject);
                     NSLog(@"请求出错");
                     if (req.failHandler)
                     {
@@ -77,12 +81,13 @@ static WebServiceEngine *_sharedEngine = nil;
                     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:responseObject options:NSJSONWritingPrettyPrinted error:&parseError];
                     
                     NSString *responseString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-                    TCILDebugLog(@"sxbparse responseString--> %@",responseString);
+//                    TCILDebugLog(@"sxbparse responseString--> %@",responseString);
                     NSLog(@"[%@] request's responseString is :\n================================\n %@ \n================================" , [req class], responseString);
                     //TODO
                     if (responseObject)
                     {
-                        TCILDebugLog(@"sxbparse --> %@",responseObject);
+//                        TCILDebugLog(@"sxbparse --> %@",responseObject);
+
                         [req parseResponse:responseObject];
                     }
                 }
@@ -213,18 +218,18 @@ static WebServiceEngine *_sharedEngine = nil;
             else
             {
                 NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                TCILDebugLog(@"sxbparse responseString--> %@",responseString);
+//                TCILDebugLog(@"sxbparse responseString--> %@",responseString);
                 NSLog(@"[%@] request's responseString is :\n================================\n %@ \n================================" , [req class], responseString);
                 //TODO
                 NSObject *jsonObj = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
                 if (jsonObj)
                 {
-                    TCILDebugLog(@"sxbparse --> %@",jsonObj);
+//                    TCILDebugLog(@"sxbparse --> %@",jsonObj);
                     [req parseResponse:jsonObj];
                 }
                 else
                 {
-                    TCILDebugLog(@"sxbparse fail --> %@",jsonObj);
+//                    TCILDebugLog(@"sxbparse fail --> %@",jsonObj);
                     NSLog(@"请求出错");
                     if (req.failHandler)
                     {

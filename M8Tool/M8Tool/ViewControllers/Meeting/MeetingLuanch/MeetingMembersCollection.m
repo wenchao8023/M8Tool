@@ -58,7 +58,8 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
 {
     UILabel *numbersLabel = [self viewWithTag:64];
     NSString *textStr = [NSString stringWithFormat:@"%ld/%ld（最多可邀请%ld人）", (long)currenNumbers, (long)totalNumbers, (long)totalNumbers];
-    [numbersLabel setAttributedText:[CommonUtil customAttString:textStr fontSize:kAppMiddleFontSize]];
+    [numbersLabel setAttributedText:[CommonUtil customAttString:textStr
+                                                       fontSize:kAppMiddleFontSize]];
 }
 
 @end
@@ -177,7 +178,10 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
                                 totalNumbers:self.totalNumbers];
         return header;
     }
-    return nil;
+    else
+    {
+        return [[UICollectionReusableView alloc] initWithFrame:CGRectZero];
+    }
 }
 
 
@@ -244,8 +248,10 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
                   alertStyle:UIAlertControllerStyleAlert
                 cancelAction:nil];
     }
-    
 }
+
+
+
 
 
 #pragma mark - KVO
@@ -307,21 +313,35 @@ static NSString *CollectionHeaderID = @"MeetingMembersCollectionHeaderID";
 }
 
 #pragma mark -- 同步从通讯录选人模式下选择的成员
-- (void)shouldReloadDataFromSelectContact:(TCIVoidBlock)succHandle
+- (void)shouldReloadDataFromSelectContact:(M8VoidBlock)succHandle
 {
     M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
     
-    for (M8MemberInfo *info in modelManger.selectMemberArray)
-    {
-        [[self mutableArrayValueForKey:@"dataMembersArray"] addObject:info];
-    }
-    //操作成功，将信息回传给上一级去还原设置
-    if (succHandle)
-    {
-        succHandle();
-    }
+    // inviteMemberArray 中会把自己带过去，所以要 -1
+    NSInteger currentInviteCount = modelManger.inviteMemberArray.count - 1 + modelManger.selectMemberArray.count;
     
-    [self reloadData];
+    if (currentInviteCount <= self.totalNumbers)
+    {
+        for (M8MemberInfo *info in modelManger.selectMemberArray)
+        {
+            [[self mutableArrayValueForKey:@"dataMembersArray"] addObject:info];
+        }
+        //操作成功，将信息回传给上一级去还原设置
+        if (succHandle)
+        {
+            succHandle();
+        }
+        
+        [self reloadData];
+    }
+    else    //人数超过了限制，不做任何数据操作
+    {
+        [AlertHelp alertWith:@"温馨提示"
+                     message:[NSString stringWithFormat:@"最多只能邀请: %ld 人\n当前邀请人数: %ld人", (long)self.totalNumbers, (long)currentInviteCount]
+                   cancelBtn:@"确定"
+                  alertStyle:UIAlertControllerStyleAlert
+                cancelAction:nil];
+    }
 }
 
 - (NSArray *)getMembersArray

@@ -22,14 +22,12 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self setHeaderTitle:@"深圳市音飙科技有限公司"];
+    [self setHeaderTitle:@"个人中心"];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    WCLog(@"用户界面");
     
 
     [self tableView];

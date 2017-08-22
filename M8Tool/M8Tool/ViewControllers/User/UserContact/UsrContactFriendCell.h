@@ -25,13 +25,6 @@
  */
 - (void)configWithFriendItem:(id _Nullable)friendInfo;
 
-
-/**
- 配置默认状态下的样式
- */
-- (void)configWithMemberItem:(id _Nullable)memberInfo;
-
-
 /**
  配置管理者进入，- 可编辑样式
  */
@@ -49,4 +42,6 @@
  配置管理者进入，- 不可反选样式
  */
 - (void)configMemberitemUnableUnselect:(id _Nullable)info;
+
+
 @end

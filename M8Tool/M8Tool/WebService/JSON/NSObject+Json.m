@@ -68,10 +68,12 @@
         //
         //        [self setValue:array forKey:key];
         //        [array release];
-        // 说明要赋值的属性是一个列表
-        NSMutableArray *arrayValue = (NSMutableArray *)[NSObject loadItem:cls fromArrayDictionary:idkeyValue];
         
-        [self setValue:arrayValue forKey:key];
+        // 说明要赋值的属性是一个列表
+#warning 这里不要做内层解析，直接以整个数组形式返回
+//        NSMutableArray *arrayValue = (NSMutableArray *)[NSObject loadItem:cls fromArrayDictionary:idkeyValue];
+        
+        [self setValue:idkeyValue forKey:key];
     }
 }
 
@@ -79,6 +81,7 @@
 
 - (void)enumerateProperty:(NSString *)propertyName value:(id)idvalue propertyDictionary:(NSDictionary *)propertyKeys
 {
+
     if ([idvalue isKindOfClass:[NSNull class]])
     {
         NSString *proClsName = [propertyKeys objectForKey:propertyName];
@@ -136,13 +139,13 @@
 
 + (id)parse:(Class)aClass dictionary:(NSDictionary *)dict
 {
-    
+
     id aClassInstance = [[aClass alloc] init];
     CommonAutoRelease(aClassInstance);
     
     // 因JSON返回的字段中有id
     // 所以对此数据作特处理
-#warning 在获取好友列表时 crash
+
     id idTagValue = [dict objectForKey:kServiceTag_ID];
     if (idTagValue) {
         [aClassInstance setIdPropertyValue:idTagValue];
@@ -162,6 +165,7 @@
         
         // propertyName：要设置的属性名
         // idvalue：对应的值
+
         [aClassInstance enumerateProperty:propertyName value:idvalue propertyDictionary:propertyKeys];
     }
     
@@ -172,7 +176,7 @@
 - (NSMutableDictionary *)propertyListOfClass:(Class)aclass
 {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    
+
     unsigned int propertyCount = 0;
     objc_property_t *propertyList = class_copyPropertyList(aclass, &propertyCount);
     for (unsigned int i = 0 ; i < propertyCount; i++ )
@@ -219,6 +223,7 @@
 - (void)propertyListOfClass:(Class)aclass propertyList:(NSMutableDictionary *)propertyDic
 //- (void)propertyListOfClass:(Class)class propertyList:(NSMutableDictionary *)propertyDic
 {
+
     if (aclass == [NSObject class])
     {
         return;
@@ -236,14 +241,14 @@
     
 }
 
-
+#warning caonidaye de jsonkit
 // 通过返回的Json字典valueDict的keys,过滤出需要设置的属性名名称及对应的类型
 // 返回：过滤后需要设置的（）
 
 - (NSDictionary *)enumerateKeysInDictionary:(NSDictionary *)valueDict
 {
     NSUInteger propertyCount = 0;
-    
+
     NSMutableDictionary *propertyKeys = [[NSMutableDictionary alloc] init];
     CommonAutoRelease(propertyKeys);
     

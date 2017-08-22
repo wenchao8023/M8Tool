@@ -8,6 +8,8 @@
 
 #import "UserSettingTabelView.h"
 
+#import "SettingPwdViewController.h"
+
 
 @interface UserSettingTabelView ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -23,12 +25,12 @@
 {
     if (self = [super initWithFrame:frame style:style])
     {
-        self.tableFooterView    = [WCUIKitControl createViewWithFrame:CGRectZero];
-        self.tableHeaderView    = [WCUIKitControl createViewWithFrame:CGRectZero];
-        self.dataSource         = self;
-        self.delegate           = self;
-        self.scrollEnabled      = NO;
-        self.backgroundColor    = WCClear;
+        self.tableFooterView = [WCUIKitControl createViewWithFrame:CGRectMake(0, 0, self.width, 0.01)];
+        self.tableHeaderView = [WCUIKitControl createViewWithFrame:CGRectMake(0, 0, self.width, 0.01)];
+        self.dataSource      = self;
+        self.delegate        = self;
+        self.scrollEnabled   = NO;
+        self.backgroundColor = WCClear;
         
     }
     return self;
@@ -68,11 +70,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellID = @"UserSettingCellID";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    UITableViewCell *cell   = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell                 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell.selectionStyle  = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = WCClear;
         [cell.textLabel setAttributedText:[CommonUtil customAttString:self.dataArray[indexPath.section][indexPath.row]
                                                              fontSize:kAppLargeFontSize
@@ -85,22 +87,22 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 0.1;
+    return 10.0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 0.1;
+    return 0.01;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    return [WCUIKitControl createViewWithFrame:CGRectZero];
+    return [WCUIKitControl createViewWithFrame:CGRectMake(0, 0, self.width, 0.01)];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    return [WCUIKitControl createViewWithFrame:CGRectZero];
+    return [WCUIKitControl createViewWithFrame:CGRectMake(0, 0, self.width, 0.01)];
 }
 
 
@@ -113,15 +115,46 @@
 
 
 #pragma mark - actions
-- (void)onPwdSetAction {
+- (void)onPwdSetAction
+{
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:nil message:@"为保障你的数据安全，修改密码前请填写原密码。" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *okAction     = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        UITextField *pwdTF = alertC.textFields.firstObject;
+        
+        if ([pwdTF.text isEqualToString:[M8UserDefault getLoginPwd]])
+        {
+            // verify ok
+            SettingPwdViewController *spvc = [[SettingPwdViewController alloc] init];
+            spvc.isExitLeftItem            = YES;
+            [[AppDelegate sharedAppDelegate] pushViewController:spvc];
+        }
+        else
+        {
+            [AlertHelp tipWith:@"输入密码错误" wait:1];
+        }
+    }];
+    
+    [alertC addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        
+        textField.secureTextEntry = YES;
+    }];
+    
+    [alertC addAction:cancelAction];
+    [alertC addAction:okAction];
+    
+    [[[AppDelegate sharedAppDelegate] topViewController] presentViewController:alertC animated:YES completion:nil];
+}
+
+- (void)onNewMsgSetAction
+{
     
 }
 
-- (void)onNewMsgSetAction {
-    
-}
-
-- (void)onAboutAction {
+- (void)onAboutAction
+{
     
 }
 
@@ -132,18 +165,23 @@
         return ;
     }
     
+    /**
+     *  将视图添加到 viewController.view 层 才可以完全显示
+     */
     LoadView *logoutWaitView = [LoadView loadViewWith:@"正在退出"];
-    [self addSubview:logoutWaitView];
+    UIView *selfSuperView    = self.superview;
+    UIView *superSuperView   = selfSuperView.superview;
+    [superSuperView addSubview:logoutWaitView];
     
-    __weak typeof(self) ws = self;
+    WCWeakSelf(self);
     //通知业务服务器登出
     LogoutRequest *logoutReq = [[LogoutRequest alloc] initWithHandler:^(BaseRequest *request) {
         
         [[ILiveLoginManager getInstance] iLiveLogout:^{
             
             [logoutWaitView removeFromSuperview];
-
-            [ws enterLoginUI];
+            
+            [weakself onLogoutSucc];
             
         } failed:^(NSString *module, int errId, NSString *errMsg) {
             
@@ -154,26 +192,39 @@
         }];
         
     } failHandler:^(BaseRequest *request) {
-        
-        NSString *errinfo = [NSString stringWithFormat:@"errid=%ld,errmsg=%@",(long)request.response.errorCode,request.response.errorInfo];
-        NSLog(@"regist fail.%@",errinfo);
-        [logoutWaitView removeFromSuperview];
-        [AlertHelp alertWith:@"退出失败" message:errinfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
+        if (request.response.errorCode == 10008)
+        {
+            [logoutWaitView removeFromSuperview];
+            
+            [weakself onLogoutSucc];
+        }
+        else
+        {
+            NSString *errinfo = [NSString stringWithFormat:@"errid=%ld,errmsg=%@",(long)request.response.errorCode,request.response.errorInfo];
+            NSLog(@"regist fail.%@",errinfo);
+            [logoutWaitView removeFromSuperview];
+            [AlertHelp alertWith:@"退出失败" message:errinfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
+        }
     }];
     
     logoutReq.token = [AppDelegate sharedAppDelegate].token;
-//    [[WebServiceEngine sharedEngine] asyncRequest:logoutReq];
     [[WebServiceEngine sharedEngine] AFAsynRequest:logoutReq];
 }
 
-- (void)enterLoginUI
+- (void)onLogoutSucc
 {
-    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    UINavigationController *navi = kM8LoginNaViewController(kM8MutiLoginViewController);
-    appDelegate.window.rootViewController = navi;
-    [appDelegate.window makeKeyWindow];
+    [M8UserDefault setUserLogout:YES];
+    
+    LastLoginType loginType = [M8UserDefault getLastLoginType];
+    if (loginType == LastLoginType_phone)
+    {
+        [[AppDelegate sharedAppDelegate] enterLoginUI];
+    }
+    else if (loginType == LastLoginType_QQ)
+    {
+        [[AppDelegate sharedAppDelegate] enterLoginMutiUI];
+    }
 }
-
 
 
 @end

@@ -16,6 +16,11 @@
     [[M8MeetWindowSingleton shareInstance] addMeetSource:source WindowOnTarget:target];
 }
 
++ (void)M8_addMeetSource:(id)source WindowOnTarget:(id)target succHandle:(M8VoidBlock)succ
+{
+    [[M8MeetWindowSingleton shareInstance] addMeetSource:source WindowOnTarget:target succHandle:succ];
+}
+
 + (void)M8_showFloatView
 {
     [[M8MeetWindowSingleton shareInstance] showFloatView];
@@ -25,5 +30,6 @@
 {
     [[M8MeetWindowSingleton shareInstance] hiddeFloatView];
 }
+
 
 @end

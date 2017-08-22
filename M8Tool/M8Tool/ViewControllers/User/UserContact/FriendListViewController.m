@@ -12,12 +12,16 @@
 #import "MeetingLuanchViewController.h"
 
 @interface FriendListViewController ()<UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate>
-
+{
+    BOOL _isInviteBack;     //判断是不是会议中邀请好友的时候 点击返回，如果是则返回数据，跳过代理，如果不是，就是退出，应该清空数据
+}
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
 @property (nonatomic, strong) UIButton *selectButon;
+
+
 
 @end
 
@@ -34,13 +38,13 @@
         {
             frame.size.height -= (kDefaultMargin + kDefaultCellHeight);
         }
-    
-        UITableView *tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
-        tableView.delegate = self;
-        tableView.dataSource = self;
-        tableView.backgroundColor = WCClear;
-        tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.width, 0.01)];   // 不能使用CGRectZero，不起作用
-        tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.width, 0.01)];
+        
+        UITableView *tableView                   = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
+        tableView.delegate                       = self;
+        tableView.dataSource                     = self;
+        tableView.backgroundColor                = WCClear;
+        tableView.tableHeaderView                = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.width, 0.01)];// 不能使用CGRectZero，不起作用
+        tableView.tableFooterView                = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.width, 0.01)];
         [self.contentView addSubview:(_tableView = tableView)];
     }
     
@@ -97,6 +101,17 @@
     [self onNetGetFriendList];
     
     [self createUI];
+    
+    [WCNotificationCenter addObserver:self.tableView selector:@selector(reloadData) name:kNewFriendStatu_Notification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [M8UserDefault setNewFriendNotify:NO];
+    [M8UserDefault setNewFriendIdentify:[NSArray array]];
+    [WCNotificationCenter postNotificationName:kNewFriendStatu_Notification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -120,33 +135,49 @@
 #pragma mark - on network
 - (void)onNetGetFriendList
 {
+    [self.dataArray removeAllObjects];
+    
     WCWeakSelf(self);
-    FriendsListRequest *friendListReq = [[FriendsListRequest alloc] initWithHandler:^(BaseRequest *request) {
+    
+    TIMFriendshipManager *frdManger = [TIMFriendshipManager sharedInstance];
+    
+    [frdManger GetFriendList:^(NSArray *friends) {
         
-        FriendsListRequest *wreq = (FriendsListRequest *)request;
-        FriendsListResponceData *respData = (FriendsListResponceData *)wreq.response.data;
-        
-        for (NSDictionary *dic in respData.InfoItem)
-        {   
-            M8MemberInfo *info = [M8MemberInfo new];
-            info.uid    = [dic objectForKey:@"Info_Account"];
-            info.nick   = [[[dic objectForKey:@"SnsProfileItem"] firstObject] objectForKey:@"Value"];
-            [weakself.dataArray addObject:info];
+        for (TIMUserProfile *profile in friends)
+        {
+            M8MemberInfo *mInfo = [[M8MemberInfo alloc] initWithTIMUserProfile:profile];
+            [self.dataArray addObject:mInfo];
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-           
+            
             [weakself.tableView reloadData];
         });
         
+    } fail:^(int code, NSString *msg) {
         
-    } failHandler:^(BaseRequest *request) {
-        
+        NSString *errInfo = [NSString stringWithFormat:@"errDomain: TIMSDK, errCode: %d\nerrInfo: %@", code, msg];
+        //        [AlertHelp alertWith:nil message:errInfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
     }];
+}
+
+- (void)onNetDeleteFriend:(NSIndexPath *)indexPath
+{
+    M8MemberInfo *mInfo = self.dataArray[indexPath.row];
     
-    friendListReq.identifier = [M8UserDefault getLoginId];
-    friendListReq.token = [AppDelegate sharedAppDelegate].token;
-    [[WebServiceEngine sharedEngine] AFAsynRequest:friendListReq];
+    TIMFriendshipManager *frdManger = [TIMFriendshipManager sharedInstance];
+    
+    WCWeakSelf(self);
+    
+    [frdManger DelFriend:TIM_FRIEND_DEL_BOTH users:@[mInfo.uid] succ:^(NSArray *friends) {
+        
+        [weakself onNetGetFriendList];
+        
+    } fail:^(int code, NSString *msg) {
+        
+        NSString *errInfo = [NSString stringWithFormat:@"errDomain: TIMSDK, errCode: %d\nerrInfo: %@", code, msg];
+        //        [AlertHelp alertWith:nil message:errInfo cancelBtn:@"确定" alertStyle:UIAlertControllerStyleAlert cancelAction:nil];
+    }];
 }
 
 
@@ -189,7 +220,7 @@
         }
         else
         {
-            [friendCell configWithMemberItem:self.dataArray[indexPath.row]];
+            [friendCell configWithFriendItem:self.dataArray[indexPath.row]];
         }
     }
     
@@ -226,7 +257,11 @@
             self.selectButon.enabled = (selectNum > 0);
             
             [UIView setAnimationsEnabled:NO];
-            [self.selectButon setAttributedTitle:[CommonUtil customAttString:buttonStr fontSize:kAppMiddleFontSize textColor:WCWhite charSpace:kAppKern_2] forState:UIControlStateNormal];
+            [self.selectButon setAttributedTitle:[CommonUtil customAttString:buttonStr
+                                                                    fontSize:kAppMiddleFontSize
+                                                                   textColor:WCWhite
+                                                                   charSpace:kAppKern_2]
+                                        forState:UIControlStateNormal];
             [UIView setAnimationsEnabled:YES];
             
         }
@@ -244,15 +279,65 @@
             break;
         case ContactType_invite:
         {
+            M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
+            [modelManger onSelectAtMemberInfo:self.dataArray[indexPath.row]];
             
+            [self.tableView reloadData];
+            
+            NSInteger selectNum = modelManger.selectMemberArray.count;
+            
+            NSString *buttonStr = nil;
+            if (selectNum)
+            {
+                buttonStr = [NSString stringWithFormat:@"选择(%ld)人", (long)selectNum];
+            }
+            else
+            {
+                buttonStr = @"选择";
+            }
+            self.selectButon.enabled = (selectNum > 0);
+            
+            [UIView setAnimationsEnabled:NO];
+            [self.selectButon setAttributedTitle:[CommonUtil
+                                                  customAttString:buttonStr
+                                                  fontSize:kAppMiddleFontSize
+                                                  textColor:WCWhite
+                                                  charSpace:kAppKern_2]
+                                        forState:UIControlStateNormal];
+            [UIView setAnimationsEnabled:YES];
         }
             break;
-
+            
         default:
             break;
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
+#pragma mark -- 滑动删除cell
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.contactType == ContactType_sel ||
+        self.contactType == ContactType_invite)
+    {
+        return NO;
+    }
+    return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        [self onNetDeleteFriend:indexPath];
+    }
 }
 
 
@@ -262,15 +347,26 @@
     WCLog(@"选择好友添加");
     
     NSArray *viewControllers = self.navigationController.viewControllers;
-    if (viewControllers.count > 3)
+    
+    if (self.contactType == ContactType_sel)
     {
-        UIViewController *vc = [viewControllers objectAtIndex:viewControllers.count - 3];
-        if ([vc isKindOfClass:[MeetingLuanchViewController class]])
+        if (viewControllers.count > 3)
         {
-            MeetingLuanchViewController *luanchVC = (MeetingLuanchViewController *)vc;
-            luanchVC.isBackFromSelectContact = YES;
-            [self.navigationController popToViewController:luanchVC animated:YES];
+            UIViewController *vc = [viewControllers objectAtIndex:viewControllers.count - 3];
+            if ([vc isKindOfClass:[MeetingLuanchViewController class]])
+            {
+                MeetingLuanchViewController *luanchVC = (MeetingLuanchViewController *)vc;
+                luanchVC.isBackFromSelectContact      = YES;
+                [self.navigationController popToViewController:luanchVC animated:YES];
+            }
         }
+    }
+    else if (self.contactType == ContactType_invite)    //如果是邀请的则只需 popself 就ok了，然后弹出会议界面
+    {
+        _isInviteBack = YES;
+        
+        [WCNotificationCenter postNotificationName:kInviteMembers_Notifycation object:nil];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
@@ -281,26 +377,37 @@
 {
     WCLog(@"didShowViewController : %@", [viewController class]);
     
-    //选人之后退出界面需要清空 selectArray 中的数据
-    if ([NSStringFromClass([viewController class]) isEqualToString:@"UserContactViewController"])
+    //选人之后退出界面需要清空 selectArray 中的数据，邀请的时候不需要
+    if (self.contactType == ContactType_sel)
     {
-        M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
-        [modelManger removeSelectMembers];
+        if ([NSStringFromClass([viewController class]) isEqualToString:@"UserContactViewController"])
+        {
+            M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
+            [modelManger removeSelectMembers];
+        }
     }
+    
+    if (self.contactType == ContactType_invite)
+    {
+        if (_isInviteBack)
+        {
+            return ;
+        }
+        else
+        {
+            M8InviteModelManger *modelManger = [M8InviteModelManger shareInstance];
+            [modelManger removeSelectMembers];
+        }
+    }
+    
 }
 
 
-
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)dealloc
+{
+    [WCNotificationCenter removeObserver:self name:kInviteMembers_Notifycation object:nil];
+    [WCNotificationCenter removeObserver:self.tableView name:kNewFriendStatu_Notification object:nil];
+    [WCNotificationCenter removeObserver:self name:kNewFriendStatu_Notification object:nil];
 }
-*/
 
 @end

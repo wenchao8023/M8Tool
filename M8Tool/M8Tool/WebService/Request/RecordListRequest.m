@@ -27,14 +27,6 @@
     return dic;
 }
 
-//- (Class)responseClass
-//{
-//    return [RecordListResponese class];
-//}
-//- (Class)responseDataClass
-//{
-//    return [RecordListRspData class];
-//}
 
 - (void)parseDictionaryResponse:(NSDictionary *)bodyDic
 {

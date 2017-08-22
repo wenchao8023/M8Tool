@@ -14,9 +14,7 @@
 @interface JoinPartRequest : BaseRequest
 
 @property (nonatomic, copy, nullable) NSString *token;
-@property (nonatomic, copy, nullable) NSString *uid;
-
 @property (nonatomic, assign) int did;  //部门ID
-
+@property (nonatomic, strong, nonnull) NSArray *uid;
 
 @end

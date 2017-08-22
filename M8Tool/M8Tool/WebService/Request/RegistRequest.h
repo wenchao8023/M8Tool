@@ -13,6 +13,7 @@
 @property (nonatomic, copy, nullable) NSString *nick;
 @property (nonatomic, copy, nullable) NSString *identifier;
 @property (nonatomic, copy, nullable) NSString *pwd;
+@property (nonatomic, copy, nullable) NSString *messageCode;
 
 @end
 
